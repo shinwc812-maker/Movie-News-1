@@ -1,0 +1,52 @@
+name: Daily Movie News Crawl
+
+on:
+  schedule:
+    # UTC 23:00 = KST 08:00 (매일)
+    - cron: "0 23 * * *"
+  workflow_dispatch: {}   # 수동 실행
+
+permissions:
+  contents: write          # 생성물 커밋·푸시용
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONUTF8: "1"      # 한글 입출력 깨짐 방지
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Crawl news
+        run: uv run python -m crawler.main
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Build static site
+        # 'site'는 파이썬 표준 모듈명이라 'python -m site.build'는 불가 — 파일 경로로 실행
+        run: uv run python site/build.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist data
+          if git diff --cached --quiet; then
+            echo "변경 사항 없음 — 푸시 생략"
+          else
+            git commit -m "chore: 영화 뉴스 자동 갱신 ($(date -u +%Y-%m-%d))"
+            git push
+          fi

@@ -1,0 +1,23 @@
+[project]
+name = "movie-news"
+version = "0.1.0"
+description = "내부용 영화 뉴스 집계 크롤러 — 8개 매체 자동 크롤링 후 정적 HTML 생성"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "feedparser",
+    "httpx",
+    "selectolax",
+    "jinja2",
+    "rapidfuzz",
+    "anthropic",
+    "pyyaml",
+    "python-dateutil",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["crawler", "site"]

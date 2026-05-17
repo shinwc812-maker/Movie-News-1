@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+
+# 가상환경
+.venv/
+venv/
+
+# 에디터/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 생성물(dist/, data/*.json)은 의도적으로 추적 — 자동화 워크플로우가 커밋함

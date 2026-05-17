@@ -1,0 +1,56 @@
+tier1_lotte:
+  weight: 10000
+  keywords:
+    - 롯데엔터테인먼트
+    - 롯데컬처웍스
+    - Lotte Entertainment
+    - Lotte Cultureworks
+    - 롯데시네마
+
+tier2_paramount:
+  weight: 1000
+  keywords:
+    - 파라마운트
+    - Paramount Pictures
+    - Paramount
+  context_boost:
+    weight: 500
+    keywords: [배급, distribution, releases, release, distributes, distributed by]
+
+tier3_distributors:
+  weight: 100
+  keywords:
+    # 한국
+    - CJ ENM
+    - 쇼박스
+    - Showbox
+    - NEW
+    - 플러스엠
+    - Plus M
+    - 메가박스중앙
+    - 에이스메이커
+    - 콘텐츠지오
+    # 미국 메이저
+    - Warner Bros
+    - Warner Brothers
+    - Universal Pictures
+    - Sony Pictures
+    - Walt Disney
+    - 20th Century
+    - Searchlight
+    - Focus Features
+    - Lionsgate
+    # 인디/아트하우스
+    - A24
+    - Neon
+    - IFC Films
+    - Magnolia Pictures
+    # 스트리머
+    - Netflix
+    - Apple TV
+    - Amazon MGM
+    - Amazon Studios
+
+recency_boost:
+  max_bonus: 50
+  hours_to_zero: 48

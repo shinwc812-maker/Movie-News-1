@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 영화 뉴스</title>
+<style>{{ css|safe }}</style>
+</head>
+<body class="lang-ko">
+
+<header>
+  <div class="header-row">
+    <h1>오늘의 영화 뉴스</h1>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
+      <button class="lang-btn active" data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+  </div>
+  <p class="updated">마지막 업데이트: {{ updated_at }} (KST) · 총 {{ total }}건</p>
+</header>
+
+<main>
+{% for tier in tiers %}
+  <section class="tier-section">
+    <h2 class="section-title tier-{{ tier.num }}">
+      {{ tier.emoji }} {{ tier.label }}
+      <span class="count">{{ tier.articles|length }}</span>
+    </h2>
+    {% if tier.articles %}
+      {% for a in tier.articles %}
+      <article class="card tier-{{ a.tier }}">
+        {% if a.image_url %}
+        <img class="thumb" src="{{ a.image_url }}" alt="" loading="lazy"
+             onerror="this.style.display='none'">
+        {% endif %}
+        <div class="card-body">
+          <a class="title" href="{{ a.url }}" target="_blank" rel="noopener">
+            <span class="lang-ko">{{ a.ko_title }}</span><span class="lang-en">{{ a.en_title }}{% if a.country == 'KR' %} <em class="kr-tag">(한국어)</em>{% endif %}</span>
+          </a>
+          <div class="meta">
+            <span class="source">{{ a.source }}</span>
+            {% if a.rel_time %}<span class="time">{{ a.rel_time }}</span>{% endif %}
+          </div>
+          {% if a.ko_summary or a.en_summary %}
+          <p class="summary">
+            <span class="lang-ko">{{ a.ko_summary }}</span><span class="lang-en">{{ a.en_summary }}</span>
+          </p>
+          {% endif %}
+          {% if a.tier < 4 and a.matched_keywords %}
+          <div class="keywords">
+            {% for kw in a.matched_keywords %}<span class="kw">{{ kw }}</span>{% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    {% else %}
+      <p class="empty">오늘은 해당 기사가 없습니다.</p>
+    {% endif %}
+  </section>
+{% endfor %}
+</main>
+
+<footer>내부용 영화 뉴스 집계 · 자동 생성</footer>
+
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  var buttons = document.querySelectorAll('.lang-btn');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.toggle('active', buttons[i].dataset.lang === lang);
+  }
+}
+</script>
+
+</body>
+</html>

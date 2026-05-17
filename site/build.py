@@ -1,7 +1,9 @@
 """정적 사이트 생성: data/articles.json → dist/index.html.
 
-상대 시간(KST)은 여기서 미리 계산해 템플릿에 넘긴다(JS 의존 최소화).
-언어 토글만 클라이언트 JS로 처리한다.
+기사는 국내(KR)/해외(US) 두 탭으로 나눠 보여준다. 각 탭 안에서는 articles.json의
+정렬 순서(점수 내림차순 = 우선순위 순)를 그대로 유지한다 — 우선순위 라벨은
+표시하지 않고 순서로만 반영.
+상대 시간(KST)은 빌드 시 미리 계산한다(JS 의존 최소화).
 """
 
 import json
@@ -16,14 +18,6 @@ ARTICLES_PATH = ROOT / "data" / "articles.json"
 SITE_DIR = ROOT / "site"
 DIST_PATH = ROOT / "dist" / "index.html"
 KST = ZoneInfo("Asia/Seoul")
-
-# tier 번호 → (이모지, 섹션 제목)
-TIER_META = {
-    1: ("🏢", "롯데 관련"),
-    2: ("🎬", "파라마운트 배급 관련"),
-    3: ("📦", "기타 배급사"),
-    4: ("🎨", "일반 문화예술"),
-}
 
 
 def relative_time(published_iso: str, now: datetime) -> str:
@@ -57,12 +51,10 @@ def to_view(article: dict, now: datetime) -> dict:
     title = article.get("title") or ""
     summary = article.get("summary") or ""
     return {
-        "tier": article.get("tier", 4),
         "country": article.get("country", ""),
         "source": article.get("source", ""),
         "url": article.get("url", ""),
         "image_url": article.get("image_url"),
-        "matched_keywords": article.get("matched_keywords") or [],
         "rel_time": relative_time(article.get("published_at"), now),
         # 한국어 모드: 번역본이 있으면 그것, 없으면 원문 폴백
         "ko_title": article.get("title_ko") or title,
@@ -77,17 +69,10 @@ def build() -> None:
     with ARTICLES_PATH.open(encoding="utf-8") as f:
         raw_articles = json.load(f)
 
+    # articles.json은 점수(우선순위) 내림차순 정렬 상태 — 순서를 그대로 유지
     views = [to_view(a, now) for a in raw_articles]
-
-    tiers = []
-    for tier_num in (1, 2, 3, 4):
-        emoji, label = TIER_META[tier_num]
-        tiers.append({
-            "num": tier_num,
-            "emoji": emoji,
-            "label": label,
-            "articles": [v for v in views if v["tier"] == tier_num],
-        })
+    kr_articles = [v for v in views if v["country"] == "KR"]
+    us_articles = [v for v in views if v["country"] == "US"]
 
     env = Environment(
         loader=FileSystemLoader(str(SITE_DIR)),
@@ -97,15 +82,16 @@ def build() -> None:
     css = (SITE_DIR / "style.css").read_text(encoding="utf-8")
 
     html = template.render(
-        tiers=tiers,
-        css=css,
+        kr_articles=kr_articles,
+        us_articles=us_articles,
         total=len(views),
+        css=css,
         updated_at=now.astimezone(KST).strftime("%Y년 %m월 %d일 %H:%M"),
     )
 
     DIST_PATH.parent.mkdir(parents=True, exist_ok=True)
     DIST_PATH.write_text(html, encoding="utf-8")
-    print(f"Built {DIST_PATH} ({len(views)} articles)")
+    print(f"Built {DIST_PATH} (국내 {len(kr_articles)} · 해외 {len(us_articles)})")
 
 
 if __name__ == "__main__":

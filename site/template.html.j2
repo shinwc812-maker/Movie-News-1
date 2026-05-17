@@ -6,7 +6,27 @@
 <title>오늘의 영화 뉴스</title>
 <style>{{ css|safe }}</style>
 </head>
-<body class="lang-ko">
+<body class="lang-ko tab-kr">
+
+{%- macro card(a) -%}
+<article class="card">
+  {% if a.image_url %}<img class="thumb" src="{{ a.image_url }}" alt="" loading="lazy" onerror="this.style.display='none'">{% endif %}
+  <div class="card-body">
+    <a class="title" href="{{ a.url }}" target="_blank" rel="noopener">
+      <span class="lang-ko">{{ a.ko_title }}</span><span class="lang-en">{{ a.en_title }}{% if a.country == 'KR' %} <em class="kr-tag">(한국어)</em>{% endif %}</span>
+    </a>
+    <div class="meta">
+      <span class="source">{{ a.source }}</span>
+      {% if a.rel_time %}<span class="time">{{ a.rel_time }}</span>{% endif %}
+    </div>
+    {% if a.ko_summary or a.en_summary %}
+    <p class="summary">
+      <span class="lang-ko">{{ a.ko_summary }}</span><span class="lang-en">{{ a.en_summary }}</span>
+    </p>
+    {% endif %}
+  </div>
+</article>
+{%- endmacro -%}
 
 <header>
   <div class="header-row">
@@ -19,57 +39,42 @@
   <p class="updated">마지막 업데이트: {{ updated_at }} (KST) · 총 {{ total }}건</p>
 </header>
 
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="kr" onclick="setTab('kr')">
+    국내 <span class="tab-count">{{ kr_articles|length }}</span>
+  </button>
+  <button class="tab-btn" data-tab="us" onclick="setTab('us')">
+    해외 <span class="tab-count">{{ us_articles|length }}</span>
+  </button>
+</nav>
+
 <main>
-{% for tier in tiers %}
-  <section class="tier-section">
-    <h2 class="section-title tier-{{ tier.num }}">
-      {{ tier.emoji }} {{ tier.label }}
-      <span class="count">{{ tier.articles|length }}</span>
-    </h2>
-    {% if tier.articles %}
-      {% for a in tier.articles %}
-      <article class="card tier-{{ a.tier }}">
-        {% if a.image_url %}
-        <img class="thumb" src="{{ a.image_url }}" alt="" loading="lazy"
-             onerror="this.style.display='none'">
-        {% endif %}
-        <div class="card-body">
-          <a class="title" href="{{ a.url }}" target="_blank" rel="noopener">
-            <span class="lang-ko">{{ a.ko_title }}</span><span class="lang-en">{{ a.en_title }}{% if a.country == 'KR' %} <em class="kr-tag">(한국어)</em>{% endif %}</span>
-          </a>
-          <div class="meta">
-            <span class="source">{{ a.source }}</span>
-            {% if a.rel_time %}<span class="time">{{ a.rel_time }}</span>{% endif %}
-          </div>
-          {% if a.ko_summary or a.en_summary %}
-          <p class="summary">
-            <span class="lang-ko">{{ a.ko_summary }}</span><span class="lang-en">{{ a.en_summary }}</span>
-          </p>
-          {% endif %}
-          {% if a.tier < 4 and a.matched_keywords %}
-          <div class="keywords">
-            {% for kw in a.matched_keywords %}<span class="kw">{{ kw }}</span>{% endfor %}
-          </div>
-          {% endif %}
-        </div>
-      </article>
-      {% endfor %}
-    {% else %}
-      <p class="empty">오늘은 해당 기사가 없습니다.</p>
-    {% endif %}
+  <section class="pane pane-kr">
+    {% for a in kr_articles %}{{ card(a) }}{% endfor %}
+    {% if not kr_articles %}<p class="empty">표시할 국내 기사가 없습니다.</p>{% endif %}
   </section>
-{% endfor %}
+  <section class="pane pane-us">
+    {% for a in us_articles %}{{ card(a) }}{% endfor %}
+    {% if not us_articles %}<p class="empty">표시할 해외 기사가 없습니다.</p>{% endif %}
+  </section>
 </main>
 
 <footer>내부용 영화 뉴스 집계 · 자동 생성</footer>
 
 <script>
 function setLang(lang) {
-  document.body.className = 'lang-' + lang;
-  var buttons = document.querySelectorAll('.lang-btn');
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].classList.toggle('active', buttons[i].dataset.lang === lang);
-  }
+  document.body.classList.remove('lang-ko', 'lang-en');
+  document.body.classList.add('lang-' + lang);
+  document.querySelectorAll('.lang-btn').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+}
+function setTab(tab) {
+  document.body.classList.remove('tab-kr', 'tab-us');
+  document.body.classList.add('tab-' + tab);
+  document.querySelectorAll('.tab-btn').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.tab === tab);
+  });
 }
 </script>
 

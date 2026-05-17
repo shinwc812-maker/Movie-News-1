@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from crawler.dedupe import dedupe
@@ -20,6 +21,9 @@ from crawler.sources.variety import VarietySource
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 ARTICLES_PATH = DATA_DIR / "articles.json"
+
+# 이 시간보다 오래된 기사는 제외 (매일 실행하므로 누적 없이 최신만 표시)
+MAX_AGE_HOURS = 48
 
 # 등록된 소스 (8개 매체 전체)
 SOURCES: list[Source] = [
@@ -43,6 +47,29 @@ async def gather_articles(sources: list[Source]) -> list[Article]:
     return articles
 
 
+def filter_recent(articles: list[Article], now: datetime | None = None) -> list[Article]:
+    """발행 후 MAX_AGE_HOURS 이내 기사만 남긴다.
+
+    발행일을 알 수 없는 기사는 유지한다(8개 소스 모두 '최신 뉴스' 목록/피드에서
+    수집하므로 날짜 미상이어도 사실상 최근 기사임).
+    """
+    if now is None:
+        now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(hours=MAX_AGE_HOURS)
+
+    kept: list[Article] = []
+    for article in articles:
+        published = article.published_at
+        if published is None:
+            kept.append(article)
+            continue
+        if published.tzinfo is None:
+            published = published.replace(tzinfo=timezone.utc)
+        if published >= cutoff:
+            kept.append(article)
+    return kept
+
+
 def save_articles(articles: list[Article]) -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     with ARTICLES_PATH.open("w", encoding="utf-8") as f:
@@ -58,10 +85,13 @@ def main() -> None:
     articles = asyncio.run(gather_articles(SOURCES))
     print(f"Fetched {len(articles)} articles from {len(SOURCES)} sources")
 
-    score_all(articles)
+    recent = filter_recent(articles)
+    print(f"Within last {MAX_AGE_HOURS}h: {len(recent)} (filtered out {len(articles) - len(recent)})")
 
-    deduped = dedupe(articles)
-    print(f"Before dedupe: {len(articles)}, After dedupe: {len(deduped)}")
+    score_all(recent)
+
+    deduped = dedupe(recent)
+    print(f"Before dedupe: {len(recent)}, After dedupe: {len(deduped)}")
 
     translate_articles(deduped)
 

@@ -51,3 +51,9 @@ def test_top_curation_items_limits_to_five_score_order():
     result = build.top_curation_items(views)
 
     assert [item["title"] for item in result] == ["9", "8", "7", "6", "5"]
+
+
+def test_strip_trailing_whitespace_removes_generated_blank_padding():
+    build = load_site_build_module()
+
+    assert build.strip_trailing_whitespace("a  \n   \nb") == "a\n\nb\n"

@@ -168,6 +168,10 @@ def reservation_view(reservation: dict) -> dict:
     }
 
 
+def strip_trailing_whitespace(text: str) -> str:
+    return "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
+
+
 def build() -> None:
     now = datetime.now(timezone.utc)
     raw_articles = load_json(ARTICLES_PATH, [])
@@ -189,7 +193,7 @@ def build() -> None:
     template = env.get_template("template.html.j2")
     css = (SITE_DIR / "style.css").read_text(encoding="utf-8")
 
-    html = template.render(
+    html = strip_trailing_whitespace(template.render(
         official_articles=official_articles,
         community_reactions=community_views,
         policy_items=policy_views,
@@ -201,7 +205,7 @@ def build() -> None:
         total_policies=len(policy_views),
         css=css,
         updated_at=now.astimezone(KST).strftime("%Y년 %m월 %d일 %H:%M"),
-    )
+    ))
 
     DIST_PATH.parent.mkdir(parents=True, exist_ok=True)
     DIST_PATH.write_text(html, encoding="utf-8")

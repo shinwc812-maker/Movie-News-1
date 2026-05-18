@@ -129,6 +129,14 @@ def collect_reservation_snapshot() -> None:
         print(f"KOBIS reservation captured: {snapshot.top_movie or 'unknown'}")
 
 
+def community_search_terms(market: MarketSnapshot | None) -> list[str]:
+    terms: list[str] = []
+    if market is not None:
+        terms.extend(movie.title for movie in market.movies if movie.title)
+    terms.extend(["영화 관객 반응", "영화 후기"])
+    return list(dict.fromkeys(terms))
+
+
 def main() -> None:
     market = collect_market_snapshot()
     collect_reservation_snapshot()
@@ -150,7 +158,7 @@ def main() -> None:
 
     save_articles(deduped)
 
-    community_reactions = fetch_community_reactions()
+    community_reactions = fetch_community_reactions(community_search_terms(market))
     save_community_reactions(community_reactions, COMMUNITY_PATH)
     print(f"Community reactions: {len(community_reactions)}")
 

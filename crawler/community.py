@@ -6,11 +6,15 @@ configured with CSS selectors.
 """
 
 import json
+import os
+import re
 import sys
 from dataclasses import dataclass
+from datetime import datetime
+from html import unescape
 from pathlib import Path
 from typing import Optional
-from urllib.parse import urljoin
+from urllib.parse import parse_qs, unquote, urljoin, urlparse
 
 import httpx
 from selectolax.parser import HTMLParser
@@ -21,6 +25,9 @@ from crawler.sources.extmovie import parse_extmovie_time
 
 EXTMOVIE_BASE_URL = "https://extmovie.com"
 EXTMOVIE_HOME_URL = "https://extmovie.com/"
+NAVER_SEARCH_URL = "https://openapi.naver.com/v1/search/{endpoint}.json"
+NAVER_PUBLIC_SEARCH_URL = "https://search.naver.com/search.naver"
+YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
 
 POSITIVE_TERMS = ("재밌", "좋", "기대", "호평", "추천", "만족")
 NEGATIVE_TERMS = ("아쉽", "별로", "혹평", "실망", "걱정", "불호")
@@ -54,6 +61,23 @@ def _first_attr(node, selector: str, attr: str) -> Optional[str]:
         return None
     value = target.attributes.get(attr)
     return value.strip() if value else None
+
+
+def _normalise_spaces(text: str) -> str:
+    return re.sub(r"\s+", " ", text or "").strip()
+
+
+def _strip_html(text: str) -> str:
+    return _normalise_spaces(unescape(re.sub(r"<[^>]+>", "", text or "")))
+
+
+def _parse_iso_datetime(value: str | None) -> Optional[datetime]:
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
 
 
 def parse_extmovie_community_cards(html: str) -> list[CommunityReaction]:
@@ -174,14 +198,398 @@ class ExtMovieCommunitySource:
         return parse_extmovie_community_cards(response.text)
 
 
+@dataclass
+class NaverPublicCafeSearchSource:
+    """Public Naver search fallback for Cafe posts.
+
+    This does not require Naver Open API credentials. It is intentionally
+    conservative: only direct `cafe.naver.com` results are converted.
+    """
+
+    source_name: str = "네이버카페"
+    query_suffix: str = "영화 후기 관객 반응"
+
+    def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        with httpx.Client(
+            timeout=REQUEST_TIMEOUT,
+            headers={"User-Agent": USER_AGENT},
+            follow_redirects=True,
+        ) as client:
+            for term in search_terms:
+                query = f"{term} {self.query_suffix}".strip()
+                try:
+                    response = client.get(
+                        NAVER_PUBLIC_SEARCH_URL,
+                        params={"where": "article", "query": query},
+                    )
+                    response.raise_for_status()
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[warn] {self.source_name}: public search failed — {exc}", file=sys.stderr)
+                    continue
+                reactions.extend(self.parse(response.text, query=term))
+        return reactions
+
+    def parse(self, html: str, query: str) -> list[CommunityReaction]:
+        tree = HTMLParser(html)
+        reactions: list[CommunityReaction] = []
+        seen: set[str] = set()
+        for link in tree.css("a[href]"):
+            url = self._extract_cafe_url(link.attributes.get("href") or "")
+            if not url or url in seen:
+                continue
+            title = _normalise_spaces(link.text(strip=True))
+            if not title:
+                continue
+            seen.add(url)
+            container_text = _normalise_spaces((link.parent or link).text(strip=True))
+            excerpt = container_text.replace(title, "", 1).strip(" ·-")
+            reactions.append(
+                CommunityReaction(
+                    id=make_article_id(url),
+                    source=self.source_name,
+                    title=title,
+                    url=url,
+                    excerpt=excerpt,
+                    mood_summary=summarize_reaction_mood(f"{title} {excerpt}"),
+                    matched_keywords=[query],
+                )
+            )
+        return reactions
+
+    def _extract_cafe_url(self, href: str) -> str:
+        parsed = urlparse(href)
+        host = parsed.netloc.lower()
+        if "cafe.naver.com" in host and self._is_article_url(parsed):
+            return href
+        for values in parse_qs(parsed.query).values():
+            for value in values:
+                decoded = unquote(value)
+                decoded_parsed = urlparse(decoded)
+                if "cafe.naver.com" in decoded_parsed.netloc.lower() and self._is_article_url(decoded_parsed):
+                    return decoded
+        return ""
+
+    def _is_article_url(self, parsed_url) -> bool:
+        path_parts = [part for part in parsed_url.path.split("/") if part]
+        if parsed_url.path.lower().endswith("articleread.nhn"):
+            return bool(parse_qs(parsed_url.query).get("articleid"))
+        return len(path_parts) >= 2
+
+
+@dataclass
+class NaverPublicWebSearchSource:
+    """Public Naver web search fallback for community domains such as X."""
+
+    source_name: str
+    query_suffix: str
+    allowed_domains: tuple[str, ...]
+    where: str = "web"
+    required_path_fragments: tuple[str, ...] = ()
+
+    def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        with httpx.Client(
+            timeout=REQUEST_TIMEOUT,
+            headers={"User-Agent": USER_AGENT},
+            follow_redirects=True,
+        ) as client:
+            for term in search_terms:
+                query = f"{term} {self.query_suffix}".strip()
+                try:
+                    response = client.get(
+                        NAVER_PUBLIC_SEARCH_URL,
+                        params={"where": self.where, "query": query},
+                    )
+                    response.raise_for_status()
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[warn] {self.source_name}: public search failed — {exc}", file=sys.stderr)
+                    continue
+                reactions.extend(self.parse(response.text, query=term))
+        return reactions
+
+    def parse(self, html: str, query: str) -> list[CommunityReaction]:
+        tree = HTMLParser(html)
+        reactions: list[CommunityReaction] = []
+        seen: set[str] = set()
+        for link in tree.css("a[href]"):
+            url = self._extract_allowed_url(link.attributes.get("href") or "")
+            if not url or url in seen:
+                continue
+            title = _normalise_spaces(link.text(strip=True))
+            if not title:
+                continue
+            seen.add(url)
+            container_text = _normalise_spaces((link.parent or link).text(strip=True))
+            excerpt = container_text.replace(title, "", 1).strip(" ·-")
+            reactions.append(
+                CommunityReaction(
+                    id=make_article_id(url),
+                    source=self.source_name,
+                    title=title,
+                    url=url,
+                    excerpt=excerpt,
+                    mood_summary=summarize_reaction_mood(f"{title} {excerpt}"),
+                    matched_keywords=[query],
+                )
+            )
+        return reactions
+
+    def _extract_allowed_url(self, href: str) -> str:
+        parsed = urlparse(href)
+        if self._url_allowed(parsed):
+            return href
+        for values in parse_qs(parsed.query).values():
+            for value in values:
+                decoded = unquote(value)
+                if self._url_allowed(urlparse(decoded)):
+                    return decoded
+        return ""
+
+    def _url_allowed(self, parsed_url) -> bool:
+        if not self._host_allowed(parsed_url.netloc):
+            return False
+        return all(fragment in parsed_url.path for fragment in self.required_path_fragments)
+
+    def _host_allowed(self, host: str) -> bool:
+        host = host.lower()
+        return any(domain in host for domain in self.allowed_domains)
+
+
+@dataclass
+class NaverSearchCommunitySource:
+    """Naver Search API backed community source.
+
+    Use `cafearticle` for Naver Cafe posts and `webkr` for public web search
+    fallbacks such as X/Twitter links exposed in search snippets.
+    """
+
+    source_name: str
+    endpoint: str
+    client_id: str
+    client_secret: str
+    base_query_suffix: str
+    display: int = 10
+    allowed_domains: tuple[str, ...] = ()
+
+    def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        with httpx.Client(
+            timeout=REQUEST_TIMEOUT,
+            headers={
+                "User-Agent": USER_AGENT,
+                "X-Naver-Client-Id": self.client_id,
+                "X-Naver-Client-Secret": self.client_secret,
+            },
+            follow_redirects=True,
+        ) as client:
+            for term in search_terms:
+                query = f"{term} {self.base_query_suffix}".strip()
+                try:
+                    response = client.get(
+                        NAVER_SEARCH_URL.format(endpoint=self.endpoint),
+                        params={"query": query, "display": self.display, "sort": "date"},
+                    )
+                    response.raise_for_status()
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[warn] {self.source_name}: Naver search failed — {exc}", file=sys.stderr)
+                    if getattr(exc, "response", None) is not None and exc.response.status_code == 401:
+                        break
+                    continue
+                reactions.extend(self.parse_payload(response.json(), query=term))
+        return reactions
+
+    def parse_payload(self, payload: dict, query: str) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        for item in payload.get("items", []):
+            if not isinstance(item, dict):
+                continue
+            url = item.get("link") or item.get("originallink") or ""
+            if not url:
+                continue
+            if self.allowed_domains:
+                host = urlparse(url).netloc.lower()
+                if not any(domain in host for domain in self.allowed_domains):
+                    continue
+            title = _strip_html(item.get("title") or "")
+            description = _strip_html(item.get("description") or "")
+            if not title:
+                continue
+            cafe_name = _strip_html(item.get("cafename") or "")
+            excerpt = f"{cafe_name} · {description}" if cafe_name else description
+            reactions.append(
+                CommunityReaction(
+                    id=make_article_id(url),
+                    source=self.source_name,
+                    title=title,
+                    url=url,
+                    excerpt=excerpt,
+                    mood_summary=summarize_reaction_mood(f"{title} {description}"),
+                    matched_keywords=[query],
+                )
+            )
+        return reactions
+
+
+@dataclass
+class YouTubeCommunitySource:
+    """YouTube Data API backed video reaction source."""
+
+    api_key: str
+    source_name: str = "YouTube"
+    query_suffix: str = "영화 리뷰 관객 반응"
+    max_results: int = 5
+
+    def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        with httpx.Client(
+            timeout=REQUEST_TIMEOUT,
+            headers={"User-Agent": USER_AGENT},
+            follow_redirects=True,
+        ) as client:
+            for term in search_terms:
+                query = f"{term} {self.query_suffix}".strip()
+                try:
+                    response = client.get(
+                        YOUTUBE_SEARCH_URL,
+                        params={
+                            "key": self.api_key,
+                            "part": "snippet",
+                            "q": query,
+                            "type": "video",
+                            "order": "date",
+                            "maxResults": self.max_results,
+                            "regionCode": "KR",
+                            "relevanceLanguage": "ko",
+                            "safeSearch": "moderate",
+                        },
+                    )
+                    response.raise_for_status()
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[warn] {self.source_name}: YouTube search failed — {exc}", file=sys.stderr)
+                    break
+                reactions.extend(self.parse_payload(response.json(), query=term))
+        return reactions
+
+    def parse_payload(self, payload: dict, query: str) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        for item in payload.get("items", []):
+            if not isinstance(item, dict):
+                continue
+            item_id = item.get("id") if isinstance(item.get("id"), dict) else {}
+            video_id = item_id.get("videoId")
+            if item_id.get("kind") != "youtube#video" or not video_id:
+                continue
+            snippet = item.get("snippet") if isinstance(item.get("snippet"), dict) else {}
+            title = _strip_html(snippet.get("title") or "")
+            description = _strip_html(snippet.get("description") or "")
+            if not title:
+                continue
+            channel = _strip_html(snippet.get("channelTitle") or "")
+            excerpt = f"{channel} · {description}" if channel else description
+            image_url = self._thumbnail_url(snippet)
+            url = f"https://www.youtube.com/watch?v={video_id}"
+            reactions.append(
+                CommunityReaction(
+                    id=make_article_id(url),
+                    source=self.source_name,
+                    title=title,
+                    url=url,
+                    excerpt=excerpt,
+                    mood_summary=summarize_reaction_mood(f"{title} {description}"),
+                    published_at=_parse_iso_datetime(snippet.get("publishedAt")),
+                    image_url=image_url,
+                    matched_keywords=[query],
+                )
+            )
+        return reactions
+
+    def _thumbnail_url(self, snippet: dict) -> Optional[str]:
+        thumbnails = snippet.get("thumbnails")
+        if not isinstance(thumbnails, dict):
+            return None
+        for key in ("medium", "high", "default"):
+            thumbnail = thumbnails.get(key)
+            if isinstance(thumbnail, dict) and thumbnail.get("url"):
+                return str(thumbnail["url"])
+        return None
+
+
+def _naver_sources_from_env() -> list[NaverSearchCommunitySource]:
+    client_id = os.environ.get("NAVER_CLIENT_ID")
+    client_secret = os.environ.get("NAVER_CLIENT_SECRET")
+    if not client_id or not client_secret:
+        print("[warn] NAVER_CLIENT_ID/SECRET missing — skipping Naver community search", file=sys.stderr)
+        return []
+    return [
+        NaverSearchCommunitySource(
+            source_name="네이버카페",
+            endpoint="cafearticle",
+            client_id=client_id,
+            client_secret=client_secret,
+            base_query_suffix="영화 관객 반응 후기",
+            display=10,
+        ),
+        NaverSearchCommunitySource(
+            source_name="X/Twitter",
+            endpoint="webkr",
+            client_id=client_id,
+            client_secret=client_secret,
+            base_query_suffix="site:x.com OR site:twitter.com 영화 반응 후기",
+            display=10,
+            allowed_domains=("x.com", "twitter.com"),
+        ),
+    ]
+
+
+def _youtube_sources_from_env() -> list[YouTubeCommunitySource]:
+    api_key = os.environ.get("YOUTUBE_API_KEY")
+    if not api_key:
+        print("[warn] YOUTUBE_API_KEY missing — skipping YouTube community search", file=sys.stderr)
+        return []
+    return [YouTubeCommunitySource(api_key=api_key)]
+
+
 COMMUNITY_SOURCES = [ExtMovieCommunitySource()]
+PUBLIC_SEARCH_SOURCES = [
+    NaverPublicCafeSearchSource(),
+    NaverPublicWebSearchSource(
+        source_name="X/Twitter",
+        query_suffix="site:x.com OR site:twitter.com 영화 반응 후기",
+        allowed_domains=("x.com", "twitter.com"),
+        required_path_fragments=("/status/",),
+    ),
+]
 
 
-def fetch_community_reactions() -> list[CommunityReaction]:
+def default_search_terms() -> list[str]:
+    return ["영화", "관객 반응", "박스오피스"]
+
+
+def fetch_community_reactions(search_terms: Optional[list[str]] = None) -> list[CommunityReaction]:
+    search_terms = [term for term in (search_terms or default_search_terms()) if term]
     reactions: list[CommunityReaction] = []
     seen: set[str] = set()
     for source in COMMUNITY_SOURCES:
         for reaction in source.fetch():
+            if reaction.url in seen:
+                continue
+            seen.add(reaction.url)
+            reactions.append(reaction)
+    for source in PUBLIC_SEARCH_SOURCES:
+        for reaction in source.fetch(search_terms):
+            if reaction.url in seen:
+                continue
+            seen.add(reaction.url)
+            reactions.append(reaction)
+    for source in _naver_sources_from_env():
+        for reaction in source.fetch(search_terms):
+            if reaction.url in seen:
+                continue
+            seen.add(reaction.url)
+            reactions.append(reaction)
+    for source in _youtube_sources_from_env():
+        for reaction in source.fetch(search_terms):
             if reaction.url in seen:
                 continue
             seen.add(reaction.url)

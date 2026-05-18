@@ -15,6 +15,11 @@ REM set ANTHROPIC_API_KEY=sk-your-key-here
 REM --- Required for KOBIS box office / reservation dashboard data ---
 REM set KOBIS_API_KEY=your-kobis-key
 
+REM --- Optional community search expansions ---
+REM set NAVER_CLIENT_ID=your-naver-client-id
+REM set NAVER_CLIENT_SECRET=your-naver-client-secret
+REM set YOUTUBE_API_KEY=your-youtube-api-key
+
 echo ============================================
 echo            Movie News Crawler
 echo ============================================

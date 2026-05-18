@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>영화/문화 이슈 대시보드 목업</title>
+  <style>
+    :root {
+      --bg: #eef1f6;
+      --panel: #ffffff;
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d9e0ea;
+      --blue: #2563eb;
+      --green: #16a34a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    header {
+      padding: 28px 32px 18px;
+      background: #111827;
+      color: #fff;
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+    header p {
+      margin: 0;
+      color: #b8c2d3;
+      font-size: 14px;
+    }
+    main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .concept {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(22, 31, 50, 0.08);
+    }
+    .concept-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      padding: 13px 15px;
+      background: #172033;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .concept-head small {
+      color: #c7d2e5;
+      font-weight: 700;
+    }
+    .mock {
+      min-height: 520px;
+      padding: 13px;
+      background: #f5f7fb;
+      font-size: 10px;
+    }
+    .mini-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 9px;
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .muted { color: var(--muted); }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .kpi, .panel, .item, .capture, .policy {
+      background: #fff;
+      border: 1px solid #e1e7f0;
+      border-radius: 6px;
+    }
+    .kpi {
+      min-height: 48px;
+      padding: 7px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .kpi strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--ink);
+      font-size: 11px;
+    }
+    .columns {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 8px;
+    }
+    .wide {
+      display: grid;
+      grid-template-columns: 0.9fr 1.35fr 0.85fr;
+      gap: 8px;
+    }
+    .source-lanes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .compact .item {
+      min-height: 44px;
+      padding: 6px;
+    }
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 8px 3px;
+      font-weight: 900;
+    }
+    .list { padding: 0 7px 7px; }
+    .item {
+      padding: 7px;
+      margin-top: 6px;
+      min-height: 52px;
+    }
+    .item b {
+      display: block;
+      color: #182235;
+      font-size: 11px;
+      margin-bottom: 3px;
+    }
+    .tags {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2ff;
+      color: #3646a8;
+      font-size: 9px;
+      font-weight: 900;
+    }
+    .tag.green {
+      background: #e8f8ef;
+      color: #14723c;
+    }
+    .boxoffice {
+      display: grid;
+      gap: 5px;
+      padding: 0 7px 7px;
+    }
+    .rank {
+      display: grid;
+      grid-template-columns: 18px 1fr 46px;
+      gap: 5px;
+      align-items: center;
+      padding: 6px;
+      border-radius: 5px;
+      background: #f8fafc;
+      border: 1px solid #e5e9f0;
+    }
+    .capture {
+      height: 74px;
+      margin: 0 7px 7px;
+      display: grid;
+      place-items: center;
+      background: repeating-linear-gradient(135deg, #eef2f7, #eef2f7 8px, #f8fafc 8px, #f8fafc 16px);
+      color: #475569;
+      font-weight: 900;
+    }
+    .policy {
+      margin: 8px 0 0;
+      padding: 9px;
+      border-left: 4px solid var(--green);
+      color: #365044;
+    }
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin: 7px 7px 0;
+    }
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 6px 4px;
+      border-radius: 5px;
+      background: #e8edf5;
+      color: #4b5563;
+      font-weight: 900;
+    }
+    .tab.active {
+      background: var(--blue);
+      color: #fff;
+    }
+    .movie-row {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 7px;
+      margin: 7px;
+    }
+    .badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #111827;
+      color: #fff;
+      font-weight: 900;
+    }
+    .focus .item:first-child {
+      border-left: 4px solid var(--blue);
+    }
+    .concept-body {
+      padding: 15px;
+      border-top: 1px solid var(--line);
+    }
+    .concept-body h2 {
+      margin: 0 0 7px;
+      font-size: 18px;
+    }
+    .concept-body p {
+      margin: 0;
+      color: #475467;
+      font-size: 14px;
+    }
+    @media (max-width: 1180px) {
+      .cards { grid-template-columns: 1fr; }
+      .mock { min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>사내 영화/문화 이슈 대시보드 목업</h1>
+    <p>공식 기사, 커뮤니티 반응, KOBIS 전일 관객 TOP 5, 실시간 예매율 캡처, 영화/문화 정책 지원 정보를 한 화면에 배치하는 3가지 방향입니다.</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <span>추천은 A안입니다. 다만 “공식/커뮤니티 완전 분리”를 가장 강하게 가져가려면 B안이 더 보수적입니다.</span>
+      <span>KOBIS API key는 코드가 아닌 환경변수/Secret으로 처리</span>
+    </div>
+
+    <section class="cards">
+      <article class="concept">
+        <div class="concept-head"><span>A. 임원 브리핑형</span><small>추천</small></div>
+        <div class="mock">
+          <div class="mini-top"><span>오늘의 영화/문화 레이더</span><span class="muted">08:00 KST</span></div>
+          <div class="kpis">
+            <div class="kpi">전일 1위<strong>왕과 사는 남자</strong></div>
+            <div class="kpi">예매 1위<strong>군체 46.5%</strong></div>
+            <div class="kpi">공식 기사<strong>18건</strong></div>
+            <div class="kpi">커뮤니티 반응<strong>12건</strong></div>
+          </div>
+          <div class="columns">
+            <div class="panel">
+              <div class="section-title"><span>핵심 큐레이션</span><span class="muted">box office weighted</span></div>
+              <div class="list focus">
+                <div class="item"><b>1위작 흥행세와 신규 리뷰 확산</b><span>공식 기사와 커뮤니티 반응을 분리해 같은 이슈에 연결</span><div class="tags"><span class="tag">BOX 1</span><span class="tag">공식</span><span class="tag">커뮤니티</span></div></div>
+                <div class="item"><b>국내 배급사 관련 이슈</b><span>전일 관객 TOP 5와 키워드 매칭</span></div>
+                <div class="item"><b>칸/해외 영화제 반응</b><span>해외 매체와 국내 커뮤니티 온도차</span></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="section-title"><span>전일 관객 TOP 5</span><span class="muted">KOBIS</span></div>
+              <div class="boxoffice">
+                <div class="rank"><b>1</b><span>왕과 사는 남자</span><b>221k</b></div>
+                <div class="rank"><b>2</b><span>호퍼스</span><b>17k</b></div>
+                <div class="rank"><b>3</b><span>삼악도</span><b>8.8k</b></div>
+                <div class="rank"><b>4</b><span>F1 더 무비</span><b>6.9k</b></div>
+                <div class="rank"><b>5</b><span>휴민트</span><b>4.3k</b></div>
+              </div>
+              <div class="section-title"><span>실시간 예매율 캡처</span><span class="muted">업로드 시점</span></div>
+              <div class="capture">KOBIS 화면 캡처</div>
+            </div>
+          </div>
+          <div class="source-lanes">
+            <div class="panel compact">
+              <div class="section-title"><span>공식 기사</span><span class="muted">매체/보도자료</span></div>
+              <div class="list">
+                <div class="item"><b>1위작 리뷰·흥행 기사</b><span>박스오피스 TOP 5 작품명 매칭 시 가중치</span><div class="tags"><span class="tag">공식</span><span class="tag">BOX 1</span></div></div>
+                <div class="item"><b>배급사·영화제·산업 기사</b><span>국내/해외 매체, 영진위/문체부 공지 포함</span></div>
+              </div>
+            </div>
+            <div class="panel compact">
+              <div class="section-title"><span>커뮤니티 반응</span><span class="muted">별도 섹션</span></div>
+              <div class="list">
+                <div class="item"><b>익무/영화 커뮤니티 급상승 글</b><span>공식 기사와 혼합하지 않고 출처를 명확히 표시</span><div class="tags"><span class="tag">커뮤니티</span></div></div>
+                <div class="item"><b>관객 반응·입소문 신호</b><span>작품명/배우명 매칭으로 공식 이슈 옆에 보조 노출</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="policy"><b>정부/공공 지원책</b><br>영진위 제작지원, 관람 할인권 사업, 문체부 영화산업 정책을 별도 카드로 노출</div>
+        </div>
+        <div class="concept-body">
+          <h2>한눈에 보는 내부 브리핑에 가장 적합</h2>
+          <p>상단 지표와 핵심 큐레이션을 먼저 보여주되, 공식 기사와 커뮤니티 반응은 별도 박스로 분리해 출처 혼동을 줄입니다.</p>
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept-head"><span>B. 섹션 분리형</span><small>출처 구분 최우선</small></div>
+        <div class="mock">
+          <div class="mini-top"><span>영화/문화 모니터</span><span class="muted">공식 vs 커뮤니티</span></div>
+          <div class="wide">
+            <div class="panel">
+              <div class="section-title"><span>Box Office</span></div>
+              <div class="boxoffice">
+                <div class="rank"><b>1</b><span>왕과 사는 남자</span><b>221k</b></div>
+                <div class="rank"><b>2</b><span>호퍼스</span><b>17k</b></div>
+                <div class="rank"><b>3</b><span>삼악도</span><b>8.8k</b></div>
+                <div class="rank"><b>4</b><span>F1 더 무비</span><b>6.9k</b></div>
+                <div class="rank"><b>5</b><span>휴민트</span><b>4.3k</b></div>
+              </div>
+              <div class="capture">예매율 캡처</div>
+            </div>
+            <div class="panel">
+              <div class="tabs"><span class="tab active">공식 기사</span><span class="tab">커뮤니티</span></div>
+              <div class="list">
+                <div class="item"><b>공식 기사 헤드라인</b><span>매체 신뢰도와 박스오피스 가중치 기준</span></div>
+                <div class="item"><b>공식 기사 헤드라인</b><span>국내/해외 분류와 번역 제공</span></div>
+                <div class="item"><b>공식 기사 헤드라인</b><span>전일 TOP 5 작품 매칭 표시</span></div>
+                <div class="item"><b>커뮤니티 주요 반응</b><span>탭 전환 시 커뮤니티 글만 별도 표시</span></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="section-title"><span>정책/지원</span></div>
+              <div class="list">
+                <div class="item"><b>제작지원 공고</b><span>접수/공고/결과</span></div>
+                <div class="item"><b>관람 활성화 정책</b><span>할인권/상영 지원</span></div>
+                <div class="item"><b>문체부 보도자료</b><span>영화 관련 정책만 필터</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="concept-body">
+          <h2>공식과 커뮤니티를 가장 명확히 분리</h2>
+          <p>내부 공유 때 출처 오해가 적습니다. 대신 핵심 이슈를 한 번에 읽는 흐름은 A안보다 약합니다.</p>
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept-head"><span>C. 작품 중심형</span><small>흥행 연동 최우선</small></div>
+        <div class="mock">
+          <div class="mini-top"><span>Box Office Driven Issues</span><span class="muted">TOP 5 기준</span></div>
+          <div class="panel">
+            <div class="movie-row">
+              <span class="badge">1</span>
+              <div class="item"><b>왕과 사는 남자 221,380명</b><span>공식 기사 5건 · 커뮤니티 8건 · 예매율 관련 2건</span><div class="tags"><span class="tag">공식 리뷰</span><span class="tag">커뮤니티 반응</span></div></div>
+            </div>
+            <div class="movie-row">
+              <span class="badge">2</span>
+              <div class="item"><b>호퍼스 17,445명</b><span>해외 기사 3건 · 국내 기사 1건</span><div class="tags"><span class="tag">해외</span><span class="tag">흥행</span></div></div>
+            </div>
+            <div class="movie-row">
+              <span class="badge">3</span>
+              <div class="item"><b>삼악도 8,864명</b><span>공식 기사 2건 · 커뮤니티 4건</span></div>
+            </div>
+            <div class="movie-row">
+              <span class="badge">4</span>
+              <div class="item"><b>F1 더 무비 6,977명</b><span>누적 관객과 장기 흥행 관련 기사 묶음</span></div>
+            </div>
+            <div class="capture">실시간 예매율 캡처</div>
+          </div>
+          <div class="policy"><b>정책/지원은 하단 별도 피드</b><br>작품 이슈와 직접 연결되지 않아도 지속 노출</div>
+        </div>
+        <div class="concept-body">
+          <h2>박스오피스와 기사 큐레이션 연결이 가장 강함</h2>
+          <p>전일 TOP 5 작품별로 공식 기사와 커뮤니티 반응을 묶습니다. 산업/정책 이슈는 상대적으로 뒤로 밀릴 수 있습니다.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

@@ -60,7 +60,7 @@
 <main class="dashboard">
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].title }}{% else %}데이터 없음{% endif %}</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_rate }}{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_label }}{% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>공식 기사</span><strong>{{ total_official }}건</strong></div>
     <div class="kpi"><span>커뮤니티 반응</span><strong>{{ total_community }}건</strong></div>
   </section>
@@ -103,15 +103,15 @@
 
       <section class="panel">
         <div class="panel-head">
-          <h2>실시간 예매율 TOP 5</h2>
-          <span>업로드 시점</span>
+          <h2>실시간 예매량 TOP 5</h2>
+          <span>예매량(예매율)</span>
         </div>
         <ol class="reservation-list">
           {% for movie in reservation.movies %}
           <li>
             <b>{{ movie.rank }}</b>
             <span>{{ movie.title }}</span>
-            <strong>{{ movie.reservation_rate }}</strong>
+            <strong>{{ movie.reservation_label }}</strong>
           </li>
           {% endfor %}
         </ol>

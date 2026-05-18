@@ -45,6 +45,12 @@ def format_rate(value) -> str:
         return "0%"
 
 
+def format_reservation_label(count, rate) -> str:
+    formatted_count = format_int(count)
+    formatted_rate = format_rate(rate)
+    return f"{formatted_count}명 ({formatted_rate})"
+
+
 def relative_time(published_iso: str | None, now: datetime) -> str:
     if not published_iso:
         return ""
@@ -183,6 +189,10 @@ def reservation_view(reservation: dict) -> dict:
             "title": movie.get("title", ""),
             "reservation_rate": format_rate(movie.get("reservation_rate")),
             "reservation_count": format_int(movie.get("reservation_count")),
+            "reservation_label": format_reservation_label(
+                movie.get("reservation_count"),
+                movie.get("reservation_rate"),
+            ),
         }
         for movie in reservation.get("movies", [])
         if isinstance(movie, dict)

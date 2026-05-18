@@ -98,6 +98,7 @@ def test_reservation_view_returns_structured_top_five_without_image_asset():
 
     assert view["movies"][0]["title"] == "군체"
     assert view["movies"][0]["reservation_rate"] == "46.7%"
+    assert view["movies"][0]["reservation_label"] == "125,334명 (46.7%)"
     assert "image_url" not in view
 
 

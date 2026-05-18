@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>오늘의 영화 뉴스</title>
+<title>오늘의 영화/문화 레이더</title>
 <style>{{ css|safe }}</style>
 </head>
-<body class="lang-ko tab-kr">
+<body class="lang-ko">
 
-{%- macro card(a) -%}
-<article class="card">
-  {% if a.image_url %}<img class="thumb" src="{{ a.image_url }}" alt="" loading="lazy" onerror="this.style.display='none'">{% endif %}
+{%- macro official_card(a, compact=False) -%}
+<article class="card {% if compact %}card-compact{% endif %}">
+  {% if a.image_url and not compact %}<img class="thumb" src="{{ a.image_url }}" alt="" loading="lazy" onerror="this.style.display='none'">{% endif %}
   <div class="card-body">
     <a class="title" href="{{ a.url }}" target="_blank" rel="noopener">
       <span class="lang-ko">{{ a.ko_title }}</span><span class="lang-en">{{ a.en_title }}{% if a.country == 'KR' %} <em class="kr-tag">(한국어)</em>{% endif %}</span>
     </a>
     <div class="meta">
-      <span class="source">{{ a.source }}</span>
+      <span class="source official">공식 · {{ a.source }}</span>
       {% if a.rel_time %}<span class="time">{{ a.rel_time }}</span>{% endif %}
     </div>
     {% if a.ko_summary or a.en_summary %}
@@ -24,56 +24,147 @@
       <span class="lang-ko">{{ a.ko_summary }}</span><span class="lang-en">{{ a.en_summary }}</span>
     </p>
     {% endif %}
+    {% if a.matched_keywords %}
+    <div class="chips">{% for kw in a.matched_keywords[:3] %}<span>{{ kw }}</span>{% endfor %}</div>
+    {% endif %}
   </div>
 </article>
 {%- endmacro -%}
 
-<header>
-  <div class="header-row">
-    <h1>오늘의 영화 뉴스</h1>
-    <div class="lang-toggle">
-      <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
-      <button class="lang-btn active" data-lang="ko" onclick="setLang('ko')">한국어</button>
+{%- macro community_card(c) -%}
+<article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="{{ c.url }}" target="_blank" rel="noopener">{{ c.title }}</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · {{ c.source }}</span>
+      {% if c.rel_time %}<span class="time">{{ c.rel_time }}</span>{% endif %}
     </div>
+    {% if c.excerpt %}<p class="summary">{{ c.excerpt }}</p>{% endif %}
+    {% if c.mood_summary %}<p class="mood">{{ c.mood_summary }}</p>{% endif %}
   </div>
-  <p class="updated">마지막 업데이트: {{ updated_at }} (KST) · 총 {{ total }}건</p>
+</article>
+{%- endmacro -%}
+
+<header class="topbar">
+  <div>
+    <p class="eyebrow">Internal Briefing</p>
+    <h1>오늘의 영화/문화 레이더</h1>
+    <p class="updated">마지막 업데이트: {{ updated_at }} (KST)</p>
+  </div>
+  <div class="lang-toggle" aria-label="언어 선택">
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
+    <button class="lang-btn active" data-lang="ko" onclick="setLang('ko')">한국어</button>
+  </div>
 </header>
 
-<nav class="tabs">
-  <button class="tab-btn active" data-tab="kr" onclick="setTab('kr')">
-    국내 <span class="tab-count">{{ kr_articles|length }}</span>
-  </button>
-  <button class="tab-btn" data-tab="us" onclick="setTab('us')">
-    해외 <span class="tab-count">{{ us_articles|length }}</span>
-  </button>
-</nav>
-
-<main>
-  <section class="pane pane-kr">
-    {% for a in kr_articles %}{{ card(a) }}{% endfor %}
-    {% if not kr_articles %}<p class="empty">표시할 국내 기사가 없습니다.</p>{% endif %}
+<main class="dashboard">
+  <section class="kpis" aria-label="핵심 지표">
+    <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].title }}{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>{% if reservation.top_movie %}{{ reservation.top_movie }}{% if reservation.top_rate %} {{ reservation.top_rate }}{% endif %}{% else %}캡처 대기{% endif %}</strong></div>
+    <div class="kpi"><span>공식 기사</span><strong>{{ total_official }}건</strong></div>
+    <div class="kpi"><span>커뮤니티 반응</span><strong>{{ total_community }}건</strong></div>
   </section>
-  <section class="pane pane-us">
-    {% for a in us_articles %}{{ card(a) }}{% endfor %}
-    {% if not us_articles %}<p class="empty">표시할 해외 기사가 없습니다.</p>{% endif %}
+
+  <section class="hero-grid">
+    <div class="panel curation-panel">
+      <div class="panel-head">
+        <h2>핵심 큐레이션</h2>
+        <span>box office weighted</span>
+      </div>
+      <div class="curation-list">
+        {% for item in curation %}
+          {% if item.content_kind == 'community' %}
+            {{ community_card(item) }}
+          {% else %}
+            {{ official_card(item, compact=True) }}
+          {% endif %}
+        {% endfor %}
+        {% if not curation %}<p class="empty">표시할 큐레이션 항목이 없습니다.</p>{% endif %}
+      </div>
+    </div>
+
+    <aside class="side-stack">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>전일 관객 TOP 5</h2>
+          <span>KOBIS</span>
+        </div>
+        <ol class="boxoffice-list">
+          {% for movie in boxoffice %}
+          <li>
+            <b>{{ movie.rank }}</b>
+            <span>{{ movie.title }}</span>
+            <strong>{{ movie.audi_count }}명</strong>
+          </li>
+          {% endfor %}
+        </ol>
+        {% if not boxoffice %}<p class="empty">KOBIS 박스오피스 데이터가 없습니다.</p>{% endif %}
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>실시간 예매율 캡처</h2>
+          <span>업로드 시점</span>
+        </div>
+        {% if reservation.available %}
+          <img class="reservation-shot" src="{{ reservation.image_url }}" alt="KOBIS 실시간 예매율 캡처">
+        {% else %}
+          <div class="capture-empty">캡처를 사용할 수 없습니다.</div>
+        {% endif %}
+      </section>
+    </aside>
+  </section>
+
+  <section class="lane-grid">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>공식 기사</h2>
+        <span>언론/보도자료</span>
+      </div>
+      <div class="feed">
+        {% for article in official_articles[:12] %}{{ official_card(article) }}{% endfor %}
+        {% if not official_articles %}<p class="empty">표시할 공식 기사가 없습니다.</p>{% endif %}
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>커뮤니티 반응</h2>
+        <span>본문/댓글 분위기 요약</span>
+      </div>
+      <div class="feed">
+        {% for reaction in community_reactions[:12] %}{{ community_card(reaction) }}{% endfor %}
+        {% if not community_reactions %}<p class="empty">표시할 커뮤니티 반응이 없습니다.</p>{% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel policy-panel">
+    <div class="panel-head">
+      <h2>정책/지원</h2>
+      <span>영화·문화 공공 지원</span>
+    </div>
+    <div class="policy-grid">
+      {% for policy in policy_items[:8] %}
+      <a class="policy-card" href="{{ policy.url }}" target="_blank" rel="noopener">
+        <span>{{ policy.source }} · {{ policy.category }}</span>
+        <strong>{{ policy.title }}</strong>
+        {% if policy.summary %}<em>{{ policy.summary }}</em>{% endif %}
+      </a>
+      {% endfor %}
+    </div>
+    {% if not policy_items %}<p class="empty">표시할 정책/지원 공지가 없습니다.</p>{% endif %}
   </section>
 </main>
 
-<footer>내부용 영화 뉴스 집계 · 자동 생성</footer>
+<footer>내부용 영화/문화 이슈 집계 · 자동 생성</footer>
 
 <script>
 function setLang(lang) {
   document.body.classList.remove('lang-ko', 'lang-en');
   document.body.classList.add('lang-' + lang);
-  document.querySelectorAll('.lang-btn').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.lang === lang);
-  });
-}
-function setTab(tab) {
-  document.body.classList.remove('tab-kr', 'tab-us');
-  document.body.classList.add('tab-' + tab);
-  document.querySelectorAll('.tab-btn').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.tab === tab);
+  document.querySelectorAll('.lang-btn').forEach(function (button) {
+    button.classList.toggle('active', button.dataset.lang === lang);
   });
 }
 </script>

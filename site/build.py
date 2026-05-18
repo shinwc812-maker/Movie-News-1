@@ -1,12 +1,7 @@
-"""정적 사이트 생성: data/articles.json → dist/index.html.
-
-기사는 국내(KR)/해외(US) 두 탭으로 나눠 보여준다. 각 탭 안에서는 articles.json의
-정렬 순서(점수 내림차순 = 우선순위 순)를 그대로 유지한다 — 우선순위 라벨은
-표시하지 않고 순서로만 반영.
-상대 시간(KST)은 빌드 시 미리 계산한다(JS 의존 최소화).
-"""
+"""Build the static internal movie/culture briefing dashboard."""
 
 import json
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -14,14 +9,36 @@ from zoneinfo import ZoneInfo
 from jinja2 import Environment, FileSystemLoader
 
 ROOT = Path(__file__).resolve().parent.parent
-ARTICLES_PATH = ROOT / "data" / "articles.json"
+DATA_DIR = ROOT / "data"
+ARTICLES_PATH = DATA_DIR / "articles.json"
+MARKET_PATH = DATA_DIR / "market.json"
+COMMUNITY_PATH = DATA_DIR / "community.json"
+POLICIES_PATH = DATA_DIR / "policies.json"
+RESERVATION_PATH = DATA_DIR / "reservation.json"
 SITE_DIR = ROOT / "site"
-DIST_PATH = ROOT / "dist" / "index.html"
+DIST_DIR = ROOT / "dist"
+DIST_PATH = DIST_DIR / "index.html"
 KST = ZoneInfo("Asia/Seoul")
 
 
-def relative_time(published_iso: str, now: datetime) -> str:
-    """ISO 발행 시각 → '2시간 전' 형식. 7일 이상이면 KST 절대 날짜."""
+def load_json(path: Path, fallback):
+    if not path.exists():
+        return fallback
+    try:
+        with path.open(encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return fallback
+
+
+def format_int(value) -> str:
+    try:
+        return f"{int(value):,}"
+    except (TypeError, ValueError):
+        return "0"
+
+
+def relative_time(published_iso: str | None, now: datetime) -> str:
     if not published_iso:
         return ""
     try:
@@ -46,17 +63,18 @@ def relative_time(published_iso: str, now: datetime) -> str:
     return dt.astimezone(KST).strftime("%Y.%m.%d")
 
 
-def to_view(article: dict, now: datetime) -> dict:
-    """기사 dict → 템플릿용 view dict. 한/영 양쪽 텍스트를 모두 준비."""
+def to_article_view(article: dict, now: datetime) -> dict:
     title = article.get("title") or ""
     summary = article.get("summary") or ""
     return {
+        "content_kind": article.get("content_kind", "official"),
         "country": article.get("country", ""),
         "source": article.get("source", ""),
         "url": article.get("url", ""),
         "image_url": article.get("image_url"),
         "rel_time": relative_time(article.get("published_at"), now),
-        # 한국어 모드: 번역본이 있으면 그것, 없으면 원문 폴백
+        "score": float(article.get("score") or 0),
+        "matched_keywords": article.get("matched_keywords") or [],
         "ko_title": article.get("title_ko") or title,
         "en_title": title,
         "ko_summary": article.get("summary_ko") or summary,
@@ -64,34 +82,126 @@ def to_view(article: dict, now: datetime) -> dict:
     }
 
 
+def to_community_view(item: dict, now: datetime) -> dict:
+    return {
+        "content_kind": "community",
+        "source": item.get("source", ""),
+        "title": item.get("title", ""),
+        "url": item.get("url", ""),
+        "excerpt": item.get("excerpt", ""),
+        "mood_summary": item.get("mood_summary", ""),
+        "rel_time": relative_time(item.get("published_at"), now),
+        "matched_keywords": item.get("matched_keywords") or [],
+        "score": 0.0,
+    }
+
+
+def to_policy_view(item: dict, now: datetime) -> dict:
+    return {
+        "source": item.get("source", ""),
+        "category": item.get("category", ""),
+        "title": item.get("title", ""),
+        "url": item.get("url", ""),
+        "summary": item.get("summary", ""),
+        "rel_time": relative_time(item.get("published_at"), now),
+        "deadline": item.get("deadline"),
+    }
+
+
+def split_articles_by_kind(views: list[dict]) -> tuple[list[dict], list[dict]]:
+    official = [view for view in views if view.get("content_kind", "official") == "official"]
+    community = [view for view in views if view.get("content_kind") == "community"]
+    return official, community
+
+
+def top_curation_items(
+    official_views: list[dict],
+    community_views: list[dict] | None = None,
+    limit: int = 5,
+) -> list[dict]:
+    community_views = community_views or []
+    items = list(official_views) + list(community_views)
+    return sorted(items, key=lambda item: float(item.get("score") or 0), reverse=True)[:limit]
+
+
+def market_views(market: dict) -> list[dict]:
+    movies = market.get("movies") if isinstance(market, dict) else []
+    return [
+        {
+            "rank": movie.get("rank"),
+            "title": movie.get("title", ""),
+            "audi_count": format_int(movie.get("audi_count")),
+            "audi_acc": format_int(movie.get("audi_acc")),
+            "rank_change": movie.get("rank_change") or "",
+        }
+        for movie in movies or []
+    ]
+
+
+def reservation_view(reservation: dict) -> dict:
+    if not isinstance(reservation, dict):
+        return {"available": False}
+    image_path = reservation.get("image_path")
+    image_url = None
+    if image_path:
+        source = DATA_DIR / image_path
+        if source.exists():
+            target_dir = DIST_DIR / "assets"
+            target_dir.mkdir(parents=True, exist_ok=True)
+            target = target_dir / source.name
+            shutil.copy2(source, target)
+            image_url = f"assets/{target.name}"
+    return {
+        "available": bool(image_url) and not reservation.get("capture_failed"),
+        "image_url": image_url,
+        "top_movie": reservation.get("top_movie"),
+        "top_rate": reservation.get("top_rate"),
+        "captured_at": reservation.get("captured_at"),
+        "error_message": reservation.get("error_message"),
+    }
+
+
 def build() -> None:
     now = datetime.now(timezone.utc)
-    with ARTICLES_PATH.open(encoding="utf-8") as f:
-        raw_articles = json.load(f)
+    raw_articles = load_json(ARTICLES_PATH, [])
+    raw_community = load_json(COMMUNITY_PATH, [])
+    raw_policies = load_json(POLICIES_PATH, [])
+    raw_market = load_json(MARKET_PATH, {})
+    raw_reservation = load_json(RESERVATION_PATH, {})
 
-    # articles.json은 점수(우선순위) 내림차순 정렬 상태 — 순서를 그대로 유지
-    views = [to_view(a, now) for a in raw_articles]
-    kr_articles = [v for v in views if v["country"] == "KR"]
-    us_articles = [v for v in views if v["country"] == "US"]
+    article_views = [to_article_view(article, now) for article in raw_articles]
+    official_articles, community_from_articles = split_articles_by_kind(article_views)
+    community_reactions = [to_community_view(item, now) for item in raw_community]
+    community_views = community_from_articles + community_reactions
+    policy_views = [to_policy_view(item, now) for item in raw_policies]
+    boxoffice = market_views(raw_market)
+    reservation = reservation_view(raw_reservation)
+    curation = top_curation_items(official_articles, community_views)
 
-    env = Environment(
-        loader=FileSystemLoader(str(SITE_DIR)),
-        autoescape=True,
-    )
+    env = Environment(loader=FileSystemLoader(str(SITE_DIR)), autoescape=True)
     template = env.get_template("template.html.j2")
     css = (SITE_DIR / "style.css").read_text(encoding="utf-8")
 
     html = template.render(
-        kr_articles=kr_articles,
-        us_articles=us_articles,
-        total=len(views),
+        official_articles=official_articles,
+        community_reactions=community_views,
+        policy_items=policy_views,
+        curation=curation,
+        boxoffice=boxoffice,
+        reservation=reservation,
+        total_official=len(official_articles),
+        total_community=len(community_views),
+        total_policies=len(policy_views),
         css=css,
         updated_at=now.astimezone(KST).strftime("%Y년 %m월 %d일 %H:%M"),
     )
 
     DIST_PATH.parent.mkdir(parents=True, exist_ok=True)
     DIST_PATH.write_text(html, encoding="utf-8")
-    print(f"Built {DIST_PATH} (국내 {len(kr_articles)} · 해외 {len(us_articles)})")
+    print(
+        f"Built {DIST_PATH} "
+        f"(official {len(official_articles)} · community {len(community_views)} · policies {len(policy_views)})"
+    )
 
 
 if __name__ == "__main__":

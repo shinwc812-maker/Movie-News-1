@@ -3,962 +3,845 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>오늘의 영화 뉴스</title>
-<style>/* 오늘의 영화 뉴스 — 모바일 우선 스타일 */
-
-:root {
-  --bg: #f4f5f7;
-  --card-bg: #ffffff;
-  --text: #1a1a1a;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --accent: #2563eb;
+<title>오늘의 영화/문화 레이더</title>
+<style>:root {
+  --bg: #eef1f6;
+  --panel: #ffffff;
+  --ink: #182033;
+  --muted: #667085;
+  --line: #d9e0ea;
+  --blue: #2563eb;
+  --blue-soft: #eef2ff;
+  --green: #178a46;
+  --green-soft: #e9f8ef;
+  --shadow: 0 10px 26px rgba(22, 31, 50, 0.08);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
 
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic",
     "Apple SD Gothic Neo", sans-serif;
   background: var(--bg);
-  color: var(--text);
+  color: var(--ink);
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
 }
 
-/* 언어 토글: body 클래스에 따라 한/영 전환 */
 body.lang-ko .lang-en { display: none; }
 body.lang-en .lang-ko { display: none; }
 
-/* 국내/해외 탭: body 클래스에 따라 패널 전환 */
-body.tab-kr .pane-us { display: none; }
-body.tab-us .pane-kr { display: none; }
+a { color: inherit; }
 
-/* ── 헤더 ── */
-header {
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
   background: #111827;
   color: #fff;
-  padding: 16px;
-}
-.header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  max-width: 720px;
-  margin: 0 auto;
-}
-header h1 { font-size: 1.15rem; font-weight: 700; }
-.updated {
-  font-size: 0.75rem;
-  color: #9ca3af;
-  margin: 6px auto 0;
-  max-width: 720px;
+  padding: 24px 28px 18px;
 }
 
-.lang-toggle { display: flex; flex-shrink: 0; }
+.eyebrow {
+  margin: 0 0 4px;
+  color: #93a4bd;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.55rem;
+  letter-spacing: 0;
+}
+
+.updated {
+  margin: 6px 0 0;
+  color: #b9c4d4;
+  font-size: 0.82rem;
+}
+
+.lang-toggle {
+  display: flex;
+  flex-shrink: 0;
+}
+
 .lang-btn {
   font: inherit;
-  font-size: 0.8rem;
-  padding: 5px 12px;
+  font-size: 0.82rem;
+  padding: 7px 13px;
   background: transparent;
-  color: #9ca3af;
+  color: #b9c4d4;
   border: 1px solid #374151;
   cursor: pointer;
 }
+
 .lang-btn:first-child { border-radius: 6px 0 0 6px; }
-.lang-btn:last-child { border-radius: 0 6px 6px 0; border-left: none; }
-.lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.lang-btn:last-child { border-radius: 0 6px 6px 0; border-left: 0; }
+.lang-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
 
-/* ── 국내/해외 탭 바 (스크롤 시 상단 고정) ── */
-.tabs {
-  display: flex;
-  max-width: 720px;
+.dashboard {
+  max-width: 1440px;
   margin: 0 auto;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--card-bg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 18px;
 }
-.tab-btn {
-  flex: 1;
-  font: inherit;
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 13px 8px;
-  background: var(--card-bg);
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.kpi {
+  min-height: 72px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+}
+
+.kpi span {
+  display: block;
   color: var(--muted);
-  border: none;
-  border-bottom: 2px solid var(--border);
-  cursor: pointer;
+  font-size: 0.77rem;
+  font-weight: 800;
 }
-.tab-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+
+.kpi strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 1rem;
+  line-height: 1.25;
 }
-.tab-count {
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.85fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.lane-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.side-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px 8px;
+  border-bottom: 1px solid #eef1f5;
+}
+
+.panel-head h2 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.panel-head span {
+  color: var(--muted);
   font-size: 0.72rem;
-  font-weight: 600;
-  background: var(--border);
-  color: var(--muted);
-  border-radius: 10px;
-  padding: 1px 7px;
-  margin-left: 2px;
-}
-.tab-btn.active .tab-count {
-  background: var(--accent);
-  color: #fff;
+  font-weight: 800;
 }
 
-/* ── 본문 ── */
-main { max-width: 720px; margin: 0 auto; padding: 14px 12px 32px; }
-
-.empty {
-  color: var(--muted);
-  font-size: 0.88rem;
-  text-align: center;
-  padding: 40px 12px;
+.curation-list,
+.feed {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
 }
 
-/* ── 기사 카드 ── */
 .card {
   display: flex;
   gap: 12px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 10px;
+  min-width: 0;
+  border: 1px solid #e4e9f1;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+}
+
+.card-compact {
+  padding: 9px;
 }
 
 .thumb {
-  width: 96px;
-  height: 96px;
+  width: 94px;
+  height: 94px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
+  background: #e6ebf2;
   flex-shrink: 0;
-  background: var(--border);
 }
 
-.card-body { flex: 1; min-width: 0; }
+.card-body {
+  min-width: 0;
+  flex: 1;
+}
 
 .title {
   display: block;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 800;
   text-decoration: none;
+  line-height: 1.35;
 }
-.title:hover { color: var(--accent); }
-.kr-tag { font-size: 0.7rem; color: var(--muted); font-style: normal; }
+
+.title:hover { color: var(--blue); }
 
 .meta {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 7px 0;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 7px;
   font-size: 0.72rem;
 }
+
 .source {
-  background: #eef2ff;
-  color: #4338ca;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-weight: 800;
 }
-.time { color: var(--muted); }
+
+.source.official {
+  background: var(--blue-soft);
+  color: #3444a4;
+}
+
+.source.community {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.time,
+.kr-tag {
+  color: var(--muted);
+  font-style: normal;
+}
 
 .summary {
-  font-size: 0.85rem;
-  color: #374151;
+  margin: 8px 0 0;
+  color: #475467;
+  font-size: 0.86rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-footer {
-  text-align: center;
-  font-size: 0.72rem;
-  color: var(--muted);
-  padding: 20px;
+.mood {
+  margin: 8px 0 0;
+  color: #195c35;
+  font-size: 0.8rem;
+  font-weight: 800;
 }
 
-/* ── 데스크톱 ── */
-@media (min-width: 600px) {
-  header h1 { font-size: 1.35rem; }
-  .thumb { width: 128px; height: 128px; }
-  .title { font-size: 1.08rem; }
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.chips span {
+  border-radius: 4px;
+  padding: 2px 6px;
+  background: #f2f4f7;
+  color: #4b5563;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.boxoffice-list {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.boxoffice-list li {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  min-height: 40px;
+  border: 1px solid #e5e9f0;
+  border-radius: 7px;
+  padding: 7px 8px;
+  background: #f8fafc;
+}
+
+.boxoffice-list b {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #111827;
+  color: #fff;
+  font-size: 0.78rem;
+}
+
+.boxoffice-list span {
+  min-width: 0;
+  font-weight: 800;
+}
+
+.boxoffice-list strong {
+  color: #344054;
+  font-size: 0.82rem;
+}
+
+.reservation-shot {
+  display: block;
+  width: calc(100% - 20px);
+  max-height: 420px;
+  object-fit: contain;
+  margin: 10px;
+  border: 1px solid #d7dee9;
+  border-radius: 7px;
+  background: #f8fafc;
+}
+
+.capture-empty {
+  display: grid;
+  place-items: center;
+  min-height: 170px;
+  margin: 10px;
+  border-radius: 7px;
+  border: 1px dashed #b7c0cf;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+
+.policy-panel {
+  margin-top: 12px;
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.policy-card {
+  min-height: 116px;
+  padding: 10px;
+  border: 1px solid #dbe7df;
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  background: #fbfefc;
+  text-decoration: none;
+}
+
+.policy-card span {
+  display: block;
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.policy-card strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.policy-card em {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: normal;
+}
+
+.empty {
+  margin: 0;
+  padding: 18px 12px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+footer {
+  padding: 22px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .topbar {
+    display: block;
+    padding: 20px 16px 14px;
+  }
+
+  .lang-toggle {
+    margin-top: 14px;
+  }
+
+  .dashboard {
+    padding: 12px;
+  }
+
+  .kpis,
+  .hero-grid,
+  .lane-grid,
+  .policy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid {
+    display: grid;
+  }
+
+  .thumb {
+    width: 76px;
+    height: 76px;
+  }
 }
 </style>
 </head>
-<body class="lang-ko tab-kr"><header>
-  <div class="header-row">
-    <h1>오늘의 영화 뉴스</h1>
-    <div class="lang-toggle">
-      <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
-      <button class="lang-btn active" data-lang="ko" onclick="setLang('ko')">한국어</button>
-    </div>
+<body class="lang-ko"><header class="topbar">
+  <div>
+    <p class="eyebrow">Internal Briefing</p>
+    <h1>오늘의 영화/문화 레이더</h1>
+    <p class="updated">마지막 업데이트: 2026년 05월 18일 15:44 (KST)</p>
   </div>
-  <p class="updated">마지막 업데이트: 2026년 05월 18일 08:53 (KST) · 총 45건</p>
+  <div class="lang-toggle" aria-label="언어 선택">
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
+    <button class="lang-btn active" data-lang="ko" onclick="setLang('ko')">한국어</button>
+  </div>
 </header>
 
-<nav class="tabs">
-  <button class="tab-btn active" data-tab="kr" onclick="setTab('kr')">
-    국내 <span class="tab-count">7</span>
-  </button>
-  <button class="tab-btn" data-tab="us" onclick="setTab('us')">
-    해외 <span class="tab-count">38</span>
-  </button>
-</nav>
-
-<main>
-  <section class="pane pane-kr">
-    <article class="card">
-  <img class="thumb" src="https://extmovie.com/files/thumbnails/781/037/094/480x270.crop.jpg?t=1779060255" alt="" loading="lazy" onerror="this.style.display='none'">
-  <div class="card-body">
-    <a class="title" href="https://extmovie.com/movietalk/94037781" target="_blank" rel="noopener">
-      <span class="lang-ko">&lt;호프&gt; 첫 공식 예고편</span><span class="lang-en">&lt;호프&gt; 첫 공식 예고편 <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source">익스트림무비</span>
-      <span class="time">45분 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">https://m.youtube.com/watch?v=ODnHr2Emnf0&amp;ra=m</span><span class="lang-en">https://m.youtube.com/watch?v=ODnHr2Emnf0&amp;ra=m</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  <img class="thumb" src="https://extmovie.com/files/thumbnails/749/037/094/480x270.crop.jpg?t=1779061180" alt="" loading="lazy" onerror="this.style.display='none'">
-  <div class="card-body">
-    <a class="title" href="https://extmovie.com/movietalk/94037749" target="_blank" rel="noopener">
-      <span class="lang-ko">&#39;호프&#39; 칸 영화제 관객들 반응</span><span class="lang-en">&#39;호프&#39; 칸 영화제 관객들 반응 <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source">익스트림무비</span>
-      <span class="time">59분 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">레터박스 사이트에 실시간으로 올라온 반응들입니다. 모두 옮겨보려 했는데... 너무 빠르게 많이 올라와서 중간에 많이 건너 뛰었어요. 대충 분위기는 ...</span><span class="lang-en">레터박스 사이트에 실시간으로 올라온 반응들입니다. 모두 옮겨보려 했는데... 너무 빠르게 많이 올라와서 중간에 많이 건너 뛰었어요. 대충 분위기는 ...</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  <img class="thumb" src="https://extmovie.com/files/thumbnails/635/037/094/480x270.crop.jpg?t=1779056394" alt="" loading="lazy" onerror="this.style.display='none'">
-  <div class="card-body">
-    <a class="title" href="https://extmovie.com/movietalk/94037635" target="_blank" rel="noopener">
-      <span class="lang-ko">&#39;호프&#39; 혹평. &#34;CG가 형편없다...&#34;</span><span class="lang-en">&#39;호프&#39; 혹평. &#34;CG가 형편없다...&#34; <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source">익스트림무비</span>
-      <span class="time">1시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">인디와이어의 데이비드 얼리치가 점수를 D+ 주면서 혹평했습니다. 아래 들어가면 자세한 리뷰가 나오는데... 스포가 될 것처럼 좀 묘사가 자세해요. ht...</span><span class="lang-en">인디와이어의 데이비드 얼리치가 점수를 D+ 주면서 혹평했습니다. 아래 들어가면 자세한 리뷰가 나오는데... 스포가 될 것처럼 좀 묘사가 자세해요. ht...</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  <img class="thumb" src="https://extmovie.com/files/thumbnails/536/037/094/480x270.crop.jpg?t=1779053748" alt="" loading="lazy" onerror="this.style.display='none'">
-  <div class="card-body">
-    <a class="title" href="https://extmovie.com/movietalk/94037536" target="_blank" rel="noopener">
-      <span class="lang-ko">[호프] 보그 프랑스 리뷰</span><span class="lang-en">[호프] 보그 프랑스 리뷰 <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source">익스트림무비</span>
-      <span class="time">2시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">[호프]가 2026년 칸 영화제 최고의 충격작으로 떠올랐다. 다소 단조로운 경쟁 부문 라인업으로 인해 가라앉아 있던 영화제 초반 분위기 속에서, 한국의...</span><span class="lang-en">[호프]가 2026년 칸 영화제 최고의 충격작으로 떠올랐다. 다소 단조로운 경쟁 부문 라인업으로 인해 가라앉아 있던 영화제 초반 분위기 속에서, 한국의...</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  <img class="thumb" src="https://d3ihz389yobwks.cloudfront.net/1778916468970N8dfW.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-  <div class="card-body">
-    <a class="title" href="https://www.maxmovie.com/news/445426" target="_blank" rel="noopener">
-      <span class="lang-ko">“웃다가 울게 된다”… 이범규 감독, &#39;뽀삐&#39;와 함께 숏폼 시장 새 브랜드로 떠오르다</span><span class="lang-en">“웃다가 울게 된다”… 이범규 감독, &#39;뽀삐&#39;와 함께 숏폼 시장 새 브랜드로 떠오르다 <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source">맥스무비</span>
-      <span class="time">1일 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">배우이자 감독, 이범규. 맥스무비 DB낮에는 반려견, 밤에는 재벌 2세. 다소 엉뚱한 설정의 숏폼 드라마를 설득력 있게 완성해내는 연출자가 있다. 코미디와 감정선을 동시에 잡아낸다는 평가를 받는 이범규 감독이다.이범규 감독이 연출한 숏폼 드라마 ‘뽀삐가 재벌남으로 돌아왔다’가 지난 12일 글로벌 숏폼 플랫폼 비글루(Vigloo)를 통해 공개됐다.작품은 무지</span><span class="lang-en">배우이자 감독, 이범규. 맥스무비 DB낮에는 반려견, 밤에는 재벌 2세. 다소 엉뚱한 설정의 숏폼 드라마를 설득력 있게 완성해내는 연출자가 있다. 코미디와 감정선을 동시에 잡아낸다는 평가를 받는 이범규 감독이다.이범규 감독이 연출한 숏폼 드라마 ‘뽀삐가 재벌남으로 돌아왔다’가 지난 12일 글로벌 숏폼 플랫폼 비글루(Vigloo)를 통해 공개됐다.작품은 무지</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  <img class="thumb" src="https://d3ihz389yobwks.cloudfront.net/1778915936754FU5hV.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-  <div class="card-body">
-    <a class="title" href="https://www.maxmovie.com/news/445425" target="_blank" rel="noopener">
-      <span class="lang-ko">‘디렉터스 아레나’ 첫 방송부터 2049 시선 사로잡았다… ENA 금요 기대작 부상</span><span class="lang-en">‘디렉터스 아레나’ 첫 방송부터 2049 시선 사로잡았다… ENA 금요 기대작 부상 <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source">맥스무비</span>
-      <span class="time">1일 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">ENA 새 예능 ‘디렉터스 아레나’가 첫 방송부터 2049 시청층의 시선을 사로잡으며 순조로운 출발을 알렸다.16일 시청률 조사회사 닐슨코리아에 따르면 지난 15일 밤 첫 방송된 ‘디렉터스 아레나’는 ENA 금요일 심야 시간대 편성에도 불구하고 2049 시청층에서 의미 있는 점유율을 기록했다. 특히 첫 방송 본편은 2049 개인 기준 점유율 1.71%를 나</span><span class="lang-en">ENA 새 예능 ‘디렉터스 아레나’가 첫 방송부터 2049 시청층의 시선을 사로잡으며 순조로운 출발을 알렸다.16일 시청률 조사회사 닐슨코리아에 따르면 지난 15일 밤 첫 방송된 ‘디렉터스 아레나’는 ENA 금요일 심야 시간대 편성에도 불구하고 2049 시청층에서 의미 있는 점유율을 기록했다. 특히 첫 방송 본편은 2049 개인 기준 점유율 1.71%를 나</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  <img class="thumb" src="https://d3ihz389yobwks.cloudfront.net/1778890479097Rf0Qs.png" alt="" loading="lazy" onerror="this.style.display='none'">
-  <div class="card-body">
-    <a class="title" href="https://www.maxmovie.com/news/445424" target="_blank" rel="noopener">
-      <span class="lang-ko">배우 이유진, 메가폰 잡았다… 숏드라마 서바이벌 ‘디렉터스 아레나’ 첫방부터 ‘눈길’</span><span class="lang-en">배우 이유진, 메가폰 잡았다… 숏드라마 서바이벌 ‘디렉터스 아레나’ 첫방부터 ‘눈길’ <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source">맥스무비</span>
-      <span class="time">1일 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">디렉터스 아레나. ENA 화면 갈무리배우 이유진이 숏드라마 감독으로 변신해 강렬한 첫인상을 남겼다. 지난 15일 첫 방송된 ENA의 새 서바이벌 예능 프로그램 ‘디렉터스 아레나’에서는 12년 차 배우에서 연출자로 도전장을 내민 이유진 감독의 첫 번째 미션 과정이 전파를 탔다.이날 방송에서 이유진은 자신의 첫 연출작으로 ‘길이 보이면 캐스팅해’를 선보였다.</span><span class="lang-en">디렉터스 아레나. ENA 화면 갈무리배우 이유진이 숏드라마 감독으로 변신해 강렬한 첫인상을 남겼다. 지난 15일 첫 방송된 ENA의 새 서바이벌 예능 프로그램 ‘디렉터스 아레나’에서는 12년 차 배우에서 연출자로 도전장을 내민 이유진 감독의 첫 번째 미션 과정이 전파를 탔다.이날 방송에서 이유진은 자신의 첫 연출작으로 ‘길이 보이면 캐스팅해’를 선보였다.</span>
-    </p>
-    
-  </div>
-</article>
-    
+<main class="dashboard">
+  <section class="kpis" aria-label="핵심 지표">
+    <div class="kpi"><span>전일 1위</span><strong>데이터 없음</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>캡처 대기</strong></div>
+    <div class="kpi"><span>공식 기사</span><strong>45건</strong></div>
+    <div class="kpi"><span>커뮤니티 반응</span><strong>0건</strong></div>
   </section>
-  <section class="pane pane-us">
-    <article class="card">
+
+  <section class="hero-grid">
+    <div class="panel curation-panel">
+      <div class="panel-head">
+        <h2>핵심 큐레이션</h2>
+        <span>box office weighted</span>
+      </div>
+      <div class="curation-list">
+        
+          
+            <article class="card card-compact">
   
   <div class="card-body">
     <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/hope-na-hong-jin-standing-ovation-cannes-1236598250/" target="_blank" rel="noopener">
       <span class="lang-ko">Wild ‘Hope’ Livens Up Sleepy Cannes</span><span class="lang-en">Wild ‘Hope’ Livens Up Sleepy Cannes</span>
     </a>
     <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">2분 전</span>
+      <span class="source official">공식 · The Hollywood Reporter</span>
+      <span class="time">6시간 전</span>
     </div>
     
     <p class="summary">
       <span class="lang-ko">The big-budget sci-fi action allegory, which marks the first feature from South Korean director Na Hong-jin since 2016’s horror smash &#39;The Wailing,&#39; received what may be the most enthusiastic and prolonged standing ovation of any film playing in competition.</span><span class="lang-en">The big-budget sci-fi action allegory, which marks the first feature from South Korean director Na Hong-jin since 2016’s horror smash &#39;The Wailing,&#39; received what may be the most enthusiastic and prolonged standing ovation of any film playing in competition.</span>
     </p>
     
+    
   </div>
-</article><article class="card">
+</article>
+          
+        
+          
+            <article class="card card-compact">
   
   <div class="card-body">
     <a class="title" href="https://variety.com/2026/film/reviews/sheep-in-the-box-review-hirokazu-kore-eda-1236751690/" target="_blank" rel="noopener">
       <span class="lang-ko">‘Sheep in the Box’ Review: Kore-eda’s Sweet but Limp Sci-Fi Fable About a 7-Year-Old AI Humanoid</span><span class="lang-en">‘Sheep in the Box’ Review: Kore-eda’s Sweet but Limp Sci-Fi Fable About a 7-Year-Old AI Humanoid</span>
     </a>
     <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">8분 전</span>
+      <span class="source official">공식 · Variety</span>
+      <span class="time">6시간 전</span>
     </div>
     
     <p class="summary">
       <span class="lang-ko">or all the fantasy simplicity of the premise, there’s no structure to it, and though the humanoid Kakeru increases in agency and brains as the movie goes on, it still never figures out who he is.</span><span class="lang-en">or all the fantasy simplicity of the premise, there’s no structure to it, and though the humanoid Kakeru increases in agency and brains as the movie goes on, it still never figures out who he is.</span>
     </p>
     
+    
   </div>
-</article><article class="card">
+</article>
+          
+        
+          
+            <article class="card card-compact">
+  
+  <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94037781" target="_blank" rel="noopener">
+      <span class="lang-ko">&lt;호프&gt; 첫 공식 예고편</span><span class="lang-en">&lt;호프&gt; 첫 공식 예고편 <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 익스트림무비</span>
+      <span class="time">7시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">https://m.youtube.com/watch?v=ODnHr2Emnf0&amp;ra=m</span><span class="lang-en">https://m.youtube.com/watch?v=ODnHr2Emnf0&amp;ra=m</span>
+    </p>
+    
+    
+  </div>
+</article>
+          
+        
+          
+            <article class="card card-compact">
+  
+  <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94037749" target="_blank" rel="noopener">
+      <span class="lang-ko">&#39;호프&#39; 칸 영화제 관객들 반응</span><span class="lang-en">&#39;호프&#39; 칸 영화제 관객들 반응 <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 익스트림무비</span>
+      <span class="time">7시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">레터박스 사이트에 실시간으로 올라온 반응들입니다. 모두 옮겨보려 했는데... 너무 빠르게 많이 올라와서 중간에 많이 건너 뛰었어요. 대충 분위기는 ...</span><span class="lang-en">레터박스 사이트에 실시간으로 올라온 반응들입니다. 모두 옮겨보려 했는데... 너무 빠르게 많이 올라와서 중간에 많이 건너 뛰었어요. 대충 분위기는 ...</span>
+    </p>
+    
+    
+  </div>
+</article>
+          
+        
+          
+            <article class="card card-compact">
+  
+  <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94037635" target="_blank" rel="noopener">
+      <span class="lang-ko">&#39;호프&#39; 혹평. &#34;CG가 형편없다...&#34;</span><span class="lang-en">&#39;호프&#39; 혹평. &#34;CG가 형편없다...&#34; <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 익스트림무비</span>
+      <span class="time">7시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">인디와이어의 데이비드 얼리치가 점수를 D+ 주면서 혹평했습니다. 아래 들어가면 자세한 리뷰가 나오는데... 스포가 될 것처럼 좀 묘사가 자세해요. ht...</span><span class="lang-en">인디와이어의 데이비드 얼리치가 점수를 D+ 주면서 혹평했습니다. 아래 들어가면 자세한 리뷰가 나오는데... 스포가 될 것처럼 좀 묘사가 자세해요. ht...</span>
+    </p>
+    
+    
+  </div>
+</article>
+          
+        
+        
+      </div>
+    </div>
+
+    <aside class="side-stack">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>전일 관객 TOP 5</h2>
+          <span>KOBIS</span>
+        </div>
+        <ol class="boxoffice-list">
+          
+        </ol>
+        <p class="empty">KOBIS 박스오피스 데이터가 없습니다.</p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>실시간 예매율 캡처</h2>
+          <span>업로드 시점</span>
+        </div>
+        
+          <div class="capture-empty">캡처를 사용할 수 없습니다.</div>
+        
+      </section>
+    </aside>
+  </section>
+
+  <section class="lane-grid">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>공식 기사</h2>
+        <span>언론/보도자료</span>
+      </div>
+      <div class="feed">
+        <article class="card ">
+  
+  <div class="card-body">
+    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/hope-na-hong-jin-standing-ovation-cannes-1236598250/" target="_blank" rel="noopener">
+      <span class="lang-ko">Wild ‘Hope’ Livens Up Sleepy Cannes</span><span class="lang-en">Wild ‘Hope’ Livens Up Sleepy Cannes</span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · The Hollywood Reporter</span>
+      <span class="time">6시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">The big-budget sci-fi action allegory, which marks the first feature from South Korean director Na Hong-jin since 2016’s horror smash &#39;The Wailing,&#39; received what may be the most enthusiastic and prolonged standing ovation of any film playing in competition.</span><span class="lang-en">The big-budget sci-fi action allegory, which marks the first feature from South Korean director Na Hong-jin since 2016’s horror smash &#39;The Wailing,&#39; received what may be the most enthusiastic and prolonged standing ovation of any film playing in competition.</span>
+    </p>
+    
+    
+  </div>
+</article><article class="card ">
+  
+  <div class="card-body">
+    <a class="title" href="https://variety.com/2026/film/reviews/sheep-in-the-box-review-hirokazu-kore-eda-1236751690/" target="_blank" rel="noopener">
+      <span class="lang-ko">‘Sheep in the Box’ Review: Kore-eda’s Sweet but Limp Sci-Fi Fable About a 7-Year-Old AI Humanoid</span><span class="lang-en">‘Sheep in the Box’ Review: Kore-eda’s Sweet but Limp Sci-Fi Fable About a 7-Year-Old AI Humanoid</span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · Variety</span>
+      <span class="time">6시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">or all the fantasy simplicity of the premise, there’s no structure to it, and though the humanoid Kakeru increases in agency and brains as the movie goes on, it still never figures out who he is.</span><span class="lang-en">or all the fantasy simplicity of the premise, there’s no structure to it, and though the humanoid Kakeru increases in agency and brains as the movie goes on, it still never figures out who he is.</span>
+    </p>
+    
+    
+  </div>
+</article><article class="card ">
+  <img class="thumb" src="https://extmovie.com/files/thumbnails/781/037/094/480x270.crop.jpg?t=1779060255" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94037781" target="_blank" rel="noopener">
+      <span class="lang-ko">&lt;호프&gt; 첫 공식 예고편</span><span class="lang-en">&lt;호프&gt; 첫 공식 예고편 <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 익스트림무비</span>
+      <span class="time">7시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">https://m.youtube.com/watch?v=ODnHr2Emnf0&amp;ra=m</span><span class="lang-en">https://m.youtube.com/watch?v=ODnHr2Emnf0&amp;ra=m</span>
+    </p>
+    
+    
+  </div>
+</article><article class="card ">
+  <img class="thumb" src="https://extmovie.com/files/thumbnails/749/037/094/480x270.crop.jpg?t=1779061180" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94037749" target="_blank" rel="noopener">
+      <span class="lang-ko">&#39;호프&#39; 칸 영화제 관객들 반응</span><span class="lang-en">&#39;호프&#39; 칸 영화제 관객들 반응 <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 익스트림무비</span>
+      <span class="time">7시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">레터박스 사이트에 실시간으로 올라온 반응들입니다. 모두 옮겨보려 했는데... 너무 빠르게 많이 올라와서 중간에 많이 건너 뛰었어요. 대충 분위기는 ...</span><span class="lang-en">레터박스 사이트에 실시간으로 올라온 반응들입니다. 모두 옮겨보려 했는데... 너무 빠르게 많이 올라와서 중간에 많이 건너 뛰었어요. 대충 분위기는 ...</span>
+    </p>
+    
+    
+  </div>
+</article><article class="card ">
+  <img class="thumb" src="https://extmovie.com/files/thumbnails/635/037/094/480x270.crop.jpg?t=1779056394" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94037635" target="_blank" rel="noopener">
+      <span class="lang-ko">&#39;호프&#39; 혹평. &#34;CG가 형편없다...&#34;</span><span class="lang-en">&#39;호프&#39; 혹평. &#34;CG가 형편없다...&#34; <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 익스트림무비</span>
+      <span class="time">7시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">인디와이어의 데이비드 얼리치가 점수를 D+ 주면서 혹평했습니다. 아래 들어가면 자세한 리뷰가 나오는데... 스포가 될 것처럼 좀 묘사가 자세해요. ht...</span><span class="lang-en">인디와이어의 데이비드 얼리치가 점수를 D+ 주면서 혹평했습니다. 아래 들어가면 자세한 리뷰가 나오는데... 스포가 될 것처럼 좀 묘사가 자세해요. ht...</span>
+    </p>
+    
+    
+  </div>
+</article><article class="card ">
   
   <div class="card-body">
     <a class="title" href="https://deadline.com/2026/05/cannes-hope-movie-standing-ovation-1236913780/" target="_blank" rel="noopener">
       <span class="lang-ko">Cannes Audience Gives ‘Hope’ A 7-Minute Standing Ovation</span><span class="lang-en">Cannes Audience Gives ‘Hope’ A 7-Minute Standing Ovation</span>
     </a>
     <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">1시간 전</span>
+      <span class="source official">공식 · Deadline</span>
+      <span class="time">8시간 전</span>
     </div>
     
     <p class="summary">
       <span class="lang-ko">Filmmaker Na Hong-Jin’s in Competition sci-fi thriller Hope received a seven-minute standing ovation in Cannes this evening. Na praised the audience for staying with his two hour and forty minute epic alien thriller. During the premiere screening, at least three incredible action set-pieces drew exuberant applause. Had it ended 20 minutes earlier, the applause would’ve been […]</span><span class="lang-en">Filmmaker Na Hong-Jin’s in Competition sci-fi thriller Hope received a seven-minute standing ovation in Cannes this evening. Na praised the audience for staying with his two hour and forty minute epic alien thriller. During the premiere screening, at least three incredible action set-pieces drew exuberant applause. Had it ended 20 minutes earlier, the applause would’ve been […]</span>
     </p>
     
+    
   </div>
-</article><article class="card">
+</article><article class="card ">
   
   <div class="card-body">
     <a class="title" href="https://deadline.com/2026/05/hope-review-aliens-vs-south-koreans-cannes-film-festival-1236913546/" target="_blank" rel="noopener">
       <span class="lang-ko">‘Hope’ Review: It’s Aliens Vs. South Korean Villagers In Na Hong-Jin’s Wild Non-Stop Action-Driven Genre Movie – Cannes Film Festival</span><span class="lang-en">‘Hope’ Review: It’s Aliens Vs. South Korean Villagers In Na Hong-Jin’s Wild Non-Stop Action-Driven Genre Movie – Cannes Film Festival</span>
     </a>
     <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">1시간 전</span>
+      <span class="source official">공식 · Deadline</span>
+      <span class="time">8시간 전</span>
     </div>
     
     <p class="summary">
       <span class="lang-ko">Much has been written about this year’s Cannes Film Festival being ignored by studios and crowd-pleasing blockbuster type movies, in favor of the more familiar auteur driven quieter films. Well, fasten your seat belts. Cannes just unveiled Hope, a sci fi Alien monster mash from South Korean director Na Hong-Jin that never lets up for […]</span><span class="lang-en">Much has been written about this year’s Cannes Film Festival being ignored by studios and crowd-pleasing blockbuster type movies, in favor of the more familiar auteur driven quieter films. Well, fasten your seat belts. Cannes just unveiled Hope, a sci fi Alien monster mash from South Korean director Na Hong-Jin that never lets up for […]</span>
     </p>
     
+    
   </div>
-</article><article class="card">
+</article><article class="card ">
   
   <div class="card-body">
     <a class="title" href="https://variety.com/2026/film/festivals/michael-fassbender-alicia-vikander-cannes-ovation-hope-1236742469/" target="_blank" rel="noopener">
       <span class="lang-ko">‘Hope’ Unleashes a Bats— Crazy Korean Monster Movie on Cannes and Earns 6-Minute Standing Ovation</span><span class="lang-en">‘Hope’ Unleashes a Bats— Crazy Korean Monster Movie on Cannes and Earns 6-Minute Standing Ovation</span>
     </a>
     <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">1시간 전</span>
+      <span class="source official">공식 · Variety</span>
+      <span class="time">8시간 전</span>
     </div>
     
     <p class="summary">
       <span class="lang-ko">“Hope” — an extremely ambitious blockbuster hopeful about an alien invasion in a sleepy South Korean mountain town — jolted the Cannes Film Festival awake on Sunday night with a 6-minute ovation. Directed by Na Hong-jin, the big-budget epic combined a gritty survival story and an original sci-fi mythology — no one quite knew what […]</span><span class="lang-en">“Hope” — an extremely ambitious blockbuster hopeful about an alien invasion in a sleepy South Korean mountain town — jolted the Cannes Film Festival awake on Sunday night with a 6-minute ovation. Directed by Na Hong-jin, the big-budget epic combined a gritty survival story and an original sci-fi mythology — no one quite knew what […]</span>
     </p>
     
+    
   </div>
-</article><article class="card">
+</article><article class="card ">
   
   <div class="card-body">
     <a class="title" href="https://variety.com/2026/film/reviews/hope-review-na-hong-jin-1236750496/" target="_blank" rel="noopener">
       <span class="lang-ko">‘Hope’ Review: Na Hong-jin’s Overlong Creature Feature is a Guns-Blazing Riot of Bawdy Humor, Bad CGI and Brilliant Action</span><span class="lang-en">‘Hope’ Review: Na Hong-jin’s Overlong Creature Feature is a Guns-Blazing Riot of Bawdy Humor, Bad CGI and Brilliant Action</span>
     </a>
     <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">1시간 전</span>
+      <span class="source official">공식 · Variety</span>
+      <span class="time">8시간 전</span>
     </div>
     
     <p class="summary">
       <span class="lang-ko">For a decade, since 2016’s extraordinarily uncanny horror-hybrid “The Wailing,” fans of Korean director Na Hong-jin have been peering anxiously at the horizon awaiting his next uncategorizable genre mash-up. More recently, like a bumbling local police chief removing his mirrored aviators to squint at an unidentifiable what-the-hell-is-that wreaking havoc in the distance, we’ve tracked reports […]</span><span class="lang-en">For a decade, since 2016’s extraordinarily uncanny horror-hybrid “The Wailing,” fans of Korean director Na Hong-jin have been peering anxiously at the horizon awaiting his next uncategorizable genre mash-up. More recently, like a bumbling local police chief removing his mirrored aviators to squint at an unidentifiable what-the-hell-is-that wreaking havoc in the distance, we’ve tracked reports […]</span>
     </p>
     
+    
   </div>
-</article><article class="card">
+</article><article class="card ">
   
   <div class="card-body">
     <a class="title" href="https://www.hollywoodreporter.com/movies/movie-reviews/hope-review-na-hong-jin-1236598154/" target="_blank" rel="noopener">
       <span class="lang-ko">‘Hope’ Review: Korean Action Maestro Na Hong-jin’s Rip-Roaring Sci-Fi Creature Feature Has Instant Cult Classic Written All Over It</span><span class="lang-en">‘Hope’ Review: Korean Action Maestro Na Hong-jin’s Rip-Roaring Sci-Fi Creature Feature Has Instant Cult Classic Written All Over It</span>
     </a>
     <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">1시간 전</span>
+      <span class="source official">공식 · The Hollywood Reporter</span>
+      <span class="time">8시간 전</span>
     </div>
     
     <p class="summary">
       <span class="lang-ko">Hwang Jung-min, Zo In-sung and Hoyeon star in this thriller about rural villagers fending off what appears to be a violent invasion, also featuring Michael Fassbender and Alicia Vikander.</span><span class="lang-en">Hwang Jung-min, Zo In-sung and Hoyeon star in this thriller about rural villagers fending off what appears to be a violent invasion, also featuring Michael Fassbender and Alicia Vikander.</span>
     </p>
     
+    
   </div>
-</article><article class="card">
+</article><article class="card ">
+  <img class="thumb" src="https://extmovie.com/files/thumbnails/536/037/094/480x270.crop.jpg?t=1779053748" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94037536" target="_blank" rel="noopener">
+      <span class="lang-ko">[호프] 보그 프랑스 리뷰</span><span class="lang-en">[호프] 보그 프랑스 리뷰 <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 익스트림무비</span>
+      <span class="time">8시간 전</span>
+    </div>
+    
+    <p class="summary">
+      <span class="lang-ko">[호프]가 2026년 칸 영화제 최고의 충격작으로 떠올랐다. 다소 단조로운 경쟁 부문 라인업으로 인해 가라앉아 있던 영화제 초반 분위기 속에서, 한국의...</span><span class="lang-en">[호프]가 2026년 칸 영화제 최고의 충격작으로 떠올랐다. 다소 단조로운 경쟁 부문 라인업으로 인해 가라앉아 있던 영화제 초반 분위기 속에서, 한국의...</span>
+    </p>
+    
+    
+  </div>
+</article><article class="card ">
   
   <div class="card-body">
     <a class="title" href="https://deadline.com/gallery/hope-cannes-red-carpet-gallery/" target="_blank" rel="noopener">
       <span class="lang-ko">‘Hope’ Cannes Film Festival Premiere Photos: Alicia Vikander, Michael Fassbender, Taylor Russel, Go Soo, Hwang Jeong-min, Hoyeon Jung &amp; More</span><span class="lang-en">‘Hope’ Cannes Film Festival Premiere Photos: Alicia Vikander, Michael Fassbender, Taylor Russel, Go Soo, Hwang Jeong-min, Hoyeon Jung &amp; More</span>
     </a>
     <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">3시간 전</span>
+      <span class="source official">공식 · Deadline</span>
+      <span class="time">10시간 전</span>
     </div>
     
     <p class="summary">
       <span class="lang-ko">The Cannes Film Festival hosted the world premiere of Hope, the latest film from director  Na Hong-Jin.  Hong-Jin was joined by the stars of the film, including Alicia Vikander, Michael Fassbender, Taylor Russel, Go Soo, Hwang Jeong-min, and Hoyeon Jung, who all walked the red carpet at the Grand Théâtre Lumière on Saturday, May 16. […]</span><span class="lang-en">The Cannes Film Festival hosted the world premiere of Hope, the latest film from director  Na Hong-Jin.  Hong-Jin was joined by the stars of the film, including Alicia Vikander, Michael Fassbender, Taylor Russel, Go Soo, Hwang Jeong-min, and Hoyeon Jung, who all walked the red carpet at the Grand Théâtre Lumière on Saturday, May 16. […]</span>
     </p>
     
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/indie-film-box-office-new-mobile-suit-gundam-hathaway-anime-1236913679/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Mobile Suit Gundam Hathaway: The Sorcery Of Nymph Circle’ Pops As Long Running Franchise Powers On – Specialty Box Office</span><span class="lang-en">‘Mobile Suit Gundam Hathaway: The Sorcery Of Nymph Circle’ Pops As Long Running Franchise Powers On – Specialty Box Office</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">3시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">The latest film in the long running and popular sci-fi Gundam franchise had a noteworthy debut with $810k on 894 screens. Mobile Suit Gundam Hathaway: The Sorcery Of Nymph Circle is the first in the series distributed directly in North America by its producer, Bandai Namco Filmworks, and further proof of how additive anime has […]</span><span class="lang-en">The latest film in the long running and popular sci-fi Gundam franchise had a noteworthy debut with $810k on 894 screens. Mobile Suit Gundam Hathaway: The Sorcery Of Nymph Circle is the first in the series distributed directly in North America by its producer, Bandai Namco Filmworks, and further proof of how additive anime has […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/ann-robinson-dead-war-of-the-worlds-1236598147/" target="_blank" rel="noopener">
-      <span class="lang-ko">Ann Robinson, Star of ‘The War of the Worlds,’ Dies at 96</span><span class="lang-en">Ann Robinson, Star of ‘The War of the Worlds,’ Dies at 96</span>
-    </a>
-    <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">3시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">The onetime stuntwoman got more mileage out of the 1953 sci-fi movie than &#34;Vivien Leigh did on &#39;Gone With the Wind,&#39;&#34; she once said.</span><span class="lang-en">The onetime stuntwoman got more mileage out of the 1953 sci-fi movie than &#34;Vivien Leigh did on &#39;Gone With the Wind,&#39;&#34; she once said.</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/maxime-saada-canal-plus-signatories-boycott-petition-1236913758/" target="_blank" rel="noopener">
-      <span class="lang-ko">Maxime Saada Says Canal+ Will No Longer Work With Signatories Of “Time To Switch-Off Bolloré” Petition</span><span class="lang-en">Maxime Saada Says Canal+ Will No Longer Work With Signatories Of “Time To Switch-Off Bolloré” Petition</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">3시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">The gloves are off. Maxime Saada, Canal+ Chair and CEO, has hit back at an open letter launched on the opening night of the Cannes Film Festival sounding the alarm over tycoon Vincent Bolloré’s growing control of the French entertainment and media sectors. The petition titled “Time To Switch-Off Bolloré” was signed by 600 cinema professional […]</span><span class="lang-en">The gloves are off. Maxime Saada, Canal+ Chair and CEO, has hit back at an open letter launched on the opening night of the Cannes Film Festival sounding the alarm over tycoon Vincent Bolloré’s growing control of the French entertainment and media sectors. The petition titled “Time To Switch-Off Bolloré” was signed by 600 cinema professional […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/reviews/a-girls-story-review-1236751784/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘A Girl’s Story’ Review: Judith Godrèche’s Assured Feature Debut Tells a Bitter Tale of Sexual Initiation in 1950s France</span><span class="lang-en">‘A Girl’s Story’ Review: Judith Godrèche’s Assured Feature Debut Tells a Bitter Tale of Sexual Initiation in 1950s France</span>
-    </a>
-    <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">4시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">The resemblance between Judith Godrèche and her daughter Tess Barthélemy — also the luminous lead of her mother’s debut feature “A Girl’s Life” — will be particularly powerful for anyone familiar with Godrèche’s teenage breakthrough role in the 1990 Jacques Doillon drama “The Disenchanted.” Watching the doe-eyed Barthélémy in this assured adaptation of Annie Ernaux’s […]</span><span class="lang-en">The resemblance between Judith Godrèche and her daughter Tess Barthélemy — also the luminous lead of her mother’s debut feature “A Girl’s Life” — will be particularly powerful for anyone familiar with Godrèche’s teenage breakthrough role in the 1990 Jacques Doillon drama “The Disenchanted.” Watching the doe-eyed Barthélémy in this assured adaptation of Annie Ernaux’s […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/barbra-streisand-miss-cannes-closing-ceremony-knee-injury-1235564212/" target="_blank" rel="noopener">
-      <span class="lang-ko">Barbra Streisand to Miss Cannes Closing Ceremony Honoring Her Due to Knee Injury</span><span class="lang-en">Barbra Streisand to Miss Cannes Closing Ceremony Honoring Her Due to Knee Injury</span>
-    </a>
-    <div class="meta">
-      <span class="source">Rolling Stone</span>
-      <span class="time">4시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Actress-singer, who has never appeared at the long-running film festival, was set to receive an Honorary Palme d’or</span><span class="lang-en">Actress-singer, who has never appeared at the long-running film festival, was set to receive an Honorary Palme d’or</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/canal-ceo-blacklist-talents-oppose-billionaire-owner-1236598133/" target="_blank" rel="noopener">
-      <span class="lang-ko">Canal+ Head Says He Will Blacklist Talents Who Petitioned Against Right-Wing Billionaire Owner</span><span class="lang-en">Canal+ Head Says He Will Blacklist Talents Who Petitioned Against Right-Wing Billionaire Owner</span>
-    </a>
-    <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">4시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Canal+ CEO Maxime Saada said he no longer wanted to work with talents, including Juliette Binoche and Adèle Haenel, who signed an open letter opposing studio boss Vincent Bolloré.</span><span class="lang-en">Canal+ CEO Maxime Saada said he no longer wanted to work with talents, including Juliette Binoche and Adèle Haenel, who signed an open letter opposing studio boss Vincent Bolloré.</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/boots-riley-urges-see-i-love-boosters-opening-weekend-1236913690/" target="_blank" rel="noopener">
-      <span class="lang-ko">Boots Riley Urges ‘I Love Boosters’ Audiences To See Film On Opening Weekend Or “It’s Game Over”</span><span class="lang-en">Boots Riley Urges ‘I Love Boosters’ Audiences To See Film On Opening Weekend Or “It’s Game Over”</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">4시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Following its world premiere at SXSW, Boots Riley wants to give his surreal arthouse sophomore feature a chance at the box office. The I Love Boosters writer/director took to social media this weekend to chat with fans and urged “everyone go see this” on the May 22nd opening weekend in order to get it a […]</span><span class="lang-en">Following its world premiere at SXSW, Boots Riley wants to give his surreal arthouse sophomore feature a chance at the box office. The I Love Boosters writer/director took to social media this weekend to chat with fans and urged “everyone go see this” on the May 22nd opening weekend in order to get it a […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/sterling-k-brown-is-god-is-love-seeing-black-women-win-1236913671/" target="_blank" rel="noopener">
-      <span class="lang-ko">Sterling K. Brown Explains Why ‘Is God Is’ Role Appealed To Him: “I Love Seeing Black Women Win”</span><span class="lang-en">Sterling K. Brown Explains Why ‘Is God Is’ Role Appealed To Him: “I Love Seeing Black Women Win”</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">4시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">With his sinister new role in Is God Is, Sterling K. Brown was eager to work with writer/director Aleshea Harris on her feature debut. The Oscar nominee, who plays the Monster in Harris’ thriller, explained that he was excited to work on the “incredibly creative” film from the Pulitzer-nominated playwright that lets Black women be […]</span><span class="lang-en">With his sinister new role in Is God Is, Sterling K. Brown was eager to work with writer/director Aleshea Harris on her feature debut. The Oscar nominee, who plays the Monster in Harris’ thriller, explained that he was excited to work on the “incredibly creative” film from the Pulitzer-nominated playwright that lets Black women be […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/david-lean-documentary-hate-movie-critics-cannes-festival-1236907479/" target="_blank" rel="noopener">
-      <span class="lang-ko">David Lean Documentary Gives Us A Heartbreaking Reason To Truly Hate Movie Critics; Find Out What They Did To One Of Our Greatest Directors  – Cannes Film Festival</span><span class="lang-en">David Lean Documentary Gives Us A Heartbreaking Reason To Truly Hate Movie Critics; Find Out What They Did To One Of Our Greatest Directors  – Cannes Film Festival</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">4시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">At the Cannes Film Festival you expect to get into big arguments about the quality of the movies on view. It goes with the territory. Everyone has an opinion and most are not afraid to give one. That is fine. Among critics (and I hate that term), of which I am one for Deadline, I […]</span><span class="lang-en">At the Cannes Film Festival you expect to get into big arguments about the quality of the movies on view. It goes with the territory. Everyone has an opinion and most are not afraid to give one. That is fine. Among critics (and I hate that term), of which I am one for Deadline, I […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/garance-cannes-wild-12-minute-standing-ovation-1236913673/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Garance’ Receives Wild 12-Minute Standing Ovation At Cannes Premiere</span><span class="lang-en">‘Garance’ Receives Wild 12-Minute Standing Ovation At Cannes Premiere</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">4시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">In what looks to be the longest – and certainly one of the most enthusiastic – standing ovations of the 2026 Cannes Film Festival, Jeanne Herry’s Garance received a wild 12-minutes of applause after the film ended. Co-stars Adèle Exarchopoulos, Sara Giraudeau and Mathilde Roehrich could be seen exchanging hugs and the plaudits continued. Competition […]</span><span class="lang-en">In what looks to be the longest – and certainly one of the most enthusiastic – standing ovations of the 2026 Cannes Film Festival, Jeanne Herry’s Garance received a wild 12-minutes of applause after the film ended. Co-stars Adèle Exarchopoulos, Sara Giraudeau and Mathilde Roehrich could be seen exchanging hugs and the plaudits continued. Competition […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/reviews/another-day-review-1236751639/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Another Day’ Review: Adèle Exarchopoulos Gives an Understated and Deeply Lived-In Performance in Jeanne Herry’s Graceful Alcoholism Drama</span><span class="lang-en">‘Another Day’ Review: Adèle Exarchopoulos Gives an Understated and Deeply Lived-In Performance in Jeanne Herry’s Graceful Alcoholism Drama</span>
-    </a>
-    <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">5시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">From Billy Wilder’s “The Lost Weekend” to the Sandra Bullock-starrer “28 Days” and beyond, cinema has a long tradition of substance abuse and recovery stories. There is something inherently cinematic and moving about a struggling person’s by-the-bootstraps journey to healing, with a lifetime’s worth of trials and tribulations. Just two years ago, Nora Fingscheidt’s tough […]</span><span class="lang-en">From Billy Wilder’s “The Lost Weekend” to the Sandra Bullock-starrer “28 Days” and beyond, cinema has a long tradition of substance abuse and recovery stories. There is something inherently cinematic and moving about a struggling person’s by-the-bootstraps journey to healing, with a lifetime’s worth of trials and tribulations. Just two years ago, Nora Fingscheidt’s tough […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-reviews/avedon-review-ron-howard-richard-avedon-documentary-1236592958/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Avedon’ Review: Ron Howard’s Admiring Profile of Groundbreaking Photographer Richard Avedon Embraces His Genius, Flair and Mystery</span><span class="lang-en">‘Avedon’ Review: Ron Howard’s Admiring Profile of Groundbreaking Photographer Richard Avedon Embraces His Genius, Flair and Mystery</span>
-    </a>
-    <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">5시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">The film, premiering in Cannes, explores an influential body of work that ranges from visionary magazine spreads to Madison Avenue perfume campaigns to social commentary.</span><span class="lang-en">The film, premiering in Cannes, explores an influential body of work that ranges from visionary magazine spreads to Madison Avenue perfume campaigns to social commentary.</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/barbra-streisand-not-attend-cannes-knee-injury-1236598112/" target="_blank" rel="noopener">
-      <span class="lang-ko">Barbra Streisand Unable to Attend Cannes Closing Ceremony After Suffering Knee Injury</span><span class="lang-en">Barbra Streisand Unable to Attend Cannes Closing Ceremony After Suffering Knee Injury</span>
-    </a>
-    <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">5시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">&#34;I was also very much looking forward to spending time with colleagues whom I so admire – and, of course, returning to France, a place I have always loved,&#34; she shared in a statement.</span><span class="lang-en">&#34;I was also very much looking forward to spending time with colleagues whom I so admire – and, of course, returning to France, a place I have always loved,&#34; she shared in a statement.</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/the-night-pans-labyrinth-changed-cannes-forever-1236597680/" target="_blank" rel="noopener">
-      <span class="lang-ko">The Night ‘Pan’s Labyrinth’ Changed Cannes Forever</span><span class="lang-en">The Night ‘Pan’s Labyrinth’ Changed Cannes Forever</span>
-    </a>
-    <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">5시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Guillermo del Toro returns to the festival with a restored version of his masterpiece — and a message about imagination, fascism and human creativity that has never felt more urgent.</span><span class="lang-en">Guillermo del Toro returns to the festival with a restored version of his masterpiece — and a message about imagination, fascism and human creativity that has never felt more urgent.</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/moby-joins-queer-comedy-jim-queen-ahead-of-cannes-premiere-1236913612/" target="_blank" rel="noopener">
-      <span class="lang-ko">Moby Joins Paris-Set Queer Comedy ‘Jim Queen’ Ahead Of Cannes Premiere</span><span class="lang-en">Moby Joins Paris-Set Queer Comedy ‘Jim Queen’ Ahead Of Cannes Premiere</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">6시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">EXCLUSIVE: Moby and Lindsay Hicks of Little Walnut have signed on as executive producers for Nicolas Athane and Marco Nguyen’s animated feature film Jim Queen, which is world premiering at Cannes this evening. Directed by Nicolas Athane and Marco Nguyen, Jim Queen was written by Athane with Simon Balteaux and Brice Chevillard. The film is produced by David Alric and Arthur Delabays. Arthur Cohen, […]</span><span class="lang-en">EXCLUSIVE: Moby and Lindsay Hicks of Little Walnut have signed on as executive producers for Nicolas Athane and Marco Nguyen’s animated feature film Jim Queen, which is world premiering at Cannes this evening. Directed by Nicolas Athane and Marco Nguyen, Jim Queen was written by Athane with Simon Balteaux and Brice Chevillard. The film is produced by David Alric and Arthur Delabays. Arthur Cohen, […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/news/peter-jackson-fired-ryan-gosling-lovely-bones-weight-gain-1236751523/" target="_blank" rel="noopener">
-      <span class="lang-ko">Ryan Gosling Was Fired From ‘Lovely Bones’ After Gaining 60 Pounds. Peter Jackson Now Speaks Out: ‘Anytime We Recast an Actor, It’s Actually Our Fault’</span><span class="lang-en">Ryan Gosling Was Fired From ‘Lovely Bones’ After Gaining 60 Pounds. Peter Jackson Now Speaks Out: ‘Anytime We Recast an Actor, It’s Actually Our Fault’</span>
-    </a>
-    <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">6시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Peter Jackson is finally weighing in on Ryan Gosling’s infamous recasting in “The Lovely Bones,” the director’s 2009 adaptation of Alice Sebold’s novel. Gosling was originally cast as the father of Saoirse Ronan’s lead character, but revealed to THR in 2010 that he was fired from the movie after he gained 60 pounds for the role without […]</span><span class="lang-en">Peter Jackson is finally weighing in on Ryan Gosling’s infamous recasting in “The Lovely Bones,” the director’s 2009 adaptation of Alice Sebold’s novel. Gosling was originally cast as the father of Saoirse Ronan’s lead character, but revealed to THR in 2010 that he was fired from the movie after he gained 60 pounds for the role without […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/michael-returns-no-1-box-office-obsession-win-1236597618/" target="_blank" rel="noopener">
-      <span class="lang-ko">Box Office Thriller: ‘Michael’ Sashays Past ‘Prada 2’ With Stunning $26M After Returning to Imax and Other Premium Screens</span><span class="lang-en">Box Office Thriller: ‘Michael’ Sashays Past ‘Prada 2’ With Stunning $26M After Returning to Imax and Other Premium Screens</span>
-    </a>
-    <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">6시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Elsewhere, Curry Barker&#39;s horror pic &#39;Obsession&#39; opened well ahead of expectations with $16 million, while the Michael Jackson biopic was among a number of holdovers celebrating major milestones as it crossed $700 million globally in its fourth weekend and &#39;Prada 2&#39; neared $550 million.</span><span class="lang-en">Elsewhere, Curry Barker&#39;s horror pic &#39;Obsession&#39; opened well ahead of expectations with $16 million, while the Michael Jackson biopic was among a number of holdovers celebrating major milestones as it crossed $700 million globally in its fourth weekend and &#39;Prada 2&#39; neared $550 million.</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/awards/academy-diversity-standards-best-picture-elon-musk-odyssey-1236751219/" target="_blank" rel="noopener">
-      <span class="lang-ko">The Oscars’ New Inclusion Rules Wouldn’t Disqualify Any Best Picture Nominee in History. So Why Is Elon Musk Melting Down Over ‘The Odyssey’?</span><span class="lang-en">The Oscars’ New Inclusion Rules Wouldn’t Disqualify Any Best Picture Nominee in History. So Why Is Elon Musk Melting Down Over ‘The Odyssey’?</span>
-    </a>
-    <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">7시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Andy Samberg answered this one for us back in 2020. Here’s the short version (because we’ve gone over this). Every best picture winner in the Academy’s 98-year history — from the silent-era film “Wings” in 1929 through the most recent political action epic “One Battle After Another” this past March — clears the Academy’s Representation […]</span><span class="lang-en">Andy Samberg answered this one for us back in 2020. Here’s the short version (because we’ve gone over this). Every best picture winner in the Academy’s 98-year history — from the silent-era film “Wings” in 1929 through the most recent political action epic “One Battle After Another” this past March — clears the Academy’s Representation […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/markets-festivals/laalo-producers-soul-sutra-gujarati-slate-cannes-film-market-1236751687/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Laalo’ Producers Soul Sutra Unveil 12-Film Gujarati Slate at Cannes Film Market, Eye Global Co-Productions (EXCLUSIVE)</span><span class="lang-en">‘Laalo’ Producers Soul Sutra Unveil 12-Film Gujarati Slate at Cannes Film Market, Eye Global Co-Productions (EXCLUSIVE)</span>
-    </a>
-    <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">7시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Indian production company Soul Sutra is presenting a 12-film Gujarati-language development and production slate at the Cannes Film Market this week. The banner is led by Indian National Film Award-winning actor-producer Manasi Parekh and singer-producer Parthiv Gohil, who co-produced “Laalo – Krishna Sada Sahaayate” – the Ankit Sakhiya-directed devotional drama that became the highest-grossing Gujarati-language […]</span><span class="lang-en">Indian production company Soul Sutra is presenting a 12-film Gujarati-language development and production slate at the Cannes Film Market this week. The banner is led by Indian National Film Award-winning actor-producer Manasi Parekh and singer-producer Parthiv Gohil, who co-produced “Laalo – Krishna Sada Sahaayate” – the Ankit Sakhiya-directed devotional drama that became the highest-grossing Gujarati-language […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/global/french-tech-adrien-nussenbaum-palatio-films-daniel-auteuil-1236751657/" target="_blank" rel="noopener">
-      <span class="lang-ko">French Tech Entrepreneur Adrien Nussenbaum Launches Palatio Films With Daniel Auteuil’s Cannes Movie ‘When Night Falls’</span><span class="lang-en">French Tech Entrepreneur Adrien Nussenbaum Launches Palatio Films With Daniel Auteuil’s Cannes Movie ‘When Night Falls’</span>
-    </a>
-    <div class="meta">
-      <span class="source">Variety</span>
-      <span class="time">7시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Adrien Nussenbaum, the French tech entrepreneur who co-founded e-commerce powerhouse Mirakl, is stepping into the movie business with the launch of Palatio Films, a new production company making its Cannes debut with Daniel Auteuil’s WWII drama “When Night Falls.” Bowing at Cannes Premiere, the film marks a major career pivot for Nussenbaum, who recently stepped […]</span><span class="lang-en">Adrien Nussenbaum, the French tech entrepreneur who co-founded e-commerce powerhouse Mirakl, is stepping into the movie business with the launch of Palatio Films, a new production company making its Cannes debut with Daniel Auteuil’s WWII drama “When Night Falls.” Bowing at Cannes Premiere, the film marks a major career pivot for Nussenbaum, who recently stepped […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/white-house-posts-image-trump-007-amid-james-bond-casting-1236913556/" target="_blank" rel="noopener">
-      <span class="lang-ko">White House Posts Image Of Trump As Famously British 007 Amid James Bond Casting</span><span class="lang-en">White House Posts Image Of Trump As Famously British 007 Amid James Bond Casting</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">7시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">With the search officially underway for the next James Bond, it appears Donald Trump is trying to dust off what remains of his onscreen career. On Saturday, the White House reacted to news that casting director Nina Gold (The Force Awakens, Game of Thrones, The Crown) has begun auditions for the new 007, sharing an […]</span><span class="lang-en">With the search officially underway for the next James Bond, it appears Donald Trump is trying to dust off what remains of his onscreen career. On Saturday, the White House reacted to news that casting director Nina Gold (The Force Awakens, Game of Thrones, The Crown) has begun auditions for the new 007, sharing an […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/hollywood-pulls-back-northern-ontario-steps-up-producion-1236597577/" target="_blank" rel="noopener">
-      <span class="lang-ko">As Hollywood Pulls Back, Northern Ontario Steps Up</span><span class="lang-en">As Hollywood Pulls Back, Northern Ontario Steps Up</span>
-    </a>
-    <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">7시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">With tax credits that stack to 45 percent, lakes that double as the Arctic and a production ecosystem built for tighter budgets, this is one of the industry&#39;s most compelling shooting alternatives.</span><span class="lang-en">With tax credits that stack to 45 percent, lakes that double as the Arctic and a production ecosystem built for tighter budgets, this is one of the industry&#39;s most compelling shooting alternatives.</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/will-ferrell-snl-monologue-drummer-chad-smith-1235564071/" target="_blank" rel="noopener">
-      <span class="lang-ko">Will Ferrell’s ‘SNL’ Monologue Hijacked by Lookalike Red Hot Chili Peppers Drummer Chad Smith</span><span class="lang-en">Will Ferrell’s ‘SNL’ Monologue Hijacked by Lookalike Red Hot Chili Peppers Drummer Chad Smith</span>
-    </a>
-    <div class="meta">
-      <span class="source">Rolling Stone</span>
-      <span class="time">8시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Smith also served as musical guest Paul McCartney&#39;s drummer on Season 51 finale</span><span class="lang-en">Smith also served as musical guest Paul McCartney&#39;s drummer on Season 51 finale</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-reviews/full-phil-review-kristen-stewart-quentin-dupieux-1236598022/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Full Phil’ Review: Kristen Stewart and Woody Harrelson Head to Paris in Quentin Dupieux’s Latest Hit-or-Miss Weird-Out</span><span class="lang-en">‘Full Phil’ Review: Kristen Stewart and Woody Harrelson Head to Paris in Quentin Dupieux’s Latest Hit-or-Miss Weird-Out</span>
-    </a>
-    <div class="meta">
-      <span class="source">The Hollywood Reporter</span>
-      <span class="time">8시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">The two play a daughter and father with different ideas about what makes for a fun vacation in this Cannes premiere co-starring Charlotte Le Bon.</span><span class="lang-en">The two play a daughter and father with different ideas about what makes for a fun vacation in this Cannes premiere co-starring Charlotte Le Bon.</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/scarlett-johnasson-missing-paper-tiger-movie-premiere-1236907906/" target="_blank" rel="noopener">
-      <span class="lang-ko">James Gray Gives Update On Scarlett Johansson’s Absence From ‘Paper Tiger’ Premiere In Cannes</span><span class="lang-en">James Gray Gives Update On Scarlett Johansson’s Absence From ‘Paper Tiger’ Premiere In Cannes</span>
-    </a>
-    <div class="meta">
-      <span class="source">Deadline</span>
-      <span class="time">8시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">At a Cannes where some have grumbled about a paucity of studio movies (and thus stars), the absence of Scarlett Johansson at last night’s premiere of Paper Tiger was notable. During the movie’s rousing 10-minute standing ovation director James Gray tried to make a call to the actress, according to reports and social media videos. […]</span><span class="lang-en">At a Cannes where some have grumbled about a paucity of studio movies (and thus stars), the absence of Scarlett Johansson at last night’s premiere of Paper Tiger was notable. During the movie’s rousing 10-minute standing ovation director James Gray tried to make a call to the actress, according to reports and social media videos. […]</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/snl-gibberish-talking-mechanics-will-ferrell-paul-mccartney-exploit-car-owner-1235563910/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘SNL’: Gibberish-Talking Mechanics Will Ferrell, Paul McCartney Exploit Car Owners</span><span class="lang-en">‘SNL’: Gibberish-Talking Mechanics Will Ferrell, Paul McCartney Exploit Car Owners</span>
-    </a>
-    <div class="meta">
-      <span class="source">Rolling Stone</span>
-      <span class="time">17시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">It&#39;s an oil change gone awry—and the cost is &#34;all the money now.&#34;</span><span class="lang-en">It&#39;s an oil change gone awry—and the cost is &#34;all the money now.&#34;</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/snl-weekend-update-mocks-trumps-china-blackout-kash-patel-1235563908/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘SNL’ Weekend Update Mocks Trump’s China Visit, ‘Blackout’ Kash Patel</span><span class="lang-en">‘SNL’ Weekend Update Mocks Trump’s China Visit, ‘Blackout’ Kash Patel</span>
-    </a>
-    <div class="meta">
-      <span class="source">Rolling Stone</span>
-      <span class="time">18시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">The president&#39;s brief time in China &#34;could have been an email,&#34; Colin Jost jokes</span><span class="lang-en">The president&#39;s brief time in China &#34;could have been an email,&#34; Colin Jost jokes</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/snl-cold-open-jeffrey-epsteins-ghost-dear-friend-trump-some-bad-news-1235563906/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘SNL’ Cold Open: Jeffrey Epstein’s Ghost Gives ‘Dear Friend’ Trump Some Bad News</span><span class="lang-en">‘SNL’ Cold Open: Jeffrey Epstein’s Ghost Gives ‘Dear Friend’ Trump Some Bad News</span>
-    </a>
-    <div class="meta">
-      <span class="source">Rolling Stone</span>
-      <span class="time">19시간 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Will Ferrell plays the dead child sex offender, who comes to Trump during an Oval Office dream</span><span class="lang-en">Will Ferrell plays the dead child sex offender, who comes to Trump during an Oval Office dream</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/stephen-colbert-final-late-show-guests-revealed-springsteen-1235563889/" target="_blank" rel="noopener">
-      <span class="lang-ko">Stephen Colbert’s Final Week ‘Late Show’ Guests: Springsteen, Jon Stewart, David Byrne</span><span class="lang-en">Stephen Colbert’s Final Week ‘Late Show’ Guests: Springsteen, Jon Stewart, David Byrne</span>
-    </a>
-    <div class="meta">
-      <span class="source">Rolling Stone</span>
-      <span class="time">1일 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Steven Spielberg and other &#34;special guests&#34; also on tap for the late-night series&#39; last four episodes</span><span class="lang-en">Steven Spielberg and other &#34;special guests&#34; also on tap for the late-night series&#39; last four episodes</span>
-    </p>
-    
-  </div>
-</article><article class="card">
-  
-  <div class="card-body">
-    <a class="title" href="https://www.rollingstone.com/tv-movies/tv-movie-features/is-god-is-play-to-movie-aleshea-harris-director-interview-1235563650/" target="_blank" rel="noopener">
-      <span class="lang-ko">How the ‘Effed-Up Fairy Tale’ of ‘Is God Is’ Went From Stage to Screen</span><span class="lang-en">How the ‘Effed-Up Fairy Tale’ of ‘Is God Is’ Went From Stage to Screen</span>
-    </a>
-    <div class="meta">
-      <span class="source">Rolling Stone</span>
-      <span class="time">1일 전</span>
-    </div>
-    
-    <p class="summary">
-      <span class="lang-ko">Writer-director Aleshea Harris talks adapting her Black Southern Gothic play into a star-studded thriller — and getting Beyoncé’s support</span><span class="lang-en">Writer-director Aleshea Harris talks adapting her Black Southern Gothic play into a star-studded thriller — and getting Beyoncé’s support</span>
-    </p>
     
   </div>
 </article>
-    
+        
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>커뮤니티 반응</h2>
+        <span>본문/댓글 분위기 요약</span>
+      </div>
+      <div class="feed">
+        
+        <p class="empty">표시할 커뮤니티 반응이 없습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel policy-panel">
+    <div class="panel-head">
+      <h2>정책/지원</h2>
+      <span>영화·문화 공공 지원</span>
+    </div>
+    <div class="policy-grid">
+      
+    </div>
+    <p class="empty">표시할 정책/지원 공지가 없습니다.</p>
   </section>
 </main>
 
-<footer>내부용 영화 뉴스 집계 · 자동 생성</footer>
+<footer>내부용 영화/문화 이슈 집계 · 자동 생성</footer>
 
 <script>
 function setLang(lang) {
   document.body.classList.remove('lang-ko', 'lang-en');
   document.body.classList.add('lang-' + lang);
-  document.querySelectorAll('.lang-btn').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.lang === lang);
-  });
-}
-function setTab(tab) {
-  document.body.classList.remove('tab-kr', 'tab-us');
-  document.body.classList.add('tab-' + tab);
-  document.querySelectorAll('.tab-btn').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.tab === tab);
+  document.querySelectorAll('.lang-btn').forEach(function (button) {
+    button.classList.toggle('active', button.dataset.lang === lang);
   });
 }
 </script>

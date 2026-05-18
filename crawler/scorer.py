@@ -10,9 +10,12 @@ from typing import Optional
 
 import yaml
 
+from crawler.briefing_models import MarketSnapshot
 from crawler.models import Article
 
 KEYWORDS_PATH = Path(__file__).resolve().parent.parent / "config" / "keywords.yaml"
+BOXOFFICE_RANK_BOOSTS = {1: 700, 2: 500, 3: 350, 4: 250, 5: 180}
+COMMUNITY_MARKET_SCORE_FACTOR = 0.45
 
 
 def load_keywords(path: Path = KEYWORDS_PATH) -> dict:
@@ -50,8 +53,38 @@ def _find_matches(text: str, keywords: list[str]) -> list[str]:
     return [kw for kw in keywords if kw and _matcher(kw).search(text)]
 
 
+def _normalize_title(text: str) -> str:
+    return " ".join((text or "").casefold().split())
+
+
+def _boxoffice_matches(article: Article, market: Optional[MarketSnapshot]) -> list[tuple[str, float]]:
+    """Return matched KOBIS titles and their score boosts for an article."""
+    if market is None:
+        return []
+    text = _normalize_title(f"{article.title} {article.summary}")
+    if not text:
+        return []
+
+    matches: list[tuple[str, float]] = []
+    for movie in market.movies:
+        title = movie.title.strip()
+        if not title:
+            continue
+        if _normalize_title(title) not in text:
+            continue
+        boost = float(BOXOFFICE_RANK_BOOSTS.get(movie.rank, 0))
+        if article.content_kind == "community":
+            boost *= COMMUNITY_MARKET_SCORE_FACTOR
+        if boost:
+            matches.append((title, boost))
+    return matches
+
+
 def score_article(
-    article: Article, keywords: dict, now: datetime
+    article: Article,
+    keywords: dict,
+    now: datetime,
+    market: Optional[MarketSnapshot] = None,
 ) -> tuple[int, float, list[str]]:
     """기사 하나의 (tier, score, matched_keywords)를 계산한다.
 
@@ -104,16 +137,24 @@ def score_article(
         if hours_to_zero and hours_old < hours_to_zero:
             score += max_bonus * (1 - hours_old / hours_to_zero)
 
+    for movie_title, boost in _boxoffice_matches(article, market):
+        score += boost
+        matched.append(movie_title)
+
     return tier, score, matched
 
 
-def score_all(articles: list[Article], now: Optional[datetime] = None) -> None:
+def score_all(
+    articles: list[Article],
+    now: Optional[datetime] = None,
+    market: Optional[MarketSnapshot] = None,
+) -> None:
     """모든 기사에 tier/score/matched_keywords를 in-place로 채운다."""
     if now is None:
         now = datetime.now(timezone.utc)
     keywords = load_keywords()
     for article in articles:
-        tier, score, matched = score_article(article, keywords, now)
+        tier, score, matched = score_article(article, keywords, now, market=market)
         article.tier = tier
         article.score = score
-        article.matched_keywords = matched
+        article.matched_keywords = list(dict.fromkeys(matched))

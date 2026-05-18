@@ -12,7 +12,7 @@ The page must:
 - Show the key situation at a glance on one screen.
 - Separate official articles from community reactions.
 - Show yesterday's KOBIS audience-count top 5.
-- Capture the live KOBIS reservation-rate page at upload/build time.
+- Show the live KOBIS reservation-rate TOP 5 as structured data at upload/build time.
 - Weight article curation by the KOBIS box office top 5.
 - Include government/public support-policy updates, especially film support programs.
 - Expand community coverage beyond the current film-community source and summarize body/comment sentiment when available.
@@ -31,7 +31,7 @@ The first screen is a single "today's film/culture radar" view. It starts with f
 Below those indicators, the page separates five sections:
 
 1. Core curation.
-2. Yesterday audience top 5 and live reservation-rate screenshot.
+2. Yesterday audience top 5 and live reservation-rate TOP 5.
 3. Official articles.
 4. Community reactions.
 5. Government/public support policies.
@@ -105,13 +105,13 @@ Fields needed:
 
 ### KOBIS Live Reservation Rate
 
-At build/upload time, capture the public KOBIS live reservation-rate page:
+At build/upload time, read the public KOBIS live reservation-rate page as structured data:
 
 - Page: KOBIS mobile/PC live reservation-rate view.
-- Save a screenshot artifact under a generated data/assets path.
-- Show the screenshot in the dashboard with a timestamp.
+- Store the TOP 5 list with rank, Korean title, reservation rate, and reservation audience count.
+- Show the list in the dashboard with the same visual treatment as the previous-day audience TOP 5.
 
-If screenshot capture fails, the page should still build. It should display a clear "capture unavailable" state and keep the last successful screenshot if available.
+If reservation-rate fetch fails, the page should still build. It should display a clear missing-data state.
 
 ### Policy/Support Updates
 
@@ -161,9 +161,9 @@ Keep the current lightweight approach as the first path:
 
 When a target is JavaScript-rendered, intermittently blocked, or returns empty/low-value HTML, use a Crawl4AI-inspired browser fallback:
 
-1. Browser render with Playwright/Crawl4AI-style configuration.
+1. Browser render with Crawl4AI-style configuration when a source explicitly needs it.
 2. Site-specific `wait_for` or scroll/click actions.
-3. Optional screenshot capture for debugging or required KOBIS reservation-rate image.
+3. Optional debug artifact capture only for crawler diagnostics, not for KOBIS reservation-rate display.
 4. Retry/anti-bot detection where appropriate.
 5. Mark source as failed with an error record rather than breaking the whole build.
 
@@ -179,7 +179,7 @@ The build process should load:
 - `data/market.json` or equivalent KOBIS artifact
 - `data/community.json` or equivalent community artifact
 - `data/policies.json` or equivalent policy artifact
-- reservation-rate screenshot asset metadata
+- reservation-rate TOP 5 metadata
 
 The generated page should be mobile-readable but optimized for a desktop internal briefing screen.
 
@@ -189,7 +189,7 @@ Dashboard layout:
 - Top KPI row.
 - Main two-column briefing area:
   - Left: core curation.
-  - Right: box office top 5 and reservation screenshot.
+  - Right: box office top 5 and reservation-rate TOP 5.
 - Below: side-by-side official articles and community reactions.
 - Bottom or right rail: policy/support updates.
 
@@ -200,7 +200,7 @@ The daily workflow must not fail just because one source fails.
 Rules:
 
 - KOBIS API failure: show last successful box-office data if available; otherwise show a missing-data card.
-- Reservation screenshot failure: show last successful screenshot if available; otherwise show unavailable state.
+- Reservation-rate fetch failure: show unavailable state.
 - Community source failure: omit that source and record a warning.
 - Policy feed failure: omit failed source and record a warning.
 - Translation failure: keep original text and keep the build successful.
@@ -214,7 +214,7 @@ Add environment variables:
 
 GitHub Actions should receive `KOBIS_API_KEY` as a repository secret.
 
-The actual API key must not be committed in code, docs, generated JSON, logs, or screenshots.
+The actual API key must not be committed in code, docs, generated JSON, or logs.
 
 ## Testing And Verification
 
@@ -231,14 +231,14 @@ Manual verification:
 
 - Run the crawler/build locally with a test or real KOBIS key in the environment.
 - Confirm the generated page shows all required sections.
-- Confirm the reservation screenshot asset appears or degrades gracefully.
+- Confirm the reservation-rate TOP 5 appears or degrades gracefully.
 - Confirm no API key appears in git diff or generated output.
 
 ## Implementation Sequence
 
 1. Add data models for market data, community reactions, policies, and crawl diagnostics.
 2. Add KOBIS daily box-office client and saved market artifact.
-3. Add KOBIS reservation-rate screenshot capture.
+3. Add KOBIS reservation-rate TOP 5 collection.
 4. Split article/community/policy source types.
 5. Add community expansion framework and first expanded parser.
 6. Add policy feed parser.

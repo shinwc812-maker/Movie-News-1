@@ -279,7 +279,8 @@ h1 {
   font-weight: 700;
 }
 
-.boxoffice-list {
+.boxoffice-list,
+.reservation-list {
   list-style: none;
   padding: 10px;
   margin: 0;
@@ -287,7 +288,8 @@ h1 {
   gap: 6px;
 }
 
-.boxoffice-list li {
+.boxoffice-list li,
+.reservation-list li {
   display: grid;
   grid-template-columns: 28px 1fr auto;
   gap: 8px;
@@ -299,7 +301,8 @@ h1 {
   background: #f8fafc;
 }
 
-.boxoffice-list b {
+.boxoffice-list b,
+.reservation-list b {
   width: 24px;
   height: 24px;
   display: grid;
@@ -310,25 +313,16 @@ h1 {
   font-size: 0.78rem;
 }
 
-.boxoffice-list span {
+.boxoffice-list span,
+.reservation-list span {
   min-width: 0;
   font-weight: 800;
 }
 
-.boxoffice-list strong {
+.boxoffice-list strong,
+.reservation-list strong {
   color: #344054;
   font-size: 0.82rem;
-}
-
-.reservation-shot {
-  display: block;
-  width: calc(100% - 20px);
-  max-height: 420px;
-  object-fit: contain;
-  margin: 10px;
-  border: 1px solid #d7dee9;
-  border-radius: 7px;
-  background: #f8fafc;
 }
 
 .capture-empty {
@@ -437,7 +431,7 @@ footer {
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 18일 16:34 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 18일 17:01 (KST)</p>
   </div>
   <div class="lang-toggle" aria-label="언어 선택">
     <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
@@ -448,8 +442,8 @@ footer {
 <main class="dashboard">
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>마이클</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>(COLONY) 46.6%</strong></div>
-    <div class="kpi"><span>공식 기사</span><strong>49건</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>군체 46.7%</strong></div>
+    <div class="kpi"><span>공식 기사</span><strong>12건</strong></div>
     <div class="kpi"><span>커뮤니티 반응</span><strong>27건</strong></div>
   </section>
 
@@ -470,7 +464,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · Variety</span>
-      <span class="time">1시간 전</span>
+      <span class="time">2시간 전</span>
     </div>
 
     <p class="summary">
@@ -488,43 +482,20 @@ footer {
             <article class="card card-compact">
 
   <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/nicolas-winding-refn-interview-cannes-her-private-hell-1236879619/" target="_blank" rel="noopener">
-      <span class="lang-ko">Nicolas Winding Refn On Making ‘Her Private Hell’ After A Brush With Death: “I Had To Start All Over Again”</span><span class="lang-en">Nicolas Winding Refn On Making ‘Her Private Hell’ After A Brush With Death: “I Had To Start All Over Again”</span>
+    <a class="title" href="https://variety.com/2026/film/news/jordan-firstman-club-kid-sells-a24-cannes-bidding-war-1236751831/" target="_blank" rel="noopener">
+      <span class="lang-ko">Jordan Firstman’s’Club Kid’ Scores $17 Million Global Rights Deal From A24 After Heated Cannes Bidding War</span><span class="lang-en">Jordan Firstman’s’Club Kid’ Scores $17 Million Global Rights Deal From A24 After Heated Cannes Bidding War</span>
     </a>
     <div class="meta">
-      <span class="source official">공식 · Deadline</span>
-      <span class="time">18분 전</span>
+      <span class="source official">공식 · Variety</span>
+      <span class="time">23분 전</span>
     </div>
 
     <p class="summary">
-      <span class="lang-ko">Nicolas Winding Refn returns to Cannes with Her Private Hell, his first film in 10 years, his last being the Elle Fanning starrer Neon Demon. In the fashionista aspect of it all, you could say Her Private Hell is its spiritual cousin. The film begins at a swanky hotel in a futuristic LA-like city where […]</span><span class="lang-en">Nicolas Winding Refn returns to Cannes with Her Private Hell, his first film in 10 years, his last being the Elle Fanning starrer Neon Demon. In the fashionista aspect of it all, you could say Her Private Hell is its spiritual cousin. The film begins at a swanky hotel in a futuristic LA-like city where […]</span>
+      <span class="lang-ko">A24 is officially taking “Club Kid” home from the afters. Jordan Firstman’s dramedy, an official selection of this year’s Cannes Film Festival, has notched a major sale — $17 million, per three sources — after a weekend of heated bidding in the South of France. Topic Studios financed and produced the project, and A24 has […]</span><span class="lang-en">A24 is officially taking “Club Kid” home from the afters. Jordan Firstman’s dramedy, an official selection of this year’s Cannes Film Festival, has notched a major sale — $17 million, per three sources — after a weekend of heated bidding in the South of France. Topic Studios financed and produced the project, and A24 has […]</span>
     </p>
 
 
-    <div class="chips"><span>Neon</span></div>
-
-  </div>
-</article>
-
-
-
-            <article class="card card-compact">
-
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/neon-teaser-na-hong-jin-hope-film-cannes-theatrical-release-1236913983/" target="_blank" rel="noopener">
-      <span class="lang-ko">Neon Debuts Official Teaser For Na Hong-Jin’s Buzzy Cannes Title ‘Hope’; Sets Fall Theatrical Release</span><span class="lang-en">Neon Debuts Official Teaser For Na Hong-Jin’s Buzzy Cannes Title ‘Hope’; Sets Fall Theatrical Release</span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · Deadline</span>
-      <span class="time">5시간 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">On the heels of its in Competition debut at Cannes, where it received a seven-minute standing ovation, Neon has released the official teaser for Na Hong-jin’s buzzy sci-fi title, Hope, which will bow in theaters this fall. The just over minute-and-a-half first look previews a desolate, bloodied and disordered street, lined with wrecked cars and […]</span><span class="lang-en">On the heels of its in Competition debut at Cannes, where it received a seven-minute standing ovation, Neon has released the official teaser for Na Hong-jin’s buzzy sci-fi title, Hope, which will bow in theaters this fall. The just over minute-and-a-half first look previews a desolate, bloodied and disordered street, lined with wrecked cars and […]</span>
-    </p>
-
-
-    <div class="chips"><span>Neon</span></div>
+    <div class="chips"><span>A24</span></div>
 
   </div>
 </article>
@@ -539,7 +510,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · 맥스무비</span>
-      <span class="time">5시간 전</span>
+      <span class="time">6시간 전</span>
     </div>
 
     <p class="summary">
@@ -557,16 +528,37 @@ footer {
             <article class="card card-compact">
 
   <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/cannes-film-clip-madame-2026-paris-golden-triangle-1236595806/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Madame’ Takes Us Inside Paris’ Opulent Golden Triangle and a Gilded Cage (Exclusive Cannes Clip)</span><span class="lang-en">‘Madame’ Takes Us Inside Paris’ Opulent Golden Triangle and a Gilded Cage (Exclusive Cannes Clip)</span>
+    <a class="title" href="https://www.cine21.com/news/view/?mag_id=109966" target="_blank" rel="noopener">
+      <span class="lang-ko">[trans x cross] &lt;무비랜드 메이킹북&gt;으로 돌아본 우리의 극장 - 무비랜드 극장주 모춘, 소호 인터뷰</span><span class="lang-en">[trans x cross] &lt;무비랜드 메이킹북&gt;으로 돌아본 우리의 극장 - 무비랜드 극장주 모춘, 소호 인터뷰 <em class="kr-tag">(한국어)</em></span>
     </a>
     <div class="meta">
-      <span class="source official">공식 · The Hollywood Reporter</span>
-      <span class="time">4분 전</span>
+      <span class="source official">공식 · 씨네21</span>
+      <span class="time">56분 전</span>
     </div>
 
     <p class="summary">
-      <span class="lang-ko">The first feature from Hélène Rosselet-Ruiz, produced by Marie-Ange Luciani of &#39;Anatomy of a Fall&#39; fame, revolves around two women and a Saudi prince and debuts in the Cannes Special Screenings lineup.</span><span class="lang-en">The first feature from Hélène Rosselet-Ruiz, produced by Marie-Ange Luciani of &#39;Anatomy of a Fall&#39; fame, revolves around two women and a Saudi prince and debuts in the Cannes Special Screenings lineup.</span>
+      <span class="lang-ko">2024년 3월, &lt;씨네21&gt;은 개관 3주차였던 성수동의 무비랜드를 찾아 극장주 모춘, 소호와 이야기를 나누었다. 그로부터 2년이 지난 뒤 무비랜드는 이제 영화를 좋아하는 이라면 당연히 알 법한 극장이자 하나의 브랜드로 자리 잡았다. 특히, 매달 새 큐레이터를 섭외해 그들의 선정작을 상영하는 기획은 무비랜드의 대표적 콘텐츠가 되어 전방위적 ...</span><span class="lang-en">2024년 3월, &lt;씨네21&gt;은 개관 3주차였던 성수동의 무비랜드를 찾아 극장주 모춘, 소호와 이야기를 나누었다. 그로부터 2년이 지난 뒤 무비랜드는 이제 영화를 좋아하는 이라면 당연히 알 법한 극장이자 하나의 브랜드로 자리 잡았다. 특히, 매달 새 큐레이터를 섭외해 그들의 선정작을 상영하는 기획은 무비랜드의 대표적 콘텐츠가 되어 전방위적 ...</span>
+    </p>
+
+
+  </div>
+</article>
+
+
+
+            <article class="card card-compact">
+
+  <div class="card-body">
+    <a class="title" href="https://www.cine21.com/news/view/?mag_id=109965" target="_blank" rel="noopener">
+      <span class="lang-ko">[culture music video](Feat. G-DRAGON)</span><span class="lang-en">[culture music video](Feat. G-DRAGON) <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 씨네21</span>
+      <span class="time">56분 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">사진출처 YOUTUBE ‘SMTOWN’ 가수 aespa(에스파) 공개 2026년 5월11일 &lt;WDA&gt; 뮤직비디오는 꽤 무섭다. 처음부터 멤버 지젤이 재패니즈 호러풍의 고속도로 위 유령으로 등장하여 공포의 톤 앤드 매너를 형성한다. 이어지는 소녀와 까마귀의 추격전은 생성형 AI의 조악한 품질로 드러나며, 웹에 떠도는 온갖 찌꺼기 이미지들...</span><span class="lang-en">사진출처 YOUTUBE ‘SMTOWN’ 가수 aespa(에스파) 공개 2026년 5월11일 &lt;WDA&gt; 뮤직비디오는 꽤 무섭다. 처음부터 멤버 지젤이 재패니즈 호러풍의 고속도로 위 유령으로 등장하여 공포의 톤 앤드 매너를 형성한다. 이어지는 소녀와 까마귀의 추격전은 생성형 AI의 조악한 품질로 드러나며, 웹에 떠도는 온갖 찌꺼기 이미지들...</span>
     </p>
 
 
@@ -622,11 +614,42 @@ footer {
 
       <section class="panel">
         <div class="panel-head">
-          <h2>실시간 예매율 캡처</h2>
+          <h2>실시간 예매율 TOP 5</h2>
           <span>업로드 시점</span>
         </div>
+        <ol class="reservation-list">
 
-          <img class="reservation-shot" src="assets/kobis-reservation-20260518-163019.png" alt="KOBIS 실시간 예매율 캡처">
+          <li>
+            <b>1</b>
+            <span>군체</span>
+            <strong>46.7%</strong>
+          </li>
+
+          <li>
+            <b>2</b>
+            <span>마이클</span>
+            <strong>13.2%</strong>
+          </li>
+
+          <li>
+            <b>3</b>
+            <span>와일드 씽</span>
+            <strong>7.4%</strong>
+          </li>
+
+          <li>
+            <b>4</b>
+            <span>신극장판 은혼: 요시와라 대염상</span>
+            <strong>4.3%</strong>
+          </li>
+
+          <li>
+            <b>5</b>
+            <span>악마는 프라다를 입는다 2</span>
+            <strong>3.3%</strong>
+          </li>
+
+        </ol>
 
       </section>
     </aside>
@@ -640,63 +663,6 @@ footer {
       </div>
       <div class="feed">
         <article class="card ">
-
-  <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/box-office/korea-box-office-michael-devil-wears-prada-2-1236752098/" target="_blank" rel="noopener">
-      <span class="lang-ko">Korea Box Office: Michael Jackson Biopic ‘Michael’ Dominates Weekend with Over 50% Market Share</span><span class="lang-en">Korea Box Office: Michael Jackson Biopic ‘Michael’ Dominates Weekend with Over 50% Market Share</span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · Variety</span>
-      <span class="time">1시간 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">The Michael Jackson biographical drama “Michael” comfortably claimed the top position at the South Korean box office during the weekend of May 15–17. According to data from KOBIS, the tracking service operated by the Korean Film Council, the Lionsgate and Universal Pictures international release earned $3.6 million from 470,375 admissions, securing a dominant 51.03% share […]</span><span class="lang-en">The Michael Jackson biographical drama “Michael” comfortably claimed the top position at the South Korean box office during the weekend of May 15–17. According to data from KOBIS, the tracking service operated by the Korean Film Council, the Lionsgate and Universal Pictures international release earned $3.6 million from 470,375 admissions, securing a dominant 51.03% share […]</span>
-    </p>
-
-
-    <div class="chips"><span>Universal Pictures</span><span>Lionsgate</span></div>
-
-  </div>
-</article><article class="card ">
-
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/nicolas-winding-refn-interview-cannes-her-private-hell-1236879619/" target="_blank" rel="noopener">
-      <span class="lang-ko">Nicolas Winding Refn On Making ‘Her Private Hell’ After A Brush With Death: “I Had To Start All Over Again”</span><span class="lang-en">Nicolas Winding Refn On Making ‘Her Private Hell’ After A Brush With Death: “I Had To Start All Over Again”</span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · Deadline</span>
-      <span class="time">18분 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">Nicolas Winding Refn returns to Cannes with Her Private Hell, his first film in 10 years, his last being the Elle Fanning starrer Neon Demon. In the fashionista aspect of it all, you could say Her Private Hell is its spiritual cousin. The film begins at a swanky hotel in a futuristic LA-like city where […]</span><span class="lang-en">Nicolas Winding Refn returns to Cannes with Her Private Hell, his first film in 10 years, his last being the Elle Fanning starrer Neon Demon. In the fashionista aspect of it all, you could say Her Private Hell is its spiritual cousin. The film begins at a swanky hotel in a futuristic LA-like city where […]</span>
-    </p>
-
-
-    <div class="chips"><span>Neon</span></div>
-
-  </div>
-</article><article class="card ">
-
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/neon-teaser-na-hong-jin-hope-film-cannes-theatrical-release-1236913983/" target="_blank" rel="noopener">
-      <span class="lang-ko">Neon Debuts Official Teaser For Na Hong-Jin’s Buzzy Cannes Title ‘Hope’; Sets Fall Theatrical Release</span><span class="lang-en">Neon Debuts Official Teaser For Na Hong-Jin’s Buzzy Cannes Title ‘Hope’; Sets Fall Theatrical Release</span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · Deadline</span>
-      <span class="time">5시간 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">On the heels of its in Competition debut at Cannes, where it received a seven-minute standing ovation, Neon has released the official teaser for Na Hong-jin’s buzzy sci-fi title, Hope, which will bow in theaters this fall. The just over minute-and-a-half first look previews a desolate, bloodied and disordered street, lined with wrecked cars and […]</span><span class="lang-en">On the heels of its in Competition debut at Cannes, where it received a seven-minute standing ovation, Neon has released the official teaser for Na Hong-jin’s buzzy sci-fi title, Hope, which will bow in theaters this fall. The just over minute-and-a-half first look previews a desolate, bloodied and disordered street, lined with wrecked cars and […]</span>
-    </p>
-
-
-    <div class="chips"><span>Neon</span></div>
-
-  </div>
-</article><article class="card ">
   <img class="thumb" src="https://d3ihz389yobwks.cloudfront.net/1779068369906FoIBI.png" alt="" loading="lazy" onerror="this.style.display='none'">
   <div class="card-body">
     <a class="title" href="https://www.maxmovie.com/news/445427" target="_blank" rel="noopener">
@@ -704,7 +670,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · 맥스무비</span>
-      <span class="time">5시간 전</span>
+      <span class="time">6시간 전</span>
     </div>
 
     <p class="summary">
@@ -716,40 +682,6 @@ footer {
 
   </div>
 </article><article class="card ">
-
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/cannes-film-clip-madame-2026-paris-golden-triangle-1236595806/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Madame’ Takes Us Inside Paris’ Opulent Golden Triangle and a Gilded Cage (Exclusive Cannes Clip)</span><span class="lang-en">‘Madame’ Takes Us Inside Paris’ Opulent Golden Triangle and a Gilded Cage (Exclusive Cannes Clip)</span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · The Hollywood Reporter</span>
-      <span class="time">4분 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">The first feature from Hélène Rosselet-Ruiz, produced by Marie-Ange Luciani of &#39;Anatomy of a Fall&#39; fame, revolves around two women and a Saudi prince and debuts in the Cannes Special Screenings lineup.</span><span class="lang-en">The first feature from Hélène Rosselet-Ruiz, produced by Marie-Ange Luciani of &#39;Anatomy of a Fall&#39; fame, revolves around two women and a Saudi prince and debuts in the Cannes Special Screenings lineup.</span>
-    </p>
-
-
-  </div>
-</article><article class="card ">
-
-  <div class="card-body">
-    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/shogun-tadanobu-asano-cannes-all-the-lovers-in-the-night-1236594492/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Shogun’ Star Tadanobu Asano Returns to Cannes in Yukiko Sode’s Arresting Romance ‘All the Lovers in the Night’</span><span class="lang-en">‘Shogun’ Star Tadanobu Asano Returns to Cannes in Yukiko Sode’s Arresting Romance ‘All the Lovers in the Night’</span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · The Hollywood Reporter</span>
-      <span class="time">19분 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">Adapted from Mieko Kawakami&#39;s acclaimed novel, this accomplished Un Certain Regard entry co-stars Yukino Kishii as a solitary Tokyo copy editor whose tentative love affair unfolds against philosophical meditations on light and self-determination.</span><span class="lang-en">Adapted from Mieko Kawakami&#39;s acclaimed novel, this accomplished Un Certain Regard entry co-stars Yukino Kishii as a solitary Tokyo copy editor whose tentative love affair unfolds against philosophical meditations on light and self-determination.</span>
-    </p>
-
-
-  </div>
-</article><article class="card ">
   <img class="thumb" src="https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg" alt="" loading="lazy" onerror="this.style.display='none'">
   <div class="card-body">
     <a class="title" href="https://www.cine21.com/news/view/?mag_id=109966" target="_blank" rel="noopener">
@@ -757,7 +689,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · 씨네21</span>
-      <span class="time">29분 전</span>
+      <span class="time">56분 전</span>
     </div>
 
     <p class="summary">
@@ -774,7 +706,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · 씨네21</span>
-      <span class="time">29분 전</span>
+      <span class="time">56분 전</span>
     </div>
 
     <p class="summary">
@@ -784,18 +716,86 @@ footer {
 
   </div>
 </article><article class="card ">
-
+  <img class="thumb" src="https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg" alt="" loading="lazy" onerror="this.style.display='none'">
   <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/markets-festivals/berlinale-light-pillar-greenwich-entertainment-us-release-1236751438/" target="_blank" rel="noopener">
-      <span class="lang-ko">Berlinale Title ‘Light Pillar’ Acquired by Greenwich Entertainment for U.S. Theatrical Release (EXCLUSIVE)</span><span class="lang-en">Berlinale Title ‘Light Pillar’ Acquired by Greenwich Entertainment for U.S. Theatrical Release (EXCLUSIVE)</span>
+    <a class="title" href="https://www.cine21.com/news/view/?mag_id=109964" target="_blank" rel="noopener">
+      <span class="lang-ko">[MY PICK] 한선화의 MY PICK✩</span><span class="lang-en">[MY PICK] 한선화의 MY PICK✩ <em class="kr-tag">(한국어)</em></span>
     </a>
     <div class="meta">
-      <span class="source official">공식 · Variety</span>
-      <span class="time">34분 전</span>
+      <span class="source official">공식 · 씨네21</span>
+      <span class="time">1시간 전</span>
     </div>
 
     <p class="summary">
-      <span class="lang-ko">Greenwich Entertainment has acquired U.S. distribution rights to “Light Pillar,” the debut feature from Chinese director and screenwriter Xu Zao. The Shanghai-based Fengduan Pictures production world-premiered in the Perspectives section of the Berlin Film Festival and will receive a theatrical release across the country early next year. The 2D animated film incorporates live-action sequences featuring […]</span><span class="lang-en">Greenwich Entertainment has acquired U.S. distribution rights to “Light Pillar,” the debut feature from Chinese director and screenwriter Xu Zao. The Shanghai-based Fengduan Pictures production world-premiered in the Perspectives section of the Berlin Film Festival and will receive a theatrical release across the country early next year. The 2D animated film incorporates live-action sequences featuring […]</span>
+      <span class="lang-ko">배우. 영화 &lt;교생실습&gt;, 드라마 &lt;모두가 자신의 무가치함과 싸우고 있다&gt; 등 출연 최근 나를 가장 들뜨게 한 극장 영화는? &lt;씨너스: 죄인들&gt; 사운드 좋고 큰 극장에서 봤는데, 음악이 귀를 때리고 차가 광활한 미국 대지를 달리는 장면에서 정말 짜릿했다. 신작이 나오면 무조건 챙겨보는 배우는? 전지현...</span><span class="lang-en">배우. 영화 &lt;교생실습&gt;, 드라마 &lt;모두가 자신의 무가치함과 싸우고 있다&gt; 등 출연 최근 나를 가장 들뜨게 한 극장 영화는? &lt;씨너스: 죄인들&gt; 사운드 좋고 큰 극장에서 봤는데, 음악이 귀를 때리고 차가 광활한 미국 대지를 달리는 장면에서 정말 짜릿했다. 신작이 나오면 무조건 챙겨보는 배우는? 전지현...</span>
+    </p>
+
+
+  </div>
+</article><article class="card ">
+  <img class="thumb" src="https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="card-body">
+    <a class="title" href="https://www.cine21.com/news/view/?mag_id=109963" target="_blank" rel="noopener">
+      <span class="lang-ko">[델리] 긴 러닝타임은 문제가 아니다 - &lt;두란다르&gt;의 속편 &lt;두란다르: 더 리벤지&gt;, 인도 박스오피스 흥행 신기록 쓸 예정</span><span class="lang-en">[델리] 긴 러닝타임은 문제가 아니다 - &lt;두란다르&gt;의 속편 &lt;두란다르: 더 리벤지&gt;, 인도 박스오피스 흥행 신기록 쓸 예정 <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 씨네21</span>
+      <span class="time">2시간 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">대가(두란다르)의 전략이 또 한번 인도를 접수했다. 연말연초 논란 속에 극장가를 강타했던 발리우드 액션 스릴러 &lt;두란다르&gt;의 속편 &lt;두란다르: 더 리벤지&gt;가 새 역사를 써내려가고 있다. 발리우드 역대 1위는 물론 남인도 극장가에서도 개가를 올리며 인도영화 흥행 순위에서 오랜 기간 1위를 지키고 있는 아미르 칸 주연의 &lt;당...</span><span class="lang-en">대가(두란다르)의 전략이 또 한번 인도를 접수했다. 연말연초 논란 속에 극장가를 강타했던 발리우드 액션 스릴러 &lt;두란다르&gt;의 속편 &lt;두란다르: 더 리벤지&gt;가 새 역사를 써내려가고 있다. 발리우드 역대 1위는 물론 남인도 극장가에서도 개가를 올리며 인도영화 흥행 순위에서 오랜 기간 1위를 지키고 있는 아미르 칸 주연의 &lt;당...</span>
+    </p>
+
+
+  </div>
+</article><article class="card ">
+  <img class="thumb" src="https://d3ihz389yobwks.cloudfront.net/1778916468970N8dfW.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="card-body">
+    <a class="title" href="https://www.maxmovie.com/news/445426" target="_blank" rel="noopener">
+      <span class="lang-ko">“웃다가 울게 된다”… 이범규 감독, &#39;뽀삐&#39;와 함께 숏폼 시장 새 브랜드로 떠오르다</span><span class="lang-en">“웃다가 울게 된다”… 이범규 감독, &#39;뽀삐&#39;와 함께 숏폼 시장 새 브랜드로 떠오르다 <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 맥스무비</span>
+      <span class="time">1일 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">배우이자 감독, 이범규. 맥스무비 DB낮에는 반려견, 밤에는 재벌 2세. 다소 엉뚱한 설정의 숏폼 드라마를 설득력 있게 완성해내는 연출자가 있다. 코미디와 감정선을 동시에 잡아낸다는 평가를 받는 이범규 감독이다.이범규 감독이 연출한 숏폼 드라마 ‘뽀삐가 재벌남으로 돌아왔다’가 지난 12일 글로벌 숏폼 플랫폼 비글루(Vigloo)를 통해 공개됐다.작품은 무지</span><span class="lang-en">배우이자 감독, 이범규. 맥스무비 DB낮에는 반려견, 밤에는 재벌 2세. 다소 엉뚱한 설정의 숏폼 드라마를 설득력 있게 완성해내는 연출자가 있다. 코미디와 감정선을 동시에 잡아낸다는 평가를 받는 이범규 감독이다.이범규 감독이 연출한 숏폼 드라마 ‘뽀삐가 재벌남으로 돌아왔다’가 지난 12일 글로벌 숏폼 플랫폼 비글루(Vigloo)를 통해 공개됐다.작품은 무지</span>
+    </p>
+
+
+  </div>
+</article><article class="card ">
+  <img class="thumb" src="https://d3ihz389yobwks.cloudfront.net/1778915936754FU5hV.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="card-body">
+    <a class="title" href="https://www.maxmovie.com/news/445425" target="_blank" rel="noopener">
+      <span class="lang-ko">‘디렉터스 아레나’ 첫 방송부터 2049 시선 사로잡았다… ENA 금요 기대작 부상</span><span class="lang-en">‘디렉터스 아레나’ 첫 방송부터 2049 시선 사로잡았다… ENA 금요 기대작 부상 <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 맥스무비</span>
+      <span class="time">1일 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">ENA 새 예능 ‘디렉터스 아레나’가 첫 방송부터 2049 시청층의 시선을 사로잡으며 순조로운 출발을 알렸다.16일 시청률 조사회사 닐슨코리아에 따르면 지난 15일 밤 첫 방송된 ‘디렉터스 아레나’는 ENA 금요일 심야 시간대 편성에도 불구하고 2049 시청층에서 의미 있는 점유율을 기록했다. 특히 첫 방송 본편은 2049 개인 기준 점유율 1.71%를 나</span><span class="lang-en">ENA 새 예능 ‘디렉터스 아레나’가 첫 방송부터 2049 시청층의 시선을 사로잡으며 순조로운 출발을 알렸다.16일 시청률 조사회사 닐슨코리아에 따르면 지난 15일 밤 첫 방송된 ‘디렉터스 아레나’는 ENA 금요일 심야 시간대 편성에도 불구하고 2049 시청층에서 의미 있는 점유율을 기록했다. 특히 첫 방송 본편은 2049 개인 기준 점유율 1.71%를 나</span>
+    </p>
+
+
+  </div>
+</article><article class="card ">
+  <img class="thumb" src="https://d3ihz389yobwks.cloudfront.net/1778890479097Rf0Qs.png" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="card-body">
+    <a class="title" href="https://www.maxmovie.com/news/445424" target="_blank" rel="noopener">
+      <span class="lang-ko">배우 이유진, 메가폰 잡았다… 숏드라마 서바이벌 ‘디렉터스 아레나’ 첫방부터 ‘눈길’</span><span class="lang-en">배우 이유진, 메가폰 잡았다… 숏드라마 서바이벌 ‘디렉터스 아레나’ 첫방부터 ‘눈길’ <em class="kr-tag">(한국어)</em></span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · 맥스무비</span>
+      <span class="time">1일 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">디렉터스 아레나. ENA 화면 갈무리배우 이유진이 숏드라마 감독으로 변신해 강렬한 첫인상을 남겼다. 지난 15일 첫 방송된 ENA의 새 서바이벌 예능 프로그램 ‘디렉터스 아레나’에서는 12년 차 배우에서 연출자로 도전장을 내민 이유진 감독의 첫 번째 미션 과정이 전파를 탔다.이날 방송에서 이유진은 자신의 첫 연출작으로 ‘길이 보이면 캐스팅해’를 선보였다.</span><span class="lang-en">디렉터스 아레나. ENA 화면 갈무리배우 이유진이 숏드라마 감독으로 변신해 강렬한 첫인상을 남겼다. 지난 15일 첫 방송된 ENA의 새 서바이벌 예능 프로그램 ‘디렉터스 아레나’에서는 12년 차 배우에서 연출자로 도전장을 내민 이유진 감독의 첫 번째 미션 과정이 전파를 탔다.이날 방송에서 이유진은 자신의 첫 연출작으로 ‘길이 보이면 캐스팅해’를 선보였다.</span>
     </p>
 
 
@@ -803,52 +803,77 @@ footer {
 </article><article class="card ">
 
   <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/festivals/abinash-bikram-shah-elephants-in-the-fog-cannes-interview-1236752119/" target="_blank" rel="noopener">
-      <span class="lang-ko">From TikTok to Cannes: How ‘Elephants in the Fog’ Made Nepal’s Historic Un Certain Regard Breakthrough</span><span class="lang-en">From TikTok to Cannes: How ‘Elephants in the Fog’ Made Nepal’s Historic Un Certain Regard Breakthrough</span>
+    <a class="title" href="https://variety.com/2026/film/box-office/korea-box-office-michael-devil-wears-prada-2-1236752098/" target="_blank" rel="noopener">
+      <span class="lang-ko">Korea Box Office: Michael Jackson Biopic ‘Michael’ Dominates Weekend with Over 50% Market Share</span><span class="lang-en">Korea Box Office: Michael Jackson Biopic ‘Michael’ Dominates Weekend with Over 50% Market Share</span>
     </a>
     <div class="meta">
       <span class="source official">공식 · Variety</span>
-      <span class="time">1시간 전</span>
+      <span class="time">2시간 전</span>
     </div>
 
     <p class="summary">
-      <span class="lang-ko">During Nepal’s pandemic lockdowns, Abinash Bikram Shah found himself deep in a TikTok rabbit hole, watching videos posted by Kinnars – members of Nepal’s ancient third-gender community – dancing, joking, performing with unselfconscious joy. The comment sections beneath those videos were frequently vile. The Kinnars kept posting. “That really struck me,” Shah tells Variety. “I […]</span><span class="lang-en">During Nepal’s pandemic lockdowns, Abinash Bikram Shah found himself deep in a TikTok rabbit hole, watching videos posted by Kinnars – members of Nepal’s ancient third-gender community – dancing, joking, performing with unselfconscious joy. The comment sections beneath those videos were frequently vile. The Kinnars kept posting. “That really struck me,” Shah tells Variety. “I […]</span>
+      <span class="lang-ko">The Michael Jackson biographical drama “Michael” comfortably claimed the top position at the South Korean box office during the weekend of May 15–17. According to data from KOBIS, the tracking service operated by the Korean Film Council, the Lionsgate and Universal Pictures international release earned $3.6 million from 470,375 admissions, securing a dominant 51.03% share […]</span><span class="lang-en">The Michael Jackson biographical drama “Michael” comfortably claimed the top position at the South Korean box office during the weekend of May 15–17. According to data from KOBIS, the tracking service operated by the Korean Film Council, the Lionsgate and Universal Pictures international release earned $3.6 million from 470,375 admissions, securing a dominant 51.03% share […]</span>
     </p>
 
+
+    <div class="chips"><span>Universal Pictures</span><span>Lionsgate</span></div>
 
   </div>
 </article><article class="card ">
 
   <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/global/paulina-garcia-debut-the-passion-according-to-carmen-1236750310/" target="_blank" rel="noopener">
-      <span class="lang-ko">‘Gloria’ Star Paulina García Preps Directorial Debut, ‘The Passion According to Carmen’ (EXCLUSIVE)</span><span class="lang-en">‘Gloria’ Star Paulina García Preps Directorial Debut, ‘The Passion According to Carmen’ (EXCLUSIVE)</span>
+    <a class="title" href="https://variety.com/2026/film/news/jordan-firstman-club-kid-sells-a24-cannes-bidding-war-1236751831/" target="_blank" rel="noopener">
+      <span class="lang-ko">Jordan Firstman’s’Club Kid’ Scores $17 Million Global Rights Deal From A24 After Heated Cannes Bidding War</span><span class="lang-en">Jordan Firstman’s’Club Kid’ Scores $17 Million Global Rights Deal From A24 After Heated Cannes Bidding War</span>
     </a>
     <div class="meta">
       <span class="source official">공식 · Variety</span>
-      <span class="time">1시간 전</span>
+      <span class="time">23분 전</span>
     </div>
 
     <p class="summary">
-      <span class="lang-ko">Chile’s Paulina García, winner of the Berlinale Silver Bear for her performance in Sebastian Lelio’s “Gloria,” is poised to direct her first feature, “The Passion According to Carmen” (“La Pasión según Carmen”). Described as “the coming-of-age story of an adult woman” it follows Carmen, a journalist, whose life appears – at least on the surface […]</span><span class="lang-en">Chile’s Paulina García, winner of the Berlinale Silver Bear for her performance in Sebastian Lelio’s “Gloria,” is poised to direct her first feature, “The Passion According to Carmen” (“La Pasión según Carmen”). Described as “the coming-of-age story of an adult woman” it follows Carmen, a journalist, whose life appears – at least on the surface […]</span>
+      <span class="lang-ko">A24 is officially taking “Club Kid” home from the afters. Jordan Firstman’s dramedy, an official selection of this year’s Cannes Film Festival, has notched a major sale — $17 million, per three sources — after a weekend of heated bidding in the South of France. Topic Studios financed and produced the project, and A24 has […]</span><span class="lang-en">A24 is officially taking “Club Kid” home from the afters. Jordan Firstman’s dramedy, an official selection of this year’s Cannes Film Festival, has notched a major sale — $17 million, per three sources — after a weekend of heated bidding in the South of France. Topic Studios financed and produced the project, and A24 has […]</span>
     </p>
 
+
+    <div class="chips"><span>A24</span></div>
 
   </div>
 </article><article class="card ">
 
   <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/global/juanjo-gimenez-pinkala-frida-films-cannes-1236751399/" target="_blank" rel="noopener">
-      <span class="lang-ko">Palme d’Or Winner Juanjo Giménez Sets ‘Pínkala’ With Pol López, Frida Films (EXCLUSIVE)</span><span class="lang-en">Palme d’Or Winner Juanjo Giménez Sets ‘Pínkala’ With Pol López, Frida Films (EXCLUSIVE)</span>
+    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-news/a24-win-bidding-war-for-club-kid-cannes-1236598463/" target="_blank" rel="noopener">
+      <span class="lang-ko">A24 Win Bidding War for ‘Club Kid’</span><span class="lang-en">A24 Win Bidding War for ‘Club Kid’</span>
     </a>
     <div class="meta">
-      <span class="source official">공식 · Variety</span>
-      <span class="time">1시간 전</span>
+      <span class="source official">공식 · The Hollywood Reporter</span>
+      <span class="time">24분 전</span>
     </div>
 
     <p class="summary">
-      <span class="lang-ko">Spanish filmmaker Juanjo Giménez Peña, whose 2016 “Timecode” won a Palme d’Or at Cannes for best short and later earned an Academy Award nomination, is set to begin shooting his new feature “Pínkala” this July in Vigo, Spain. The supernatural love story stars Pol López and is produced by Frida Films alongside M-Films (Lithuania) and […]</span><span class="lang-en">Spanish filmmaker Juanjo Giménez Peña, whose 2016 “Timecode” won a Palme d’Or at Cannes for best short and later earned an Academy Award nomination, is set to begin shooting his new feature “Pínkala” this July in Vigo, Spain. The supernatural love story stars Pol López and is produced by Frida Films alongside M-Films (Lithuania) and […]</span>
+      <span class="lang-ko">A24 has picked up global rights to Jordan Firstman’s Un Certain Regard breakout.</span><span class="lang-en">A24 has picked up global rights to Jordan Firstman’s Un Certain Regard breakout.</span>
     </p>
 
+
+    <div class="chips"><span>A24</span></div>
+
+  </div>
+</article><article class="card ">
+
+  <div class="card-body">
+    <a class="title" href="https://deadline.com/2026/05/a24-global-rights-jordan-firstman-cannes-club-kid-1236914076/" target="_blank" rel="noopener">
+      <span class="lang-ko">A24 Takes Global Rights On Jordan Firstman’s Cannes Breakout ‘Club Kid’</span><span class="lang-en">A24 Takes Global Rights On Jordan Firstman’s Cannes Breakout ‘Club Kid’</span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · Deadline</span>
+      <span class="time">26분 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">A24 has swooped on Jordan Firstman’s Un Certain Regard breakout Club Kid following a highly competitive bidding war. The film, which world premiered on Friday at the Debussy Theater last Friday, drew rave responses from both audiences and critics and was the talk of the festival and market over the first weekend. Multiple studio suitors […]</span><span class="lang-en">A24 has swooped on Jordan Firstman’s Un Certain Regard breakout Club Kid following a highly competitive bidding war. The film, which world premiered on Friday at the Debussy Theater last Friday, drew rave responses from both audiences and critics and was the talk of the festival and market over the first weekend. Multiple studio suitors […]</span>
+    </p>
+
+
+    <div class="chips"><span>A24</span></div>
 
   </div>
 </article>
@@ -887,7 +912,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94038780" target="_blank" rel="noopener">마이클 패스벤더, 브레이디 코베 4시간짜리 X등급 서부극 &#39;오리진 오브더 월드&#39; 출연 확정 / 케이트 블란쳇 합류</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">2시간 전</span>
+      <span class="time">3시간 전</span>
     </div>
     <p class="summary">셀레나 고메즈에 이어, 브레이디 코베의 차기작으로 알려진 &#39;오리진 오브더 월드&#39;의 또 다른 캐스팅 소식이 전해졌다. 마이클 패스벤더가 현재 프리프...</p>
     <p class="mood">중립적 반응</p>
@@ -897,14 +922,14 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94038610" target="_blank" rel="noopener">이토 준지 &lt;지붕 밑의 머리카락&gt; 실사 영화화..태국·한국·일본 공동 제작</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">3시간 전</span>
+      <span class="time">4시간 전</span>
     </div>
     <p class="summary">이토 준지의 단편 만화 &lt;지붕 밑의 머리카락&gt;이 실사 영화로 제작된다. 이번 작품은 일본 토에이와 태국 M Studio, 한국 쇼박스가 함께 참여하는 국제 ...</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://cafe.naver.com/specup/7814907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InNwZWN1cCIsImFydGljbGVJZCI6NzgxNDkwNywiaXNzdWVkQXQiOjE3NzkwODk0NTc2MTd9.j5f6SfWCfVRAH-P3nCQ25eMpt7MJRgtk93amTUfVG6I" target="_blank" rel="noopener">영화마이클쿠키영상·러닝타임·줄거리 총정리</a>
+    <a class="title" href="https://cafe.naver.com/specup/7814907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InNwZWN1cCIsImFydGljbGVJZCI6NzgxNDkwNywiaXNzdWVkQXQiOjE3NzkwOTA4NDI0MDh9.lkAl3eDYiW56kBxcUirOKZlEECs9No064V-rsf75HSo" target="_blank" rel="noopener">영화마이클쿠키영상·러닝타임·줄거리 총정리</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 네이버카페</span>
 
@@ -914,7 +939,7 @@ footer {
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://cafe.naver.com/wbsc2021/1106?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Indic2MyMDIxIiwiYXJ0aWNsZUlkIjoxMTA2LCJpc3N1ZWRBdCI6MTc3OTA4OTQ1OTU3OH0.ReLErPb-QPU17VlpWgcSFTrvO9B7f8kdof0alIUMtOU" target="_blank" rel="noopener">김혜윤살목지100만 돌파, 호러 흥행 기록과관객 반응정리</a>
+    <a class="title" href="https://cafe.naver.com/wbsc2021/1106?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Indic2MyMDIxIiwiYXJ0aWNsZUlkIjoxMTA2LCJpc3N1ZWRBdCI6MTc3OTA5MDg0NDQxNX0.qlnzHwMQdKabnj0JnU3e3CZMsSMhL3ce31AzIYLw-tQ" target="_blank" rel="noopener">김혜윤살목지100만 돌파, 호러 흥행 기록과관객 반응정리</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 네이버카페</span>
 
@@ -937,7 +962,7 @@ footer {
     <a class="title" href="https://www.youtube.com/watch?v=RGC3x0gBzDU" target="_blank" rel="noopener">🕺[댓글이벤트] 마이클 잭슨의 부활! 폭발적인 해외반응 파헤치기 | 라플위클리 HOT &amp; NEW ep.10 - 마이클 #안현모 [LIFEPLUS] EP.10 마이클</a>
     <div class="meta">
       <span class="source community">커뮤니티 · YouTube</span>
-      <span class="time">6일 전</span>
+      <span class="time">2026.05.11</span>
     </div>
     <p class="summary">LIFEPLUS TV · 알고리즘 보다 정확한 이번 주 콘텐츠 PICK [라플위클리 HOT &amp; NEW] 영화 [마이클] 특집 댓글 이벤트 아우! 다들 이번 핫앤뉴도 ...</p>
     <p class="mood">중립적 반응</p>
@@ -999,12 +1024,6 @@ footer {
         <span>영화진흥위원회 · 공고</span>
         <strong>(추경) 2026년 독립예술영화 제작지원 장편 극영화부문(순제작비 10억 원 이상~20억 원 미만) 사업 공고</strong>
         <em>영화 지원사업</em>
-      </a>
-
-      <a class="policy-card" href="https://www.mcst.go.kr/site/s_policy/govPolicy/performView.jsp?pSeq=1106" target="_blank" rel="noopener">
-        <span>문화체육관광부 · 정책</span>
-        <strong>정보공개</strong>
-        <em>영화산업 지원 정책</em>
       </a>
 
     </div>

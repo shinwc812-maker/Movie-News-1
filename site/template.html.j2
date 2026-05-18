@@ -60,7 +60,7 @@
 <main class="dashboard">
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].title }}{% else %}데이터 없음{% endif %}</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>{% if reservation.top_movie %}{{ reservation.top_movie }}{% if reservation.top_rate %} {{ reservation.top_rate }}{% endif %}{% else %}캡처 대기{% endif %}</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_rate }}{% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>공식 기사</span><strong>{{ total_official }}건</strong></div>
     <div class="kpi"><span>커뮤니티 반응</span><strong>{{ total_community }}건</strong></div>
   </section>
@@ -103,14 +103,19 @@
 
       <section class="panel">
         <div class="panel-head">
-          <h2>실시간 예매율 캡처</h2>
+          <h2>실시간 예매율 TOP 5</h2>
           <span>업로드 시점</span>
         </div>
-        {% if reservation.available %}
-          <img class="reservation-shot" src="{{ reservation.image_url }}" alt="KOBIS 실시간 예매율 캡처">
-        {% else %}
-          <div class="capture-empty">캡처를 사용할 수 없습니다.</div>
-        {% endif %}
+        <ol class="reservation-list">
+          {% for movie in reservation.movies %}
+          <li>
+            <b>{{ movie.rank }}</b>
+            <span>{{ movie.title }}</span>
+            <strong>{{ movie.reservation_rate }}</strong>
+          </li>
+          {% endfor %}
+        </ol>
+        {% if not reservation.movies %}<p class="empty">KOBIS 예매율 데이터가 없습니다.</p>{% endif %}
       </section>
     </aside>
   </section>
@@ -122,8 +127,8 @@
         <span>언론/보도자료</span>
       </div>
       <div class="feed">
-        {% for article in official_articles[:12] %}{{ official_card(article) }}{% endfor %}
-        {% if not official_articles %}<p class="empty">표시할 공식 기사가 없습니다.</p>{% endif %}
+        {% for article in official_feed %}{{ official_card(article) }}{% endfor %}
+        {% if not official_feed %}<p class="empty">표시할 공식 기사가 없습니다.</p>{% endif %}
       </div>
     </div>
 

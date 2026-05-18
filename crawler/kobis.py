@@ -1,4 +1,4 @@
-"""KOBIS market data and reservation-rate capture helpers."""
+"""KOBIS market data and reservation-rate helpers."""
 
 import json
 import re
@@ -15,6 +15,7 @@ from selectolax.parser import HTMLParser
 from crawler.briefing_models import (
     BoxOfficeMovie,
     MarketSnapshot,
+    ReservationMovie,
     ReservationSnapshot,
 )
 from crawler.sources.base import REQUEST_TIMEOUT, USER_AGENT
@@ -47,6 +48,16 @@ def _parse_int(raw: object) -> int:
         return int(text)
     except ValueError:
         return 0
+
+
+def _parse_float(raw: object) -> float:
+    text = str(raw or "").replace(",", "").strip()
+    if not text:
+        return 0.0
+    try:
+        return float(text)
+    except ValueError:
+        return 0.0
 
 
 def parse_daily_boxoffice(payload: dict) -> list[BoxOfficeMovie]:
@@ -93,60 +104,100 @@ def fetch_market_snapshot(api_key: str, target_date: Optional[str] = None) -> Ma
     )
 
 
+def _reservation_text_lines(html: str) -> list[str]:
+    text = HTMLParser(html).text(separator="\n", strip=True)
+    return [line.strip() for line in text.splitlines() if line.strip()]
+
+
+def _normalise_movie_title(title: str) -> str:
+    return re.sub(r"\s+\([^)]*\)\s*$", "", title).strip()
+
+
+def parse_reservation_movies(html: str, limit: int = 5) -> list[ReservationMovie]:
+    """Extract live reservation-rate top movies from KOBIS mobile HTML."""
+    lines = _reservation_text_lines(html)
+    start = 0
+    for index, line in enumerate(lines):
+        if line == "실시간 예매율":
+            start = index
+
+    rate_pattern = re.compile(r"(\d+(?:\.\d+)?)%")
+    count_pattern = re.compile(r"\((?:누적:)?([\d,]+)명\)")
+    movies: list[ReservationMovie] = []
+    index = start
+    while index < len(lines) and len(movies) < limit:
+        line = lines[index]
+        if line == "전체보기":
+            break
+        if not line.isdigit():
+            index += 1
+            continue
+
+        rank = _parse_int(line)
+        if not 1 <= rank <= limit or index + 1 >= len(lines):
+            index += 1
+            continue
+
+        title = _normalise_movie_title(lines[index + 1])
+        cursor = index + 2
+        if cursor < len(lines) and lines[cursor].startswith("("):
+            cursor += 1
+        while cursor < len(lines) and "예매율" not in lines[cursor]:
+            cursor += 1
+        if cursor + 1 >= len(lines):
+            index += 1
+            continue
+
+        rate_line = lines[cursor + 1]
+        rate_match = rate_pattern.search(rate_line)
+        if not rate_match:
+            index += 1
+            continue
+        count_match = count_pattern.search(rate_line)
+        movies.append(
+            ReservationMovie(
+                rank=rank,
+                title=title,
+                reservation_rate=_parse_float(rate_match.group(1)),
+                reservation_count=_parse_int(count_match.group(1) if count_match else 0),
+            )
+        )
+        index = cursor + 2
+
+    return movies
+
+
 def parse_reservation_top(html: str) -> tuple[Optional[str], Optional[str]]:
     """Extract top reservation movie and rate from KOBIS mobile HTML text."""
-    text = HTMLParser(html).text(separator="\n", strip=True)
-    lines = [line.strip() for line in text.splitlines() if line.strip()]
-    rate_pattern = re.compile(r"(\d+(?:\.\d+)?)%")
-    for index, line in enumerate(lines):
-        match = rate_pattern.search(line)
-        if not match:
-            continue
-        for previous in reversed(lines[:index]):
-            if previous.isdigit():
-                continue
-            if "예매율" in previous or "전체영화" in previous or "외국영화" in previous:
-                continue
-            movie = re.sub(r"\s+\([^)]*\)\s*$", "", previous).strip()
-            if movie:
-                return movie, f"{match.group(1)}%"
+    movies = parse_reservation_movies(html, limit=1)
+    if movies:
+        return movies[0].title, f"{movies[0].reservation_rate:g}%"
     return None, None
 
 
-def _reservation_asset_path(output_dir: Path, captured_at: datetime) -> Path:
-    stamp = captured_at.astimezone(KST).strftime("%Y%m%d-%H%M%S")
-    return output_dir / f"kobis-reservation-{stamp}.png"
-
-
-def capture_reservation_snapshot(output_dir: Path) -> ReservationSnapshot:
-    """Capture KOBIS live reservation-rate page screenshot.
-
-    Browser capture is best-effort. Failures are recorded in the snapshot rather
-    than raised so the daily static build can still complete.
-    """
+def fetch_reservation_snapshot() -> ReservationSnapshot:
+    """Fetch KOBIS live reservation-rate top five as structured data."""
     captured_at = datetime.now(timezone.utc)
-    output_dir.mkdir(parents=True, exist_ok=True)
     try:
-        from playwright.sync_api import sync_playwright
-
-        image_path = _reservation_asset_path(output_dir, captured_at)
-        with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=True)
-            page = browser.new_page(viewport={"width": 390, "height": 900})
-            page.goto(KOBIS_RESERVATION_URL, wait_until="networkidle", timeout=60000)
-            html = page.content()
-            top_movie, top_rate = parse_reservation_top(html)
-            page.screenshot(path=str(image_path), full_page=True)
-            browser.close()
-
+        with httpx.Client(
+            timeout=REQUEST_TIMEOUT,
+            headers={"User-Agent": USER_AGENT},
+            follow_redirects=True,
+        ) as client:
+            response = client.get(KOBIS_RESERVATION_URL)
+            response.raise_for_status()
+            html = response.text
+        movies = parse_reservation_movies(html)
+        top_movie = movies[0].title if movies else None
+        top_rate = f"{movies[0].reservation_rate:g}%" if movies else None
         return ReservationSnapshot(
             captured_at=captured_at,
-            image_path=str(image_path.relative_to(output_dir.parent)),
             top_movie=top_movie,
             top_rate=top_rate,
+            movies=movies,
         )
     except Exception as exc:  # noqa: BLE001
-        print(f"[warn] KOBIS reservation capture failed — {exc}", file=sys.stderr)
+        print(f"[warn] KOBIS reservation fetch failed — {exc}", file=sys.stderr)
         return ReservationSnapshot(
             captured_at=captured_at,
             capture_failed=True,

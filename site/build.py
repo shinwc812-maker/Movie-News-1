@@ -1,7 +1,6 @@
 """Build the static internal movie/culture briefing dashboard."""
 
 import json
-import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -37,6 +36,13 @@ def format_int(value) -> str:
         return f"{int(value):,}"
     except (TypeError, ValueError):
         return "0"
+
+
+def format_rate(value) -> str:
+    try:
+        return f"{float(value):g}%"
+    except (TypeError, ValueError):
+        return "0%"
 
 
 def relative_time(published_iso: str | None, now: datetime) -> str:
@@ -125,10 +131,33 @@ def top_curation_items(
     official_views: list[dict],
     community_views: list[dict] | None = None,
     limit: int = 5,
+    max_overseas_official: int = 2,
 ) -> list[dict]:
     community_views = community_views or []
-    items = list(official_views) + list(community_views)
+    overseas_count = 0
+    capped_official: list[dict] = []
+    for item in official_views:
+        is_overseas = bool(item.get("country")) and item.get("country") != "KR"
+        if is_overseas and overseas_count >= max_overseas_official:
+            continue
+        if is_overseas:
+            overseas_count += 1
+        capped_official.append(item)
+    items = capped_official + list(community_views)
     return sorted(items, key=lambda item: float(item.get("score") or 0), reverse=True)[:limit]
+
+
+def select_official_feed(
+    official_views: list[dict],
+    limit: int = 12,
+    max_overseas: int = 4,
+) -> list[dict]:
+    korean = [view for view in official_views if view.get("country") == "KR"]
+    overseas = [view for view in official_views if view.get("country") != "KR"]
+    selected = korean[:limit]
+    remaining = max(limit - len(selected), 0)
+    selected.extend(overseas[: min(max_overseas, remaining)])
+    return selected[:limit]
 
 
 def market_views(market: dict) -> list[dict]:
@@ -147,20 +176,20 @@ def market_views(market: dict) -> list[dict]:
 
 def reservation_view(reservation: dict) -> dict:
     if not isinstance(reservation, dict):
-        return {"available": False}
-    image_path = reservation.get("image_path")
-    image_url = None
-    if image_path:
-        source = DATA_DIR / image_path
-        if source.exists():
-            target_dir = DIST_DIR / "assets"
-            target_dir.mkdir(parents=True, exist_ok=True)
-            target = target_dir / source.name
-            shutil.copy2(source, target)
-            image_url = f"assets/{target.name}"
+        return {"available": False, "movies": []}
+    movies = [
+        {
+            "rank": movie.get("rank"),
+            "title": movie.get("title", ""),
+            "reservation_rate": format_rate(movie.get("reservation_rate")),
+            "reservation_count": format_int(movie.get("reservation_count")),
+        }
+        for movie in reservation.get("movies", [])
+        if isinstance(movie, dict)
+    ]
     return {
-        "available": bool(image_url) and not reservation.get("capture_failed"),
-        "image_url": image_url,
+        "available": bool(movies) and not reservation.get("capture_failed"),
+        "movies": movies,
         "top_movie": reservation.get("top_movie"),
         "top_rate": reservation.get("top_rate"),
         "captured_at": reservation.get("captured_at"),
@@ -182,6 +211,7 @@ def build() -> None:
 
     article_views = [to_article_view(article, now) for article in raw_articles]
     official_articles, community_from_articles = split_articles_by_kind(article_views)
+    official_feed = select_official_feed(official_articles)
     community_reactions = [to_community_view(item, now) for item in raw_community]
     community_views = community_from_articles + community_reactions
     policy_views = [to_policy_view(item, now) for item in raw_policies]
@@ -195,12 +225,13 @@ def build() -> None:
 
     html = strip_trailing_whitespace(template.render(
         official_articles=official_articles,
+        official_feed=official_feed,
         community_reactions=community_views,
         policy_items=policy_views,
         curation=curation,
         boxoffice=boxoffice,
         reservation=reservation,
-        total_official=len(official_articles),
+        total_official=len(official_feed),
         total_community=len(community_views),
         total_policies=len(policy_views),
         css=css,

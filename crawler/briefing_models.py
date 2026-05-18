@@ -71,23 +71,57 @@ class MarketSnapshot:
 
 
 @dataclass
+class ReservationMovie:
+    rank: int
+    title: str
+    reservation_rate: float
+    reservation_count: int = 0
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ReservationMovie":
+        return cls(
+            rank=int(data.get("rank", 0)),
+            title=str(data.get("title") or ""),
+            reservation_rate=float(data.get("reservation_rate") or 0.0),
+            reservation_count=int(data.get("reservation_count") or 0),
+        )
+
+
+@dataclass
 class ReservationSnapshot:
     captured_at: datetime
     image_path: Optional[str] = None
     top_movie: Optional[str] = None
     top_rate: Optional[str] = None
+    movies: list[ReservationMovie] = field(default_factory=list)
     capture_failed: bool = False
     error_message: Optional[str] = None
 
     def to_dict(self) -> dict:
-        d = asdict(self)
-        d["captured_at"] = self.captured_at.isoformat()
-        return d
+        data = {
+            "captured_at": self.captured_at.isoformat(),
+            "top_movie": self.top_movie,
+            "top_rate": self.top_rate,
+            "movies": [movie.to_dict() for movie in self.movies],
+            "capture_failed": self.capture_failed,
+            "error_message": self.error_message,
+        }
+        if self.image_path:
+            data["image_path"] = self.image_path
+        return data
 
     @classmethod
     def from_dict(cls, data: dict) -> "ReservationSnapshot":
         data = dict(data)
         data["captured_at"] = datetime.fromisoformat(data["captured_at"])
+        data["movies"] = [
+            ReservationMovie.from_dict(movie)
+            for movie in data.get("movies", [])
+            if isinstance(movie, dict)
+        ]
         return cls(**data)
 
 

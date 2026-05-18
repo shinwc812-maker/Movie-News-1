@@ -5,6 +5,7 @@ from crawler.briefing_models import (
     CommunityReaction,
     MarketSnapshot,
     PolicyItem,
+    ReservationMovie,
     ReservationSnapshot,
 )
 from crawler.models import Article
@@ -64,11 +65,23 @@ def test_community_and_policy_models_serialize_minimal_fields():
     )
     reservation = ReservationSnapshot(
         captured_at=datetime(2026, 5, 18, tzinfo=timezone.utc),
-        image_path="assets/reservation.png",
         top_movie="군체",
         top_rate="46.5%",
+        movies=[
+            ReservationMovie(
+                rank=1,
+                title="군체",
+                reservation_rate=46.5,
+                reservation_count=110465,
+            )
+        ],
     )
 
     assert CommunityReaction.from_dict(reaction.to_dict()).mood_summary == "호평과 우려가 함께 보임"
     assert PolicyItem.from_dict(policy.to_dict()).category == "공고"
-    assert ReservationSnapshot.from_dict(reservation.to_dict()).top_rate == "46.5%"
+    reservation_data = reservation.to_dict()
+    restored_reservation = ReservationSnapshot.from_dict(reservation_data)
+
+    assert "image_path" not in reservation_data
+    assert restored_reservation.top_rate == "46.5%"
+    assert restored_reservation.movies[0].reservation_count == 110465

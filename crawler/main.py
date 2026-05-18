@@ -11,7 +11,7 @@ from crawler.dedupe import dedupe
 from crawler.briefing_models import MarketSnapshot
 from crawler.community import fetch_community_reactions, save_community_reactions
 from crawler.kobis import (
-    capture_reservation_snapshot,
+    fetch_reservation_snapshot,
     fetch_market_snapshot,
     save_market_snapshot,
     save_reservation_snapshot,
@@ -33,7 +33,6 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 ARTICLES_PATH = DATA_DIR / "articles.json"
 MARKET_PATH = DATA_DIR / "market.json"
 RESERVATION_PATH = DATA_DIR / "reservation.json"
-ASSETS_DIR = DATA_DIR / "assets"
 COMMUNITY_PATH = DATA_DIR / "community.json"
 POLICIES_PATH = DATA_DIR / "policies.json"
 
@@ -121,12 +120,12 @@ def collect_market_snapshot() -> MarketSnapshot | None:
 
 
 def collect_reservation_snapshot() -> None:
-    snapshot = capture_reservation_snapshot(ASSETS_DIR)
+    snapshot = fetch_reservation_snapshot()
     save_reservation_snapshot(snapshot, RESERVATION_PATH)
     if snapshot.capture_failed:
-        print("[warn] KOBIS reservation capture unavailable", file=sys.stderr)
+        print("[warn] KOBIS reservation data unavailable", file=sys.stderr)
     else:
-        print(f"KOBIS reservation captured: {snapshot.top_movie or 'unknown'}")
+        print(f"KOBIS reservation top 5: {len(snapshot.movies)}")
 
 
 def community_search_terms(market: MarketSnapshot | None) -> list[str]:

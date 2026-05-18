@@ -4,6 +4,7 @@ from crawler.kobis import (
     build_daily_boxoffice_url,
     kst_yesterday,
     parse_daily_boxoffice,
+    parse_reservation_movies,
     parse_reservation_top,
 )
 
@@ -69,3 +70,44 @@ def test_parse_reservation_top_from_kobis_mobile_html():
 
     assert top_movie == "군체"
     assert top_rate == "46.5%"
+
+
+def test_parse_reservation_movies_keeps_top_five_rates_from_kobis_mobile_html():
+    html = """
+    <h3>실시간 예매율</h3>
+    <p>예매율 (예매관객수)</p>
+    <p>전체영화</p>
+    <p>1</p>
+    <p>군체</p>
+    <p>(COLONY)</p>
+    <p>예매율(예매관객수)</p>
+    <p>46.7% (125,334명)</p>
+    <p>2</p>
+    <p>마이클</p>
+    <p>(Michael)</p>
+    <p>예매율(예매관객수)</p>
+    <p>13.2% (35,480명)</p>
+    <p>3</p>
+    <p>와일드 씽</p>
+    <p>(Wild Sing)</p>
+    <p>예매율(예매관객수)</p>
+    <p>7.4% (19,775명)</p>
+    <p>4</p>
+    <p>신극장판 은혼: 요시와라 대염상</p>
+    <p>(Gintama: Yoshiwara in Flames)</p>
+    <p>예매율(예매관객수)</p>
+    <p>4.3% (11,427명)</p>
+    <p>5</p>
+    <p>악마는 프라다를 입는다 2</p>
+    <p>(The Devil Wears Prada 2)</p>
+    <p>예매율(예매관객수)</p>
+    <p>3.2% (8,710명)</p>
+    """
+
+    movies = parse_reservation_movies(html)
+
+    assert [movie.rank for movie in movies] == [1, 2, 3, 4, 5]
+    assert movies[0].title == "군체"
+    assert movies[0].reservation_rate == 46.7
+    assert movies[0].reservation_count == 125334
+    assert movies[4].title == "악마는 프라다를 입는다 2"

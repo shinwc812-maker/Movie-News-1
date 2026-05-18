@@ -1,8 +1,39 @@
 {
-  "captured_at": "2026-05-18T07:30:19.956361+00:00",
-  "image_path": "assets\\kobis-reservation-20260518-163019.png",
-  "top_movie": "(COLONY)",
-  "top_rate": "46.6%",
+  "captured_at": "2026-05-18T07:59:23.997466+00:00",
+  "top_movie": "군체",
+  "top_rate": "46.7%",
+  "movies": [
+    {
+      "rank": 1,
+      "title": "군체",
+      "reservation_rate": 46.7,
+      "reservation_count": 125770
+    },
+    {
+      "rank": 2,
+      "title": "마이클",
+      "reservation_rate": 13.2,
+      "reservation_count": 35462
+    },
+    {
+      "rank": 3,
+      "title": "와일드 씽",
+      "reservation_rate": 7.4,
+      "reservation_count": 19789
+    },
+    {
+      "rank": 4,
+      "title": "신극장판 은혼: 요시와라 대염상",
+      "reservation_rate": 4.3,
+      "reservation_count": 11458
+    },
+    {
+      "rank": 5,
+      "title": "악마는 프라다를 입는다 2",
+      "reservation_rate": 3.3,
+      "reservation_count": 8813
+    }
+  ],
   "capture_failed": false,
   "error_message": null
 }

@@ -30,9 +30,6 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Install browser for KOBIS capture
-        run: uv run python -m playwright install chromium
-
       - name: Crawl news
         run: uv run python -m crawler.main
         env:

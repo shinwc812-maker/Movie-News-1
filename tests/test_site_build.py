@@ -53,6 +53,54 @@ def test_top_curation_items_limits_to_five_score_order():
     assert [item["title"] for item in result] == ["9", "8", "7", "6", "5"]
 
 
+def test_top_curation_items_caps_overseas_official_articles():
+    build = load_site_build_module()
+    official = [
+        {"title": "US 1", "score": 100, "country": "US"},
+        {"title": "US 2", "score": 90, "country": "US"},
+        {"title": "US 3", "score": 80, "country": "US"},
+        {"title": "KR 1", "score": 70, "country": "KR"},
+        {"title": "KR 2", "score": 60, "country": "KR"},
+    ]
+
+    result = build.top_curation_items(official, limit=5, max_overseas_official=2)
+
+    assert [item["title"] for item in result] == ["US 1", "US 2", "KR 1", "KR 2"]
+
+
+def test_select_official_feed_prefers_korean_and_caps_overseas():
+    build = load_site_build_module()
+    articles = [
+        {"title": "US 1", "score": 100, "country": "US"},
+        {"title": "US 2", "score": 90, "country": "US"},
+        {"title": "US 3", "score": 80, "country": "US"},
+        {"title": "KR 1", "score": 70, "country": "KR"},
+        {"title": "KR 2", "score": 60, "country": "KR"},
+    ]
+
+    result = build.select_official_feed(articles, limit=4, max_overseas=1)
+
+    assert [item["title"] for item in result] == ["KR 1", "KR 2", "US 1"]
+
+
+def test_reservation_view_returns_structured_top_five_without_image_asset():
+    build = load_site_build_module()
+    view = build.reservation_view(
+        {
+            "captured_at": "2026-05-18T07:30:19+00:00",
+            "image_path": "assets/legacy.png",
+            "movies": [
+                {"rank": 1, "title": "군체", "reservation_rate": 46.7, "reservation_count": 125334},
+                {"rank": 2, "title": "마이클", "reservation_rate": 13.2, "reservation_count": 35480},
+            ],
+        }
+    )
+
+    assert view["movies"][0]["title"] == "군체"
+    assert view["movies"][0]["reservation_rate"] == "46.7%"
+    assert "image_url" not in view
+
+
 def test_strip_trailing_whitespace_removes_generated_blank_padding():
     build = load_site_build_module()
 

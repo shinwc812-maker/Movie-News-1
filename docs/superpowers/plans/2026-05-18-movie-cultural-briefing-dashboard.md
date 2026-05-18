@@ -2,27 +2,26 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build an internal static briefing dashboard that combines official movie news, expanded community reactions, KOBIS box office data, KOBIS reservation-rate screenshot capture, and film/culture policy updates.
+**Goal:** Build an internal static briefing dashboard that combines official movie news, expanded community reactions, KOBIS box office data, KOBIS live reservation-rate TOP 5 data, and film/culture policy updates.
 
 **Architecture:** Keep the existing `crawler.main -> data/*.json -> site/build.py -> dist/index.html` pipeline. Add focused collectors for market data, community reactions, and policy notices, then make the static-site build load those artifacts and render the approved A-layout dashboard.
 
-**Tech Stack:** Python 3.11, `httpx`, `selectolax`, `jinja2`, `rapidfuzz`, `python-dateutil`, optional Playwright browser capture for KOBIS reservation screenshots.
+**Tech Stack:** Python 3.11, `httpx`, `selectolax`, `jinja2`, `rapidfuzz`, `python-dateutil`.
 
 ---
 
 ## File Structure
 
 - Modify `.gitignore`: ignore local browser/runtime output and keep committed generated dashboard artifacts intentional.
-- Modify `pyproject.toml`: add `playwright` for screenshot capture.
-- Modify `.github/workflows/daily.yml`: install Chromium and pass `KOBIS_API_KEY`.
-- Modify `README.md`: document `KOBIS_API_KEY`, browser capture, and new dashboard sections.
+- Modify `.github/workflows/daily.yml`: pass `KOBIS_API_KEY`.
+- Modify `README.md`: document `KOBIS_API_KEY`, structured live reservation-rate TOP 5, and new dashboard sections.
 - Modify `crawler/models.py`: add `content_kind` and optional score-reason metadata to `Article`.
-- Create `crawler/briefing_models.py`: dataclasses for KOBIS market data, reservation capture, community reactions, policy notices, and crawl diagnostics.
-- Create `crawler/kobis.py`: KOBIS daily box office client, live reservation parsing, and screenshot capture.
+- Create `crawler/briefing_models.py`: dataclasses for KOBIS market data, live reservation-rate TOP 5, community reactions, policy notices, and crawl diagnostics.
+- Create `crawler/kobis.py`: KOBIS daily box office client and live reservation parsing.
 - Create `crawler/community.py`: community source interface, existing Extreme Movie community extraction, and config-driven extension hooks for public community pages.
 - Create `crawler/policies.py`: KOFIC and MCST policy/support notice collectors.
 - Modify `crawler/scorer.py`: add KOBIS top-5 title boost and community trend scoring.
-- Modify `crawler/main.py`: orchestrate article, market, community, policy, screenshot, scoring, and JSON saves.
+- Modify `crawler/main.py`: orchestrate article, market, community, policy, reservation-rate TOP 5, scoring, and JSON saves.
 - Modify `site/build.py`: load all artifacts, create view models, and degrade gracefully when artifacts are missing.
 - Replace `site/template.html.j2`: render A-layout dashboard with separated official/community sections.
 - Replace `site/style.css`: desktop briefing layout, compact cards, mobile fallback.
@@ -179,11 +178,10 @@ git commit -m "Add briefing data models"
 
 ---
 
-### Task 2: KOBIS Market Client And Reservation Screenshot
+### Task 2: KOBIS Market Client And Reservation TOP 5
 
 **Files:**
 - Create: `crawler/kobis.py`
-- Modify: `pyproject.toml`
 - Modify: `.github/workflows/daily.yml`
 - Test: `tests/test_kobis.py`
 
@@ -270,32 +268,13 @@ Functions:
 - `parse_daily_boxoffice(payload: dict) -> list[BoxOfficeMovie]`
 - `fetch_market_snapshot(api_key: str, target_date: str | None = None) -> MarketSnapshot`
 - `parse_reservation_top(html: str) -> tuple[str | None, str | None]`
-- `capture_reservation_snapshot(output_dir: Path) -> ReservationSnapshot`
+- `fetch_reservation_snapshot() -> ReservationSnapshot`
 - `save_market_snapshot(snapshot: MarketSnapshot, path: Path) -> None`
 - `save_reservation_snapshot(snapshot: ReservationSnapshot, path: Path) -> None`
 
-Use `httpx` for API and page HTML. For screenshot, import Playwright inside the function so normal tests do not require browser startup:
+Use `httpx` for API and page HTML. Parse the reservation page into a structured TOP 5 list with rank, Korean title, reservation rate, and reservation audience count. Do not save or render image captures.
 
-```python
-from playwright.sync_api import sync_playwright
-```
-
-If Playwright import or capture fails, return `ReservationSnapshot(capture_failed=True, error_message=str(exc))` and do not raise.
-
-- [ ] **Step 4: Add Playwright dependency and workflow install**
-
-Modify `pyproject.toml` dependencies:
-
-```toml
-    "playwright",
-```
-
-Modify `.github/workflows/daily.yml` after dependency install:
-
-```yaml
-      - name: Install browser for KOBIS capture
-        run: uv run python -m playwright install chromium
-```
+- [ ] **Step 4: Add workflow secret wiring**
 
 Add to `Crawl news` env:
 
@@ -701,7 +680,7 @@ Replace `site/template.html.j2` with sections:
 - Header/KPI row.
 - Core curation.
 - Box office top 5.
-- Reservation capture card.
+- Live reservation-rate TOP 5 card.
 - Official article lane.
 - Community reaction lane.
 - Policy/support lane.
@@ -747,8 +726,7 @@ Add sections for:
 
 - `KOBIS_API_KEY` setup.
 - GitHub Actions secret setup.
-- Optional Playwright installation.
-- New output artifacts: `data/market.json`, `data/community.json`, `data/policies.json`, `data/reservation.json`, and screenshot image path.
+- New output artifacts: `data/market.json`, `data/community.json`, `data/policies.json`, and `data/reservation.json`.
 
 - [ ] **Step 2: Update `run.bat`**
 
@@ -796,11 +774,11 @@ git commit -m "Document briefing dashboard setup"
   - One-screen A dashboard: Task 7.
   - Official/community separation: Tasks 1, 4, 7.
   - KOBIS top 5: Task 2.
-  - KOBIS reservation-rate screenshot: Task 2.
+  - KOBIS reservation-rate TOP 5: Task 2.
   - Box-office weighted curation: Task 3.
   - Government support policy: Task 5.
   - Community expansion with body/comment mood: Task 4.
-  - Crawl4AI-style fallback: Task 2 screenshot plus Task 4 config-driven browser fallback hook.
+  - Crawl4AI-style fallback: Task 4 config-driven browser fallback hook.
   - Secret safety: Tasks 2 and 8.
 - Placeholder scan: no unfinished placeholder steps are intentionally left.
 - Type consistency:

@@ -9,6 +9,7 @@ from crawler.dedupe import dedupe
 from crawler.models import Article
 from crawler.scorer import score_all
 from crawler.community import fetch_community_reactions, save_community_reactions
+from crawler.policies import fetch_policy_items, save_policy_items
 from crawler.translator import translate_articles
 from crawler.sources.base import Source
 from crawler.sources.cine21 import Cine21Source
@@ -23,6 +24,7 @@ from crawler.sources.variety import VarietySource
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 ARTICLES_PATH = DATA_DIR / "articles.json"
 COMMUNITY_PATH = DATA_DIR / "community.json"
+POLICIES_PATH = DATA_DIR / "policies.json"
 
 # 이 시간보다 오래된 기사는 제외 (매일 실행하므로 누적 없이 최신만 표시)
 MAX_AGE_HOURS = 48
@@ -104,6 +106,10 @@ def main() -> None:
     community_reactions = fetch_community_reactions()
     save_community_reactions(community_reactions, COMMUNITY_PATH)
     print(f"Community reactions: {len(community_reactions)}")
+
+    policy_items = fetch_policy_items()
+    save_policy_items(policy_items, POLICIES_PATH)
+    print(f"Policy items: {len(policy_items)}")
 
 
 if __name__ == "__main__":

@@ -17,5 +17,6 @@ Thumbs.db
 # 브레인스토밍/목업 런타임
 .superpowers/
 .brainstorm-runtime/
+.worktrees/
 
 # 생성물(dist/, data/*.json)은 의도적으로 추적 — 자동화 워크플로우가 커밋함

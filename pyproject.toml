@@ -13,6 +13,7 @@ dependencies = [
     "anthropic",
     "pyyaml",
     "python-dateutil",
+    "playwright",
 ]
 
 [build-system]

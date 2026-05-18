@@ -30,10 +30,14 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
+      - name: Install browser for KOBIS capture
+        run: uv run python -m playwright install chromium
+
       - name: Crawl news
         run: uv run python -m crawler.main
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          KOBIS_API_KEY: ${{ secrets.KOBIS_API_KEY }}
 
       - name: Build static site
         # 'site'는 파이썬 표준 모듈명이라 'python -m site.build'는 불가 — 파일 경로로 실행

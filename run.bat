@@ -12,17 +12,20 @@ set PYTHONUTF8=1
 REM --- To enable Korean translation, remove REM below and paste your key ---
 REM set ANTHROPIC_API_KEY=sk-your-key-here
 
+REM --- Required for KOBIS box office / reservation dashboard data ---
+REM set KOBIS_API_KEY=your-kobis-key
+
 echo ============================================
 echo            Movie News Crawler
 echo ============================================
 echo.
 
-echo [1/2] Crawling news from 8 sources... (takes 1-2 min)
+echo [1/2] Crawling briefing data... (takes 1-3 min)
 python -m crawler.main
 if errorlevel 1 goto error
 
 echo.
-echo [2/2] Building static site...
+echo [2/2] Building static dashboard...
 python site\build.py
 if errorlevel 1 goto error
 

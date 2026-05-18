@@ -775,7 +775,7 @@ Expected: build succeeds with fallback/missing states.
 
 - [ ] **Step 5: Secret scan**
 
-Run: `rg -n "3ac5e|90d82a|7227e2b8" .`
+Run a repository-wide search for any literal KOBIS key value that was used in local testing.
 
 Expected: no matches.
 

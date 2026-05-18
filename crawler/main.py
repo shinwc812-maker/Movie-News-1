@@ -2,19 +2,27 @@
 
 import asyncio
 import json
+import os
+import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from crawler.dedupe import dedupe
-from crawler.models import Article
-from crawler.scorer import score_all
+from crawler.briefing_models import MarketSnapshot
 from crawler.community import fetch_community_reactions, save_community_reactions
+from crawler.kobis import (
+    capture_reservation_snapshot,
+    fetch_market_snapshot,
+    save_market_snapshot,
+    save_reservation_snapshot,
+)
+from crawler.models import Article
 from crawler.policies import fetch_policy_items, save_policy_items
+from crawler.scorer import score_all
 from crawler.translator import translate_articles
 from crawler.sources.base import Source
 from crawler.sources.cine21 import Cine21Source
 from crawler.sources.deadline import DeadlineSource
-from crawler.sources.extmovie import ExtMovieSource
 from crawler.sources.indiewire import IndieWireSource
 from crawler.sources.maxmovie import MaxMovieSource
 from crawler.sources.rollingstone import RollingStoneSource
@@ -23,6 +31,9 @@ from crawler.sources.variety import VarietySource
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 ARTICLES_PATH = DATA_DIR / "articles.json"
+MARKET_PATH = DATA_DIR / "market.json"
+RESERVATION_PATH = DATA_DIR / "reservation.json"
+ASSETS_DIR = DATA_DIR / "assets"
 COMMUNITY_PATH = DATA_DIR / "community.json"
 POLICIES_PATH = DATA_DIR / "policies.json"
 
@@ -38,7 +49,6 @@ SOURCES: list[Source] = [
     RollingStoneSource(),
     Cine21Source(),
     MaxMovieSource(),
-    ExtMovieSource(),
 ]
 
 
@@ -74,25 +84,62 @@ def filter_recent(articles: list[Article], now: datetime | None = None) -> list[
     return kept
 
 
+def save_json_items(items: list[dict], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(items, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
 def save_articles(articles: list[Article]) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    with ARTICLES_PATH.open("w", encoding="utf-8") as f:
-        json.dump(
-            [a.to_dict() for a in articles],
-            f,
-            indent=2,
-            ensure_ascii=False,
-        )
+    save_json_items([a.to_dict() for a in articles], ARTICLES_PATH)
+
+
+def load_optional_market(path: Path = MARKET_PATH) -> MarketSnapshot | None:
+    if not path.exists():
+        return None
+    try:
+        with path.open(encoding="utf-8") as f:
+            data = json.load(f)
+        return MarketSnapshot.from_dict(data)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[warn] market cache load failed — {exc}", file=sys.stderr)
+        return None
+
+
+def collect_market_snapshot() -> MarketSnapshot | None:
+    api_key = os.environ.get("KOBIS_API_KEY")
+    if not api_key:
+        print("[warn] KOBIS_API_KEY missing — using cached market data if present", file=sys.stderr)
+        return load_optional_market()
+    try:
+        snapshot = fetch_market_snapshot(api_key)
+        save_market_snapshot(snapshot, MARKET_PATH)
+        print(f"KOBIS market top 5: {len(snapshot.movies)}")
+        return snapshot
+    except Exception as exc:  # noqa: BLE001
+        print(f"[warn] KOBIS market fetch failed — {exc}", file=sys.stderr)
+        return load_optional_market()
+
+
+def collect_reservation_snapshot() -> None:
+    snapshot = capture_reservation_snapshot(ASSETS_DIR)
+    save_reservation_snapshot(snapshot, RESERVATION_PATH)
+    if snapshot.capture_failed:
+        print("[warn] KOBIS reservation capture unavailable", file=sys.stderr)
+    else:
+        print(f"KOBIS reservation captured: {snapshot.top_movie or 'unknown'}")
 
 
 def main() -> None:
+    market = collect_market_snapshot()
+    collect_reservation_snapshot()
+
     articles = asyncio.run(gather_articles(SOURCES))
     print(f"Fetched {len(articles)} articles from {len(SOURCES)} sources")
 
     recent = filter_recent(articles)
     print(f"Within last {MAX_AGE_HOURS}h: {len(recent)} (filtered out {len(articles) - len(recent)})")
 
-    score_all(recent)
+    score_all(recent, market=market)
 
     deduped = dedupe(recent)
     print(f"Before dedupe: {len(recent)}, After dedupe: {len(deduped)}")

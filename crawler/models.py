@@ -17,6 +17,7 @@ class Article:
     url: str = ""
     published_at: Optional[datetime] = None  # UTC
     image_url: Optional[str] = None
+    content_kind: Literal["official", "community"] = "official"
     tier: int = 4                            # 1=롯데, 2=파라마운트, 3=기타배급, 4=일반
     score: float = 0.0
     matched_keywords: list[str] = field(default_factory=list)
@@ -35,4 +36,5 @@ class Article:
         pa = d.get("published_at")
         if isinstance(pa, str):
             d["published_at"] = datetime.fromisoformat(pa)
+        d.setdefault("content_kind", "official")
         return cls(**d)

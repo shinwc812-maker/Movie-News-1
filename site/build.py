@@ -19,6 +19,7 @@ SITE_DIR = ROOT / "site"
 DIST_DIR = ROOT / "dist"
 DIST_PATH = DIST_DIR / "index.html"
 KST = ZoneInfo("Asia/Seoul")
+LEGACY_COMMUNITY_SOURCES = {"익스트림무비"}
 
 
 def load_json(path: Path, fallback):
@@ -66,8 +67,11 @@ def relative_time(published_iso: str | None, now: datetime) -> str:
 def to_article_view(article: dict, now: datetime) -> dict:
     title = article.get("title") or ""
     summary = article.get("summary") or ""
+    content_kind = article.get("content_kind")
+    if not content_kind:
+        content_kind = "community" if article.get("source") in LEGACY_COMMUNITY_SOURCES else "official"
     return {
-        "content_kind": article.get("content_kind", "official"),
+        "content_kind": content_kind,
         "country": article.get("country", ""),
         "source": article.get("source", ""),
         "url": article.get("url", ""),
@@ -75,6 +79,9 @@ def to_article_view(article: dict, now: datetime) -> dict:
         "rel_time": relative_time(article.get("published_at"), now),
         "score": float(article.get("score") or 0),
         "matched_keywords": article.get("matched_keywords") or [],
+        "title": article.get("title_ko") or title,
+        "excerpt": article.get("summary_ko") or summary,
+        "mood_summary": "커뮤니티 반응",
         "ko_title": article.get("title_ko") or title,
         "en_title": title,
         "ko_summary": article.get("summary_ko") or summary,

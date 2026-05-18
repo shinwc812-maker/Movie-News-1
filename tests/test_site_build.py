@@ -24,6 +24,26 @@ def test_split_articles_by_kind_separates_official_and_community():
     assert community[0]["title"] == "커뮤니티"
 
 
+def test_legacy_extmovie_articles_are_treated_as_community():
+    build = load_site_build_module()
+    view = build.to_article_view(
+        {
+            "source": "익스트림무비",
+            "country": "KR",
+            "title": "관객 반응",
+            "summary": "댓글 분위기",
+            "score": 10,
+        },
+        build.datetime(2026, 5, 18, tzinfo=build.timezone.utc),
+    )
+
+    official, community = build.split_articles_by_kind([view])
+
+    assert official == []
+    assert community[0]["title"] == "관객 반응"
+    assert community[0]["excerpt"] == "댓글 분위기"
+
+
 def test_top_curation_items_limits_to_five_score_order():
     build = load_site_build_module()
     views = [{"title": str(i), "score": i} for i in range(10)]

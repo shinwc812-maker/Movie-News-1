@@ -240,6 +240,11 @@ h1 {
   color: var(--green);
 }
 
+.source.policy {
+  background: #fff6e5;
+  color: #9a5b00;
+}
+
 .time,
 .kr-tag {
   color: var(--muted);
@@ -280,7 +285,8 @@ h1 {
 }
 
 .boxoffice-list,
-.reservation-list {
+.reservation-list,
+.overseas-weekend-list {
   list-style: none;
   padding: 10px;
   margin: 0;
@@ -288,7 +294,8 @@ h1 {
   gap: 6px;
 }
 
-.reservation-list li {
+.reservation-list li,
+.overseas-weekend-list li {
   display: grid;
   grid-template-columns: 28px 1fr auto;
   gap: 8px;
@@ -300,7 +307,8 @@ h1 {
   background: #f8fafc;
 }
 
-.reservation-list b {
+.reservation-list b,
+.overseas-weekend-list b {
   width: 24px;
   height: 24px;
   display: grid;
@@ -311,14 +319,24 @@ h1 {
   font-size: 0.78rem;
 }
 
-.reservation-list span {
+.reservation-list span,
+.overseas-weekend-list span,
+.overseas-weekend-list a {
   min-width: 0;
   font-weight: 800;
+  color: var(--ink);
+  text-decoration: none;
 }
 
-.reservation-list strong {
+.overseas-weekend-list a:hover {
+  color: var(--blue);
+}
+
+.reservation-list strong,
+.overseas-weekend-list strong {
   color: #344054;
   font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .boxoffice-list {
@@ -500,7 +518,7 @@ footer {
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 19일 16:17 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 19일 18:06 (KST)</p>
   </div>
   <div class="lang-toggle" aria-label="언어 선택">
     <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
@@ -511,9 +529,9 @@ footer {
 <main class="dashboard">
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>마이클 (43,653명 / ▼135,371명)</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>군체 179,411명 (52.1%)</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>군체 182,443명 (53%)</strong></div>
     <div class="kpi"><span>공식 기사</span><strong>8건</strong></div>
-    <div class="kpi"><span>커뮤니티 반응</span><strong>56건</strong></div>
+    <div class="kpi"><span>커뮤니티 반응</span><strong>55건</strong></div>
   </section>
 
   <section class="hero-grid">
@@ -541,13 +559,26 @@ footer {
 
             <article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2549516" target="_blank" rel="noopener">&#39;와일드 씽&#39; 선공개 프리미어 상영회 안내</a>
+    <a class="title" href="https://www.youtube.com/watch?v=Wo269dj9xEk" target="_blank" rel="noopener">마이클 잭슨의 귀환, 한국 관객들 반응은?</a>
     <div class="meta">
-      <span class="source community">커뮤니티 · 디시인사이드</span>
-
+      <span class="source community">커뮤니티 · YouTube</span>
+      <span class="time">2일 전</span>
     </div>
-    <p class="summary">3사 다 하나보네오리지널 티켓2026.05.19 14:20</p>
+    <p class="summary">세상 모든 주제 · 영화 &#39;마이클&#39;이 개봉 첫날부터 박스오피스 1위를 차지하며 전설의 귀환을 알렸습니다. 단 하루 만에 10만 명의 관객을 사로잡은 ...</p>
     <p class="mood">중립적 반응</p>
+  </div>
+</article>
+
+
+
+            <article class="card card-compact policy-signal-card">
+  <div class="card-body">
+    <a class="title" href="https://www.kofic.or.kr#none" target="_blank" rel="noopener">(추경) 2026년 독립예술영화 제작지원 장편 극영화부문(순제작비 10억 원 이상~20억 원 미만) 사업 공고</a>
+    <div class="meta">
+      <span class="source policy">정책 · 영화진흥위원회</span>
+      <span class="time">5일 전</span>
+    </div>
+    <p class="summary">영화 지원사업</p>
   </div>
 </article>
 
@@ -570,6 +601,29 @@ footer {
 
 
     <div class="chips"><span>CJ ENM</span></div>
+
+  </div>
+</article>
+
+
+
+            <article class="card card-compact">
+
+  <div class="card-body">
+    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-features/obsession-curry-barker-talks-horror-1236597764/" target="_blank" rel="noopener">
+      <span class="lang-ko">‘Obsession’ Filmmaker Curry Barker Just Released His First Hit Movie. He’s Ready to Get Back to His Bedroom and Edit the Next One</span><span class="lang-en">‘Obsession’ Filmmaker Curry Barker Just Released His First Hit Movie. He’s Ready to Get Back to His Bedroom and Edit the Next One</span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · The Hollywood Reporter</span>
+      <span class="time">14시간 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">Over the past year, the Gen Z auteur has become the most in-demand 20-something filmmaker in Hollywood, with &#39;Texas Chainsaw Massacre&#39; waiting in the wings and the Jason Blum, Roy Lee production &#39;Anything But Ghosts&#39; already shot.</span><span class="lang-en">Over the past year, the Gen Z auteur has become the most in-demand 20-something filmmaker in Hollywood, with &#39;Texas Chainsaw Massacre&#39; waiting in the wings and the Jason Blum, Roy Lee production &#39;Anything But Ghosts&#39; already shot.</span>
+    </p>
+
+
+    <div class="chips"><span>Obsession</span></div>
 
   </div>
 </article>
@@ -671,31 +725,82 @@ footer {
           <li>
             <b>1</b>
             <span>군체</span>
-            <strong>179,411명 (52.1%)</strong>
+            <strong>182,443명 (53%)</strong>
           </li>
 
           <li>
             <b>2</b>
             <span>마이클</span>
-            <strong>40,888명 (11.9%)</strong>
+            <strong>39,178명 (11.4%)</strong>
           </li>
 
           <li>
             <b>3</b>
             <span>와일드 씽</span>
-            <strong>18,663명 (5.4%)</strong>
+            <strong>19,366명 (5.6%)</strong>
           </li>
 
           <li>
             <b>4</b>
             <span>신극장판 은혼: 요시와라 대염상</span>
-            <strong>14,969명 (4.3%)</strong>
+            <strong>15,383명 (4.5%)</strong>
           </li>
 
           <li>
             <b>5</b>
             <span>악마는 프라다를 입는다 2</span>
-            <strong>8,038명 (2.3%)</strong>
+            <strong>7,377명 (2.1%)</strong>
+          </li>
+
+        </ol>
+
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>해외 주말 TOP 5</h2>
+          <span>Box Office Mojo · May 15-17</span>
+        </div>
+        <ol class="overseas-weekend-list">
+
+          <li>
+            <b>1</b>
+
+            <a href="https://www.boxofficemojo.com/release/rl1246593025/?ref_=bo_hm_rd" target="_blank" rel="noopener">Michael</a>
+
+            <strong>$26.1M</strong>
+          </li>
+
+          <li>
+            <b>2</b>
+
+            <a href="https://www.boxofficemojo.com/release/rl365461505/?ref_=bo_hm_rd" target="_blank" rel="noopener">The Devil Wears Prada 2</a>
+
+            <strong>$17.9M</strong>
+          </li>
+
+          <li>
+            <b>3</b>
+
+            <a href="https://www.boxofficemojo.com/release/rl1660846081/?ref_=bo_hm_rd" target="_blank" rel="noopener">Obsession</a>
+
+            <strong>$17.2M</strong>
+          </li>
+
+          <li>
+            <b>4</b>
+
+            <a href="https://www.boxofficemojo.com/release/rl3832053761/?ref_=bo_hm_rd" target="_blank" rel="noopener">Mortal Kombat II</a>
+
+            <strong>$13.4M</strong>
+          </li>
+
+          <li>
+            <b>5</b>
+
+            <a href="https://www.boxofficemojo.com/release/rl1601339393/?ref_=bo_hm_rd" target="_blank" rel="noopener">The Sheep Detectives</a>
+
+            <strong>$9.6M</strong>
           </li>
 
         </ol>
@@ -784,20 +889,58 @@ footer {
 </article><article class="card ">
 
   <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/nancy-meyers-warner-bros-film-casts-tony-hale-apple-martin-1236914542/" target="_blank" rel="noopener">
-      <span class="lang-ko">Tony Hale, Beverly D’Angelo &amp; Apple Martin Board Nancy Meyers’ New Film For Warner Bros.</span><span class="lang-en">Tony Hale, Beverly D’Angelo &amp; Apple Martin Board Nancy Meyers’ New Film For Warner Bros.</span>
+    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-features/obsession-curry-barker-talks-horror-1236597764/" target="_blank" rel="noopener">
+      <span class="lang-ko">‘Obsession’ Filmmaker Curry Barker Just Released His First Hit Movie. He’s Ready to Get Back to His Bedroom and Edit the Next One</span><span class="lang-en">‘Obsession’ Filmmaker Curry Barker Just Released His First Hit Movie. He’s Ready to Get Back to His Bedroom and Edit the Next One</span>
     </a>
     <div class="meta">
-      <span class="source official">공식 · Deadline</span>
+      <span class="source official">공식 · The Hollywood Reporter</span>
       <span class="time">14시간 전</span>
     </div>
 
     <p class="summary">
-      <span class="lang-ko">EXCLUSIVE: Nancy Meyers has further expanded the cast of her new film for Warner Bros. with the addition of Tony Hale (Toy Story 5), Beverly D’Angelo (National Lampoon’s Vacation franchise), and newcomer Apple Martin. Character details are under wraps, as is the film’s logline. FKA Paris Paramount, the project has been characterized as semi-autobiographical for Meyers, who in […]</span><span class="lang-en">EXCLUSIVE: Nancy Meyers has further expanded the cast of her new film for Warner Bros. with the addition of Tony Hale (Toy Story 5), Beverly D’Angelo (National Lampoon’s Vacation franchise), and newcomer Apple Martin. Character details are under wraps, as is the film’s logline. FKA Paris Paramount, the project has been characterized as semi-autobiographical for Meyers, who in […]</span>
+      <span class="lang-ko">Over the past year, the Gen Z auteur has become the most in-demand 20-something filmmaker in Hollywood, with &#39;Texas Chainsaw Massacre&#39; waiting in the wings and the Jason Blum, Roy Lee production &#39;Anything But Ghosts&#39; already shot.</span><span class="lang-en">Over the past year, the Gen Z auteur has become the most in-demand 20-something filmmaker in Hollywood, with &#39;Texas Chainsaw Massacre&#39; waiting in the wings and the Jason Blum, Roy Lee production &#39;Anything But Ghosts&#39; already shot.</span>
     </p>
 
 
-    <div class="chips"><span>Paramount</span><span>Warner Bros</span></div>
+    <div class="chips"><span>Obsession</span></div>
+
+  </div>
+</article><article class="card ">
+
+  <div class="card-body">
+    <a class="title" href="https://www.hollywoodreporter.com/movies/movie-features/obsession-bear-villain-michael-johnston-interview-1236598129/" target="_blank" rel="noopener">
+      <span class="lang-ko">‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain — But He Disagrees</span><span class="lang-en">‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain — But He Disagrees</span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · The Hollywood Reporter</span>
+      <span class="time">16시간 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">Speaking with The Hollywood Reporter, the 30-year-old actor unpacks the debate surrounding his character&#39;s decisions, that &#34;What’s so bad about being with me?” scene and offers a surprising take on what might&#39;ve happened if Bear had been honest with Nikki from the start.</span><span class="lang-en">Speaking with The Hollywood Reporter, the 30-year-old actor unpacks the debate surrounding his character&#39;s decisions, that &#34;What’s so bad about being with me?” scene and offers a surprising take on what might&#39;ve happened if Bear had been honest with Nikki from the start.</span>
+    </p>
+
+
+    <div class="chips"><span>Obsession</span></div>
+
+  </div>
+</article><article class="card ">
+
+  <div class="card-body">
+    <a class="title" href="https://deadline.com/2026/05/amazon-mgm-studios-vibe-release-date-1236915353/" target="_blank" rel="noopener">
+      <span class="lang-ko">Amazon MGM Studios To Release Indian Pic ‘Vibe’ In Theatres In September</span><span class="lang-en">Amazon MGM Studios To Release Indian Pic ‘Vibe’ In Theatres In September</span>
+    </a>
+    <div class="meta">
+      <span class="source official">공식 · Deadline</span>
+      <span class="time">27분 전</span>
+    </div>
+
+    <p class="summary">
+      <span class="lang-ko">EXCLUSIVE: Amazon MGM Studios is launching action-comedy Vibe in Indian cinemas on September 18. Produced by Kunal Kemmu and Chirag Nihalani through their Drongo Films banner, Vibe centers on two inseparable friends whose ordinary, unassuming lives spiral into an unpredictable, high-energy adventure that pushes their survival instincts and friendship to the limit. Written and directed […]</span><span class="lang-en">EXCLUSIVE: Amazon MGM Studios is launching action-comedy Vibe in Indian cinemas on September 18. Produced by Kunal Kemmu and Chirag Nihalani through their Drongo Films banner, Vibe centers on two inseparable friends whose ordinary, unassuming lives spiral into an unpredictable, high-energy adventure that pushes their survival instincts and friendship to the limit. Written and directed […]</span>
+    </p>
+
+
+    <div class="chips"><span>Amazon MGM</span></div>
 
   </div>
 </article><article class="card ">
@@ -808,7 +951,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · Deadline</span>
-      <span class="time">4시간 전</span>
+      <span class="time">6시간 전</span>
     </div>
 
     <p class="summary">
@@ -817,44 +960,6 @@ footer {
 
 
     <div class="chips"><span>Neon</span></div>
-
-  </div>
-</article><article class="card ">
-
-  <div class="card-body">
-    <a class="title" href="https://variety.com/2026/film/news/netflix-buys-in-waves-cannes-1236753146/" target="_blank" rel="noopener">
-      <span class="lang-ko">Netflix Snaps Up Cannes Critics Week’s Animated Feature ‘In Waves’ (EXCLUSIVE)</span><span class="lang-en">Netflix Snaps Up Cannes Critics Week’s Animated Feature ‘In Waves’ (EXCLUSIVE)</span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · Variety</span>
-      <span class="time">7시간 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">In Netflix’s first major deal out of the 2026 Cannes Film Festival, the streamer has picked up global rights outside of France to breakout Critics Week opener “In Waves,” an adaptation of AJ Dungo’s 2019 graphic memoir. The animated romance directed by Phuong Mai Nguyen boasts a voice cast led by Oscar-nominated Stephanie Hsu and […]</span><span class="lang-en">In Netflix’s first major deal out of the 2026 Cannes Film Festival, the streamer has picked up global rights outside of France to breakout Critics Week opener “In Waves,” an adaptation of AJ Dungo’s 2019 graphic memoir. The animated romance directed by Phuong Mai Nguyen boasts a voice cast led by Oscar-nominated Stephanie Hsu and […]</span>
-    </p>
-
-
-    <div class="chips"><span>Netflix</span></div>
-
-  </div>
-</article><article class="card ">
-
-  <div class="card-body">
-    <a class="title" href="https://deadline.com/2026/05/new-line-and-warner-bros-picture-animation-set-directors-for-new-hello-kitty-movie-1236914709/" target="_blank" rel="noopener">
-      <span class="lang-ko">New Line And Warner Bros. Pictures Animation Set Directors For New ‘Hello Kitty’ Movie</span><span class="lang-en">New Line And Warner Bros. Pictures Animation Set Directors For New ‘Hello Kitty’ Movie</span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · Deadline</span>
-      <span class="time">13시간 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">Sanrio’s Hello Kitty feature film from New Line Cinema and Warner Bros. Pictures Animation has tapped directors David Derrick Jr. and John Aoshima to helm. Beau Flynn is producing and the project has recently added Ramsay Naito joining as well. Shelby Thomas is overseeing for FlynnPictureCo. The film will be distributed globally by Warner Bros. Pictures […]</span><span class="lang-en">Sanrio’s Hello Kitty feature film from New Line Cinema and Warner Bros. Pictures Animation has tapped directors David Derrick Jr. and John Aoshima to helm. Beau Flynn is producing and the project has recently added Ramsay Naito joining as well. Shelby Thomas is overseeing for FlynnPictureCo. The film will be distributed globally by Warner Bros. Pictures […]</span>
-    </p>
-
-
-    <div class="chips"><span>Warner Bros</span></div>
 
   </div>
 </article>
@@ -870,20 +975,30 @@ footer {
       <div class="feed">
         <article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://extmovie.com/movietalk/94040960" target="_blank" rel="noopener">&#39;호프&#39; 칸 영화제 관객들 별점평(추천 많이 받은 평들)</a>
+    <a class="title" href="https://extmovie.com/movietalk/94042058" target="_blank" rel="noopener">[마스터즈 오브 유니버스] 해외 시사 단평들</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">4시간 전</span>
+      <span class="time">47분 전</span>
     </div>
-    <p class="summary">레터박스 사이트에 올라온 &lt;호프&gt; 관객평들 중 추천 많이 받은 것들을 우리말로 옮겨봤습니다. 프랑스어는 번역기로 나온 내용 그대로 올렸어요. ★★★★½...</p>
-    <p class="mood">긍정 반응 우세</p>
+    <p class="summary">트래비스 나이트 감독은 [마스터즈 오브 유니버스]의 모든 버전, 액션 피규어, 애니메이션, 영화 등 히맨 캐릭터의 모든 해석에 대해 진심 어린 경의를...</p>
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94041568" target="_blank" rel="noopener">로맹 가브라스의 차기작, 2025년 루브르 왕관 보석 강도 사건 다룬다</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 익스트림무비</span>
+      <span class="time">1시간 전</span>
+    </div>
+    <p class="summary">뮤직비디오계의 도발가에서 영화감독으로 변신한 로맹 가브라스는 대담하고 도발적인 영화로 잘 알려져 있다. 2022년 베니스 경쟁 부문에서 공개된 ‘아...</p>
+    <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
     <a class="title" href="https://extmovie.com/movietalk/94041308" target="_blank" rel="noopener">&#39;마스터즈 오브 유니버스&#39; 시사 참석한 돌프 룬드그렌</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">3시간 전</span>
+      <span class="time">5시간 전</span>
     </div>
     <p class="summary">원조 히맨이셨죠..^^</p>
     <p class="mood">중립적 반응</p>
@@ -893,64 +1008,14 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94041177" target="_blank" rel="noopener">카라 델레바인-존 보예가,초자연 호러 &lt;더 퍼니싱&gt; 첫 이미지 공개</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">4시간 전</span>
+      <span class="time">6시간 전</span>
     </div>
     <p class="summary">카라 델레바인,존 보예가가 출연한 초자연 호러 &lt;더 퍼니싱&gt;의 첫 이미지가 데드라인을 통해 최초로 공개되었습니다. 크리스 스팔링이 연출,각본을 맡...</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://extmovie.com/movietalk/94041175" target="_blank" rel="noopener">일본 주말 박스오피스 TOP 10 (5/15~5/17)</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">4시간 전</span>
-    </div>
-    <p class="summary">1위. 슈퍼 마리오 갤럭시 ・주말 관객수: 25만 8000명 ・주말 흥행 수익: 3억 6000만 엔 ・누적 관객수: 466만 명 ・누적 흥행 수익: 64억 엔 2위. 악...</p>
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://theqoo.net/movie/4209187086" target="_blank" rel="noopener">자파가 마이클이랑 마지막으로 봤었을때</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 더쿠</span>
-
-    </div>
-    <p class="summary">마이클)</p>
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://theqoo.net/movie/4209180606" target="_blank" rel="noopener">오늘 마이클 보러갈건데 쿠키 있어?</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 더쿠</span>
-
-    </div>
-    <p class="summary">4</p>
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://theqoo.net/movie/4209176012" target="_blank" rel="noopener">마이클 보고 옴ㅠㅠ</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 더쿠</span>
-
-    </div>
-    <p class="summary">3</p>
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://theqoo.net/movie/4209152675" target="_blank" rel="noopener">우리보다 미국인들이 마이클 더 많이 보고 알텐데도</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 더쿠</span>
-
-    </div>
-    <p class="summary">마이클)6</p>
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://theqoo.net/movie/4209088421" target="_blank" rel="noopener">와일드씽 프리미어 만원이네 쓰읍</a>
+    <a class="title" href="https://theqoo.net/movie/4209357146" target="_blank" rel="noopener">마이클 번역 누구야?</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 더쿠</span>
 
@@ -960,32 +1025,72 @@ footer {
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2549735" target="_blank" rel="noopener">ㅅㅍ)마이클시작할때 관크인줄알앗음</a>
+    <a class="title" href="https://theqoo.net/movie/4209322294" target="_blank" rel="noopener">마이클 잭슨 일생 찾아보는데</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 더쿠</span>
+
+    </div>
+
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://theqoo.net/movie/4209316137" target="_blank" rel="noopener">... 마이클 진짜 특전 없어...?</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 더쿠</span>
+
+    </div>
+    <p class="summary">9</p>
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://theqoo.net/movie/4209355486" target="_blank" rel="noopener">✈️👀 익일 《와일드 씽》 행사 시작 🦅🛩</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 더쿠</span>
+
+    </div>
+
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2551069" target="_blank" rel="noopener">유니버살 씨발아 2주차마이클은</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">유니버셜 로고 나오면서 이히~~ 하는장면 나오기전에 앞열에 껌은화면인데 누가 이히~ 하길래 ㅁ친놈인가? 하는 관크인줄 알았는데 인ㅅ타에 외국인들 하는거더라 ㅋㅋ 음악이랑 제작사 로고 나오는데 안지루하고...오리지널 티켓2026.05.19 15:59</p>
+    <p class="summary">시발오리지널 티켓2026.05.19 18:00</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2549719" target="_blank" rel="noopener">마이클하면</a>
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2551036" target="_blank" rel="noopener">와 진짜마이클1주차에서 끝인거야??</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">난 조던이 먼저 떠오름오리지널 티켓2026.05.19 15:50</p>
+    <p class="summary">와오리지널 티켓2026.05.19 17:56</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=commercial_movie&amp;no=1750104" target="_blank" rel="noopener">마이클불쌍하네</a>
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2551028" target="_blank" rel="noopener">마이클3주차돌포 때깔지리네</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">마이클의 서사와 인생을 보니까 점점 인류애가 사라짐 왜 브라이언 앱스타인의 소아성애 성범죄에는 입을 아닥하면서 어린 아이들을 순수하게 사랑하고 아동 인권을 지지했던마이클은 온갖 누명을 씌우며 억까한...상업영화2026.05.19 15:42</p>
+    <p class="summary">이맛이제오리지널 티켓2026.05.19 17:53</p>
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2551004" target="_blank" rel="noopener">마이클애트모스관이라도 가야하나</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 디시인사이드</span>
+
+    </div>
+    <p class="summary">일반관 놔두고 애트모스 보려고 버스타고 30분 가려니까 귀찮네 - dc official App오리지널 티켓2026.05.19 17:47</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article>

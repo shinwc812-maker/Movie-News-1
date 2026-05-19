@@ -45,6 +45,19 @@
 </article>
 {%- endmacro -%}
 
+{%- macro policy_curation_card(p) -%}
+<article class="card card-compact policy-signal-card">
+  <div class="card-body">
+    <a class="title" href="{{ p.url }}" target="_blank" rel="noopener">{{ p.title }}</a>
+    <div class="meta">
+      <span class="source policy">정책 · {{ p.source }}</span>
+      {% if p.rel_time %}<span class="time">{{ p.rel_time }}</span>{% endif %}
+    </div>
+    {% if p.summary %}<p class="summary">{{ p.summary }}</p>{% endif %}
+  </div>
+</article>
+{%- endmacro -%}
+
 <header class="topbar">
   <div>
     <p class="eyebrow">Internal Briefing</p>
@@ -75,6 +88,8 @@
         {% for item in curation %}
           {% if item.content_kind == 'community' %}
             {{ community_card(item) }}
+          {% elif item.content_kind == 'policy' %}
+            {{ policy_curation_card(item) }}
           {% else %}
             {{ official_card(item, compact=True) }}
           {% endif %}
@@ -126,6 +141,27 @@
           {% endfor %}
         </ol>
         {% if not reservation.movies %}<p class="empty">KOBIS 예매율 데이터가 없습니다.</p>{% endif %}
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>해외 주말 TOP 5</h2>
+          <span>Box Office Mojo{% if overseas_weekend.weekend_label %} · {{ overseas_weekend.weekend_label }}{% endif %}</span>
+        </div>
+        <ol class="overseas-weekend-list">
+          {% for movie in overseas_weekend.movies %}
+          <li>
+            <b>{{ movie.rank }}</b>
+            {% if movie.url %}
+            <a href="{{ movie.url }}" target="_blank" rel="noopener">{{ movie.title }}</a>
+            {% else %}
+            <span>{{ movie.title }}</span>
+            {% endif %}
+            <strong>{{ movie.gross }}</strong>
+          </li>
+          {% endfor %}
+        </ol>
+        {% if not overseas_weekend.movies %}<p class="empty">Box Office Mojo 데이터가 없습니다.</p>{% endif %}
       </section>
     </aside>
   </section>

@@ -14,6 +14,7 @@ MARKET_PATH = DATA_DIR / "market.json"
 COMMUNITY_PATH = DATA_DIR / "community.json"
 POLICIES_PATH = DATA_DIR / "policies.json"
 RESERVATION_PATH = DATA_DIR / "reservation.json"
+OVERSEAS_WEEKEND_PATH = DATA_DIR / "overseas_weekend.json"
 SITE_DIR = ROOT / "site"
 DIST_DIR = ROOT / "dist"
 DIST_PATH = DIST_DIR / "index.html"
@@ -66,6 +67,20 @@ PROMO_REFERENCE_INDUSTRY_KEYWORDS = (
 )
 PROMO_REFERENCE_COMPANY_BOOST = 2000
 PROMO_REFERENCE_INDUSTRY_BOOST = 250
+OVERSEAS_WEEKEND_BOOST = 350
+OVERSEAS_WEEKEND_ONLY_CAP = 500
+POLICY_SIGNAL_BOOST = 2400
+POLICY_SIGNAL_KEYWORDS = (
+    "제작지원",
+    "지원사업",
+    "영화관람",
+    "관람 활성화",
+    "할인권",
+    "독립예술영화",
+    "국제공동제작",
+    "상영",
+    "배급",
+)
 OVERSEAS_CONTEXT_KEYWORDS = (
     "롯데배급",
     "롯데엔터테인먼트",
@@ -200,6 +215,7 @@ def to_community_view(item: dict, now: datetime) -> dict:
 
 def to_policy_view(item: dict, now: datetime) -> dict:
     return {
+        "content_kind": "policy",
         "source": item.get("source", ""),
         "category": item.get("category", ""),
         "title": item.get("title", ""),
@@ -246,6 +262,10 @@ def _is_community_item(item: dict) -> bool:
     return item.get("content_kind") == "community"
 
 
+def _is_policy_item(item: dict) -> bool:
+    return item.get("content_kind") == "policy"
+
+
 def _has_strategic_keyword(item: dict) -> bool:
     text = _curation_text(item)
     return any(keyword.casefold() in text.casefold() for keyword in CURATION_STRATEGIC_KEYWORDS)
@@ -276,16 +296,24 @@ def _promo_reference_boost(item: dict) -> int:
     )
 
 
+def _has_policy_signal(item: dict) -> bool:
+    text = _curation_text(item)
+    return any(keyword in text for keyword in POLICY_SIGNAL_KEYWORDS)
+
+
 def _curation_candidate_allowed(
     item: dict,
     market_titles: list[str],
     reservation_titles: list[str],
+    overseas_titles: list[str],
 ) -> bool:
     if _has_excluded_curation_title(item):
         return False
     country = item.get("country")
     is_overseas = bool(country) and country != "KR"
-    has_market_context = bool(market_titles or reservation_titles)
+    has_market_context = bool(market_titles or reservation_titles or overseas_titles)
+    if _is_policy_item(item):
+        return _has_policy_signal(item)
     if _is_community_item(item) and has_market_context:
         return _matched_title(item, market_titles) or _matched_title(item, reservation_titles)
     if not is_overseas or not has_market_context:
@@ -293,18 +321,33 @@ def _curation_candidate_allowed(
     return (
         _matched_title(item, market_titles)
         or _matched_title(item, reservation_titles)
+        or _matched_title(item, overseas_titles)
         or _has_overseas_context_keyword(item)
     )
 
 
-def _curation_priority(item: dict, market_titles: list[str], reservation_titles: list[str]) -> float:
+def _curation_priority(
+    item: dict,
+    market_titles: list[str],
+    reservation_titles: list[str],
+    overseas_titles: list[str],
+) -> float:
     score = float(item.get("score") or 0)
+    if _is_policy_item(item):
+        return score + POLICY_SIGNAL_BOOST if _has_policy_signal(item) else score
+    is_overseas = bool(item.get("country")) and item.get("country") != "KR"
+    has_domestic_market_context = _matched_title(item, market_titles) or _matched_title(item, reservation_titles)
+    has_overseas_weekend_context = _matched_title(item, overseas_titles)
+    if is_overseas and has_overseas_weekend_context and not has_domestic_market_context and not _has_overseas_context_keyword(item):
+        score = min(score, OVERSEAS_WEEKEND_ONLY_CAP)
     if item.get("country") == "KR":
         score += 900
     if _matched_title(item, market_titles):
         score += 1600
     if _matched_title(item, reservation_titles):
         score += 1300
+    if has_overseas_weekend_context:
+        score += OVERSEAS_WEEKEND_BOOST
     if "롯데배급" in (item.get("matched_keywords") or []):
         score += 1100
     if _has_strategic_keyword(item):
@@ -316,41 +359,51 @@ def _curation_priority(item: dict, market_titles: list[str], reservation_titles:
 def top_curation_items(
     official_views: list[dict],
     community_views: list[dict] | None = None,
+    policy_views: list[dict] | None = None,
     limit: int = 5,
     max_overseas_official: int = 2,
     max_community_items: int = 2,
+    max_policy_items: int = 1,
     market_titles: list[str] | None = None,
     reservation_titles: list[str] | None = None,
+    overseas_titles: list[str] | None = None,
 ) -> list[dict]:
     market_titles = market_titles or []
     reservation_titles = reservation_titles or []
+    overseas_titles = overseas_titles or []
     community_views = community_views or []
-    if market_titles or reservation_titles:
+    policy_views = policy_views or []
+    if market_titles or reservation_titles or overseas_titles:
         items = [
             item
-            for item in list(official_views) + list(community_views)
-            if _curation_candidate_allowed(item, market_titles, reservation_titles)
+            for item in list(official_views) + list(community_views) + list(policy_views)
+            if _curation_candidate_allowed(item, market_titles, reservation_titles, overseas_titles)
         ]
         items = sorted(
             items,
-            key=lambda item: _curation_priority(item, market_titles, reservation_titles),
+            key=lambda item: _curation_priority(item, market_titles, reservation_titles, overseas_titles),
             reverse=True,
         )
     else:
         items = [
             item
-            for item in list(official_views) + list(community_views)
-            if _curation_candidate_allowed(item, market_titles, reservation_titles)
+            for item in list(official_views) + list(community_views) + list(policy_views)
+            if _curation_candidate_allowed(item, market_titles, reservation_titles, overseas_titles)
         ]
         items = sorted(items, key=lambda item: float(item.get("score") or 0), reverse=True)
     overseas_count = 0
     community_count = 0
+    policy_count = 0
     selected: list[dict] = []
     for item in items:
         if _is_community_item(item):
             if community_count >= max_community_items:
                 continue
             community_count += 1
+        if _is_policy_item(item):
+            if policy_count >= max_policy_items:
+                continue
+            policy_count += 1
         is_overseas = bool(item.get("country")) and item.get("country") != "KR"
         if is_overseas and overseas_count >= max_overseas_official:
             continue
@@ -430,6 +483,27 @@ def reservation_view(reservation: dict) -> dict:
     }
 
 
+def overseas_weekend_view(overseas_weekend: dict) -> dict:
+    if not isinstance(overseas_weekend, dict):
+        return {"available": False, "movies": [], "weekend_label": ""}
+    movies = [
+        {
+            "rank": movie.get("rank"),
+            "title": movie.get("title", ""),
+            "gross": movie.get("gross", ""),
+            "url": movie.get("url", ""),
+        }
+        for movie in overseas_weekend.get("movies", [])
+        if isinstance(movie, dict)
+    ]
+    return {
+        "available": bool(movies) and not overseas_weekend.get("error_message"),
+        "weekend_label": overseas_weekend.get("weekend_label", ""),
+        "movies": movies,
+        "error_message": overseas_weekend.get("error_message"),
+    }
+
+
 def strip_trailing_whitespace(text: str) -> str:
     return "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
 
@@ -441,6 +515,7 @@ def build() -> None:
     raw_policies = load_json(POLICIES_PATH, [])
     raw_market = load_json(MARKET_PATH, {})
     raw_reservation = load_json(RESERVATION_PATH, {})
+    raw_overseas_weekend = load_json(OVERSEAS_WEEKEND_PATH, {})
 
     article_views = [to_article_view(article, now) for article in raw_articles]
     official_articles, community_from_articles = split_articles_by_kind(article_views)
@@ -450,11 +525,14 @@ def build() -> None:
     policy_views = [to_policy_view(item, now) for item in raw_policies]
     boxoffice = market_views(raw_market)
     reservation = reservation_view(raw_reservation)
+    overseas_weekend = overseas_weekend_view(raw_overseas_weekend)
     curation = top_curation_items(
         official_articles,
         community_views,
+        policy_views,
         market_titles=[movie["title"] for movie in boxoffice],
         reservation_titles=[movie["title"] for movie in reservation["movies"]],
+        overseas_titles=[movie["title"] for movie in overseas_weekend["movies"]],
     )
 
     env = Environment(loader=FileSystemLoader(str(SITE_DIR)), autoescape=True)
@@ -469,6 +547,7 @@ def build() -> None:
         curation=curation,
         boxoffice=boxoffice,
         reservation=reservation,
+        overseas_weekend=overseas_weekend,
         total_official=len(official_feed),
         total_community=len(community_views),
         total_policies=len(policy_views),

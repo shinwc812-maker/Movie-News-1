@@ -8,7 +8,8 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from crawler.dedupe import dedupe
-from crawler.briefing_models import MarketSnapshot, ReservationSnapshot
+from crawler.briefing_models import MarketSnapshot, OverseasWeekendSnapshot, ReservationSnapshot
+from crawler.boxofficemojo import fetch_overseas_weekend_snapshot, save_overseas_weekend_snapshot
 from crawler.community import fetch_community_reactions, save_community_reactions
 from crawler.kobis import (
     fetch_reservation_snapshot,
@@ -36,6 +37,7 @@ MARKET_PATH = DATA_DIR / "market.json"
 RESERVATION_PATH = DATA_DIR / "reservation.json"
 COMMUNITY_PATH = DATA_DIR / "community.json"
 POLICIES_PATH = DATA_DIR / "policies.json"
+OVERSEAS_WEEKEND_PATH = DATA_DIR / "overseas_weekend.json"
 
 # 이 시간보다 오래된 기사는 제외 (매일 실행하므로 누적 없이 최신만 표시)
 MAX_AGE_HOURS = 48
@@ -105,6 +107,18 @@ def load_optional_market(path: Path = MARKET_PATH) -> MarketSnapshot | None:
         return None
 
 
+def load_optional_overseas_weekend(path: Path = OVERSEAS_WEEKEND_PATH) -> OverseasWeekendSnapshot | None:
+    if not path.exists():
+        return None
+    try:
+        with path.open(encoding="utf-8") as f:
+            data = json.load(f)
+        return OverseasWeekendSnapshot.from_dict(data)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[warn] overseas weekend cache load failed — {exc}", file=sys.stderr)
+        return None
+
+
 def collect_market_snapshot() -> MarketSnapshot | None:
     api_key = os.environ.get("KOBIS_API_KEY")
     if not api_key:
@@ -118,6 +132,20 @@ def collect_market_snapshot() -> MarketSnapshot | None:
     except Exception as exc:  # noqa: BLE001
         print(f"[warn] KOBIS market fetch failed — {exc}", file=sys.stderr)
         return load_optional_market()
+
+
+def collect_overseas_weekend_snapshot() -> OverseasWeekendSnapshot | None:
+    snapshot = fetch_overseas_weekend_snapshot()
+    if snapshot.movies:
+        save_overseas_weekend_snapshot(snapshot, OVERSEAS_WEEKEND_PATH)
+        print(f"Box Office Mojo overseas weekend top 5: {len(snapshot.movies)}")
+        return snapshot
+    cached = load_optional_overseas_weekend()
+    if cached is not None:
+        print("[warn] Box Office Mojo unavailable — using cached overseas weekend data", file=sys.stderr)
+        return cached
+    save_overseas_weekend_snapshot(snapshot, OVERSEAS_WEEKEND_PATH)
+    return snapshot
 
 
 def enrich_market_snapshot(market: MarketSnapshot | None) -> MarketSnapshot | None:
@@ -186,6 +214,7 @@ def main() -> None:
     market = enrich_market_snapshot(market)
     reservation = collect_reservation_snapshot()
     reservation = enrich_reservation_snapshot(reservation)
+    overseas_weekend = collect_overseas_weekend_snapshot()
 
     articles = asyncio.run(gather_articles(SOURCES))
     print(f"Fetched {len(articles)} articles from {len(SOURCES)} sources")
@@ -193,7 +222,7 @@ def main() -> None:
     recent = filter_recent(articles)
     print(f"Within last {MAX_AGE_HOURS}h: {len(recent)} (filtered out {len(articles) - len(recent)})")
 
-    score_all(recent, market=market, reservation=reservation)
+    score_all(recent, market=market, reservation=reservation, overseas_weekend=overseas_weekend)
 
     deduped = dedupe(recent)
     print(f"Before dedupe: {len(recent)}, After dedupe: {len(deduped)}")

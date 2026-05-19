@@ -166,6 +166,65 @@ def test_top_curation_items_can_include_matched_community_reactions():
     assert "잡담" not in [item["title"] for item in result]
 
 
+def test_top_curation_items_uses_overseas_weekend_as_weak_context():
+    build = load_site_build_module()
+    official = [
+        {"title": "국내 극장가 투자 시스템 변화", "score": 100, "country": "KR", "matched_keywords": []},
+        {"title": "Michael keeps weekend box office lead", "score": 900, "country": "US", "matched_keywords": ["Michael"]},
+        {"title": "Warner only", "score": 1200, "country": "US", "matched_keywords": ["Warner Bros"]},
+    ]
+
+    result = build.top_curation_items(
+        official,
+        market_titles=["마이클"],
+        overseas_titles=["Michael"],
+    )
+
+    titles = [item["title"] for item in result]
+    assert "Michael keeps weekend box office lead" in titles
+    assert "Warner only" not in titles
+    assert titles.index("국내 극장가 투자 시스템 변화") < titles.index("Michael keeps weekend box office lead")
+
+
+def test_top_curation_items_can_include_one_policy_signal():
+    build = load_site_build_module()
+    official = [
+        {"title": "국내 극장가 투자 시스템 변화", "score": 100, "country": "KR", "matched_keywords": []},
+    ]
+    policy = [
+        {"content_kind": "policy", "title": "2026년 영화 제작지원 사업 공고", "summary": "영화 지원사업"},
+        {"content_kind": "policy", "title": "콘텐츠 기업 입주기업 모집", "summary": "정책"},
+    ]
+
+    result = build.top_curation_items(
+        official,
+        policy_views=policy,
+        market_titles=["마이클"],
+    )
+
+    policy_titles = [item["title"] for item in result if item.get("content_kind") == "policy"]
+    assert policy_titles == ["2026년 영화 제작지원 사업 공고"]
+
+
+def test_overseas_weekend_view_formats_top_five():
+    build = load_site_build_module()
+
+    view = build.overseas_weekend_view(
+        {
+            "weekend_label": "May 15-17",
+            "movies": [
+                {"rank": 1, "title": "Michael", "gross": "$26.1M", "url": "https://example.com/michael"},
+                {"rank": 2, "title": "The Devil Wears Prada 2", "gross": "$17.9M"},
+            ],
+        }
+    )
+
+    assert view["available"] is True
+    assert view["weekend_label"] == "May 15-17"
+    assert view["movies"][0]["title"] == "Michael"
+    assert view["movies"][0]["gross"] == "$26.1M"
+
+
 def test_select_official_feed_prefers_korean_and_caps_overseas():
     build = load_site_build_module()
     articles = [

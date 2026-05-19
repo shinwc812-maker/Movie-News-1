@@ -1,21 +1,56 @@
 [
   {
-    "id": "2734eea67487c814",
-    "source": "Deadline",
+    "id": "96a6b8378ebb218e",
+    "source": "The Hollywood Reporter",
     "country": "US",
-    "title": "Tony Hale, Beverly D’Angelo & Apple Martin Board Nancy Meyers’ New Film For Warner Bros.",
+    "title": "‘Obsession’ Filmmaker Curry Barker Just Released His First Hit Movie. He’s Ready to Get Back to His Bedroom and Edit the Next One",
     "title_ko": null,
-    "summary": "EXCLUSIVE: Nancy Meyers has further expanded the cast of her new film for Warner Bros. with the addition of Tony Hale (Toy Story 5), Beverly D’Angelo (National Lampoon’s Vacation franchise), and newcomer Apple Martin. Character details are under wraps, as is the film’s logline. FKA Paris Paramount, the project has been characterized as semi-autobiographical for Meyers, who in […]",
+    "summary": "Over the past year, the Gen Z auteur has become the most in-demand 20-something filmmaker in Hollywood, with 'Texas Chainsaw Massacre' waiting in the wings and the Jason Blum, Roy Lee production 'Anything But Ghosts' already shot.",
     "summary_ko": null,
-    "url": "https://deadline.com/2026/05/nancy-meyers-warner-bros-film-casts-tony-hale-apple-martin-1236914542/",
-    "published_at": "2026-05-18T16:20:00+00:00",
+    "url": "https://www.hollywoodreporter.com/movies/movie-features/obsession-curry-barker-talks-horror-1236597764/",
+    "published_at": "2026-05-18T19:00:00+00:00",
     "image_url": null,
     "content_kind": "official",
-    "tier": 2,
-    "score": 1134.5599363315973,
+    "tier": 4,
+    "score": 215.30733159346065,
     "matched_keywords": [
-      "Paramount",
-      "Warner Bros"
+      "Obsession"
+    ]
+  },
+  {
+    "id": "679f8d213efa187f",
+    "source": "The Hollywood Reporter",
+    "country": "US",
+    "title": "‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain — But He Disagrees",
+    "title_ko": null,
+    "summary": "Speaking with The Hollywood Reporter, the 30-year-old actor unpacks the debate surrounding his character's decisions, that \"What’s so bad about being with me?” scene and offers a surprising take on what might've happened if Bear had been honest with Nikki from the start.",
+    "summary_ko": null,
+    "url": "https://www.hollywoodreporter.com/movies/movie-features/obsession-bear-villain-michael-johnston-interview-1236598129/",
+    "published_at": "2026-05-18T17:04:23+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 213.30009779716437,
+    "matched_keywords": [
+      "Obsession"
+    ]
+  },
+  {
+    "id": "5bc982895701a9bc",
+    "source": "Deadline",
+    "country": "US",
+    "title": "Amazon MGM Studios To Release Indian Pic ‘Vibe’ In Theatres In September",
+    "title_ko": null,
+    "summary": "EXCLUSIVE: Amazon MGM Studios is launching action-comedy Vibe in Indian cinemas on September 18. Produced by Kunal Kemmu and Chirag Nihalani through their Drongo Films banner, Vibe centers on two inseparable friends whose ordinary, unassuming lives spiral into an unpredictable, high-energy adventure that pushes their survival instincts and friendship to the limit. Written and directed […]",
+    "summary_ko": null,
+    "url": "https://deadline.com/2026/05/amazon-mgm-studios-vibe-release-date-1236915353/",
+    "published_at": "2026-05-19T08:39:30+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 3,
+    "score": 149.53476214901622,
+    "matched_keywords": [
+      "Amazon MGM"
     ]
   },
   {
@@ -31,27 +66,9 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 145.67104744270833,
+    "score": 143.640664926794,
     "matched_keywords": [
       "Neon"
-    ]
-  },
-  {
-    "id": "724c669f5efc8cf7",
-    "source": "Variety",
-    "country": "US",
-    "title": "Netflix Snaps Up Cannes Critics Week’s Animated Feature ‘In Waves’ (EXCLUSIVE)",
-    "title_ko": null,
-    "summary": "In Netflix’s first major deal out of the 2026 Cannes Film Festival, the streamer has picked up global rights outside of France to breakout Critics Week opener “In Waves,” an adaptation of AJ Dungo’s 2019 graphic memoir. The animated romance directed by Phuong Mai Nguyen boasts a voice cast led by Oscar-nominated Stephanie Hsu and […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/news/netflix-buys-in-waves-cannes-1236753146/",
-    "published_at": "2026-05-19T00:07:05+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 3,
-    "score": 142.66902197974537,
-    "matched_keywords": [
-      "Netflix"
     ]
   },
   {
@@ -67,7 +84,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 136.01595485011575,
+    "score": 133.98557233420138,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -85,7 +102,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 135.42104744270833,
+    "score": 133.390664926794,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -103,27 +120,9 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 134.80964697974537,
+    "score": 132.779264463831,
     "matched_keywords": [
       "Netflix"
-    ]
-  },
-  {
-    "id": "dcd27f4234d6b11c",
-    "source": "Deadline",
-    "country": "US",
-    "title": "Neon-Colored First Trailer Touts Nicolas Winding Refn’s ‘Her Private Hell’ Starring Sophie Thatcher & Charles Melton",
-    "title_ko": null,
-    "summary": "The first neon-hued trailer for Nicolas Winding Refn’s Her Private Hell was released today just hours before the film’s premiere in Cannes. The cast includes Yellowjackets star Sophie Thatcher and Riverdale hunk Charles Melton. The movie has myriad storylines, but is set in a future metropolis. A group of actresses is gathering at a posh […]",
-    "summary_ko": null,
-    "url": "https://deadline.com/2026/05/her-private-hell-trailer-charles-melton-nicolas-winding-refns-1236914573/",
-    "published_at": "2026-05-18T16:21:48+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 3,
-    "score": 134.5911863315972,
-    "matched_keywords": [
-      "Neon"
     ]
   },
   {
@@ -139,10 +138,218 @@
     "image_url": "https://d3ihz389yobwks.cloudfront.net/1779068369906FoIBI.png",
     "content_kind": "official",
     "tier": 3,
-    "score": 119.28215855381944,
+    "score": 117.25177603790509,
     "matched_keywords": [
       "CJ ENM"
     ]
+  },
+  {
+    "id": "be50120ecc12ff53",
+    "source": "Variety",
+    "country": "US",
+    "title": "Pop Up Film Residency Announces Eight Participants for 2026 Edition (EXCLUSIVE)",
+    "title_ko": null,
+    "summary": "The Pop Up Film Residency has selected eight participants who will be taking part in residencies across Europe this summer. The program’s latest cohort was announced during an event Tuesday at the Cannes Marché du Film’s Village Innovation. Since launching in 2018, the Pop Up Film Residency has offered more than 150 artistic residencies to […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/global/pop-up-film-residency-participants-2026-1236752416/",
+    "published_at": "2026-05-19T09:03:48+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.9566371490162,
+    "matched_keywords": []
+  },
+  {
+    "id": "e90b19a6f7c348e2",
+    "source": "Variety",
+    "country": "US",
+    "title": "Konstantina Kotzamani’s Debut Feature ‘Titanic Ocean’ Weaves Greek Myth Into Mermaid School at Cannes Un Certain Regard",
+    "title_ko": null,
+    "summary": "Konstantina Kotzamani arrives at Cannes Un Certain Regard with her debut feature “Titanic Ocean,” a Japanese-language coming-of-age drama set inside a boarding school where teenage girls train to become professional mermaids.  The film premieres May 20 and follows 17-year-old Akame, aka “Deep Sea,” as she learns to perform underwater shows, navigate love, and discover the […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/global/titanic-ocean-cannes-konstantina-kotzamani-mermaid-1236753342/",
+    "published_at": "2026-05-19T08:58:32+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.86520196383102,
+    "matched_keywords": []
+  },
+  {
+    "id": "5a00e37f83f4ea1a",
+    "source": "Variety",
+    "country": "US",
+    "title": "Teodora Markova’s ‘The Inspector’s Debt’ Wins FFC Bulgaria, Film Forge Competition (EXCLUSIVE)",
+    "title_ko": null,
+    "summary": "“The Inspector’s Debt,” directed by Teodora Markova, has been named the winner of the €50,000 ($58,200) FFC Bulgaria and Film Forge competition. The winner was announced at an exclusive villa event in partnership with Variety on May 18 in Cannes, organized by International Film Festival Glasgow, Female Film Club and First Draft, founding members of […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/global/the-inspectors-debt-ffc-bulgaria-film-forge-competition-1236753356/",
+    "published_at": "2026-05-19T08:51:41+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.746278352719905,
+    "matched_keywords": []
+  },
+  {
+    "id": "9797e54d8a4347ee",
+    "source": "Variety",
+    "country": "US",
+    "title": "Brazil’s ‘I’m Still Here’ Oscar Nominee Fernanda Torres Joins Willem Dafoe in Barbara Paz’s Dystopian Pic, ‘Cuddle’ (EXCLUSIVE)",
+    "title_ko": null,
+    "summary": "Brazil’s Fernanda Torres, Oscar-nominated for her stirring performance in Walter Salles’ 2025 international feature Academy Award winner “I’m Still Here,” is joining four-time Oscar nominee Willem Dafoe (“Poor Things,” “Platoon”) in Bárbara Paz’s upcoming feature, “Cuddle.”  Set in a near-future metropolis where intimacy is bought and sold, “Cuddle” follows Dante (Dafoe), a professional cuddler paid […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/global/fernanda-torres-willem-dafoe-barbara-paz-cuddle-conspiracao-1236752837/",
+    "published_at": "2026-05-19T08:50:27+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.72486631568287,
+    "matched_keywords": []
+  },
+  {
+    "id": "fe74f9a947b33c02",
+    "source": "Variety",
+    "country": "US",
+    "title": "Brazilian Helmer Laís Santos Araújo Expands Berlinale-Winning Short ‘Infantaria’ Into Feature, Backed by Cannes Residency, CNC Grant",
+    "title_ko": null,
+    "summary": "Following the international festival run of her acclaimed short “Infantaria” which bowed at the Berlinale, Brazilian director Laís Santos Araújo is developing the project into a feature, with producer Pedro Krull of Aguda Cinema steering the project through the prestigious Cannes Cinéfondation Résidence and a slate of European development initiatives. Set against the landscapes of […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/global/lais-santos-araujo-infantaria-residence-cnc-aguda-cinema-1236752431/",
+    "published_at": "2026-05-19T08:38:22+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.51508622309028,
+    "matched_keywords": []
+  },
+  {
+    "id": "7f14499250fe79e4",
+    "source": "Variety",
+    "country": "US",
+    "title": "‘Low Expectations’ Review: Eivind Landsvik’s Tender, Joachim Trier-Adjacent Drama Wisely Suggests Embracing Stillness is Tougher Than It Looks",
+    "title_ko": null,
+    "summary": "If our addiction to our phones — thus, our incessant need for distractions and entertainment — is any indication, humankind increasingly refuses to surrender to boredom, even though a great deal of life is made up of ordinary, nothing moments that we ought to embrace rather than avoid. In his gentle and minor-key feature debut […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/reviews/low-expectations-review-1236753207/",
+    "published_at": "2026-05-19T08:30:00+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.36983159346065,
+    "matched_keywords": []
+  },
+  {
+    "id": "4166b9686549e4ca",
+    "source": "Variety",
+    "country": "US",
+    "title": "France’s Lilith Films Boards Paulina García-Led Chilean Pic ‘A Woman Wants to Die’ at Cannes (EXCLUSIVE)",
+    "title_ko": null,
+    "summary": "In yet another alliance forged between European and Latin American producers at Cannes, France’s Lilith Films has boarded Chilean drama “A Woman Wants to Die” (“Una mujer quiere morir”), a co-production involving Chile (Niña Niño Films), Argentina (Gualicho Cine) and Brazil (Superfilmes). It stars one of Chile’s most bankable stars, Paulina Garcia (“Gloria”), who recently announced […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/global/paulina-garcia-constanza-figari-lilith-films-nina-nino-1236753147/",
+    "published_at": "2026-05-19T08:23:36+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.25872048234954,
+    "matched_keywords": []
+  },
+  {
+    "id": "683f3109f693b50d",
+    "source": "The Hollywood Reporter",
+    "country": "US",
+    "title": "‘Groundswell’ Wins Golden Globe Documentary Honor at Cannes",
+    "title_ko": null,
+    "summary": "Demi Moore and Woody Harrelson executive produced the doc, about regenerative agriculture, from directors Joshua Tickell and Rebecca Harrell Tickell.",
+    "summary_ko": null,
+    "url": "https://www.hollywoodreporter.com/movies/movie-news/groundswell-wins-golden-globe-documentary-honor-in-cannes-1236599309/",
+    "published_at": "2026-05-19T08:03:13+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.90484316753472,
+    "matched_keywords": []
+  },
+  {
+    "id": "29ff0e29437ea6e4",
+    "source": "The Hollywood Reporter",
+    "country": "US",
+    "title": "Studiocanal Inks South African Theatrical Distribution Deal with Sun Africa",
+    "title_ko": null,
+    "summary": "The three-year deal covers a slate of Studiocanal's English-language features including 'Pressure,' 'Ink,' and 'Full Phil.'",
+    "summary_ko": null,
+    "url": "https://www.hollywoodreporter.com/movies/movie-news/studiocanal-inks-south-african-theatrical-distribution-deal-1236599307/",
+    "published_at": "2026-05-19T08:02:31+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.89269038975694,
+    "matched_keywords": []
+  },
+  {
+    "id": "a875058bf4561530",
+    "source": "Variety",
+    "country": "US",
+    "title": "‘Six Months in a Pink and Blue Building’ Deepens Mexican Bruno Santamaría Razo’s Exploration of Secrets, Memory and Childhood",
+    "title_ko": null,
+    "summary": "World premiering at Cannes’ Critics’ Week on May 19, Bruno Santamaría Razo’s film “Six Months in a Pink and Blue Building” (“Seis Meses en el Edificio Rosa con Azul”) is set in early ’90s Mexico where 11-year-old Bruno navigates the ups and downs of childhood and begins to question his sexuality. He learns that his […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/global/brunosantamaria-six-months-in-a-pink-and-blue-building-1236751859/",
+    "published_at": "2026-05-19T08:01:04+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.86751677864583,
+    "matched_keywords": []
+  },
+  {
+    "id": "8cbf328c5242ddeb",
+    "source": "Variety",
+    "country": "US",
+    "title": "Kurosawa Kiyoshi on Cannes Title ‘The Samurai and the Prisoner’: ‘Films Have the Potential to Transcend National Borders’",
+    "title_ko": null,
+    "summary": "Kurosawa Kiyoshi has spent a career trapping his characters in the present tense — in the buzzing infrastructure of contemporary Tokyo, in the ambient dread of the networked age, in the particular horror of ordinary life curdling into something much worse. “The Samurai and the Prisoner” takes him somewhere he has never been before: feudal […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/festivals/kurosawa-kiyoshi-samurai-prisoner-cannes-1236753306/",
+    "published_at": "2026-05-19T08:00:00+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.84899826012731,
+    "matched_keywords": []
+  },
+  {
+    "id": "a804a0c7ad13fee9",
+    "source": "Variety",
+    "country": "US",
+    "title": "Indonesia Virtual Production Horror Film ‘Whispers of Fatimah’ Launches First Images at Cannes Film Market (EXCLUSIVE)",
+    "title_ko": null,
+    "summary": "Mandela Pictures and Oceanus Media Global have launched first stills from “Bisikan Desa Gringsing: Whispers of Fatimah” at the Cannes Film Market, marking the international debut of what is billed as the one of the first Indonesian horror features to be shot using virtual production technology. Directed by Ivander Tedjasukmana, the mystery horror is a […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/markets-festivals/indonesia-virtual-production-horror-whispers-of-fatimah-cannesmarket-1236752232/",
+    "published_at": "2026-05-19T08:00:00+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.84899826012731,
+    "matched_keywords": []
+  },
+  {
+    "id": "19103ce56e1a779b",
+    "source": "Deadline",
+    "country": "US",
+    "title": "Léa Seydoux On Nudity In Her Compelling Drama ‘Gentle Monster’: ‘I Want Final Cut On Those Scenes’ – Cannes Studio",
+    "title_ko": null,
+    "summary": "French actress Léa Seydoux stars in not one but two films In Competition at the Cannes Film Festival this year: The Unknown, directed by Arthur Harari, and Gentle Monster, from director Marie Kreutzer. The latter film draws on skills she’s never displayed in her oeuvre before. “I’ve always loved to sing and it’s true that […]",
+    "summary_ko": null,
+    "url": "https://deadline.com/video/gentle-monster-interview-lea-seydoux-marie-kreutzer/",
+    "published_at": "2026-05-19T07:51:35+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.70287557494213,
+    "matched_keywords": []
   },
   {
     "id": "b9afa54c3fd170c1",
@@ -157,23 +364,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 49.92451966493056,
-    "matched_keywords": []
-  },
-  {
-    "id": "7a2327cc0b900039",
-    "source": "Variety",
-    "country": "US",
-    "title": "RAI Cinema Scores Sales in Cannes on New Works by Mario Martone, Gianni Amelio, Irene Dionisio (EXCLUSIVE)",
-    "title_ko": null,
-    "summary": "RAI Cinema International Distribution has scored sales at the Cannes market with new works by veteran Italian auteurs Mario Martone and Gianni Amelio and promising newcomer Irene Dionisio that are tipped to bow in Venice. “Trick,” which stars Toni Servillo (“The Great Beauty”) (first look image above) is the latest feature by Martone who was […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/festivals/rai-cinema-cannes-mario-martone-gianni-amelio-dionisio-1236753295/",
-    "published_at": "2026-05-19T06:56:50+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 49.782737257523145,
+    "score": 47.8941371490162,
     "matched_keywords": []
   },
   {
@@ -189,7 +380,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 49.01855901678241,
+    "score": 46.98817650086806,
     "matched_keywords": []
   },
   {
@@ -205,7 +396,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.68609373900463,
+    "score": 46.65571122309028,
     "matched_keywords": []
   },
   {
@@ -221,71 +412,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.95721642418982,
-    "matched_keywords": []
-  },
-  {
-    "id": "817694a572aed805",
-    "source": "Variety",
-    "country": "US",
-    "title": "Two-Time Oscar Nominee Andrey Zvyagintsev on Cannes Contender ‘Minotaur’ and Life After (Near) Death: ‘The Light Can Go Out at Any Second’",
-    "title_ko": null,
-    "summary": "Nearly a decade after his last film, “Loveless,” won the Jury Prize at the Cannes Film Festival, two-time Academy Award nominee Andrey Zvyagintsev (“Leviathan”) returns to the Croisette with “Minotaur,” a modern-day parable about the emotional and moral collapse of a Russian businessman whose world unravels amid professional crises, global chaos and an extramarital affair. Zvyagintsev, […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/global/andrey-zvyagintsev-cannes-minotaur-1236740572/",
-    "published_at": "2026-05-19T05:05:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 47.84118633159722,
-    "matched_keywords": []
-  },
-  {
-    "id": "5ad2fd878524e12f",
-    "source": "Variety",
-    "country": "US",
-    "title": "Tiffany Haddish Gets Dramatic in Two Thrillers at the Cannes Market: ‘Audiences Are Desiring Real Storytelling’",
-    "title_ko": null,
-    "summary": "Tiffany Haddish has no interest in imposter syndrome. She speaks with the certainty of someone who has already envisioned and earned every room she walks into. At this year’s Cannes Film Festival, those rooms will be scattered across the Croisette, where she arrives with two character-driven thrillers on Highland Film Group’s sales slate — making […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/news/tiffany-haddish-two-thrillers-cannes-market-1236751631/",
-    "published_at": "2026-05-19T04:35:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 47.320352998263886,
-    "matched_keywords": []
-  },
-  {
-    "id": "ebd0e94c5d3a1105",
-    "source": "Variety",
-    "country": "US",
-    "title": "‘Words of Love’ Review: French Filmmaker Rudi Rosenberg Sensitively Captures the Chaos and Compassion of Family",
-    "title_ko": null,
-    "summary": "For his sophomore feature “Words of Love,” director Rudi Rosenberg makes a sensitive family drama about the fraught relationship between a mother and a daughter. Abigaëlle has never met her father and trying to make that connection becomes an obsession of hers — and while her mother, Erika, is supportive, she is also wary of […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/reviews/words-of-love-review-1236752165/",
-    "published_at": "2026-05-19T04:30:55+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 47.24946179456018,
-    "matched_keywords": []
-  },
-  {
-    "id": "4992257155319ce6",
-    "source": "Variety",
-    "country": "US",
-    "title": "‘Strawberries’ Review: Moroccan Women in Spain’s Agricultural Industry Are Exploited by a Callous System in a Potent but Flawed Drama",
-    "title_ko": null,
-    "summary": "Stories about exploited migrant workers have become something of a mainstay in international cinema, rightly so given the tenacious hold this form of indenture — or worse — continues to have on the Global North. They also make for good cinema: who doesn’t want to root for people oppressed by the henchmen of rampant capitalism? Laïla […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/reviews/strawberries-review-1236753230/",
-    "published_at": "2026-05-19T03:51:58+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 46.573246516782405,
+    "score": 45.92683390827546,
     "matched_keywords": []
   },
   {
@@ -301,55 +428,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.30096642418981,
-    "matched_keywords": []
-  },
-  {
-    "id": "2d53cd0ab7279525",
-    "source": "Variety",
-    "country": "US",
-    "title": "‘Full Phil’ Review: With Woody Harrelson and Kristen Stewart Locked in a Father-Daughter Hatefest, Will Quentin Dupieux’s Latest Bizarro-World Lark Be His Crossover Movie?",
-    "title_ko": null,
-    "summary": "\"Full Phil,\" brash and throttling as it is, is an overly italicized screw-loose satire that some will want to see, because in its halfway funny, halfway off-putting extreme way it dares to color so far outside the lines.",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/reviews/full-phil-review-kristen-stewart-woody-harrelson-1236752405/",
-    "published_at": "2026-05-18T23:19:11+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 41.83742475752315,
-    "matched_keywords": []
-  },
-  {
-    "id": "4694663c6d20cfcc",
-    "source": "Variety",
-    "country": "US",
-    "title": "Stephen Colbert to Host Wrap Party Following Final ‘Late Show’ Taping With ‘Fired and Festive’ Dress Code (EXCLUSIVE)",
-    "title_ko": null,
-    "summary": "Stephen Colbert’s time with “The Late Show” won’t end when the final episode tapes at the Ed Sullivan Theater in New York City on Thursday. Sources tell me that he’s hosting an after-party following the taping at a nearby event space. The invitation is topped with the show’s red, white and blue logo tweaked to […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/tv/columns/colbert-host-wrap-party-final-late-show-taping-fired-festive-dress-code-1236753010/",
-    "published_at": "2026-05-18T23:00:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 41.504380776041664,
-    "matched_keywords": []
-  },
-  {
-    "id": "e0b764c77fe122d9",
-    "source": "Variety",
-    "country": "US",
-    "title": "Shirtless Charles Melton, Brutal Murders and Daddy Issues: Nicolas Winding Refn’s ‘Her Private Hell’ Slays Cannes Crowd With 7-Minute Ovation",
-    "title_ko": null,
-    "summary": "Nicolas Winding Refn returned to Cannes with “Her Private Hell” and continued his festival hot streak of dividing audiences. The provocateur’s latest feature is headlined by “Yellowjackets” and “Companion” star Sophie Thatcher and Charles Melton, the “Riverdale” actor who redefined his career at Cannes when Todd Haynes’ “May December” premiered in 2023. The late-night screening […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/news/nicolas-refn-her-private-hell-cannes-charles-melton-1236739274/",
-    "published_at": "2026-05-18T22:45:51+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 41.25872105381945,
+    "score": 41.27058390827546,
     "matched_keywords": []
   },
   {
@@ -365,7 +444,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.2277604056713,
+    "score": 39.19737788975694,
     "matched_keywords": []
   },
   {
@@ -381,23 +460,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.6820428130787,
-    "matched_keywords": []
-  },
-  {
-    "id": "06119bfe1b07909f",
-    "source": "Variety",
-    "country": "US",
-    "title": "‘Run Amok’ and Stanley Tucci’s ‘Big Night’ Among New Jersey’s Lighthouse Film Festival’s Line-Up – Film News in Brief",
-    "title_ko": null,
-    "summary": "The Patrick Wilson and Molly Ringwald-led “Run Amok,” Matthew Giaquinto’s “Red Flag” and Campbell Scott and Stanley Tucci’s “Big Night” are among the titles set to screen at the Lighthouse International Film Festival . The festival will take place June 10 through 14 on Long Beach Island, N.J. LIFF’s 2026 lineup includes a range of […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/news/film-news-in-brief-may-18-2026-1236750364/",
-    "published_at": "2026-05-18T21:15:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 39.681464109375,
+    "score": 37.651660297164355,
     "matched_keywords": []
   },
   {
@@ -413,7 +476,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.395584479745374,
+    "score": 37.36520196383102,
     "matched_keywords": []
   },
   {
@@ -429,7 +492,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.51161457233797,
+    "score": 36.481232056423615,
     "matched_keywords": []
   },
   {
@@ -445,7 +508,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.37648725752315,
+    "score": 36.3461047416088,
     "matched_keywords": []
   },
   {
@@ -461,23 +524,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 37.601602998263886,
-    "matched_keywords": []
-  },
-  {
-    "id": "96a6b8378ebb218e",
-    "source": "The Hollywood Reporter",
-    "country": "US",
-    "title": "‘Obsession’ Filmmaker Curry Barker Just Released His First Hit Movie. He’s Ready to Get Back to His Bedroom and Edit the Next One",
-    "title_ko": null,
-    "summary": "Over the past year, the Gen Z auteur has become the most in-demand 20-something filmmaker in Hollywood, with 'Texas Chainsaw Massacre' waiting in the wings and the Jason Blum, Roy Lee production 'Anything But Ghosts' already shot.",
-    "summary_ko": null,
-    "url": "https://www.hollywoodreporter.com/movies/movie-features/obsession-curry-barker-talks-horror-1236597764/",
-    "published_at": "2026-05-18T19:00:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 37.337714109375,
+    "score": 35.57122048234954,
     "matched_keywords": []
   },
   {
@@ -493,7 +540,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 35.761325220486114,
+    "score": 33.73094270457176,
     "matched_keywords": []
   },
   {
@@ -509,7 +556,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 35.70576966493056,
+    "score": 33.6753871490162,
     "matched_keywords": []
   },
   {
@@ -525,55 +572,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 35.70027197974537,
-    "matched_keywords": []
-  },
-  {
-    "id": "679f8d213efa187f",
-    "source": "The Hollywood Reporter",
-    "country": "US",
-    "title": "‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain — But He Disagrees",
-    "title_ko": null,
-    "summary": "Speaking with The Hollywood Reporter, the 30-year-old actor unpacks the debate surrounding his character's decisions, that \"What’s so bad about being with me?” scene and offers a surprising take on what might've happened if Bear had been honest with Nikki from the start.",
-    "summary_ko": null,
-    "url": "https://www.hollywoodreporter.com/movies/movie-features/obsession-bear-villain-michael-johnston-interview-1236598129/",
-    "published_at": "2026-05-18T17:04:23+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 35.3304803130787,
-    "matched_keywords": []
-  },
-  {
-    "id": "c1268581e91ad890",
-    "source": "The Hollywood Reporter",
-    "country": "US",
-    "title": "‘The Transformers: The Movie’ Getting Theatrical Re-Release From Fathom (Exclusive)",
-    "title_ko": null,
-    "summary": "Hasbro is leaning into the movie's cult status and notoriety for killing off major characters as part of a 40th anniversary \"Apology Tour.\"",
-    "summary_ko": null,
-    "url": "https://www.hollywoodreporter.com/movies/movie-news/the-transformers-the-movie-getting-theatrical-re-release-1236597128/",
-    "published_at": "2026-05-18T16:45:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 34.993964109375,
-    "matched_keywords": []
-  },
-  {
-    "id": "fbd0f44a05345cf2",
-    "source": "The Hollywood Reporter",
-    "country": "US",
-    "title": "From Cole’s to the Bradbury Building: How Andy Garcia Shot His Noir in Downtown Los Angeles",
-    "title_ko": null,
-    "summary": "‘Diamond’, which started as a homework assignment for his daughter, is Garcia’s 20-year passion project that is now debuting at the Cannes Film Festival. He held out to make sure he could shoot in the City of Angels.",
-    "summary_ko": null,
-    "url": "https://www.hollywoodreporter.com/movies/movie-features/how-andy-garcia-shot-his-noir-film-diamond-in-downtown-la-1236597987/",
-    "published_at": "2026-05-18T16:15:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 34.473130776041664,
+    "score": 33.66988946383101,
     "matched_keywords": []
   },
   {
@@ -589,7 +588,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 32.608547442708335,
+    "score": 30.57816492679398,
     "matched_keywords": []
   },
   {
@@ -605,7 +604,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 31.087714109374996,
+    "score": 29.057331593460646,
     "matched_keywords": []
   },
   {
@@ -621,7 +620,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 24.924519664930557,
+    "score": 22.894137149016203,
     "matched_keywords": []
   },
   {
@@ -637,7 +636,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 23.882852998263886,
+    "score": 21.852470482349535,
     "matched_keywords": []
   },
   {
@@ -653,7 +652,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 23.791996516782405,
+    "score": 21.76161400086805,
     "matched_keywords": []
   },
   {
@@ -669,7 +668,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 22.841186331597225,
+    "score": 20.81080381568287,
     "matched_keywords": []
   },
   {
@@ -685,7 +684,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 22.77116318344908,
+    "score": 20.740780667534718,
     "matched_keywords": []
   },
   {
@@ -701,7 +700,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 13.233258090856486,
+    "score": 11.202875574942128,
     "matched_keywords": []
   },
   {
@@ -717,7 +716,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 9.006984942708328,
+    "score": 6.976602426793982,
     "matched_keywords": []
   }
 ]

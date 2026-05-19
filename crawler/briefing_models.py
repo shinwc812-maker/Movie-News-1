@@ -101,6 +101,55 @@ class MarketSnapshot:
 
 
 @dataclass
+class OverseasWeekendMovie:
+    rank: int
+    title: str
+    gross: str
+    url: str = ""
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "OverseasWeekendMovie":
+        return cls(
+            rank=int(data.get("rank", 0)),
+            title=str(data.get("title") or ""),
+            gross=str(data.get("gross") or ""),
+            url=str(data.get("url") or ""),
+        )
+
+
+@dataclass
+class OverseasWeekendSnapshot:
+    weekend_label: str
+    fetched_at: datetime
+    movies: list[OverseasWeekendMovie] = field(default_factory=list)
+    error_message: Optional[str] = None
+
+    def to_dict(self) -> dict:
+        return {
+            "weekend_label": self.weekend_label,
+            "fetched_at": self.fetched_at.isoformat(),
+            "movies": [movie.to_dict() for movie in self.movies],
+            "error_message": self.error_message,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "OverseasWeekendSnapshot":
+        return cls(
+            weekend_label=str(data.get("weekend_label") or ""),
+            fetched_at=datetime.fromisoformat(data["fetched_at"]),
+            movies=[
+                OverseasWeekendMovie.from_dict(movie)
+                for movie in data.get("movies", [])
+                if isinstance(movie, dict)
+            ],
+            error_message=data.get("error_message"),
+        )
+
+
+@dataclass
 class ReservationMovie:
     rank: int
     title: str

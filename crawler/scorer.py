@@ -10,12 +10,13 @@ from typing import Optional
 
 import yaml
 
-from crawler.briefing_models import MarketSnapshot, ReservationSnapshot
+from crawler.briefing_models import MarketSnapshot, OverseasWeekendSnapshot, ReservationSnapshot
 from crawler.models import Article
 
 KEYWORDS_PATH = Path(__file__).resolve().parent.parent / "config" / "keywords.yaml"
 BOXOFFICE_RANK_BOOSTS = {1: 700, 2: 500, 3: 350, 4: 250, 5: 180}
 RESERVATION_RANK_BOOSTS = {1: 450, 2: 360, 3: 300, 4: 220, 5: 160}
+OVERSEAS_WEEKEND_RANK_BOOSTS = {1: 300, 2: 240, 3: 180, 4: 130, 5: 100}
 LOTTE_DISTRIBUTOR_BOOST = 1200
 COMMUNITY_MARKET_SCORE_FACTOR = 0.45
 ENGLISH_TITLE_CONTEXT_TERMS = (
@@ -169,12 +170,23 @@ def _reservation_matches(
     return _movie_signal_matches(article, reservation.movies, RESERVATION_RANK_BOOSTS)
 
 
+def _overseas_weekend_matches(
+    article: Article,
+    overseas_weekend: Optional[OverseasWeekendSnapshot],
+) -> list[tuple[str, float]]:
+    """Return matched Box Office Mojo weekend titles and weak score boosts."""
+    if overseas_weekend is None:
+        return []
+    return _movie_signal_matches(article, overseas_weekend.movies, OVERSEAS_WEEKEND_RANK_BOOSTS)
+
+
 def score_article(
     article: Article,
     keywords: dict,
     now: datetime,
     market: Optional[MarketSnapshot] = None,
     reservation: Optional[ReservationSnapshot] = None,
+    overseas_weekend: Optional[OverseasWeekendSnapshot] = None,
 ) -> tuple[int, float, list[str]]:
     """기사 하나의 (tier, score, matched_keywords)를 계산한다.
 
@@ -230,6 +242,7 @@ def score_article(
     for movie_title, boost in [
         *_boxoffice_matches(article, market),
         *_reservation_matches(article, reservation),
+        *_overseas_weekend_matches(article, overseas_weekend),
     ]:
         score += boost
         if movie_title.endswith(":롯데배급"):
@@ -246,6 +259,7 @@ def score_all(
     now: Optional[datetime] = None,
     market: Optional[MarketSnapshot] = None,
     reservation: Optional[ReservationSnapshot] = None,
+    overseas_weekend: Optional[OverseasWeekendSnapshot] = None,
 ) -> None:
     """모든 기사에 tier/score/matched_keywords를 in-place로 채운다."""
     if now is None:
@@ -258,6 +272,7 @@ def score_all(
             now,
             market=market,
             reservation=reservation,
+            overseas_weekend=overseas_weekend,
         )
         article.tier = tier
         article.score = score

@@ -1,6 +1,13 @@
 from datetime import datetime, timezone
 
-from crawler.briefing_models import BoxOfficeMovie, MarketSnapshot, ReservationMovie, ReservationSnapshot
+from crawler.briefing_models import (
+    BoxOfficeMovie,
+    MarketSnapshot,
+    OverseasWeekendMovie,
+    OverseasWeekendSnapshot,
+    ReservationMovie,
+    ReservationSnapshot,
+)
 from crawler.models import Article
 from crawler.scorer import score_all
 
@@ -202,3 +209,34 @@ def test_english_movie_title_matches_when_release_context_is_nearby():
     )
 
     assert "마이클" in article.matched_keywords
+
+
+def test_overseas_weekend_match_adds_weak_article_weight():
+    overseas = OverseasWeekendSnapshot(
+        weekend_label="May 15-17",
+        fetched_at=datetime(2026, 5, 19, tzinfo=timezone.utc),
+        movies=[
+            OverseasWeekendMovie(rank=1, title="Michael", gross="$26.1M"),
+        ],
+    )
+    matched = Article(
+        id="a1",
+        source="Variety",
+        country="US",
+        title="Michael Keeps Weekend Box Office Lead",
+    )
+    unmatched = Article(
+        id="a2",
+        source="Variety",
+        country="US",
+        title="Another Cannes Market Deal",
+    )
+
+    score_all(
+        [matched, unmatched],
+        now=datetime(2026, 5, 19, tzinfo=timezone.utc),
+        overseas_weekend=overseas,
+    )
+
+    assert matched.score > unmatched.score
+    assert "Michael" in matched.matched_keywords

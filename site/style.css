@@ -234,6 +234,11 @@ h1 {
   color: var(--green);
 }
 
+.source.policy {
+  background: #fff6e5;
+  color: #9a5b00;
+}
+
 .time,
 .kr-tag {
   color: var(--muted);
@@ -274,7 +279,8 @@ h1 {
 }
 
 .boxoffice-list,
-.reservation-list {
+.reservation-list,
+.overseas-weekend-list {
   list-style: none;
   padding: 10px;
   margin: 0;
@@ -282,7 +288,8 @@ h1 {
   gap: 6px;
 }
 
-.reservation-list li {
+.reservation-list li,
+.overseas-weekend-list li {
   display: grid;
   grid-template-columns: 28px 1fr auto;
   gap: 8px;
@@ -294,7 +301,8 @@ h1 {
   background: #f8fafc;
 }
 
-.reservation-list b {
+.reservation-list b,
+.overseas-weekend-list b {
   width: 24px;
   height: 24px;
   display: grid;
@@ -305,14 +313,24 @@ h1 {
   font-size: 0.78rem;
 }
 
-.reservation-list span {
+.reservation-list span,
+.overseas-weekend-list span,
+.overseas-weekend-list a {
   min-width: 0;
   font-weight: 800;
+  color: var(--ink);
+  text-decoration: none;
 }
 
-.reservation-list strong {
+.overseas-weekend-list a:hover {
+  color: var(--blue);
+}
+
+.reservation-list strong,
+.overseas-weekend-list strong {
   color: #344054;
   font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .boxoffice-list {

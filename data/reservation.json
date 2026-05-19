@@ -1,13 +1,13 @@
 {
-  "captured_at": "2026-05-19T07:08:48.277689+00:00",
+  "captured_at": "2026-05-19T09:05:46.861714+00:00",
   "top_movie": "군체",
-  "top_rate": "52.1%",
+  "top_rate": "53%",
   "movies": [
     {
       "rank": 1,
       "title": "군체",
-      "reservation_rate": 52.1,
-      "reservation_count": 179411,
+      "reservation_rate": 53.0,
+      "reservation_count": 182443,
       "english_title": "COLONY",
       "movie_code": "20252402",
       "distributors": [
@@ -25,8 +25,8 @@
     {
       "rank": 2,
       "title": "마이클",
-      "reservation_rate": 11.9,
-      "reservation_count": 40888,
+      "reservation_rate": 11.4,
+      "reservation_count": 39178,
       "english_title": "Michael",
       "movie_code": "20259626",
       "distributors": [
@@ -44,8 +44,8 @@
     {
       "rank": 3,
       "title": "와일드 씽",
-      "reservation_rate": 5.4,
-      "reservation_count": 18663,
+      "reservation_rate": 5.6,
+      "reservation_count": 19366,
       "english_title": "Wild Sing",
       "movie_code": "20248252",
       "distributors": [
@@ -63,8 +63,8 @@
     {
       "rank": 4,
       "title": "신극장판 은혼: 요시와라 대염상",
-      "reservation_rate": 4.3,
-      "reservation_count": 14969,
+      "reservation_rate": 4.5,
+      "reservation_count": 15383,
       "english_title": "Gintama: Yoshiwara in Flames",
       "movie_code": "20262975",
       "distributors": [
@@ -82,8 +82,8 @@
     {
       "rank": 5,
       "title": "악마는 프라다를 입는다 2",
-      "reservation_rate": 2.3,
-      "reservation_count": 8038,
+      "reservation_rate": 2.1,
+      "reservation_count": 7377,
       "english_title": "The Devil Wears Prada 2",
       "movie_code": "20259791",
       "distributors": [

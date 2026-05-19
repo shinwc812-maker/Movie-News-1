@@ -4,6 +4,8 @@ from crawler.briefing_models import (
     BoxOfficeMovie,
     CommunityReaction,
     MarketSnapshot,
+    OverseasWeekendMovie,
+    OverseasWeekendSnapshot,
     PolicyItem,
     ReservationMovie,
     ReservationSnapshot,
@@ -58,6 +60,28 @@ def test_market_snapshot_round_trips_datetime():
     assert restored.movies[0].distributors == ["롯데엔터테인먼트"]
     assert restored.movies[0].is_lotte_distributed is True
     assert restored.movies[0].tmdb_id == 123
+    assert restored.fetched_at.tzinfo is not None
+
+
+def test_overseas_weekend_snapshot_round_trips_movies():
+    snapshot = OverseasWeekendSnapshot(
+        weekend_label="May 15-17",
+        fetched_at=datetime(2026, 5, 19, tzinfo=timezone.utc),
+        movies=[
+            OverseasWeekendMovie(
+                rank=1,
+                title="Michael",
+                gross="$26.1M",
+                url="https://www.boxofficemojo.com/release/rl1/",
+            )
+        ],
+    )
+
+    restored = OverseasWeekendSnapshot.from_dict(snapshot.to_dict())
+
+    assert restored.weekend_label == "May 15-17"
+    assert restored.movies[0].title == "Michael"
+    assert restored.movies[0].gross == "$26.1M"
     assert restored.fetched_at.tzinfo is not None
 
 

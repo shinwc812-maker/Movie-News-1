@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from crawler.dedupe import dedupe
-from crawler.briefing_models import MarketSnapshot
+from crawler.briefing_models import MarketSnapshot, ReservationSnapshot
 from crawler.community import fetch_community_reactions, save_community_reactions
 from crawler.kobis import (
     fetch_reservation_snapshot,
@@ -19,6 +19,7 @@ from crawler.kobis import (
 from crawler.models import Article
 from crawler.policies import fetch_policy_items, save_policy_items
 from crawler.scorer import score_all
+from crawler.tmdb import enrich_market_with_tmdb, enrich_reservation_with_tmdb
 from crawler.translator import translate_articles
 from crawler.sources.base import Source
 from crawler.sources.cine21 import Cine21Source
@@ -119,26 +120,58 @@ def collect_market_snapshot() -> MarketSnapshot | None:
         return load_optional_market()
 
 
-def collect_reservation_snapshot() -> None:
-    snapshot = fetch_reservation_snapshot()
+def enrich_market_snapshot(market: MarketSnapshot | None) -> MarketSnapshot | None:
+    if market is None:
+        return None
+    api_key = os.environ.get("TMDB_API_KEY")
+    if not api_key:
+        return market
+    enrich_market_with_tmdb(market, api_key)
+    save_market_snapshot(market, MARKET_PATH)
+    print("TMDB market metadata enriched")
+    return market
+
+
+def enrich_reservation_snapshot(reservation: ReservationSnapshot | None) -> ReservationSnapshot | None:
+    if reservation is None:
+        return None
+    api_key = os.environ.get("TMDB_API_KEY")
+    if not api_key:
+        return reservation
+    enrich_reservation_with_tmdb(reservation, api_key)
+    save_reservation_snapshot(reservation, RESERVATION_PATH)
+    print("TMDB reservation metadata enriched")
+    return reservation
+
+
+def collect_reservation_snapshot() -> ReservationSnapshot:
+    snapshot = fetch_reservation_snapshot(os.environ.get("KOBIS_API_KEY"))
     save_reservation_snapshot(snapshot, RESERVATION_PATH)
     if snapshot.capture_failed:
         print("[warn] KOBIS reservation data unavailable", file=sys.stderr)
     else:
         print(f"KOBIS reservation top 5: {len(snapshot.movies)}")
+    return snapshot
 
 
-def community_search_terms(market: MarketSnapshot | None) -> list[str]:
+def community_search_terms(
+    market: MarketSnapshot | None,
+    reservation: ReservationSnapshot | None = None,
+) -> list[str]:
     terms: list[str] = []
     if market is not None:
         terms.extend(movie.title for movie in market.movies if movie.title)
+    if reservation is not None and not reservation.capture_failed:
+        terms.extend(movie.title for movie in reservation.movies if movie.title)
     terms.extend(["영화 관객 반응", "영화 후기"])
     return list(dict.fromkeys(terms))
 
 
 def main() -> None:
     market = collect_market_snapshot()
-    collect_reservation_snapshot()
+    market = enrich_market_snapshot(market)
+    reservation = collect_reservation_snapshot()
+    reservation = enrich_reservation_snapshot(reservation)
 
     articles = asyncio.run(gather_articles(SOURCES))
     print(f"Fetched {len(articles)} articles from {len(SOURCES)} sources")
@@ -146,7 +179,7 @@ def main() -> None:
     recent = filter_recent(articles)
     print(f"Within last {MAX_AGE_HOURS}h: {len(recent)} (filtered out {len(articles) - len(recent)})")
 
-    score_all(recent, market=market)
+    score_all(recent, market=market, reservation=reservation)
 
     deduped = dedupe(recent)
     print(f"Before dedupe: {len(recent)}, After dedupe: {len(deduped)}")
@@ -157,7 +190,7 @@ def main() -> None:
 
     save_articles(deduped)
 
-    community_reactions = fetch_community_reactions(community_search_terms(market))
+    community_reactions = fetch_community_reactions(community_search_terms(market, reservation))
     save_community_reactions(community_reactions, COMMUNITY_PATH)
     print(f"Community reactions: {len(community_reactions)}")
 

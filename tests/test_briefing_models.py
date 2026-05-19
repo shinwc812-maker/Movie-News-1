@@ -32,6 +32,10 @@ def test_market_snapshot_round_trips_datetime():
                 title="왕과 사는 남자",
                 audi_count=221380,
                 audi_acc=12435466,
+                distributors=["롯데엔터테인먼트"],
+                is_lotte_distributed=True,
+                tmdb_id=123,
+                tmdb_poster_path="/poster.jpg",
             )
         ],
     )
@@ -41,6 +45,9 @@ def test_market_snapshot_round_trips_datetime():
     assert restored.target_date == "20260517"
     assert restored.movies[0].title == "왕과 사는 남자"
     assert restored.movies[0].audi_count == 221380
+    assert restored.movies[0].distributors == ["롯데엔터테인먼트"]
+    assert restored.movies[0].is_lotte_distributed is True
+    assert restored.movies[0].tmdb_id == 123
     assert restored.fetched_at.tzinfo is not None
 
 
@@ -71,8 +78,12 @@ def test_community_and_policy_models_serialize_minimal_fields():
             ReservationMovie(
                 rank=1,
                 title="군체",
+                english_title="COLONY",
                 reservation_rate=46.5,
                 reservation_count=110465,
+                movie_code="20260001",
+                distributors=["롯데엔터테인먼트"],
+                is_lotte_distributed=True,
             )
         ],
     )
@@ -85,3 +96,6 @@ def test_community_and_policy_models_serialize_minimal_fields():
     assert "image_path" not in reservation_data
     assert restored_reservation.top_rate == "46.5%"
     assert restored_reservation.movies[0].reservation_count == 110465
+    assert restored_reservation.movies[0].english_title == "COLONY"
+    assert restored_reservation.movies[0].movie_code == "20260001"
+    assert restored_reservation.movies[0].is_lotte_distributed is True

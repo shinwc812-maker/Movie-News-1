@@ -10,11 +10,13 @@ from typing import Optional
 
 import yaml
 
-from crawler.briefing_models import MarketSnapshot
+from crawler.briefing_models import MarketSnapshot, ReservationSnapshot
 from crawler.models import Article
 
 KEYWORDS_PATH = Path(__file__).resolve().parent.parent / "config" / "keywords.yaml"
 BOXOFFICE_RANK_BOOSTS = {1: 700, 2: 500, 3: 350, 4: 250, 5: 180}
+RESERVATION_RANK_BOOSTS = {1: 450, 2: 360, 3: 300, 4: 220, 5: 160}
+LOTTE_DISTRIBUTOR_BOOST = 1200
 COMMUNITY_MARKET_SCORE_FACTOR = 0.45
 
 
@@ -57,27 +59,54 @@ def _normalize_title(text: str) -> str:
     return " ".join((text or "").casefold().split())
 
 
-def _boxoffice_matches(article: Article, market: Optional[MarketSnapshot]) -> list[tuple[str, float]]:
-    """Return matched KOBIS titles and their score boosts for an article."""
-    if market is None:
-        return []
+def _movie_signal_matches(
+    article: Article,
+    movies: list,
+    rank_boosts: dict[int, int],
+) -> list[tuple[str, float]]:
+    """Return matched KOBIS movie titles and their score boosts for an article."""
     text = _normalize_title(f"{article.title} {article.summary}")
     if not text:
         return []
 
     matches: list[tuple[str, float]] = []
-    for movie in market.movies:
-        title = movie.title.strip()
+    for movie in movies:
+        title = str(getattr(movie, "title", "") or "").strip()
         if not title:
             continue
-        if _normalize_title(title) not in text:
+        english_title = str(getattr(movie, "english_title", "") or "").strip()
+        candidates = [title]
+        if english_title:
+            candidates.append(english_title)
+        if not any(_normalize_title(candidate) in text for candidate in candidates):
             continue
-        boost = float(BOXOFFICE_RANK_BOOSTS.get(movie.rank, 0))
+        boost = float(rank_boosts.get(int(getattr(movie, "rank", 0) or 0), 0))
+        matched_title = title
+        if bool(getattr(movie, "is_lotte_distributed", False)):
+            boost += LOTTE_DISTRIBUTOR_BOOST
+            matched_title = f"{title}:롯데배급"
         if article.content_kind == "community":
             boost *= COMMUNITY_MARKET_SCORE_FACTOR
         if boost:
-            matches.append((title, boost))
+            matches.append((matched_title, boost))
     return matches
+
+
+def _boxoffice_matches(article: Article, market: Optional[MarketSnapshot]) -> list[tuple[str, float]]:
+    """Return matched box-office titles and their score boosts for an article."""
+    if market is None:
+        return []
+    return _movie_signal_matches(article, market.movies, BOXOFFICE_RANK_BOOSTS)
+
+
+def _reservation_matches(
+    article: Article,
+    reservation: Optional[ReservationSnapshot],
+) -> list[tuple[str, float]]:
+    """Return matched reservation-rate titles and their score boosts for an article."""
+    if reservation is None:
+        return []
+    return _movie_signal_matches(article, reservation.movies, RESERVATION_RANK_BOOSTS)
 
 
 def score_article(
@@ -85,6 +114,7 @@ def score_article(
     keywords: dict,
     now: datetime,
     market: Optional[MarketSnapshot] = None,
+    reservation: Optional[ReservationSnapshot] = None,
 ) -> tuple[int, float, list[str]]:
     """기사 하나의 (tier, score, matched_keywords)를 계산한다.
 
@@ -137,9 +167,16 @@ def score_article(
         if hours_to_zero and hours_old < hours_to_zero:
             score += max_bonus * (1 - hours_old / hours_to_zero)
 
-    for movie_title, boost in _boxoffice_matches(article, market):
+    for movie_title, boost in [
+        *_boxoffice_matches(article, market),
+        *_reservation_matches(article, reservation),
+    ]:
         score += boost
-        matched.append(movie_title)
+        if movie_title.endswith(":롯데배급"):
+            matched.append(movie_title.removesuffix(":롯데배급"))
+            matched.append("롯데배급")
+        else:
+            matched.append(movie_title)
 
     return tier, score, matched
 
@@ -148,13 +185,20 @@ def score_all(
     articles: list[Article],
     now: Optional[datetime] = None,
     market: Optional[MarketSnapshot] = None,
+    reservation: Optional[ReservationSnapshot] = None,
 ) -> None:
     """모든 기사에 tier/score/matched_keywords를 in-place로 채운다."""
     if now is None:
         now = datetime.now(timezone.utc)
     keywords = load_keywords()
     for article in articles:
-        tier, score, matched = score_article(article, keywords, now, market=market)
+        tier, score, matched = score_article(
+            article,
+            keywords,
+            now,
+            market=market,
+            reservation=reservation,
+        )
         article.tier = tier
         article.score = score
         article.matched_keywords = list(dict.fromkeys(matched))

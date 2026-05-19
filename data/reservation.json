@@ -1,37 +1,102 @@
 {
-  "captured_at": "2026-05-19T00:02:28.024574+00:00",
+  "captured_at": "2026-05-19T00:43:03.728410+00:00",
   "top_movie": "군체",
-  "top_rate": "48.7%",
+  "top_rate": "48.8%",
   "movies": [
     {
       "rank": 1,
       "title": "군체",
-      "reservation_rate": 48.7,
-      "reservation_count": 144089
+      "reservation_rate": 48.8,
+      "reservation_count": 145162,
+      "english_title": "COLONY",
+      "movie_code": "20252402",
+      "distributors": [
+        "(주)쇼박스",
+        "Showbox Corp"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     },
     {
       "rank": 2,
       "title": "마이클",
       "reservation_rate": 13.2,
-      "reservation_count": 38878
+      "reservation_count": 39191,
+      "english_title": "Michael",
+      "movie_code": "20259626",
+      "distributors": [
+        "유니버설픽쳐스인터내셔널 코리아(유)",
+        "Universal Pictures International Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     },
     {
       "rank": 3,
       "title": "와일드 씽",
       "reservation_rate": 6.1,
-      "reservation_count": 18165
+      "reservation_count": 18193,
+      "english_title": "Wild Sing",
+      "movie_code": "20248252",
+      "distributors": [
+        "롯데컬처웍스(주)롯데엔터테인먼트",
+        "Lotte Entertainment"
+      ],
+      "is_lotte_distributed": true,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     },
     {
       "rank": 4,
       "title": "신극장판 은혼: 요시와라 대염상",
       "reservation_rate": 4.6,
-      "reservation_count": 13716
+      "reservation_count": 13767,
+      "english_title": "Gintama: Yoshiwara in Flames",
+      "movie_code": "20262975",
+      "distributors": [
+        "(주)넥스트엔터테인먼트월드(NEW)",
+        "Next Entertainment World"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     },
     {
       "rank": 5,
       "title": "악마는 프라다를 입는다 2",
       "reservation_rate": 2.9,
-      "reservation_count": 8530
+      "reservation_count": 8617,
+      "english_title": "The Devil Wears Prada 2",
+      "movie_code": "20259791",
+      "distributors": [
+        "월트디즈니컴퍼니코리아 유한책임회사",
+        "The Walt Disney Company Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     }
   ],
   "capture_failed": false,

@@ -12,7 +12,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 2,
-    "score": 1141.9641562505788,
+    "score": 1141.2585919545718,
     "matched_keywords": [
       "Paramount",
       "Warner Bros"
@@ -31,9 +31,46 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 146.30443402835647,
+    "score": 505.5988697323495,
     "matched_keywords": [
-      "Lionsgate"
+      "Lionsgate",
+      "마이클"
+    ]
+  },
+  {
+    "id": "679f8d213efa187f",
+    "source": "The Hollywood Reporter",
+    "country": "US",
+    "title": "‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain — But He Disagrees",
+    "title_ko": null,
+    "summary": "Speaking with The Hollywood Reporter, the 30-year-old actor unpacks the debate surrounding his character's decisions, that \"What’s so bad about being with me?” scene and offers a surprising take on what might've happened if Bear had been honest with Nikki from the start.",
+    "summary_ko": null,
+    "url": "https://www.hollywoodreporter.com/movies/movie-features/obsession-bear-villain-michael-johnston-interview-1236598129/",
+    "published_at": "2026-05-18T17:04:23+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 402.02913593605325,
+    "matched_keywords": [
+      "마이클"
+    ]
+  },
+  {
+    "id": "724c669f5efc8cf7",
+    "source": "Variety",
+    "country": "US",
+    "title": "Netflix Snaps Up Cannes Critics Week’s Animated Feature ‘In Waves’ (EXCLUSIVE)",
+    "title_ko": null,
+    "summary": "In Netflix’s first major deal out of the 2026 Cannes Film Festival, the streamer has picked up global rights outside of France to breakout Critics Week opener “In Waves,” an adaptation of AJ Dungo’s 2019 graphic memoir. The animated romance directed by Phuong Mai Nguyen boasts a voice cast led by Oscar-nominated Stephanie Hsu and […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/news/netflix-buys-in-waves-cannes-1236753146/",
+    "published_at": "2026-05-19T00:07:05+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 3,
+    "score": 149.3676776027199,
+    "matched_keywords": [
+      "Netflix"
     ]
   },
   {
@@ -49,7 +86,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 143.42017476909723,
+    "score": 142.71461047309026,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -67,7 +104,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 142.8252673616898,
+    "score": 142.11970306568287,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -85,7 +122,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 142.21386689872685,
+    "score": 141.5083026027199,
     "matched_keywords": [
       "Netflix"
     ]
@@ -103,7 +140,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 141.9954062505787,
+    "score": 141.28984195457176,
     "matched_keywords": [
       "Neon"
     ]
@@ -121,7 +158,7 @@
     "image_url": "https://d3ihz389yobwks.cloudfront.net/1779068369906FoIBI.png",
     "content_kind": "official",
     "tier": 3,
-    "score": 126.68637847280093,
+    "score": 125.98081417679398,
     "matched_keywords": [
       "CJ ENM"
     ]
@@ -139,7 +176,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 49.241644676504635,
+    "score": 48.53608038049769,
     "matched_keywords": []
   },
   {
@@ -155,7 +192,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.908600695023146,
+    "score": 48.203036399016206,
     "matched_keywords": []
   },
   {
@@ -171,7 +208,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.662940972800925,
+    "score": 47.957376676793984,
     "matched_keywords": []
   },
   {
@@ -187,7 +224,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.63198032465278,
+    "score": 47.92641602864583,
     "matched_keywords": []
   },
   {
@@ -203,7 +240,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.086262732060185,
+    "score": 46.380698436053244,
     "matched_keywords": []
   },
   {
@@ -219,7 +256,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.08568402835648,
+    "score": 46.380119732349534,
     "matched_keywords": []
   },
   {
@@ -235,7 +272,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.79980439872685,
+    "score": 46.09424010271991,
     "matched_keywords": []
   },
   {
@@ -251,7 +288,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.24338078761574,
+    "score": 45.537816491608794,
     "matched_keywords": []
   },
   {
@@ -267,7 +304,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.915834491319444,
+    "score": 45.2102701953125,
     "matched_keywords": []
   },
   {
@@ -283,7 +320,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.780707176504635,
+    "score": 45.07514288049769,
     "matched_keywords": []
   },
   {
@@ -299,7 +336,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.716760417245375,
+    "score": 45.01119612123843,
     "matched_keywords": []
   },
   {
@@ -315,7 +352,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.60912152835648,
+    "score": 44.90355723234954,
     "matched_keywords": []
   },
   {
@@ -331,7 +368,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.00582291724537,
+    "score": 44.30025862123843,
     "matched_keywords": []
   },
   {
@@ -347,7 +384,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.74193402835648,
+    "score": 44.036369732349534,
     "matched_keywords": []
   },
   {
@@ -363,23 +400,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.359700232060185,
-    "matched_keywords": []
-  },
-  {
-    "id": "64756bc65050312a",
-    "source": "Variety",
-    "country": "US",
-    "title": "Carla Simón, Nicolás Méndez, Turbo Shorts Capture Spain’s New Wave International Lift-Off",
-    "title_ko": null,
-    "summary": "First, on Saturday night, Spaniard Rodrigo Sorogoyen’s “The Beloved,” starring Javier Bardem and Victoria Luengo, scored some of the best reviews of any competition title to date this year at the Cannes Film Festival. One evening later, on May 17, a long line formed around the corner of Cannes’ Olympia theater for the sold out […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/news/where-talent-ignites-carla-simon-yerai-cortes-1236752169/",
-    "published_at": "2026-05-18T17:58:06+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 43.667281250578704,
+    "score": 43.65413593605324,
     "matched_keywords": []
   },
   {
@@ -395,7 +416,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.16554513946759,
+    "score": 42.45998084346065,
     "matched_keywords": []
   },
   {
@@ -411,7 +432,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.10998958391203,
+    "score": 42.40442528790509,
     "matched_keywords": []
   },
   {
@@ -427,23 +448,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.10449189872685,
-    "matched_keywords": []
-  },
-  {
-    "id": "679f8d213efa187f",
-    "source": "The Hollywood Reporter",
-    "country": "US",
-    "title": "‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain — But He Disagrees",
-    "title_ko": null,
-    "summary": "Speaking with The Hollywood Reporter, the 30-year-old actor unpacks the debate surrounding his character's decisions, that \"What’s so bad about being with me?” scene and offers a surprising take on what might've happened if Bear had been honest with Nikki from the start.",
-    "summary_ko": null,
-    "url": "https://www.hollywoodreporter.com/movies/movie-features/obsession-bear-villain-michael-johnston-interview-1236598129/",
-    "published_at": "2026-05-18T17:04:23+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 42.734700232060185,
+    "score": 42.39892760271991,
     "matched_keywords": []
   },
   {
@@ -459,7 +464,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.39818402835648,
+    "score": 41.692619732349534,
     "matched_keywords": []
   },
   {
@@ -475,7 +480,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.877350695023146,
+    "score": 41.171786399016206,
     "matched_keywords": []
   },
   {
@@ -491,7 +496,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.83018634317129,
+    "score": 41.12462204716435,
     "matched_keywords": []
   },
   {
@@ -507,7 +512,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.823531250578704,
+    "score": 41.11796695457176,
     "matched_keywords": []
   },
   {
@@ -523,7 +528,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.79893634317129,
+    "score": 41.09337204716435,
     "matched_keywords": []
   },
   {
@@ -539,7 +544,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.61693402835648,
+    "score": 40.91136973234954,
     "matched_keywords": []
   },
   {
@@ -555,7 +560,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 40.01276736168982,
+    "score": 39.30720306568287,
     "matched_keywords": []
   },
   {
@@ -571,7 +576,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.491934028356475,
+    "score": 37.78636973234954,
     "matched_keywords": []
   },
   {
@@ -587,7 +592,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 32.32873958391204,
+    "score": 31.62317528790509,
     "matched_keywords": []
   },
   {
@@ -603,7 +608,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_30_29__6a06cb95885ba[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 32.32873958391204,
+    "score": 31.62317528790509,
     "matched_keywords": []
   },
   {
@@ -619,7 +624,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 31.287072917245375,
+    "score": 30.581508621238427,
     "matched_keywords": []
   },
   {
@@ -635,7 +640,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 31.19621643576389,
+    "score": 30.490652139756946,
     "matched_keywords": []
   },
   {
@@ -651,7 +656,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 30.2454062505787,
+    "score": 29.539841954571756,
     "matched_keywords": []
   },
   {
@@ -667,7 +672,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 30.17538310243055,
+    "score": 29.46981880642361,
     "matched_keywords": []
   },
   {
@@ -683,7 +688,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 20.637478009837963,
+    "score": 19.93191371383102,
     "matched_keywords": []
   },
   {
@@ -699,7 +704,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 16.411204861689814,
+    "score": 15.705640565682872,
     "matched_keywords": []
   },
   {
@@ -715,7 +720,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 6.229202546875001,
+    "score": 5.523638250868057,
     "matched_keywords": []
   },
   {
@@ -731,7 +736,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 5.202582176504627,
+    "score": 4.497017880497683,
     "matched_keywords": []
   },
   {
@@ -747,7 +752,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 4.338577546874994,
+    "score": 3.63301325086805,
     "matched_keywords": []
   }
 ]

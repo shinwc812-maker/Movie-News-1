@@ -79,6 +79,24 @@ $env:KOBIS_API_KEY="..."
 실시간 예매율은 KOBIS 공개 페이지를 수집 시점에 구조화 데이터로 읽어 TOP 5와 예매율을 표시합니다.
 예매율 수집이 실패해도 빌드는 실패하지 않고, 대시보드에는 예매율 데이터 없음 상태가 표시됩니다.
 
+KOBIS 영화 상세 API의 배급사 정보도 함께 조회합니다. 배급사가 `롯데컬처웍스(주)롯데엔터테인먼트`,
+`롯데엔터테인먼트`, `Lotte Entertainment`로 확인되는 박스오피스/예매율 TOP 5 작품은 기사 큐레이션과
+커뮤니티 검색에서 추가 가중치를 받습니다.
+
+### TMDB 연결 (선택)
+
+TMDB API 키가 있으면 KOBIS 박스오피스/예매율 TOP 5 영화명으로 TMDB 영화 검색을 실행해
+`data/market.json`과 `data/reservation.json`에 TMDB ID, 제목, 포스터 경로, 개요, 개봉일
+메타데이터를 보강합니다. 키가 없으면 이 단계는 건너뜁니다.
+
+```bash
+# macOS / Linux
+export TMDB_API_KEY=...
+
+# Windows PowerShell
+$env:TMDB_API_KEY="..."
+```
+
 ### 커뮤니티 확장 검색
 
 익스트림무비와 네이버카페 공개 검색은 별도 키 없이 동작합니다. Naver Search Open API와
@@ -152,6 +170,7 @@ KOBIS 박스오피스 API를 사용하려면 레포지토리에 시크릿을 등
 - `NAVER_CLIENT_ID`
 - `NAVER_CLIENT_SECRET`
 - `YOUTUBE_API_KEY`
+- `TMDB_API_KEY`
 
 Naver 시크릿이 없거나 인증에 실패해도 익스트림무비, 네이버카페 공개 검색, YouTube 키가 있으면
 YouTube 검색은 계속 동작합니다.

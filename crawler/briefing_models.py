@@ -24,6 +24,14 @@ class BoxOfficeMovie:
     audi_acc: int
     open_date: Optional[str] = None
     rank_change: Optional[str] = None
+    distributors: list[str] = field(default_factory=list)
+    is_lotte_distributed: bool = False
+    tmdb_id: Optional[int] = None
+    tmdb_title: Optional[str] = None
+    tmdb_original_title: Optional[str] = None
+    tmdb_overview: str = ""
+    tmdb_poster_path: Optional[str] = None
+    tmdb_release_date: Optional[str] = None
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -38,6 +46,18 @@ class BoxOfficeMovie:
             audi_acc=int(data.get("audi_acc") or 0),
             open_date=data.get("open_date"),
             rank_change=data.get("rank_change"),
+            distributors=[
+                str(distributor)
+                for distributor in data.get("distributors", [])
+                if distributor
+            ],
+            is_lotte_distributed=bool(data.get("is_lotte_distributed")),
+            tmdb_id=int(data["tmdb_id"]) if data.get("tmdb_id") else None,
+            tmdb_title=data.get("tmdb_title"),
+            tmdb_original_title=data.get("tmdb_original_title"),
+            tmdb_overview=str(data.get("tmdb_overview") or ""),
+            tmdb_poster_path=data.get("tmdb_poster_path"),
+            tmdb_release_date=data.get("tmdb_release_date"),
         )
 
 
@@ -76,6 +96,16 @@ class ReservationMovie:
     title: str
     reservation_rate: float
     reservation_count: int = 0
+    english_title: Optional[str] = None
+    movie_code: str = ""
+    distributors: list[str] = field(default_factory=list)
+    is_lotte_distributed: bool = False
+    tmdb_id: Optional[int] = None
+    tmdb_title: Optional[str] = None
+    tmdb_original_title: Optional[str] = None
+    tmdb_overview: str = ""
+    tmdb_poster_path: Optional[str] = None
+    tmdb_release_date: Optional[str] = None
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -87,6 +117,20 @@ class ReservationMovie:
             title=str(data.get("title") or ""),
             reservation_rate=float(data.get("reservation_rate") or 0.0),
             reservation_count=int(data.get("reservation_count") or 0),
+            english_title=data.get("english_title"),
+            movie_code=str(data.get("movie_code") or ""),
+            distributors=[
+                str(distributor)
+                for distributor in data.get("distributors", [])
+                if distributor
+            ],
+            is_lotte_distributed=bool(data.get("is_lotte_distributed")),
+            tmdb_id=int(data["tmdb_id"]) if data.get("tmdb_id") else None,
+            tmdb_title=data.get("tmdb_title"),
+            tmdb_original_title=data.get("tmdb_original_title"),
+            tmdb_overview=str(data.get("tmdb_overview") or ""),
+            tmdb_poster_path=data.get("tmdb_poster_path"),
+            tmdb_release_date=data.get("tmdb_release_date"),
         )
 
 

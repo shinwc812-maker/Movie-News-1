@@ -1,6 +1,6 @@
 {
   "target_date": "20260518",
-  "fetched_at": "2026-05-19T00:02:28.023057+00:00",
+  "fetched_at": "2026-05-19T00:43:03.726800+00:00",
   "movies": [
     {
       "rank": 1,
@@ -9,7 +9,18 @@
       "audi_count": 43653,
       "audi_acc": 691565,
       "open_date": "2026-05-13",
-      "rank_change": "0"
+      "rank_change": "0",
+      "distributors": [
+        "유니버설픽쳐스인터내셔널 코리아(유)",
+        "Universal Pictures International Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     },
     {
       "rank": 2,
@@ -18,7 +29,18 @@
       "audi_count": 14277,
       "audi_acc": 1458561,
       "open_date": "2026-04-29",
-      "rank_change": "1"
+      "rank_change": "1",
+      "distributors": [
+        "월트디즈니컴퍼니코리아 유한책임회사",
+        "The Walt Disney Company Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     },
     {
       "rank": 3,
@@ -27,7 +49,18 @@
       "audi_count": 8793,
       "audi_acc": 3178519,
       "open_date": "2026-04-08",
-      "rank_change": "1"
+      "rank_change": "1",
+      "distributors": [
+        "(주)쇼박스",
+        "Showbox Corp"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     },
     {
       "rank": 4,
@@ -36,7 +69,18 @@
       "audi_count": 3965,
       "audi_acc": 2851111,
       "open_date": "2026-03-18",
-      "rank_change": "1"
+      "rank_change": "1",
+      "distributors": [
+        "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
+        "Sony Pictures Releasing International"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     },
     {
       "rank": 5,
@@ -45,7 +89,18 @@
       "audi_count": 3642,
       "audi_acc": 1473169,
       "open_date": "2026-04-29",
-      "rank_change": "-3"
+      "rank_change": "-3",
+      "distributors": [
+        "유니버설픽쳐스인터내셔널 코리아(유)",
+        "Universal Pictures International Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
     }
   ],
   "error_message": null

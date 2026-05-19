@@ -1,9 +1,14 @@
 from datetime import date
 
+import httpx
+
+from crawler.briefing_models import ReservationMovie
 from crawler.kobis import (
     build_daily_boxoffice_url,
+    enrich_reservation_movies_with_kobis,
     kst_yesterday,
     parse_daily_boxoffice,
+    parse_movie_distributors,
     parse_reservation_movies,
     parse_reservation_top,
 )
@@ -57,6 +62,28 @@ def test_parse_daily_boxoffice_keeps_top_five_by_rank():
     assert movies[0].audi_count == 221380
 
 
+def test_parse_movie_distributors_marks_lotte_distribution():
+    payload = {
+        "movieInfoResult": {
+            "movieInfo": {
+                "companys": [
+                    {"companyNm": "제작사", "companyPartNm": "제작사"},
+                    {
+                        "companyNm": "롯데컬처웍스(주)롯데엔터테인먼트",
+                        "companyNmEn": "Lotte Entertainment",
+                        "companyPartNm": "배급사",
+                    },
+                ]
+            }
+        }
+    }
+
+    distributors, is_lotte = parse_movie_distributors(payload)
+
+    assert distributors == ["롯데컬처웍스(주)롯데엔터테인먼트", "Lotte Entertainment"]
+    assert is_lotte is True
+
+
 def test_parse_reservation_top_from_kobis_mobile_html():
     html = """
     <h3>실시간 예매율</h3>
@@ -108,6 +135,69 @@ def test_parse_reservation_movies_keeps_top_five_rates_from_kobis_mobile_html():
 
     assert [movie.rank for movie in movies] == [1, 2, 3, 4, 5]
     assert movies[0].title == "군체"
+    assert movies[0].english_title == "COLONY"
     assert movies[0].reservation_rate == 46.7
     assert movies[0].reservation_count == 125334
     assert movies[4].title == "악마는 프라다를 입는다 2"
+
+
+def test_enrich_reservation_movies_with_kobis_marks_lotte_distributor_from_wild_sing():
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path.endswith("/searchMovieList.json"):
+            query = request.url.params.get("movieNm")
+            if query == "와일드 씽":
+                return httpx.Response(200, json={"movieListResult": {"movieList": []}})
+            assert query == "Wild Sing"
+            return httpx.Response(
+                200,
+                json={
+                    "movieListResult": {
+                        "movieList": [
+                            {
+                                "movieCd": "20248252",
+                                "movieNm": "와일드 씽",
+                                "movieNmEn": "Wild Sing",
+                            }
+                        ]
+                    }
+                },
+            )
+        if request.url.path.endswith("/searchMovieInfo.json"):
+            assert request.url.params.get("movieCd") == "20248252"
+            return httpx.Response(
+                200,
+                json={
+                    "movieInfoResult": {
+                        "movieInfo": {
+                            "companys": [
+                                {
+                                    "companyNm": "롯데컬처웍스(주)롯데엔터테인먼트",
+                                    "companyNmEn": "Lotte Entertainment",
+                                    "companyPartNm": "배급사",
+                                }
+                            ]
+                        }
+                    }
+                },
+            )
+        raise AssertionError(f"Unexpected URL: {request.url}")
+
+    movies = [
+        ReservationMovie(
+            rank=3,
+            title="와일드 씽",
+            english_title="Wild Sing",
+            reservation_rate=7.4,
+            reservation_count=19775,
+        )
+    ]
+
+    enrich_reservation_movies_with_kobis(
+        movies,
+        httpx.Client(transport=httpx.MockTransport(handler)),
+        api_key="kobis-key",
+    )
+
+    assert movies[0].movie_code == "20248252"
+    assert movies[0].distributors == ["롯데컬처웍스(주)롯데엔터테인먼트", "Lotte Entertainment"]
+    assert movies[0].is_lotte_distributed is True

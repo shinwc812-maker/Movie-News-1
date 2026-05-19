@@ -25,7 +25,21 @@ KOBIS_DAILY_URL = (
     "https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/"
     "searchDailyBoxOfficeList.json"
 )
+KOBIS_MOVIE_INFO_URL = (
+    "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/"
+    "searchMovieInfo.json"
+)
+KOBIS_MOVIE_LIST_URL = (
+    "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/"
+    "searchMovieList.json"
+)
 KOBIS_RESERVATION_URL = "https://www.kobis.or.kr/kobis/mobile/main/findRealTicketList.do"
+LOTTE_DISTRIBUTOR_ALIASES = (
+    "롯데엔터테인먼트",
+    "롯데컬처웍스",
+    "롯데컬처웍스(주)롯데엔터테인먼트",
+    "Lotte Entertainment",
+)
 
 
 def kst_yesterday(today: Optional[date] = None) -> str:
@@ -84,6 +98,127 @@ def parse_daily_boxoffice(payload: dict) -> list[BoxOfficeMovie]:
     return sorted(movies, key=lambda movie: movie.rank)
 
 
+def parse_movie_distributors(payload: dict) -> tuple[list[str], bool]:
+    """Return distributor company names and whether a movie is Lotte-distributed."""
+    companies = payload.get("movieInfoResult", {}).get("movieInfo", {}).get("companys", [])
+    distributors: list[str] = []
+    seen: set[str] = set()
+    for company in companies:
+        if not isinstance(company, dict):
+            continue
+        part_name = str(company.get("companyPartNm") or "")
+        if "배급" not in part_name:
+            continue
+        for key in ("companyNm", "companyNmEn"):
+            name = str(company.get(key) or "").strip()
+            if name and name not in seen:
+                seen.add(name)
+                distributors.append(name)
+    distributor_text = " ".join(distributors).casefold()
+    is_lotte = any(alias.casefold() in distributor_text for alias in LOTTE_DISTRIBUTOR_ALIASES)
+    return distributors, is_lotte
+
+
+def _movie_search_candidates(payload: dict) -> list[dict]:
+    return [
+        item
+        for item in payload.get("movieListResult", {}).get("movieList", [])
+        if isinstance(item, dict) and item.get("movieCd")
+    ]
+
+
+def _best_movie_search_match(
+    candidates: list[dict],
+    title: str,
+    english_title: Optional[str],
+) -> Optional[str]:
+    normalized_title = _normalize_search_value(title)
+    normalized_english = _normalize_search_value(english_title or "")
+    for candidate in candidates:
+        if _normalize_search_value(str(candidate.get("movieNm") or "")) == normalized_title:
+            return str(candidate["movieCd"])
+    if normalized_english:
+        for candidate in candidates:
+            if _normalize_search_value(str(candidate.get("movieNmEn") or "")) == normalized_english:
+                return str(candidate["movieCd"])
+    return str(candidates[0]["movieCd"]) if candidates else None
+
+
+def _normalize_search_value(value: str) -> str:
+    return " ".join(value.casefold().split())
+
+
+def find_kobis_movie_code(
+    title: str,
+    english_title: Optional[str],
+    client: httpx.Client,
+    api_key: str,
+) -> Optional[str]:
+    """Find a KOBIS movie code by Korean title, falling back to English title."""
+    for query in (title, english_title):
+        if not query:
+            continue
+        response = client.get(
+            KOBIS_MOVIE_LIST_URL,
+            params={"key": api_key, "movieNm": query},
+        )
+        response.raise_for_status()
+        candidates = _movie_search_candidates(response.json())
+        match = _best_movie_search_match(candidates, title, english_title)
+        if match:
+            return match
+    return None
+
+
+def _fetch_movie_distributors(
+    movie_code: str,
+    client: httpx.Client,
+    api_key: str,
+) -> tuple[list[str], bool]:
+    response = client.get(
+        KOBIS_MOVIE_INFO_URL,
+        params={"key": api_key, "movieCd": movie_code},
+    )
+    response.raise_for_status()
+    return parse_movie_distributors(response.json())
+
+
+def enrich_movies_with_distributors(
+    movies: list[BoxOfficeMovie],
+    client: httpx.Client,
+    api_key: str,
+) -> None:
+    for movie in movies:
+        if not movie.movie_code:
+            continue
+        try:
+            distributors, is_lotte = _fetch_movie_distributors(movie.movie_code, client, api_key)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[warn] KOBIS movie detail failed for {movie.title} — {exc}", file=sys.stderr)
+            continue
+        movie.distributors = distributors
+        movie.is_lotte_distributed = is_lotte
+
+
+def enrich_reservation_movies_with_kobis(
+    movies: list[ReservationMovie],
+    client: httpx.Client,
+    api_key: str,
+) -> None:
+    for movie in movies:
+        try:
+            movie_code = find_kobis_movie_code(movie.title, movie.english_title, client, api_key)
+            if not movie_code:
+                continue
+            distributors, is_lotte = _fetch_movie_distributors(movie_code, client, api_key)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[warn] KOBIS reservation movie detail failed for {movie.title} — {exc}", file=sys.stderr)
+            continue
+        movie.movie_code = movie_code
+        movie.distributors = distributors
+        movie.is_lotte_distributed = is_lotte
+
+
 def fetch_market_snapshot(api_key: str, target_date: Optional[str] = None) -> MarketSnapshot:
     """Fetch yesterday's KOBIS daily box office."""
     target = target_date or kst_yesterday()
@@ -96,11 +231,13 @@ def fetch_market_snapshot(api_key: str, target_date: Optional[str] = None) -> Ma
         response = client.get(url)
         response.raise_for_status()
         payload = response.json()
+        movies = parse_daily_boxoffice(payload)
+        enrich_movies_with_distributors(movies, client, api_key)
 
     return MarketSnapshot(
         target_date=target,
         fetched_at=datetime.now(timezone.utc),
-        movies=parse_daily_boxoffice(payload),
+        movies=movies,
     )
 
 
@@ -140,7 +277,9 @@ def parse_reservation_movies(html: str, limit: int = 5) -> list[ReservationMovie
 
         title = _normalise_movie_title(lines[index + 1])
         cursor = index + 2
+        english_title = None
         if cursor < len(lines) and lines[cursor].startswith("("):
+            english_title = lines[cursor].strip("()").strip() or None
             cursor += 1
         while cursor < len(lines) and "예매율" not in lines[cursor]:
             cursor += 1
@@ -160,6 +299,7 @@ def parse_reservation_movies(html: str, limit: int = 5) -> list[ReservationMovie
                 title=title,
                 reservation_rate=_parse_float(rate_match.group(1)),
                 reservation_count=_parse_int(count_match.group(1) if count_match else 0),
+                english_title=english_title,
             )
         )
         index = cursor + 2
@@ -175,7 +315,7 @@ def parse_reservation_top(html: str) -> tuple[Optional[str], Optional[str]]:
     return None, None
 
 
-def fetch_reservation_snapshot() -> ReservationSnapshot:
+def fetch_reservation_snapshot(api_key: Optional[str] = None) -> ReservationSnapshot:
     """Fetch KOBIS live reservation-rate top five as structured data."""
     captured_at = datetime.now(timezone.utc)
     try:
@@ -187,7 +327,9 @@ def fetch_reservation_snapshot() -> ReservationSnapshot:
             response = client.get(KOBIS_RESERVATION_URL)
             response.raise_for_status()
             html = response.text
-        movies = parse_reservation_movies(html)
+            movies = parse_reservation_movies(html)
+            if api_key:
+                enrich_reservation_movies_with_kobis(movies, client, api_key)
         top_movie = movies[0].title if movies else None
         top_rate = f"{movies[0].reservation_rate:g}%" if movies else None
         return ReservationSnapshot(

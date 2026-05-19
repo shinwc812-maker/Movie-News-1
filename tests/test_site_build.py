@@ -68,6 +68,31 @@ def test_top_curation_items_caps_overseas_official_articles():
     assert [item["title"] for item in result] == ["US 1", "US 2", "KR 1", "KR 2"]
 
 
+def test_top_curation_items_prioritizes_market_and_korean_official_articles():
+    build = load_site_build_module()
+    official = [
+        {"title": "Generic Paramount", "score": 1200, "country": "US", "matched_keywords": ["Paramount"]},
+        {"title": "Michael box office", "score": 500, "country": "US", "matched_keywords": ["마이클"]},
+        {"title": "Local release interview", "score": 120, "country": "KR", "matched_keywords": []},
+        {"title": "Warner only", "score": 900, "country": "US", "matched_keywords": ["Warner Bros"]},
+    ]
+    community = [
+        {"title": "Community spike", "score": 5000, "country": "KR", "content_kind": "community"},
+    ]
+
+    result = build.top_curation_items(
+        official,
+        community,
+        market_titles=["마이클"],
+        reservation_titles=[],
+    )
+
+    titles = [item["title"] for item in result]
+    assert titles[:3] == ["Michael box office", "Generic Paramount", "Local release interview"]
+    assert "Warner only" not in titles
+    assert "Community spike" not in titles
+
+
 def test_select_official_feed_prefers_korean_and_caps_overseas():
     build = load_site_build_module()
     articles = [

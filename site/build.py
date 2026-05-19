@@ -19,6 +19,15 @@ DIST_DIR = ROOT / "dist"
 DIST_PATH = DIST_DIR / "index.html"
 KST = ZoneInfo("Asia/Seoul")
 LEGACY_COMMUNITY_SOURCES = {"익스트림무비"}
+CURATION_STRATEGIC_KEYWORDS = (
+    "롯데배급",
+    "롯데엔터테인먼트",
+    "롯데컬처웍스",
+    "Lotte Entertainment",
+    "Lotte Cultureworks",
+    "Paramount",
+    "파라마운트",
+)
 
 
 def load_json(path: Path, fallback):
@@ -162,24 +171,90 @@ def split_articles_by_kind(views: list[dict]) -> tuple[list[dict], list[dict]]:
     return official, community
 
 
+def _compact_match_text(text: str) -> str:
+    return "".join((text or "").casefold().split())
+
+
+def _matched_title(item: dict, titles: list[str]) -> bool:
+    matched = item.get("matched_keywords") or []
+    matched_compact = {_compact_match_text(keyword) for keyword in matched if keyword}
+    return any(_compact_match_text(title) in matched_compact for title in titles if title)
+
+
+def _has_strategic_keyword(item: dict) -> bool:
+    text = " ".join([str(item.get("title") or ""), *[str(keyword) for keyword in item.get("matched_keywords") or []]])
+    return any(keyword.casefold() in text.casefold() for keyword in CURATION_STRATEGIC_KEYWORDS)
+
+
+def _curation_candidate_allowed(
+    item: dict,
+    market_titles: list[str],
+    reservation_titles: list[str],
+) -> bool:
+    country = item.get("country")
+    is_overseas = bool(country) and country != "KR"
+    has_market_context = bool(market_titles or reservation_titles)
+    if not is_overseas or not has_market_context:
+        return True
+    return (
+        _matched_title(item, market_titles)
+        or _matched_title(item, reservation_titles)
+        or _has_strategic_keyword(item)
+    )
+
+
+def _curation_priority(item: dict, market_titles: list[str], reservation_titles: list[str]) -> float:
+    score = float(item.get("score") or 0)
+    if item.get("country") == "KR":
+        score += 900
+    if _matched_title(item, market_titles):
+        score += 1600
+    if _matched_title(item, reservation_titles):
+        score += 1300
+    if "롯데배급" in (item.get("matched_keywords") or []):
+        score += 1100
+    if _has_strategic_keyword(item):
+        score += 600
+    return score
+
+
 def top_curation_items(
     official_views: list[dict],
     community_views: list[dict] | None = None,
     limit: int = 5,
     max_overseas_official: int = 2,
+    market_titles: list[str] | None = None,
+    reservation_titles: list[str] | None = None,
 ) -> list[dict]:
+    market_titles = market_titles or []
+    reservation_titles = reservation_titles or []
     community_views = community_views or []
+    if market_titles or reservation_titles:
+        items = [
+            item
+            for item in official_views
+            if _curation_candidate_allowed(item, market_titles, reservation_titles)
+        ]
+        items = sorted(
+            items,
+            key=lambda item: _curation_priority(item, market_titles, reservation_titles),
+            reverse=True,
+        )
+    else:
+        items = list(official_views) + list(community_views)
+        items = sorted(items, key=lambda item: float(item.get("score") or 0), reverse=True)
     overseas_count = 0
-    capped_official: list[dict] = []
-    for item in official_views:
+    selected: list[dict] = []
+    for item in items:
         is_overseas = bool(item.get("country")) and item.get("country") != "KR"
         if is_overseas and overseas_count >= max_overseas_official:
             continue
         if is_overseas:
             overseas_count += 1
-        capped_official.append(item)
-    items = capped_official + list(community_views)
-    return sorted(items, key=lambda item: float(item.get("score") or 0), reverse=True)[:limit]
+        selected.append(item)
+        if len(selected) >= limit:
+            break
+    return selected
 
 
 def select_official_feed(
@@ -270,7 +345,12 @@ def build() -> None:
     policy_views = [to_policy_view(item, now) for item in raw_policies]
     boxoffice = market_views(raw_market)
     reservation = reservation_view(raw_reservation)
-    curation = top_curation_items(official_articles, community_views)
+    curation = top_curation_items(
+        official_articles,
+        community_views,
+        market_titles=[movie["title"] for movie in boxoffice],
+        reservation_titles=[movie["title"] for movie in reservation["movies"]],
+    )
 
     env = Environment(loader=FileSystemLoader(str(SITE_DIR)), autoescape=True)
     template = env.get_template("template.html.j2")

@@ -18,6 +18,23 @@ BOXOFFICE_RANK_BOOSTS = {1: 700, 2: 500, 3: 350, 4: 250, 5: 180}
 RESERVATION_RANK_BOOSTS = {1: 450, 2: 360, 3: 300, 4: 220, 5: 160}
 LOTTE_DISTRIBUTOR_BOOST = 1200
 COMMUNITY_MARKET_SCORE_FACTOR = 0.45
+ENGLISH_TITLE_CONTEXT_TERMS = (
+    "box office",
+    "no. 1",
+    "opening",
+    "release",
+    "released",
+    "theatrical",
+    "ticket",
+    "gross",
+    "exhibitor",
+    "박스오피스",
+    "관객",
+    "흥행",
+    "예매",
+    "개봉",
+)
+TITLE_QUOTE_CHARS = "'\"‘’“”"
 
 
 def load_keywords(path: Path = KEYWORDS_PATH) -> dict:
@@ -59,14 +76,57 @@ def _normalize_title(text: str) -> str:
     return " ".join((text or "").casefold().split())
 
 
+def _compact_title(text: str) -> str:
+    return re.sub(r"\s+", "", _normalize_title(text))
+
+
+def _is_ambiguous_english_candidate(candidate: str) -> bool:
+    if not candidate.isascii():
+        return False
+    words = re.findall(r"[A-Za-z0-9]+", candidate)
+    return len(words) == 1 and len(words[0]) <= 10
+
+
+def _english_candidate_matches(text: str, candidate: str) -> bool:
+    pattern = re.compile(rf"(?<![A-Za-z0-9]){re.escape(candidate)}(?![A-Za-z0-9])", re.IGNORECASE)
+    matches = list(pattern.finditer(text))
+    if not matches:
+        return False
+    if not _is_ambiguous_english_candidate(candidate):
+        return True
+
+    lowered = text.casefold()
+    context_terms = tuple(term.casefold() for term in ENGLISH_TITLE_CONTEXT_TERMS)
+    for match in matches:
+        before = text[match.start() - 1] if match.start() > 0 else ""
+        after = text[match.end()] if match.end() < len(text) else ""
+        if before in TITLE_QUOTE_CHARS and after in TITLE_QUOTE_CHARS:
+            return True
+        window = lowered[max(0, match.start() - 90): match.end() + 90]
+        if any(term in window for term in context_terms):
+            return True
+    return False
+
+
+def _movie_candidate_matches(raw_text: str, normalized_text: str, candidate: str) -> bool:
+    candidate = (candidate or "").strip()
+    if not candidate:
+        return False
+    if candidate.isascii():
+        return _english_candidate_matches(raw_text, candidate)
+    normalized_candidate = _normalize_title(candidate)
+    return normalized_candidate in normalized_text or _compact_title(candidate) in _compact_title(normalized_text)
+
+
 def _movie_signal_matches(
     article: Article,
     movies: list,
     rank_boosts: dict[int, int],
 ) -> list[tuple[str, float]]:
     """Return matched KOBIS movie titles and their score boosts for an article."""
-    text = _normalize_title(f"{article.title} {article.summary}")
-    if not text:
+    raw_text = f"{article.title} {article.summary}"
+    normalized_text = _normalize_title(raw_text)
+    if not normalized_text:
         return []
 
     matches: list[tuple[str, float]] = []
@@ -78,7 +138,7 @@ def _movie_signal_matches(
         candidates = [title]
         if english_title:
             candidates.append(english_title)
-        if not any(_normalize_title(candidate) in text for candidate in candidates):
+        if not any(_movie_candidate_matches(raw_text, normalized_text, candidate) for candidate in candidates):
             continue
         boost = float(rank_boosts.get(int(getattr(movie, "rank", 0) or 0), 0))
         matched_title = title

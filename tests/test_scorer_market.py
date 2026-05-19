@@ -144,3 +144,61 @@ def test_lotte_distributed_reservation_movie_gets_extra_article_weight():
     assert article.score > 0
     assert "와일드 씽" in article.matched_keywords
     assert "롯데배급" in article.matched_keywords
+
+
+def test_english_movie_title_does_not_match_person_name_without_release_context():
+    reservation = ReservationSnapshot(
+        captured_at=datetime(2026, 5, 18, tzinfo=timezone.utc),
+        movies=[
+            ReservationMovie(
+                rank=2,
+                title="마이클",
+                english_title="Michael",
+                reservation_rate=13.2,
+                reservation_count=35480,
+            )
+        ],
+    )
+    article = Article(
+        id="a1",
+        source="The Hollywood Reporter",
+        country="US",
+        title="‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain",
+    )
+
+    score_all(
+        [article],
+        now=datetime(2026, 5, 18, tzinfo=timezone.utc),
+        reservation=reservation,
+    )
+
+    assert "마이클" not in article.matched_keywords
+
+
+def test_english_movie_title_matches_when_release_context_is_nearby():
+    reservation = ReservationSnapshot(
+        captured_at=datetime(2026, 5, 18, tzinfo=timezone.utc),
+        movies=[
+            ReservationMovie(
+                rank=2,
+                title="마이클",
+                english_title="Michael",
+                reservation_rate=13.2,
+                reservation_count=35480,
+            )
+        ],
+    )
+    article = Article(
+        id="a1",
+        source="Variety",
+        country="US",
+        title="‘Michael’ Returns to No. 1 at the Box Office",
+    )
+
+    score_all(
+        [article],
+        now=datetime(2026, 5, 18, tzinfo=timezone.utc),
+        reservation=reservation,
+    )
+
+    assert "마이클" in article.matched_keywords

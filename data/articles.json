@@ -12,7 +12,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 2,
-    "score": 1140.0588612459492,
+    "score": 1136.942610133391,
     "matched_keywords": [
       "Paramount",
       "Warner Bros"
@@ -31,28 +31,28 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 504.3991390237269,
+    "score": 501.282887911169,
     "matched_keywords": [
       "Lionsgate",
       "마이클"
     ]
   },
   {
-    "id": "679f8d213efa187f",
-    "source": "The Hollywood Reporter",
+    "id": "48dbc2368d8bd005",
+    "source": "Deadline",
     "country": "US",
-    "title": "‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain — But He Disagrees",
+    "title": "‘Her Private Hell’ Review: Pino Donaggio’s Score Is The Secret Sauce In Nicolas Winding Refn’s Trippy Return To Cinema – Cannes Film Festival",
     "title_ko": null,
-    "summary": "Speaking with The Hollywood Reporter, the 30-year-old actor unpacks the debate surrounding his character's decisions, that \"What’s so bad about being with me?” scene and offers a surprising take on what might've happened if Bear had been honest with Nikki from the start.",
+    "summary": "Memories of cinema past and present come rushing at you like 2001’s Star Gate sequence in Nicolas Winding Refn’s Her Private Hell, his first return to cinema since 2016’s Neon Demon and his first project since dying for 20 minutes from a serious heart condition three years ago. Somehow, it was excluded from the Cannes […]",
     "summary_ko": null,
-    "url": "https://www.hollywoodreporter.com/movies/movie-features/obsession-bear-villain-michael-johnston-interview-1236598129/",
-    "published_at": "2026-05-18T17:04:23+00:00",
+    "url": "https://deadline.com/2026/05/her-private-hell-review-pino-donaggio-nicolas-winding-refn-sophie-thatcher-1236915259/",
+    "published_at": "2026-05-19T03:00:00+00:00",
     "image_url": null,
     "content_kind": "official",
-    "tier": 4,
-    "score": 400.8294052274306,
+    "tier": 3,
+    "score": 148.0537212445023,
     "matched_keywords": [
-      "마이클"
+      "Neon"
     ]
   },
   {
@@ -68,7 +68,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 148.1679468940972,
+    "score": 145.05169578153937,
     "matched_keywords": [
       "Netflix"
     ]
@@ -86,7 +86,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 141.5148797644676,
+    "score": 138.39862865190972,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -104,7 +104,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 140.9199723570602,
+    "score": 137.8037212445023,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -122,7 +122,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 140.3085718940972,
+    "score": 137.19232078153937,
     "matched_keywords": [
       "Netflix"
     ]
@@ -140,7 +140,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 140.09011124594906,
+    "score": 136.9738601333912,
     "matched_keywords": [
       "Neon"
     ]
@@ -158,10 +158,58 @@
     "image_url": "https://d3ihz389yobwks.cloudfront.net/1779068369906FoIBI.png",
     "content_kind": "official",
     "tier": 3,
-    "score": 124.78108346817129,
+    "score": 121.66483235561343,
     "matched_keywords": [
       "CJ ENM"
     ]
+  },
+  {
+    "id": "5ad2fd878524e12f",
+    "source": "Variety",
+    "country": "US",
+    "title": "Tiffany Haddish Gets Dramatic in Two Thrillers at the Cannes Market: ‘Audiences Are Desiring Real Storytelling’",
+    "title_ko": null,
+    "summary": "Tiffany Haddish has no interest in imposter syndrome. She speaks with the certainty of someone who has already envisioned and earned every room she walks into. At this year’s Cannes Film Festival, those rooms will be scattered across the Croisette, where she arrives with two character-driven thrillers on Highland Film Group’s sales slate — making […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/news/tiffany-haddish-two-thrillers-cannes-market-1236751631/",
+    "published_at": "2026-05-19T04:35:00+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.70302680005787,
+    "matched_keywords": []
+  },
+  {
+    "id": "ebd0e94c5d3a1105",
+    "source": "Variety",
+    "country": "US",
+    "title": "‘Words of Love’ Review: French Filmmaker Rudi Rosenberg Sensitively Captures the Chaos and Compassion of Family",
+    "title_ko": null,
+    "summary": "For his sophomore feature “Words of Love,” director Rudi Rosenberg makes a sensitive family drama about the fraught relationship between a mother and a daughter. Abigaëlle has never met her father and trying to make that connection becomes an obsession of hers — and while her mother, Erika, is supportive, she is also wary of […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/reviews/words-of-love-review-1236752165/",
+    "published_at": "2026-05-19T04:30:55+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.63213559635417,
+    "matched_keywords": []
+  },
+  {
+    "id": "4992257155319ce6",
+    "source": "Variety",
+    "country": "US",
+    "title": "‘Strawberries’ Review: Moroccan Women in Spain’s Agricultural Industry Are Exploited by a Callous System in a Potent but Flawed Drama",
+    "title_ko": null,
+    "summary": "Stories about exploited migrant workers have become something of a mainstay in international cinema, rightly so given the tenacious hold this form of indenture — or worse — continues to have on the Global North. They also make for good cinema: who doesn’t want to root for people oppressed by the henchmen of rampant capitalism? Laïla […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/reviews/strawberries-review-1236753230/",
+    "published_at": "2026-05-19T03:51:58+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.95592031857639,
+    "matched_keywords": []
   },
   {
     "id": "10697b5ee5993462",
@@ -176,7 +224,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.79989133854167,
+    "score": 45.683640225983794,
     "matched_keywords": []
   },
   {
@@ -192,7 +240,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.336349671875,
+    "score": 44.22009855931713,
     "matched_keywords": []
   },
   {
@@ -208,7 +256,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.00330569039352,
+    "score": 43.88705457783565,
     "matched_keywords": []
   },
   {
@@ -224,7 +272,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.757645968171296,
+    "score": 43.64139485561343,
     "matched_keywords": []
   },
   {
@@ -240,7 +288,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.72668532002315,
+    "score": 43.610434207465275,
     "matched_keywords": []
   },
   {
@@ -256,7 +304,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.180967727430556,
+    "score": 42.06471661487269,
     "matched_keywords": []
   },
   {
@@ -272,7 +320,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.18038902372685,
+    "score": 42.06413791116898,
     "matched_keywords": []
   },
   {
@@ -288,7 +336,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.89450939409722,
+    "score": 41.77825828153935,
     "matched_keywords": []
   },
   {
@@ -304,7 +352,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.33808578298611,
+    "score": 41.221834670428244,
     "matched_keywords": []
   },
   {
@@ -320,7 +368,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.010539486689815,
+    "score": 40.894288374131946,
     "matched_keywords": []
   },
   {
@@ -336,39 +384,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.875412171875,
-    "matched_keywords": []
-  },
-  {
-    "id": "f8dd1b6ac79ca66f",
-    "source": "Variety",
-    "country": "US",
-    "title": "Sebastian Stan and Renate Reinsve Shed Tears as Devastating Family Drama ‘Fjord’ Gets 10-Minute Cannes Premiere Standing Ovation",
-    "title_ko": null,
-    "summary": "The Cannes Film Festival flipped for “Fjord” on Monday night, as Cristian Mungiu’s heart-wrenching family legal saga starring Sebastian Stan and Renate Reinsve brought searing drama to the Grand Palais. A Romanian family with strict religious beliefs emigrates to a sleepy Norwegian village — watching as clashing social norms escalates into a living nightmare when […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/news/sebastian-stan-fjord-cannes-premeire-renate-reinsve-1236736780/",
-    "published_at": "2026-05-18T19:56:09+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 43.81146541261574,
-    "matched_keywords": []
-  },
-  {
-    "id": "6e45d6946c7ab27f",
-    "source": "Variety",
-    "country": "US",
-    "title": "Joshua and Rebecca Tickell Win Golden Globes Prize for Documentary at Cannes Film Festival",
-    "title_ko": null,
-    "summary": "Husband-and-wife filmmaking duo Joshua and Rebecca Tickell were jointly awarded the Golden Globes Prize for Documentary in Partnership With Artemis Rising Foundation during the 79th edition of the Cannes Film Festival. Their film “Groundswell” follows experts, Indigenous leaders and farmers across five continents, demonstrating how regenerative farming can restore soil health, draw carbon from the […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/global/joshua-rebecca-tickell-golden-globes-prize-for-documentary-1236752863/",
-    "published_at": "2026-05-18T19:49:57+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 43.70382652372685,
+    "score": 40.75916105931713,
     "matched_keywords": []
   },
   {
@@ -384,7 +400,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.10052791261574,
+    "score": 39.98427680005787,
     "matched_keywords": []
   },
   {
@@ -400,23 +416,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.83663902372685,
-    "matched_keywords": []
-  },
-  {
-    "id": "3772ac8122626128",
-    "source": "Variety",
-    "country": "US",
-    "title": "‘Obsession’ Star Inde Navarrette Delivers a Scary and Tragic Performance That Demands Awards Attention",
-    "title_ko": null,
-    "summary": "SPOILER ALERT: This article contains spoilers for “Obsession,” now playing in theaters. The best movie villains inspire empathy or understanding in an audience: Maybe they profoundly believe what they’re doing is right, or have been so damaged by their past that retribution seems like the only way out. Judging by trailers and posters alone, “Obsession” […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/opinion/obsession-inde-navarrette-awards-1236752366/",
-    "published_at": "2026-05-18T18:37:59+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 42.454405227430556,
+    "score": 39.72038791116898,
     "matched_keywords": []
   },
   {
@@ -432,7 +432,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.26025013483796,
+    "score": 38.1439990222801,
     "matched_keywords": []
   },
   {
@@ -448,7 +448,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.20469457928241,
+    "score": 38.088443466724534,
     "matched_keywords": []
   },
   {
@@ -464,7 +464,23 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.19919689409722,
+    "score": 38.08294578153935,
+    "matched_keywords": []
+  },
+  {
+    "id": "679f8d213efa187f",
+    "source": "The Hollywood Reporter",
+    "country": "US",
+    "title": "‘Obsession’ Star Michael Johnston Knows You Think Bear Is the Real Villain — But He Disagrees",
+    "title_ko": null,
+    "summary": "Speaking with The Hollywood Reporter, the 30-year-old actor unpacks the debate surrounding his character's decisions, that \"What’s so bad about being with me?” scene and offers a surprising take on what might've happened if Bear had been honest with Nikki from the start.",
+    "summary_ko": null,
+    "url": "https://www.hollywoodreporter.com/movies/movie-features/obsession-bear-villain-michael-johnston-interview-1236598129/",
+    "published_at": "2026-05-18T17:04:23+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 37.71315411487269,
     "matched_keywords": []
   },
   {
@@ -480,7 +496,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 40.49288902372685,
+    "score": 37.376637911168984,
     "matched_keywords": []
   },
   {
@@ -496,7 +512,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.97205569039352,
+    "score": 36.85580457783565,
     "matched_keywords": []
   },
   {
@@ -512,7 +528,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.92489133854167,
+    "score": 36.808640225983794,
     "matched_keywords": []
   },
   {
@@ -528,23 +544,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.918236245949075,
-    "matched_keywords": []
-  },
-  {
-    "id": "b9a67075969f60d3",
-    "source": "Deadline",
-    "country": "US",
-    "title": "Tim Burton Cannes-Bound To Pitch New Film – The Dish",
-    "title_ko": null,
-    "summary": "EXCLUSIVE: Tim Burton is hitting the Croisette this week and The Dish hears he will go there to take meetings with buyers on a top-secret movie project he wants to make. It’s an easy trip for Burton, who spends his time living in London now and shooting in Wednesday, the Addams Family spinoff series that […]",
-    "summary_ko": null,
-    "url": "https://deadline.com/2026/05/tim-burton-cannes-bound-to-pitch-new-film-the-dish-1236914588/",
-    "published_at": "2026-05-18T16:10:29+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 39.89364133854166,
+    "score": 36.8019851333912,
     "matched_keywords": []
   },
   {
@@ -560,7 +560,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.10747235706018,
+    "score": 34.99122124450231,
     "matched_keywords": []
   },
   {
@@ -576,7 +576,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 36.58663902372685,
+    "score": 33.470387911168984,
     "matched_keywords": []
   },
   {
@@ -592,7 +592,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 30.42344457928241,
+    "score": 27.307193466724534,
     "matched_keywords": []
   },
   {
@@ -608,7 +608,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_30_29__6a06cb95885ba[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 30.42344457928241,
+    "score": 27.307193466724534,
     "matched_keywords": []
   },
   {
@@ -624,7 +624,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 29.381777912615735,
+    "score": 26.26552680005787,
     "matched_keywords": []
   },
   {
@@ -640,7 +640,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 29.290921431134255,
+    "score": 26.17467031857639,
     "matched_keywords": []
   },
   {
@@ -656,7 +656,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 28.340111245949075,
+    "score": 25.223860133391206,
     "matched_keywords": []
   },
   {
@@ -672,7 +672,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 28.270088097800926,
+    "score": 25.15383698524306,
     "matched_keywords": []
   },
   {
@@ -688,7 +688,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 18.73218300520833,
+    "score": 15.615931892650464,
     "matched_keywords": []
   },
   {
@@ -704,7 +704,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 14.505909857060189,
+    "score": 11.389658744502313,
     "matched_keywords": []
   },
   {
@@ -720,7 +720,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 4.32390754224537,
+    "score": 1.207656429687498,
     "matched_keywords": []
   },
   {
@@ -736,23 +736,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 3.297287171875002,
-    "matched_keywords": []
-  },
-  {
-    "id": "9cd4023e1d949a80",
-    "source": "Rolling Stone",
-    "country": "US",
-    "title": "‘SNL’ Cold Open: Jeffrey Epstein’s Ghost Gives ‘Dear Friend’ Trump Some Bad News",
-    "title_ko": null,
-    "summary": "Will Ferrell plays the dead child sex offender, who comes to Trump during an Oval Office dream",
-    "summary_ko": null,
-    "url": "https://www.rollingstone.com/tv-movies/tv-movie-news/snl-cold-open-jeffrey-epsteins-ghost-dear-friend-trump-some-bad-news-1235563906/",
-    "published_at": "2026-05-17T04:12:46+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 2.4332825422453688,
+    "score": 0.18103605931712452,
     "matched_keywords": []
   }
 ]

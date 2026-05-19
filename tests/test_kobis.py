@@ -11,6 +11,7 @@ from crawler.kobis import (
     parse_movie_distributors,
     parse_reservation_movies,
     parse_reservation_top,
+    parse_seat_metrics_gviz,
 )
 
 
@@ -35,6 +36,8 @@ def test_parse_daily_boxoffice_keeps_top_five_by_rank():
                     "movieCd": "m1",
                     "movieNm": "왕과 사는 남자",
                     "audiCnt": "221,380",
+                    "audiInten": "-12,345",
+                    "audiChange": "-5.3",
                     "audiAcc": "12,435,466",
                 },
                 {
@@ -60,6 +63,48 @@ def test_parse_daily_boxoffice_keeps_top_five_by_rank():
     assert [m.rank for m in movies] == [1, 2]
     assert movies[0].title == "왕과 사는 남자"
     assert movies[0].audi_count == 221380
+    assert movies[0].audi_inten == -12345
+    assert movies[0].audi_change == -5.3
+
+
+def test_parse_seat_metrics_gviz_keeps_target_date_raw_values():
+    text = """
+    google.visualization.Query.setResponse({
+      "table": {
+        "rows": [
+          {"c": [
+            {"v": "마이클"},
+            {"v": "외화"},
+            {"v": "Date(2026,4,18)", "f": "2026-05-18"},
+            {"v": "Date(2026,4,13)", "f": "2026-05-13"},
+            {"v": 0.05400000000000001, "f": "0.05"},
+            {"v": 0.4745, "f": "0.47"},
+            {"v": 805113.0, "f": "805,113"},
+            {"v": 43646.0, "f": "43,646"},
+            {"v": 691558.0, "f": "691,558"}
+          ]},
+          {"c": [
+            {"v": "마이클"},
+            {"v": "외화"},
+            {"v": "Date(2026,4,17)", "f": "2026-05-17"},
+            {"v": "Date(2026,4,13)", "f": "2026-05-13"},
+            {"v": 0.1846},
+            {"v": 0.45},
+            {"v": 969307.0},
+            {"v": 178987.0},
+            {"v": 647873.0}
+          ]}
+        ]
+      }
+    });
+    """
+
+    metrics = parse_seat_metrics_gviz(text, "20260518")
+    metric = metrics[("마이클", "2026-05-13")]
+
+    assert metric.seat_count == 805113
+    assert metric.seat_share == 0.4745
+    assert metric.seat_sales_rate == 0.05400000000000001
 
 
 def test_parse_movie_distributors_marks_lotte_distribution():

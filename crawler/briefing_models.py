@@ -23,6 +23,11 @@ class BoxOfficeMovie:
     audi_count: int
     audi_acc: int
     open_date: Optional[str] = None
+    audi_inten: int = 0
+    audi_change: float = 0.0
+    seat_count: int = 0
+    seat_share: Optional[float] = None
+    seat_sales_rate: Optional[float] = None
     rank_change: Optional[str] = None
     distributors: list[str] = field(default_factory=list)
     is_lotte_distributed: bool = False
@@ -45,6 +50,11 @@ class BoxOfficeMovie:
             audi_count=int(data.get("audi_count") or 0),
             audi_acc=int(data.get("audi_acc") or 0),
             open_date=data.get("open_date"),
+            audi_inten=int(data.get("audi_inten") or 0),
+            audi_change=float(data.get("audi_change") or 0.0),
+            seat_count=int(data.get("seat_count") or 0),
+            seat_share=float(data["seat_share"]) if data.get("seat_share") is not None else None,
+            seat_sales_rate=float(data["seat_sales_rate"]) if data.get("seat_sales_rate") is not None else None,
             rank_change=data.get("rank_change"),
             distributors=[
                 str(distributor)

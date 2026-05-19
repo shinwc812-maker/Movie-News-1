@@ -1,6 +1,6 @@
 {
   "target_date": "20260518",
-  "fetched_at": "2026-05-19T01:33:21.689967+00:00",
+  "fetched_at": "2026-05-19T01:52:00.449548+00:00",
   "movies": [
     {
       "rank": 1,
@@ -9,6 +9,11 @@
       "audi_count": 43653,
       "audi_acc": 691565,
       "open_date": "2026-05-13",
+      "audi_inten": -135371,
+      "audi_change": -75.6,
+      "seat_count": 805113,
+      "seat_share": 0.4745,
+      "seat_sales_rate": 0.05421971822588879,
       "rank_change": "0",
       "distributors": [
         "유니버설픽쳐스인터내셔널 코리아(유)",
@@ -29,6 +34,11 @@
       "audi_count": 14277,
       "audi_acc": 1458561,
       "open_date": "2026-04-29",
+      "audi_inten": -25865,
+      "audi_change": -64.4,
+      "seat_count": 280683,
+      "seat_share": 0.1654,
+      "seat_sales_rate": 0.05086521093190539,
       "rank_change": "1",
       "distributors": [
         "월트디즈니컴퍼니코리아 유한책임회사",
@@ -49,6 +59,11 @@
       "audi_count": 8793,
       "audi_acc": 3178519,
       "open_date": "2026-04-08",
+      "audi_inten": -23340,
+      "audi_change": -72.6,
+      "seat_count": 182513,
+      "seat_share": 0.1076,
+      "seat_sales_rate": 0.04817739010371864,
       "rank_change": "1",
       "distributors": [
         "(주)쇼박스",
@@ -69,6 +84,11 @@
       "audi_count": 3965,
       "audi_acc": 2851111,
       "open_date": "2026-03-18",
+      "audi_inten": -9159,
+      "audi_change": -69.8,
+      "seat_count": 72573,
+      "seat_share": 0.0428,
+      "seat_sales_rate": 0.054634643738029294,
       "rank_change": "1",
       "distributors": [
         "소니픽쳐스엔터테인먼트코리아주식회사극장배급지점",
@@ -89,6 +109,11 @@
       "audi_count": 3642,
       "audi_acc": 1473169,
       "open_date": "2026-04-29",
+      "audi_inten": -55425,
+      "audi_change": -93.8,
+      "seat_count": 78194,
+      "seat_share": 0.0461,
+      "seat_sales_rate": 0.04657646366728905,
       "rank_change": "-3",
       "distributors": [
         "유니버설픽쳐스인터내셔널 코리아(유)",

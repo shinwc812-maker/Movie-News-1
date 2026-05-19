@@ -288,7 +288,6 @@ h1 {
   gap: 6px;
 }
 
-.boxoffice-list li,
 .reservation-list li {
   display: grid;
   grid-template-columns: 28px 1fr auto;
@@ -301,7 +300,6 @@ h1 {
   background: #f8fafc;
 }
 
-.boxoffice-list b,
 .reservation-list b {
   width: 24px;
   height: 24px;
@@ -313,16 +311,87 @@ h1 {
   font-size: 0.78rem;
 }
 
-.boxoffice-list span,
 .reservation-list span {
   min-width: 0;
   font-weight: 800;
 }
 
-.boxoffice-list strong,
 .reservation-list strong {
   color: #344054;
   font-size: 0.82rem;
+}
+
+.boxoffice-list {
+  gap: 8px;
+}
+
+.boxoffice-list li {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #e5e9f0;
+  border-radius: 7px;
+  padding: 10px;
+  background: #f8fafc;
+}
+
+.boxoffice-title {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+.boxoffice-title b {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #111827;
+  color: #fff;
+  font-size: 0.78rem;
+}
+
+.boxoffice-title span {
+  min-width: 0;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.boxoffice-title em {
+  color: #667085;
+  font-style: normal;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.boxoffice-metrics {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 36px;
+}
+
+.boxoffice-metrics div {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.boxoffice-metrics dt {
+  margin: 0;
+  color: #667085;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.boxoffice-metrics dd {
+  margin: 0;
+  color: #344054;
+  font-size: 0.78rem;
+  font-weight: 750;
+  line-height: 1.35;
 }
 
 .capture-empty {
@@ -431,7 +500,7 @@ footer {
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 19일 10:34 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 19일 10:54 (KST)</p>
   </div>
   <div class="lang-toggle" aria-label="언어 선택">
     <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
@@ -441,8 +510,8 @@ footer {
 
 <main class="dashboard">
   <section class="kpis" aria-label="핵심 지표">
-    <div class="kpi"><span>전일 1위</span><strong>마이클</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>군체 146,731명 (49%)</strong></div>
+    <div class="kpi"><span>전일 1위</span><strong>마이클 (43,653명 / ▼135,371명)</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>군체 147,409명 (49.1%)</strong></div>
     <div class="kpi"><span>공식 기사</span><strong>9건</strong></div>
     <div class="kpi"><span>커뮤니티 반응</span><strong>32건</strong></div>
   </section>
@@ -510,7 +579,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · 맥스무비</span>
-      <span class="time">23시간 전</span>
+      <span class="time">1일 전</span>
     </div>
 
     <p class="summary">
@@ -579,33 +648,73 @@ footer {
         <ol class="boxoffice-list">
 
           <li>
-            <b>1</b>
-            <span>마이클</span>
-            <strong>43,653명</strong>
+            <div class="boxoffice-title">
+              <b>1</b>
+              <span>1위: 마이클 <em>(개봉 2026-05-13)</em></span>
+            </div>
+            <dl class="boxoffice-metrics">
+              <div><dt>관객수</dt><dd>43,653명</dd></div>
+              <div><dt>전일대비</dt><dd>▼135,371명 (-75.6%) / 누적관객수: 691,565명</dd></div>
+
+              <div><dt>좌석</dt><dd>좌석수: 805,113석 / 좌점율: 47.4% / 좌판율: 5.42%</dd></div>
+
+            </dl>
           </li>
 
           <li>
-            <b>2</b>
-            <span>악마는 프라다를 입는다 2</span>
-            <strong>14,277명</strong>
+            <div class="boxoffice-title">
+              <b>2</b>
+              <span>2위: 악마는 프라다를 입는다 2 <em>(개봉 2026-04-29)</em></span>
+            </div>
+            <dl class="boxoffice-metrics">
+              <div><dt>관객수</dt><dd>14,277명</dd></div>
+              <div><dt>전일대비</dt><dd>▼25,865명 (-64.4%) / 누적관객수: 1,458,561명</dd></div>
+
+              <div><dt>좌석</dt><dd>좌석수: 280,683석 / 좌점율: 16.5% / 좌판율: 5.09%</dd></div>
+
+            </dl>
           </li>
 
           <li>
-            <b>3</b>
-            <span>살목지</span>
-            <strong>8,793명</strong>
+            <div class="boxoffice-title">
+              <b>3</b>
+              <span>3위: 살목지 <em>(개봉 2026-04-08)</em></span>
+            </div>
+            <dl class="boxoffice-metrics">
+              <div><dt>관객수</dt><dd>8,793명</dd></div>
+              <div><dt>전일대비</dt><dd>▼23,340명 (-72.6%) / 누적관객수: 3,178,519명</dd></div>
+
+              <div><dt>좌석</dt><dd>좌석수: 182,513석 / 좌점율: 10.8% / 좌판율: 4.82%</dd></div>
+
+            </dl>
           </li>
 
           <li>
-            <b>4</b>
-            <span>프로젝트 헤일메리</span>
-            <strong>3,965명</strong>
+            <div class="boxoffice-title">
+              <b>4</b>
+              <span>4위: 프로젝트 헤일메리 <em>(개봉 2026-03-18)</em></span>
+            </div>
+            <dl class="boxoffice-metrics">
+              <div><dt>관객수</dt><dd>3,965명</dd></div>
+              <div><dt>전일대비</dt><dd>▼9,159명 (-69.8%) / 누적관객수: 2,851,111명</dd></div>
+
+              <div><dt>좌석</dt><dd>좌석수: 72,573석 / 좌점율: 4.3% / 좌판율: 5.46%</dd></div>
+
+            </dl>
           </li>
 
           <li>
-            <b>5</b>
-            <span>슈퍼 마리오 갤럭시</span>
-            <strong>3,642명</strong>
+            <div class="boxoffice-title">
+              <b>5</b>
+              <span>5위: 슈퍼 마리오 갤럭시 <em>(개봉 2026-04-29)</em></span>
+            </div>
+            <dl class="boxoffice-metrics">
+              <div><dt>관객수</dt><dd>3,642명</dd></div>
+              <div><dt>전일대비</dt><dd>▼55,425명 (-93.8%) / 누적관객수: 1,473,169명</dd></div>
+
+              <div><dt>좌석</dt><dd>좌석수: 78,194석 / 좌점율: 4.6% / 좌판율: 4.66%</dd></div>
+
+            </dl>
           </li>
 
         </ol>
@@ -622,31 +731,31 @@ footer {
           <li>
             <b>1</b>
             <span>군체</span>
-            <strong>146,731명 (49%)</strong>
+            <strong>147,409명 (49.1%)</strong>
           </li>
 
           <li>
             <b>2</b>
             <span>마이클</span>
-            <strong>39,807명 (13.3%)</strong>
+            <strong>39,990명 (13.3%)</strong>
           </li>
 
           <li>
             <b>3</b>
             <span>와일드 씽</span>
-            <strong>18,220명 (6.1%)</strong>
+            <strong>18,235명 (6.1%)</strong>
           </li>
 
           <li>
             <b>4</b>
             <span>신극장판 은혼: 요시와라 대염상</span>
-            <strong>13,876명 (4.6%)</strong>
+            <strong>13,921명 (4.6%)</strong>
           </li>
 
           <li>
             <b>5</b>
             <span>악마는 프라다를 입는다 2</span>
-            <strong>8,553명 (2.9%)</strong>
+            <strong>8,583명 (2.9%)</strong>
           </li>
 
         </ol>
@@ -670,7 +779,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · 맥스무비</span>
-      <span class="time">23시간 전</span>
+      <span class="time">1일 전</span>
     </div>
 
     <p class="summary">
@@ -841,7 +950,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94040690" target="_blank" rel="noopener">크리스티안 문주 ‘피오르드’, 문화 전쟁을 다룬 잠재적 황금종려상 경쟁작 [칸]</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">18분 전</span>
+      <span class="time">39분 전</span>
     </div>
     <p class="summary">지금까지 다소 약하다는 평가를 받아온 올해 칸 경쟁 부문에서, 여기 황금종려상 유력 후보로 떠오를 수 있는 영화가 등장했다. 무엇보다도 이 작품은 ...</p>
     <p class="mood">중립적 반응</p>
@@ -851,7 +960,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94040715" target="_blank" rel="noopener">&lt;마스터즈 오브 유니버스&gt; 메인 예고편 공개</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">19분 전</span>
+      <span class="time">40분 전</span>
     </div>
     <p class="summary">&#34;다들 저를 모르겠지만, 전 여러분을 알아요&#34; 우주를 지배할 새로운 히어로 등장! ⚔️ [마스터즈 오브 유니버스] 대망의 메인 예고편 공개! #마스터즈오...</p>
     <p class="mood">중립적 반응</p>
@@ -861,7 +970,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94040694" target="_blank" rel="noopener">&#39;군체&#39; 로튼토마토 호평 리뷰 2개 추가</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">29분 전</span>
+      <span class="time">50분 전</span>
     </div>
     <p class="summary">혹평(녹색)들이 이어지다가, 호평도 2개 추가됐네요. 현재까지 등록된 리뷰 수는 총 7입니다. 앞으로 호평이 좀 더 쌓여야 신선도 프레시가 될 텐데.. ...</p>
     <p class="mood">호불호가 함께 보임</p>
@@ -871,19 +980,19 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94040672" target="_blank" rel="noopener">HBO [해리 포터] 지니 역 아역 배우 교체</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">39분 전</span>
+      <span class="time">1시간 전</span>
     </div>
     <p class="summary">[해리 포터]의 시즌 2에서 지니 위즐리 역 배우 교체. 아역 배우 그레이시 코크런, 시리즈에서 하차. HBO의 [해리 포터] 시리즈는 아역 배우 그레이시 ...</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://theqoo.net/movie/4208647791" target="_blank" rel="noopener">CGV &lt;악마는 프라다를 입는다2&gt; 4주차 엽서세트 증정 이벤트</a>
+    <a class="title" href="https://theqoo.net/movie/4208722687" target="_blank" rel="noopener">롯데시네마 &lt;악마는 프라다를 입는다2&gt; 4주차 엽서세트 증정 이벤트</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 더쿠</span>
 
     </div>
-    <p class="summary">1</p>
+
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
@@ -893,8 +1002,28 @@ footer {
       <span class="source community">커뮤니티 · 더쿠</span>
 
     </div>
-    <p class="summary">2</p>
+    <p class="summary">3</p>
     <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2548682" target="_blank" rel="noopener">마이클북미서는 잘 나가네</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 디시인사이드</span>
+
+    </div>
+    <p class="summary">한국에서는 생각보다 흥행이 미미해서 망한줄 심지어 전기영화 보헤미안도 이겼음오리지널 티켓2026.05.19 10:47</p>
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2548673" target="_blank" rel="noopener">나도마이클</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 디시인사이드</span>
+
+    </div>
+    <p class="summary">보면서 그냥 뮤비 보는게 좋겠는데 해서 뮤비 봤는데 뭔가 그 영화관에서 들었던 느낌이 아니라서 아쉬움 노래는 개 좋은데 - dc official App오리지널 티켓2026.05.19 10:39</p>
+    <p class="mood">긍정 반응 우세</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
@@ -918,23 +1047,13 @@ footer {
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2548632" target="_blank" rel="noopener">마이클은 영화가 구려도 만족스러움</a>
+    <a class="title" href="https://gall.dcinside.com/board/view/?id=bts&amp;no=15504960" target="_blank" rel="noopener">군체재밌을까?</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">노래 ㅆㅅㅌㅊ 그리고 돌포 ㅆㅅㅌㅊ 개오빙이 입장에선 너무 만족하고옴오리지널 티켓2026.05.19 10:11</p>
+    <p class="summary">호프도 둘다 평이 극과극이라방탄소년단2026.05.19 10:32</p>
     <p class="mood">긍정 반응 우세</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2548613" target="_blank" rel="noopener">아니 그래서마이클별로임?</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 디시인사이드</span>
-
-    </div>
-    <p class="summary">mj 잘 모르면 걍 안보는게 낫나오리지널 티켓2026.05.19 10:04</p>
-    <p class="mood">우려/부정 반응 우세</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
@@ -944,16 +1063,6 @@ footer {
 
     </div>
     <p class="summary">시그니처를 주면 포스터가 없고 포스터를 주면 시그니처가 없네...군체그정도 체급 아닙니다오리지널 티켓2026.05.19 10:12</p>
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2548618" target="_blank" rel="noopener">군체평 ㅂㄹ네</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 디시인사이드</span>
-
-    </div>
-    <p class="summary">역시 스토리는 진부한가봄 그래도 액션은 볼만하다네 볼까말까오리지널 티켓2026.05.19 10:05</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article>

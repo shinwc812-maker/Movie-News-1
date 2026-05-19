@@ -102,6 +102,34 @@ def test_reservation_view_returns_structured_top_five_without_image_asset():
     assert "image_url" not in view
 
 
+def test_market_views_formats_audience_delta_and_seat_metrics():
+    build = load_site_build_module()
+    views = build.market_views(
+        {
+            "movies": [
+                {
+                    "rank": 1,
+                    "title": "마이클",
+                    "open_date": "2026-05-13",
+                    "audi_count": 43653,
+                    "audi_inten": -135371,
+                    "audi_change": -75.6,
+                    "audi_acc": 691565,
+                    "seat_count": 805113,
+                    "seat_share": 0.4745,
+                    "seat_sales_rate": 43653 / 805113,
+                }
+            ]
+        }
+    )
+
+    assert views[0]["top_label"] == "마이클 (43,653명 / ▼135,371명)"
+    assert views[0]["audi_delta"] == "▼135,371명 (-75.6%)"
+    assert views[0]["seat_count"] == "805,113"
+    assert views[0]["seat_share"] == "47.4%"
+    assert views[0]["seat_sales_rate"] == "5.42%"
+
+
 def test_strip_trailing_whitespace_removes_generated_blank_padding():
     build = load_site_build_module()
 

@@ -32,6 +32,11 @@ def test_market_snapshot_round_trips_datetime():
                 title="왕과 사는 남자",
                 audi_count=221380,
                 audi_acc=12435466,
+                audi_inten=-12345,
+                audi_change=-5.3,
+                seat_count=805113,
+                seat_share=0.4745,
+                seat_sales_rate=0.0542,
                 distributors=["롯데엔터테인먼트"],
                 is_lotte_distributed=True,
                 tmdb_id=123,
@@ -45,6 +50,11 @@ def test_market_snapshot_round_trips_datetime():
     assert restored.target_date == "20260517"
     assert restored.movies[0].title == "왕과 사는 남자"
     assert restored.movies[0].audi_count == 221380
+    assert restored.movies[0].audi_inten == -12345
+    assert restored.movies[0].audi_change == -5.3
+    assert restored.movies[0].seat_count == 805113
+    assert restored.movies[0].seat_share == 0.4745
+    assert restored.movies[0].seat_sales_rate == 0.0542
     assert restored.movies[0].distributors == ["롯데엔터테인먼트"]
     assert restored.movies[0].is_lotte_distributed is True
     assert restored.movies[0].tmdb_id == 123

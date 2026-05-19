@@ -45,10 +45,39 @@ def format_rate(value) -> str:
         return "0%"
 
 
+def format_ratio_percent(value, digits: int = 1) -> str:
+    try:
+        ratio = float(value)
+    except (TypeError, ValueError):
+        return ""
+    return f"{ratio * 100:.{digits}f}%"
+
+
 def format_reservation_label(count, rate) -> str:
     formatted_count = format_int(count)
     formatted_rate = format_rate(rate)
     return f"{formatted_count}명 ({formatted_rate})"
+
+
+def format_audience_delta(count, rate=None, include_rate: bool = True) -> str:
+    try:
+        delta = int(count)
+    except (TypeError, ValueError):
+        delta = 0
+    if delta > 0:
+        label = f"▲{format_int(delta)}명"
+    elif delta < 0:
+        label = f"▼{format_int(abs(delta))}명"
+    else:
+        label = "0명"
+    if not include_rate:
+        return label
+    try:
+        rate_value = float(rate)
+    except (TypeError, ValueError):
+        rate_value = 0.0
+    sign = "+" if rate_value > 0 else ""
+    return f"{label} ({sign}{rate_value:.1f}%)"
 
 
 def relative_time(published_iso: str | None, now: datetime) -> str:
@@ -168,16 +197,30 @@ def select_official_feed(
 
 def market_views(market: dict) -> list[dict]:
     movies = market.get("movies") if isinstance(market, dict) else []
-    return [
-        {
+    views: list[dict] = []
+    for movie in movies or []:
+        if not isinstance(movie, dict):
+            continue
+        audi_inten = movie.get("audi_inten")
+        audi_change = movie.get("audi_change")
+        seat_count = int(movie.get("seat_count") or 0)
+        view = {
             "rank": movie.get("rank"),
             "title": movie.get("title", ""),
+            "open_date": movie.get("open_date", ""),
             "audi_count": format_int(movie.get("audi_count")),
             "audi_acc": format_int(movie.get("audi_acc")),
+            "audi_delta": format_audience_delta(audi_inten, audi_change),
+            "audi_delta_short": format_audience_delta(audi_inten, include_rate=False),
+            "seat_count": format_int(seat_count),
+            "seat_share": format_ratio_percent(movie.get("seat_share")),
+            "seat_sales_rate": format_ratio_percent(movie.get("seat_sales_rate"), digits=2),
+            "seat_metrics_available": seat_count > 0,
             "rank_change": movie.get("rank_change") or "",
         }
-        for movie in movies or []
-    ]
+        view["top_label"] = f"{view['title']} ({view['audi_count']}명 / {view['audi_delta_short']})"
+        views.append(view)
+    return views
 
 
 def reservation_view(reservation: dict) -> dict:

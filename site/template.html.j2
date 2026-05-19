@@ -59,7 +59,7 @@
 
 <main class="dashboard">
   <section class="kpis" aria-label="핵심 지표">
-    <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].title }}{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].top_label }}{% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_label }}{% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>공식 기사</span><strong>{{ total_official }}건</strong></div>
     <div class="kpi"><span>커뮤니티 반응</span><strong>{{ total_community }}건</strong></div>
@@ -92,9 +92,19 @@
         <ol class="boxoffice-list">
           {% for movie in boxoffice %}
           <li>
-            <b>{{ movie.rank }}</b>
-            <span>{{ movie.title }}</span>
-            <strong>{{ movie.audi_count }}명</strong>
+            <div class="boxoffice-title">
+              <b>{{ movie.rank }}</b>
+              <span>{{ movie.rank }}위: {{ movie.title }}{% if movie.open_date %} <em>(개봉 {{ movie.open_date }})</em>{% endif %}</span>
+            </div>
+            <dl class="boxoffice-metrics">
+              <div><dt>관객수</dt><dd>{{ movie.audi_count }}명</dd></div>
+              <div><dt>전일대비</dt><dd>{{ movie.audi_delta }} / 누적관객수: {{ movie.audi_acc }}명</dd></div>
+              {% if movie.seat_metrics_available %}
+              <div><dt>좌석</dt><dd>좌석수: {{ movie.seat_count }}석 / 좌점율: {{ movie.seat_share }} / 좌판율: {{ movie.seat_sales_rate }}</dd></div>
+              {% else %}
+              <div><dt>좌석</dt><dd>좌석 데이터 없음</dd></div>
+              {% endif %}
+            </dl>
           </li>
           {% endfor %}
         </ol>

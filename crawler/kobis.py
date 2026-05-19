@@ -1,6 +1,8 @@
 """KOBIS market data and reservation-rate helpers."""
 
+from dataclasses import dataclass
 import json
+import os
 import re
 import sys
 from datetime import date, datetime, timedelta, timezone
@@ -34,12 +36,27 @@ KOBIS_MOVIE_LIST_URL = (
     "searchMovieList.json"
 )
 KOBIS_RESERVATION_URL = "https://www.kobis.or.kr/kobis/mobile/main/findRealTicketList.do"
+BOXOFFICE_SEAT_METRICS_URL = (
+    "https://docs.google.com/spreadsheets/d/"
+    "1ogNkFYkM9Ba3kxLTxNW9-T9DDjxcqZMwwKpp82H40Sw/"
+    "gviz/tq?tqx=out:json&gid=1561413076"
+)
 LOTTE_DISTRIBUTOR_ALIASES = (
     "롯데엔터테인먼트",
     "롯데컬처웍스",
     "롯데컬처웍스(주)롯데엔터테인먼트",
     "Lotte Entertainment",
 )
+
+
+@dataclass
+class SeatMetrics:
+    title: str
+    open_date: str
+    target_date: str
+    seat_count: int
+    seat_share: Optional[float]
+    seat_sales_rate: Optional[float]
 
 
 def kst_yesterday(today: Optional[date] = None) -> str:
@@ -61,7 +78,10 @@ def _parse_int(raw: object) -> int:
     try:
         return int(text)
     except ValueError:
-        return 0
+        try:
+            return int(float(text))
+        except ValueError:
+            return 0
 
 
 def _parse_float(raw: object) -> float:
@@ -72,6 +92,18 @@ def _parse_float(raw: object) -> float:
         return float(text)
     except ValueError:
         return 0.0
+
+
+def _parse_optional_float(raw: object) -> Optional[float]:
+    if raw is None:
+        return None
+    text = str(raw).replace(",", "").strip()
+    if not text:
+        return None
+    try:
+        return float(text)
+    except ValueError:
+        return None
 
 
 def parse_daily_boxoffice(payload: dict) -> list[BoxOfficeMovie]:
@@ -92,10 +124,108 @@ def parse_daily_boxoffice(payload: dict) -> list[BoxOfficeMovie]:
                 open_date=item.get("openDt") or None,
                 audi_count=_parse_int(item.get("audiCnt")),
                 audi_acc=_parse_int(item.get("audiAcc")),
+                audi_inten=_parse_int(item.get("audiInten")),
+                audi_change=_parse_float(item.get("audiChange")),
                 rank_change=str(item.get("rankInten") or item.get("rankOldAndNew") or ""),
             )
         )
     return sorted(movies, key=lambda movie: movie.rank)
+
+
+def _normalise_metric_title(title: str) -> str:
+    return re.sub(r"[\W_]+", "", title or "", flags=re.UNICODE).casefold()
+
+
+def _extract_gviz_response(text: str) -> dict:
+    match = re.search(r"setResponse\((.*)\)\s*;?\s*$", text or "", re.S)
+    if not match:
+        return {}
+    try:
+        return json.loads(match.group(1))
+    except json.JSONDecodeError:
+        return {}
+
+
+def _cell_value(cells: list[dict | None], index: int):
+    if index >= len(cells) or not isinstance(cells[index], dict):
+        return None
+    cell = cells[index]
+    return cell.get("v")
+
+
+def _cell_date(cells: list[dict | None], index: int) -> str:
+    if index >= len(cells) or not isinstance(cells[index], dict):
+        return ""
+    cell = cells[index]
+    if cell.get("f"):
+        return str(cell["f"])
+    value = str(cell.get("v") or "")
+    match = re.fullmatch(r"Date\((\d{4}),(\d{1,2}),(\d{1,2})\)", value)
+    if not match:
+        return value
+    year, month, day = (int(part) for part in match.groups())
+    return date(year, month + 1, day).isoformat()
+
+
+def parse_seat_metrics_gviz(text: str, target_date: str) -> dict[tuple[str, str], SeatMetrics]:
+    """Parse seat metrics from the public Google Sheet GViz response."""
+    target_iso = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:]}"
+    payload = _extract_gviz_response(text)
+    rows = payload.get("table", {}).get("rows", [])
+    metrics: dict[tuple[str, str], SeatMetrics] = {}
+    for row in rows:
+        cells = row.get("c", []) if isinstance(row, dict) else []
+        if not isinstance(cells, list):
+            continue
+        row_date = _cell_date(cells, 2)
+        if row_date != target_iso:
+            continue
+        title = str(_cell_value(cells, 0) or "").strip()
+        open_date = _cell_date(cells, 3)
+        if not title:
+            continue
+        seat_count = _parse_int(_cell_value(cells, 6))
+        seat_sales_rate = _parse_optional_float(_cell_value(cells, 4))
+        seat_share = _parse_optional_float(_cell_value(cells, 5))
+        metrics[(_normalise_metric_title(title), open_date)] = SeatMetrics(
+            title=title,
+            open_date=open_date,
+            target_date=row_date,
+            seat_count=seat_count,
+            seat_share=seat_share,
+            seat_sales_rate=seat_sales_rate,
+        )
+    return metrics
+
+
+def enrich_movies_with_seat_metrics(
+    movies: list[BoxOfficeMovie],
+    client: httpx.Client,
+    target_date: str,
+) -> None:
+    url = os.environ.get("BOXOFFICE_SEAT_METRICS_URL", BOXOFFICE_SEAT_METRICS_URL)
+    response = client.get(url)
+    response.raise_for_status()
+    metrics = parse_seat_metrics_gviz(response.text, target_date)
+    for movie in movies:
+        metric = metrics.get((_normalise_metric_title(movie.title), movie.open_date or ""))
+        if metric is None:
+            metric = next(
+                (
+                    candidate
+                    for key, candidate in metrics.items()
+                    if key[0] == _normalise_metric_title(movie.title)
+                ),
+                None,
+            )
+        if metric is None:
+            continue
+        movie.seat_count = metric.seat_count
+        movie.seat_share = metric.seat_share
+        if metric.seat_count > 0:
+            movie.seat_sales_rate = movie.audi_count / metric.seat_count
+        else:
+            movie.seat_sales_rate = metric.seat_sales_rate
 
 
 def parse_movie_distributors(payload: dict) -> tuple[list[str], bool]:
@@ -232,6 +362,10 @@ def fetch_market_snapshot(api_key: str, target_date: Optional[str] = None) -> Ma
         response.raise_for_status()
         payload = response.json()
         movies = parse_daily_boxoffice(payload)
+        try:
+            enrich_movies_with_seat_metrics(movies, client, target)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[warn] KOBIS seat metrics fetch failed — {exc}", file=sys.stderr)
         enrich_movies_with_distributors(movies, client, api_key)
 
     return MarketSnapshot(

@@ -6,7 +6,7 @@
     "url": "https://extmovie.com/movietalk/94040690",
     "excerpt": "지금까지 다소 약하다는 평가를 받아온 올해 칸 경쟁 부문에서, 여기 황금종려상 유력 후보로 떠오를 수 있는 영화가 등장했다. 무엇보다도 이 작품은 ...",
     "mood_summary": "중립적 반응",
-    "published_at": "2026-05-19T01:15:51.596806+00:00",
+    "published_at": "2026-05-19T01:15:38.048359+00:00",
     "image_url": "https://extmovie.com/files/thumbnails/690/040/094/480x270.crop.jpg?t=1779153509",
     "matched_keywords": [],
     "content_kind": "community"
@@ -18,7 +18,7 @@
     "url": "https://extmovie.com/movietalk/94040715",
     "excerpt": "\"다들 저를 모르겠지만, 전 여러분을 알아요\" 우주를 지배할 새로운 히어로 등장! ⚔️ [마스터즈 오브 유니버스] 대망의 메인 예고편 공개! #마스터즈오...",
     "mood_summary": "중립적 반응",
-    "published_at": "2026-05-19T01:14:51.597371+00:00",
+    "published_at": "2026-05-19T01:14:38.048944+00:00",
     "image_url": "https://extmovie.com/files/thumbnails/715/040/094/480x270.crop.jpg?t=1779153317",
     "matched_keywords": [],
     "content_kind": "community"
@@ -30,7 +30,7 @@
     "url": "https://extmovie.com/movietalk/94040694",
     "excerpt": "혹평(녹색)들이 이어지다가, 호평도 2개 추가됐네요. 현재까지 등록된 리뷰 수는 총 7입니다. 앞으로 호평이 좀 더 쌓여야 신선도 프레시가 될 텐데.. ...",
     "mood_summary": "호불호가 함께 보임",
-    "published_at": "2026-05-19T01:04:51.597894+00:00",
+    "published_at": "2026-05-19T01:04:38.049355+00:00",
     "image_url": "https://extmovie.com/files/thumbnails/694/040/094/480x270.crop.jpg?t=1779152997",
     "matched_keywords": [],
     "content_kind": "community"
@@ -42,17 +42,17 @@
     "url": "https://extmovie.com/movietalk/94040672",
     "excerpt": "[해리 포터]의 시즌 2에서 지니 위즐리 역 배우 교체. 아역 배우 그레이시 코크런, 시리즈에서 하차. HBO의 [해리 포터] 시리즈는 아역 배우 그레이시 ...",
     "mood_summary": "중립적 반응",
-    "published_at": "2026-05-19T00:54:51.598702+00:00",
+    "published_at": "2026-05-19T00:54:38.049722+00:00",
     "image_url": "https://extmovie.com/files/thumbnails/672/040/094/480x270.crop.jpg?t=1779152100",
     "matched_keywords": [],
     "content_kind": "community"
   },
   {
-    "id": "0ac736276c127292",
+    "id": "b0a340edda209ce5",
     "source": "더쿠",
-    "title": "CGV <악마는 프라다를 입는다2> 4주차 엽서세트 증정 이벤트",
-    "url": "https://theqoo.net/movie/4208647791",
-    "excerpt": "1",
+    "title": "롯데시네마 <악마는 프라다를 입는다2> 4주차 엽서세트 증정 이벤트",
+    "url": "https://theqoo.net/movie/4208722687",
+    "excerpt": "",
     "mood_summary": "중립적 반응",
     "published_at": null,
     "image_url": null,
@@ -66,12 +66,40 @@
     "source": "더쿠",
     "title": "와일드씽 내일 싸다구한다",
     "url": "https://theqoo.net/movie/4208700057",
-    "excerpt": "2",
+    "excerpt": "3",
     "mood_summary": "중립적 반응",
     "published_at": null,
     "image_url": null,
     "matched_keywords": [
       "와일드 씽"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "4be6ce6eb44f1260",
+    "source": "디시인사이드",
+    "title": "마이클북미서는 잘 나가네",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548682",
+    "excerpt": "한국에서는 생각보다 흥행이 미미해서 망한줄 심지어 전기영화 보헤미안도 이겼음오리지널 티켓2026.05.19 10:47",
+    "mood_summary": "중립적 반응",
+    "published_at": null,
+    "image_url": null,
+    "matched_keywords": [
+      "마이클"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "4c40f84005e7a474",
+    "source": "디시인사이드",
+    "title": "나도마이클",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548673",
+    "excerpt": "보면서 그냥 뮤비 보는게 좋겠는데 해서 뮤비 봤는데 뭔가 그 영화관에서 들었던 느낌이 아니라서 아쉬움 노래는 개 좋은데 - dc official App오리지널 티켓2026.05.19 10:39",
+    "mood_summary": "긍정 반응 우세",
+    "published_at": null,
+    "image_url": null,
+    "matched_keywords": [
+      "마이클"
     ],
     "content_kind": "community"
   },
@@ -104,30 +132,16 @@
     "content_kind": "community"
   },
   {
-    "id": "8b197eb371bf89e3",
+    "id": "15f45addf538154c",
     "source": "디시인사이드",
-    "title": "마이클은 영화가 구려도 만족스러움",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548632",
-    "excerpt": "노래 ㅆㅅㅌㅊ 그리고 돌포 ㅆㅅㅌㅊ 개오빙이 입장에선 너무 만족하고옴오리지널 티켓2026.05.19 10:11",
+    "title": "군체재밌을까?",
+    "url": "https://gall.dcinside.com/board/view/?id=bts&no=15504960",
+    "excerpt": "호프도 둘다 평이 극과극이라방탄소년단2026.05.19 10:32",
     "mood_summary": "긍정 반응 우세",
     "published_at": null,
     "image_url": null,
     "matched_keywords": [
-      "마이클"
-    ],
-    "content_kind": "community"
-  },
-  {
-    "id": "45d586c8900e9364",
-    "source": "디시인사이드",
-    "title": "아니 그래서마이클별로임?",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548613",
-    "excerpt": "mj 잘 모르면 걍 안보는게 낫나오리지널 티켓2026.05.19 10:04",
-    "mood_summary": "우려/부정 반응 우세",
-    "published_at": null,
-    "image_url": null,
-    "matched_keywords": [
-      "마이클"
+      "군체"
     ],
     "content_kind": "community"
   },
@@ -174,16 +188,16 @@
     "content_kind": "community"
   },
   {
-    "id": "7bcc693b17ce1498",
+    "id": "3e39815068600e67",
     "source": "디시인사이드",
-    "title": "호프는 발연기 vs군체는 잠오고 지루",
-    "url": "https://gall.dcinside.com/board/view/?id=drama_new3&no=23110097",
-    "excerpt": "그래도 잠 오는것 보단 ㅋㅋㅋ 발연기가 낫겠다기타 국내 드라마2026.05.19 09:31",
+    "title": "롯시 <악마는 프라다를 입는다2> 4주차 증정",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548670",
+    "excerpt": "오리지널 티켓2026.05.19 10:39",
     "mood_summary": "중립적 반응",
     "published_at": null,
     "image_url": null,
     "matched_keywords": [
-      "군체"
+      "악마는 프라다를 입는다 2"
     ],
     "content_kind": "community"
   },
@@ -221,20 +235,6 @@
     "title": "악마는 프라다를 입는다2본 게이 있냐? 볼만함??",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=chzzk&no=10697813",
     "excerpt": "ㅈㄱㄴ치지직2026.05.18 14:47",
-    "mood_summary": "중립적 반응",
-    "published_at": null,
-    "image_url": null,
-    "matched_keywords": [
-      "악마는 프라다를 입는다 2"
-    ],
-    "content_kind": "community"
-  },
-  {
-    "id": "50aaf9b7b7496273",
-    "source": "디시인사이드",
-    "title": "메가박스 ‘악마는 프라다를 입는다2’ 4주차 증정",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2546487",
-    "excerpt": "오리지널 티켓2026.05.18 14:27",
     "mood_summary": "중립적 반응",
     "published_at": null,
     "image_url": null,
@@ -300,6 +300,20 @@
     "content_kind": "community"
   },
   {
+    "id": "8baa6d3c28705ec8",
+    "source": "디시인사이드",
+    "title": "와일드씽ㅋㅋ인형 춤추려는거 놀라서 받아주는 배우들ㅋㅋㅋ",
+    "url": "https://gall.dcinside.com/board/view/?id=drama_new3&no=23111083",
+    "excerpt": "존나 웃겨 춤이래 춤!! https://x.com/cocopalm0226/status/2056353172541837612?s=46기타 국내 드라마2026.05.19 10:38",
+    "mood_summary": "중립적 반응",
+    "published_at": null,
+    "image_url": null,
+    "matched_keywords": [
+      "와일드 씽"
+    ],
+    "content_kind": "community"
+  },
+  {
     "id": "df1af080f634d07f",
     "source": "디시인사이드",
     "title": "와일드씽굿즈는 탐나는데",
@@ -333,20 +347,6 @@
     "title": "와일드 씽싸다구하네",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548617",
     "excerpt": "드디어 기어나온 싸다구오리지널 티켓2026.05.19 10:05",
-    "mood_summary": "중립적 반응",
-    "published_at": null,
-    "image_url": null,
-    "matched_keywords": [
-      "와일드 씽"
-    ],
-    "content_kind": "community"
-  },
-  {
-    "id": "d5b84a890c3dd344",
-    "source": "디시인사이드",
-    "title": "와일드씽강동원이 뷔보고 챌린지 해달라고 요청했네",
-    "url": "https://gall.dcinside.com/board/view/?id=drama_new3&no=23110264",
-    "excerpt": "공식석상서기타 국내 드라마2026.05.19 09:42",
     "mood_summary": "중립적 반응",
     "published_at": null,
     "image_url": null,
@@ -412,10 +412,10 @@
     "content_kind": "community"
   },
   {
-    "id": "3d0321608eed1631",
+    "id": "6eed377b641b9b98",
     "source": "네이버카페",
     "title": "영화마이클쿠키영상·러닝타임·줄거리 총정리",
-    "url": "https://cafe.naver.com/specup/7814907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InNwZWN1cCIsImFydGljbGVJZCI6NzgxNDkwNywiaXNzdWVkQXQiOjE3NzkxNTQwOTM4MjJ9.DbZnn0xRz9GHAzxaysbMZgnnHMOy_8uDsS08-C4e15Q",
+    "url": "https://cafe.naver.com/specup/7814907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InNwZWN1cCIsImFydGljbGVJZCI6NzgxNDkwNywiaXNzdWVkQXQiOjE3NzkxNTU1Njc5MzR9.2HwJdNaC4esATDgWuCCyVRzIN29vFXeSaNRSSf84oJ8",
     "excerpt": "영화마이클후기—관객과 평론가반응은?영화마이클후기는 평론가와 일반관객사이에서 극명하게 갈리고 있습니다. 로튼 토마토 기준 평론가 신선도는 39%에 그친 반면, 일반관객지수는 97%로 압도적인 호평입니다. IMDB 평점은 7.7점입니다. 평론가들은마이클잭슨을 둘러싼 복잡한 논란과 내면의 복합성이 충분히 다뤄지지 않았다는 점을...",
     "mood_summary": "긍정 반응 우세",
     "published_at": null,
@@ -426,10 +426,10 @@
     "content_kind": "community"
   },
   {
-    "id": "2e32eac9d6c25f69",
+    "id": "11d7953ed893b83a",
     "source": "네이버카페",
     "title": "김혜윤살목지100만 돌파, 호러 흥행 기록과관객 반응정리",
-    "url": "https://cafe.naver.com/wbsc2021/1106?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Indic2MyMDIxIiwiYXJ0aWNsZUlkIjoxMTA2LCJpc3N1ZWRBdCI6MTc3OTE1NDA5NTA1MX0.OF7lN7Ho76Hb05l50cI687WlSghlIalqHI5Bc1PgLJI",
+    "url": "https://cafe.naver.com/wbsc2021/1106?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Indic2MyMDIxIiwiYXJ0aWNsZUlkIjoxMTA2LCJpc3N1ZWRBdCI6MTc3OTE1NTU3MDc0Nn0.h3cUUfVvLzj2_1zrgws5KluopzYmzMXrreD-yPEuGF4",
     "excerpt": "호러 장르 최단 기록부터 박스오피스 1위, 입소문과 N차 관람반응까지 정리했어요.영화살목지가 정말 제대로 힘을 받고 있는 분위기예요. 개봉 10일째인 4월 17일 기준으로 누적관객수 101만 명을 넘기면서 100만 돌파 소식을 알렸는데요. 공포... 무서운 장면만 앞세우기보다 불길한 분위기와 점점 조여오는 긴장감으로 공포를 쌓아간다는후기가 많아서, 한 번 본...",
     "mood_summary": "중립적 반응",
     "published_at": null,

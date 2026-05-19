@@ -1,51 +1,51 @@
 {
-  "target_date": "20260517",
-  "fetched_at": "2026-05-18T07:59:23.996254+00:00",
+  "target_date": "20260518",
+  "fetched_at": "2026-05-19T00:02:28.023057+00:00",
   "movies": [
     {
       "rank": 1,
       "movie_code": "20259626",
       "title": "마이클",
-      "audi_count": 179024,
-      "audi_acc": 647912,
+      "audi_count": 43653,
+      "audi_acc": 691565,
       "open_date": "2026-05-13",
       "rank_change": "0"
     },
     {
       "rank": 2,
-      "movie_code": "20259773",
-      "title": "슈퍼 마리오 갤럭시",
-      "audi_count": 59067,
-      "audi_acc": 1469527,
+      "movie_code": "20259791",
+      "title": "악마는 프라다를 입는다 2",
+      "audi_count": 14277,
+      "audi_acc": 1458561,
       "open_date": "2026-04-29",
-      "rank_change": "0"
+      "rank_change": "1"
     },
     {
       "rank": 3,
-      "movie_code": "20259791",
-      "title": "악마는 프라다를 입는다 2",
-      "audi_count": 40142,
-      "audi_acc": 1444284,
-      "open_date": "2026-04-29",
-      "rank_change": "0"
+      "movie_code": "20254121",
+      "title": "살목지",
+      "audi_count": 8793,
+      "audi_acc": 3178519,
+      "open_date": "2026-04-08",
+      "rank_change": "1"
     },
     {
       "rank": 4,
-      "movie_code": "20254121",
-      "title": "살목지",
-      "audi_count": 32133,
-      "audi_acc": 3169726,
-      "open_date": "2026-04-08",
-      "rank_change": "0"
+      "movie_code": "20261782",
+      "title": "프로젝트 헤일메리",
+      "audi_count": 3965,
+      "audi_acc": 2851111,
+      "open_date": "2026-03-18",
+      "rank_change": "1"
     },
     {
       "rank": 5,
-      "movie_code": "20261782",
-      "title": "프로젝트 헤일메리",
-      "audi_count": 13124,
-      "audi_acc": 2847146,
-      "open_date": "2026-03-18",
-      "rank_change": "0"
+      "movie_code": "20259773",
+      "title": "슈퍼 마리오 갤럭시",
+      "audi_count": 3642,
+      "audi_acc": 1473169,
+      "open_date": "2026-04-29",
+      "rank_change": "-3"
     }
   ],
   "error_message": null

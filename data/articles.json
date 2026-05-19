@@ -12,7 +12,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 2,
-    "score": 1141.2585919545718,
+    "score": 1140.3848567378473,
     "matched_keywords": [
       "Paramount",
       "Warner Bros"
@@ -31,7 +31,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 505.5988697323495,
+    "score": 504.725134515625,
     "matched_keywords": [
       "Lionsgate",
       "마이클"
@@ -50,7 +50,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 402.02913593605325,
+    "score": 401.1554007193287,
     "matched_keywords": [
       "마이클"
     ]
@@ -68,7 +68,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 149.3676776027199,
+    "score": 148.49394238599535,
     "matched_keywords": [
       "Netflix"
     ]
@@ -86,7 +86,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 142.71461047309026,
+    "score": 141.84087525636573,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -104,7 +104,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 142.11970306568287,
+    "score": 141.24596784895834,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -122,7 +122,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 141.5083026027199,
+    "score": 140.63456738599535,
     "matched_keywords": [
       "Netflix"
     ]
@@ -140,7 +140,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 141.28984195457176,
+    "score": 140.41610673784723,
     "matched_keywords": [
       "Neon"
     ]
@@ -158,10 +158,26 @@
     "image_url": "https://d3ihz389yobwks.cloudfront.net/1779068369906FoIBI.png",
     "content_kind": "official",
     "tier": 3,
-    "score": 125.98081417679398,
+    "score": 125.10707896006944,
     "matched_keywords": [
       "CJ ENM"
     ]
+  },
+  {
+    "id": "10697b5ee5993462",
+    "source": "The Hollywood Reporter",
+    "country": "US",
+    "title": "‘Fjord’ Review: Sebastian Stan and Renate Reinsve in Cristian Mungiu’s Absorbingly Thorny Account of Parents Under Investigation",
+    "title_ko": null,
+    "summary": "Norway’s controversial child protection system comes under glaring scrutiny in a drama that considers the blind spots in both progressive thinking and traditional values.",
+    "summary_ko": null,
+    "url": "https://www.hollywoodreporter.com/movies/movie-reviews/fjord-review-sebastian-stan-renate-reinsve-cristian-mungiu-1236599104/",
+    "published_at": "2026-05-19T00:43:29+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.12588683043981,
+    "matched_keywords": []
   },
   {
     "id": "2d53cd0ab7279525",
@@ -176,7 +192,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.53608038049769,
+    "score": 47.662345163773146,
     "matched_keywords": []
   },
   {
@@ -192,7 +208,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.203036399016206,
+    "score": 47.329301182291665,
     "matched_keywords": []
   },
   {
@@ -208,7 +224,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.957376676793984,
+    "score": 47.083641460069444,
     "matched_keywords": []
   },
   {
@@ -224,7 +240,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.92641602864583,
+    "score": 47.0526808119213,
     "matched_keywords": []
   },
   {
@@ -240,7 +256,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.380698436053244,
+    "score": 45.5069632193287,
     "matched_keywords": []
   },
   {
@@ -256,7 +272,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.380119732349534,
+    "score": 45.506384515625,
     "matched_keywords": []
   },
   {
@@ -272,7 +288,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.09424010271991,
+    "score": 45.220504885995375,
     "matched_keywords": []
   },
   {
@@ -288,7 +304,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.537816491608794,
+    "score": 44.66408127488426,
     "matched_keywords": []
   },
   {
@@ -304,7 +320,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.2102701953125,
+    "score": 44.33653497858796,
     "matched_keywords": []
   },
   {
@@ -320,7 +336,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.07514288049769,
+    "score": 44.20140766377315,
     "matched_keywords": []
   },
   {
@@ -336,7 +352,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.01119612123843,
+    "score": 44.137460904513894,
     "matched_keywords": []
   },
   {
@@ -352,7 +368,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.90355723234954,
+    "score": 44.029822015625,
     "matched_keywords": []
   },
   {
@@ -368,7 +384,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.30025862123843,
+    "score": 43.42652340451389,
     "matched_keywords": []
   },
   {
@@ -384,7 +400,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.036369732349534,
+    "score": 43.162634515625,
     "matched_keywords": []
   },
   {
@@ -400,7 +416,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.65413593605324,
+    "score": 42.7804007193287,
     "matched_keywords": []
   },
   {
@@ -416,7 +432,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.45998084346065,
+    "score": 41.586245626736115,
     "matched_keywords": []
   },
   {
@@ -432,7 +448,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.40442528790509,
+    "score": 41.53069007118055,
     "matched_keywords": []
   },
   {
@@ -448,7 +464,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.39892760271991,
+    "score": 41.52519238599537,
     "matched_keywords": []
   },
   {
@@ -464,7 +480,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.692619732349534,
+    "score": 40.818884515625,
     "matched_keywords": []
   },
   {
@@ -480,7 +496,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.171786399016206,
+    "score": 40.298051182291665,
     "matched_keywords": []
   },
   {
@@ -496,7 +512,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.12462204716435,
+    "score": 40.25088683043981,
     "matched_keywords": []
   },
   {
@@ -512,7 +528,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.11796695457176,
+    "score": 40.24423173784722,
     "matched_keywords": []
   },
   {
@@ -528,23 +544,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.09337204716435,
-    "matched_keywords": []
-  },
-  {
-    "id": "030daedf36bc7ef8",
-    "source": "The Hollywood Reporter",
-    "country": "US",
-    "title": "Sam Lerner, Camille Hyde, Nikola Djuricko to Star in Comedic Thriller ‘Jacob and the Wolf’ (Exclusive)",
-    "title_ko": null,
-    "summary": "Richard Kind also has a role in writer-director Josh Monkarsh's feature, which recently wrapped production in Los Angeles.",
-    "summary_ko": null,
-    "url": "https://www.hollywoodreporter.com/movies/movie-news/jacob-and-the-wolf-sam-lerner-camille-hyde-josh-monkarsh-1236598403/",
-    "published_at": "2026-05-18T16:00:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 40.91136973234954,
+    "score": 40.21963683043982,
     "matched_keywords": []
   },
   {
@@ -560,7 +560,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.30720306568287,
+    "score": 38.43346784895834,
     "matched_keywords": []
   },
   {
@@ -576,7 +576,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 37.78636973234954,
+    "score": 36.912634515625,
     "matched_keywords": []
   },
   {
@@ -592,7 +592,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 31.62317528790509,
+    "score": 30.749440071180555,
     "matched_keywords": []
   },
   {
@@ -608,7 +608,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_30_29__6a06cb95885ba[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 31.62317528790509,
+    "score": 30.749440071180555,
     "matched_keywords": []
   },
   {
@@ -624,7 +624,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 30.581508621238427,
+    "score": 29.707773404513883,
     "matched_keywords": []
   },
   {
@@ -640,7 +640,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 30.490652139756946,
+    "score": 29.61691692303241,
     "matched_keywords": []
   },
   {
@@ -656,7 +656,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 29.539841954571756,
+    "score": 28.66610673784722,
     "matched_keywords": []
   },
   {
@@ -672,7 +672,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 29.46981880642361,
+    "score": 28.596083589699074,
     "matched_keywords": []
   },
   {
@@ -688,7 +688,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 19.93191371383102,
+    "score": 19.058178497106475,
     "matched_keywords": []
   },
   {
@@ -704,7 +704,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 15.705640565682872,
+    "score": 14.83190534895833,
     "matched_keywords": []
   },
   {
@@ -720,7 +720,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 5.523638250868057,
+    "score": 4.649903034143521,
     "matched_keywords": []
   },
   {
@@ -736,7 +736,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 4.497017880497683,
+    "score": 3.6232826637731472,
     "matched_keywords": []
   },
   {
@@ -752,7 +752,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 3.63301325086805,
+    "score": 2.7592780341435255,
     "matched_keywords": []
   }
 ]

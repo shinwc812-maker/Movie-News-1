@@ -158,11 +158,25 @@ def community_search_terms(
     market: MarketSnapshot | None,
     reservation: ReservationSnapshot | None = None,
 ) -> list[str]:
-    terms: list[str] = []
+    base_terms: list[str] = []
+    market_titles: list[str] = []
+    reservation_titles: list[str] = []
     if market is not None:
-        terms.extend(movie.title for movie in market.movies if movie.title)
+        market_titles.extend(movie.title for movie in market.movies if movie.title)
     if reservation is not None and not reservation.capture_failed:
-        terms.extend(movie.title for movie in reservation.movies if movie.title)
+        reservation_titles.extend(movie.title for movie in reservation.movies if movie.title)
+    for index in range(max(len(market_titles), len(reservation_titles))):
+        if index < len(market_titles):
+            base_terms.append(market_titles[index])
+        if index < len(reservation_titles):
+            base_terms.append(reservation_titles[index])
+    terms: list[str] = []
+    for term in base_terms:
+        if term not in terms:
+            terms.append(term)
+        compact = "".join(term.split())
+        if compact and compact != term and compact not in terms:
+            terms.append(compact)
     terms.extend(["영화 관객 반응", "영화 후기"])
     return list(dict.fromkeys(terms))
 

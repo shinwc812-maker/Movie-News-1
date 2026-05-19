@@ -9,12 +9,13 @@ import json
 import os
 import re
 import sys
+import time
 from dataclasses import dataclass
 from datetime import datetime
 from html import unescape
 from pathlib import Path
 from typing import Optional
-from urllib.parse import parse_qs, unquote, urljoin, urlparse
+from urllib.parse import parse_qs, quote, unquote, urljoin, urlparse
 
 import httpx
 from selectolax.parser import HTMLParser
@@ -25,9 +26,12 @@ from crawler.sources.extmovie import parse_extmovie_time
 
 EXTMOVIE_BASE_URL = "https://extmovie.com"
 EXTMOVIE_HOME_URL = "https://extmovie.com/"
+THEQOO_BASE_URL = "https://theqoo.net"
+DCINSIDE_SEARCH_URL = "https://search.dcinside.com/post/q"
 NAVER_SEARCH_URL = "https://openapi.naver.com/v1/search/{endpoint}.json"
 NAVER_PUBLIC_SEARCH_URL = "https://search.naver.com/search.naver"
 YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
+GENERIC_COMMUNITY_TERMS = {"영화 관객 반응", "영화 후기"}
 
 POSITIVE_TERMS = ("재밌", "좋", "기대", "호평", "추천", "만족")
 NEGATIVE_TERMS = ("아쉽", "별로", "혹평", "실망", "걱정", "불호")
@@ -65,6 +69,35 @@ def _first_attr(node, selector: str, attr: str) -> Optional[str]:
 
 def _normalise_spaces(text: str) -> str:
     return re.sub(r"\s+", " ", text or "").strip()
+
+
+def _compact_text(text: str) -> str:
+    return re.sub(r"\s+", "", text or "").casefold()
+
+
+def _query_appears_in_text(query: str, text: str) -> bool:
+    query = query or ""
+    if not query:
+        return True
+    return _compact_text(query) in _compact_text(text)
+
+
+def _movie_specific_terms(search_terms: list[str], limit: int | None = None) -> list[str]:
+    terms: list[str] = []
+    seen: set[str] = set()
+    for term in search_terms:
+        if not term or term in GENERIC_COMMUNITY_TERMS or term in seen:
+            continue
+        seen.add(term)
+        terms.append(term)
+        if limit is not None and len(terms) >= limit:
+            break
+    return terms
+
+
+def _usable_direct_search_title(title: str) -> bool:
+    compact = _compact_text(title)
+    return len(compact) >= 3 and not compact.isdecimal()
 
 
 def _strip_html(text: str) -> str:
@@ -244,6 +277,8 @@ class NaverPublicCafeSearchSource:
             seen.add(url)
             container_text = _normalise_spaces((link.parent or link).text(strip=True))
             excerpt = container_text.replace(title, "", 1).strip(" ·-")
+            if not _query_appears_in_text(query, f"{title} {excerpt}"):
+                continue
             reactions.append(
                 CommunityReaction(
                     id=make_article_id(url),
@@ -286,6 +321,7 @@ class NaverPublicWebSearchSource:
     allowed_domains: tuple[str, ...]
     where: str = "web"
     required_path_fragments: tuple[str, ...] = ()
+    required_path_pattern: str = ""
 
     def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
         reactions: list[CommunityReaction] = []
@@ -322,6 +358,8 @@ class NaverPublicWebSearchSource:
             seen.add(url)
             container_text = _normalise_spaces((link.parent or link).text(strip=True))
             excerpt = container_text.replace(title, "", 1).strip(" ·-")
+            if not _query_appears_in_text(query, f"{title} {excerpt}"):
+                continue
             reactions.append(
                 CommunityReaction(
                     id=make_article_id(url),
@@ -349,11 +387,167 @@ class NaverPublicWebSearchSource:
     def _url_allowed(self, parsed_url) -> bool:
         if not self._host_allowed(parsed_url.netloc):
             return False
+        if self.required_path_pattern and not re.search(self.required_path_pattern, parsed_url.path):
+            return False
         return all(fragment in parsed_url.path for fragment in self.required_path_fragments)
 
     def _host_allowed(self, host: str) -> bool:
         host = host.lower()
         return any(domain in host for domain in self.allowed_domains)
+
+
+@dataclass
+class TheQooDirectSearchSource:
+    """Direct board search for public TheQoo posts."""
+
+    source_name: str = "더쿠"
+    boards: tuple[str, ...] = ("movie",)
+    max_queries: int = 8
+    max_items_per_query: int = 5
+    request_interval_seconds: float = 0.5
+
+    def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        with httpx.Client(
+            timeout=REQUEST_TIMEOUT,
+            headers={"User-Agent": USER_AGENT},
+            follow_redirects=True,
+        ) as client:
+            for term in _movie_specific_terms(search_terms, limit=self.max_queries):
+                for board in self.boards:
+                    try:
+                        response = client.get(
+                            f"{THEQOO_BASE_URL}/{board}",
+                            params={"search_target": "title_content", "search_keyword": term},
+                        )
+                        response.raise_for_status()
+                    except httpx.HTTPStatusError as exc:
+                        if exc.response.status_code == 429:
+                            print(f"[warn] {self.source_name}: rate limited — stopping direct search", file=sys.stderr)
+                            return reactions
+                        print(f"[warn] {self.source_name}: direct search failed — {exc}", file=sys.stderr)
+                        continue
+                    except Exception as exc:  # noqa: BLE001
+                        print(f"[warn] {self.source_name}: direct search failed — {exc}", file=sys.stderr)
+                        continue
+                    reactions.extend(self.parse(response.text, query=term))
+                    time.sleep(self.request_interval_seconds)
+        return reactions
+
+    def parse(self, html: str, query: str) -> list[CommunityReaction]:
+        tree = HTMLParser(html)
+        reactions: list[CommunityReaction] = []
+        seen: set[str] = set()
+        for link in tree.css("a[href]"):
+            url = self._extract_post_url(link.attributes.get("href") or "")
+            if not url or url in seen:
+                continue
+            title = _normalise_spaces(link.text(strip=True))
+            if not title or not _usable_direct_search_title(title):
+                continue
+            container_text = _normalise_spaces((link.parent or link).text(strip=True))
+            excerpt = container_text.replace(title, "", 1).strip(" ·-")
+            if not _query_appears_in_text(query, title):
+                continue
+            seen.add(url)
+            reactions.append(
+                CommunityReaction(
+                    id=make_article_id(url),
+                    source=self.source_name,
+                    title=title,
+                    url=url,
+                    excerpt=excerpt,
+                    mood_summary=summarize_reaction_mood(f"{title} {excerpt}"),
+                    matched_keywords=[query],
+                )
+            )
+            if len(reactions) >= self.max_items_per_query:
+                break
+        return reactions
+
+    def _extract_post_url(self, href: str) -> str:
+        url = urljoin(THEQOO_BASE_URL, href)
+        parsed = urlparse(url)
+        if not self._host_allowed(parsed.netloc):
+            return ""
+        if re.search(r"^/(movie|square)/\d+$", parsed.path):
+            return url
+        return ""
+
+    def _host_allowed(self, host: str) -> bool:
+        host = host.lower()
+        return host == "theqoo.net" or host.endswith(".theqoo.net")
+
+
+@dataclass
+class DCInsideDirectSearchSource:
+    """Direct public search for DCInside posts."""
+
+    source_name: str = "디시인사이드"
+    max_queries: int = 8
+    max_items_per_query: int = 4
+
+    def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        with httpx.Client(
+            timeout=REQUEST_TIMEOUT,
+            headers={"User-Agent": USER_AGENT},
+            follow_redirects=True,
+        ) as client:
+            for term in _movie_specific_terms(search_terms, limit=self.max_queries):
+                try:
+                    response = client.get(f"{DCINSIDE_SEARCH_URL}/{quote(term, safe='')}")
+                    response.raise_for_status()
+                except httpx.HTTPStatusError as exc:
+                    if exc.response.status_code == 429:
+                        print(f"[warn] {self.source_name}: rate limited — stopping direct search", file=sys.stderr)
+                        return reactions
+                    print(f"[warn] {self.source_name}: direct search failed — {exc}", file=sys.stderr)
+                    continue
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[warn] {self.source_name}: direct search failed — {exc}", file=sys.stderr)
+                    continue
+                reactions.extend(self.parse(response.text, query=term))
+        return reactions
+
+    def parse(self, html: str, query: str) -> list[CommunityReaction]:
+        tree = HTMLParser(html)
+        reactions: list[CommunityReaction] = []
+        seen: set[str] = set()
+        for link in tree.css("a[href]"):
+            url = self._extract_post_url(link.attributes.get("href") or "")
+            if not url or url in seen:
+                continue
+            title = _normalise_spaces(link.text(strip=True))
+            if not title or not _usable_direct_search_title(title):
+                continue
+            container_text = _normalise_spaces((link.parent or link).text(strip=True))
+            excerpt = container_text.replace(title, "", 1).strip(" ·-")
+            if not _query_appears_in_text(query, title):
+                continue
+            seen.add(url)
+            reactions.append(
+                CommunityReaction(
+                    id=make_article_id(url),
+                    source=self.source_name,
+                    title=title,
+                    url=url,
+                    excerpt=excerpt,
+                    mood_summary=summarize_reaction_mood(f"{title} {excerpt}"),
+                    matched_keywords=[query],
+                )
+            )
+            if len(reactions) >= self.max_items_per_query:
+                break
+        return reactions
+
+    def _extract_post_url(self, href: str) -> str:
+        parsed = urlparse(href)
+        if parsed.netloc.lower() != "gall.dcinside.com":
+            return ""
+        if "/board/view/" not in parsed.path:
+            return ""
+        return href
 
 
 @dataclass
@@ -552,6 +746,8 @@ def _youtube_sources_from_env() -> list[YouTubeCommunitySource]:
 
 COMMUNITY_SOURCES = [ExtMovieCommunitySource()]
 PUBLIC_SEARCH_SOURCES = [
+    TheQooDirectSearchSource(),
+    DCInsideDirectSearchSource(),
     NaverPublicCafeSearchSource(),
     NaverPublicWebSearchSource(
         source_name="X/Twitter",

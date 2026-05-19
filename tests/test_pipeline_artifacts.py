@@ -41,4 +41,5 @@ def test_community_search_terms_include_reservation_top_five_titles():
     terms = community_search_terms(market, reservation)
 
     assert terms[:2] == ["마이클", "와일드 씽"]
+    assert "와일드씽" in terms
     assert "영화 관객 반응" in terms

@@ -8,5 +8,55 @@
     "published_at": "2026-05-13T15:00:00+00:00",
     "summary": "영화 지원사업",
     "deadline": null
+  },
+  {
+    "id": "56063482fdee566b",
+    "source": "한국콘텐츠진흥원",
+    "category": "모집공모",
+    "title": "2026년 관계부처 합동 한류마케팅 참가기업 모집",
+    "url": "https://www.kocca.kr/kocca/pims/view.do?intcNo=326D00101001&menuNo=204104&recptSt=&category=&pageIndex=1&search=&searchWrd=",
+    "published_at": "2026-05-18T15:00:00+00:00",
+    "summary": "정책",
+    "deadline": null
+  },
+  {
+    "id": "089b9df8a8118e54",
+    "source": "한국콘텐츠진흥원",
+    "category": "모집공모",
+    "title": "2026 KOMICS 프랑스/독일 참가기업 모집 공고",
+    "url": "https://www.kocca.kr/kocca/pims/view.do?intcNo=326D00092007&menuNo=204104&recptSt=&category=&pageIndex=1&search=&searchWrd=",
+    "published_at": "2026-05-13T15:00:00+00:00",
+    "summary": "공고",
+    "deadline": null
+  },
+  {
+    "id": "d5f37db8e99c6f35",
+    "source": "한국콘텐츠진흥원",
+    "category": "자유공모",
+    "title": "2026년 지역 글로벌 게임센터 테스트베드 고도화 지원",
+    "url": "https://www.kocca.kr/kocca/pims/view.do?intcNo=126D00070007&menuNo=204104&recptSt=&category=&pageIndex=1&search=&searchWrd=",
+    "published_at": "2026-05-07T15:00:00+00:00",
+    "summary": "정책",
+    "deadline": null
+  },
+  {
+    "id": "06d658525981173a",
+    "source": "한국콘텐츠진흥원",
+    "category": "모집공모",
+    "title": "2026년 폴란드 K-브랜드 위크 참가기업 모집",
+    "url": "https://www.kocca.kr/kocca/pims/view.do?intcNo=326D00089006&menuNo=204104&recptSt=&category=&pageIndex=1&search=&searchWrd=",
+    "published_at": "2026-04-29T15:00:00+00:00",
+    "summary": "정책",
+    "deadline": null
+  },
+  {
+    "id": "61310f9204e8ef43",
+    "source": "한국콘텐츠진흥원",
+    "category": "모집공모",
+    "title": "2026년 글로벌게임허브센터 신규 입주기업 추가모집(상시) 공고",
+    "url": "https://www.kocca.kr/kocca/pims/view.do?intcNo=326D00034004&menuNo=204104&recptSt=&category=&pageIndex=1&search=&searchWrd=",
+    "published_at": "2026-04-22T15:00:00+00:00",
+    "summary": "공고",
+    "deadline": null
   }
 ]

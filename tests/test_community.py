@@ -1,7 +1,10 @@
 from crawler.community import (
+    DCInsideDirectSearchSource,
     NaverPublicCafeSearchSource,
     NaverPublicWebSearchSource,
     NaverSearchCommunitySource,
+    PUBLIC_SEARCH_SOURCES,
+    TheQooDirectSearchSource,
     YouTubeCommunitySource,
     parse_extmovie_community_cards,
     summarize_reaction_mood,
@@ -161,6 +164,102 @@ def test_naver_public_web_search_source_can_require_status_links():
 
     assert len(reactions) == 1
     assert "/status/" in reactions[0].url
+
+
+def test_public_search_sources_include_theqoo_and_dcinside():
+    source_names = [source.source_name for source in PUBLIC_SEARCH_SOURCES]
+
+    assert "더쿠" in source_names
+    assert "디시인사이드" in source_names
+
+
+def test_theqoo_direct_search_source_parses_board_post_links():
+    source = TheQooDirectSearchSource(max_items_per_query=3)
+    html = """
+    <a href="/event/4207015072">더쿠 이벤트</a>
+    <a href="/movie/4208700057">1</a>
+    <a href="/movie/4208700057">와일드씽 내일 싸다구한다</a>
+    <a href="/square/4208700058">와일드 씽 후기 반응</a>
+    """
+
+    reactions = source.parse(html, query="와일드씽")
+
+    assert len(reactions) == 2
+    assert reactions[0].source == "더쿠"
+    assert reactions[0].url == "https://theqoo.net/movie/4208700057"
+    assert reactions[1].matched_keywords == ["와일드씽"]
+
+
+def test_dcinside_direct_search_source_parses_search_result_links():
+    source = DCInsideDirectSearchSource(max_items_per_query=2)
+    html = """
+    <a href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548641">와일드씽 굿즈는 탐나는데</a>
+    <a href="https://gall.dcinside.com/board/view/?id=drama_new3&no=23109664">와일드 씽 예매율 올라왔네</a>
+    <a href="https://www.dcinside.com/">디시 홈</a>
+    """
+
+    reactions = source.parse(html, query="와일드 씽")
+
+    assert len(reactions) == 2
+    assert reactions[0].source == "디시인사이드"
+    assert reactions[0].url.startswith("https://gall.dcinside.com/")
+    assert reactions[1].matched_keywords == ["와일드 씽"]
+
+
+def test_naver_public_web_search_source_parses_theqoo_links():
+    source = NaverPublicWebSearchSource(
+        source_name="더쿠",
+        query_suffix="site:theqoo.net 영화 반응",
+        allowed_domains=("theqoo.net",),
+        required_path_pattern=r"/[^/]+/\d+$",
+    )
+    html = """
+    <a href="https://theqoo.net/square/123456">와일드씽 관객 반응 좋다는 글</a>
+    <a href="https://theqoo.net/movie">더쿠 영화 게시판 홈</a>
+    <a href="https://blog.naver.com/example/1">블로그 글</a>
+    """
+
+    reactions = source.parse(html, query="와일드씽")
+
+    assert len(reactions) == 1
+    assert reactions[0].source == "더쿠"
+    assert reactions[0].matched_keywords == ["와일드씽"]
+
+
+def test_naver_public_web_search_source_skips_unrelated_breadcrumb_links():
+    source = NaverPublicWebSearchSource(
+        source_name="더쿠",
+        query_suffix="site:theqoo.net 영화 반응",
+        allowed_domains=("theqoo.net",),
+        required_path_pattern=r"/[^/]+/\d+$",
+    )
+    html = """
+    <a href="https://theqoo.net/west/198379109">더쿠theqoo.net›west</a>
+    <div>AI 출처 정보더쿠는 다양한 주제의 게시글이 공유되는 포럼입니다.</div>
+    """
+
+    reactions = source.parse(html, query="와일드씽")
+
+    assert reactions == []
+
+
+def test_naver_public_web_search_source_parses_dcinside_links():
+    source = NaverPublicWebSearchSource(
+        source_name="디시인사이드",
+        query_suffix="site:dcinside.com 영화 반응",
+        allowed_domains=("dcinside.com",),
+        required_path_pattern=r"/board/view/",
+    )
+    html = """
+    <a href="https://gall.dcinside.com/mgallery/board/view/?id=movie&no=123">와일드 씽 후기</a>
+    <a href="https://www.dcinside.com/">디시 홈</a>
+    """
+
+    reactions = source.parse(html, query="와일드 씽")
+
+    assert len(reactions) == 1
+    assert reactions[0].source == "디시인사이드"
+    assert reactions[0].url.startswith("https://gall.dcinside.com/")
 
 
 def test_youtube_source_parses_video_search_payload():

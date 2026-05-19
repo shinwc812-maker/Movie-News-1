@@ -486,6 +486,14 @@ class DCInsideDirectSearchSource:
     source_name: str = "디시인사이드"
     max_queries: int = 8
     max_items_per_query: int = 4
+    allowed_gallery_ids: tuple[str, ...] = (
+        "commercial_movie",
+        "oticket",
+        "movie",
+        "movie2",
+        "mmovie",
+        "nouvellevague",
+    )
 
     def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
         reactions: list[CommunityReaction] = []
@@ -546,6 +554,9 @@ class DCInsideDirectSearchSource:
         if parsed.netloc.lower() != "gall.dcinside.com":
             return ""
         if "/board/view/" not in parsed.path:
+            return ""
+        gallery_id = parse_qs(parsed.query).get("id", [""])[0]
+        if gallery_id not in self.allowed_gallery_ids:
             return ""
         return href
 

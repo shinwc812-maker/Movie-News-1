@@ -88,9 +88,82 @@ def test_top_curation_items_prioritizes_market_and_korean_official_articles():
     )
 
     titles = [item["title"] for item in result]
-    assert titles[:3] == ["Michael box office", "Generic Paramount", "Local release interview"]
+    assert titles[:2] == ["Michael box office", "Local release interview"]
+    assert "Generic Paramount" not in titles
     assert "Warner only" not in titles
     assert "Community spike" not in titles
+
+
+def test_top_curation_items_excludes_low_value_cine21_sections():
+    build = load_site_build_module()
+    official = [
+        {"title": "[MY PICK] 한선화의 MY PICK✩", "score": 9999, "country": "KR", "matched_keywords": []},
+        {
+            "title": "[델리] 인도 박스오피스 흥행 신기록",
+            "score": 9998,
+            "country": "KR",
+            "matched_keywords": [],
+        },
+        {"title": "국내 극장가 투자 시스템 변화", "score": 10, "country": "KR", "matched_keywords": []},
+    ]
+
+    result = build.top_curation_items(official, market_titles=["마이클"])
+
+    assert [item["title"] for item in result] == ["국내 극장가 투자 시스템 변화"]
+
+
+def test_top_curation_items_excludes_recommended_books():
+    build = load_site_build_module()
+    official = [
+        {"title": "씨네21 추천도서 - <꿈의 방>", "score": 9999, "country": "KR", "matched_keywords": []},
+        {"title": "와일드씽 팬 이벤트 반응", "score": 10, "country": "KR", "matched_keywords": ["와일드 씽"]},
+    ]
+
+    result = build.top_curation_items(official, market_titles=["와일드 씽"])
+
+    assert [item["title"] for item in result] == ["와일드씽 팬 이벤트 반응"]
+
+
+def test_top_curation_items_boosts_promo_reference_signals():
+    build = load_site_build_module()
+    official = [
+        {"title": "국내 극장가 단신", "summary": "일반 문화 소식", "score": 500, "country": "KR", "matched_keywords": []},
+        {
+            "title": "강동원·엄태구·박지현 와일드씽 팬 이벤트",
+            "summary": "롯데엔터테인먼트 배급작 홍보 현장",
+            "score": 100,
+            "country": "KR",
+            "matched_keywords": ["와일드 씽"],
+        },
+    ]
+
+    result = build.top_curation_items(official, market_titles=["마이클"])
+
+    assert result[0]["title"] == "강동원·엄태구·박지현 와일드씽 팬 이벤트"
+
+
+def test_top_curation_items_can_include_matched_community_reactions():
+    build = load_site_build_module()
+    official = [
+        {"title": "국내 극장가 투자 시스템 변화", "score": 10, "country": "KR", "matched_keywords": []},
+    ]
+    community = [
+        {"title": "마이클 실관람 반응", "content_kind": "community", "matched_keywords": ["마이클"], "score": 0},
+        {"title": "와일드씽 예매 반응", "content_kind": "community", "matched_keywords": ["와일드 씽"], "score": 0},
+        {"title": "군체 일반 반응", "content_kind": "community", "matched_keywords": ["군체"], "score": 0},
+        {"title": "잡담", "content_kind": "community", "matched_keywords": [], "score": 9999},
+    ]
+
+    result = build.top_curation_items(
+        official,
+        community,
+        market_titles=["마이클", "군체"],
+        reservation_titles=["와일드 씽"],
+    )
+
+    community_titles = [item["title"] for item in result if item.get("content_kind") == "community"]
+    assert community_titles == ["와일드씽 예매 반응", "마이클 실관람 반응"]
+    assert "잡담" not in [item["title"] for item in result]
 
 
 def test_select_official_feed_prefers_korean_and_caps_overseas():

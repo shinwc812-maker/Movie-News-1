@@ -28,6 +28,51 @@ CURATION_STRATEGIC_KEYWORDS = (
     "Paramount",
     "파라마운트",
 )
+CURATION_EXCLUDED_TITLE_TERMS = ("추천도서", "MY PICK", "[델리]", "[trans x cross]")
+PROMO_REFERENCE_COMPANY_KEYWORDS = (
+    "롯데컬처웍스",
+    "롯데시네마",
+    "롯데엔터테인먼트",
+    "롯데엔터",
+    "와일드 씽",
+    "와일드씽",
+    "강동원",
+    "엄태구",
+    "박지현",
+    "오정세",
+    "탑건",
+    "광음시네마",
+)
+PROMO_REFERENCE_INDUSTRY_KEYWORDS = (
+    "CGV",
+    "메가박스",
+    "스크린엑스",
+    "특별관",
+    "상영회",
+    "극장가",
+    "관객",
+    "흥행",
+    "박스오피스",
+    "칸",
+    "나홍진",
+    "연상호",
+    "박찬욱",
+    "애니메이션",
+    "AI",
+    "K콘텐츠",
+    "할인권",
+    "투자",
+    "제작비",
+)
+PROMO_REFERENCE_COMPANY_BOOST = 2000
+PROMO_REFERENCE_INDUSTRY_BOOST = 250
+OVERSEAS_CONTEXT_KEYWORDS = (
+    "롯데배급",
+    "롯데엔터테인먼트",
+    "롯데컬처웍스",
+    "Lotte Entertainment",
+    "Lotte Cultureworks",
+)
 
 
 def load_json(path: Path, fallback):
@@ -181,9 +226,54 @@ def _matched_title(item: dict, titles: list[str]) -> bool:
     return any(_compact_match_text(title) in matched_compact for title in titles if title)
 
 
+def _curation_text(item: dict) -> str:
+    return " ".join(
+        [
+            str(item.get("title") or ""),
+            str(item.get("excerpt") or ""),
+            str(item.get("summary") or ""),
+            *[str(keyword) for keyword in item.get("matched_keywords") or []],
+        ]
+    )
+
+
+def _has_excluded_curation_title(item: dict) -> bool:
+    title = str(item.get("title") or "")
+    return any(term in title for term in CURATION_EXCLUDED_TITLE_TERMS)
+
+
+def _is_community_item(item: dict) -> bool:
+    return item.get("content_kind") == "community"
+
+
 def _has_strategic_keyword(item: dict) -> bool:
-    text = " ".join([str(item.get("title") or ""), *[str(keyword) for keyword in item.get("matched_keywords") or []]])
+    text = _curation_text(item)
     return any(keyword.casefold() in text.casefold() for keyword in CURATION_STRATEGIC_KEYWORDS)
+
+
+def _has_overseas_context_keyword(item: dict) -> bool:
+    text = _curation_text(item)
+    return any(keyword.casefold() in text.casefold() for keyword in OVERSEAS_CONTEXT_KEYWORDS)
+
+
+def _promo_reference_boost(item: dict) -> int:
+    compact_text = _compact_match_text(_curation_text(item))
+    compact_company_keywords = {
+        _compact_match_text(keyword) for keyword in PROMO_REFERENCE_COMPANY_KEYWORDS
+    }
+    compact_industry_keywords = {
+        _compact_match_text(keyword) for keyword in PROMO_REFERENCE_INDUSTRY_KEYWORDS
+    }
+    company_hits = sum(
+        1 for keyword in compact_company_keywords if keyword in compact_text
+    )
+    industry_hits = sum(
+        1 for keyword in compact_industry_keywords if keyword in compact_text
+    )
+    return (
+        min(company_hits, 2) * PROMO_REFERENCE_COMPANY_BOOST
+        + min(industry_hits, 3) * PROMO_REFERENCE_INDUSTRY_BOOST
+    )
 
 
 def _curation_candidate_allowed(
@@ -191,15 +281,19 @@ def _curation_candidate_allowed(
     market_titles: list[str],
     reservation_titles: list[str],
 ) -> bool:
+    if _has_excluded_curation_title(item):
+        return False
     country = item.get("country")
     is_overseas = bool(country) and country != "KR"
     has_market_context = bool(market_titles or reservation_titles)
+    if _is_community_item(item) and has_market_context:
+        return _matched_title(item, market_titles) or _matched_title(item, reservation_titles)
     if not is_overseas or not has_market_context:
         return True
     return (
         _matched_title(item, market_titles)
         or _matched_title(item, reservation_titles)
-        or _has_strategic_keyword(item)
+        or _has_overseas_context_keyword(item)
     )
 
 
@@ -215,6 +309,7 @@ def _curation_priority(item: dict, market_titles: list[str], reservation_titles:
         score += 1100
     if _has_strategic_keyword(item):
         score += 600
+    score += _promo_reference_boost(item)
     return score
 
 
@@ -223,6 +318,7 @@ def top_curation_items(
     community_views: list[dict] | None = None,
     limit: int = 5,
     max_overseas_official: int = 2,
+    max_community_items: int = 2,
     market_titles: list[str] | None = None,
     reservation_titles: list[str] | None = None,
 ) -> list[dict]:
@@ -232,7 +328,7 @@ def top_curation_items(
     if market_titles or reservation_titles:
         items = [
             item
-            for item in official_views
+            for item in list(official_views) + list(community_views)
             if _curation_candidate_allowed(item, market_titles, reservation_titles)
         ]
         items = sorted(
@@ -241,11 +337,20 @@ def top_curation_items(
             reverse=True,
         )
     else:
-        items = list(official_views) + list(community_views)
+        items = [
+            item
+            for item in list(official_views) + list(community_views)
+            if _curation_candidate_allowed(item, market_titles, reservation_titles)
+        ]
         items = sorted(items, key=lambda item: float(item.get("score") or 0), reverse=True)
     overseas_count = 0
+    community_count = 0
     selected: list[dict] = []
     for item in items:
+        if _is_community_item(item):
+            if community_count >= max_community_items:
+                continue
+            community_count += 1
         is_overseas = bool(item.get("country")) and item.get("country") != "KR"
         if is_overseas and overseas_count >= max_overseas_official:
             continue

@@ -12,29 +12,10 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 2,
-    "score": 1136.942610133391,
+    "score": 1134.5599363315973,
     "matched_keywords": [
       "Paramount",
       "Warner Bros"
-    ]
-  },
-  {
-    "id": "bb5a53b23384ed65",
-    "source": "Variety",
-    "country": "US",
-    "title": "LISTEN: ‘Michael’ Returns to No. 1 at the Box Office as Exhibitors Brace for ‘The Mandalorian and Grogu’ and the Start of Summer Blockbuster Season",
-    "title_ko": null,
-    "summary": "On today’s episode of “Daily Variety” podcast, in our Box Office segment, Variety’s Rebecca Rubin explains why Lionsgate’s “Michael” made a surprise return to No. 1 in a weekend that marks the calm before the start of summer blockbuster season next week with Disney’s “The Mandalorian and Grogu” opening over Memorial Day weekend. “Summer movie […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/news/michael-box-office-mandalorian-and-grogu-summer-movies-1236752971/",
-    "published_at": "2026-05-18T20:30:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 3,
-    "score": 501.282887911169,
-    "matched_keywords": [
-      "Lionsgate",
-      "마이클"
     ]
   },
   {
@@ -50,7 +31,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 148.0537212445023,
+    "score": 145.67104744270833,
     "matched_keywords": [
       "Neon"
     ]
@@ -68,7 +49,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 145.05169578153937,
+    "score": 142.66902197974537,
     "matched_keywords": [
       "Netflix"
     ]
@@ -86,7 +67,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 138.39862865190972,
+    "score": 136.01595485011575,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -104,7 +85,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 137.8037212445023,
+    "score": 135.42104744270833,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -122,7 +103,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 137.19232078153937,
+    "score": 134.80964697974537,
     "matched_keywords": [
       "Netflix"
     ]
@@ -140,7 +121,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 136.9738601333912,
+    "score": 134.5911863315972,
     "matched_keywords": [
       "Neon"
     ]
@@ -158,10 +139,106 @@
     "image_url": "https://d3ihz389yobwks.cloudfront.net/1779068369906FoIBI.png",
     "content_kind": "official",
     "tier": 3,
-    "score": 121.66483235561343,
+    "score": 119.28215855381944,
     "matched_keywords": [
       "CJ ENM"
     ]
+  },
+  {
+    "id": "b9afa54c3fd170c1",
+    "source": "Deadline",
+    "country": "US",
+    "title": "Pedro Almodóvar Reveals His Feelings On Making English-Language Films & Why ‘Bitter Christmas’ Is So Personal: “I Was Surprised By The Ending Myself”",
+    "title_ko": null,
+    "summary": "Pedro Almodóvar is known for mining his own personal experience, but Bitter Christmas (Amarga Navidad) explores this on a whole new level. His viewpoint is reflected in the film in two interwoven protagonists — director Raul (Leonardo Sbaraglia), and Elsa (Bárbara Lennie), the cult filmmaker at the center of Raul’s screenplay. As Raul grapples with […]",
+    "summary_ko": null,
+    "url": "https://deadline.com/2026/05/pedro-almodovar-interview-bitter-christmas-1236879459/",
+    "published_at": "2026-05-19T07:05:00+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.92451966493056,
+    "matched_keywords": []
+  },
+  {
+    "id": "7a2327cc0b900039",
+    "source": "Variety",
+    "country": "US",
+    "title": "RAI Cinema Scores Sales in Cannes on New Works by Mario Martone, Gianni Amelio, Irene Dionisio (EXCLUSIVE)",
+    "title_ko": null,
+    "summary": "RAI Cinema International Distribution has scored sales at the Cannes market with new works by veteran Italian auteurs Mario Martone and Gianni Amelio and promising newcomer Irene Dionisio that are tipped to bow in Venice. “Trick,” which stars Toni Servillo (“The Great Beauty”) (first look image above) is the latest feature by Martone who was […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/festivals/rai-cinema-cannes-mario-martone-gianni-amelio-dionisio-1236753295/",
+    "published_at": "2026-05-19T06:56:50+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.782737257523145,
+    "matched_keywords": []
+  },
+  {
+    "id": "494beb54556ec1b4",
+    "source": "Rolling Stone",
+    "country": "US",
+    "title": "Jon Stewart Worries About Trump’s Foreign Policy Skills: ‘He Should Not Have This Job’",
+    "title_ko": null,
+    "summary": "\"You flew there to personally confront our rival superpower on the escalating trade and geopolitical tensions between us, and all you came back with was his Instagram?\"",
+    "summary_ko": null,
+    "url": "https://www.rollingstone.com/tv-movies/tv-movie-news/jon-stewart-donald-trump-foreign-policy-china-daily-show-1235565496/",
+    "published_at": "2026-05-19T06:12:49+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.01855901678241,
+    "matched_keywords": []
+  },
+  {
+    "id": "c226676c3b56b905",
+    "source": "Rolling Stone",
+    "country": "US",
+    "title": "Watch Stephen Colbert Celebrate the Worst of ‘The Late Show’",
+    "title_ko": null,
+    "summary": "Michael Keaton and Paul Schaffer were on hand to help the late-night host reminisce about the unaired bits from the show",
+    "summary_ko": null,
+    "url": "https://www.rollingstone.com/tv-movies/tv-movie-news/stephen-colbert-worst-of-the-late-show-celebration-1235565516/",
+    "published_at": "2026-05-19T05:53:40+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.68609373900463,
+    "matched_keywords": []
+  },
+  {
+    "id": "1009f0c7f0495daf",
+    "source": "The Hollywood Reporter",
+    "country": "US",
+    "title": "‘Masters of the Universe’: First Reactions From the Premiere",
+    "title_ko": null,
+    "summary": "Travis Knight's live-action 'He-Man' film hits theaters on June 5.",
+    "summary_ko": null,
+    "url": "https://www.hollywoodreporter.com/movies/movie-news/masters-of-the-universe-first-reactions-1236599231/",
+    "published_at": "2026-05-19T05:11:41+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 47.95721642418982,
+    "matched_keywords": []
+  },
+  {
+    "id": "817694a572aed805",
+    "source": "Variety",
+    "country": "US",
+    "title": "Two-Time Oscar Nominee Andrey Zvyagintsev on Cannes Contender ‘Minotaur’ and Life After (Near) Death: ‘The Light Can Go Out at Any Second’",
+    "title_ko": null,
+    "summary": "Nearly a decade after his last film, “Loveless,” won the Jury Prize at the Cannes Film Festival, two-time Academy Award nominee Andrey Zvyagintsev (“Leviathan”) returns to the Croisette with “Minotaur,” a modern-day parable about the emotional and moral collapse of a Russian businessman whose world unravels amid professional crises, global chaos and an extramarital affair. Zvyagintsev, […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/global/andrey-zvyagintsev-cannes-minotaur-1236740572/",
+    "published_at": "2026-05-19T05:05:00+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 47.84118633159722,
+    "matched_keywords": []
   },
   {
     "id": "5ad2fd878524e12f",
@@ -176,7 +253,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 49.70302680005787,
+    "score": 47.320352998263886,
     "matched_keywords": []
   },
   {
@@ -192,7 +269,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 49.63213559635417,
+    "score": 47.24946179456018,
     "matched_keywords": []
   },
   {
@@ -208,7 +285,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.95592031857639,
+    "score": 46.573246516782405,
     "matched_keywords": []
   },
   {
@@ -224,7 +301,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.683640225983794,
+    "score": 43.30096642418981,
     "matched_keywords": []
   },
   {
@@ -240,7 +317,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.22009855931713,
+    "score": 41.83742475752315,
     "matched_keywords": []
   },
   {
@@ -256,7 +333,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.88705457783565,
+    "score": 41.504380776041664,
     "matched_keywords": []
   },
   {
@@ -272,7 +349,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.64139485561343,
+    "score": 41.25872105381945,
     "matched_keywords": []
   },
   {
@@ -288,7 +365,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.610434207465275,
+    "score": 41.2277604056713,
     "matched_keywords": []
   },
   {
@@ -304,7 +381,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.06471661487269,
+    "score": 39.6820428130787,
     "matched_keywords": []
   },
   {
@@ -320,7 +397,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.06413791116898,
+    "score": 39.681464109375,
     "matched_keywords": []
   },
   {
@@ -336,23 +413,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.77825828153935,
-    "matched_keywords": []
-  },
-  {
-    "id": "5061770f11250b13",
-    "source": "Variety",
-    "country": "US",
-    "title": "‘Greyhound’ DP Shelly Johnson Elected President of American Society of Cinematographers",
-    "title_ko": null,
-    "summary": "“Greyhound” and “Jurassic Park III” DP Shelly Johnson has been elected the 50th President of the American Society of Cinematographers. The ASC board of governors has announced a new slate of officers. Johnson, who takes the reigns from incumbent President Mandy Walker, previously served as the org’s president from 2023-25. The Board also voted in Vice […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/artisans/news/shelly-johnson-president-american-society-of-cinematographers-1236752948/",
-    "published_at": "2026-05-18T20:26:29+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 41.221834670428244,
+    "score": 39.395584479745374,
     "matched_keywords": []
   },
   {
@@ -368,7 +429,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 40.894288374131946,
+    "score": 38.51161457233797,
     "matched_keywords": []
   },
   {
@@ -384,7 +445,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 40.75916105931713,
+    "score": 38.37648725752315,
     "matched_keywords": []
   },
   {
@@ -400,7 +461,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.98427680005787,
+    "score": 37.601602998263886,
     "matched_keywords": []
   },
   {
@@ -416,7 +477,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.72038791116898,
+    "score": 37.337714109375,
     "matched_keywords": []
   },
   {
@@ -432,7 +493,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.1439990222801,
+    "score": 35.761325220486114,
     "matched_keywords": []
   },
   {
@@ -448,7 +509,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.088443466724534,
+    "score": 35.70576966493056,
     "matched_keywords": []
   },
   {
@@ -464,7 +525,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.08294578153935,
+    "score": 35.70027197974537,
     "matched_keywords": []
   },
   {
@@ -480,7 +541,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 37.71315411487269,
+    "score": 35.3304803130787,
     "matched_keywords": []
   },
   {
@@ -496,7 +557,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 37.376637911168984,
+    "score": 34.993964109375,
     "matched_keywords": []
   },
   {
@@ -512,39 +573,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 36.85580457783565,
-    "matched_keywords": []
-  },
-  {
-    "id": "b1d7ccf9e94f66cb",
-    "source": "The Hollywood Reporter",
-    "country": "US",
-    "title": "László Nemes Says an “Orgy of Antisemitism” Is “Overtaking the West”",
-    "title_ko": null,
-    "summary": "The Hungarian filmmaker details the struggle to secure distribution for Jewish stories and a \"puritan, moralising, self-righteousness\" looming over Hollywood ahead of the Cannes premiere of 'Moulin.'",
-    "summary_ko": null,
-    "url": "https://www.hollywoodreporter.com/movies/movie-news/laszlo-nemes-antisemitism-jewish-film-cannes-son-of-saul-1236598639/",
-    "published_at": "2026-05-18T16:12:17+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 36.808640225983794,
-    "matched_keywords": []
-  },
-  {
-    "id": "f04ff96517118596",
-    "source": "Deadline",
-    "country": "US",
-    "title": "Ben Foster, Finn Cole, Leslie Bibb & KJ Apa Set For Film On Olympic Gold Medalist Wrestler Dan Gable",
-    "title_ko": null,
-    "summary": "EXCLUSIVE: Ben Foster (The Messenger), Leslie Bibb (The White Lotus), and KJ Apa (Riverdale) are set to star in Gable, a film telling the extraordinary true story of Olympic gold medalist wrestler Dan Gable, who will be played by Peaky Blinders and Animal Kingdom‘s Finn Cole. Gable chronicles the athlete’s journey, as a working-class kid from Waterloo, Iowa who overcame […]",
-    "summary_ko": null,
-    "url": "https://deadline.com/2026/05/dan-gable-movie-casts-ben-foster-finn-cole-leslie-bibb-kj-apa-1236914594/",
-    "published_at": "2026-05-18T16:11:54+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 36.8019851333912,
+    "score": 34.473130776041664,
     "matched_keywords": []
   },
   {
@@ -560,7 +589,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 34.99122124450231,
+    "score": 32.608547442708335,
     "matched_keywords": []
   },
   {
@@ -576,7 +605,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 33.470387911168984,
+    "score": 31.087714109374996,
     "matched_keywords": []
   },
   {
@@ -592,23 +621,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 27.307193466724534,
-    "matched_keywords": []
-  },
-  {
-    "id": "fcdd5ec0712eeee2",
-    "source": "씨네21",
-    "country": "KR",
-    "title": "[culture music video](Feat. G-DRAGON)",
-    "title_ko": null,
-    "summary": "사진출처 YOUTUBE ‘SMTOWN’ 가수 aespa(에스파) 공개 2026년 5월11일 <WDA> 뮤직비디오는 꽤 무섭다. 처음부터 멤버 지젤이 재패니즈 호러풍의 고속도로 위 유령으로 등장하여 공포의 톤 앤드 매너를 형성한다. 이어지는 소녀와 까마귀의 추격전은 생성형 AI의 조악한 품질로 드러나며, 웹에 떠도는 온갖 찌꺼기 이미지들...",
-    "summary_ko": null,
-    "url": "https://www.cine21.com/news/view/?mag_id=109965",
-    "published_at": "2026-05-18T07:05:00+00:00",
-    "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_30_29__6a06cb95885ba[S1000,1000].jpg",
-    "content_kind": "official",
-    "tier": 4,
-    "score": 27.307193466724534,
+    "score": 24.924519664930557,
     "matched_keywords": []
   },
   {
@@ -624,7 +637,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 26.26552680005787,
+    "score": 23.882852998263886,
     "matched_keywords": []
   },
   {
@@ -640,7 +653,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 26.17467031857639,
+    "score": 23.791996516782405,
     "matched_keywords": []
   },
   {
@@ -656,7 +669,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 25.223860133391206,
+    "score": 22.841186331597225,
     "matched_keywords": []
   },
   {
@@ -672,7 +685,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 25.15383698524306,
+    "score": 22.77116318344908,
     "matched_keywords": []
   },
   {
@@ -688,7 +701,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 15.615931892650464,
+    "score": 13.233258090856486,
     "matched_keywords": []
   },
   {
@@ -704,39 +717,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 11.389658744502313,
-    "matched_keywords": []
-  },
-  {
-    "id": "7dcd505c7ea807f5",
-    "source": "Rolling Stone",
-    "country": "US",
-    "title": "‘SNL’: Gibberish-Talking Mechanics Will Ferrell, Paul McCartney Exploit Car Owners",
-    "title_ko": null,
-    "summary": "It's an oil change gone awry—and the cost is \"all the money now.\"",
-    "summary_ko": null,
-    "url": "https://www.rollingstone.com/tv-movies/tv-movie-news/snl-gibberish-talking-mechanics-will-ferrell-paul-mccartney-exploit-car-owner-1235563910/",
-    "published_at": "2026-05-17T06:01:40+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 1.207656429687498,
-    "matched_keywords": []
-  },
-  {
-    "id": "4e10601c92d1cebc",
-    "source": "Rolling Stone",
-    "country": "US",
-    "title": "‘SNL’ Weekend Update Mocks Trump’s China Visit, ‘Blackout’ Kash Patel",
-    "title_ko": null,
-    "summary": "The president's brief time in China \"could have been an email,\" Colin Jost jokes",
-    "summary_ko": null,
-    "url": "https://www.rollingstone.com/tv-movies/tv-movie-news/snl-weekend-update-mocks-trumps-china-blackout-kash-patel-1235563908/",
-    "published_at": "2026-05-17T05:02:32+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 0.18103605931712452,
+    "score": 9.006984942708328,
     "matched_keywords": []
   }
 ]

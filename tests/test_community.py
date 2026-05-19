@@ -194,7 +194,7 @@ def test_dcinside_direct_search_source_parses_search_result_links():
     source = DCInsideDirectSearchSource(max_items_per_query=2)
     html = """
     <a href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548641">와일드씽 굿즈는 탐나는데</a>
-    <a href="https://gall.dcinside.com/board/view/?id=drama_new3&no=23109664">와일드 씽 예매율 올라왔네</a>
+    <a href="https://gall.dcinside.com/board/view/?id=commercial_movie&no=23109664">와일드 씽 예매율 올라왔네</a>
     <a href="https://www.dcinside.com/">디시 홈</a>
     """
 
@@ -204,6 +204,19 @@ def test_dcinside_direct_search_source_parses_search_result_links():
     assert reactions[0].source == "디시인사이드"
     assert reactions[0].url.startswith("https://gall.dcinside.com/")
     assert reactions[1].matched_keywords == ["와일드 씽"]
+
+
+def test_dcinside_direct_search_source_skips_non_movie_gallery_links():
+    source = DCInsideDirectSearchSource(max_items_per_query=2)
+    html = """
+    <a href="https://gall.dcinside.com/mgallery/board/view/?id=slay&no=404675">사일런트 &lt;&lt; 잠행군체담당일진임</a>
+    <a href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2548641">군체 아이맥스 예매 열렸네</a>
+    """
+
+    reactions = source.parse(html, query="군체")
+
+    assert len(reactions) == 1
+    assert reactions[0].url.endswith("id=oticket&no=2548641")
 
 
 def test_naver_public_web_search_source_parses_theqoo_links():

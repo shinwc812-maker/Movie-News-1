@@ -1,13 +1,13 @@
 {
   "target_date": "20260518",
-  "fetched_at": "2026-05-19T04:51:31.162396+00:00",
+  "fetched_at": "2026-05-19T07:08:48.273192+00:00",
   "movies": [
     {
       "rank": 1,
       "movie_code": "20259626",
       "title": "마이클",
       "audi_count": 43653,
-      "audi_acc": 691565,
+      "audi_acc": 691550,
       "open_date": "2026-05-13",
       "audi_inten": -135371,
       "audi_change": -75.6,
@@ -32,7 +32,7 @@
       "movie_code": "20259791",
       "title": "악마는 프라다를 입는다 2",
       "audi_count": 14277,
-      "audi_acc": 1458561,
+      "audi_acc": 1458470,
       "open_date": "2026-04-29",
       "audi_inten": -25865,
       "audi_change": -64.4,
@@ -107,7 +107,7 @@
       "movie_code": "20259773",
       "title": "슈퍼 마리오 갤럭시",
       "audi_count": 3642,
-      "audi_acc": 1473169,
+      "audi_acc": 1473134,
       "open_date": "2026-04-29",
       "audi_inten": -55425,
       "audi_change": -93.8,

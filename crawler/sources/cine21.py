@@ -9,6 +9,7 @@ import asyncio
 import sys
 from datetime import datetime, timezone
 from typing import Optional
+from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 import httpx
@@ -19,6 +20,7 @@ from crawler.sources.base import USER_AGENT, REQUEST_TIMEOUT, Source, make_artic
 
 KST = ZoneInfo("Asia/Seoul")
 REQUEST_DELAY = 1.0  # 요청 사이 sleep (초)
+EXCLUDED_TITLE_TERMS = ("추천도서",)
 
 
 def _meta(tree: HTMLParser, prop: str) -> Optional[str]:
@@ -56,6 +58,36 @@ def _parse_published(tree: HTMLParser) -> Optional[datetime]:
     return None
 
 
+def _excluded_list_title(title: str) -> bool:
+    return any(term in title for term in EXCLUDED_TITLE_TERMS)
+
+
+def parse_cine21_news_list(html: str, base_url: str) -> list[tuple[str, str]]:
+    """뉴스 목록 HTML에서 기사 URL과 제목을 추출한다."""
+    tree = HTMLParser(html)
+    seen: set[str] = set()
+    results: list[tuple[str, str]] = []
+    for li in tree.css("li.list_with_thumb_item_m"):
+        link = li.css_first("a[href*='/news/view/']")
+        if link is None:
+            continue
+        href = link.attributes.get("href", "").strip()
+        if not href:
+            continue
+
+        title_node = li.css_first("p.news_title")
+        title = title_node.text(strip=True) if title_node else ""
+        if _excluded_list_title(title):
+            continue
+
+        url = urljoin(base_url, href)
+        if url in seen:
+            continue
+        seen.add(url)
+        results.append((url, title))
+    return results
+
+
 class Cine21Source(Source):
     name = "씨네21"
     country = "KR"
@@ -88,30 +120,11 @@ class Cine21Source(Source):
             return []
 
         resp.encoding = "utf-8"
-        tree = HTMLParser(resp.text)
-
-        seen: set[str] = set()
-        results: list[tuple[str, str]] = []
-        for li in tree.css("li.list_with_thumb_item_m"):
-            try:
-                link = li.css_first("a[href*='/news/view/']")
-                if link is None:
-                    continue
-                href = link.attributes.get("href", "").strip()
-                if not href:
-                    continue
-                url = href if href.startswith("http") else self.base_url + href
-                if url in seen:
-                    continue
-                seen.add(url)
-
-                title_node = li.css_first("p.news_title")
-                title = title_node.text(strip=True) if title_node else ""
-                results.append((url, title))
-            except Exception as exc:  # noqa: BLE001
-                print(f"[warn] {self.name}: 목록 항목 파싱 실패 — {exc}", file=sys.stderr)
-                continue
-        return results
+        try:
+            return parse_cine21_news_list(resp.text, self.base_url)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[warn] {self.name}: 목록 파싱 실패 — {exc}", file=sys.stderr)
+            return []
 
     async def _fetch_detail(
         self, client: httpx.AsyncClient, url: str, list_title: str

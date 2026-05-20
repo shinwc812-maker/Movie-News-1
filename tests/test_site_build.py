@@ -64,7 +64,7 @@ def test_template_contains_sectioned_curation_briefing_labels():
     assert "curation_sections" in text
     assert "흥행·배급" in text
     assert "내용 요약" in text
-    assert "평가" in text
+    assert "평가" not in text
 
 
 def test_template_renders_curation_sections_without_dict_method_collision():
@@ -91,7 +91,6 @@ def test_template_renders_curation_sections_without_dict_method_collision():
                         "url": "https://example.com/a",
                         "source": "테스트뉴스",
                         "curation_summary": "예매 상승세가 확인됨.",
-                        "curation_evaluation": "배급 전략 점검 대상.",
                         "matched_keywords": ["와일드 씽"],
                     }
                 ],
@@ -113,6 +112,7 @@ def test_template_renders_curation_sections_without_dict_method_collision():
     assert html.index("흥행·배급") < html.index("와일드씽 예매 상승")
     assert html.index("와일드씽 예매 상승") < html.index("내용 요약")
     assert "예매 상승세가 확인됨." in html
+    assert "평가" not in html
 
 
 def test_legacy_extmovie_articles_are_treated_as_community():
@@ -208,7 +208,54 @@ def test_build_curation_sections_groups_executive_briefing_topics():
     assert len(titles) == len(set(titles))
     assert "와일드씽 롯데엔터테인먼트 예매 상승" in titles
     assert all(item["curation_summary"] for section in sections for item in section["items"])
-    assert all(item["curation_evaluation"] for section in sections for item in section["items"])
+    assert not any("curation_evaluation" in item for section in sections for item in section["items"])
+
+
+def test_build_curation_sections_keeps_longer_content_summary():
+    build = load_site_build_module()
+    long_summary = (
+        "롯데배급 신작의 예매가 주요 상영관을 중심으로 반등하고 있으며, 개봉 이후 관객 전환율을 "
+        "다시 점검해야 하는 상황이다. 경쟁작 대비 좌석 배정과 프로모션 메시지를 함께 확인할 필요가 있다. "
+        "초반 인지도 확보 이후 실제 구매로 이어지는 흐름을 보기 위해 지역별 예매 편차와 상영 회차 조정을 같이 봐야 한다."
+    )
+    official = [
+        {
+            "title": "와일드씽 롯데엔터테인먼트 예매 상승",
+            "summary": long_summary,
+            "score": 80,
+            "country": "KR",
+            "matched_keywords": ["와일드 씽", "롯데배급"],
+            "url": "https://example.com/lotte",
+        }
+    ]
+
+    sections = build.build_curation_sections(
+        official,
+        market_titles=["와일드 씽"],
+        limit_per_section=1,
+    )
+
+    summary = sections[0]["items"][0]["curation_summary"]
+    assert len(summary) > 115
+    assert "프로모션 메시지" in summary
+
+
+def test_build_curation_sections_expands_too_short_summary_with_title_context():
+    build = load_site_build_module()
+    policy = [
+        {
+            "content_kind": "policy",
+            "title": "2026년 독립예술영화 제작지원 장편 극영화부문 사업 공고",
+            "summary": "영화 지원사업",
+            "url": "https://example.com/policy",
+        }
+    ]
+
+    sections = build.build_curation_sections([], policy_views=policy)
+
+    summary = sections[0]["items"][0]["curation_summary"]
+    assert "독립예술영화 제작지원" in summary
+    assert "영화 지원사업" in summary
 
 
 def test_build_curation_sections_does_not_backfill_low_context_overseas_ai_items():
@@ -250,8 +297,8 @@ def test_enrich_curation_sections_uses_ai_json_when_command_succeeds():
                     "id": "a1",
                     "title": "와일드씽 예매 상승",
                     "source": "테스트뉴스",
+                    "country": "US",
                     "curation_summary": "fallback summary",
-                    "curation_evaluation": "fallback evaluation",
                 }
             ],
         }
@@ -261,15 +308,16 @@ def test_enrich_curation_sections_uses_ai_json_when_command_succeeds():
         "-c",
         (
             "import json;"
-            "print(json.dumps([{'id':'a1','summary':'AI 요약','evaluation':'AI 평가'}], ensure_ascii=False))"
+            "print(json.dumps([{'id':'a1','title':'와일드씽 해외 예매 상승','summary':'AI가 두세 문장 분량으로 확장한 내용 요약입니다. 해외 기사 제목은 한국어로 번역되어 함께 표시됩니다.'}], ensure_ascii=False))"
         ),
     ]
 
     enriched = build.enrich_curation_sections_with_ai(sections, command=command)
 
     item = enriched[0]["items"][0]
-    assert item["curation_summary"] == "AI 요약"
-    assert item["curation_evaluation"] == "AI 평가"
+    assert item["curation_title"] == "와일드씽 해외 예매 상승"
+    assert item["curation_summary"].startswith("AI가 두세 문장")
+    assert "curation_evaluation" not in item
 
 
 def test_enrich_curation_sections_keeps_fallback_when_command_fails():
@@ -284,7 +332,6 @@ def test_enrich_curation_sections_keeps_fallback_when_command_fails():
                     "title": "영화관 관람료 할인권",
                     "source": "KOFIC",
                     "curation_summary": "fallback summary",
-                    "curation_evaluation": "fallback evaluation",
                 }
             ],
         }
@@ -297,7 +344,8 @@ def test_enrich_curation_sections_keeps_fallback_when_command_fails():
 
     item = enriched[0]["items"][0]
     assert item["curation_summary"] == "fallback summary"
-    assert item["curation_evaluation"] == "fallback evaluation"
+    assert item["curation_title"] == "영화관 관람료 할인권"
+    assert "curation_evaluation" not in item
 
 
 def test_top_curation_items_caps_overseas_official_articles():

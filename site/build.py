@@ -148,31 +148,26 @@ CORE_CURATION_SECTIONS = (
         "key": "boxoffice",
         "title": "흥행·배급",
         "eyebrow": "box office / distribution",
-        "fallback_evaluation": "흥행 추이, 예매 전환, 롯데 배급작 우선순위에 직접 영향을 주는 항목입니다.",
     },
     {
         "key": "policy",
         "title": "극장·정책",
         "eyebrow": "theater policy",
-        "fallback_evaluation": "극장 운영, 관람료, 지원사업 대응 관점에서 확인할 필요가 있습니다.",
     },
     {
         "key": "competitor",
         "title": "경쟁사·산업",
         "eyebrow": "competitor / industry",
-        "fallback_evaluation": "CJ, CGV 등 경쟁사 움직임과 산업 구조 변화를 비교 관찰할 항목입니다.",
     },
     {
         "key": "overseas",
         "title": "해외·마켓",
         "eyebrow": "global market",
-        "fallback_evaluation": "해외 흥행, 마켓, 배급 환경 변화가 국내 라인업 판단에 주는 신호입니다.",
     },
     {
         "key": "culture_ip",
         "title": "문화/IP",
         "eyebrow": "culture / IP",
-        "fallback_evaluation": "영화 IP를 팬덤, 이벤트, 공간 사업으로 확장할 가능성을 점검할 항목입니다.",
     },
 )
 CULTURE_IP_KEYWORDS = (
@@ -589,7 +584,7 @@ def _curation_dedupe_key(item: dict) -> str:
     return str(item.get("url") or item.get("title") or _curation_item_id(item))
 
 
-def _truncate_text(text: str, limit: int = 115) -> str:
+def _truncate_text(text: str, limit: int = 260) -> str:
     text = " ".join((text or "").split())
     if len(text) <= limit:
         return text
@@ -597,22 +592,18 @@ def _truncate_text(text: str, limit: int = 115) -> str:
 
 
 def _fallback_curation_summary(item: dict) -> str:
+    title = str(item.get("ko_title") or item.get("title") or "")
     text = (
         item.get("ko_summary")
         or item.get("summary")
         or item.get("excerpt")
         or item.get("en_summary")
-        or item.get("title")
+        or title
         or ""
     )
-    return _truncate_text(str(text), 115)
-
-
-def _section_definition(key: str) -> dict:
-    for section in CORE_CURATION_SECTIONS:
-        if section["key"] == key:
-            return section
-    return CORE_CURATION_SECTIONS[-1]
+    if len(str(text)) < 80 and title and title not in str(text):
+        text = f"{title} — {text}"
+    return _truncate_text(str(text))
 
 
 def _has_boxoffice_or_distribution_signal(
@@ -695,8 +686,8 @@ def _with_curation_brief(item: dict, section: dict) -> dict:
     enriched["id"] = _curation_item_id(enriched)
     enriched["curation_section"] = section["key"]
     enriched["curation_section_title"] = section["title"]
+    enriched.setdefault("curation_title", enriched.get("ko_title") or enriched.get("title") or "")
     enriched.setdefault("curation_summary", _fallback_curation_summary(enriched))
-    enriched.setdefault("curation_evaluation", section["fallback_evaluation"])
     return enriched
 
 
@@ -715,6 +706,7 @@ def _curation_ai_prompt(sections: list[dict]) -> str:
                     "id": item.get("id"),
                     "section": section.get("title"),
                     "title": item.get("title"),
+                    "country": item.get("country"),
                     "source": item.get("source"),
                     "summary": item.get("curation_summary"),
                     "matched_keywords": item.get("matched_keywords") or [],
@@ -722,9 +714,10 @@ def _curation_ai_prompt(sections: list[dict]) -> str:
             )
     return (
         "다음 핵심 큐레이션 기사들을 롯데엔터테인먼트/롯데컬처웍스 임원 보고용으로 정리해줘. "
-        "출력은 JSON 배열만 허용한다. 각 항목은 id, summary, evaluation 키를 가진다. "
-        "summary는 기사 핵심을 1문장으로, evaluation은 왜 봐야 하는지/사업적 판단 포인트를 1문장으로 써라. "
-        "커뮤니티 말투가 아니라 내부 보고서 톤으로 간결하게 작성한다.\n"
+        "출력은 JSON 배열만 허용한다. 각 항목은 id, title, summary 키를 가진다. "
+        "title은 한국어 기사 제목으로 작성한다. country가 KR이 아니면 원문 제목을 자연스러운 한국어 제목으로 번역한다. "
+        "summary는 내용 요약으로 2~3문장, 180~260자 안팎으로 쓰고 기사 사실과 사업적 맥락을 함께 담는다. "
+        "평가, 점수, 별도 의견 필드는 만들지 않는다. 커뮤니티 말투가 아니라 내부 보고서 톤으로 작성한다.\n"
         + json.dumps(payload, ensure_ascii=False)
     )
 
@@ -754,6 +747,9 @@ def enrich_curation_sections_with_ai(
         {**section, "items": [dict(item) for item in section.get("items", [])]}
         for section in sections
     ]
+    for section in result:
+        for item in section.get("items", []):
+            item.setdefault("curation_title", item.get("ko_title") or item.get("title") or "")
     if not result:
         return result
     command = command or os.environ.get("CORE_CURATION_AI_CMD")
@@ -788,10 +784,10 @@ def enrich_curation_sections_with_ai(
     for section in result:
         for item in section.get("items", []):
             update = updates.get(str(item.get("id")), {})
+            if update.get("title"):
+                item["curation_title"] = str(update["title"])
             if update.get("summary"):
                 item["curation_summary"] = str(update["summary"])
-            if update.get("evaluation"):
-                item["curation_evaluation"] = str(update["evaluation"])
     return result
 
 

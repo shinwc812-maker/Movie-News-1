@@ -268,25 +268,6 @@ h1 {
   margin-top: 9px;
 }
 
-.brief-evaluation {
-  display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 7px;
-  margin: 8px 0 0;
-  font-size: 0.78rem;
-  line-height: 1.42;
-}
-
-.brief-evaluation b {
-  color: #334155;
-  font-size: 0.72rem;
-}
-
-.brief-evaluation span {
-  color: #263f68;
-  font-weight: 760;
-}
-
 .card {
   display: flex;
   gap: 12px;

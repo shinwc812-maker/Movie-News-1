@@ -43,3 +43,21 @@ def test_community_search_terms_include_reservation_top_five_titles():
     assert terms[:2] == ["마이클", "와일드 씽"]
     assert "와일드씽" in terms
     assert "영화 관객 반응" in terms
+
+
+def test_community_search_terms_use_brief_titles_for_overlong_reservation_titles():
+    reservation = ReservationSnapshot(
+        captured_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+        movies=[
+            ReservationMovie(
+                rank=5,
+                title="너바나 더 밴드 : 전설적 밴드 ‘너바나’와는 별 관련 없는 ‘너바나 더 밴드’의 콤비 맷과 제이. 어느 날 공연을 위해 타임머신을 만드는 황당한 작전을 세우고 처음 만났던 17년 전으로 돌",
+                reservation_rate=2.2,
+            )
+        ],
+    )
+
+    terms = community_search_terms(None, reservation)
+
+    assert "너바나 더 밴드" in terms
+    assert all("어느 날 공연" not in term for term in terms)

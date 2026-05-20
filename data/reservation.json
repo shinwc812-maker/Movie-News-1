@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-05-19T09:05:46.861714+00:00",
+  "captured_at": "2026-05-20T00:00:05.518249+00:00",
   "top_movie": "군체",
   "top_rate": "53%",
   "movies": [
@@ -7,7 +7,7 @@
       "rank": 1,
       "title": "군체",
       "reservation_rate": 53.0,
-      "reservation_count": 182443,
+      "reservation_count": 205772,
       "english_title": "COLONY",
       "movie_code": "20252402",
       "distributors": [
@@ -25,8 +25,8 @@
     {
       "rank": 2,
       "title": "마이클",
-      "reservation_rate": 11.4,
-      "reservation_count": 39178,
+      "reservation_rate": 11.9,
+      "reservation_count": 46044,
       "english_title": "Michael",
       "movie_code": "20259626",
       "distributors": [
@@ -44,8 +44,8 @@
     {
       "rank": 3,
       "title": "와일드 씽",
-      "reservation_rate": 5.6,
-      "reservation_count": 19366,
+      "reservation_rate": 5.9,
+      "reservation_count": 22812,
       "english_title": "Wild Sing",
       "movie_code": "20248252",
       "distributors": [
@@ -63,8 +63,8 @@
     {
       "rank": 4,
       "title": "신극장판 은혼: 요시와라 대염상",
-      "reservation_rate": 4.5,
-      "reservation_count": 15383,
+      "reservation_rate": 4.2,
+      "reservation_count": 16138,
       "english_title": "Gintama: Yoshiwara in Flames",
       "movie_code": "20262975",
       "distributors": [
@@ -81,14 +81,15 @@
     },
     {
       "rank": 5,
-      "title": "악마는 프라다를 입는다 2",
-      "reservation_rate": 2.1,
-      "reservation_count": 7377,
-      "english_title": "The Devil Wears Prada 2",
-      "movie_code": "20259791",
+      "title": "너바나 더 밴드",
+      "reservation_rate": 2.2,
+      "reservation_count": 8676,
+      "english_title": "Nirvanna the Band the Show the Movie",
+      "movie_code": "20263344",
       "distributors": [
-        "월트디즈니컴퍼니코리아 유한책임회사",
-        "The Walt Disney Company Korea"
+        "그린나래미디어(주)",
+        "GREEN NARAE MEDIA",
+        "(주)레드아이스 엔터테인먼트"
       ],
       "is_lotte_distributed": false,
       "tmdb_id": null,

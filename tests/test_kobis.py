@@ -186,6 +186,22 @@ def test_parse_reservation_movies_keeps_top_five_rates_from_kobis_mobile_html():
     assert movies[4].title == "악마는 프라다를 입는다 2"
 
 
+def test_parse_reservation_movies_shortens_overlong_official_titles_for_briefing():
+    html = """
+    <h3>실시간 예매율</h3>
+    <p>5</p>
+    <p>너바나 더 밴드 : 전설적 밴드 ‘너바나’와는 별 관련 없는 ‘너바나 더 밴드’의 콤비 맷과 제이. 어느 날 공연을 위해 타임머신을 만드는 황당한 작전을 세우고 처음 만났던 17년 전으로 돌</p>
+    <p>(Nirvanna the Band the Show the Movie)</p>
+    <p>예매율(예매관객수)</p>
+    <p>2.2% (8,675명)</p>
+    """
+
+    movies = parse_reservation_movies(html)
+
+    assert movies[0].title == "너바나 더 밴드"
+    assert movies[0].english_title == "Nirvanna the Band the Show the Movie"
+
+
 def test_enrich_reservation_movies_with_kobis_marks_lotte_distributor_from_wild_sing():
     def handler(request: httpx.Request) -> httpx.Response:
         if request.url.path.endswith("/searchMovieList.json"):

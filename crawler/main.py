@@ -3,6 +3,7 @@
 import asyncio
 import json
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -41,6 +42,7 @@ OVERSEAS_WEEKEND_PATH = DATA_DIR / "overseas_weekend.json"
 
 # 이 시간보다 오래된 기사는 제외 (매일 실행하므로 누적 없이 최신만 표시)
 MAX_AGE_HOURS = 48
+BRIEF_TITLE_MAX_LENGTH = 40
 
 # 등록된 소스 (8개 매체 전체)
 SOURCES: list[Source] = [
@@ -182,6 +184,15 @@ def collect_reservation_snapshot() -> ReservationSnapshot:
     return snapshot
 
 
+def brief_movie_title(title: str) -> str:
+    title = str(title or "").strip()
+    if len(title) > BRIEF_TITLE_MAX_LENGTH and " : " in title:
+        return title.split(" : ", 1)[0].strip()
+    if len(title) > 60:
+        title = re.split(r"\.\s+", title, maxsplit=1)[0].strip()
+    return title
+
+
 def community_search_terms(
     market: MarketSnapshot | None,
     reservation: ReservationSnapshot | None = None,
@@ -190,9 +201,9 @@ def community_search_terms(
     market_titles: list[str] = []
     reservation_titles: list[str] = []
     if market is not None:
-        market_titles.extend(movie.title for movie in market.movies if movie.title)
+        market_titles.extend(brief_movie_title(movie.title) for movie in market.movies if movie.title)
     if reservation is not None and not reservation.capture_failed:
-        reservation_titles.extend(movie.title for movie in reservation.movies if movie.title)
+        reservation_titles.extend(brief_movie_title(movie.title) for movie in reservation.movies if movie.title)
     for index in range(max(len(market_titles), len(reservation_titles))):
         if index < len(market_titles):
             base_terms.append(market_titles[index])

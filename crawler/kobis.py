@@ -381,7 +381,12 @@ def _reservation_text_lines(html: str) -> list[str]:
 
 
 def _normalise_movie_title(title: str) -> str:
-    return re.sub(r"\s+\([^)]*\)\s*$", "", title).strip()
+    title = re.sub(r"\s+\([^)]*\)\s*$", "", title).strip()
+    if len(title) > 40 and " : " in title:
+        return title.split(" : ", 1)[0].strip()
+    if len(title) > 60 and ". " in title:
+        return title.split(". ", 1)[0].strip()
+    return title
 
 
 def parse_reservation_movies(html: str, limit: int = 5) -> list[ReservationMovie]:

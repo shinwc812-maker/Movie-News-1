@@ -1,6 +1,12 @@
 """Build the static internal movie/culture briefing dashboard."""
 
 import json
+import hashlib
+import os
+import re
+import shlex
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -116,12 +122,73 @@ POLICY_SIGNAL_KEYWORDS = (
     "상영",
     "배급",
 )
+POLICY_SECTION_KEYWORDS = (
+    "지원사업",
+    "지원 공고",
+    "정책",
+    "관람료",
+    "할인권",
+    "입장권",
+    "티켓 가격",
+    "지역 영화관",
+    "상영관",
+    "독립예술영화",
+    "국제공동제작",
+)
 OVERSEAS_CONTEXT_KEYWORDS = (
     "롯데배급",
     "롯데엔터테인먼트",
     "롯데컬처웍스",
     "Lotte Entertainment",
     "Lotte Cultureworks",
+)
+CORE_CURATION_AI_TIMEOUT_SECONDS = 45
+CORE_CURATION_SECTIONS = (
+    {
+        "key": "boxoffice",
+        "title": "흥행·배급",
+        "eyebrow": "box office / distribution",
+        "fallback_evaluation": "흥행 추이, 예매 전환, 롯데 배급작 우선순위에 직접 영향을 주는 항목입니다.",
+    },
+    {
+        "key": "policy",
+        "title": "극장·정책",
+        "eyebrow": "theater policy",
+        "fallback_evaluation": "극장 운영, 관람료, 지원사업 대응 관점에서 확인할 필요가 있습니다.",
+    },
+    {
+        "key": "competitor",
+        "title": "경쟁사·산업",
+        "eyebrow": "competitor / industry",
+        "fallback_evaluation": "CJ, CGV 등 경쟁사 움직임과 산업 구조 변화를 비교 관찰할 항목입니다.",
+    },
+    {
+        "key": "overseas",
+        "title": "해외·마켓",
+        "eyebrow": "global market",
+        "fallback_evaluation": "해외 흥행, 마켓, 배급 환경 변화가 국내 라인업 판단에 주는 신호입니다.",
+    },
+    {
+        "key": "culture_ip",
+        "title": "문화/IP",
+        "eyebrow": "culture / IP",
+        "fallback_evaluation": "영화 IP를 팬덤, 이벤트, 공간 사업으로 확장할 가능성을 점검할 항목입니다.",
+    },
+)
+CULTURE_IP_KEYWORDS = (
+    "IP",
+    "OSMU",
+    "애니메이션",
+    "웹툰",
+    "캐릭터",
+    "굿즈",
+    "K콘텐츠",
+    "K팝",
+    "팬덤",
+    "팝업",
+    "전시",
+    "공연",
+    "AI",
 )
 
 
@@ -216,6 +283,7 @@ def to_article_view(article: dict, now: datetime) -> dict:
     if not content_kind:
         content_kind = "community" if article.get("source") in LEGACY_COMMUNITY_SOURCES else "official"
     return {
+        "id": article.get("id", ""),
         "content_kind": content_kind,
         "country": article.get("country", ""),
         "source": article.get("source", ""),
@@ -236,6 +304,7 @@ def to_article_view(article: dict, now: datetime) -> dict:
 
 def to_community_view(item: dict, now: datetime) -> dict:
     return {
+        "id": item.get("id", ""),
         "content_kind": "community",
         "source": item.get("source", ""),
         "title": item.get("title", ""),
@@ -250,6 +319,7 @@ def to_community_view(item: dict, now: datetime) -> dict:
 
 def to_policy_view(item: dict, now: datetime) -> dict:
     return {
+        "id": item.get("id", ""),
         "content_kind": "policy",
         "source": item.get("source", ""),
         "category": item.get("category", ""),
@@ -494,6 +564,291 @@ def top_curation_items(
     return selected
 
 
+def _keyword_in_text(keyword: str, text: str) -> bool:
+    if keyword.isascii():
+        pattern = rf"(?<![A-Za-z0-9]){re.escape(keyword)}(?![A-Za-z0-9])"
+        return re.search(pattern, text, flags=re.IGNORECASE) is not None
+    return keyword.casefold() in text.casefold()
+
+
+def _has_any_keyword(item: dict, keywords: tuple[str, ...]) -> bool:
+    text = _curation_text(item)
+    return any(_keyword_in_text(keyword, text) for keyword in keywords)
+
+
+def _curation_item_id(item: dict) -> str:
+    if item.get("id"):
+        return str(item["id"])
+    identity = str(item.get("url") or item.get("title") or "")
+    if not identity:
+        identity = json.dumps(item, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(identity.encode("utf-8")).hexdigest()[:16]
+
+
+def _curation_dedupe_key(item: dict) -> str:
+    return str(item.get("url") or item.get("title") or _curation_item_id(item))
+
+
+def _truncate_text(text: str, limit: int = 115) -> str:
+    text = " ".join((text or "").split())
+    if len(text) <= limit:
+        return text
+    return text[: limit - 1].rstrip() + "…"
+
+
+def _fallback_curation_summary(item: dict) -> str:
+    text = (
+        item.get("ko_summary")
+        or item.get("summary")
+        or item.get("excerpt")
+        or item.get("en_summary")
+        or item.get("title")
+        or ""
+    )
+    return _truncate_text(str(text), 115)
+
+
+def _section_definition(key: str) -> dict:
+    for section in CORE_CURATION_SECTIONS:
+        if section["key"] == key:
+            return section
+    return CORE_CURATION_SECTIONS[-1]
+
+
+def _has_boxoffice_or_distribution_signal(
+    item: dict,
+    market_titles: list[str],
+    reservation_titles: list[str],
+) -> bool:
+    matched = item.get("matched_keywords") or []
+    text = _curation_text(item)
+    lotte_signal = (
+        "롯데배급" in matched
+        or "롯데엔터테인먼트" in text
+        or "롯데엔터" in text
+        or "Lotte Entertainment" in text
+    )
+    return (
+        lotte_signal
+        or _matched_title(item, market_titles)
+        or _matched_title(item, reservation_titles)
+        or any(keyword in text for keyword in ("박스오피스", "흥행", "예매", "관객수"))
+    )
+
+
+def _curation_section_key(
+    item: dict,
+    market_titles: list[str],
+    reservation_titles: list[str],
+    overseas_titles: list[str],
+) -> str:
+    is_overseas = bool(item.get("country")) and item.get("country") != "KR"
+    if _is_policy_item(item):
+        return "policy"
+    if _has_boxoffice_or_distribution_signal(item, market_titles, reservation_titles):
+        return "boxoffice"
+    if _has_any_keyword(item, POLICY_SECTION_KEYWORDS):
+        return "policy"
+    if _has_competitor_signal(item):
+        return "competitor"
+    if (
+        _matched_title(item, overseas_titles)
+        or _official_feed_priority_hits(item)
+        or (is_overseas and _has_overseas_context_keyword(item))
+    ):
+        return "overseas"
+    if not is_overseas and _has_any_keyword(item, CULTURE_IP_KEYWORDS):
+        return "culture_ip"
+    return ""
+
+
+def _curation_candidate_pool(
+    official_views: list[dict],
+    policy_views: list[dict],
+    market_titles: list[str],
+    reservation_titles: list[str],
+    overseas_titles: list[str],
+) -> list[dict]:
+    official_candidates = [
+        item
+        for item in official_views
+        if not _has_excluded_curation_title(item)
+    ]
+    policy_candidates = [
+        item
+        for item in policy_views
+        if _curation_candidate_allowed(item, market_titles, reservation_titles, overseas_titles)
+    ]
+    candidates = [
+        *official_candidates,
+        *policy_candidates,
+    ]
+    return sorted(
+        candidates,
+        key=lambda item: _curation_priority(item, market_titles, reservation_titles, overseas_titles),
+        reverse=True,
+    )
+
+
+def _with_curation_brief(item: dict, section: dict) -> dict:
+    enriched = dict(item)
+    enriched["id"] = _curation_item_id(enriched)
+    enriched["curation_section"] = section["key"]
+    enriched["curation_section_title"] = section["title"]
+    enriched.setdefault("curation_summary", _fallback_curation_summary(enriched))
+    enriched.setdefault("curation_evaluation", section["fallback_evaluation"])
+    return enriched
+
+
+def _command_args(command: str | list[str] | tuple[str, ...]) -> list[str]:
+    if isinstance(command, str):
+        return shlex.split(command, posix=os.name != "nt")
+    return [str(part) for part in command]
+
+
+def _curation_ai_prompt(sections: list[dict]) -> str:
+    payload = []
+    for section in sections:
+        for item in section.get("items", []):
+            payload.append(
+                {
+                    "id": item.get("id"),
+                    "section": section.get("title"),
+                    "title": item.get("title"),
+                    "source": item.get("source"),
+                    "summary": item.get("curation_summary"),
+                    "matched_keywords": item.get("matched_keywords") or [],
+                }
+            )
+    return (
+        "다음 핵심 큐레이션 기사들을 롯데엔터테인먼트/롯데컬처웍스 임원 보고용으로 정리해줘. "
+        "출력은 JSON 배열만 허용한다. 각 항목은 id, summary, evaluation 키를 가진다. "
+        "summary는 기사 핵심을 1문장으로, evaluation은 왜 봐야 하는지/사업적 판단 포인트를 1문장으로 써라. "
+        "커뮤니티 말투가 아니라 내부 보고서 톤으로 간결하게 작성한다.\n"
+        + json.dumps(payload, ensure_ascii=False)
+    )
+
+
+def _parse_curation_ai_output(output: str) -> dict[str, dict]:
+    output = output.strip()
+    if not output:
+        return {}
+    match = re.search(r"\[.*\]", output, flags=re.DOTALL)
+    if match:
+        output = match.group(0)
+    parsed = json.loads(output)
+    if not isinstance(parsed, list):
+        return {}
+    return {
+        str(item["id"]): item
+        for item in parsed
+        if isinstance(item, dict) and item.get("id")
+    }
+
+
+def enrich_curation_sections_with_ai(
+    sections: list[dict],
+    command: str | list[str] | tuple[str, ...] | None = None,
+) -> list[dict]:
+    result = [
+        {**section, "items": [dict(item) for item in section.get("items", [])]}
+        for section in sections
+    ]
+    if not result:
+        return result
+    command = command or os.environ.get("CORE_CURATION_AI_CMD")
+    if not command:
+        return result
+    try:
+        completed = subprocess.run(
+            _command_args(command),
+            input=_curation_ai_prompt(result),
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            capture_output=True,
+            timeout=CORE_CURATION_AI_TIMEOUT_SECONDS,
+            check=False,
+            env={**os.environ, "PYTHONIOENCODING": "utf-8"},
+        )
+    except Exception as exc:  # noqa: BLE001
+        print(f"[warn] core curation AI summary failed — {exc}", file=sys.stderr)
+        return result
+    if completed.returncode != 0:
+        print(
+            f"[warn] core curation AI summary failed — exit {completed.returncode}",
+            file=sys.stderr,
+        )
+        return result
+    try:
+        updates = _parse_curation_ai_output(completed.stdout)
+    except (json.JSONDecodeError, TypeError, ValueError) as exc:
+        print(f"[warn] core curation AI output ignored — {exc}", file=sys.stderr)
+        return result
+    for section in result:
+        for item in section.get("items", []):
+            update = updates.get(str(item.get("id")), {})
+            if update.get("summary"):
+                item["curation_summary"] = str(update["summary"])
+            if update.get("evaluation"):
+                item["curation_evaluation"] = str(update["evaluation"])
+    return result
+
+
+def build_curation_sections(
+    official_views: list[dict],
+    community_views: list[dict] | None = None,
+    policy_views: list[dict] | None = None,
+    limit_per_section: int = 2,
+    market_titles: list[str] | None = None,
+    reservation_titles: list[str] | None = None,
+    overseas_titles: list[str] | None = None,
+    ai_command: str | list[str] | tuple[str, ...] | None = None,
+) -> list[dict]:
+    del community_views  # Core curation intentionally excludes raw community reactions.
+    market_titles = market_titles or []
+    reservation_titles = reservation_titles or []
+    overseas_titles = overseas_titles or []
+    policy_views = policy_views or []
+    candidates = _curation_candidate_pool(
+        official_views,
+        policy_views,
+        market_titles,
+        reservation_titles,
+        overseas_titles,
+    )
+    used: set[str] = set()
+    sections: list[dict] = []
+    for definition in CORE_CURATION_SECTIONS:
+        items: list[dict] = []
+        for item in candidates:
+            dedupe_key = _curation_dedupe_key(item)
+            if dedupe_key in used:
+                continue
+            section_key = _curation_section_key(
+                item,
+                market_titles,
+                reservation_titles,
+                overseas_titles,
+            )
+            if section_key != definition["key"]:
+                continue
+            items.append(_with_curation_brief(item, definition))
+            used.add(dedupe_key)
+            if len(items) >= limit_per_section:
+                break
+        if items:
+            sections.append(
+                {
+                    "key": definition["key"],
+                    "title": definition["title"],
+                    "eyebrow": definition["eyebrow"],
+                    "items": items,
+                }
+            )
+    return enrich_curation_sections_with_ai(sections, command=ai_command)
+
+
 def _official_feed_priority_hits(item: dict) -> int:
     text = _curation_text(item)
     return sum(
@@ -658,6 +1013,14 @@ def build() -> None:
         reservation_titles=[movie["title"] for movie in reservation["movies"]],
         overseas_titles=[movie["title"] for movie in overseas_weekend["movies"]],
     )
+    curation_sections = build_curation_sections(
+        official_articles,
+        policy_views=policy_views,
+        market_titles=[movie["title"] for movie in boxoffice],
+        reservation_titles=[movie["title"] for movie in reservation["movies"]],
+        overseas_titles=[movie["title"] for movie in overseas_weekend["movies"]],
+        ai_command=os.environ.get("CORE_CURATION_AI_CMD"),
+    )
 
     env = Environment(loader=FileSystemLoader(str(SITE_DIR)), autoescape=True)
     template = env.get_template("template.html.j2")
@@ -670,6 +1033,7 @@ def build() -> None:
         policy_items=policy_views,
         market_trends=market_trends,
         curation=curation,
+        curation_sections=curation_sections,
         boxoffice=boxoffice,
         reservation=reservation,
         overseas_weekend=overseas_weekend,

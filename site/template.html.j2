@@ -45,16 +45,24 @@
 </article>
 {%- endmacro -%}
 
-{%- macro policy_curation_card(p) -%}
-<article class="card card-compact policy-signal-card">
-  <div class="card-body">
-    <a class="title" href="{{ p.url }}" target="_blank" rel="noopener">{{ p.title }}</a>
-    <div class="meta">
-      <span class="source policy">정책 · {{ p.source }}</span>
-      {% if p.rel_time %}<span class="time">{{ p.rel_time }}</span>{% endif %}
-    </div>
-    {% if p.summary %}<p class="summary">{{ p.summary }}</p>{% endif %}
+{%- macro curation_brief_card(item) -%}
+<article class="curation-brief-card">
+  <div class="brief-card-top">
+    <span class="source {% if item.content_kind == 'policy' %}policy{% else %}official{% endif %}">
+      {% if item.content_kind == 'policy' %}정책{% else %}공식{% endif %} · {{ item.source }}
+    </span>
+    {% if item.rel_time %}<span class="time">{{ item.rel_time }}</span>{% endif %}
   </div>
+  <a class="title" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
+  {% if item.curation_summary %}
+  <p class="brief-line"><b>요약</b><span>{{ item.curation_summary }}</span></p>
+  {% endif %}
+  {% if item.curation_evaluation %}
+  <p class="brief-line brief-evaluation"><b>평가</b><span>{{ item.curation_evaluation }}</span></p>
+  {% endif %}
+  {% if item.matched_keywords %}
+  <div class="chips">{% for kw in item.matched_keywords[:3] %}<span>{{ kw }}</span>{% endfor %}</div>
+  {% endif %}
 </article>
 {%- endmacro -%}
 
@@ -99,19 +107,24 @@
     <div class="panel curation-panel">
       <div class="panel-head">
         <h2>핵심 큐레이션</h2>
-        <span>box office weighted</span>
+        <span>sectioned executive brief</span>
       </div>
-      <div class="curation-list">
-        {% for item in curation %}
-          {% if item.content_kind == 'community' %}
-            {{ community_card(item) }}
-          {% elif item.content_kind == 'policy' %}
-            {{ policy_curation_card(item) }}
-          {% else %}
-            {{ official_card(item, compact=True) }}
-          {% endif %}
+      <div class="curation-sections" data-section-order="흥행·배급|극장·정책|경쟁사·산업|해외·마켓|문화/IP">
+        {% for section in curation_sections %}
+        <section class="curation-section">
+          <div class="curation-section-head">
+            <div>
+              <h3>{{ section.title }}</h3>
+              <span>{{ section.eyebrow }}</span>
+            </div>
+            <b>{{ section["items"]|length }}건</b>
+          </div>
+          <div class="curation-section-items">
+            {% for item in section["items"] %}{{ curation_brief_card(item) }}{% endfor %}
+          </div>
+        </section>
         {% endfor %}
-        {% if not curation %}<p class="empty">표시할 큐레이션 항목이 없습니다.</p>{% endif %}
+        {% if not curation_sections %}<p class="empty">표시할 큐레이션 항목이 없습니다.</p>{% endif %}
       </div>
     </div>
 

@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+import sys
 
 
 def load_site_build_module():
@@ -56,6 +57,62 @@ def test_template_contains_market_trends_section():
     assert "시장동향 / Live·IP·팝업" in template.read_text(encoding="utf-8")
 
 
+def test_template_contains_sectioned_curation_briefing_labels():
+    template = Path(__file__).resolve().parents[1] / "site" / "template.html.j2"
+    text = template.read_text(encoding="utf-8")
+
+    assert "curation_sections" in text
+    assert "흥행·배급" in text
+    assert "요약" in text
+    assert "평가" in text
+
+
+def test_template_renders_curation_sections_without_dict_method_collision():
+    build = load_site_build_module()
+    env = build.Environment(
+        loader=build.FileSystemLoader(str(Path(__file__).resolve().parents[1] / "site")),
+        autoescape=True,
+    )
+    html = env.get_template("template.html.j2").render(
+        official_articles=[],
+        official_feed=[],
+        community_reactions=[],
+        policy_items=[],
+        market_trends=[],
+        curation=[],
+        curation_sections=[
+            {
+                "title": "흥행·배급",
+                "eyebrow": "box office / distribution",
+                "items": [
+                    {
+                        "content_kind": "official",
+                        "title": "와일드씽 예매 상승",
+                        "url": "https://example.com/a",
+                        "source": "테스트뉴스",
+                        "curation_summary": "예매 상승세가 확인됨.",
+                        "curation_evaluation": "배급 전략 점검 대상.",
+                        "matched_keywords": ["와일드 씽"],
+                    }
+                ],
+            }
+        ],
+        boxoffice=[],
+        reservation={"movies": []},
+        overseas_weekend={"movies": []},
+        total_official=0,
+        total_community=0,
+        total_policies=0,
+        total_market_trends=0,
+        css="",
+        updated_at="2026년 05월 20일 10:00",
+    )
+
+    assert "흥행·배급" in html
+    assert "1건" in html
+    assert "예매 상승세가 확인됨." in html
+
+
 def test_legacy_extmovie_articles_are_treated_as_community():
     build = load_site_build_module()
     view = build.to_article_view(
@@ -83,6 +140,162 @@ def test_top_curation_items_limits_to_five_score_order():
     result = build.top_curation_items(views)
 
     assert [item["title"] for item in result] == ["9", "8", "7", "6", "5"]
+
+
+def test_build_curation_sections_groups_executive_briefing_topics():
+    build = load_site_build_module()
+    official = [
+        {
+            "title": "와일드씽 롯데엔터테인먼트 예매 상승",
+            "summary": "롯데배급 신작 예매가 반등",
+            "score": 80,
+            "country": "KR",
+            "matched_keywords": ["와일드 씽", "롯데배급"],
+            "url": "https://example.com/lotte",
+        },
+        {
+            "title": "CJ ENM 봉준호 신작 애니메이션 라인업 공개",
+            "summary": "경쟁사 IP 라인업 확대",
+            "score": 1000,
+            "country": "KR",
+            "matched_keywords": ["CJ ENM"],
+            "url": "https://example.com/cj",
+        },
+        {
+            "title": "Michael keeps overseas weekend box office lead",
+            "summary": "International box office gross remains strong",
+            "score": 900,
+            "country": "US",
+            "matched_keywords": ["Michael"],
+            "url": "https://example.com/michael",
+        },
+        {
+            "title": "티니핑 IP 극장 이벤트 확대",
+            "summary": "캐릭터 IP와 극장 공간을 연결",
+            "score": 700,
+            "country": "KR",
+            "matched_keywords": ["IP"],
+            "url": "https://example.com/ip",
+        },
+    ]
+    policy = [
+        {
+            "content_kind": "policy",
+            "title": "지역 영화관 관람료 할인권 지원 공고",
+            "summary": "극장 정책과 영화관 관람 활성화 지원",
+            "url": "https://example.com/policy",
+        }
+    ]
+
+    sections = build.build_curation_sections(
+        official,
+        policy_views=policy,
+        market_titles=["와일드 씽"],
+        overseas_titles=["Michael"],
+        limit_per_section=2,
+    )
+
+    assert [section["title"] for section in sections] == [
+        "흥행·배급",
+        "극장·정책",
+        "경쟁사·산업",
+        "해외·마켓",
+        "문화/IP",
+    ]
+    titles = [item["title"] for section in sections for item in section["items"]]
+    assert len(titles) == len(set(titles))
+    assert "와일드씽 롯데엔터테인먼트 예매 상승" in titles
+    assert all(item["curation_summary"] for section in sections for item in section["items"])
+    assert all(item["curation_evaluation"] for section in sections for item in section["items"])
+
+
+def test_build_curation_sections_does_not_backfill_low_context_overseas_ai_items():
+    build = load_site_build_module()
+    official = [
+        {
+            "title": "Steven Soderbergh on using AI as a creative tool",
+            "summary": "A director talks about a documentary interview process",
+            "score": 900,
+            "country": "US",
+            "matched_keywords": [],
+            "url": "https://example.com/ai",
+        },
+        {
+            "title": "Park Chan-Wook Western moves forward at Warner Bros.",
+            "summary": "Korean director project gains international market attention",
+            "score": 100,
+            "country": "US",
+            "matched_keywords": [],
+            "url": "https://example.com/park",
+        },
+    ]
+
+    sections = build.build_curation_sections(official, limit_per_section=2)
+
+    titles = [item["title"] for section in sections for item in section["items"]]
+    assert "Park Chan-Wook Western moves forward at Warner Bros." in titles
+    assert "Steven Soderbergh on using AI as a creative tool" not in titles
+
+
+def test_enrich_curation_sections_uses_ai_json_when_command_succeeds():
+    build = load_site_build_module()
+    sections = [
+        {
+            "key": "boxoffice",
+            "title": "흥행·배급",
+            "items": [
+                {
+                    "id": "a1",
+                    "title": "와일드씽 예매 상승",
+                    "source": "테스트뉴스",
+                    "curation_summary": "fallback summary",
+                    "curation_evaluation": "fallback evaluation",
+                }
+            ],
+        }
+    ]
+    command = [
+        sys.executable,
+        "-c",
+        (
+            "import json;"
+            "print(json.dumps([{'id':'a1','summary':'AI 요약','evaluation':'AI 평가'}], ensure_ascii=False))"
+        ),
+    ]
+
+    enriched = build.enrich_curation_sections_with_ai(sections, command=command)
+
+    item = enriched[0]["items"][0]
+    assert item["curation_summary"] == "AI 요약"
+    assert item["curation_evaluation"] == "AI 평가"
+
+
+def test_enrich_curation_sections_keeps_fallback_when_command_fails():
+    build = load_site_build_module()
+    sections = [
+        {
+            "key": "policy",
+            "title": "극장·정책",
+            "items": [
+                {
+                    "id": "p1",
+                    "title": "영화관 관람료 할인권",
+                    "source": "KOFIC",
+                    "curation_summary": "fallback summary",
+                    "curation_evaluation": "fallback evaluation",
+                }
+            ],
+        }
+    ]
+
+    enriched = build.enrich_curation_sections_with_ai(
+        sections,
+        command=[sys.executable, "-c", "raise SystemExit(2)"],
+    )
+
+    item = enriched[0]["items"][0]
+    assert item["curation_summary"] == "fallback summary"
+    assert item["curation_evaluation"] == "fallback evaluation"
 
 
 def test_top_curation_items_caps_overseas_official_articles():

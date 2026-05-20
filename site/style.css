@@ -576,7 +576,7 @@ h1 {
 .market-trend-card {
   display: flex;
   flex-direction: column;
-  min-height: 250px;
+  min-height: 210px;
   padding: 12px;
   border-radius: 8px;
   background: #fff;

@@ -2,7 +2,13 @@ import json
 from datetime import datetime, timezone
 
 from crawler.briefing_models import BoxOfficeMovie, MarketSnapshot, ReservationMovie, ReservationSnapshot
-from crawler.main import collect_market_trend_items, community_search_terms, save_json_items
+from crawler.main import (
+    collect_focused_movie_news,
+    collect_market_trend_items,
+    community_search_terms,
+    focused_movie_news_terms,
+    save_json_items,
+)
 from crawler.models import Article
 
 
@@ -83,6 +89,67 @@ def test_community_search_terms_include_reservation_top_five_titles():
     assert terms[:2] == ["마이클", "와일드 씽"]
     assert "와일드씽" in terms
     assert "영화 관객 반응" in terms
+
+
+def test_focused_movie_news_terms_only_include_lotte_distributed_titles():
+    reservation = ReservationSnapshot(
+        captured_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+        movies=[
+            ReservationMovie(
+                rank=1,
+                title="마이클",
+                reservation_rate=10.6,
+                is_lotte_distributed=False,
+            ),
+            ReservationMovie(
+                rank=4,
+                title="와일드 씽",
+                reservation_rate=6.7,
+                is_lotte_distributed=True,
+            ),
+        ],
+    )
+
+    terms = focused_movie_news_terms(None, reservation)
+
+    assert terms == ["와일드 씽", "와일드씽"]
+
+
+def test_collect_focused_movie_news_fetches_naver_news_for_lotte_titles(monkeypatch):
+    article = Article(
+        id="wild",
+        source="Naver News",
+        country="KR",
+        title="와일드 씽 티켓 프로모션",
+        summary="롯데엔터테인먼트 공식 SNS 출처",
+        url="https://example.com/wild",
+        published_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+    )
+    reservation = ReservationSnapshot(
+        captured_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+        movies=[
+            ReservationMovie(
+                rank=4,
+                title="와일드 씽",
+                reservation_rate=6.7,
+                is_lotte_distributed=True,
+            )
+        ],
+    )
+
+    def fake_fetch(client_id, client_secret, queries, display, public_fallback):
+        assert queries == ["와일드 씽", "와일드씽"]
+        assert display == 5
+        assert public_fallback is False
+        return [article]
+
+    monkeypatch.setenv("NAVER_CLIENT_ID", "id")
+    monkeypatch.setenv("NAVER_CLIENT_SECRET", "secret")
+    monkeypatch.setattr("crawler.main.fetch_market_trend_articles_from_naver", fake_fetch)
+
+    articles = collect_focused_movie_news(None, reservation)
+
+    assert [item.title for item in articles] == ["와일드 씽 티켓 프로모션"]
 
 
 def test_community_search_terms_use_brief_titles_for_overlong_reservation_titles():

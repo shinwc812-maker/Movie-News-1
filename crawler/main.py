@@ -226,6 +226,47 @@ def community_search_terms(
     return list(dict.fromkeys(terms))
 
 
+def focused_movie_news_terms(
+    market: MarketSnapshot | None,
+    reservation: ReservationSnapshot | None = None,
+) -> list[str]:
+    """Return official-news search terms for owned/priority distributed titles."""
+    terms: list[str] = []
+    movies = []
+    if market is not None:
+        movies.extend(market.movies)
+    if reservation is not None and not reservation.capture_failed:
+        movies.extend(reservation.movies)
+    for movie in movies:
+        if not getattr(movie, "is_lotte_distributed", False):
+            continue
+        title = brief_movie_title(movie.title)
+        if title and title not in terms:
+            terms.append(title)
+        compact = "".join(title.split())
+        if compact and compact != title and compact not in terms:
+            terms.append(compact)
+    return terms
+
+
+def collect_focused_movie_news(
+    market: MarketSnapshot | None,
+    reservation: ReservationSnapshot | None = None,
+) -> list[Article]:
+    terms = focused_movie_news_terms(market, reservation)
+    if not terms:
+        return []
+    articles = fetch_market_trend_articles_from_naver(
+        os.environ.get("NAVER_CLIENT_ID"),
+        os.environ.get("NAVER_CLIENT_SECRET"),
+        queries=terms,
+        display=5,
+        public_fallback=False,
+    )
+    print(f"Focused movie news: {len(articles)}")
+    return articles
+
+
 def collect_market_trend_items(articles: list[Article]):
     trend_articles = fetch_market_trend_articles_from_naver(
         os.environ.get("NAVER_CLIENT_ID"),
@@ -246,6 +287,8 @@ def main() -> None:
     overseas_weekend = collect_overseas_weekend_snapshot()
 
     articles = asyncio.run(gather_articles(SOURCES))
+    focused_news = collect_focused_movie_news(market, reservation)
+    articles.extend(focused_news)
     print(f"Fetched {len(articles)} articles from {len(SOURCES)} sources")
 
     recent = filter_recent(articles)

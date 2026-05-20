@@ -81,6 +81,23 @@ def test_build_community_sections_groups_by_source_order_and_limits_items():
     assert [item["title"] for item in sections[0]["items"]] == ["무코1"]
 
 
+def test_build_community_sections_prioritizes_lotte_distributed_titles_within_source():
+    build = load_site_build_module()
+    community = [
+        {"source": "무코", "title": "마이클 굿즈", "matched_keywords": ["마이클"]},
+        {"source": "무코", "title": "와일드씽 싸다구", "matched_keywords": ["와일드 씽"]},
+        {"source": "무코", "title": "군체 후기", "matched_keywords": ["군체"]},
+    ]
+
+    sections = build.build_community_sections(
+        community,
+        limit_per_section=2,
+        priority_titles=["와일드 씽"],
+    )
+
+    assert [item["title"] for item in sections[0]["items"]] == ["와일드씽 싸다구", "마이클 굿즈"]
+
+
 def test_template_contains_market_trends_section():
     template = Path(__file__).resolve().parents[1] / "site" / "template.html.j2"
 
@@ -96,6 +113,14 @@ def test_template_removes_lower_official_feed_panel():
     assert "<span>시장동향</span>" in text
     assert "<h2>커뮤니티 반응</h2>" in text
     assert "community-only-panel" in text
+
+
+def test_template_keeps_market_trend_cards_summary_only():
+    template = Path(__file__).resolve().parents[1] / "site" / "template.html.j2"
+    text = template.read_text(encoding="utf-8")
+
+    assert "<b>요약</b>" in text
+    assert "<b>시사점</b>" not in text
 
 
 def test_template_contains_sectioned_curation_briefing_labels():

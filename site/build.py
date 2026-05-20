@@ -395,7 +395,17 @@ def build_market_trend_sections(market_trends: list[dict]) -> list[dict]:
     return _ordered_group_sections(market_trends, "category", MARKET_TREND_SECTION_ORDER)
 
 
-def build_community_sections(community_views: list[dict], limit_per_section: int = 4) -> list[dict]:
+def build_community_sections(
+    community_views: list[dict],
+    limit_per_section: int = 4,
+    priority_titles: list[str] | None = None,
+) -> list[dict]:
+    priority_titles = priority_titles or []
+    if priority_titles:
+        community_views = sorted(
+            community_views,
+            key=lambda item: 0 if _matched_title(item, priority_titles) else 1,
+        )
     return _ordered_group_sections(community_views, "source", COMMUNITY_SECTION_ORDER, limit_per_section)
 
 
@@ -1044,7 +1054,15 @@ def build() -> None:
     policy_views = [to_policy_view(item, now) for item in raw_policies]
     market_trends = market_trend_views(raw_market_trends, now)
     market_trend_sections = build_market_trend_sections(market_trends)
-    community_sections = build_community_sections(community_views)
+    priority_community_titles = [
+        str(movie.get("title") or "")
+        for movie in (raw_reservation.get("movies") or [])
+        if isinstance(movie, dict) and movie.get("is_lotte_distributed")
+    ]
+    community_sections = build_community_sections(
+        community_views,
+        priority_titles=priority_community_titles,
+    )
     boxoffice = market_views(raw_market)
     reservation = reservation_view(raw_reservation)
     overseas_weekend = overseas_weekend_view(raw_overseas_weekend)

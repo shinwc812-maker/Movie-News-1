@@ -81,12 +81,6 @@
     <p>{{ t.note|replace('내용: ', '') }}</p>
   </div>
   {% endif %}
-  {% if t.implication %}
-  <div class="trend-brief trend-implication">
-    <b>시사점</b>
-    <p>{{ t.implication }}</p>
-  </div>
-  {% endif %}
   <div class="trend-meta">
     <span>{{ t.source }}</span>
     {% for keyword in t.keywords[:3] %}<b>{{ keyword }}</b>{% endfor %}

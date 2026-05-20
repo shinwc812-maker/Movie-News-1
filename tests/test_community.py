@@ -175,6 +175,13 @@ def test_public_search_sources_include_theqoo_and_dcinside():
 
     assert "더쿠" in source_names
     assert "디시인사이드" in source_names
+    assert "무코" in source_names
+
+
+def test_direct_community_sources_cover_lower_ranked_reservation_titles():
+    assert TheQooDirectSearchSource().max_queries >= 12
+    assert DCInsideDirectSearchSource().max_queries >= 12
+    assert MukoDirectSearchSource().max_queries >= 12
 
 
 def test_theqoo_direct_search_source_parses_board_post_links():
@@ -226,17 +233,47 @@ def test_dcinside_direct_search_source_skips_non_movie_gallery_links():
 def test_muko_direct_search_source_parses_movie_community_links():
     source = MukoDirectSearchSource(max_items_per_query=3)
     html = """
-    <a href="/all/19936933">(상황종료) &lt;와일드 씽&gt; 싸다구 실패하신분들 취줍하러 가세요~</a>
+    <div>
+      <a href="/index.php?document_srl=19936933">(상황종료) &lt;와일드 씽&gt; 싸다구 실패하신분들 취줍하러 가세요~[3]</a>
+      2천원 싸다구는 다시 올라왔네요 낫투데이·1시간 전·2
+    </div>
+    <div>
+      <a href="/all/19930000">와일드씽 무대인사 취소표 나왔네요[1]</a>
+      현재 예매창 다시 열렸습니다 블루메냐·30분 전·4
+    </div>
+    <div>
+      <a href="/all/19920000">다음 검색 결과</a>다음 글 본문
+    </div>
     <a href="https://muko.kr/movietalk/19932635">박찬욱 서부극 신작 - 워너 브라더스 새 인디 레이블이 배급권 획득</a>
     <a href="/db/movie/19516429">트루먼 쇼 별점</a>
     """
 
     reactions = source.parse(html, query="와일드 씽")
 
-    assert len(reactions) == 1
+    assert len(reactions) == 2
     assert reactions[0].source == "무코"
+    assert reactions[0].title == "(상황종료) <와일드 씽> 싸다구 실패하신분들 취줍하러 가세요~"
     assert reactions[0].url == "https://muko.kr/all/19936933"
+    assert reactions[0].excerpt == "2천원 싸다구는 다시 올라왔네요 낫투데이·1시간 전"
     assert reactions[0].matched_keywords == ["와일드 씽"]
+    assert reactions[1].title == "와일드씽 무대인사 취소표 나왔네요"
+    assert reactions[1].excerpt == "현재 예매창 다시 열렸습니다 블루메냐·30분 전"
+
+
+def test_muko_direct_search_source_drops_ambiguous_list_excerpt():
+    source = MukoDirectSearchSource(max_items_per_query=3)
+    html = """
+    <div>
+      <a href="/all/19936933">(상황종료) &lt;와일드씽&gt; 싸다구 실패하신분들 취줍하러 가세요~</a>
+      <a href="/all/19936375">와일드씽무인에 싸다구 쿠폰 옮겨볼까 하다가</a>
+    </div>
+    """
+
+    reactions = source.parse(html, query="와일드씽")
+
+    assert len(reactions) == 2
+    assert reactions[0].excerpt == ""
+    assert reactions[1].excerpt == ""
 
 
 def test_naver_public_web_search_source_parses_theqoo_links():

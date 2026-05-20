@@ -120,6 +120,26 @@ def _usable_direct_search_title(title: str) -> bool:
     return len(compact) >= 3 and not compact.isdecimal()
 
 
+def _clean_muko_result_title(text: str) -> str:
+    title = _normalise_spaces(text)
+    title = re.sub(r"\[\d+\].*$", "", title).strip()
+    title = re.sub(r"·\d+.*$", "", title).strip()
+    return title
+
+
+def _clean_muko_result_excerpt(container_text: str, raw_title: str, title: str) -> str:
+    excerpt = _normalise_spaces(container_text)
+    for candidate in (raw_title, title):
+        candidate = _normalise_spaces(candidate)
+        if candidate and candidate in excerpt:
+            excerpt = excerpt.split(candidate, 1)[1]
+            break
+    excerpt = excerpt.strip(" ·-")
+    excerpt = re.split(r"·\d+(?!(?:시간|분|초|일|개월|년|\.))(?=[가-힣A-Za-z[(<])", excerpt, maxsplit=1)[0]
+    excerpt = re.sub(r"·\d+$", "", excerpt)
+    return excerpt.strip(" ·-")
+
+
 def _strip_html(text: str) -> str:
     return _normalise_spaces(unescape(re.sub(r"<[^>]+>", "", text or "")))
 
@@ -424,7 +444,7 @@ class TheQooDirectSearchSource:
 
     source_name: str = "더쿠"
     boards: tuple[str, ...] = ("movie",)
-    max_queries: int = 8
+    max_queries: int = 12
     max_items_per_query: int = 5
     request_interval_seconds: float = 0.5
 
@@ -506,7 +526,7 @@ class DCInsideDirectSearchSource:
     """Direct public search for DCInside posts."""
 
     source_name: str = "디시인사이드"
-    max_queries: int = 8
+    max_queries: int = 12
     max_items_per_query: int = 4
     allowed_gallery_ids: tuple[str, ...] = (
         "commercial_movie",
@@ -588,7 +608,7 @@ class MukoDirectSearchSource:
     """Direct search for Muko movie-community posts."""
 
     source_name: str = "무코"
-    max_queries: int = 8
+    max_queries: int = 12
     max_items_per_query: int = 5
     request_interval_seconds: float = 0.3
     allowed_sections: tuple[str, ...] = (
@@ -634,12 +654,21 @@ class MukoDirectSearchSource:
             url = self._extract_post_url(link.attributes.get("href") or "")
             if not url or url in seen:
                 continue
-            title = _normalise_spaces(link.text(strip=True))
+            raw_title = _normalise_spaces(link.text(strip=True))
+            title = _clean_muko_result_title(raw_title)
             if not title or not _usable_direct_search_title(title):
                 continue
             parent = link.parent
-            container_text = _normalise_spaces(parent.text(strip=True)) if parent and parent.tag not in {"html", "body"} else title
-            excerpt = container_text.replace(title, "", 1).strip(" ·-")
+            container_text = title
+            if parent and parent.tag not in {"html", "body"}:
+                post_links = [
+                    candidate
+                    for candidate in parent.css("a[href]")
+                    if self._extract_post_url(candidate.attributes.get("href") or "")
+                ]
+                if len(post_links) <= 1:
+                    container_text = _normalise_spaces(parent.text(strip=True))
+            excerpt = _clean_muko_result_excerpt(container_text, raw_title, title)
             if not _query_appears_in_text(query, f"{title} {excerpt}"):
                 continue
             seen.add(url)
@@ -664,6 +693,9 @@ class MukoDirectSearchSource:
         host = parsed.netloc.lower()
         if host != "muko.kr" and not host.endswith(".muko.kr"):
             return ""
+        document_srl = parse_qs(parsed.query).get("document_srl", [""])[0]
+        if document_srl.isdigit():
+            return f"{MUKO_BASE_URL}/all/{document_srl}"
         path_parts = [part for part in parsed.path.split("/") if part]
         if len(path_parts) != 2 or path_parts[0] not in self.allowed_sections or not path_parts[1].isdigit():
             return ""

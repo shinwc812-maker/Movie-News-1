@@ -18,6 +18,11 @@ from crawler.kobis import (
     save_market_snapshot,
     save_reservation_snapshot,
 )
+from crawler.market_trends import (
+    build_market_trends,
+    fetch_market_trend_articles_from_naver,
+    save_market_trends,
+)
 from crawler.models import Article
 from crawler.policies import fetch_policy_items, save_policy_items
 from crawler.scorer import score_all
@@ -39,6 +44,7 @@ RESERVATION_PATH = DATA_DIR / "reservation.json"
 COMMUNITY_PATH = DATA_DIR / "community.json"
 POLICIES_PATH = DATA_DIR / "policies.json"
 OVERSEAS_WEEKEND_PATH = DATA_DIR / "overseas_weekend.json"
+MARKET_TRENDS_PATH = DATA_DIR / "market_trends.json"
 
 # 이 시간보다 오래된 기사는 제외 (매일 실행하므로 누적 없이 최신만 표시)
 MAX_AGE_HOURS = 48
@@ -220,6 +226,18 @@ def community_search_terms(
     return list(dict.fromkeys(terms))
 
 
+def collect_market_trend_items(articles: list[Article]):
+    trend_articles = fetch_market_trend_articles_from_naver(
+        os.environ.get("NAVER_CLIENT_ID"),
+        os.environ.get("NAVER_CLIENT_SECRET"),
+    )
+    items = build_market_trends(
+        [*articles, *trend_articles],
+        ai_command=os.environ.get("MARKET_TRENDS_AI_CMD"),
+    )
+    return items
+
+
 def main() -> None:
     market = collect_market_snapshot()
     market = enrich_market_snapshot(market)
@@ -243,6 +261,10 @@ def main() -> None:
     deduped.sort(key=lambda a: a.score, reverse=True)
 
     save_articles(deduped)
+
+    market_trends = collect_market_trend_items(deduped)
+    save_market_trends(market_trends, MARKET_TRENDS_PATH)
+    print(f"Market trends: {len(market_trends)}")
 
     community_reactions = fetch_community_reactions(community_search_terms(market, reservation))
     save_community_reactions(community_reactions, COMMUNITY_PATH)

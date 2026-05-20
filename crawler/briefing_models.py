@@ -279,6 +279,34 @@ class PolicyItem:
 
 
 @dataclass
+class MarketTrendItem:
+    id: str
+    category: str
+    title: str
+    url: str
+    source: str
+    frame: str = ""
+    note: str = ""
+    implication: str = ""
+    published_at: Optional[datetime] = None
+    keywords: list[str] = field(default_factory=list)
+    content_kind: str = "market_trend"
+
+    def to_dict(self) -> dict:
+        data = asdict(self)
+        data["published_at"] = _datetime_to_json(self.published_at)
+        return data
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "MarketTrendItem":
+        data = dict(data)
+        data["published_at"] = _datetime_from_json(data.get("published_at"))
+        data.setdefault("keywords", [])
+        data.setdefault("content_kind", "market_trend")
+        return cls(**data)
+
+
+@dataclass
 class CrawlDiagnostic:
     source: str
     ok: bool

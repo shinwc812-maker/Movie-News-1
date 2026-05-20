@@ -58,6 +58,23 @@
 </article>
 {%- endmacro -%}
 
+{%- macro market_trend_card(t) -%}
+<article class="market-trend-card">
+  <div class="trend-topline">
+    <span>{{ t.category }}</span>
+    {% if t.rel_time %}<em>{{ t.rel_time }}</em>{% endif %}
+  </div>
+  <a class="trend-title" href="{{ t.url }}" target="_blank" rel="noopener">{{ t.title }}</a>
+  {% if t.frame %}<p class="trend-frame">{{ t.frame }}</p>{% endif %}
+  {% if t.note %}<p class="trend-note">{{ t.note }}</p>{% endif %}
+  {% if t.implication %}<p class="trend-implication">{{ t.implication }}</p>{% endif %}
+  <div class="trend-meta">
+    <span>{{ t.source }}</span>
+    {% for keyword in t.keywords[:3] %}<b>{{ keyword }}</b>{% endfor %}
+  </div>
+</article>
+{%- endmacro -%}
+
 <header class="topbar">
   <div>
     <p class="eyebrow">Internal Briefing</p>
@@ -164,6 +181,17 @@
         {% if not overseas_weekend.movies %}<p class="empty">Box Office Mojo 데이터가 없습니다.</p>{% endif %}
       </section>
     </aside>
+  </section>
+
+  <section class="panel market-trends-panel">
+    <div class="panel-head">
+      <h2>시장동향 / Live·IP·팝업</h2>
+      <span>experience business scan</span>
+    </div>
+    <div class="market-trends-grid">
+      {% for trend in market_trends[:9] %}{{ market_trend_card(trend) }}{% endfor %}
+    </div>
+    {% if not market_trends %}<p class="empty">표시할 시장동향 스크랩이 없습니다.</p>{% endif %}
   </section>
 
   <section class="lane-grid">

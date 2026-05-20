@@ -2,7 +2,47 @@ import json
 from datetime import datetime, timezone
 
 from crawler.briefing_models import BoxOfficeMovie, MarketSnapshot, ReservationMovie, ReservationSnapshot
-from crawler.main import community_search_terms, save_json_items
+from crawler.main import collect_market_trend_items, community_search_terms, save_json_items
+from crawler.models import Article
+
+
+def test_collect_market_trend_items_combines_existing_articles_with_naver(monkeypatch):
+    base_article = Article(
+        id="base",
+        source="테스트뉴스",
+        country="KR",
+        title="이머시브 콘텐츠 올빗 공개",
+        summary="공간 재해석과 참여형 스토리텔링",
+        url="https://example.com/base",
+        published_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+    )
+    naver_article = Article(
+        id="naver",
+        source="Naver News",
+        country="KR",
+        title="아이돌 팝업스토어 오픈런",
+        summary="한정 굿즈와 팬덤 소비",
+        url="https://example.com/naver",
+        published_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+    )
+
+    def fake_fetch(client_id, client_secret):
+        assert client_id == "id"
+        assert client_secret == "secret"
+        return [naver_article]
+
+    monkeypatch.setenv("NAVER_CLIENT_ID", "id")
+    monkeypatch.setenv("NAVER_CLIENT_SECRET", "secret")
+    monkeypatch.delenv("MARKET_TRENDS_AI_CMD", raising=False)
+    monkeypatch.setattr("crawler.main.fetch_market_trend_articles_from_naver", fake_fetch)
+
+    trends = collect_market_trend_items([base_article])
+
+    assert [trend.category for trend in trends] == ["체험형 콘텐츠", "팝업/공간"]
+    assert {trend.title for trend in trends} == {
+        "이머시브 콘텐츠 올빗 공개",
+        "아이돌 팝업스토어 오픈런",
+    }
 
 
 def test_save_json_items_creates_parent_and_writes_utf8(tmp_path):

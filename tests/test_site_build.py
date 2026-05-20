@@ -24,6 +24,38 @@ def test_split_articles_by_kind_separates_official_and_community():
     assert community[0]["title"] == "커뮤니티"
 
 
+def test_market_trend_views_preserve_frame_note_and_implication():
+    build = load_site_build_module()
+    views = build.market_trend_views(
+        [
+            {
+                "content_kind": "market_trend",
+                "category": "팝업/공간",
+                "title": "팝업이 팬덤 소비 동선으로 이동",
+                "url": "https://example.com/popup",
+                "source": "Example",
+                "frame": "팝업은 기본 동선",
+                "note": "한정 굿즈와 포토카드 중심의 방문 수요.",
+                "implication": "극장 공간과 IP 이벤트를 묶을 수 있음.",
+                "keywords": ["팝업", "팬덤"],
+            }
+        ],
+        build.datetime(2026, 5, 20, tzinfo=build.timezone.utc),
+    )
+
+    assert views[0]["content_kind"] == "market_trend"
+    assert views[0]["category"] == "팝업/공간"
+    assert views[0]["frame"] == "팝업은 기본 동선"
+    assert views[0]["implication"].startswith("극장")
+    assert views[0]["keywords"] == ["팝업", "팬덤"]
+
+
+def test_template_contains_market_trends_section():
+    template = Path(__file__).resolve().parents[1] / "site" / "template.html.j2"
+
+    assert "시장동향 / Live·IP·팝업" in template.read_text(encoding="utf-8")
+
+
 def test_legacy_extmovie_articles_are_treated_as_community():
     build = load_site_build_module()
     view = build.to_article_view(

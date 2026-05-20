@@ -424,6 +424,101 @@ h1 {
   font-weight: 800;
 }
 
+.market-trends-panel {
+  margin-top: 12px;
+}
+
+.market-trends-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.market-trend-card {
+  min-height: 180px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f9fbfd;
+  box-shadow: inset 0 0 0 1px #dfe7f1;
+}
+
+.trend-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.trend-topline span {
+  color: #1d4ed8;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.trend-topline em {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.trend-title {
+  display: block;
+  color: var(--ink);
+  font-size: 0.94rem;
+  font-weight: 850;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.trend-title:hover {
+  color: var(--blue);
+}
+
+.trend-frame {
+  margin: 8px 0 0;
+  color: #101828;
+  font-size: 0.84rem;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.trend-note,
+.trend-implication {
+  margin: 7px 0 0;
+  color: #475467;
+  font-size: 0.8rem;
+  line-height: 1.42;
+}
+
+.trend-implication {
+  color: #315077;
+}
+
+.trend-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.trend-meta span,
+.trend-meta b {
+  border-radius: 4px;
+  padding: 2px 6px;
+  background: #eef2ff;
+  color: #3444a4;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.trend-meta span {
+  background: #edf2f7;
+  color: #475467;
+}
+
 .policy-panel {
   margin-top: 12px;
 }
@@ -499,6 +594,7 @@ footer {
   .kpis,
   .hero-grid,
   .lane-grid,
+  .market-trends-grid,
   .policy-grid {
     grid-template-columns: 1fr;
   }
@@ -518,7 +614,7 @@ footer {
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 20일 09:28 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 20일 11:22 (KST)</p>
   </div>
   <div class="lang-toggle" aria-label="언어 선택">
     <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
@@ -529,9 +625,9 @@ footer {
 <main class="dashboard">
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>마이클 (38,031명 / ▼5,622명)</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>군체 205,772명 (53%)</strong></div>
-    <div class="kpi"><span>공식 기사</span><strong>2건</strong></div>
-    <div class="kpi"><span>커뮤니티 반응</span><strong>52건</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>군체 211,393명 (50%)</strong></div>
+    <div class="kpi"><span>공식 기사</span><strong>1건</strong></div>
+    <div class="kpi"><span>커뮤니티 반응</span><strong>23건</strong></div>
   </section>
 
   <section class="hero-grid">
@@ -551,29 +647,6 @@ footer {
       <span class="time">6일 전</span>
     </div>
     <p class="summary">영화 지원사업</p>
-  </div>
-</article>
-
-
-
-            <article class="card card-compact">
-
-  <div class="card-body">
-    <a class="title" href="https://www.maxmovie.com/news/445427" target="_blank" rel="noopener">
-      <span class="lang-ko">&#39;앨리&#39; 봉준호 &#34;조지 밀러와 미야자키 하야오 뛰어넘고 싶다&#34;</span><span class="lang-en">&#39;앨리&#39; 봉준호 &#34;조지 밀러와 미야자키 하야오 뛰어넘고 싶다&#34; <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · 맥스무비</span>
-      <span class="time">1일 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">봉준호 감독의 첫 장편 애니메이션 영화 &#39;앨리&#39;의 한 장면. 사진제공=CJ ENM봉준호 감독이 영화 ‘매드맥스’ 시리즈의 연출자 조지 밀러 감독과 일본 애니메이션의 거장 미야자키 하야오를 뛰어넘고 싶다는 “야망”을 밝혀 눈길을 끈다. 봉 감독은 자신이 내년 선보일 첫 장편 애니메이션 영화 ‘앨리’(Ally)에 관한 포부를 드러내며 기대감을 높인다.봉준호 감</span><span class="lang-en">봉준호 감독의 첫 장편 애니메이션 영화 &#39;앨리&#39;의 한 장면. 사진제공=CJ ENM봉준호 감독이 영화 ‘매드맥스’ 시리즈의 연출자 조지 밀러 감독과 일본 애니메이션의 거장 미야자키 하야오를 뛰어넘고 싶다는 “야망”을 밝혀 눈길을 끈다. 봉 감독은 자신이 내년 선보일 첫 장편 애니메이션 영화 ‘앨리’(Ally)에 관한 포부를 드러내며 기대감을 높인다.봉준호 감</span>
-    </p>
-
-
-    <div class="chips"><span>CJ ENM</span></div>
-
   </div>
 </article>
 
@@ -674,31 +747,31 @@ footer {
           <li>
             <b>1</b>
             <span>군체</span>
-            <strong>205,772명 (53%)</strong>
+            <strong>211,393명 (50%)</strong>
           </li>
 
           <li>
             <b>2</b>
             <span>마이클</span>
-            <strong>46,044명 (11.9%)</strong>
+            <strong>47,016명 (11.1%)</strong>
           </li>
 
           <li>
             <b>3</b>
-            <span>와일드 씽</span>
-            <strong>22,812명 (5.9%)</strong>
+            <span>플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마</span>
+            <strong>28,187명 (6.7%)</strong>
           </li>
 
           <li>
             <b>4</b>
-            <span>신극장판 은혼: 요시와라 대염상</span>
-            <strong>16,138명 (4.2%)</strong>
+            <span>와일드 씽</span>
+            <strong>23,039명 (5.5%)</strong>
           </li>
 
           <li>
             <b>5</b>
-            <span>너바나 더 밴드</span>
-            <strong>8,676명 (2.2%)</strong>
+            <span>신극장판 은혼: 요시와라 대염상</span>
+            <strong>14,762명 (3.5%)</strong>
           </li>
 
         </ol>
@@ -758,6 +831,134 @@ footer {
     </aside>
   </section>
 
+  <section class="panel market-trends-panel">
+    <div class="panel-head">
+      <h2>시장동향 / Live·IP·팝업</h2>
+      <span>experience business scan</span>
+    </div>
+    <div class="market-trends-grid">
+      <article class="market-trend-card">
+  <div class="trend-topline">
+    <span>체험형 콘텐츠</span>
+    <em>6일 전</em>
+  </div>
+  <a class="trend-title" href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9oNk8xdGx0RURtbzdlcjBWeVI2R3BNNWdjYUtmamVZLXZiNFAyMTZBSUlmV29RS29XWi1ycW03VmJvdDNuN1o4b0VfRnBmM2pqLUtlWEc4OHhuUDc4S2Fvd2FxdFRiaG1zSWc?oc=5" target="_blank" rel="noopener">[쏙쏙 키워드] 몰입형 콘텐츠</a>
+  <p class="trend-frame">공간 재해석·참여형 스토리텔링 기반의 현실 참여형 콘텐츠 확산</p>
+  <p class="trend-note">[쏙쏙 키워드] 몰입형 콘텐츠 관광레저신문</p>
+  <p class="trend-implication">극장 유휴공간, 특별관, 영화 IP를 관객 참여형 이벤트로 확장하는 기획에 참고할 만함.</p>
+  <div class="trend-meta">
+    <span>관광레저신문</span>
+    <b>몰입형</b>
+  </div>
+</article><article class="market-trend-card">
+  <div class="trend-topline">
+    <span>체험형 콘텐츠</span>
+    <em>2026.04.21</em>
+  </div>
+  <a class="trend-title" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE11N2syVmlmTFdmbTJ3M053a2NKeFlNRG9Ra1BYYXFzQ2x1SWpJY0tCY1N1NlNHVjBpdF9Samtoa3RPaDBhejJ0R3B5TmdVWUhNbDhrSndsYnN4eWlnanRma2EtUUk?oc=5" target="_blank" rel="noopener">순천만국가정원 관람객 100만 돌파…체험형 콘텐츠로 관광·상권 동반 상승</a>
+  <p class="trend-frame">공간 재해석·참여형 스토리텔링 기반의 현실 참여형 콘텐츠 확산</p>
+  <p class="trend-note">순천만국가정원 관람객 100만 돌파…체험형 콘텐츠로 관광·상권 동반 상승 매일일보</p>
+  <p class="trend-implication">극장 유휴공간, 특별관, 영화 IP를 관객 참여형 이벤트로 확장하는 기획에 참고할 만함.</p>
+  <div class="trend-meta">
+    <span>매일일보</span>
+    <b>체험형</b>
+  </div>
+</article><article class="market-trend-card">
+  <div class="trend-topline">
+    <span>체험형 콘텐츠</span>
+    <em>2026.04.11</em>
+  </div>
+  <a class="trend-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBZa29YMG5EUW1oRXhMZGpRX0RHYzhfWUVhTVlGTmlwcXhLYVNZTjBtLUg0emd1VHlqbURzU3haellTUmZqYmVKbWJUUEE2cU45NVpxMnJtMEdwMDBqRnNGZNIBeEFVX3lxTE1RTTF0bmxFcE1GNWIyTXdTRlhUZXhJb2wtdW9JWF9rTXljNWFibFVzWTNQc2gyc3gwcFdkbWwyeWZFbWVGbG5MUDRtakk1OFBMOFVkVHc1WTBqcTZEaUVSb21ZOVVzU3pBMk1zZkFseXBqN1VObHdldw?oc=5" target="_blank" rel="noopener">&#39;선녀와 나무꾼&#39;이 탐정극으로…청문당 이머시브 전시·공연</a>
+  <p class="trend-frame">공간 재해석·참여형 스토리텔링 기반의 현실 참여형 콘텐츠 확산</p>
+  <p class="trend-note">&#39;선녀와 나무꾼&#39;이 탐정극으로…청문당 이머시브 전시·공연 뉴시스</p>
+  <p class="trend-implication">극장 유휴공간, 특별관, 영화 IP를 관객 참여형 이벤트로 확장하는 기획에 참고할 만함.</p>
+  <div class="trend-meta">
+    <span>뉴시스</span>
+    <b>이머시브</b><b>전시</b>
+  </div>
+</article><article class="market-trend-card">
+  <div class="trend-topline">
+    <span>IP/OSMU</span>
+    <em>5일 전</em>
+  </div>
+  <a class="trend-title" href="https://news.google.com/rss/articles/CBMickFVX3lxTE1kLVdTdTU3SjRVYVNSejQ5QjNZZHJVRjZ1WEJfa24tT09SV2JwczNUQ1FOZjNGakszOHJHbTVQTE9kUTcwdWxpSkhjNVF0OHhFNVpVLS1RMU4ycWR4Z2FVOGQ0alFuNDBQdmhYQXpOQnRCdw?oc=5" target="_blank" rel="noopener">SAMG엔터, 티니핑 IP 확장 &#39;가속화&#39;…종합 엔터 기업 도약 시동</a>
+  <p class="trend-frame">게임·K팝·키즈 IP가 공연·영화·굿즈·공간으로 확장</p>
+  <p class="trend-note">SAMG엔터, 티니핑 IP 확장 &#39;가속화&#39;…종합 엔터 기업 도약 시동 프라임경제</p>
+  <p class="trend-implication">영화/애니메이션 IP를 굿즈, 공연, 팝업, 극장 이벤트로 연결하는 OSMU 관점에서 추적 필요.</p>
+  <div class="trend-meta">
+    <span>프라임경제</span>
+    <b>IP</b>
+  </div>
+</article><article class="market-trend-card">
+  <div class="trend-topline">
+    <span>IP/OSMU</span>
+    <em>2026.05.11</em>
+  </div>
+  <a class="trend-title" href="https://news.google.com/rss/articles/CBMidEFVX3lxTE5admx2TTdUSzlucTZOb1BVeTctRExLa2RoV1BKbkJpRmJBdm1LVV8tSkhrMHpsUV9OR1kwdHcwbndhZ2FnLTM2WWJLZ2FIOVJVbEh2U2RoSFFsQjZuVkNhOGlPQnNtb2lNaFBMYUhpRlV0M0Rr?oc=5" target="_blank" rel="noopener">“BTS굿즈·김장 조끼 고맙다”…대박 터진 이베이 한국 셀러</a>
+  <p class="trend-frame">게임·K팝·키즈 IP가 공연·영화·굿즈·공간으로 확장</p>
+  <p class="trend-note">“BTS굿즈·김장 조끼 고맙다”…대박 터진 이베이 한국 셀러 부산일보</p>
+  <p class="trend-implication">영화/애니메이션 IP를 굿즈, 공연, 팝업, 극장 이벤트로 연결하는 OSMU 관점에서 추적 필요.</p>
+  <div class="trend-meta">
+    <span>부산일보</span>
+    <b>굿즈</b>
+  </div>
+</article><article class="market-trend-card">
+  <div class="trend-topline">
+    <span>IP/OSMU</span>
+    <em>2026.05.11</em>
+  </div>
+  <a class="trend-title" href="https://news.google.com/rss/articles/CBMiTkFVX3lxTFBSVGYtRC1xcUJTUk5MQldqeUhEejVhaUZvbVBxbXVVSi15akxpc3BmSEpYU0ZveXBSbGQxRXJienFYLWRodExtc2QwYmtMQQ?oc=5" target="_blank" rel="noopener">“K팝·레고에 꽂힌 글로벌 팬덤”…이베이 韓 셀러 역직구 매출 역대 최대</a>
+  <p class="trend-frame">게임·K팝·키즈 IP가 공연·영화·굿즈·공간으로 확장</p>
+  <p class="trend-note">“K팝·레고에 꽂힌 글로벌 팬덤”…이베이 韓 셀러 역직구 매출 역대 최대 전자신문</p>
+  <p class="trend-implication">영화/애니메이션 IP를 굿즈, 공연, 팝업, 극장 이벤트로 연결하는 OSMU 관점에서 추적 필요.</p>
+  <div class="trend-meta">
+    <span>전자신문</span>
+    <b>K팝</b>
+  </div>
+</article><article class="market-trend-card">
+  <div class="trend-topline">
+    <span>팝업/공간</span>
+    <em>1일 전</em>
+  </div>
+  <a class="trend-title" href="https://www.cine21.com/news/view/?mag_id=109966" target="_blank" rel="noopener">[trans x cross] &lt;무비랜드 메이킹북&gt;으로 돌아본 우리의 극장 - 무비랜드 극장주 모춘, 소호 인터뷰</a>
+  <p class="trend-frame">팝업이 팬덤 소비의 기본 동선으로 자리매김</p>
+  <p class="trend-note">2024년 3월, &lt;씨네21&gt;은 개관 3주차였던 성수동의 무비랜드를 찾아 극장주 모춘, 소호와 이야기를 나누었다. 그로부터 2년이 지난 뒤 무비랜드는 이제 영화를 좋아하는 이라면 당연히 알 법한 극장이자 하나의 브랜드로 자리 잡았다…</p>
+  <p class="trend-implication">극장 로비와 상권 거점에서 한정 굿즈·포토존·예매 동선을 묶는 실험 여지가 큼.</p>
+  <div class="trend-meta">
+    <span>씨네21</span>
+    <b>성수</b>
+  </div>
+</article><article class="market-trend-card">
+  <div class="trend-topline">
+    <span>팝업/공간</span>
+    <em>6일 전</em>
+  </div>
+  <a class="trend-title" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9vcENISUI2c0lhYVptc0p3NGhpZVRyMlBnSGotVWo0bE5MZVQtZG5aWlhESGRFTzM0T0x3Z3R1bUUtaXgzc3BWWENua3YtX3VGdUlMTlp3?oc=5" target="_blank" rel="noopener">“카드 한장 사려고 새벽5시부터 오픈런”…용산에 수백명 줄섰다는데</a>
+  <p class="trend-frame">팝업이 팬덤 소비의 기본 동선으로 자리매김</p>
+  <p class="trend-note">“카드 한장 사려고 새벽5시부터 오픈런”…용산에 수백명 줄섰다는데 매일경제</p>
+  <p class="trend-implication">극장 로비와 상권 거점에서 한정 굿즈·포토존·예매 동선을 묶는 실험 여지가 큼.</p>
+  <div class="trend-meta">
+    <span>매일경제</span>
+    <b>오픈런</b>
+  </div>
+</article><article class="market-trend-card">
+  <div class="trend-topline">
+    <span>팝업/공간</span>
+    <em>6일 전</em>
+  </div>
+  <a class="trend-title" href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5wc2l3dW12emNBU2toM2FtR1RqYmlfdDlEM3RsZ2dCVHg2Tkd2cGtaTUhkMG5YdDFzU19ydUlidnp5dVZ0QTg4VVJrU0pHT1VGVWpPcC1EY2lnZmcwQnhrSlZR?oc=5" target="_blank" rel="noopener">오픈런에 굿즈 품절까지…국내외 &#39;쿠키런&#39; 팝업 통했다</a>
+  <p class="trend-frame">팝업이 팬덤 소비의 기본 동선으로 자리매김</p>
+  <p class="trend-note">오픈런에 굿즈 품절까지…국내외 &#39;쿠키런&#39; 팝업 통했다 스포츠월드</p>
+  <p class="trend-implication">극장 로비와 상권 거점에서 한정 굿즈·포토존·예매 동선을 묶는 실험 여지가 큼.</p>
+  <div class="trend-meta">
+    <span>스포츠월드</span>
+    <b>팝업</b><b>오픈런</b>
+  </div>
+</article>
+    </div>
+
+  </section>
+
   <section class="lane-grid">
     <div class="panel">
       <div class="panel-head">
@@ -766,25 +967,6 @@ footer {
       </div>
       <div class="feed">
         <article class="card ">
-  <img class="thumb" src="https://d3ihz389yobwks.cloudfront.net/1779068369906FoIBI.png" alt="" loading="lazy" onerror="this.style.display='none'">
-  <div class="card-body">
-    <a class="title" href="https://www.maxmovie.com/news/445427" target="_blank" rel="noopener">
-      <span class="lang-ko">&#39;앨리&#39; 봉준호 &#34;조지 밀러와 미야자키 하야오 뛰어넘고 싶다&#34;</span><span class="lang-en">&#39;앨리&#39; 봉준호 &#34;조지 밀러와 미야자키 하야오 뛰어넘고 싶다&#34; <em class="kr-tag">(한국어)</em></span>
-    </a>
-    <div class="meta">
-      <span class="source official">공식 · 맥스무비</span>
-      <span class="time">1일 전</span>
-    </div>
-
-    <p class="summary">
-      <span class="lang-ko">봉준호 감독의 첫 장편 애니메이션 영화 &#39;앨리&#39;의 한 장면. 사진제공=CJ ENM봉준호 감독이 영화 ‘매드맥스’ 시리즈의 연출자 조지 밀러 감독과 일본 애니메이션의 거장 미야자키 하야오를 뛰어넘고 싶다는 “야망”을 밝혀 눈길을 끈다. 봉 감독은 자신이 내년 선보일 첫 장편 애니메이션 영화 ‘앨리’(Ally)에 관한 포부를 드러내며 기대감을 높인다.봉준호 감</span><span class="lang-en">봉준호 감독의 첫 장편 애니메이션 영화 &#39;앨리&#39;의 한 장면. 사진제공=CJ ENM봉준호 감독이 영화 ‘매드맥스’ 시리즈의 연출자 조지 밀러 감독과 일본 애니메이션의 거장 미야자키 하야오를 뛰어넘고 싶다는 “야망”을 밝혀 눈길을 끈다. 봉 감독은 자신이 내년 선보일 첫 장편 애니메이션 영화 ‘앨리’(Ally)에 관한 포부를 드러내며 기대감을 높인다.봉준호 감</span>
-    </p>
-
-
-    <div class="chips"><span>CJ ENM</span></div>
-
-  </div>
-</article><article class="card ">
 
   <div class="card-body">
     <a class="title" href="https://deadline.com/2026/05/park-chan-wook-brigands-rattlecreek-warner-bros-clockwork-1236915772/" target="_blank" rel="noopener">
@@ -792,7 +974,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · Deadline</span>
-      <span class="time">3시간 전</span>
+      <span class="time">4시간 전</span>
     </div>
 
     <p class="summary">
@@ -816,10 +998,20 @@ footer {
       <div class="feed">
         <article class="card card-compact community-card">
   <div class="card-body">
+    <a class="title" href="https://extmovie.com/movietalk/94044146" target="_blank" rel="noopener">구로사와 기요시 감독 &#39;흑뢰성&#39; 로튼토마토 첫 리뷰</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 익스트림무비</span>
+      <span class="time">1시간 전</span>
+    </div>
+    <p class="summary">마샬 섀퍼 - Slant Magazine &lt;흑뢰성&gt;은 구도와 동선 연출의 교과서 같은 작품으로, 구로사와 기요시 감독은 이야기의 폐쇄적인 공간을 풍부한 시각적 ...</p>
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
     <a class="title" href="https://extmovie.com/movietalk/94043116" target="_blank" rel="noopener">니콜라스 윈딩 레픈의 ’허 프라이빗 헬‘ - 거의 보기 힘들 정도로 끔찍하다 [칸]</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">9시간 전</span>
+      <span class="time">12시간 전</span>
     </div>
     <p class="summary">방금 니콜라스 윈딩 레픈의 허 프라이빗 헬을 보고 나왔는데, 이 작품에 대해선 시간을 두고 곱씹은 뒤 나중에 생각을 더 덧붙일 예정이다. 하지만 솔...</p>
     <p class="mood">중립적 반응</p>
@@ -829,7 +1021,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94042654" target="_blank" rel="noopener">흑인 헬레네 발표 후 개판난 &#39;오디세이&#39; 예고편 댓글란</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">12시간 전</span>
+      <span class="time">14시간 전</span>
     </div>
     <p class="summary">지지난 주에, 크리스토퍼 놀란 감독의 &lt;오디세이&gt; 예고편이.... 수준 낮은(?) 대사들 때문에 까였다는 글을 올렸었는데... https://extmovie.com/movie...</p>
     <p class="mood">중립적 반응</p>
@@ -839,100 +1031,90 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94041869" target="_blank" rel="noopener">안드레이 즈비아긴체프의 ‘미노타우르’, 에이드리언 라인의 ‘언페이스풀’과 같은 원작 이야기 기반</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">12시간 전</span>
+      <span class="time">14시간 전</span>
     </div>
     <p class="summary">이번 THR 인터뷰에서 러시아 감독 안드레이 즈비아긴체프는 칸 경쟁 부문에 초청된 신작 ‘미노타우르’를 “기적”이라고 표현했다. 그 이유는 그가 2021...</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://extmovie.com/movietalk/94042058" target="_blank" rel="noopener">[마스터즈 오브 유니버스] 해외 시사 단평들</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">15시간 전</span>
-    </div>
-    <p class="summary">트래비스 나이트 감독은 [마스터즈 오브 유니버스]의 모든 버전, 액션 피규어, 애니메이션, 영화 등 히맨 캐릭터의 모든 해석에 대해 진심 어린 경의를...</p>
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://theqoo.net/movie/4210040638" target="_blank" rel="noopener">땃쉬 마이클 주중 특전 없으니까 스엑이나 봐야겠다</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 더쿠</span>
-
-    </div>
-    <p class="summary">1</p>
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://theqoo.net/movie/4210020867" target="_blank" rel="noopener">마이클 보고나서 갑자기 보고싶어진 영화</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · 더쿠</span>
-
-    </div>
-
-    <p class="mood">중립적 반응</p>
-  </div>
-</article><article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2552727" target="_blank" rel="noopener">마이클돌비포흘 내가 왜 안받았을까..</a>
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2553081" target="_blank" rel="noopener">마이클빌리진만 아는 정도여도 볼만해?</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">아 또보고 싶은데 2번봤는데 3회차 조조 달리고와야하나 - dc official App오리지널 티켓2026.05.20 07:09</p>
+    <p class="summary">걍 아무생각없이 빵빵하게 노래나 잔뜩 듣다오고 싶은데오리지널 티켓2026.05.20 11:00</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2552663" target="_blank" rel="noopener">마이클무대영상 역대 1위</a>
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2553064" target="_blank" rel="noopener">갑자기마이클불매운동 철학이 보이는 중</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">https://youtu.be/SGLjdkahoMk MTV 데인저러스 라이브 반박시 내가 맞음오리지널 티켓2026.05.20 03:30</p>
+    <p class="summary">당신들이 옳았어오리지널 티켓2026.05.20 10:54</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2552659" target="_blank" rel="noopener">마이클잭슨 무대 보다가 벌써 시간이 이렇게</a>
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2553059" target="_blank" rel="noopener">마이클갈라치기 오려서 모으면 격리소 가능</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">오리지널 티켓2026.05.20 03:27</p>
+    <p class="summary">오붕이들 ㄱㄱ오리지널 티켓2026.05.20 10:53</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2552647" target="_blank" rel="noopener">마이클침팬지랑마이클아빠랑 ufc뜨면 누가 이길까</a>
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2553056" target="_blank" rel="noopener">마이클그냥</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">오리지널 티켓2026.05.20 03:18</p>
+    <p class="summary">배경지 + PET 4종 찍어서 싹다 갈라치기 해라!!!!오리지널 티켓2026.05.20 10:49</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=commercial_movie&amp;no=1750505" target="_blank" rel="noopener">군체시사회 반응 ㅈㄴ 심한 욕 있었네 ㅋㅋㅋ</a>
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2553018" target="_blank" rel="noopener">돌비 마이클이랑군체뿐이네..</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">대홍수 같았다 ㅋㅋㅋㅋ상업영화2026.05.20 07:20</p>
+    <p class="summary">탑건은 봤고 마이클도 봤고군체는 아마도 4dx로 볼 예정이고.. 잠시 숨을 참아야 하나.오리지널 티켓2026.05.20 10:30</p>
     <p class="mood">중립적 반응</p>
   </div>
 </article><article class="card card-compact community-card">
   <div class="card-body">
-    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=commercial_movie&amp;no=1750489" target="_blank" rel="noopener">호프보다군체가 더 안좋아보이는데</a>
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2553007" target="_blank" rel="noopener">롯시군체팝콘 끝남??</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 디시인사이드</span>
 
     </div>
-    <p class="summary">호프는 흥행 어찌어찌 할거같은데군체는 아무리봐도 그냥 반도2임 예고편에서 똥내나상업영화2026.05.20 02:00</p>
-    <p class="mood">긍정 반응 우세</p>
+    <p class="summary">기간이 아니라고 뜨네오리지널 티켓2026.05.20 10:22</p>
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2552991" target="_blank" rel="noopener">군체목개봉이었네 날씨 예측이라도 한건가</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 디시인사이드</span>
+
+    </div>
+    <p class="summary">오늘 개봉했으면 피곤했을텐데 오히려 다행이네오리지널 티켓2026.05.20 10:16</p>
+    <p class="mood">중립적 반응</p>
+  </div>
+</article><article class="card card-compact community-card">
+  <div class="card-body">
+    <a class="title" href="https://gall.dcinside.com/mgallery/board/view/?id=commercial_movie&amp;no=1750521" target="_blank" rel="noopener">군체좀비 총도 쏘나보넼ㅋㅋㅋ</a>
+    <div class="meta">
+      <span class="source community">커뮤니티 · 디시인사이드</span>
+
+    </div>
+    <p class="summary">아이 엠 히어로인데 왘전상업영화2026.05.20 09:33</p>
+    <p class="mood">중립적 반응</p>
   </div>
 </article>
 
@@ -951,6 +1133,12 @@ footer {
         <span>영화진흥위원회 · 공고</span>
         <strong>(추경) 2026년 독립예술영화 제작지원 장편 극영화부문(순제작비 10억 원 이상~20억 원 미만) 사업 공고</strong>
         <em>영화 지원사업</em>
+      </a>
+
+      <a class="policy-card" href="https://www.kocca.kr/kocca/pims/view.do?intcNo=326D00110001&amp;menuNo=204104&amp;recptSt=&amp;category=&amp;pageIndex=1&amp;search=&amp;searchWrd=" target="_blank" rel="noopener">
+        <span>한국콘텐츠진흥원 · 모집공모</span>
+        <strong>2026 대중음악 해외 쇼케이스(Korea Spotlight) 뮤지션 및 비즈니스 참가기업 모집(1차)</strong>
+        <em>정책</em>
       </a>
 
       <a class="policy-card" href="https://www.kocca.kr/kocca/pims/view.do?intcNo=326D00101001&amp;menuNo=204104&amp;recptSt=&amp;category=&amp;pageIndex=1&amp;search=&amp;searchWrd=" target="_blank" rel="noopener">

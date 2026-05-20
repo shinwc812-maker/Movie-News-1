@@ -15,6 +15,7 @@ COMMUNITY_PATH = DATA_DIR / "community.json"
 POLICIES_PATH = DATA_DIR / "policies.json"
 RESERVATION_PATH = DATA_DIR / "reservation.json"
 OVERSEAS_WEEKEND_PATH = DATA_DIR / "overseas_weekend.json"
+MARKET_TRENDS_PATH = DATA_DIR / "market_trends.json"
 SITE_DIR = ROOT / "site"
 DIST_DIR = ROOT / "dist"
 DIST_PATH = DIST_DIR / "index.html"
@@ -258,6 +259,28 @@ def to_policy_view(item: dict, now: datetime) -> dict:
         "rel_time": relative_time(item.get("published_at"), now),
         "deadline": item.get("deadline"),
     }
+
+
+def market_trend_views(items: list[dict], now: datetime) -> list[dict]:
+    views: list[dict] = []
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        views.append(
+            {
+                "content_kind": "market_trend",
+                "category": item.get("category", ""),
+                "title": item.get("title", ""),
+                "url": item.get("url", ""),
+                "source": item.get("source", ""),
+                "frame": item.get("frame", ""),
+                "note": item.get("note", ""),
+                "implication": item.get("implication", ""),
+                "keywords": item.get("keywords") or [],
+                "rel_time": relative_time(item.get("published_at"), now),
+            }
+        )
+    return views
 
 
 def split_articles_by_kind(views: list[dict]) -> tuple[list[dict], list[dict]]:
@@ -612,6 +635,7 @@ def build() -> None:
     raw_articles = load_json(ARTICLES_PATH, [])
     raw_community = load_json(COMMUNITY_PATH, [])
     raw_policies = load_json(POLICIES_PATH, [])
+    raw_market_trends = load_json(MARKET_TRENDS_PATH, [])
     raw_market = load_json(MARKET_PATH, {})
     raw_reservation = load_json(RESERVATION_PATH, {})
     raw_overseas_weekend = load_json(OVERSEAS_WEEKEND_PATH, {})
@@ -622,6 +646,7 @@ def build() -> None:
     community_reactions = [to_community_view(item, now) for item in raw_community]
     community_views = community_from_articles + community_reactions
     policy_views = [to_policy_view(item, now) for item in raw_policies]
+    market_trends = market_trend_views(raw_market_trends, now)
     boxoffice = market_views(raw_market)
     reservation = reservation_view(raw_reservation)
     overseas_weekend = overseas_weekend_view(raw_overseas_weekend)
@@ -643,6 +668,7 @@ def build() -> None:
         official_feed=official_feed,
         community_reactions=community_views,
         policy_items=policy_views,
+        market_trends=market_trends,
         curation=curation,
         boxoffice=boxoffice,
         reservation=reservation,
@@ -650,6 +676,7 @@ def build() -> None:
         total_official=len(official_feed),
         total_community=len(community_views),
         total_policies=len(policy_views),
+        total_market_trends=len(market_trends),
         css=css,
         updated_at=now.astimezone(KST).strftime("%Y년 %m월 %d일 %H:%M"),
     ))

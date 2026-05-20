@@ -4,6 +4,7 @@ from crawler.briefing_models import (
     BoxOfficeMovie,
     CommunityReaction,
     MarketSnapshot,
+    MarketTrendItem,
     OverseasWeekendMovie,
     OverseasWeekendSnapshot,
     PolicyItem,
@@ -133,3 +134,26 @@ def test_community_and_policy_models_serialize_minimal_fields():
     assert restored_reservation.movies[0].english_title == "COLONY"
     assert restored_reservation.movies[0].movie_code == "20260001"
     assert restored_reservation.movies[0].is_lotte_distributed is True
+
+
+def test_market_trend_item_serializes_business_summary():
+    item = MarketTrendItem(
+        id="m1",
+        category="팝업/공간",
+        title="팝업이 팬덤 소비 동선으로 이동",
+        url="https://example.com/popup",
+        source="Example",
+        frame="팝업은 부가 이벤트가 아니라 기본 동선",
+        note="팬덤이 오프라인 공간에 반복 방문하는 흐름.",
+        implication="극장 공간과 IP 이벤트를 함께 설계할 여지가 큼.",
+        published_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+        keywords=["팝업", "팬덤"],
+    )
+
+    restored = MarketTrendItem.from_dict(item.to_dict())
+
+    assert restored.content_kind == "market_trend"
+    assert restored.category == "팝업/공간"
+    assert restored.implication.startswith("극장")
+    assert restored.keywords == ["팝업", "팬덤"]
+    assert restored.published_at is not None

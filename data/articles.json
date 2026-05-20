@@ -1,5 +1,23 @@
 [
   {
+    "id": "e99963288538cddf",
+    "source": "Variety",
+    "country": "US",
+    "title": "‘Her Private Hell’ Review: Nicolas Winding Refn Gets Lost in His Own Private Filmmaking Hell with This David Lynch-on-Bad-Acid Disaster",
+    "title_ko": null,
+    "summary": "\"Her Private Hell\" takes up where \"The Neon Demon\" left off — or maybe I should say where \"Twin Peaks: The Return\" left off, since the new movie plays like a knockoff of David Lynch at his most bafflingly obscure crossed with the hellscape fetishism of Gaspar Noé crossed with the world’s most avant-garde perfume commercial (which makes sense, since directing avant-garde perfume commercials is how part of Refn earns his living).",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/reviews/her-private-hell-review-nicolas-winding-refn-1236753509/",
+    "published_at": "2026-05-20T00:10:58+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 3,
+    "score": 148.02424942563658,
+    "matched_keywords": [
+      "Neon"
+    ]
+  },
+  {
     "id": "faf36b191d70e7b4",
     "source": "Deadline",
     "country": "US",
@@ -12,7 +30,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 149.7642553912037,
+    "score": 147.609318870081,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -30,7 +48,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 148.75239196527778,
+    "score": 146.5974554441551,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -48,7 +66,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 148.5868827060185,
+    "score": 146.43194618489582,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -66,7 +84,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 147.38462576157406,
+    "score": 145.2296892404514,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -84,7 +102,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 147.35945215046297,
+    "score": 145.20451562934028,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -102,7 +120,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 145.5617090949074,
+    "score": 143.40677257378474,
     "matched_keywords": [
       "Netflix"
     ]
@@ -120,7 +138,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 145.1733989097222,
+    "score": 143.01846238859954,
     "matched_keywords": [
       "Netflix"
     ]
@@ -138,27 +156,9 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 144.25962576157406,
+    "score": 142.1046892404514,
     "matched_keywords": [
       "Amazon MGM"
-    ]
-  },
-  {
-    "id": "3c0b4e7835aaf633",
-    "source": "맥스무비",
-    "country": "KR",
-    "title": "'앨리' 봉준호 \"조지 밀러와 미야자키 하야오 뛰어넘고 싶다\"",
-    "title_ko": null,
-    "summary": "봉준호 감독의 첫 장편 애니메이션 영화 '앨리'의 한 장면. 사진제공=CJ ENM봉준호 감독이 영화 ‘매드맥스’ 시리즈의 연출자 조지 밀러 감독과 일본 애니메이션의 거장 미야자키 하야오를 뛰어넘고 싶다는 “야망”을 밝혀 눈길을 끈다. 봉 감독은 자신이 내년 선보일 첫 장편 애니메이션 영화 ‘앨리’(Ally)에 관한 포부를 드러내며 기대감을 높인다.봉준호 감",
-    "summary_ko": null,
-    "url": "https://www.maxmovie.com/news/445427",
-    "published_at": "2026-05-18T01:40:00+00:00",
-    "image_url": "https://d3ihz389yobwks.cloudfront.net/1779068369906FoIBI.png",
-    "content_kind": "official",
-    "tier": 3,
-    "score": 101.72490353935186,
-    "matched_keywords": [
-      "CJ ENM"
     ]
   },
   {
@@ -174,7 +174,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 49.3334104837963,
+    "score": 47.178473962673614,
     "matched_keywords": []
   },
   {
@@ -190,7 +190,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 49.18497298379629,
+    "score": 47.030036462673614,
     "matched_keywords": []
   },
   {
@@ -199,14 +199,14 @@
     "country": "US",
     "title": "Andy Garcia’s Passion Project ‘Diamond’ Sparks 9-Minute Ovation In Cannes: “I Could Not Think Of A More Sacred Place Than Here To Share This Very Personal Journey”",
     "title_ko": null,
-    "summary": "Andy Garcia’s passion project Diamond sparked a 9-minute ovation in Cannes on Tuesday evening as the star set down at the festival in the company of co-stars Vicky Krieps and Rosemarie DeWitt. Billed as a love letter to L.A. and a homage to the film noir of the past, the quirky whodunnit is written and […]",
+    "summary": "Andy Garcia’s passion project Diamond sparked a nine-minute ovation in Cannes on Tuesday evening as the star set down at the festival in the company of co-stars Vicky Krieps and Rosemarie DeWitt. Billed as a love letter to L.A. and a homage to the film noir of the past, the quirky whodunnit is written and […]",
     "summary_ko": null,
     "url": "https://deadline.com/2026/05/andy-garcia-passion-project-diamond-9-minute-ovation-cannes-1236915896/",
     "published_at": "2026-05-19T22:59:31+00:00",
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.938734557870376,
+    "score": 46.78379803674769,
     "matched_keywords": []
   },
   {
@@ -222,7 +222,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.44452159490741,
+    "score": 46.28958507378472,
     "matched_keywords": []
   },
   {
@@ -238,7 +238,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.41732252083333,
+    "score": 46.262385999710645,
     "matched_keywords": []
   },
   {
@@ -254,7 +254,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.89591048379629,
+    "score": 45.74097396267361,
     "matched_keywords": []
   },
   {
@@ -270,7 +270,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.870736872685185,
+    "score": 45.7158003515625,
     "matched_keywords": []
   },
   {
@@ -286,7 +286,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.41182483564815,
+    "score": 45.25688831452546,
     "matched_keywords": []
   },
   {
@@ -302,7 +302,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.95059798379629,
+    "score": 44.79566146267361,
     "matched_keywords": []
   },
   {
@@ -318,7 +318,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.86379242824074,
+    "score": 44.70885590711806,
     "matched_keywords": []
   },
   {
@@ -334,7 +334,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.68873455787037,
+    "score": 44.53379803674768,
     "matched_keywords": []
   },
   {
@@ -350,7 +350,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.44857252083333,
+    "score": 44.293635999710645,
     "matched_keywords": []
   },
   {
@@ -366,7 +366,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.34295909490741,
+    "score": 44.18802257378472,
     "matched_keywords": []
   },
   {
@@ -382,7 +382,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.17571372453704,
+    "score": 44.020777203414355,
     "matched_keywords": []
   },
   {
@@ -398,7 +398,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.08254242824074,
+    "score": 43.92760590711806,
     "matched_keywords": []
   },
   {
@@ -414,7 +414,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.90516974305556,
+    "score": 43.750233221932874,
     "matched_keywords": []
   },
   {
@@ -430,7 +430,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.53566742824074,
+    "score": 43.38073090711806,
     "matched_keywords": []
   },
   {
@@ -446,7 +446,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.30389659490741,
+    "score": 43.14896007378472,
     "matched_keywords": []
   },
   {
@@ -462,7 +462,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.19018131712963,
+    "score": 43.03524479600694,
     "matched_keywords": []
   },
   {
@@ -478,7 +478,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.261361872685185,
+    "score": 42.1064253515625,
     "matched_keywords": []
   },
   {
@@ -494,7 +494,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.794058631944445,
+    "score": 41.63912211082176,
     "matched_keywords": []
   },
   {
@@ -510,7 +510,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.66529705787037,
+    "score": 41.51036053674769,
     "matched_keywords": []
   },
   {
@@ -526,23 +526,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.2402391875,
-    "matched_keywords": []
-  },
-  {
-    "id": "adfc2686397e763a",
-    "source": "Variety",
-    "country": "US",
-    "title": "Paralympics Star Ali Truwit Documentary ‘Stronger Than You Think’ Distribution Rights Acquired by Sox Entertainment",
-    "title_ko": null,
-    "summary": "Distribution rights to the inspirational sports documentary “Stronger Than You Think,” which tells the story of Paralympic star swimmer Ali Truwit, have been acquired by Sox Entertainment. Truwit made international headlines at the 2024 Paralympic Games in Paris when she competed (and won two silver medals) as a swimmer barely a year after losing her […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/biz/news/ali-truwit-documentary-stronger-than-you-think-sox-koondel-1236753250/",
-    "published_at": "2026-05-19T16:30:00+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 42.17629242824074,
+    "score": 40.085302666377316,
     "matched_keywords": []
   },
   {
@@ -558,7 +542,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.075308631944445,
+    "score": 38.92037211082176,
     "matched_keywords": []
   },
   {
@@ -574,7 +558,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.53045909490741,
+    "score": 36.37552257378472,
     "matched_keywords": []
   },
   {
@@ -590,7 +574,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 31.461304002314815,
+    "score": 29.30636748119213,
     "matched_keywords": []
   },
   {
@@ -606,7 +590,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 31.128838724537033,
+    "score": 28.973902203414347,
     "matched_keywords": []
   },
   {
@@ -622,7 +606,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 15.051292428240743,
+    "score": 12.896355907118057,
     "matched_keywords": []
   },
   {
@@ -638,7 +622,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 13.530459094907405,
+    "score": 11.37552257378473,
     "matched_keywords": []
   },
   {
@@ -654,7 +638,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 7.367264650462962,
+    "score": 5.212328129340277,
     "matched_keywords": []
   },
   {
@@ -670,7 +654,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 6.3255979837963,
+    "score": 4.170661462673614,
     "matched_keywords": []
   },
   {
@@ -686,7 +670,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 6.234741502314822,
+    "score": 4.079804981192131,
     "matched_keywords": []
   },
   {
@@ -702,7 +686,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 5.283931317129631,
+    "score": 3.1289947960069453,
     "matched_keywords": []
   },
   {
@@ -718,7 +702,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 5.213908168981485,
+    "score": 3.058971647858799,
     "matched_keywords": []
   }
 ]

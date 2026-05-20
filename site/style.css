@@ -418,6 +418,101 @@ h1 {
   font-weight: 800;
 }
 
+.market-trends-panel {
+  margin-top: 12px;
+}
+
+.market-trends-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.market-trend-card {
+  min-height: 180px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f9fbfd;
+  box-shadow: inset 0 0 0 1px #dfe7f1;
+}
+
+.trend-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.trend-topline span {
+  color: #1d4ed8;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.trend-topline em {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.trend-title {
+  display: block;
+  color: var(--ink);
+  font-size: 0.94rem;
+  font-weight: 850;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.trend-title:hover {
+  color: var(--blue);
+}
+
+.trend-frame {
+  margin: 8px 0 0;
+  color: #101828;
+  font-size: 0.84rem;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.trend-note,
+.trend-implication {
+  margin: 7px 0 0;
+  color: #475467;
+  font-size: 0.8rem;
+  line-height: 1.42;
+}
+
+.trend-implication {
+  color: #315077;
+}
+
+.trend-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.trend-meta span,
+.trend-meta b {
+  border-radius: 4px;
+  padding: 2px 6px;
+  background: #eef2ff;
+  color: #3444a4;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.trend-meta span {
+  background: #edf2f7;
+  color: #475467;
+}
+
 .policy-panel {
   margin-top: 12px;
 }
@@ -493,6 +588,7 @@ footer {
   .kpis,
   .hero-grid,
   .lane-grid,
+  .market-trends-grid,
   .policy-grid {
     grid-template-columns: 1fr;
   }

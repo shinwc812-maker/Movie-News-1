@@ -231,30 +231,59 @@ h1 {
 .curation-brief-card {
   min-width: 0;
   border-radius: 7px;
-  padding: 10px;
+  padding: 11px;
   background: #fff;
   box-shadow: 0 1px 3px rgba(16, 24, 40, 0.09);
 }
 
-.brief-card-top {
+.curation-article-title {
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.34;
+}
+
+.curation-summary-block {
+  margin-top: 9px;
+  border-radius: 7px;
+  padding: 9px 10px;
+  background: #f3f7fc;
+  box-shadow: inset 0 0 0 1px #dbe5f1;
+}
+
+.curation-summary-block b {
+  display: block;
+  margin-bottom: 4px;
+  color: #1d4ed8;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.curation-summary-block p {
+  margin: 0;
+  color: #263445;
+  font-size: 0.86rem;
+  font-weight: 720;
+  line-height: 1.45;
+}
+
+.brief-card-meta {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 7px;
+  margin-top: 9px;
 }
 
-.brief-line {
+.brief-evaluation {
   display: grid;
   grid-template-columns: 34px minmax(0, 1fr);
   gap: 7px;
   margin: 8px 0 0;
-  color: #475467;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   line-height: 1.42;
 }
 
-.brief-line b {
+.brief-evaluation b {
   color: #334155;
   font-size: 0.72rem;
 }
@@ -704,7 +733,7 @@ footer {
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 20일 11:59 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 20일 12:53 (KST)</p>
   </div>
   <div class="lang-toggle" aria-label="언어 선택">
     <button class="lang-btn" data-lang="en" onclick="setLang('en')">원문</button>
@@ -738,19 +767,22 @@ footer {
           </div>
           <div class="curation-section-items">
             <article class="curation-brief-card">
-  <div class="brief-card-top">
+  <a class="title curation-article-title" href="https://www.kofic.or.kr#none" target="_blank" rel="noopener">(추경) 2026년 독립예술영화 제작지원 장편 극영화부문(순제작비 10억 원 이상~20억 원 미만) 사업 공고</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>영화 지원사업</p>
+  </div>
+
+
+  <p class="brief-evaluation"><b>평가</b><span>극장 운영, 관람료, 지원사업 대응 관점에서 확인할 필요가 있습니다.</span></p>
+
+  <div class="brief-card-meta">
     <span class="source policy">
       정책 · 영화진흥위원회
     </span>
     <span class="time">6일 전</span>
   </div>
-  <a class="title" href="https://www.kofic.or.kr#none" target="_blank" rel="noopener">(추경) 2026년 독립예술영화 제작지원 장편 극영화부문(순제작비 10억 원 이상~20억 원 미만) 사업 공고</a>
-
-  <p class="brief-line"><b>요약</b><span>영화 지원사업</span></p>
-
-
-  <p class="brief-line brief-evaluation"><b>평가</b><span>극장 운영, 관람료, 지원사업 대응 관점에서 확인할 필요가 있습니다.</span></p>
-
 
 </article>
           </div>
@@ -766,36 +798,42 @@ footer {
           </div>
           <div class="curation-section-items">
             <article class="curation-brief-card">
-  <div class="brief-card-top">
+  <a class="title curation-article-title" href="https://variety.com/2026/film/news/clockwork-buying-park-chan-wook-brigands-of-rattlecreek-1236754342/" target="_blank" rel="noopener">Warner Bros.’ Clockwork Closing In on Park Chan-Wook’s ‘The Brigands Of Rattlecreek,’ With Matthew McConaughey, Austin Butler, Pedro Pascal and Tang Wei</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>Warner Bros. new specialty label Clockwork is in exclusive negotiations for a North American deal for starry Weste…</p>
+  </div>
+
+
+  <p class="brief-evaluation"><b>평가</b><span>해외 흥행, 마켓, 배급 환경 변화가 국내 라인업 판단에 주는 신호입니다.</span></p>
+
+  <div class="brief-card-meta">
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
-  <a class="title" href="https://variety.com/2026/film/news/clockwork-buying-park-chan-wook-brigands-of-rattlecreek-1236754342/" target="_blank" rel="noopener">Warner Bros.’ Clockwork Closing In on Park Chan-Wook’s ‘The Brigands Of Rattlecreek,’ With Matthew McConaughey, Austin Butler, Pedro Pascal and Tang Wei</a>
-
-  <p class="brief-line"><b>요약</b><span>Warner Bros. new specialty label Clockwork is in exclusive negotiations for a North American deal for starry Weste…</span></p>
-
-
-  <p class="brief-line brief-evaluation"><b>평가</b><span>해외 흥행, 마켓, 배급 환경 변화가 국내 라인업 판단에 주는 신호입니다.</span></p>
-
 
   <div class="chips"><span>Warner Bros</span></div>
 
 </article><article class="curation-brief-card">
-  <div class="brief-card-top">
+  <a class="title curation-article-title" href="https://deadline.com/2026/05/park-chan-wook-brigands-rattlecreek-warner-bros-clockwork-1236915772/" target="_blank" rel="noopener">Park Chan-Wook Western ‘Brigands Of Rattlecreek’, With McConaughey, Butler, Pascal And Tang Wei, Selling To Warner Bros’ Clockwork Out Of Cannes Market</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>EXCLUSIVE: This was always going to be one of the hottest packages at the Cannes market, and now Warner Bros’ new…</p>
+  </div>
+
+
+  <p class="brief-evaluation"><b>평가</b><span>해외 흥행, 마켓, 배급 환경 변화가 국내 라인업 판단에 주는 신호입니다.</span></p>
+
+  <div class="brief-card-meta">
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
-  <a class="title" href="https://deadline.com/2026/05/park-chan-wook-brigands-rattlecreek-warner-bros-clockwork-1236915772/" target="_blank" rel="noopener">Park Chan-Wook Western ‘Brigands Of Rattlecreek’, With McConaughey, Butler, Pascal And Tang Wei, Selling To Warner Bros’ Clockwork Out Of Cannes Market</a>
-
-  <p class="brief-line"><b>요약</b><span>EXCLUSIVE: This was always going to be one of the hottest packages at the Cannes market, and now Warner Bros’ new…</span></p>
-
-
-  <p class="brief-line brief-evaluation"><b>평가</b><span>해외 흥행, 마켓, 배급 환경 변화가 국내 라인업 판단에 주는 신호입니다.</span></p>
-
 
   <div class="chips"><span>Warner Bros</span></div>
 
@@ -1126,7 +1164,7 @@ footer {
     </a>
     <div class="meta">
       <span class="source official">공식 · Deadline</span>
-      <span class="time">5시간 전</span>
+      <span class="time">6시간 전</span>
     </div>
 
     <p class="summary">
@@ -1153,7 +1191,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94044146" target="_blank" rel="noopener">구로사와 기요시 감독 &#39;흑뢰성&#39; 로튼토마토 첫 리뷰</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">1시간 전</span>
+      <span class="time">2시간 전</span>
     </div>
     <p class="summary">마샬 섀퍼 - Slant Magazine &lt;흑뢰성&gt;은 구도와 동선 연출의 교과서 같은 작품으로, 구로사와 기요시 감독은 이야기의 폐쇄적인 공간을 풍부한 시각적 ...</p>
     <p class="mood">중립적 반응</p>
@@ -1163,7 +1201,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94043116" target="_blank" rel="noopener">니콜라스 윈딩 레픈의 ’허 프라이빗 헬‘ - 거의 보기 힘들 정도로 끔찍하다 [칸]</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">12시간 전</span>
+      <span class="time">13시간 전</span>
     </div>
     <p class="summary">방금 니콜라스 윈딩 레픈의 허 프라이빗 헬을 보고 나왔는데, 이 작품에 대해선 시간을 두고 곱씹은 뒤 나중에 생각을 더 덧붙일 예정이다. 하지만 솔...</p>
     <p class="mood">중립적 반응</p>
@@ -1173,7 +1211,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94042654" target="_blank" rel="noopener">흑인 헬레네 발표 후 개판난 &#39;오디세이&#39; 예고편 댓글란</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">14시간 전</span>
+      <span class="time">15시간 전</span>
     </div>
     <p class="summary">지지난 주에, 크리스토퍼 놀란 감독의 &lt;오디세이&gt; 예고편이.... 수준 낮은(?) 대사들 때문에 까였다는 글을 올렸었는데... https://extmovie.com/movie...</p>
     <p class="mood">중립적 반응</p>
@@ -1183,7 +1221,7 @@ footer {
     <a class="title" href="https://extmovie.com/movietalk/94041869" target="_blank" rel="noopener">안드레이 즈비아긴체프의 ‘미노타우르’, 에이드리언 라인의 ‘언페이스풀’과 같은 원작 이야기 기반</a>
     <div class="meta">
       <span class="source community">커뮤니티 · 익스트림무비</span>
-      <span class="time">14시간 전</span>
+      <span class="time">15시간 전</span>
     </div>
     <p class="summary">이번 THR 인터뷰에서 러시아 감독 안드레이 즈비아긴체프는 칸 경쟁 부문에 초청된 신작 ‘미노타우르’를 “기적”이라고 표현했다. 그 이유는 그가 2021...</p>
     <p class="mood">중립적 반응</p>

@@ -63,7 +63,7 @@ def test_template_contains_sectioned_curation_briefing_labels():
 
     assert "curation_sections" in text
     assert "흥행·배급" in text
-    assert "요약" in text
+    assert "내용 요약" in text
     assert "평가" in text
 
 
@@ -110,6 +110,8 @@ def test_template_renders_curation_sections_without_dict_method_collision():
 
     assert "흥행·배급" in html
     assert "1건" in html
+    assert html.index("흥행·배급") < html.index("와일드씽 예매 상승")
+    assert html.index("와일드씽 예매 상승") < html.index("내용 요약")
     assert "예매 상승세가 확인됨." in html
 
 

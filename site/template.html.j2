@@ -47,19 +47,22 @@
 
 {%- macro curation_brief_card(item) -%}
 <article class="curation-brief-card">
-  <div class="brief-card-top">
+  <a class="title curation-article-title" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
+  {% if item.curation_summary %}
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>{{ item.curation_summary }}</p>
+  </div>
+  {% endif %}
+  {% if item.curation_evaluation %}
+  <p class="brief-evaluation"><b>평가</b><span>{{ item.curation_evaluation }}</span></p>
+  {% endif %}
+  <div class="brief-card-meta">
     <span class="source {% if item.content_kind == 'policy' %}policy{% else %}official{% endif %}">
       {% if item.content_kind == 'policy' %}정책{% else %}공식{% endif %} · {{ item.source }}
     </span>
     {% if item.rel_time %}<span class="time">{{ item.rel_time }}</span>{% endif %}
   </div>
-  <a class="title" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
-  {% if item.curation_summary %}
-  <p class="brief-line"><b>요약</b><span>{{ item.curation_summary }}</span></p>
-  {% endif %}
-  {% if item.curation_evaluation %}
-  <p class="brief-line brief-evaluation"><b>평가</b><span>{{ item.curation_evaluation }}</span></p>
-  {% endif %}
   {% if item.matched_keywords %}
   <div class="chips">{% for kw in item.matched_keywords[:3] %}<span>{{ kw }}</span>{% endfor %}</div>
   {% endif %}

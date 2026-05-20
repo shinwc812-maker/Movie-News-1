@@ -28,10 +28,16 @@ EXTMOVIE_BASE_URL = "https://extmovie.com"
 EXTMOVIE_HOME_URL = "https://extmovie.com/"
 THEQOO_BASE_URL = "https://theqoo.net"
 DCINSIDE_SEARCH_URL = "https://search.dcinside.com/post/q"
+MUKO_BASE_URL = "https://muko.kr"
+MUKO_SEARCH_URL = f"{MUKO_BASE_URL}/index.php"
 NAVER_SEARCH_URL = "https://openapi.naver.com/v1/search/{endpoint}.json"
 NAVER_PUBLIC_SEARCH_URL = "https://search.naver.com/search.naver"
 YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
 GENERIC_COMMUNITY_TERMS = {"영화 관객 반응", "영화 후기"}
+BROWSER_USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36"
+)
 SENSITIVE_QUERY_PARAM_PATTERN = re.compile(
     r"([?&](?:key|api_key|apikey|client_id|client_secret|serviceKey)=)[^&\s]+",
     flags=re.IGNORECASE,
@@ -289,7 +295,8 @@ class NaverPublicCafeSearchSource:
             if not title:
                 continue
             seen.add(url)
-            container_text = _normalise_spaces((link.parent or link).text(strip=True))
+            parent = link.parent
+            container_text = _normalise_spaces(parent.text(strip=True)) if parent and parent.tag not in {"html", "body"} else title
             excerpt = container_text.replace(title, "", 1).strip(" ·-")
             if not _query_appears_in_text(query, f"{title} {excerpt}"):
                 continue
@@ -370,7 +377,8 @@ class NaverPublicWebSearchSource:
             if not title:
                 continue
             seen.add(url)
-            container_text = _normalise_spaces((link.parent or link).text(strip=True))
+            parent = link.parent
+            container_text = _normalise_spaces(parent.text(strip=True)) if parent and parent.tag not in {"html", "body"} else title
             excerpt = container_text.replace(title, "", 1).strip(" ·-")
             if not _query_appears_in_text(query, f"{title} {excerpt}"):
                 continue
@@ -576,6 +584,93 @@ class DCInsideDirectSearchSource:
 
 
 @dataclass
+class MukoDirectSearchSource:
+    """Direct search for Muko movie-community posts."""
+
+    source_name: str = "무코"
+    max_queries: int = 8
+    max_items_per_query: int = 5
+    request_interval_seconds: float = 0.3
+    allowed_sections: tuple[str, ...] = (
+        "all",
+        "movietalk",
+        "goods",
+        "ott",
+        "free",
+        "hot",
+        "event",
+        "index",
+    )
+
+    def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
+        reactions: list[CommunityReaction] = []
+        with httpx.Client(
+            timeout=REQUEST_TIMEOUT,
+            headers={"User-Agent": BROWSER_USER_AGENT},
+            follow_redirects=True,
+        ) as client:
+            for term in _movie_specific_terms(search_terms, limit=self.max_queries):
+                try:
+                    response = client.get(MUKO_SEARCH_URL, params={"act": "dispMuko_search", "q": term})
+                    response.raise_for_status()
+                except httpx.HTTPStatusError as exc:
+                    if exc.response.status_code == 429:
+                        print(f"[warn] {self.source_name}: rate limited — stopping direct search", file=sys.stderr)
+                        return reactions
+                    print(f"[warn] {self.source_name}: direct search failed — {exc}", file=sys.stderr)
+                    continue
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[warn] {self.source_name}: direct search failed — {exc}", file=sys.stderr)
+                    continue
+                reactions.extend(self.parse(response.text, query=term))
+                time.sleep(self.request_interval_seconds)
+        return reactions
+
+    def parse(self, html: str, query: str) -> list[CommunityReaction]:
+        tree = HTMLParser(html)
+        reactions: list[CommunityReaction] = []
+        seen: set[str] = set()
+        for link in tree.css("a[href]"):
+            url = self._extract_post_url(link.attributes.get("href") or "")
+            if not url or url in seen:
+                continue
+            title = _normalise_spaces(link.text(strip=True))
+            if not title or not _usable_direct_search_title(title):
+                continue
+            parent = link.parent
+            container_text = _normalise_spaces(parent.text(strip=True)) if parent and parent.tag not in {"html", "body"} else title
+            excerpt = container_text.replace(title, "", 1).strip(" ·-")
+            if not _query_appears_in_text(query, f"{title} {excerpt}"):
+                continue
+            seen.add(url)
+            reactions.append(
+                CommunityReaction(
+                    id=make_article_id(url),
+                    source=self.source_name,
+                    title=title,
+                    url=url,
+                    excerpt=excerpt,
+                    mood_summary=summarize_reaction_mood(f"{title} {excerpt}"),
+                    matched_keywords=[query],
+                )
+            )
+            if len(reactions) >= self.max_items_per_query:
+                break
+        return reactions
+
+    def _extract_post_url(self, href: str) -> str:
+        url = urljoin(MUKO_BASE_URL, href)
+        parsed = urlparse(url)
+        host = parsed.netloc.lower()
+        if host != "muko.kr" and not host.endswith(".muko.kr"):
+            return ""
+        path_parts = [part for part in parsed.path.split("/") if part]
+        if len(path_parts) != 2 or path_parts[0] not in self.allowed_sections or not path_parts[1].isdigit():
+            return ""
+        return f"{MUKO_BASE_URL}/{path_parts[0]}/{path_parts[1]}"
+
+
+@dataclass
 class NaverSearchCommunitySource:
     """Naver Search API backed community source.
 
@@ -774,6 +869,7 @@ def _youtube_sources_from_env() -> list[YouTubeCommunitySource]:
 
 COMMUNITY_SOURCES = [ExtMovieCommunitySource()]
 PUBLIC_SEARCH_SOURCES = [
+    MukoDirectSearchSource(),
     TheQooDirectSearchSource(),
     DCInsideDirectSearchSource(),
     NaverPublicCafeSearchSource(),

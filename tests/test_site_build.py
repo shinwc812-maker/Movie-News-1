@@ -51,6 +51,36 @@ def test_market_trend_views_preserve_frame_note_and_implication():
     assert views[0]["keywords"] == ["팝업", "팬덤"]
 
 
+def test_build_market_trend_sections_uses_business_category_order():
+    build = load_site_build_module()
+    trends = [
+        {"category": "팝업/공간", "title": "팝업"},
+        {"category": "체험형 콘텐츠 + 공연", "title": "공연"},
+        {"category": "IP/OSMU", "title": "IP"},
+    ]
+
+    sections = build.build_market_trend_sections(trends)
+
+    assert [section["title"] for section in sections] == ["체험형 콘텐츠 + 공연", "IP/OSMU", "팝업/공간"]
+    assert sections[0]["items"][0]["title"] == "공연"
+
+
+def test_build_community_sections_groups_by_source_order_and_limits_items():
+    build = load_site_build_module()
+    community = [
+        {"source": "네이버카페", "title": "네이버1"},
+        {"source": "무코", "title": "무코1"},
+        {"source": "무코", "title": "무코2"},
+        {"source": "익스트림무비", "title": "익무1"},
+    ]
+
+    sections = build.build_community_sections(community, limit_per_section=1)
+
+    assert [section["title"] for section in sections] == ["무코", "익스트림무비", "네이버카페"]
+    assert sections[0]["count"] == 2
+    assert [item["title"] for item in sections[0]["items"]] == ["무코1"]
+
+
 def test_template_contains_market_trends_section():
     template = Path(__file__).resolve().parents[1] / "site" / "template.html.j2"
 
@@ -88,8 +118,10 @@ def test_template_renders_curation_sections_without_dict_method_collision():
         official_articles=[],
         official_feed=[],
         community_reactions=[],
+        community_sections=[],
         policy_items=[],
         market_trends=[],
+        market_trend_sections=[],
         curation=[],
         curation_sections=[
             {
@@ -124,6 +156,61 @@ def test_template_renders_curation_sections_without_dict_method_collision():
     assert html.index("와일드씽 예매 상승") < html.index("내용 요약")
     assert "예매 상승세가 확인됨." in html
     assert "평가" not in html
+
+
+def test_template_renders_market_and_community_sections_without_dict_method_collision():
+    build = load_site_build_module()
+    env = build.Environment(
+        loader=build.FileSystemLoader(str(Path(__file__).resolve().parents[1] / "site")),
+        autoescape=True,
+    )
+    html = env.get_template("template.html.j2").render(
+        official_articles=[],
+        official_feed=[],
+        community_reactions=[{"source": "무코", "title": "와일드 씽 반응"}],
+        community_sections=[
+            {
+                "title": "무코",
+                "count": 1,
+                "items": [{"source": "무코", "title": "와일드 씽 반응", "url": "https://muko.kr/all/1"}],
+            }
+        ],
+        policy_items=[],
+        market_trends=[{"category": "체험형 콘텐츠 + 공연", "title": "공연형 팝업"}],
+        market_trend_sections=[
+            {
+                "title": "체험형 콘텐츠 + 공연",
+                "count": 1,
+                "items": [
+                    {
+                        "category": "체험형 콘텐츠 + 공연",
+                        "title": "공연형 팝업",
+                        "url": "https://example.com/trend",
+                        "source": "테스트뉴스",
+                        "note": "요약",
+                        "implication": "시사점",
+                        "keywords": ["공연"],
+                    }
+                ],
+            }
+        ],
+        curation=[],
+        curation_sections=[],
+        boxoffice=[],
+        reservation={"movies": []},
+        overseas_weekend={"movies": []},
+        total_official=0,
+        total_community=1,
+        total_policies=0,
+        total_market_trends=1,
+        css="",
+        updated_at="2026년 05월 20일 10:00",
+    )
+
+    assert "체험형 콘텐츠 + 공연" in html
+    assert "공연형 팝업" in html
+    assert "무코" in html
+    assert "와일드 씽 반응" in html
 
 
 def test_legacy_extmovie_articles_are_treated_as_community():

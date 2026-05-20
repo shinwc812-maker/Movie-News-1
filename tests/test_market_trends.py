@@ -39,7 +39,7 @@ def test_classify_market_trend_article_matches_reference_categories():
         "팝업스토어가 팬덤 소비의 기본 동선으로 자리매김",
     )
 
-    assert classify_market_trend_article(immersive).category == "체험형 콘텐츠"
+    assert classify_market_trend_article(immersive).category == "체험형 콘텐츠 + 공연"
     assert classify_market_trend_article(ip).category == "IP/OSMU"
     assert classify_market_trend_article(popup).category == "팝업/공간"
 
@@ -71,7 +71,7 @@ def test_build_market_trends_creates_business_notes_and_limits_per_category():
 
     trends = build_market_trends(articles, limit_per_category=1)
 
-    assert [item.category for item in trends] == ["체험형 콘텐츠", "IP/OSMU", "팝업/공간"]
+    assert [item.category for item in trends] == ["체험형 콘텐츠 + 공연", "IP/OSMU", "팝업/공간"]
     assert all(item.frame for item in trends)
     assert all(item.note for item in trends)
     assert all(item.implication for item in trends)

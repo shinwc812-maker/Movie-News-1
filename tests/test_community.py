@@ -2,6 +2,7 @@ import httpx
 
 from crawler.community import (
     DCInsideDirectSearchSource,
+    MukoDirectSearchSource,
     NaverPublicCafeSearchSource,
     NaverPublicWebSearchSource,
     NaverSearchCommunitySource,
@@ -220,6 +221,22 @@ def test_dcinside_direct_search_source_skips_non_movie_gallery_links():
 
     assert len(reactions) == 1
     assert reactions[0].url.endswith("id=oticket&no=2548641")
+
+
+def test_muko_direct_search_source_parses_movie_community_links():
+    source = MukoDirectSearchSource(max_items_per_query=3)
+    html = """
+    <a href="/all/19936933">(상황종료) &lt;와일드 씽&gt; 싸다구 실패하신분들 취줍하러 가세요~</a>
+    <a href="https://muko.kr/movietalk/19932635">박찬욱 서부극 신작 - 워너 브라더스 새 인디 레이블이 배급권 획득</a>
+    <a href="/db/movie/19516429">트루먼 쇼 별점</a>
+    """
+
+    reactions = source.parse(html, query="와일드 씽")
+
+    assert len(reactions) == 1
+    assert reactions[0].source == "무코"
+    assert reactions[0].url == "https://muko.kr/all/19936933"
+    assert reactions[0].matched_keywords == ["와일드 씽"]
 
 
 def test_naver_public_web_search_source_parses_theqoo_links():

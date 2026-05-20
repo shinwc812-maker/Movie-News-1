@@ -33,10 +33,11 @@ from crawler.sources.base import (
 NAVER_NEWS_URL = "https://openapi.naver.com/v1/search/news.json"
 NAVER_PUBLIC_SEARCH_URL = "https://search.naver.com/search.naver"
 GOOGLE_NEWS_RSS_URL = "https://news.google.com/rss/search"
-AI_TIMEOUT_SECONDS = 45
+AI_TIMEOUT_SECONDS = 90
 MARKET_TREND_QUERIES = (
-    "이머시브 콘텐츠 체험형 전시",
-    "공간 재해석 체험형 콘텐츠",
+    "이머시브 콘텐츠 체험형 전시 공연",
+    "공간 재해석 체험형 콘텐츠 공연",
+    "체험형 공연 이머시브 공연",
     "IP 사업 OSMU 굿즈 공연",
     "K팝 팝업스토어 팬덤 굿즈",
     "팝업스토어 오픈런 한정 굿즈",
@@ -53,13 +54,17 @@ class MarketTrendCategory:
 
 CATEGORIES = (
     MarketTrendCategory(
-        category="체험형 콘텐츠",
-        frame="공간 재해석·참여형 스토리텔링 기반의 현실 참여형 콘텐츠 확산",
-        implication="극장 유휴공간, 특별관, 영화 IP를 관객 참여형 이벤트로 확장하는 기획에 참고할 만함.",
+        category="체험형 콘텐츠 + 공연",
+        frame="공간 재해석·참여형 스토리텔링·공연형 콘텐츠가 결합된 체험 소비 확산",
+        implication="극장 유휴공간, 특별관, 영화 IP를 관객 참여형 전시·공연·이벤트로 확장하는 기획에 참고할 만함.",
         keywords=(
             "체험형",
             "이머시브",
             "몰입형",
+            "공연",
+            "뮤지컬",
+            "팬미팅",
+            "라이브",
             "방탈출",
             "참여형",
             "전시공간",
@@ -91,9 +96,6 @@ CATEGORIES = (
             "키즈",
             "애니메이션",
             "웹툰",
-            "공연",
-            "뮤지컬",
-            "팬미팅",
         ),
     ),
     MarketTrendCategory(

@@ -27,6 +27,16 @@ DIST_DIR = ROOT / "dist"
 DIST_PATH = DIST_DIR / "index.html"
 KST = ZoneInfo("Asia/Seoul")
 LEGACY_COMMUNITY_SOURCES = {"익스트림무비"}
+MARKET_TREND_SECTION_ORDER = ("체험형 콘텐츠 + 공연", "IP/OSMU", "팝업/공간")
+COMMUNITY_SECTION_ORDER = (
+    "무코",
+    "익스트림무비",
+    "더쿠",
+    "디시인사이드",
+    "네이버카페",
+    "X/Twitter",
+    "YouTube",
+)
 CURATION_STRATEGIC_KEYWORDS = (
     "롯데배급",
     "롯데엔터테인먼트",
@@ -142,7 +152,7 @@ OVERSEAS_CONTEXT_KEYWORDS = (
     "Lotte Entertainment",
     "Lotte Cultureworks",
 )
-CORE_CURATION_AI_TIMEOUT_SECONDS = 45
+CORE_CURATION_AI_TIMEOUT_SECONDS = 90
 CORE_CURATION_SECTIONS = (
     {
         "key": "boxoffice",
@@ -352,6 +362,41 @@ def split_articles_by_kind(views: list[dict]) -> tuple[list[dict], list[dict]]:
     official = [view for view in views if view.get("content_kind", "official") == "official"]
     community = [view for view in views if view.get("content_kind") == "community"]
     return official, community
+
+
+def _ordered_group_sections(
+    items: list[dict],
+    key: str,
+    order: tuple[str, ...],
+    limit_per_section: int | None = None,
+) -> list[dict]:
+    buckets: dict[str, list[dict]] = {}
+    for item in items:
+        group = str(item.get(key) or "기타")
+        buckets.setdefault(group, []).append(item)
+
+    ordered_titles = [title for title in order if title in buckets]
+    ordered_titles.extend(sorted(title for title in buckets if title not in order))
+
+    sections: list[dict] = []
+    for title in ordered_titles:
+        group_items = buckets[title]
+        sections.append(
+            {
+                "title": title,
+                "count": len(group_items),
+                "items": group_items[:limit_per_section] if limit_per_section is not None else group_items,
+            }
+        )
+    return sections
+
+
+def build_market_trend_sections(market_trends: list[dict]) -> list[dict]:
+    return _ordered_group_sections(market_trends, "category", MARKET_TREND_SECTION_ORDER)
+
+
+def build_community_sections(community_views: list[dict], limit_per_section: int = 4) -> list[dict]:
+    return _ordered_group_sections(community_views, "source", COMMUNITY_SECTION_ORDER, limit_per_section)
 
 
 def _compact_match_text(text: str) -> str:
@@ -998,6 +1043,8 @@ def build() -> None:
     community_views = community_from_articles + community_reactions
     policy_views = [to_policy_view(item, now) for item in raw_policies]
     market_trends = market_trend_views(raw_market_trends, now)
+    market_trend_sections = build_market_trend_sections(market_trends)
+    community_sections = build_community_sections(community_views)
     boxoffice = market_views(raw_market)
     reservation = reservation_view(raw_reservation)
     overseas_weekend = overseas_weekend_view(raw_overseas_weekend)
@@ -1026,8 +1073,10 @@ def build() -> None:
         official_articles=official_articles,
         official_feed=official_feed,
         community_reactions=community_views,
+        community_sections=community_sections,
         policy_items=policy_views,
         market_trends=market_trends,
+        market_trend_sections=market_trend_sections,
         curation=curation,
         curation_sections=curation_sections,
         boxoffice=boxoffice,

@@ -32,16 +32,17 @@
 {%- endmacro -%}
 
 {%- macro community_card(c) -%}
-<article class="card card-compact community-card">
-  <div class="card-body">
-    <a class="title" href="{{ c.url }}" target="_blank" rel="noopener">{{ c.title }}</a>
-    <div class="meta">
-      <span class="source community">커뮤니티 · {{ c.source }}</span>
-      {% if c.rel_time %}<span class="time">{{ c.rel_time }}</span>{% endif %}
-    </div>
-    {% if c.excerpt %}<p class="summary">{{ c.excerpt }}</p>{% endif %}
-    {% if c.mood_summary %}<p class="mood">{{ c.mood_summary }}</p>{% endif %}
+<article class="community-snapshot-card">
+  <div class="community-topline">
+    <span>{{ c.source }}</span>
+    {% if c.rel_time %}<em>{{ c.rel_time }}</em>{% endif %}
   </div>
+  <a class="community-title" href="{{ c.url }}" target="_blank" rel="noopener">{{ c.title }}</a>
+  {% if c.mood_summary %}<p class="community-mood">{{ c.mood_summary }}</p>{% endif %}
+  {% if c.excerpt %}<p class="community-excerpt">{{ c.excerpt }}</p>{% endif %}
+  {% if c.matched_keywords %}
+  <div class="trend-meta community-keywords">{% for kw in c.matched_keywords[:3] %}<b>{{ kw }}</b>{% endfor %}</div>
+  {% endif %}
 </article>
 {%- endmacro -%}
 
@@ -74,8 +75,18 @@
   </div>
   <a class="trend-title" href="{{ t.url }}" target="_blank" rel="noopener">{{ t.title }}</a>
   {% if t.frame %}<p class="trend-frame">{{ t.frame }}</p>{% endif %}
-  {% if t.note %}<p class="trend-note">{{ t.note }}</p>{% endif %}
-  {% if t.implication %}<p class="trend-implication">{{ t.implication }}</p>{% endif %}
+  {% if t.note %}
+  <div class="trend-brief trend-note">
+    <b>요약</b>
+    <p>{{ t.note|replace('내용: ', '') }}</p>
+  </div>
+  {% endif %}
+  {% if t.implication %}
+  <div class="trend-brief trend-implication">
+    <b>시사점</b>
+    <p>{{ t.implication }}</p>
+  </div>
+  {% endif %}
   <div class="trend-meta">
     <span>{{ t.source }}</span>
     {% for keyword in t.keywords[:3] %}<b>{{ keyword }}</b>{% endfor %}
@@ -201,8 +212,18 @@
       <h2>시장동향 / Live·IP·팝업</h2>
       <span>experience business scan</span>
     </div>
-    <div class="market-trends-grid">
-      {% for trend in market_trends[:9] %}{{ market_trend_card(trend) }}{% endfor %}
+    <div class="section-stack market-section-stack">
+      {% for section in market_trend_sections %}
+      <section class="briefing-subsection">
+        <div class="section-head">
+          <h3>{{ section.title }}</h3>
+          <span>{{ section.count }}건</span>
+        </div>
+        <div class="market-trends-grid section-card-grid">
+          {% for trend in section["items"] %}{{ market_trend_card(trend) }}{% endfor %}
+        </div>
+      </section>
+      {% endfor %}
     </div>
     {% if not market_trends %}<p class="empty">표시할 시장동향 스크랩이 없습니다.</p>{% endif %}
   </section>
@@ -213,8 +234,18 @@
         <h2>커뮤니티 반응</h2>
         <span>본문/댓글 분위기 요약</span>
       </div>
-      <div class="feed">
-        {% for reaction in community_reactions[:18] %}{{ community_card(reaction) }}{% endfor %}
+      <div class="section-stack community-sections">
+        {% for section in community_sections %}
+        <section class="briefing-subsection community-source-section">
+          <div class="section-head">
+            <h3>{{ section.title }}</h3>
+            <span>{{ section.count }}건</span>
+          </div>
+          <div class="community-card-grid section-card-grid">
+            {% for reaction in section["items"] %}{{ community_card(reaction) }}{% endfor %}
+          </div>
+        </section>
+        {% endfor %}
         {% if not community_reactions %}<p class="empty">표시할 커뮤니티 반응이 없습니다.</p>{% endif %}
       </div>
     </div>

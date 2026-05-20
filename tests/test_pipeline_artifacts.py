@@ -38,7 +38,7 @@ def test_collect_market_trend_items_combines_existing_articles_with_naver(monkey
 
     trends = collect_market_trend_items([base_article])
 
-    assert [trend.category for trend in trends] == ["체험형 콘텐츠", "팝업/공간"]
+    assert [trend.category for trend in trends] == ["체험형 콘텐츠 + 공연", "팝업/공간"]
     assert {trend.title for trend in trends} == {
         "이머시브 콘텐츠 올빗 공개",
         "아이돌 팝업스토어 오픈런",

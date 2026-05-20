@@ -127,6 +127,10 @@ h1 {
   margin-top: 12px;
 }
 
+.community-only-panel {
+  margin-top: 12px;
+}
+
 .side-stack {
   display: grid;
   gap: 12px;

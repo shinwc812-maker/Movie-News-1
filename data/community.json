@@ -6,7 +6,7 @@
     "url": "https://extmovie.com/movietalk/94044723",
     "excerpt": "리뷰 3개 모두 호평입니다. 조엘 켈러 - Decider <원더풀스>는 1화에서 캐릭터들을 한데 모으고 그들에게 능력을 부여하는 데 다소 뜸을 들이긴 하지만...",
     "mood_summary": "긍정 반응 우세",
-    "published_at": "2026-05-20T04:09:20.832505+00:00",
+    "published_at": "2026-05-20T04:09:17.227744+00:00",
     "image_url": "https://extmovie.com/files/thumbnails/723/044/094/480x270.crop.jpg?t=1779250376",
     "matched_keywords": [],
     "content_kind": "community"
@@ -18,7 +18,7 @@
     "url": "https://extmovie.com/movietalk/94044589",
     "excerpt": "2019년 이후 TV 애니메이션 시리즈 '릭 앤 모티'의 에피소드들을 연출했던 베테랑 제이콥 헤어가 워너브라더스가 제작하는 장편 애니메이션 각색판의 ...",
     "mood_summary": "중립적 반응",
-    "published_at": "2026-05-20T03:24:20.832712+00:00",
+    "published_at": "2026-05-20T03:40:17.227952+00:00",
     "image_url": "https://extmovie.com/files/thumbnails/589/044/094/480x270.crop.jpg?t=1779246059",
     "matched_keywords": [],
     "content_kind": "community"
@@ -30,7 +30,7 @@
     "url": "https://extmovie.com/movietalk/94044578",
     "excerpt": "조나단 메이저스가 마크 브라운이 연출,각본을 맡는 정치 스릴러 <디너 앳 닉>에 출연한다고 데드라인이 단독으로 전했습니다. 이 영화는 2024년 대선 ...",
     "mood_summary": "중립적 반응",
-    "published_at": "2026-05-20T03:24:20.832895+00:00",
+    "published_at": "2026-05-20T03:40:17.228086+00:00",
     "image_url": "https://extmovie.com/files/thumbnails/578/044/094/480x270.crop.jpg?t=1779246614",
     "matched_keywords": [],
     "content_kind": "community"
@@ -42,9 +42,23 @@
     "url": "https://extmovie.com/movietalk/94044519",
     "excerpt": "편집자 겸 감독 존 오트먼이 가수 겸 피아니스트 빌리 조엘의 성장기를 다루는 <빌리 앤 미>를 연출한다고 버라이어티가 단독으로 전했습니다. 이 영화...",
     "mood_summary": "중립적 반응",
-    "published_at": "2026-05-20T03:24:20.833026+00:00",
+    "published_at": "2026-05-20T03:40:17.228201+00:00",
     "image_url": "https://extmovie.com/files/thumbnails/519/044/094/480x270.crop.jpg?t=1779245909",
     "matched_keywords": [],
+    "content_kind": "community"
+  },
+  {
+    "id": "c10557c2dc80dbe0",
+    "source": "더쿠",
+    "title": "군체 아맥포 영혼은 좀 아니야?",
+    "url": "https://theqoo.net/movie/4210429684",
+    "excerpt": "1",
+    "mood_summary": "중립적 반응",
+    "published_at": null,
+    "image_url": null,
+    "matched_keywords": [
+      "군체"
+    ],
     "content_kind": "community"
   },
   {
@@ -62,53 +76,11 @@
     "content_kind": "community"
   },
   {
-    "id": "2164c25fddd19e58",
-    "source": "더쿠",
-    "title": "군체 이벤트 많은 거 치고는 당첨률이 ㅈㄴ 낮은듯",
-    "url": "https://theqoo.net/movie/4210370956",
-    "excerpt": "5",
-    "mood_summary": "중립적 반응",
-    "published_at": null,
-    "image_url": null,
-    "matched_keywords": [
-      "군체"
-    ],
-    "content_kind": "community"
-  },
-  {
-    "id": "059b3bffcb1af0d7",
-    "source": "더쿠",
-    "title": "나 쫄보인데 살목지 성공하고 (그것도 비명 ㅈㄴ질렀지만) 자신감 가지고 군체 호프 드간다",
-    "url": "https://theqoo.net/movie/4210357637",
-    "excerpt": "1",
-    "mood_summary": "중립적 반응",
-    "published_at": null,
-    "image_url": null,
-    "matched_keywords": [
-      "군체"
-    ],
-    "content_kind": "community"
-  },
-  {
-    "id": "9b9a03e674053979",
-    "source": "더쿠",
-    "title": "혹시 삼사 다 광고타임에 군체 나오니??",
-    "url": "https://theqoo.net/movie/4210357438",
-    "excerpt": "1",
-    "mood_summary": "중립적 반응",
-    "published_at": null,
-    "image_url": null,
-    "matched_keywords": [
-      "군체"
-    ],
-    "content_kind": "community"
-  },
-  {
     "id": "ba84d121e151a8d0",
     "source": "더쿠",
     "title": "나도 쫄본데 난 살목지 같은 공포물만 패스하고 좀비물은 괜찮음ㅋㅋ 호프도 곡성같은거 아닐거같고",
     "url": "https://theqoo.net/movie/4210379123",
-    "excerpt": "9",
+    "excerpt": "10",
     "mood_summary": "중립적 반응",
     "published_at": null,
     "image_url": null,
@@ -146,6 +118,34 @@
     "content_kind": "community"
   },
   {
+    "id": "ebb6220e75b108ec",
+    "source": "디시인사이드",
+    "title": "군체레터박스 점수 딱 3점이다",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2553526",
+    "excerpt": "쇼박스 여유 부릴 때가 아니다 프모 돌려라오리지널 티켓2026.05.20 13:37",
+    "mood_summary": "중립적 반응",
+    "published_at": null,
+    "image_url": null,
+    "matched_keywords": [
+      "군체"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "1c329e034aa96853",
+    "source": "디시인사이드",
+    "title": "군체관람평 보고 예매해야지",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2553501",
+    "excerpt": "백룸은 그냥 볼 예정오리지널 티켓2026.05.20 13:28",
+    "mood_summary": "중립적 반응",
+    "published_at": null,
+    "image_url": null,
+    "matched_keywords": [
+      "군체"
+    ],
+    "content_kind": "community"
+  },
+  {
     "id": "0928e1648dd0e2ab",
     "source": "디시인사이드",
     "title": "군체삼티도 안나와 설마 필름마크냐?",
@@ -166,34 +166,6 @@
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2553409",
     "excerpt": "일반관? 아맥? 스엑? 돌비? 포디? 광음? - dc official App오리지널 티켓2026.05.20 12:46",
     "mood_summary": "중립적 반응",
-    "published_at": null,
-    "image_url": null,
-    "matched_keywords": [
-      "군체"
-    ],
-    "content_kind": "community"
-  },
-  {
-    "id": "e149a7f42d936956",
-    "source": "디시인사이드",
-    "title": "짜잔 led4관 빈시간도군체라네요",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2553407",
-    "excerpt": "dc official App오리지널 티켓2026.05.20 12:44",
-    "mood_summary": "중립적 반응",
-    "published_at": null,
-    "image_url": null,
-    "matched_keywords": [
-      "군체"
-    ],
-    "content_kind": "community"
-  },
-  {
-    "id": "ba867cabf5cb4d7f",
-    "source": "디시인사이드",
-    "title": "군체솔직히 1도 기대안됨",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=oticket&no=2553362",
-    "excerpt": "할거없어서 보러가긴 하겠지만 걍 반도 + 부산행 + 타워 믹스느낌인데 신파오지고 뻔한전개예상오리지널 티켓2026.05.20 12:28",
-    "mood_summary": "긍정 반응 우세",
     "published_at": null,
     "image_url": null,
     "matched_keywords": [
@@ -314,10 +286,10 @@
     "content_kind": "community"
   },
   {
-    "id": "11be1e015a3ac77f",
+    "id": "48cefd4ce4efe2ce",
     "source": "네이버카페",
     "title": "영화마이클쿠키영상·러닝타임·줄거리 총정리",
-    "url": "https://cafe.naver.com/specup/7814907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InNwZWN1cCIsImFydGljbGVJZCI6NzgxNDkwNywiaXNzdWVkQXQiOjE3NzkyNTEwNzQwNTN9.WCTSSFzVeDJ9AEnSAy6Rk29Ln5Z-vcCDMXbOFJ-rTa8",
+    "url": "https://cafe.naver.com/specup/7814907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InNwZWN1cCIsImFydGljbGVJZCI6NzgxNDkwNywiaXNzdWVkQXQiOjE3NzkyNTE2MDU1OTZ9.6XTp2VwTMBZG783HXoR2veJ1kyAVputHu1mhxzCz0QU",
     "excerpt": "영화마이클후기—관객과 평론가반응은?영화마이클후기는 평론가와 일반관객사이에서 극명하게 갈리고 있습니다. 로튼 토마토 기준 평론가 신선도는 39%에 그친 반면, 일반관객지수는 97%로 압도적인 호평입니다. IMDB 평점은 7.7점입니다. 평론가들은마이클잭슨을 둘러싼 복잡한 논란과 내면의 복합성이 충분히 다뤄지지 않았다는 점을...",
     "mood_summary": "긍정 반응 우세",
     "published_at": null,
@@ -328,16 +300,352 @@
     "content_kind": "community"
   },
   {
-    "id": "6036d1c015734fcb",
+    "id": "5d41d0f995ed2c18",
     "source": "네이버카페",
     "title": "김혜윤살목지100만 돌파, 호러 흥행 기록과관객 반응정리",
-    "url": "https://cafe.naver.com/wbsc2021/1106?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Indic2MyMDIxIiwiYXJ0aWNsZUlkIjoxMTA2LCJpc3N1ZWRBdCI6MTc3OTI1MTA3ODAwOH0.xJXbLHLGVQTaMfLR2mjW_1DJj7Btxc-mtFaVVv_krQw",
+    "url": "https://cafe.naver.com/wbsc2021/1106?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Indic2MyMDIxIiwiYXJ0aWNsZUlkIjoxMTA2LCJpc3N1ZWRBdCI6MTc3OTI1MTYwOTE4NX0.5UUYq-xPz3O3hSwKcphXM5U9ChbfDVW7-smiQ0Rf534",
     "excerpt": "호러 장르 최단 기록부터 박스오피스 1위, 입소문과 N차 관람반응까지 정리했어요.영화살목지가 정말 제대로 힘을 받고 있는 분위기예요. 개봉 10일째인 4월 17일 기준으로 누적관객수 101만 명을 넘기면서 100만 돌파 소식을 알렸는데요. 공포... 무서운 장면만 앞세우기보다 불길한 분위기와 점점 조여오는 긴장감으로 공포를 쌓아간다는후기가 많아서, 한 번 본...",
     "mood_summary": "중립적 반응",
     "published_at": null,
     "image_url": null,
     "matched_keywords": [
       "살목지"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "9be57f425acad77e",
+    "source": "YouTube",
+    "title": "영화 \"마이클\" 리뷰, 강남 메가박스 관객들 반응, 떼창 없었지만... 2편이어 3편까지.. 마지막은 \"디스 이즈 잇\"",
+    "url": "https://www.youtube.com/watch?v=bqT6AlRnH9k",
+    "excerpt": "방구석 오스카 · michaeljackson #영화리뷰 #인생영화 #유머 #웃긴영상 #넷플릭스 #방구석오스카.",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-19T12:19:48+00:00",
+    "image_url": "https://i.ytimg.com/vi/bqT6AlRnH9k/mqdefault.jpg",
+    "matched_keywords": [
+      "마이클"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "9064bb7c03140e99",
+    "source": "YouTube",
+    "title": "마이클 잭슨의 귀환, 한국 관객들 반응은?",
+    "url": "https://www.youtube.com/watch?v=Wo269dj9xEk",
+    "excerpt": "세상 모든 주제 · 영화 '마이클'이 개봉 첫날부터 박스오피스 1위를 차지하며 전설의 귀환을 알렸습니다. 단 하루 만에 10만 명의 관객을 사로잡은 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-17T01:00:22+00:00",
+    "image_url": "https://i.ytimg.com/vi/Wo269dj9xEk/mqdefault.jpg",
+    "matched_keywords": [
+      "마이클"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "8bb1bbb13ca5058e",
+    "source": "YouTube",
+    "title": "평론가들이 깐 영화 마이클, 극장에서 봐야 할까?",
+    "url": "https://www.youtube.com/watch?v=VkV5Yi8iDr4",
+    "excerpt": "마그노 · 마이클 잭슨 영화, 극장에서 봐야 할까요? 이 영상은 영화 마이클(Michael), 마이클 잭슨(Michael Jackson) 전기 영화 리뷰와 극장 관람 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-14T11:00:46+00:00",
+    "image_url": "https://i.ytimg.com/vi/VkV5Yi8iDr4/mqdefault.jpg",
+    "matched_keywords": [
+      "마이클"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "c6448f095b72efdb",
+    "source": "YouTube",
+    "title": "마이클 잭슨이 처음 '문워크'를 하던 날 관객 반응",
+    "url": "https://www.youtube.com/watch?v=-_wI_Y9ntno",
+    "excerpt": "찐터뷰 · 1983년 3월 25일, 전 세계가 숨을 죽였던 바로 그 순간입니다. 마이클 잭슨이 'Billie Jean' 무대에서 최초로 문워크를 선보이며 팝의 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-12T11:00:00+00:00",
+    "image_url": "https://i.ytimg.com/vi/-_wI_Y9ntno/mqdefault.jpg",
+    "matched_keywords": [
+      "마이클"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "e741bcc401268d51",
+    "source": "YouTube",
+    "title": "🕺마이클 잭슨의 부활! 폭발적인 해외반응 파헤치기 | 라플위클리 HOT & NEW ep.10 - 마이클 #안현모 [LIFEPLUS] EP.10 마이클",
+    "url": "https://www.youtube.com/watch?v=RGC3x0gBzDU",
+    "excerpt": "LIFEPLUS TV · 알고리즘 보다 정확한 이번 주 콘텐츠 PICK [라플위클리 HOT & NEW] 영화 [마이클] 특집 댓글 이벤트 아우! 다들 이번 핫앤뉴도 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-11T08:00:24+00:00",
+    "image_url": "https://i.ytimg.com/vi/RGC3x0gBzDU/mqdefault.jpg",
+    "matched_keywords": [
+      "마이클"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "d3952284444334f5",
+    "source": "YouTube",
+    "title": "와.. 1760만 관객 ❰명량❱후속작 ❰고구려❱ 온다! 16개 부족이 참전한 한국판 글레디에이터 ❰칼: 고두막한의 검❱❰휴민트❱ 등 다가오는 한국 신작 영화 리뷰!",
+    "url": "https://www.youtube.com/watch?v=5NBpQc-hn0w",
+    "excerpt": "프로젝트 제프 Project JEFF · 오직 강한 자만이 살아남던 무법의 시대! 제프 채널에 가입하여 혜택을 누려보세요!",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-02-04T07:45:01+00:00",
+    "image_url": "https://i.ytimg.com/vi/5NBpQc-hn0w/mqdefault.jpg",
+    "matched_keywords": [
+      "군체"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "6a034685ecc74ceb",
+    "source": "YouTube",
+    "title": "마동석을 처음 본 할리우드 관객 찐반응ㅋㅋㅋ#shorts",
+    "url": "https://www.youtube.com/watch?v=FU9b2ISL_Ds",
+    "excerpt": "라이프시크릿 · ",
+    "mood_summary": "중립적 반응",
+    "published_at": "2024-04-28T22:49:06+00:00",
+    "image_url": "https://i.ytimg.com/vi/FU9b2ISL_Ds/mqdefault.jpg",
+    "matched_keywords": [
+      "군체"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "adbb3c7ff4babe68",
+    "source": "YouTube",
+    "title": "악마는 프라다를 입는다 2 리뷰 미국반응🔥 1편보다 재미있을까? 솔직 후기 & 박스오피스 1위!",
+    "url": "https://www.youtube.com/watch?v=qRzi68Olcdw",
+    "excerpt": "미저씨 MEEJUSTSEE · 드디어 돌아온 “악마는 프라다를 입는다 2”! 과연 1편을 뛰어넘었을까요? 이번 영상에서는 직접 보고 느낀 솔직한 리뷰를 전해 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-06T03:07:47+00:00",
+    "image_url": "https://i.ytimg.com/vi/qRzi68Olcdw/mqdefault.jpg",
+    "matched_keywords": [
+      "악마는 프라다를 입는다 2"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "2e730dfacc3d5255",
+    "source": "YouTube",
+    "title": "그녀가 20년만에 재입사하게 된 이유..지난 20년이나 기다려준 관객들에 대한 헌사..≪악마는 프라다를 입는다 2≫ 심층 리뷰..★★★ㅣ⚠️'시네만오Pick'",
+    "url": "https://www.youtube.com/watch?v=Y0Rm_364mhQ",
+    "excerpt": "영화광 김만오 · 악마는프라다를입는다2 #메릴스트립 #앤해서웨이 #에밀리블런트 #스탠리투치 오늘은 영화 ≪악마는 프라다를 입는다 2≫ 심층 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-03T02:15:42+00:00",
+    "image_url": "https://i.ytimg.com/vi/Y0Rm_364mhQ/mqdefault.jpg",
+    "matched_keywords": [
+      "악마는 프라다를 입는다 2"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "ab179ef1cdd0605a",
+    "source": "YouTube",
+    "title": "김혜윤 ‘호러퀸’ 등극! 영화 [살목지] 300만 관객 돌파! #살목지 #kimhyeyoon #김혜윤 #이종원 #김준한 #장다아",
+    "url": "https://www.youtube.com/watch?v=Z0Yo7ZUwKfI",
+    "excerpt": "KoreaFilm 코리아필름 · 살목지 #김혜윤 #이종원 #김준한 #김영성 #오동민 #윤재찬 #장다아 #공포영화 #괴담 #저수지 #심령스폿 #낚시 #선재업고튀어 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-10T07:06:29+00:00",
+    "image_url": "https://i.ytimg.com/vi/Z0Yo7ZUwKfI/mqdefault.jpg",
+    "matched_keywords": [
+      "살목지"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "a7a69913ec0a9d87",
+    "source": "YouTube",
+    "title": "\"한국보다 더 강하다\" 공포영화 '살목지', 인도네시아 첫날 13만 명 충격 기록… 동남아 전역 확산",
+    "url": "https://www.youtube.com/watch?v=BTkHymruxWY",
+    "excerpt": "아이돌픽 · K-호러의 반격이 시작됐습니다. 공포영화 '살목지: 위스퍼링 워터'가 인도네시아에서 개봉 첫날부터 한국 기록을 뛰어넘었고, 3일 만에 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-06T10:32:12+00:00",
+    "image_url": "https://i.ytimg.com/vi/BTkHymruxWY/mqdefault.jpg",
+    "matched_keywords": [
+      "살목지"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "7d392970bd4d9227",
+    "source": "YouTube",
+    "title": "영화 살목지 재밌냐고?",
+    "url": "https://www.youtube.com/watch?v=ApIiUDpsQ8Y",
+    "excerpt": "건배짠 zzan · 영화 살목지 재밌냐고? 킬링타임과 별로인 영화 그 어느 사이에 있는 작품 답답하기도 하고 개연성 없지만 은근 관객을 압도하는 감도 ...",
+    "mood_summary": "호불호가 함께 보임",
+    "published_at": "2026-04-21T09:00:14+00:00",
+    "image_url": "https://i.ytimg.com/vi/ApIiUDpsQ8Y/mqdefault.jpg",
+    "matched_keywords": [
+      "살목지"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "8fcd3a20b06cb164",
+    "source": "YouTube",
+    "title": "공포 영화 《살목지》 1분 후기",
+    "url": "https://www.youtube.com/watch?v=hMkLi3NIXQY",
+    "excerpt": "김단군 · 공포 영화 《살목지》 1분 후기 ▷댓글은 예의를 지켜주세요. 부적절한 댓글은 삭제 하겠습니다. ▷봤군 사이트 : https://sawit.site ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-04-12T06:00:00+00:00",
+    "image_url": "https://i.ytimg.com/vi/hMkLi3NIXQY/mqdefault.jpg",
+    "matched_keywords": [
+      "살목지"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "1404ca3f11cc788d",
+    "source": "YouTube",
+    "title": "살목지 박스오피스 1위 기념으로 모아본 한국 공포영화🥶 고전부터 오컬트까지 한국 레전드 공포영화 모음｜방구석1열｜JTBC 210808 방송 외",
+    "url": "https://www.youtube.com/watch?v=dZWElPsU2Ls",
+    "excerpt": "교양 Voyage · 타임라인 00:00 영화 ＜여고괴담＞ 31:57 영화 ＜기담＞ 1:04:09 영화 ＜알 포인트＞ 1:28:39 영화 ＜사바하＞ '방구석1 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-04-10T14:01:11+00:00",
+    "image_url": "https://i.ytimg.com/vi/dZWElPsU2Ls/mqdefault.jpg",
+    "matched_keywords": [
+      "살목지"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "ec7471281e29bacc",
+    "source": "YouTube",
+    "title": "영화 《슈퍼 마리오 갤럭시》 해외매체 평가 (리뷰, 평점, 해석) #해외반응",
+    "url": "https://www.youtube.com/watch?v=V8JTHflw5UM",
+    "excerpt": "클래시네마 · 영화 [슈퍼 마리오 갤럭시]에 대한 해외 매체들의 리뷰와 평점입니다. 영화제목: 슈퍼 마리오 갤럭시 (The Super Mario Galaxy Movie, ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-02T06:00:17+00:00",
+    "image_url": "https://i.ytimg.com/vi/V8JTHflw5UM/mqdefault.jpg",
+    "matched_keywords": [
+      "슈퍼 마리오 갤럭시"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "1ce7cf2fa54e756f",
+    "source": "YouTube",
+    "title": "'슈퍼 마리오 갤럭시' 미국 반응 \"평론가는 최악, 관객은 최고!\"",
+    "url": "https://www.youtube.com/watch?v=2gmg0J5TM5g",
+    "excerpt": "게임백반 · 슈퍼 마리오 갤럭시 영화가 미국에서 개봉했습니다. 그런데 현재 슈퍼마리오 갤럭시는 평론가들로부터 대체로 부정적인 평가를 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-04-03T03:17:23+00:00",
+    "image_url": "https://i.ytimg.com/vi/2gmg0J5TM5g/mqdefault.jpg",
+    "matched_keywords": [
+      "슈퍼 마리오 갤럭시"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "283748064a6a9e27",
+    "source": "YouTube",
+    "title": "슈퍼 마리오 갤럭시 리뷰 오프닝 벌써 500억원 돌파! 미국 반응",
+    "url": "https://www.youtube.com/watch?v=iRrIyu8R7IE",
+    "excerpt": "미저씨 MEEJUSTSEE · 슈퍼 마리오 갤럭시 영화 직접 보고 왔습니다! 미국 평점 사이트 반응부터 실제 관람 후기까지 솔직하게 정리해봤습니다.",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-04-03T01:58:45+00:00",
+    "image_url": "https://i.ytimg.com/vi/iRrIyu8R7IE/mqdefault.jpg",
+    "matched_keywords": [
+      "슈퍼 마리오 갤럭시"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "3e868b25daec0446",
+    "source": "YouTube",
+    "title": "프로젝트 헤일메리 | 영화에서 제일 좋았던 부분",
+    "url": "https://www.youtube.com/watch?v=KJCakeo9mo0",
+    "excerpt": "박영하 · 영화 #프로젝트헤일메리 #리뷰 #라이언고슬링 #로키 #줄거리.",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-03-20T12:32:58+00:00",
+    "image_url": "https://i.ytimg.com/vi/KJCakeo9mo0/mqdefault.jpg",
+    "matched_keywords": [
+      "프로젝트 헤일메리"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "9b20c1b80d91ee08",
+    "source": "YouTube",
+    "title": "‘7분 기립 박수’ 나홍진 ‘호프’…칸 반응은 ‘극과 극’ / KBS 2026.05.18.",
+    "url": "https://www.youtube.com/watch?v=kySqJ1sUYz4",
+    "excerpt": "KBS News · 나홍진 감독의 신작 영화 '호프'가 어젯밤 칸 영화제에서 드디어 공개됐습니다. 현장의 반응은 극단적으로 갈리면서 화제작으로 떠올라 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-18T10:25:38+00:00",
+    "image_url": "https://i.ytimg.com/vi/kySqJ1sUYz4/mqdefault.jpg",
+    "matched_keywords": [
+      "영화 관객 반응"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "7490563c9189596f",
+    "source": "YouTube",
+    "title": "해외반응 BTS 멕시코 콘서트 spring day 봄날 리액션 한글자막 이 노래가 나오자 오열하는 외국인들",
+    "url": "https://www.youtube.com/watch?v=M6opO1eHZso",
+    "excerpt": "영 드 애 리액션 · 영원한 아미들의 눈물버튼..ㅠㅠ 영화 드라마 애니 리액션 bts spring day mexico reaction #해외반응한글자막 #리액션한글자막 #애니 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-13T03:00:21+00:00",
+    "image_url": "https://i.ytimg.com/vi/M6opO1eHZso/mqdefault.jpg",
+    "matched_keywords": [
+      "영화 관객 반응"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "6f0dbab565f94de2",
+    "source": "YouTube",
+    "title": "미국 현지 극장 리얼 반응! 마이클 영화 보고 온 후기 🇺🇸(feat.떼창)",
+    "url": "https://www.youtube.com/watch?v=5l7QwxdRu3M",
+    "excerpt": "시리데이Siriday · 안녕하세요:) 미국에서 직접 마이클 영화 보고 온 브이로그입니다 현지 영화관 분위기부터 관객 반응, 그리고 솔직 후기까지 담았 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-04T23:28:52+00:00",
+    "image_url": "https://i.ytimg.com/vi/5l7QwxdRu3M/mqdefault.jpg",
+    "matched_keywords": [
+      "영화 후기"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "db781173ce0ca812",
+    "source": "YouTube",
+    "title": "[영화마이클] 마이클잭슨의 전기영화인가? 최고의 공연체험인가? | 개봉전 리뷰 북미반응과 평점",
+    "url": "https://www.youtube.com/watch?v=9vUed_GbVZE",
+    "excerpt": "밴영 | 밴드가 보는 음악영화 이야기 · 00:00 [마이클] 평점이 갈린 이유 00:34 평론가들이 본 마이클 잭슨의 그림자 01:48 관객이 본 것은 다시 살아난 마이클의 무대 02:27 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-05-04T09:00:22+00:00",
+    "image_url": "https://i.ytimg.com/vi/9vUed_GbVZE/mqdefault.jpg",
+    "matched_keywords": [
+      "영화 후기"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "b3a6fbb57e8db186",
+    "source": "YouTube",
+    "title": "관객들까지 춤추게 만든 영화 마이클의 해외 반응",
+    "url": "https://www.youtube.com/watch?v=OMSEe5hV7XE",
+    "excerpt": "핫템이슈 · 영화 마이클(MICHAEL) 이 해외 여러 나라에서 개봉한 가운데, 각 나라별 극장에서의 반응이 가지각색인데요.. #Michael #영화마이클 ...",
+    "mood_summary": "중립적 반응",
+    "published_at": "2026-04-29T03:15:01+00:00",
+    "image_url": "https://i.ytimg.com/vi/OMSEe5hV7XE/mqdefault.jpg",
+    "matched_keywords": [
+      "영화 후기"
+    ],
+    "content_kind": "community"
+  },
+  {
+    "id": "a283714636018145",
+    "source": "YouTube",
+    "title": "마이클 잭슨 전기 영화, 평론가는 혹평·관객은 열광? [잇슈 컬처] / KBS 2026.04.27.",
+    "url": "https://www.youtube.com/watch?v=JfFoOvtOHys",
+    "excerpt": "KBS News · 팝의 황제 '마이클 잭슨'의 일대기를 다룬 할리우드 영화가 개봉하자마자 엄청난 흥행 수익을 올리고 있습니다. 하지만 영화를 둘러싼 ...",
+    "mood_summary": "우려/부정 반응 우세",
+    "published_at": "2026-04-27T02:40:00+00:00",
+    "image_url": "https://i.ytimg.com/vi/JfFoOvtOHys/mqdefault.jpg",
+    "matched_keywords": [
+      "영화 후기"
     ],
     "content_kind": "community"
   }

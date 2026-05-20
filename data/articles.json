@@ -12,7 +12,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 145.6035685101273,
+    "score": 145.3365896568287,
     "matched_keywords": [
       "Neon"
     ]
@@ -30,7 +30,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 145.18863795457176,
+    "score": 144.92165910127315,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -48,7 +48,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 144.17677452864584,
+    "score": 143.90979567534723,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -66,7 +66,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 144.01126526938657,
+    "score": 143.74428641608796,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -84,7 +84,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 142.80900832494214,
+    "score": 142.5420294716435,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -102,7 +102,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 142.78383471383103,
+    "score": 142.51685586053242,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -120,7 +120,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 140.98609165827546,
+    "score": 140.71911280497685,
     "matched_keywords": [
       "Netflix"
     ]
@@ -138,7 +138,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 140.59778147309027,
+    "score": 140.33080261979165,
     "matched_keywords": [
       "Netflix"
     ]
@@ -156,10 +156,26 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 139.6840083249421,
+    "score": 139.4170294716435,
     "matched_keywords": [
       "Amazon MGM"
     ]
+  },
+  {
+    "id": "5d369d88c8192783",
+    "source": "Variety",
+    "country": "US",
+    "title": "‘Shame and Money’ and ‘Exile’ Director Visar Morina Signs With Cinetic (EXCLUSIVE)",
+    "title_ko": null,
+    "summary": "Visar Morina, the filmmaker behind the 2026 Sundance World Cinema Dramatic Competition Jury Prize winner “Shame and Money” has signed with Cinetic for representation. The film is eligible for the 2027 Best International Feature Film category at the Academy Awards thanks to rule changes announced this month. Under the new requirements, countries or regional selection […]",
+    "summary_ko": null,
+    "url": "https://variety.com/2026/film/news/shame-and-money-exile-director-visar-morina-signs-cinetic-1236747031/",
+    "published_at": "2026-05-20T04:27:28+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 49.78971465682871,
+    "matched_keywords": []
   },
   {
     "id": "5d25539a3fd4cfb5",
@@ -174,7 +190,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 48.78441341753472,
+    "score": 48.51743456423611,
     "matched_keywords": []
   },
   {
@@ -190,7 +206,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.75779304716435,
+    "score": 44.49081419386574,
     "matched_keywords": []
   },
   {
@@ -206,7 +222,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.609355547164355,
+    "score": 44.342376693865745,
     "matched_keywords": []
   },
   {
@@ -222,7 +238,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.363117121238425,
+    "score": 44.096138267939814,
     "matched_keywords": []
   },
   {
@@ -238,7 +254,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.86890415827546,
+    "score": 43.60192530497685,
     "matched_keywords": []
   },
   {
@@ -254,7 +270,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.84170508420139,
+    "score": 43.574726230902776,
     "matched_keywords": []
   },
   {
@@ -270,7 +286,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.32029304716435,
+    "score": 43.05331419386574,
     "matched_keywords": []
   },
   {
@@ -286,7 +302,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.29511943605324,
+    "score": 43.02814058275463,
     "matched_keywords": []
   },
   {
@@ -302,7 +318,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.8362073990162,
+    "score": 42.56922854571759,
     "matched_keywords": []
   },
   {
@@ -318,7 +334,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.374980547164355,
+    "score": 42.10800169386574,
     "matched_keywords": []
   },
   {
@@ -334,7 +350,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.2881749916088,
+    "score": 42.02119613831019,
     "matched_keywords": []
   },
   {
@@ -350,7 +366,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.113117121238425,
+    "score": 41.846138267939814,
     "matched_keywords": []
   },
   {
@@ -366,7 +382,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.872955084201394,
+    "score": 41.605976230902776,
     "matched_keywords": []
   },
   {
@@ -382,7 +398,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.76734165827546,
+    "score": 41.50036280497685,
     "matched_keywords": []
   },
   {
@@ -398,7 +414,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.60009628790509,
+    "score": 41.33311743460648,
     "matched_keywords": []
   },
   {
@@ -414,7 +430,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.5069249916088,
+    "score": 41.23994613831019,
     "matched_keywords": []
   },
   {
@@ -430,7 +446,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.32955230642361,
+    "score": 41.062573453125,
     "matched_keywords": []
   },
   {
@@ -446,7 +462,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 40.9600499916088,
+    "score": 40.69307113831018,
     "matched_keywords": []
   },
   {
@@ -462,7 +478,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 40.72827915827546,
+    "score": 40.46130030497685,
     "matched_keywords": []
   },
   {
@@ -478,7 +494,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 40.614563880497684,
+    "score": 40.347585027199074,
     "matched_keywords": []
   },
   {
@@ -494,7 +510,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.68574443605324,
+    "score": 39.41876558275463,
     "matched_keywords": []
   },
   {
@@ -510,7 +526,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.2184411953125,
+    "score": 38.95146234201389,
     "matched_keywords": []
   },
   {
@@ -526,23 +542,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 39.089679621238425,
-    "matched_keywords": []
-  },
-  {
-    "id": "1c7c6ffbd717a7a0",
-    "source": "Variety",
-    "country": "US",
-    "title": "‘Minotaur,’ Scathing Look at Corruption and Infidelity in Putin’s Russia, Electrifies Cannes With 8-Minute Standing Ovation",
-    "title_ko": null,
-    "summary": "“Minotaur,” a pitch-black look at corruption in Putin era Russia, was greeted with a thunderous, eight-minute standing ovation at the Cannes Film Festival on Tuesday. The film marks the return to the Croisette of Andrey Zvyagintsev, the Oscar-nominated auteur, whose previous films, “The Banishment,” “Leviathan” and “Loveless” also bowed at Cannes. Zvyagintsev, his eyes misting […]",
-    "summary_ko": null,
-    "url": "https://variety.com/2026/film/markets-festivals/minotaur-film-corruption-putin-russia-electrifies-cannes-standing-ovation-1236753741/",
-    "published_at": "2026-05-19T16:33:41+00:00",
-    "image_url": null,
-    "content_kind": "official",
-    "tier": 4,
-    "score": 37.66462175086806,
+    "score": 38.822700767939814,
     "matched_keywords": []
   },
   {
@@ -558,7 +558,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 36.4996911953125,
+    "score": 36.23271234201389,
     "matched_keywords": []
   },
   {
@@ -574,7 +574,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 33.954841658275456,
+    "score": 33.68786280497685,
     "matched_keywords": []
   },
   {
@@ -590,7 +590,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 26.885686565682875,
+    "score": 26.61870771238426,
     "matched_keywords": []
   },
   {
@@ -606,7 +606,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 26.553221287905092,
+    "score": 26.28624243460648,
     "matched_keywords": []
   },
   {
@@ -622,7 +622,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 10.475674991608797,
+    "score": 10.208696138310192,
     "matched_keywords": []
   },
   {
@@ -638,7 +638,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 8.954841658275464,
+    "score": 8.68786280497686,
     "matched_keywords": []
   },
   {
@@ -654,7 +654,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 2.791647213831011,
+    "score": 2.524668360532406,
     "matched_keywords": []
   },
   {
@@ -670,7 +670,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 1.7499805471643481,
+    "score": 1.483001693865743,
     "matched_keywords": []
   },
   {
@@ -686,7 +686,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 1.659124065682871,
+    "score": 1.3921452123842604,
     "matched_keywords": []
   },
   {
@@ -702,7 +702,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 0.7083138804976796,
+    "score": 0.4413350271990746,
     "matched_keywords": []
   },
   {
@@ -718,7 +718,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 0.6382907323495335,
+    "score": 0.37131187905092844,
     "matched_keywords": []
   }
 ]

@@ -99,7 +99,7 @@
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].top_label }}{% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_label }}{% else %}데이터 없음{% endif %}</strong></div>
-    <div class="kpi"><span>공식 기사</span><strong>{{ total_official }}건</strong></div>
+    <div class="kpi"><span>시장동향</span><strong>{{ total_market_trends }}건</strong></div>
     <div class="kpi"><span>커뮤니티 반응</span><strong>{{ total_community }}건</strong></div>
   </section>
 
@@ -207,25 +207,14 @@
     {% if not market_trends %}<p class="empty">표시할 시장동향 스크랩이 없습니다.</p>{% endif %}
   </section>
 
-  <section class="lane-grid">
-    <div class="panel">
-      <div class="panel-head">
-        <h2>공식 기사</h2>
-        <span>언론/보도자료</span>
-      </div>
-      <div class="feed">
-        {% for article in official_feed %}{{ official_card(article) }}{% endfor %}
-        {% if not official_feed %}<p class="empty">표시할 공식 기사가 없습니다.</p>{% endif %}
-      </div>
-    </div>
-
+  <section class="community-only-panel">
     <div class="panel">
       <div class="panel-head">
         <h2>커뮤니티 반응</h2>
         <span>본문/댓글 분위기 요약</span>
       </div>
       <div class="feed">
-        {% for reaction in community_reactions[:12] %}{{ community_card(reaction) }}{% endfor %}
+        {% for reaction in community_reactions[:18] %}{{ community_card(reaction) }}{% endfor %}
         {% if not community_reactions %}<p class="empty">표시할 커뮤니티 반응이 없습니다.</p>{% endif %}
       </div>
     </div>

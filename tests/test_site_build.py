@@ -57,6 +57,17 @@ def test_template_contains_market_trends_section():
     assert "시장동향 / Live·IP·팝업" in template.read_text(encoding="utf-8")
 
 
+def test_template_removes_lower_official_feed_panel():
+    template = Path(__file__).resolve().parents[1] / "site" / "template.html.j2"
+    text = template.read_text(encoding="utf-8")
+
+    assert "<h2>공식 기사</h2>" not in text
+    assert "<span>공식 기사</span>" not in text
+    assert "<span>시장동향</span>" in text
+    assert "<h2>커뮤니티 반응</h2>" in text
+    assert "community-only-panel" in text
+
+
 def test_template_contains_sectioned_curation_briefing_labels():
     template = Path(__file__).resolve().parents[1] / "site" / "template.html.j2"
     text = template.read_text(encoding="utf-8")

@@ -142,15 +142,15 @@ def test_top_curation_items_boosts_promo_reference_signals():
     assert result[0]["title"] == "강동원·엄태구·박지현 와일드씽 팬 이벤트"
 
 
-def test_top_curation_items_can_include_matched_community_reactions():
+def test_top_curation_items_keeps_community_reactions_out_of_core_curation():
     build = load_site_build_module()
     official = [
         {"title": "국내 극장가 투자 시스템 변화", "score": 10, "country": "KR", "matched_keywords": []},
     ]
     community = [
-        {"title": "마이클 실관람 반응", "content_kind": "community", "matched_keywords": ["마이클"], "score": 0},
-        {"title": "와일드씽 예매 반응", "content_kind": "community", "matched_keywords": ["와일드 씽"], "score": 0},
-        {"title": "군체 일반 반응", "content_kind": "community", "matched_keywords": ["군체"], "score": 0},
+        {"title": "마이클 실관람 반응", "content_kind": "community", "matched_keywords": ["마이클"], "score": 9000},
+        {"title": "와일드씽 예매 반응", "content_kind": "community", "matched_keywords": ["와일드 씽"], "score": 8000},
+        {"title": "군체 일반 반응", "content_kind": "community", "matched_keywords": ["군체"], "score": 7000},
         {"title": "잡담", "content_kind": "community", "matched_keywords": [], "score": 9999},
     ]
 
@@ -161,9 +161,60 @@ def test_top_curation_items_can_include_matched_community_reactions():
         reservation_titles=["와일드 씽"],
     )
 
-    community_titles = [item["title"] for item in result if item.get("content_kind") == "community"]
-    assert community_titles == ["와일드씽 예매 반응", "마이클 실관람 반응"]
-    assert "잡담" not in [item["title"] for item in result]
+    assert [item["title"] for item in result] == ["국내 극장가 투자 시스템 변화"]
+
+
+def test_top_curation_items_keeps_one_competitor_signal_and_theater_policy():
+    build = load_site_build_module()
+    official = [
+        {
+            "title": "CJ ENM 봉준호 신작 애니메이션 라인업 공개",
+            "score": 1000,
+            "country": "KR",
+            "matched_keywords": ["CJ ENM"],
+        },
+        {
+            "title": "CGV 특별관 확대와 티켓 가격 전략",
+            "score": 950,
+            "country": "KR",
+            "matched_keywords": ["CGV"],
+        },
+        {
+            "title": "마이클 박스오피스 1위 유지",
+            "score": 100,
+            "country": "KR",
+            "matched_keywords": ["마이클"],
+        },
+        {
+            "title": "와일드씽 롯데엔터테인먼트 예매 상승",
+            "score": 80,
+            "country": "KR",
+            "matched_keywords": ["와일드 씽", "롯데배급"],
+        },
+    ]
+    policy = [
+        {
+            "content_kind": "policy",
+            "title": "지역 영화관 관람료 할인권 지원 공고",
+            "summary": "극장 정책과 영화관 관람 활성화 지원",
+        }
+    ]
+
+    result = build.top_curation_items(
+        official,
+        policy_views=policy,
+        market_titles=["마이클"],
+        reservation_titles=["와일드 씽"],
+        limit=5,
+    )
+
+    titles = [item["title"] for item in result]
+    competitor_titles = [title for title in titles if "CJ" in title or "CGV" in title]
+    assert "와일드씽 롯데엔터테인먼트 예매 상승" in titles
+    assert "마이클 박스오피스 1위 유지" in titles
+    assert "지역 영화관 관람료 할인권 지원 공고" in titles
+    assert len(competitor_titles) == 1
+    assert competitor_titles[0] == "CJ ENM 봉준호 신작 애니메이션 라인업 공개"
 
 
 def test_top_curation_items_uses_overseas_weekend_as_weak_context():
@@ -238,6 +289,108 @@ def test_select_official_feed_prefers_korean_and_caps_overseas():
     result = build.select_official_feed(articles, limit=4, max_overseas=1)
 
     assert [item["title"] for item in result] == ["KR 1", "KR 2", "US 1"]
+
+
+def test_select_official_feed_filters_low_value_sections():
+    build = load_site_build_module()
+    articles = [
+        {"title": "씨네21 추천도서 - <꿈의 방>", "score": 999, "country": "KR"},
+        {"title": "[MY PICK] 한선화의 MY PICK✩", "score": 998, "country": "KR"},
+        {"title": "[델리] 해외 단신", "score": 997, "country": "KR"},
+        {"title": "[trans x cross] 극장 인터뷰", "score": 996, "country": "KR"},
+        {"title": "CJ ENM 봉준호 신작 애니메이션 라인업 공개", "score": 10, "country": "KR"},
+        {"title": "Michael 해외 흥행 분석", "score": 9, "country": "US"},
+    ]
+
+    result = build.select_official_feed(articles, limit=4, max_overseas=2)
+
+    assert [item["title"] for item in result] == [
+        "CJ ENM 봉준호 신작 애니메이션 라인업 공개",
+        "Michael 해외 흥행 분석",
+    ]
+
+
+def test_select_official_feed_defaults_to_two_overseas_articles():
+    build = load_site_build_module()
+    articles = [
+        {"title": "CJ ENM 봉준호 신작 애니메이션 라인업 공개", "score": 100, "country": "KR"},
+        {"title": "US 1", "score": 99, "country": "US"},
+        {"title": "US 2", "score": 98, "country": "US"},
+        {"title": "US 3", "score": 97, "country": "US"},
+    ]
+
+    result = build.select_official_feed(articles, limit=6)
+
+    assert [item["title"] for item in result] == [
+        "CJ ENM 봉준호 신작 애니메이션 라인업 공개",
+        "US 1",
+        "US 2",
+    ]
+
+
+def test_select_official_feed_prefers_overseas_korean_talent_or_market_context():
+    build = load_site_build_module()
+    articles = [
+        {"title": "CJ ENM 봉준호 신작 애니메이션 라인업 공개", "score": 100, "country": "KR"},
+        {"title": "Rick and Morty Movie In Development at Warner Bros.", "score": 1000, "country": "US"},
+        {
+            "title": "Park Chan-Wook Project Sells at Cannes Market",
+            "score": 100,
+            "country": "US",
+        },
+    ]
+
+    result = build.select_official_feed(articles, limit=3, max_overseas=1)
+
+    assert [item["title"] for item in result] == [
+        "CJ ENM 봉준호 신작 애니메이션 라인업 공개",
+        "Park Chan-Wook Project Sells at Cannes Market",
+    ]
+
+
+def test_select_official_feed_dedupes_same_overseas_topic():
+    build = load_site_build_module()
+    articles = [
+        {"title": "CJ ENM 봉준호 신작 애니메이션 라인업 공개", "score": 100, "country": "KR"},
+        {
+            "title": "Park Chan-Wook Project Sells at Cannes Market",
+            "score": 100,
+            "country": "US",
+        },
+        {
+            "title": "Warner Bros Closing In on Park Chan-Wook Project",
+            "score": 99,
+            "country": "US",
+        },
+        {"title": "Rick and Morty Movie In Development at Warner Bros.", "score": 98, "country": "US"},
+    ]
+
+    result = build.select_official_feed(articles, limit=4)
+
+    assert [item["title"] for item in result] == [
+        "CJ ENM 봉준호 신작 애니메이션 라인업 공개",
+        "Park Chan-Wook Project Sells at Cannes Market",
+    ]
+
+
+def test_select_official_feed_does_not_backfill_low_context_overseas_when_priority_exists():
+    build = load_site_build_module()
+    articles = [
+        {"title": "CJ ENM 봉준호 신작 애니메이션 라인업 공개", "score": 100, "country": "KR"},
+        {
+            "title": "Park Chan-Wook Project Sells at Cannes Market",
+            "score": 100,
+            "country": "US",
+        },
+        {"title": "Rick and Morty Movie In Development at Warner Bros.", "score": 1000, "country": "US"},
+    ]
+
+    result = build.select_official_feed(articles, limit=4)
+
+    assert [item["title"] for item in result] == [
+        "CJ ENM 봉준호 신작 애니메이션 라인업 공개",
+        "Park Chan-Wook Project Sells at Cannes Market",
+    ]
 
 
 def test_reservation_view_returns_structured_top_five_without_image_asset():

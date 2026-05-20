@@ -30,6 +30,33 @@ CURATION_STRATEGIC_KEYWORDS = (
     "파라마운트",
 )
 CURATION_EXCLUDED_TITLE_TERMS = ("추천도서", "MY PICK", "[델리]", "[trans x cross]")
+COMPETITOR_SIGNAL_KEYWORDS = (
+    "CJ ENM",
+    "CJ엔터테인먼트",
+    "CJ CGV",
+    "CGV",
+)
+COMPETITOR_CONTENT_KEYWORDS = (
+    "CJ ENM",
+    "CJ엔터테인먼트",
+    "봉준호",
+    "라인업",
+    "신작",
+)
+OFFICIAL_FEED_OVERSEAS_PRIORITY_KEYWORDS = (
+    "Park Chan-Wook",
+    "Bong Joon",
+    "Tang Wei",
+    "Korean",
+    "Korea",
+    "Cannes Market",
+    "box office",
+    "gross",
+    "release",
+    "theatrical",
+    "ticket",
+    "exhibitor",
+)
 PROMO_REFERENCE_COMPANY_KEYWORDS = (
     "롯데컬처웍스",
     "롯데시네마",
@@ -73,9 +100,16 @@ POLICY_SIGNAL_BOOST = 2400
 POLICY_SIGNAL_KEYWORDS = (
     "제작지원",
     "지원사업",
+    "극장",
+    "영화관",
+    "상영관",
+    "지역 영화관",
     "영화관람",
     "관람 활성화",
     "할인권",
+    "관람료",
+    "입장권",
+    "티켓 가격",
     "독립예술영화",
     "국제공동제작",
     "상영",
@@ -266,6 +300,21 @@ def _is_policy_item(item: dict) -> bool:
     return item.get("content_kind") == "policy"
 
 
+def _has_competitor_signal(item: dict) -> bool:
+    text = _curation_text(item)
+    return any(keyword.casefold() in text.casefold() for keyword in COMPETITOR_SIGNAL_KEYWORDS)
+
+
+def _competitor_priority_boost(item: dict) -> int:
+    if not _has_competitor_signal(item):
+        return 0
+    text = _curation_text(item)
+    content_hits = sum(
+        1 for keyword in COMPETITOR_CONTENT_KEYWORDS if keyword.casefold() in text.casefold()
+    )
+    return 450 + min(content_hits, 2) * 300
+
+
 def _has_strategic_keyword(item: dict) -> bool:
     text = _curation_text(item)
     return any(keyword.casefold() in text.casefold() for keyword in CURATION_STRATEGIC_KEYWORDS)
@@ -350,6 +399,7 @@ def _curation_priority(
         score += OVERSEAS_WEEKEND_BOOST
     if "롯데배급" in (item.get("matched_keywords") or []):
         score += 1100
+    score += _competitor_priority_boost(item)
     if _has_strategic_keyword(item):
         score += 600
     score += _promo_reference_boost(item)
@@ -362,8 +412,9 @@ def top_curation_items(
     policy_views: list[dict] | None = None,
     limit: int = 5,
     max_overseas_official: int = 2,
-    max_community_items: int = 2,
+    max_community_items: int = 0,
     max_policy_items: int = 1,
+    max_competitor_items: int = 1,
     market_titles: list[str] | None = None,
     reservation_titles: list[str] | None = None,
     overseas_titles: list[str] | None = None,
@@ -394,6 +445,7 @@ def top_curation_items(
     overseas_count = 0
     community_count = 0
     policy_count = 0
+    competitor_count = 0
     selected: list[dict] = []
     for item in items:
         if _is_community_item(item):
@@ -404,6 +456,10 @@ def top_curation_items(
             if policy_count >= max_policy_items:
                 continue
             policy_count += 1
+        if _has_competitor_signal(item):
+            if competitor_count >= max_competitor_items:
+                continue
+            competitor_count += 1
         is_overseas = bool(item.get("country")) and item.get("country") != "KR"
         if is_overseas and overseas_count >= max_overseas_official:
             continue
@@ -415,13 +471,56 @@ def top_curation_items(
     return selected
 
 
+def _official_feed_priority_hits(item: dict) -> int:
+    text = _curation_text(item)
+    return sum(
+        1
+        for keyword in OFFICIAL_FEED_OVERSEAS_PRIORITY_KEYWORDS
+        if keyword.casefold() in text.casefold()
+    )
+
+
+def _official_feed_priority(item: dict) -> float:
+    score = float(item.get("score") or 0)
+    priority_hits = _official_feed_priority_hits(item)
+    return score + priority_hits * 1200
+
+
+def _official_feed_topic_key(item: dict) -> str:
+    text = _curation_text(item)
+    folded = text.casefold()
+    for keyword in OFFICIAL_FEED_OVERSEAS_PRIORITY_KEYWORDS:
+        if keyword.casefold() in folded:
+            return keyword.casefold()
+    return _compact_match_text(str(item.get("title") or ""))
+
+
+def _distinct_official_overseas(views: list[dict]) -> list[dict]:
+    selected: list[dict] = []
+    seen_topics: set[str] = set()
+    for view in views:
+        topic_key = _official_feed_topic_key(view)
+        if topic_key and topic_key in seen_topics:
+            continue
+        if topic_key:
+            seen_topics.add(topic_key)
+        selected.append(view)
+    return selected
+
+
 def select_official_feed(
     official_views: list[dict],
     limit: int = 12,
-    max_overseas: int = 4,
+    max_overseas: int = 2,
 ) -> list[dict]:
-    korean = [view for view in official_views if view.get("country") == "KR"]
-    overseas = [view for view in official_views if view.get("country") != "KR"]
+    eligible = [view for view in official_views if not _has_excluded_curation_title(view)]
+    korean = [view for view in eligible if view.get("country") == "KR"]
+    overseas = [view for view in eligible if view.get("country") != "KR"]
+    priority_overseas = [view for view in overseas if _official_feed_priority_hits(view)]
+    if priority_overseas:
+        overseas = priority_overseas
+    overseas = sorted(overseas, key=_official_feed_priority, reverse=True)
+    overseas = _distinct_official_overseas(overseas)
     selected = korean[:limit]
     remaining = max(limit - len(selected), 0)
     selected.extend(overseas[: min(max_overseas, remaining)])

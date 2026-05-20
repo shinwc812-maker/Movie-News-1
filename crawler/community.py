@@ -32,9 +32,23 @@ NAVER_SEARCH_URL = "https://openapi.naver.com/v1/search/{endpoint}.json"
 NAVER_PUBLIC_SEARCH_URL = "https://search.naver.com/search.naver"
 YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
 GENERIC_COMMUNITY_TERMS = {"영화 관객 반응", "영화 후기"}
+SENSITIVE_QUERY_PARAM_PATTERN = re.compile(
+    r"([?&](?:key|api_key|apikey|client_id|client_secret|serviceKey)=)[^&\s]+",
+    flags=re.IGNORECASE,
+)
 
 POSITIVE_TERMS = ("재밌", "좋", "기대", "호평", "추천", "만족")
 NEGATIVE_TERMS = ("아쉽", "별로", "혹평", "실망", "걱정", "불호")
+
+
+def _redact_sensitive_query_params(text: str) -> str:
+    return SENSITIVE_QUERY_PARAM_PATTERN.sub(r"\1[REDACTED]", text)
+
+
+def _safe_exception_message(exc: Exception) -> str:
+    if isinstance(exc, httpx.HTTPStatusError) and exc.response is not None:
+        return f"HTTP {exc.response.status_code} for {_redact_sensitive_query_params(str(exc.request.url))}"
+    return _redact_sensitive_query_params(str(exc))
 
 
 def summarize_reaction_mood(text: str) -> str:
@@ -671,7 +685,10 @@ class YouTubeCommunitySource:
                     )
                     response.raise_for_status()
                 except Exception as exc:  # noqa: BLE001
-                    print(f"[warn] {self.source_name}: YouTube search failed — {exc}", file=sys.stderr)
+                    print(
+                        f"[warn] {self.source_name}: YouTube search failed — {_safe_exception_message(exc)}",
+                        file=sys.stderr,
+                    )
                     break
                 reactions.extend(self.parse_payload(response.json(), query=term))
         return reactions

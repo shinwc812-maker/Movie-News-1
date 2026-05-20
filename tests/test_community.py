@@ -1,3 +1,5 @@
+import httpx
+
 from crawler.community import (
     DCInsideDirectSearchSource,
     NaverPublicCafeSearchSource,
@@ -6,6 +8,7 @@ from crawler.community import (
     PUBLIC_SEARCH_SOURCES,
     TheQooDirectSearchSource,
     YouTubeCommunitySource,
+    _safe_exception_message,
     parse_extmovie_community_cards,
     summarize_reaction_mood,
 )
@@ -303,3 +306,17 @@ def test_youtube_source_parses_video_search_payload():
     assert reactions[0].url == "https://www.youtube.com/watch?v=abc123"
     assert reactions[0].excerpt.startswith("영화채널")
     assert reactions[0].image_url.endswith("mqdefault.jpg")
+
+
+def test_safe_exception_message_redacts_youtube_api_key():
+    request = httpx.Request(
+        "GET",
+        "https://www.googleapis.com/youtube/v3/search?key=secret-key&part=snippet",
+    )
+    response = httpx.Response(403, request=request)
+    exc = httpx.HTTPStatusError("failed with secret-key", request=request, response=response)
+
+    message = _safe_exception_message(exc)
+
+    assert "secret-key" not in message
+    assert "key=[REDACTED]" in message

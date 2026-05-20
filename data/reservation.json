@@ -1,13 +1,13 @@
 {
-  "captured_at": "2026-05-20T02:04:11.977206+00:00",
+  "captured_at": "2026-05-20T04:23:37.866089+00:00",
   "top_movie": "군체",
-  "top_rate": "50%",
+  "top_rate": "50.1%",
   "movies": [
     {
       "rank": 1,
       "title": "군체",
-      "reservation_rate": 50.0,
-      "reservation_count": 211393,
+      "reservation_rate": 50.1,
+      "reservation_count": 218016,
       "english_title": "COLONY",
       "movie_code": "20252402",
       "distributors": [
@@ -25,8 +25,8 @@
     {
       "rank": 2,
       "title": "마이클",
-      "reservation_rate": 11.1,
-      "reservation_count": 47016,
+      "reservation_rate": 10.6,
+      "reservation_count": 46023,
       "english_title": "Michael",
       "movie_code": "20259626",
       "distributors": [
@@ -44,8 +44,8 @@
     {
       "rank": 3,
       "title": "플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마",
-      "reservation_rate": 6.7,
-      "reservation_count": 28187,
+      "reservation_rate": 7.4,
+      "reservation_count": 32280,
       "english_title": null,
       "movie_code": "20263761",
       "distributors": [
@@ -65,8 +65,8 @@
     {
       "rank": 4,
       "title": "와일드 씽",
-      "reservation_rate": 5.5,
-      "reservation_count": 23039,
+      "reservation_rate": 6.4,
+      "reservation_count": 27869,
       "english_title": "Wild Sing",
       "movie_code": "20248252",
       "distributors": [
@@ -84,8 +84,8 @@
     {
       "rank": 5,
       "title": "신극장판 은혼: 요시와라 대염상",
-      "reservation_rate": 3.5,
-      "reservation_count": 14762,
+      "reservation_rate": 3.0,
+      "reservation_count": 13165,
       "english_title": "Gintama: Yoshiwara in Flames",
       "movie_code": "20262975",
       "distributors": [

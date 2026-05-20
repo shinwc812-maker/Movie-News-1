@@ -12,7 +12,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 148.02424942563658,
+    "score": 145.6035685101273,
     "matched_keywords": [
       "Neon"
     ]
@@ -30,7 +30,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 147.609318870081,
+    "score": 145.18863795457176,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -48,7 +48,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 146.5974554441551,
+    "score": 144.17677452864584,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -66,7 +66,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 146.43194618489582,
+    "score": 144.01126526938657,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -84,7 +84,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 145.2296892404514,
+    "score": 142.80900832494214,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -102,7 +102,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 145.20451562934028,
+    "score": 142.78383471383103,
     "matched_keywords": [
       "Warner Bros"
     ]
@@ -120,7 +120,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 143.40677257378474,
+    "score": 140.98609165827546,
     "matched_keywords": [
       "Netflix"
     ]
@@ -138,7 +138,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 143.01846238859954,
+    "score": 140.59778147309027,
     "matched_keywords": [
       "Netflix"
     ]
@@ -156,10 +156,26 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 3,
-    "score": 142.1046892404514,
+    "score": 139.6840083249421,
     "matched_keywords": [
       "Amazon MGM"
     ]
+  },
+  {
+    "id": "5d25539a3fd4cfb5",
+    "source": "Rolling Stone",
+    "country": "US",
+    "title": "Jeff Probst on the Return of the ‘Sia Prize’ and Why Musicians Can’t Quit ‘Survivor’",
+    "title_ko": null,
+    "summary": "Ahead of the show's live finale, Probst breaks down a milestone season shaped by artists like Billie Eilish, Zac Brown, and Billie Joe Armstrong",
+    "summary_ko": null,
+    "url": "https://www.rollingstone.com/tv-movies/tv-movie-features/survivor-50-jeff-probst-sia-prize-musicians-fans-1235566029/",
+    "published_at": "2026-05-20T03:14:11+00:00",
+    "image_url": null,
+    "content_kind": "official",
+    "tier": 4,
+    "score": 48.78441341753472,
+    "matched_keywords": []
   },
   {
     "id": "9e1293a236502bf4",
@@ -174,7 +190,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.178473962673614,
+    "score": 44.75779304716435,
     "matched_keywords": []
   },
   {
@@ -190,7 +206,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 47.030036462673614,
+    "score": 44.609355547164355,
     "matched_keywords": []
   },
   {
@@ -206,7 +222,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.78379803674769,
+    "score": 44.363117121238425,
     "matched_keywords": []
   },
   {
@@ -222,7 +238,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.28958507378472,
+    "score": 43.86890415827546,
     "matched_keywords": []
   },
   {
@@ -238,7 +254,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 46.262385999710645,
+    "score": 43.84170508420139,
     "matched_keywords": []
   },
   {
@@ -254,7 +270,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.74097396267361,
+    "score": 43.32029304716435,
     "matched_keywords": []
   },
   {
@@ -270,7 +286,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.7158003515625,
+    "score": 43.29511943605324,
     "matched_keywords": []
   },
   {
@@ -286,7 +302,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 45.25688831452546,
+    "score": 42.8362073990162,
     "matched_keywords": []
   },
   {
@@ -302,7 +318,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.79566146267361,
+    "score": 42.374980547164355,
     "matched_keywords": []
   },
   {
@@ -318,7 +334,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.70885590711806,
+    "score": 42.2881749916088,
     "matched_keywords": []
   },
   {
@@ -334,7 +350,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.53379803674768,
+    "score": 42.113117121238425,
     "matched_keywords": []
   },
   {
@@ -350,7 +366,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.293635999710645,
+    "score": 41.872955084201394,
     "matched_keywords": []
   },
   {
@@ -366,7 +382,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.18802257378472,
+    "score": 41.76734165827546,
     "matched_keywords": []
   },
   {
@@ -382,7 +398,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 44.020777203414355,
+    "score": 41.60009628790509,
     "matched_keywords": []
   },
   {
@@ -398,7 +414,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.92760590711806,
+    "score": 41.5069249916088,
     "matched_keywords": []
   },
   {
@@ -414,7 +430,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.750233221932874,
+    "score": 41.32955230642361,
     "matched_keywords": []
   },
   {
@@ -430,7 +446,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.38073090711806,
+    "score": 40.9600499916088,
     "matched_keywords": []
   },
   {
@@ -446,7 +462,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.14896007378472,
+    "score": 40.72827915827546,
     "matched_keywords": []
   },
   {
@@ -462,7 +478,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 43.03524479600694,
+    "score": 40.614563880497684,
     "matched_keywords": []
   },
   {
@@ -478,7 +494,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 42.1064253515625,
+    "score": 39.68574443605324,
     "matched_keywords": []
   },
   {
@@ -494,7 +510,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.63912211082176,
+    "score": 39.2184411953125,
     "matched_keywords": []
   },
   {
@@ -510,7 +526,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 41.51036053674769,
+    "score": 39.089679621238425,
     "matched_keywords": []
   },
   {
@@ -526,7 +542,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 40.085302666377316,
+    "score": 37.66462175086806,
     "matched_keywords": []
   },
   {
@@ -542,7 +558,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 38.92037211082176,
+    "score": 36.4996911953125,
     "matched_keywords": []
   },
   {
@@ -558,7 +574,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 36.37552257378472,
+    "score": 33.954841658275456,
     "matched_keywords": []
   },
   {
@@ -574,7 +590,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 29.30636748119213,
+    "score": 26.885686565682875,
     "matched_keywords": []
   },
   {
@@ -590,7 +606,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 28.973902203414347,
+    "score": 26.553221287905092,
     "matched_keywords": []
   },
   {
@@ -606,7 +622,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 12.896355907118057,
+    "score": 10.475674991608797,
     "matched_keywords": []
   },
   {
@@ -622,7 +638,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 11.37552257378473,
+    "score": 8.954841658275464,
     "matched_keywords": []
   },
   {
@@ -638,7 +654,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_33_12__6a06cc38330c9[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 5.212328129340277,
+    "score": 2.791647213831011,
     "matched_keywords": []
   },
   {
@@ -654,7 +670,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_26_28__6a06caa480dfa[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 4.170661462673614,
+    "score": 1.7499805471643481,
     "matched_keywords": []
   },
   {
@@ -670,7 +686,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 4.079804981192131,
+    "score": 1.659124065682871,
     "matched_keywords": []
   },
   {
@@ -686,7 +702,7 @@
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0515/16_22_29__6a06c9b54b988[S1000,1000].jpg",
     "content_kind": "official",
     "tier": 4,
-    "score": 3.1289947960069453,
+    "score": 0.7083138804976796,
     "matched_keywords": []
   },
   {
@@ -702,7 +718,7 @@
     "image_url": null,
     "content_kind": "official",
     "tier": 4,
-    "score": 3.058971647858799,
+    "score": 0.6382907323495335,
     "matched_keywords": []
   }
 ]

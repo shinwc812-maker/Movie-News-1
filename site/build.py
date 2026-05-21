@@ -25,6 +25,15 @@ MARKET_TRENDS_PATH = DATA_DIR / "market_trends.json"
 SITE_DIR = ROOT / "site"
 DIST_DIR = ROOT / "dist"
 DIST_PATH = DIST_DIR / "index.html"
+DATA_SNAPSHOT_PATHS = (
+    ARTICLES_PATH,
+    COMMUNITY_PATH,
+    MARKET_PATH,
+    MARKET_TRENDS_PATH,
+    OVERSEAS_WEEKEND_PATH,
+    POLICIES_PATH,
+    RESERVATION_PATH,
+)
 KST = ZoneInfo("Asia/Seoul")
 LEGACY_COMMUNITY_SOURCES = {"익스트림무비"}
 MARKET_TREND_SECTION_ORDER = ("체험형 콘텐츠 + 공연", "IP/OSMU", "팝업/공간")
@@ -1036,6 +1045,46 @@ def strip_trailing_whitespace(text: str) -> str:
     return "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
 
 
+def archive_timestamp_path(now: datetime) -> Path:
+    local_now = now.astimezone(KST)
+    return Path(local_now.strftime("%Y-%m-%d")) / local_now.strftime("%H%M%S")
+
+
+def next_archive_path(dist_dir: Path, data_dir: Path, archive_key: Path) -> Path:
+    date_part = archive_key.parent
+    time_part = archive_key.name
+    for index in range(1, 100):
+        folder = time_part if index == 1 else f"{time_part}-{index:02d}"
+        candidate = date_part / folder
+        if not (dist_dir / "archive" / candidate).exists() and not (data_dir / "archive" / candidate).exists():
+            return candidate
+    raise RuntimeError(f"archive path exhausted for {archive_key}")
+
+
+def write_archive_snapshot(
+    html: str,
+    now: datetime,
+    data_paths=DATA_SNAPSHOT_PATHS,
+    dist_dir: Path = DIST_DIR,
+    data_dir: Path = DATA_DIR,
+) -> dict[str, Path]:
+    archive_key = next_archive_path(dist_dir, data_dir, archive_timestamp_path(now))
+    html_path = dist_dir / "archive" / archive_key / "index.html"
+    snapshot_data_dir = data_dir / "archive" / archive_key
+
+    html_path.parent.mkdir(parents=True, exist_ok=True)
+    html_path.write_text(html, encoding="utf-8")
+    snapshot_data_dir.mkdir(parents=True, exist_ok=True)
+
+    for data_path in data_paths:
+        data_path = Path(data_path)
+        if not data_path.exists():
+            continue
+        (snapshot_data_dir / data_path.name).write_text(data_path.read_text(encoding="utf-8"), encoding="utf-8")
+
+    return {"html_path": html_path, "data_dir": snapshot_data_dir}
+
+
 def build() -> None:
     now = datetime.now(timezone.utc)
     raw_articles = load_json(ARTICLES_PATH, [])
@@ -1110,10 +1159,12 @@ def build() -> None:
 
     DIST_PATH.parent.mkdir(parents=True, exist_ok=True)
     DIST_PATH.write_text(html, encoding="utf-8")
+    archive = write_archive_snapshot(html, now)
     print(
         f"Built {DIST_PATH} "
         f"(official {len(official_articles)} · community {len(community_views)} · policies {len(policy_views)})"
     )
+    print(f"Archived {archive['html_path']} and {archive['data_dir']}")
 
 
 if __name__ == "__main__":

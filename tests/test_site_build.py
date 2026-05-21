@@ -98,6 +98,49 @@ def test_build_community_sections_prioritizes_lotte_distributed_titles_within_so
     assert [item["title"] for item in sections[0]["items"]] == ["와일드씽 싸다구", "마이클 굿즈"]
 
 
+def test_write_archive_snapshot_uses_kst_timestamp_and_copies_current_data(tmp_path):
+    build = load_site_build_module()
+    data_dir = tmp_path / "data"
+    dist_dir = tmp_path / "dist"
+    data_dir.mkdir()
+    articles = data_dir / "articles.json"
+    community = data_dir / "community.json"
+    articles.write_text('[{"title":"오늘 기사"}]', encoding="utf-8")
+    community.write_text('[{"title":"오늘 반응"}]', encoding="utf-8")
+    now = build.datetime(2026, 5, 21, 1, 2, 3, tzinfo=build.timezone.utc)
+
+    archive = build.write_archive_snapshot(
+        "<html>today</html>\n",
+        now,
+        data_paths=[articles, community, data_dir / "missing.json"],
+        dist_dir=dist_dir,
+        data_dir=data_dir,
+    )
+
+    assert archive["html_path"] == dist_dir / "archive" / "2026-05-21" / "100203" / "index.html"
+    assert archive["data_dir"] == data_dir / "archive" / "2026-05-21" / "100203"
+    assert archive["html_path"].read_text(encoding="utf-8") == "<html>today</html>\n"
+    assert (archive["data_dir"] / "articles.json").read_text(encoding="utf-8") == '[{"title":"오늘 기사"}]'
+    assert (archive["data_dir"] / "community.json").read_text(encoding="utf-8") == '[{"title":"오늘 반응"}]'
+    assert not (archive["data_dir"] / "missing.json").exists()
+
+
+def test_write_archive_snapshot_does_not_overwrite_same_second_archive(tmp_path):
+    build = load_site_build_module()
+    data_dir = tmp_path / "data"
+    dist_dir = tmp_path / "dist"
+    data_dir.mkdir()
+    now = build.datetime(2026, 5, 21, 1, 2, 3, tzinfo=build.timezone.utc)
+
+    first = build.write_archive_snapshot("<html>first</html>\n", now, data_paths=[], dist_dir=dist_dir, data_dir=data_dir)
+    second = build.write_archive_snapshot("<html>second</html>\n", now, data_paths=[], dist_dir=dist_dir, data_dir=data_dir)
+
+    assert first["html_path"] == dist_dir / "archive" / "2026-05-21" / "100203" / "index.html"
+    assert second["html_path"] == dist_dir / "archive" / "2026-05-21" / "100203-02" / "index.html"
+    assert first["html_path"].read_text(encoding="utf-8") == "<html>first</html>\n"
+    assert second["html_path"].read_text(encoding="utf-8") == "<html>second</html>\n"
+
+
 def test_template_contains_market_trends_section():
     template = Path(__file__).resolve().parents[1] / "site" / "template.html.j2"
 

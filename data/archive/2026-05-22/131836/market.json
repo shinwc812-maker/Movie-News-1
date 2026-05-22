@@ -1,0 +1,132 @@
+{
+  "target_date": "20260520",
+  "fetched_at": "2026-05-21T02:22:28.706016+00:00",
+  "movies": [
+    {
+      "rank": 1,
+      "movie_code": "20259626",
+      "title": "마이클",
+      "audi_count": 48848,
+      "audi_acc": 778427,
+      "open_date": "2026-05-13",
+      "audi_inten": 10818,
+      "audi_change": 28.4,
+      "seat_count": 809466,
+      "seat_share": 0.4634,
+      "seat_sales_rate": 0.06034595647006792,
+      "rank_change": "0",
+      "distributors": [
+        "유니버설픽쳐스인터내셔널 코리아(유)",
+        "Universal Pictures International Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 2,
+      "movie_code": "20259791",
+      "title": "악마는 프라다를 입는다 2",
+      "audi_count": 15939,
+      "audi_acc": 1488192,
+      "open_date": "2026-04-29",
+      "audi_inten": 2156,
+      "audi_change": 15.6,
+      "seat_count": 269577,
+      "seat_share": 0.1543,
+      "seat_sales_rate": 0.05912596401028278,
+      "rank_change": "0",
+      "distributors": [
+        "월트디즈니컴퍼니코리아 유한책임회사",
+        "The Walt Disney Company Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 3,
+      "movie_code": "20252402",
+      "title": "군체",
+      "audi_count": 14236,
+      "audi_acc": 18536,
+      "open_date": "2026-05-21",
+      "audi_inten": 12283,
+      "audi_change": 628.9,
+      "seat_count": 0,
+      "seat_share": null,
+      "seat_sales_rate": null,
+      "rank_change": "5",
+      "distributors": [
+        "(주)쇼박스",
+        "Showbox Corp"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 4,
+      "movie_code": "20262975",
+      "title": "신극장판 은혼: 요시와라 대염상",
+      "audi_count": 11685,
+      "audi_acc": 13473,
+      "open_date": "2026-05-20",
+      "audi_inten": 11685,
+      "audi_change": 100.0,
+      "seat_count": 0,
+      "seat_share": null,
+      "seat_sales_rate": null,
+      "rank_change": "0",
+      "distributors": [
+        "(주)넥스트엔터테인먼트월드(NEW)",
+        "Next Entertainment World"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 5,
+      "movie_code": "20254121",
+      "title": "살목지",
+      "audi_count": 9621,
+      "audi_acc": 3196113,
+      "open_date": "2026-04-08",
+      "audi_inten": 1648,
+      "audi_change": 20.7,
+      "seat_count": 170580,
+      "seat_share": 0.0977,
+      "seat_sales_rate": 0.05640168835736897,
+      "rank_change": "-2",
+      "distributors": [
+        "(주)쇼박스",
+        "Showbox Corp"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    }
+  ],
+  "error_message": null
+}

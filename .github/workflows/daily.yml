@@ -35,7 +35,9 @@ jobs:
       - name: Crawl news
         run: uv run python -m crawler.main
         env:
-          KOBIS_API_KEY: ${{ secrets.KOBIS_API_KEY }}
+          # GitHub 시크릿이 KOFIC_API_KEY로 등록돼 있어 그 이름으로 참조한다.
+          # 코드가 읽는 env 이름(KOBIS_API_KEY)은 정상 유지 — 시크릿을 KOBIS_API_KEY로 바꾸면 오른쪽만 되돌리면 됨.
+          KOBIS_API_KEY: ${{ secrets.KOFIC_API_KEY }}
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}

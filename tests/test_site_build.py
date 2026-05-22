@@ -65,6 +65,32 @@ def test_build_market_trend_sections_uses_business_category_order():
     assert sections[0]["items"][0]["title"] == "체험"
 
 
+def test_build_movie_engagement_counts_articles_and_community():
+    build = load_site_build_module()
+    movies = [{"rank": 1, "title": "와일드 씽"}, {"rank": 2, "title": "마이클"}]
+    official = [
+        {"title": "와일드 씽 시사회", "excerpt": "롯데", "matched_keywords": ["와일드 씽"]},
+        {"title": "와일드 씽 예매 1위", "excerpt": ""},
+        {"title": "마이클 개봉", "excerpt": ""},
+    ]
+    community = [
+        {"title": "와일드씽 반응", "excerpt": ""},   # 띄어쓰기 변형도 집계
+        {"title": "와일드 씽 후기", "excerpt": ""},
+        {"title": "마이클 별로", "excerpt": ""},
+    ]
+
+    rows = build.build_movie_engagement(movies, official, community)
+
+    assert rows[0]["title"] == "와일드 씽"
+    assert rows[0]["article_count"] == 2
+    assert rows[0]["community_count"] == 2
+    assert rows[1]["article_count"] == 1
+    assert rows[1]["community_count"] == 1
+    # 막대 길이는 차트 내 최댓값(2) 기준으로 정규화
+    assert rows[0]["article_pct"] == 100
+    assert rows[1]["article_pct"] == 50
+
+
 def test_build_community_sections_groups_by_source_order_and_limits_items():
     build = load_site_build_module()
     community = [

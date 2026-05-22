@@ -433,6 +433,54 @@ def _matched_title(item: dict, titles: list[str]) -> bool:
     return any(_compact_match_text(title) in matched_compact for title in titles if title)
 
 
+def _engagement_blob(item: dict) -> str:
+    """기사/커뮤니티 항목의 검색 대상 텍스트(공백 제거·소문자)."""
+    return _compact_match_text(
+        " ".join(
+            [
+                str(item.get("title") or ""),
+                str(item.get("excerpt") or ""),
+                str(item.get("summary") or ""),
+                str(item.get("mood_summary") or ""),
+                *[str(keyword) for keyword in item.get("matched_keywords") or []],
+            ]
+        )
+    )
+
+
+def build_movie_engagement(
+    movies: list[dict],
+    official_views: list[dict],
+    community_views: list[dict],
+) -> list[dict]:
+    """TOP 5 영화별로 수집한 공식 기사 수와 커뮤니티 반응 수를 집계(막대그래프용)."""
+    article_blobs = [_engagement_blob(a) for a in official_views]
+    community_blobs = [_engagement_blob(c) for c in community_views]
+    rows: list[dict] = []
+    for movie in movies or []:
+        title = str(movie.get("title") or "")
+        key = _compact_match_text(title)
+        if len(key) < 2:
+            article_count = community_count = 0
+        else:
+            article_count = sum(1 for blob in article_blobs if key in blob)
+            community_count = sum(1 for blob in community_blobs if key in blob)
+        rows.append(
+            {
+                "rank": movie.get("rank"),
+                "title": title,
+                "article_count": article_count,
+                "community_count": community_count,
+            }
+        )
+    # 막대 길이는 차트 내 최댓값 기준으로 정규화한다.
+    peak = max([1, *[r["article_count"] for r in rows], *[r["community_count"] for r in rows]])
+    for row in rows:
+        row["article_pct"] = round(row["article_count"] / peak * 100)
+        row["community_pct"] = round(row["community_count"] / peak * 100)
+    return rows
+
+
 def _curation_text(item: dict) -> str:
     return " ".join(
         [
@@ -1120,6 +1168,8 @@ def build() -> None:
     boxoffice = market_views(raw_market)
     reservation = reservation_view(raw_reservation)
     overseas_weekend = overseas_weekend_view(raw_overseas_weekend)
+    boxoffice_engagement = build_movie_engagement(boxoffice, official_articles, community_views)
+    reservation_engagement = build_movie_engagement(reservation["movies"], official_articles, community_views)
     curation = top_curation_items(
         official_articles,
         community_views,
@@ -1154,6 +1204,8 @@ def build() -> None:
         boxoffice=boxoffice,
         reservation=reservation,
         overseas_weekend=overseas_weekend,
+        boxoffice_engagement=boxoffice_engagement,
+        reservation_engagement=reservation_engagement,
         total_official=len(official_feed),
         total_community=len(community_views),
         total_policies=len(policy_views),

@@ -88,6 +88,28 @@
 </article>
 {%- endmacro -%}
 
+{%- macro engagement_chart(rows) -%}
+<div class="engagement-chart">
+  <div class="eng-legend"><span class="eng-key"><i class="eng-dot article"></i>기사</span><span class="eng-key"><i class="eng-dot community"></i>커뮤니티</span></div>
+  {% for row in rows %}
+  <div class="eng-row">
+    <div class="eng-label"><b>{{ row.rank }}</b> {{ row.title }}</div>
+    <div class="eng-line">
+      <span class="eng-cat">기사</span>
+      <span class="eng-track"><span class="eng-bar article" style="width: {{ row.article_pct }}%"></span></span>
+      <b class="eng-num">{{ row.article_count }}</b>
+    </div>
+    <div class="eng-line">
+      <span class="eng-cat">반응</span>
+      <span class="eng-track"><span class="eng-bar community" style="width: {{ row.community_pct }}%"></span></span>
+      <b class="eng-num">{{ row.community_count }}</b>
+    </div>
+  </div>
+  {% endfor %}
+  {% if not rows %}<p class="empty">표시할 데이터가 없습니다.</p>{% endif %}
+</div>
+{%- endmacro -%}
+
 <header class="topbar">
   <div>
     <p class="eyebrow">Internal Briefing</p>
@@ -211,6 +233,22 @@
         </ol>
         {% if not overseas_weekend.movies %}<p class="empty">Box Office Mojo 데이터가 없습니다.</p>{% endif %}
       </section>
+
+      <section class="panel engagement-panel" data-section="engBox">
+        <div class="panel-head">
+          <h2>전일 관객 TOP 5 · 수집량</h2>
+          <span>기사 · 커뮤니티</span>
+        </div>
+        {{ engagement_chart(boxoffice_engagement|default([])) }}
+      </section>
+
+      <section class="panel engagement-panel" data-section="engRes">
+        <div class="panel-head">
+          <h2>실시간 예매량 TOP 5 · 수집량</h2>
+          <span>기사 · 커뮤니티</span>
+        </div>
+        {{ engagement_chart(reservation_engagement|default([])) }}
+      </section>
     </aside>
   </section>
 
@@ -288,6 +326,8 @@
     { key: 'boxoffice',   label: '전일 관객 TOP 5', sel: '[data-section="boxoffice"]' },
     { key: 'reservation', label: '실시간 예매량',   sel: '[data-section="reservation"]' },
     { key: 'overseas',    label: '해외 주말 TOP 5', sel: '[data-section="overseas"]' },
+    { key: 'engBox',      label: '전일 관객 수집량', sel: '[data-section="engBox"]' },
+    { key: 'engRes',      label: '예매량 수집량',    sel: '[data-section="engRes"]' },
     { key: 'market',      label: '시장동향',        sel: '.market-trends-panel' },
     { key: 'community',   label: '커뮤니티 반응',   sel: '.community-only-panel' },
     { key: 'policy',      label: '정책/지원',       sel: '.policy-panel' }
@@ -363,7 +403,8 @@
     var sidestack = q('.side-stack');
     if (sidestack) {
       setVisible(sidestack, searching ? false :
-        (visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')));
+        (visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
+          || visibleBySetting('engBox') || visibleBySetting('engRes')));
     }
     // 4) 상태 표시
     var status = q('#searchStatus');

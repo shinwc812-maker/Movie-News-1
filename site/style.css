@@ -58,24 +58,102 @@ h1 {
   font-size: 0.82rem;
 }
 
-.lang-toggle {
+.topbar-tools {
   display: flex;
+  gap: 8px;
+  align-items: center;
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
-.lang-btn {
+.search-box { display: flex; align-items: center; }
+
+.search-box input {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 7px 11px;
+  width: 210px;
+  max-width: 46vw;
+  background: #1f2937;
+  color: #fff;
+  border: 1px solid #374151;
+  border-radius: 6px 0 0 6px;
+  outline: none;
+}
+.search-box input::placeholder { color: #8a98ad; }
+.search-box input:focus { border-color: var(--blue); }
+
+.tool-btn {
   font: inherit;
   font-size: 0.82rem;
   padding: 7px 13px;
   background: transparent;
   color: #b9c4d4;
   border: 1px solid #374151;
+  border-radius: 6px;
   cursor: pointer;
+  white-space: nowrap;
+}
+.tool-btn:hover { background: #1f2937; color: #fff; }
+
+.search-box .tool-btn {
+  border-radius: 0 6px 6px 0;
+  border-left: 0;
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
 }
 
-.lang-btn:first-child { border-radius: 6px 0 0 6px; }
-.lang-btn:last-child { border-radius: 0 6px 6px 0; border-left: 0; }
-.lang-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.settings-wrap { position: relative; }
+
+.settings-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  min-width: 200px;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 12px 14px;
+}
+.settings-panel[hidden] { display: none; }
+
+.settings-title {
+  margin: 0 0 8px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.settings-list { display: flex; flex-direction: column; gap: 6px; }
+.settings-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.settings-item input { cursor: pointer; }
+
+.search-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.search-status[hidden] { display: none; }
+.search-status .tool-btn { color: var(--blue); border-color: var(--blue); }
+.search-status .tool-btn:hover { background: var(--blue); color: #fff; }
 
 .dashboard {
   max-width: 1440px;
@@ -821,7 +899,7 @@ footer {
     padding: 20px 16px 14px;
   }
 
-  .lang-toggle {
+  .topbar-tools {
     margin-top: 14px;
   }
 

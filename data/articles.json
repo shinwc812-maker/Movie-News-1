@@ -11,7 +11,7 @@
     "published_at": "2026-05-21T22:21:04+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 148.3444942259838,
+    "score": 147.16594366261575,
     "matched_keywords": [
       "Lionsgate"
     ]
@@ -28,7 +28,7 @@
     "published_at": "2026-05-21T21:52:33+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 147.8494132074653,
+    "score": 146.6708626440972,
     "matched_keywords": [
       "Lionsgate"
     ]
@@ -45,7 +45,7 @@
     "published_at": "2026-05-21T21:03:14+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 146.99322107783564,
+    "score": 145.8146705144676,
     "matched_keywords": [
       "Lionsgate"
     ]
@@ -62,7 +62,7 @@
     "published_at": "2026-05-21T20:35:00+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 146.5030590407986,
+    "score": 145.32450847743056,
     "matched_keywords": [
       "Lionsgate"
     ]
@@ -79,7 +79,7 @@
     "published_at": "2026-05-21T20:30:00+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 146.41625348524306,
+    "score": 145.23770292187498,
     "matched_keywords": [
       "Lionsgate"
     ]
@@ -96,7 +96,7 @@
     "published_at": "2026-05-21T20:30:00+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 146.41625348524306,
+    "score": 145.23770292187498,
     "matched_keywords": [
       "Amazon MGM"
     ]
@@ -113,7 +113,7 @@
     "published_at": "2026-05-21T20:30:00+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 146.41625348524306,
+    "score": 145.23770292187498,
     "matched_keywords": [
       "Lionsgate"
     ]
@@ -130,7 +130,7 @@
     "published_at": "2026-05-21T20:25:04+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 146.3306053370949,
+    "score": 145.15205477372686,
     "matched_keywords": [
       "Lionsgate"
     ]
@@ -147,10 +147,70 @@
     "published_at": "2026-05-21T14:13:45+00:00",
     "image_url": null,
     "tier": 3,
-    "score": 139.8841354296875,
+    "score": 138.70558486631944,
     "matched_keywords": [
       "Netflix"
     ]
+  },
+  {
+    "id": "db3ab38a574132e6",
+    "source": "익스트림무비",
+    "country": "KR",
+    "title": "크리스토퍼 놀란이 루피타 뇽오를 헬레네로 캐스팅한 이유",
+    "title_ko": null,
+    "summary": "엘르의 화보 및 인터뷰 기사에서 발췌했습니다. https://www.elle.com/culture/movies-tv/a71283989/lupita-nyongo-the-odyssey-interview-2026/ 호메...",
+    "summary_ko": null,
+    "url": "https://extmovie.com/movietalk/94049795",
+    "published_at": "2026-05-22T00:54:46.684676+00:00",
+    "image_url": "https://extmovie.com/files/thumbnails/795/049/094/480x270.crop.jpg?t=1779411261",
+    "tier": 4,
+    "score": 49.83454455266204,
+    "matched_keywords": []
+  },
+  {
+    "id": "3acadafc043f1074",
+    "source": "익스트림무비",
+    "country": "KR",
+    "title": "'오디세이' 속 4명의 여배우들 엘르 화보",
+    "title_ko": null,
+    "summary": "엘르에서 단독 특집 인터뷰 기사와 함께 공개한 <오디세이> 속 핵심 여배우들 4명의 화보입니다. 앤 해서웨이(페넬로페 역), 젠데이아(여신 아테나), ...",
+    "summary_ko": null,
+    "url": "https://extmovie.com/movietalk/94049704",
+    "published_at": "2026-05-22T00:38:46.684676+00:00",
+    "image_url": "https://extmovie.com/files/thumbnails/704/049/094/480x270.crop.jpg?t=1779410304",
+    "tier": 4,
+    "score": 49.55676677488426,
+    "matched_keywords": []
+  },
+  {
+    "id": "e7c803b5deff3f4b",
+    "source": "익스트림무비",
+    "country": "KR",
+    "title": "[마이클] 속편 제작사 대표 \"크고 만족스러운 영화가 될 것\"",
+    "title_ko": null,
+    "summary": "[마이클] 속편 제작: 라이온스게이트 영화 부문 수장 “가장 인기 있는 음악들은 아직 남아 있다… 크고 만족스러운 영화가 될 것” 흥행 대작 전기 영화 ...",
+    "summary_ko": null,
+    "url": "https://extmovie.com/movietalk/94049618",
+    "published_at": "2026-05-22T00:23:46.684676+00:00",
+    "image_url": "https://extmovie.com/files/thumbnails/618/049/094/480x270.crop.jpg?t=1779409449",
+    "tier": 4,
+    "score": 49.29635010821759,
+    "matched_keywords": []
+  },
+  {
+    "id": "0a3c88a29b3da65f",
+    "source": "익스트림무비",
+    "country": "KR",
+    "title": "‘오디세이‘ 뉴 스틸들",
+    "title_ko": null,
+    "summary": "ELLE USA 과장이 아니라, 오는 7월 17일 개봉하는 크리스토퍼 놀란의 기대작 The Odyssey는 결코 만만치 않은 도전에 직면해 있었다고 할 수 있다. 그 ...",
+    "summary_ko": null,
+    "url": "https://extmovie.com/movietalk/94049611",
+    "published_at": "2026-05-22T00:19:46.684676+00:00",
+    "image_url": "https://extmovie.com/files/thumbnails/611/049/094/480x270.crop.jpg?t=1779409979",
+    "tier": 4,
+    "score": 49.226905663773145,
+    "matched_keywords": []
   },
   {
     "id": "dfe2d6c18f73964d",
@@ -164,37 +224,7 @@
     "published_at": "2026-05-21T23:43:17+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 49.771866911168985,
-    "matched_keywords": []
-  },
-  {
-    "id": "74aa2e3083dcd48f",
-    "source": "익스트림무비",
-    "country": "KR",
-    "title": "멜 깁슨 감독 [예수의 부활] 스틸 공개",
-    "title_ko": null,
-    "summary": "멜 깁슨 감독이 2004년작 [패션 오브 크라이스트]의 후속작인 [예수의 부활]의 첫 모습을 공개했다. 1부는 몇 달 정도 연기되어 2027년 5월 6일 개봉 ...",
-    "summary_ko": null,
-    "url": "https://extmovie.com/movietalk/94049529",
-    "published_at": "2026-05-21T23:39:52.114110+00:00",
-    "image_url": "https://extmovie.com/files/thumbnails/529/049/094/480x270.crop.jpg?t=1779406767",
-    "tier": 4,
-    "score": 49.712582799479165,
-    "matched_keywords": []
-  },
-  {
-    "id": "aee98528874c4b7d",
-    "source": "익스트림무비",
-    "country": "KR",
-    "title": "오늘날의 물리 매체에 대한 피터 잭슨의 생각",
-    "title_ko": null,
-    "summary": "피터 잭슨 감독이 물리 매체에 대해 남긴 생각. “블루레이와 DVD를 살 수는 있지만, 이제는 거의 마니아층을 위한 틈새 상품이 되어버렸습니다.” “판매...",
-    "summary_ko": null,
-    "url": "https://extmovie.com/movietalk/94049511",
-    "published_at": "2026-05-21T23:30:52.114110+00:00",
-    "image_url": "https://extmovie.com/files/thumbnails/511/049/094/480x270.crop.jpg?t=1779406229",
-    "tier": 4,
-    "score": 49.55633279947917,
+    "score": 48.59331634780092,
     "matched_keywords": []
   },
   {
@@ -209,7 +239,7 @@
     "published_at": "2026-05-21T22:31:41+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 48.52881135561343,
+    "score": 47.35026079224537,
     "matched_keywords": []
   },
   {
@@ -224,7 +254,7 @@
     "published_at": "2026-05-21T22:30:00+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 48.49958681857639,
+    "score": 47.321036255208334,
     "matched_keywords": []
   },
   {
@@ -239,7 +269,7 @@
     "published_at": "2026-05-21T22:21:29+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 48.35172802228009,
+    "score": 47.173177458912036,
     "matched_keywords": []
   },
   {
@@ -254,7 +284,7 @@
     "published_at": "2026-05-21T22:17:10+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 48.276785892650466,
+    "score": 47.0982353292824,
     "matched_keywords": []
   },
   {
@@ -269,7 +299,7 @@
     "published_at": "2026-05-21T22:04:52+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 48.063244225983794,
+    "score": 46.88469366261574,
     "matched_keywords": []
   },
   {
@@ -284,7 +314,7 @@
     "published_at": "2026-05-21T22:01:07+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 47.99814005931713,
+    "score": 46.819589495949074,
     "matched_keywords": []
   },
   {
@@ -299,7 +329,7 @@
     "published_at": "2026-05-21T22:00:00+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 47.978753485243054,
+    "score": 46.800202921875,
     "matched_keywords": []
   },
   {
@@ -314,7 +344,7 @@
     "published_at": "2026-05-21T21:29:31+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 47.44952894820602,
+    "score": 46.27097838483796,
     "matched_keywords": []
   },
   {
@@ -329,7 +359,7 @@
     "published_at": "2026-05-21T21:14:31+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 47.18911228153935,
+    "score": 46.010561718171296,
     "matched_keywords": []
   },
   {
@@ -344,7 +374,7 @@
     "published_at": "2026-05-21T20:57:16+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 46.88963311487269,
+    "score": 45.71108255150463,
     "matched_keywords": []
   },
   {
@@ -353,13 +383,13 @@
     "country": "US",
     "title": "Korean Content Leaders Take Stock After a Decade of Growth and Look to Future: ‘Korean Entertainment is Everywhere’",
     "title_ko": null,
-    "summary": "The world of Korean entertainment has come a long way since “Gangnum Style” set dancers galloping around the world nearly 15 years ago. Korean content industry leaders on both sides of the Pacific gathered earlier this month at the London West Hollywood to take stock of the country’s rapid progress as an exporter of music, […]",
+    "summary": "The world of Korean entertainment has come a long way since “Gangnam Style” set dancers galloping around the world nearly 15 years ago. Korean content industry leaders on both sides of the Pacific gathered earlier this month at the London West Hollywood to take stock of the country’s rapid progress as an exporter of music, […]",
     "summary_ko": null,
     "url": "https://variety.com/2026/biz/news/korean-content-cj-enm-hybe-extraordinary-attorney-woo-1236756341/",
     "published_at": "2026-05-21T20:54:26+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 46.84044330005787,
+    "score": 45.661892736689815,
     "matched_keywords": []
   },
   {
@@ -374,7 +404,7 @@
     "published_at": "2026-05-21T20:50:14+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 46.767526633391206,
+    "score": 45.58897607002314,
     "matched_keywords": []
   },
   {
@@ -389,7 +419,7 @@
     "published_at": "2026-05-21T20:30:00+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 46.416253485243054,
+    "score": 45.237702921875,
     "matched_keywords": []
   },
   {
@@ -404,7 +434,7 @@
     "published_at": "2026-05-21T20:23:40+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 46.30629978153935,
+    "score": 45.127749218171296,
     "matched_keywords": []
   },
   {
@@ -419,7 +449,7 @@
     "published_at": "2026-05-21T20:08:08+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 46.03662385561342,
+    "score": 44.85807329224537,
     "matched_keywords": []
   },
   {
@@ -434,7 +464,7 @@
     "published_at": "2026-05-21T19:44:40+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 45.629216448206016,
+    "score": 44.45066588483797,
     "matched_keywords": []
   },
   {
@@ -449,7 +479,7 @@
     "published_at": "2026-05-21T19:44:22+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 45.62400811487268,
+    "score": 44.44545755150463,
     "matched_keywords": []
   },
   {
@@ -464,7 +494,7 @@
     "published_at": "2026-05-21T19:17:37+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 45.159598392650466,
+    "score": 43.9810478292824,
     "matched_keywords": []
   },
   {
@@ -479,7 +509,7 @@
     "published_at": "2026-05-21T19:17:32+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 45.1581516333912,
+    "score": 43.97960107002315,
     "matched_keywords": []
   },
   {
@@ -494,7 +524,7 @@
     "published_at": "2026-05-21T19:13:07+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 45.08147339265046,
+    "score": 43.90292282928241,
     "matched_keywords": []
   },
   {
@@ -509,7 +539,7 @@
     "published_at": "2026-05-21T18:35:58+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 44.43650811487269,
+    "score": 43.257957551504624,
     "matched_keywords": []
   },
   {
@@ -524,7 +554,7 @@
     "published_at": "2026-05-21T18:05:49+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 43.91307061487269,
+    "score": 42.73452005150463,
     "matched_keywords": []
   },
   {
@@ -539,7 +569,7 @@
     "published_at": "2026-05-21T18:00:00+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 43.81208681857639,
+    "score": 42.633536255208334,
     "matched_keywords": []
   },
   {
@@ -554,7 +584,7 @@
     "published_at": "2026-05-21T17:07:11+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 42.89513080005787,
+    "score": 41.716580236689815,
     "matched_keywords": []
   },
   {
@@ -569,37 +599,7 @@
     "published_at": "2026-05-21T15:02:25+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 40.72904283709491,
-    "matched_keywords": []
-  },
-  {
-    "id": "f2a102bb700b2822",
-    "source": "익스트림무비",
-    "country": "KR",
-    "title": "일본판 '범죄도시' 진실의 방 장면",
-    "title_ko": null,
-    "summary": "한일 합작 <도쿄 버스트: 범죄도시> '진실의 방' 장면 같습니다. 일본 범죄자들과 합세해 나쁜 짓하려던 장이수가 일본 경찰서에 잡혀왔고, 일본말하면...",
-    "summary_ko": null,
-    "url": "https://extmovie.com/movietalk/94049018",
-    "published_at": "2026-05-21T14:55:52.114110+00:00",
-    "image_url": "https://extmovie.com/files/thumbnails/018/049/094/480x270.crop.jpg?t=1779376216",
-    "tier": 4,
-    "score": 40.61536057725694,
-    "matched_keywords": []
-  },
-  {
-    "id": "7d6021976da89d14",
-    "source": "익스트림무비",
-    "country": "KR",
-    "title": "[러브레터] 4K 북미 개봉 예고편, 포스터",
-    "title_ko": null,
-    "summary": "히로코는 약혼자 후지이 이츠키를 비극적인 등산 사고로 잃은 후 여전히 깊은 슬픔에 잠겨 있다. 그의 2주기 추모식 날, 히로코는 이츠키의 옛 주소를 ...",
-    "summary_ko": null,
-    "url": "https://extmovie.com/movietalk/94048890",
-    "published_at": "2026-05-21T13:55:52.114110+00:00",
-    "image_url": "https://extmovie.com/files/thumbnails/890/048/094/480x270.crop.jpg?t=1779371110",
-    "tier": 4,
-    "score": 39.57369391059028,
+    "score": 39.55049227372685,
     "matched_keywords": []
   },
   {
@@ -614,7 +614,7 @@
     "published_at": "2026-05-21T13:00:00+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 38.603753485243054,
+    "score": 37.425202921875,
     "matched_keywords": []
   },
   {
@@ -629,7 +629,7 @@
     "published_at": "2026-05-21T09:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0520/11_07_43__6a0d176f8b9c1[S1000,1000].jpg",
     "tier": 4,
-    "score": 34.52389237413195,
+    "score": 33.34534181076389,
     "matched_keywords": []
   },
   {
@@ -644,7 +644,7 @@
     "published_at": "2026-05-21T09:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0520/10_57_22__6a0d1502742d6[S1000,1000].jpg",
     "tier": 4,
-    "score": 34.52389237413195,
+    "score": 33.34534181076389,
     "matched_keywords": []
   },
   {
@@ -659,7 +659,7 @@
     "published_at": "2026-05-21T09:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0519/16_31_47__6a0c11e348c49[S1000,1000].jpg",
     "tier": 4,
-    "score": 34.52389237413195,
+    "score": 33.34534181076389,
     "matched_keywords": []
   },
   {
@@ -674,7 +674,7 @@
     "published_at": "2026-05-21T09:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0519/16_28_43__6a0c112b340ba[S1000,1000].jpg",
     "tier": 4,
-    "score": 34.52389237413195,
+    "score": 33.34534181076389,
     "matched_keywords": []
   },
   {
@@ -689,7 +689,7 @@
     "published_at": "2026-05-21T09:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0519/16_27_04__6a0c10c83ad2f[S1000,1000].jpg",
     "tier": 4,
-    "score": 34.52389237413195,
+    "score": 33.34534181076389,
     "matched_keywords": []
   },
   {
@@ -704,7 +704,7 @@
     "published_at": "2026-05-21T08:59:07.353000+00:00",
     "image_url": "https://d3ihz389yobwks.cloudfront.net/1779352066214UqxLn.jpg",
     "tier": 4,
-    "score": 34.42185331163194,
+    "score": 33.24330274826389,
     "matched_keywords": []
   },
   {
@@ -719,7 +719,7 @@
     "published_at": "2026-05-21T07:58:01+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 33.36098728153936,
+    "score": 32.18243671817129,
     "matched_keywords": []
   },
   {
@@ -734,7 +734,7 @@
     "published_at": "2026-05-21T07:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0519/10_45_49__6a0bc0cd306a0[S1000,1000].jpg",
     "tier": 4,
-    "score": 32.44055904079861,
+    "score": 31.26200847743056,
     "matched_keywords": []
   },
   {
@@ -749,7 +749,7 @@
     "published_at": "2026-05-21T07:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0519/10_35_27__6a0bbe5fb214f[S1000,1000].jpg",
     "tier": 4,
-    "score": 32.44055904079861,
+    "score": 31.26200847743056,
     "matched_keywords": []
   },
   {
@@ -764,7 +764,7 @@
     "published_at": "2026-05-21T06:42:53+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 32.0565891333912,
+    "score": 30.878038570023147,
     "matched_keywords": []
   },
   {
@@ -779,7 +779,7 @@
     "published_at": "2026-05-21T06:15:06+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 31.574239596354168,
+    "score": 30.395689032986116,
     "matched_keywords": []
   },
   {
@@ -794,7 +794,7 @@
     "published_at": "2026-05-21T05:59:06+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0519/10_32_11__6a0bbd9b8a630[S1000,1000].jpg",
     "tier": 4,
-    "score": 31.296461818576393,
+    "score": 30.11791125520833,
     "matched_keywords": []
   },
   {
@@ -809,7 +809,7 @@
     "published_at": "2026-05-21T03:32:42+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 28.75479515190972,
+    "score": 27.576244588541666,
     "matched_keywords": []
   },
   {
@@ -824,7 +824,7 @@
     "published_at": "2026-05-21T03:09:38+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 28.354332188946763,
+    "score": 27.17578162557871,
     "matched_keywords": []
   },
   {
@@ -839,7 +839,7 @@
     "published_at": "2026-05-20T22:19:17+00:00",
     "image_url": null,
     "tier": 4,
-    "score": 23.31353357783565,
+    "score": 22.134983014467597,
     "matched_keywords": []
   },
   {
@@ -854,7 +854,7 @@
     "published_at": "2026-05-20T07:15:09+00:00",
     "image_url": "https://d3ihz389yobwks.cloudfront.net/1779260969933ZdA99.jpg",
     "tier": 4,
-    "score": 7.616774318576391,
+    "score": 6.438223755208328,
     "matched_keywords": []
   },
   {
@@ -869,7 +869,7 @@
     "published_at": "2026-05-20T07:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0518/15_40_47__6a0ab46fdc2ce[S1000,1000].jpg",
     "tier": 4,
-    "score": 7.440559040798611,
+    "score": 6.262008477430553,
     "matched_keywords": []
   },
   {
@@ -884,7 +884,7 @@
     "published_at": "2026-05-20T07:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0518/15_36_59__6a0ab38b03970[S1000,1000].jpg",
     "tier": 4,
-    "score": 7.440559040798611,
+    "score": 6.262008477430553,
     "matched_keywords": []
   },
   {
@@ -899,7 +899,7 @@
     "published_at": "2026-05-20T07:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0518/15_25_28__6a0ab0d8e8830[S1000,1000].jpg",
     "tier": 4,
-    "score": 7.440559040798611,
+    "score": 6.262008477430553,
     "matched_keywords": []
   },
   {
@@ -914,7 +914,7 @@
     "published_at": "2026-05-20T07:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0518/15_23_40__6a0ab06ce8fdc[S1000,1000].jpg",
     "tier": 4,
-    "score": 7.440559040798611,
+    "score": 6.262008477430553,
     "matched_keywords": []
   },
   {
@@ -929,7 +929,7 @@
     "published_at": "2026-05-20T07:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0518/15_20_53__6a0aafc557fb2[S1000,1000].jpg",
     "tier": 4,
-    "score": 7.440559040798611,
+    "score": 6.262008477430553,
     "matched_keywords": []
   },
   {
@@ -944,7 +944,7 @@
     "published_at": "2026-05-20T06:05:00+00:00",
     "image_url": "https://image.cine21.com/resize/cine21/movie/2026/0513/16_04_44__6a04228cbb160[S1000,1000].jpg",
     "tier": 4,
-    "score": 6.398892374131942,
+    "score": 5.22034181076389,
     "matched_keywords": []
   }
 ]

@@ -33,7 +33,6 @@ jobs:
       - name: Crawl news
         run: uv run python -m crawler.main
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           KOBIS_API_KEY: ${{ secrets.KOBIS_API_KEY }}
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}

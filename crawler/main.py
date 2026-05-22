@@ -27,7 +27,6 @@ from crawler.models import Article
 from crawler.policies import fetch_policy_items, save_policy_items
 from crawler.scorer import score_all
 from crawler.tmdb import enrich_market_with_tmdb, enrich_reservation_with_tmdb
-from crawler.translator import translate_articles
 from crawler.sources.base import Source
 from crawler.sources.cine21 import Cine21Source
 from crawler.sources.deadline import DeadlineSource
@@ -298,8 +297,6 @@ def main() -> None:
 
     deduped = dedupe(recent)
     print(f"Before dedupe: {len(recent)}, After dedupe: {len(deduped)}")
-
-    translate_articles(deduped)
 
     deduped.sort(key=lambda a: a.score, reverse=True)
 

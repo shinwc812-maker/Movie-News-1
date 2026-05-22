@@ -10,7 +10,6 @@ dependencies = [
     "selectolax",
     "jinja2",
     "rapidfuzz",
-    "anthropic",
     "pyyaml",
     "python-dateutil",
 ]

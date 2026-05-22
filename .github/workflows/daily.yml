@@ -34,8 +34,10 @@ jobs:
         run: uv run python -m crawler.main
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
-          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          # GitHub 시크릿이 오타(CLINET)로 등록돼 있어 그 이름으로 참조한다.
+          # 코드가 읽는 env 이름(CLIENT)은 정상 유지 — 나중에 시크릿 이름 고치면 오른쪽만 CLIENT로 되돌리면 됨.
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLINET_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLINET_SECRET }}
 
       - name: Build static site
         # 'site'는 파이썬 표준 모듈명이라 'python -m site.build'는 불가 — 파일 경로로 실행

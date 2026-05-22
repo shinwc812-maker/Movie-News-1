@@ -2,16 +2,20 @@ from datetime import date
 
 import httpx
 
-from crawler.briefing_models import ReservationMovie
+from crawler.briefing_models import BoxOfficeMovie, ReservationMovie
 from crawler.kobis import (
+    _fetch_movie_distributors,
     build_daily_boxoffice_url,
+    enrich_movies_with_distributors,
     enrich_reservation_movies_with_kobis,
     kst_yesterday,
+    load_distributor_cache,
     parse_daily_boxoffice,
     parse_movie_distributors,
     parse_reservation_movies,
     parse_reservation_top,
     parse_seat_metrics_gviz,
+    save_distributor_cache,
 )
 
 
@@ -262,3 +266,120 @@ def test_enrich_reservation_movies_with_kobis_marks_lotte_distributor_from_wild_
     assert movies[0].movie_code == "20248252"
     assert movies[0].distributors == ["롯데컬처웍스(주)롯데엔터테인먼트", "Lotte Entertainment"]
     assert movies[0].is_lotte_distributed is True
+
+
+def test_distributor_cache_roundtrip(tmp_path):
+    path = tmp_path / "distributor_cache.json"
+    cache = {"와일드 씽": {"movie_code": "20248252", "distributors": ["롯데컬처웍스(주)롯데엔터테인먼트"], "is_lotte": True}}
+
+    save_distributor_cache(cache, path)
+
+    assert load_distributor_cache(path) == cache
+
+
+def test_load_distributor_cache_missing_file_returns_empty(tmp_path):
+    assert load_distributor_cache(tmp_path / "nope.json") == {}
+
+
+def test_enrich_reservation_falls_back_to_cache_when_live_lookup_fails(monkeypatch):
+    monkeypatch.setattr("crawler.kobis.time.sleep", lambda *args, **kwargs: None)
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(500)  # 모든 KOBIS 호출 실패
+
+    movies = [
+        ReservationMovie(
+            rank=3,
+            title="와일드 씽",
+            english_title="Wild Sing",
+            reservation_rate=7.4,
+            reservation_count=19775,
+        )
+    ]
+    cache = {
+        "와일드 씽": {
+            "movie_code": "20248252",
+            "distributors": ["롯데컬처웍스(주)롯데엔터테인먼트"],
+            "is_lotte": True,
+        }
+    }
+
+    enrich_reservation_movies_with_kobis(
+        movies,
+        httpx.Client(transport=httpx.MockTransport(handler)),
+        api_key="kobis-key",
+        cache=cache,
+    )
+
+    # 라이브 호출이 실패해도 캐시로 롯데 인정
+    assert movies[0].is_lotte_distributed is True
+    assert movies[0].movie_code == "20248252"
+
+
+def test_enrich_movies_with_distributors_populates_cache():
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.path.endswith("/searchMovieInfo.json")
+        return httpx.Response(
+            200,
+            json={
+                "movieInfoResult": {
+                    "movieInfo": {
+                        "companys": [
+                            {
+                                "companyNm": "롯데컬처웍스(주)롯데엔터테인먼트",
+                                "companyNmEn": "Lotte Entertainment",
+                                "companyPartNm": "배급사",
+                            }
+                        ]
+                    }
+                }
+            },
+        )
+
+    movies = [
+        BoxOfficeMovie(rank=3, movie_code="20248252", title="와일드 씽", audi_count=0, audi_acc=0)
+    ]
+    cache: dict = {}
+
+    enrich_movies_with_distributors(
+        movies,
+        httpx.Client(transport=httpx.MockTransport(handler)),
+        api_key="kobis-key",
+        cache=cache,
+    )
+
+    assert movies[0].is_lotte_distributed is True
+    assert cache["와일드 씽"]["is_lotte"] is True
+    assert cache["와일드 씽"]["movie_code"] == "20248252"
+
+
+def test_get_with_retry_recovers_after_transient_failure(monkeypatch):
+    monkeypatch.setattr("crawler.kobis.time.sleep", lambda *args, **kwargs: None)
+    calls = {"n": 0}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return httpx.Response(503)  # 첫 시도 실패
+        return httpx.Response(
+            200,
+            json={
+                "movieInfoResult": {
+                    "movieInfo": {
+                        "companys": [
+                            {
+                                "companyNm": "롯데컬처웍스(주)롯데엔터테인먼트",
+                                "companyPartNm": "배급사",
+                            }
+                        ]
+                    }
+                }
+            },
+        )
+
+    distributors, is_lotte = _fetch_movie_distributors(
+        "20248252", httpx.Client(transport=httpx.MockTransport(handler)), "kobis-key"
+    )
+
+    assert is_lotte is True
+    assert calls["n"] == 2  # 재시도로 성공

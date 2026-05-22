@@ -5,6 +5,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
@@ -46,6 +47,13 @@ LOTTE_DISTRIBUTOR_ALIASES = (
     "롯데컬처웍스",
     "롯데컬처웍스(주)롯데엔터테인먼트",
     "Lotte Entertainment",
+)
+
+# 배급사 조회 안정화: 재시도 + 영속 캐시
+KOBIS_RETRY_ATTEMPTS = 3
+KOBIS_RETRY_BACKOFF = 0.8  # 초, 시도 횟수에 비례해 증가
+DISTRIBUTOR_CACHE_PATH = (
+    Path(__file__).resolve().parent.parent / "data" / "distributor_cache.json"
 )
 
 
@@ -228,6 +236,64 @@ def enrich_movies_with_seat_metrics(
             movie.seat_sales_rate = metric.seat_sales_rate
 
 
+def _get_with_retry(
+    client: httpx.Client,
+    url: str,
+    params: dict,
+    *,
+    attempts: Optional[int] = None,
+    backoff: Optional[float] = None,
+) -> httpx.Response:
+    """일시적 실패·레이트리밋에 대비해 GET을 재시도한다."""
+    attempts = KOBIS_RETRY_ATTEMPTS if attempts is None else attempts
+    backoff = KOBIS_RETRY_BACKOFF if backoff is None else backoff
+    last_exc: Optional[Exception] = None
+    for attempt in range(attempts):
+        try:
+            response = client.get(url, params=params)
+            response.raise_for_status()
+            return response
+        except Exception as exc:  # noqa: BLE001
+            last_exc = exc
+            if attempt + 1 < attempts:
+                time.sleep(backoff * (attempt + 1))
+    raise last_exc if last_exc is not None else RuntimeError("request failed")
+
+
+def _distributor_cache_key(title: str) -> str:
+    return " ".join((title or "").casefold().split())
+
+
+def load_distributor_cache(path: Path = DISTRIBUTOR_CACHE_PATH) -> dict:
+    """영속 배급사 캐시 로드. 파일 없거나 깨졌으면 빈 dict."""
+    try:
+        if path.exists():
+            return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"[warn] distributor cache load failed — {exc}", file=sys.stderr)
+    return {}
+
+
+def save_distributor_cache(cache: dict, path: Path = DISTRIBUTOR_CACHE_PATH) -> None:
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+    except OSError as exc:
+        print(f"[warn] distributor cache save failed — {exc}", file=sys.stderr)
+
+
+def _apply_cached_distributors(movie, entry: Optional[dict]) -> bool:
+    """캐시 항목을 영화에 적용. 적용되면 True, 캐시 없으면 False."""
+    if not entry:
+        return False
+    movie.distributors = [str(d) for d in entry.get("distributors", []) if d]
+    movie.is_lotte_distributed = bool(entry.get("is_lotte"))
+    cached_code = str(entry.get("movie_code") or "")
+    if cached_code and not getattr(movie, "movie_code", ""):
+        movie.movie_code = cached_code
+    return True
+
+
 def parse_movie_distributors(payload: dict) -> tuple[list[str], bool]:
     """Return distributor company names and whether a movie is Lotte-distributed."""
     companies = payload.get("movieInfoResult", {}).get("movieInfo", {}).get("companys", [])
@@ -288,11 +354,9 @@ def find_kobis_movie_code(
     for query in (title, english_title):
         if not query:
             continue
-        response = client.get(
-            KOBIS_MOVIE_LIST_URL,
-            params={"key": api_key, "movieNm": query},
+        response = _get_with_retry(
+            client, KOBIS_MOVIE_LIST_URL, {"key": api_key, "movieNm": query}
         )
-        response.raise_for_status()
         candidates = _movie_search_candidates(response.json())
         match = _best_movie_search_match(candidates, title, english_title)
         if match:
@@ -305,11 +369,9 @@ def _fetch_movie_distributors(
     client: httpx.Client,
     api_key: str,
 ) -> tuple[list[str], bool]:
-    response = client.get(
-        KOBIS_MOVIE_INFO_URL,
-        params={"key": api_key, "movieCd": movie_code},
+    response = _get_with_retry(
+        client, KOBIS_MOVIE_INFO_URL, {"key": api_key, "movieCd": movie_code}
     )
-    response.raise_for_status()
     return parse_movie_distributors(response.json())
 
 
@@ -317,42 +379,62 @@ def enrich_movies_with_distributors(
     movies: list[BoxOfficeMovie],
     client: httpx.Client,
     api_key: str,
+    cache: Optional[dict] = None,
 ) -> None:
+    cache = cache if cache is not None else {}
     for movie in movies:
+        key = _distributor_cache_key(movie.title)
         if not movie.movie_code:
+            _apply_cached_distributors(movie, cache.get(key))
             continue
         try:
             distributors, is_lotte = _fetch_movie_distributors(movie.movie_code, client, api_key)
         except Exception as exc:  # noqa: BLE001
-            print(f"[warn] KOBIS movie detail failed for {movie.title} — {exc}", file=sys.stderr)
+            if _apply_cached_distributors(movie, cache.get(key)):
+                print(f"[info] KOBIS distributor for {movie.title} served from cache (live failed: {exc})", file=sys.stderr)
+            else:
+                print(f"[warn] KOBIS movie detail failed for {movie.title} — {exc}", file=sys.stderr)
             continue
         movie.distributors = distributors
         movie.is_lotte_distributed = is_lotte
+        cache[key] = {"movie_code": movie.movie_code, "distributors": distributors, "is_lotte": is_lotte}
 
 
 def enrich_reservation_movies_with_kobis(
     movies: list[ReservationMovie],
     client: httpx.Client,
     api_key: str,
+    cache: Optional[dict] = None,
 ) -> None:
+    cache = cache if cache is not None else {}
     for movie in movies:
+        key = _distributor_cache_key(movie.title)
         try:
             movie_code = find_kobis_movie_code(movie.title, movie.english_title, client, api_key)
             if not movie_code:
-                continue
+                raise LookupError("movie code not found")
             distributors, is_lotte = _fetch_movie_distributors(movie_code, client, api_key)
         except Exception as exc:  # noqa: BLE001
-            print(f"[warn] KOBIS reservation movie detail failed for {movie.title} — {exc}", file=sys.stderr)
+            if _apply_cached_distributors(movie, cache.get(key)):
+                print(f"[info] KOBIS reservation distributor for {movie.title} served from cache (live failed: {exc})", file=sys.stderr)
+            else:
+                print(f"[warn] KOBIS reservation movie detail failed for {movie.title} — {exc}", file=sys.stderr)
             continue
         movie.movie_code = movie_code
         movie.distributors = distributors
         movie.is_lotte_distributed = is_lotte
+        cache[key] = {"movie_code": movie_code, "distributors": distributors, "is_lotte": is_lotte}
 
 
-def fetch_market_snapshot(api_key: str, target_date: Optional[str] = None) -> MarketSnapshot:
+def fetch_market_snapshot(
+    api_key: str,
+    target_date: Optional[str] = None,
+    cache_path: Path = DISTRIBUTOR_CACHE_PATH,
+) -> MarketSnapshot:
     """Fetch yesterday's KOBIS daily box office."""
     target = target_date or kst_yesterday()
     url = build_daily_boxoffice_url(api_key, target)
+    cache = load_distributor_cache(cache_path)
     with httpx.Client(
         timeout=REQUEST_TIMEOUT,
         headers={"User-Agent": USER_AGENT},
@@ -366,7 +448,8 @@ def fetch_market_snapshot(api_key: str, target_date: Optional[str] = None) -> Ma
             enrich_movies_with_seat_metrics(movies, client, target)
         except Exception as exc:  # noqa: BLE001
             print(f"[warn] KOBIS seat metrics fetch failed — {exc}", file=sys.stderr)
-        enrich_movies_with_distributors(movies, client, api_key)
+        enrich_movies_with_distributors(movies, client, api_key, cache=cache)
+    save_distributor_cache(cache, cache_path)
 
     return MarketSnapshot(
         target_date=target,
@@ -454,10 +537,14 @@ def parse_reservation_top(html: str) -> tuple[Optional[str], Optional[str]]:
     return None, None
 
 
-def fetch_reservation_snapshot(api_key: Optional[str] = None) -> ReservationSnapshot:
+def fetch_reservation_snapshot(
+    api_key: Optional[str] = None,
+    cache_path: Path = DISTRIBUTOR_CACHE_PATH,
+) -> ReservationSnapshot:
     """Fetch KOBIS live reservation-rate top five as structured data."""
     captured_at = datetime.now(timezone.utc)
     try:
+        cache = load_distributor_cache(cache_path)
         with httpx.Client(
             timeout=REQUEST_TIMEOUT,
             headers={"User-Agent": USER_AGENT},
@@ -468,7 +555,8 @@ def fetch_reservation_snapshot(api_key: Optional[str] = None) -> ReservationSnap
             html = response.text
             movies = parse_reservation_movies(html)
             if api_key:
-                enrich_reservation_movies_with_kobis(movies, client, api_key)
+                enrich_reservation_movies_with_kobis(movies, client, api_key, cache=cache)
+        save_distributor_cache(cache, cache_path)
         top_movie = movies[0].title if movies else None
         top_rate = f"{movies[0].reservation_rate:g}%" if movies else None
         return ReservationSnapshot(

@@ -1,1 +1,68 @@
-{}
+{
+  "군체": {
+    "movie_code": "20252402",
+    "distributors": [
+      "(주)쇼박스",
+      "Showbox Corp"
+    ],
+    "is_lotte": false
+  },
+  "마이클": {
+    "movie_code": "20259626",
+    "distributors": [
+      "유니버설픽쳐스인터내셔널 코리아(유)",
+      "Universal Pictures International Korea"
+    ],
+    "is_lotte": false
+  },
+  "악마는 프라다를 입는다 2": {
+    "movie_code": "20259791",
+    "distributors": [
+      "월트디즈니컴퍼니코리아 유한책임회사",
+      "The Walt Disney Company Korea"
+    ],
+    "is_lotte": false
+  },
+  "신극장판 은혼: 요시와라 대염상": {
+    "movie_code": "20262975",
+    "distributors": [
+      "(주)넥스트엔터테인먼트월드(NEW)",
+      "Next Entertainment World"
+    ],
+    "is_lotte": false
+  },
+  "극장판 내 마음의 위험한 녀석": {
+    "movie_code": "20263253",
+    "distributors": [
+      "(주)애니플러스",
+      "ANIPLUS"
+    ],
+    "is_lotte": false
+  },
+  "와일드 씽": {
+    "movie_code": "20248252",
+    "distributors": [
+      "롯데컬처웍스(주)롯데엔터테인먼트",
+      "Lotte Entertainment"
+    ],
+    "is_lotte": true
+  },
+  "플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마": {
+    "movie_code": "20263761",
+    "distributors": [
+      "씨제이포디플렉스 주식회사",
+      "CJ 4DPLEX",
+      "씨지브이 아이스콘",
+      "CGV ICECON"
+    ],
+    "is_lotte": false
+  },
+  "만달로리안과 그로구": {
+    "movie_code": "20258236",
+    "distributors": [
+      "월트디즈니컴퍼니코리아 유한책임회사",
+      "The Walt Disney Company Korea"
+    ],
+    "is_lotte": false
+  }
+}

@@ -8,6 +8,7 @@ from pathlib import Path
 from crawler.boxoffice import fetch_boxoffice_titles
 from crawler.dedupe import dedupe
 from crawler.models import Article
+from crawler.relevance import filter_naver
 from crawler.scorer import score_all
 from crawler.translator import translate_articles
 from crawler.sources.base import Source
@@ -93,6 +94,8 @@ def main() -> None:
 
     boxoffice_titles = fetch_boxoffice_titles()
     score_all(recent, boxoffice_titles=boxoffice_titles)
+
+    recent = filter_naver(recent)
 
     deduped = dedupe(recent)
     print(f"Before dedupe: {len(recent)}, After dedupe: {len(deduped)}")

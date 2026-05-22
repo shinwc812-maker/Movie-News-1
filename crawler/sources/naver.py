@@ -69,6 +69,18 @@ def _parse_pubdate(raw: str) -> Optional[datetime]:
     return dt.astimezone(timezone.utc)
 
 
+def _clean(raw: str) -> str:
+    """네이버가 검색어를 감싼 <b> 강조 태그를 먼저 제거한 뒤 정리.
+
+    strip_html은 태그 자리에 공백을 넣어 '<b>영화</b>제' → '영화 제'처럼 단어를
+    쪼갠다. 이는 키워드 매칭(배급사/박스오피스/표시 필터)을 망가뜨리므로,
+    <b> 태그만 먼저 제거해 단어를 보존한다.
+    """
+    if not raw:
+        return ""
+    return strip_html(raw.replace("<b>", "").replace("</b>", ""))
+
+
 class NaverNewsSource(Source):
     name = "네이버뉴스"
     country = "KR"
@@ -136,8 +148,8 @@ class NaverNewsSource(Source):
                     id=make_article_id(url),
                     source=self.name,
                     country=self.country,
-                    title=strip_html(item.get("title", "")),
-                    summary=strip_html(item.get("description", "")),
+                    title=_clean(item.get("title", "")),
+                    summary=_clean(item.get("description", "")),
                     url=url,
                     published_at=_parse_pubdate(item.get("pubDate", "")),
                 )

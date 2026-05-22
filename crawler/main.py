@@ -15,6 +15,7 @@ from crawler.sources.deadline import DeadlineSource
 from crawler.sources.extmovie import ExtMovieSource
 from crawler.sources.indiewire import IndieWireSource
 from crawler.sources.maxmovie import MaxMovieSource
+from crawler.sources.naver import NaverNewsSource
 from crawler.sources.rollingstone import RollingStoneSource
 from crawler.sources.thr import THRSource
 from crawler.sources.variety import VarietySource
@@ -25,7 +26,7 @@ ARTICLES_PATH = DATA_DIR / "articles.json"
 # 이 시간보다 오래된 기사는 제외 (매일 실행하므로 누적 없이 최신만 표시)
 MAX_AGE_HOURS = 48
 
-# 등록된 소스 (8개 매체 전체)
+# 등록된 소스 (해외 5 + 국내 4)
 SOURCES: list[Source] = [
     VarietySource(),
     THRSource(),
@@ -35,6 +36,7 @@ SOURCES: list[Source] = [
     Cine21Source(),
     MaxMovieSource(),
     ExtMovieSource(),
+    NaverNewsSource(),
 ]
 
 

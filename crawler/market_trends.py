@@ -36,12 +36,22 @@ NAVER_PUBLIC_SEARCH_URL = "https://search.naver.com/search.naver"
 GOOGLE_NEWS_RSS_URL = "https://news.google.com/rss/search"
 AI_TIMEOUT_SECONDS = 90
 MARKET_TREND_QUERIES = (
+    # 1순위: 체험형 콘텐츠
     "이머시브 콘텐츠 체험형 전시 공연",
-    "공간 재해석 체험형 콘텐츠 공연",
-    "체험형 공연 이머시브 공연",
-    "IP 사업 OSMU 굿즈 공연",
-    "K팝 팝업스토어 팬덤 굿즈",
+    "공간 재해석 참여형 콘텐츠 실감",
+    "체험형 공연 이머시브 몰입형",
+    # 2순위: 공간 사업
     "팝업스토어 오픈런 한정 굿즈",
+    "플래그십 복합문화공간 오프라인 공간",
+    # 3순위: IP 사업
+    "IP 사업 OSMU 굿즈 라이선스",
+    "K팝 팝업스토어 팬덤 굿즈",
+    # 4순위: 콜라보/협업
+    "브랜드 콜라보 협업 컬래버 팝업",
+    "콜라보레이션 제휴 굿즈 한정판",
+    # 그 외: 버추얼·AR/VR
+    "버추얼 휴먼 메타버스 콘텐츠",
+    "AR VR 실감 콘텐츠 전시",
 )
 
 
@@ -53,40 +63,69 @@ class MarketTrendCategory:
     keywords: tuple[str, ...]
 
 
+# 카테고리 순서 = 주제 우선순위(1순위 → 그 외). 분류가 동점이면 앞선(상위) 카테고리가 이긴다.
 CATEGORIES = (
     MarketTrendCategory(
-        category="체험형 콘텐츠 + 공연",
+        category="체험형 콘텐츠",
         frame="공간 재해석·참여형 스토리텔링·공연형 콘텐츠가 결합된 체험 소비 확산",
         implication="극장 유휴공간, 특별관, 영화 IP를 관객 참여형 전시·공연·이벤트로 확장하는 기획에 참고할 만함.",
         keywords=(
             "체험형",
             "이머시브",
             "몰입형",
+            "실감",
+            "인터랙티브",
+            "참여형",
+            "방탈출",
+            "스토리텔링",
+            "테마파크",
+            "전시공간",
+            "전시",
             "공연",
             "뮤지컬",
             "팬미팅",
             "라이브",
-            "방탈출",
-            "참여형",
-            "전시공간",
-            "전시",
-            "테마파크",
-            "스토리텔링",
-            "공간 재해석",
-            "실감",
             "LED 돔",
-            "인터랙티브",
+            "미디어아트",
+            "어트랙션",
+            "공간 재해석",
         ),
     ),
     MarketTrendCategory(
-        category="IP/OSMU",
-        frame="게임·K팝·키즈 IP가 공연·영화·굿즈·공간으로 확장",
-        implication="영화/애니메이션 IP를 굿즈, 공연, 팝업, 극장 이벤트로 연결하는 OSMU 관점에서 추적 필요.",
+        category="공간 사업",
+        frame="팝업·플래그십·복합문화공간이 팬덤 소비의 기본 동선으로 자리매김",
+        implication="극장 로비와 상권 거점에서 한정 굿즈·포토존·예매 동선을 묶는 공간 실험 여지가 큼.",
+        keywords=(
+            "팝업",
+            "팝업스토어",
+            "오픈런",
+            "플래그십",
+            "복합문화공간",
+            "오프라인 매장",
+            "쇼룸",
+            "라운지",
+            "성수",
+            "명동",
+            "상권",
+            "거점",
+            "포토존",
+            "포토카드",
+            "팬덤",
+            "지역 관광",
+            "공간 기획",
+        ),
+    ),
+    MarketTrendCategory(
+        category="IP 사업",
+        frame="게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장",
+        implication="영화/애니메이션 IP를 굿즈·공연·팝업·극장 이벤트로 연결하는 OSMU 관점에서 추적 필요.",
         keywords=(
             "IP",
             "OSMU",
             "굿즈",
             "캐릭터",
+            "라이선스",
+            "라이선싱",
             "게임 IP",
             "게임업계",
             "넥슨",
@@ -97,24 +136,44 @@ CATEGORIES = (
             "키즈",
             "애니메이션",
             "웹툰",
+            "프랜차이즈",
         ),
     ),
     MarketTrendCategory(
-        category="팝업/공간",
-        frame="팝업이 팬덤 소비의 기본 동선으로 자리매김",
-        implication="극장 로비와 상권 거점에서 한정 굿즈·포토존·예매 동선을 묶는 실험 여지가 큼.",
+        category="콜라보/협업",
+        frame="브랜드·IP 간 콜라보와 제휴로 팬덤·상권을 교차 확장",
+        implication="롯데컬처웍스 IP·극장 공간을 활용한 브랜드 협업·제휴 기획의 벤치마크로 활용.",
         keywords=(
-            "팝업",
-            "팝업스토어",
-            "오픈런",
-            "팬덤",
-            "한정 굿즈",
-            "포토카드",
-            "성수",
-            "명동",
-            "오프라인 매장",
-            "브랜드 체험",
-            "지역 관광",
+            "콜라보",
+            "컬래버",
+            "콜라보레이션",
+            "협업",
+            "협력",
+            "제휴",
+            "파트너십",
+            "합작",
+            "공동 기획",
+            "맞손",
+            "손잡",
+        ),
+    ),
+    MarketTrendCategory(
+        category="버추얼·AR/VR",
+        frame="버추얼 휴먼·메타버스·AR/VR 등 가상 융합 콘텐츠 부상",
+        implication="가상 IP·실감 기술을 극장 상영·전시 경험에 접목하는 신기술 트렌드로 모니터링.",
+        keywords=(
+            "버추얼",
+            "가상현실",
+            "증강현실",
+            "확장현실",
+            "메타버스",
+            "디지털휴먼",
+            "버추얼휴먼",
+            "홀로그램",
+            "디지털 트윈",
+            "AR",
+            "VR",
+            "XR",
         ),
     ),
 )
@@ -193,14 +252,130 @@ def market_trend_from_article(article: Article, category: MarketTrendCategory) -
     )
 
 
+# 카테고리 내부 정렬 우선순위(요청 기준): 신사업 > 연관성 > 대형 기사 > 단독/특보 > 최신순.
+# 가중치를 충분히 벌려 사실상 사전식(lexicographic) 우선순위처럼 동작하게 한다.
+NEW_BUSINESS_SIGNALS = (
+    "신사업",
+    "신규",
+    "런칭",
+    "론칭",
+    "출범",
+    "최초",
+    "진출",
+    "출시",
+    "확장",
+    "외연 확대",
+    "영토 확장",
+    "가속",
+    "본격화",
+    "도약",
+    "개시",
+    "신설",
+    "다각화",
+)
+RELEVANCE_SIGNALS = (
+    "극장",
+    "영화",
+    "영화관",
+    "시네마",
+    "멀티플렉스",
+    "스크린",
+    "상영",
+    "특별관",
+    "롯데",
+    "컬처웍스",
+    "롯데시네마",
+)
+SCOOP_MARKERS = ("단독", "특보", "속보", "exclusive")
+MAJOR_OUTLETS = (
+    "연합뉴스",
+    "조선일보",
+    "중앙일보",
+    "동아일보",
+    "한국경제",
+    "매일경제",
+    "전자신문",
+    "한겨레",
+    "경향신문",
+    "머니투데이",
+    "서울경제",
+    "이데일리",
+    "뉴스1",
+    "뉴시스",
+    "KBS",
+    "MBC",
+    "SBS",
+    "YTN",
+    "디지털데일리",
+    "ZDNet",
+)
+
+NEW_BUSINESS_SCORE = 1000.0
+RELEVANCE_SCORE_PER_HIT = 100.0
+RELEVANCE_SCORE_CAP = 300.0
+MAJOR_OUTLET_SCORE = 80.0
+SCOOP_SCORE = 30.0
+RECENCY_SCORE_MAX = 20.0
+MARKET_TREND_RECENCY_DAYS = 7
+
+
+def _is_major_outlet(source: str) -> bool:
+    source = source or ""
+    return any(outlet in source for outlet in MAJOR_OUTLETS)
+
+
+def _recency_score(
+    published_at: datetime | None,
+    now: datetime,
+    window_days: int = MARKET_TREND_RECENCY_DAYS,
+) -> float:
+    if published_at is None:
+        return 0.0
+    delta_days = (now - published_at).total_seconds() / 86400.0
+    if delta_days <= 0:
+        return RECENCY_SCORE_MAX
+    if delta_days >= window_days:
+        return 0.0
+    return RECENCY_SCORE_MAX * (window_days - delta_days) / window_days
+
+
+def _is_stale(published_at: datetime | None, now: datetime, window_days: int) -> bool:
+    # 날짜가 명시된 기사만 기간으로 거른다. 날짜 불명은 버리지 않고 최신순에서 후순위로 둔다.
+    if published_at is None:
+        return False
+    return (now - published_at).total_seconds() > window_days * 86400.0
+
+
+def _priority_score(article: Article, now: datetime) -> float:
+    text = _article_text(article)
+    score = 0.0
+    if _keyword_hits(text, NEW_BUSINESS_SIGNALS):
+        score += NEW_BUSINESS_SCORE
+    relevance_hits = len(_keyword_hits(text, RELEVANCE_SIGNALS))
+    score += min(relevance_hits * RELEVANCE_SCORE_PER_HIT, RELEVANCE_SCORE_CAP)
+    if _is_major_outlet(article.source):
+        score += MAJOR_OUTLET_SCORE
+    if _keyword_hits(text, SCOOP_MARKERS):
+        score += SCOOP_SCORE
+    score += _recency_score(article.published_at, now)
+    return score
+
+
 def build_market_trends(
     articles: Sequence[Article],
     limit_per_category: int = 3,
     ai_command: str | Sequence[str] | None = None,
+    now: datetime | None = None,
+    recency_days: int = MARKET_TREND_RECENCY_DAYS,
 ) -> list[MarketTrendItem]:
-    buckets: dict[str, list[MarketTrendItem]] = {category.category: [] for category in CATEGORIES}
+    now = now or datetime.now(timezone.utc)
+    buckets: dict[str, list[tuple[float, MarketTrendItem]]] = {
+        category.category: [] for category in CATEGORIES
+    }
     seen_urls: set[str] = set()
     for article in articles:
+        if _is_stale(article.published_at, now, recency_days):
+            continue
         category = classify_market_trend_article(article)
         if category is None:
             continue
@@ -208,16 +383,20 @@ def build_market_trends(
         if dedupe_key in seen_urls:
             continue
         seen_urls.add(dedupe_key)
-        buckets[category.category].append(market_trend_from_article(article, category))
+        score = _priority_score(article, now)
+        buckets[category.category].append((score, market_trend_from_article(article, category)))
 
     items: list[MarketTrendItem] = []
     for category in CATEGORIES:
-        category_items = sorted(
+        ranked = sorted(
             buckets[category.category],
-            key=lambda item: item.published_at or datetime.min.replace(tzinfo=timezone.utc),
+            key=lambda pair: (
+                pair[0],
+                pair[1].published_at or datetime.min.replace(tzinfo=timezone.utc),
+            ),
             reverse=True,
         )
-        items.extend(category_items[:limit_per_category])
+        items.extend(item for _, item in ranked[:limit_per_category])
     return enrich_market_trends_with_ai(items, command=ai_command)
 
 

@@ -31,7 +31,7 @@ def test_market_trend_views_preserve_frame_note_and_implication():
         [
             {
                 "content_kind": "market_trend",
-                "category": "팝업/공간",
+                "category": "공간 사업",
                 "title": "팝업이 팬덤 소비 동선으로 이동",
                 "url": "https://example.com/popup",
                 "source": "Example",
@@ -45,7 +45,7 @@ def test_market_trend_views_preserve_frame_note_and_implication():
     )
 
     assert views[0]["content_kind"] == "market_trend"
-    assert views[0]["category"] == "팝업/공간"
+    assert views[0]["category"] == "공간 사업"
     assert views[0]["frame"] == "팝업은 기본 동선"
     assert views[0]["implication"].startswith("극장")
     assert views[0]["keywords"] == ["팝업", "팬덤"]
@@ -54,15 +54,15 @@ def test_market_trend_views_preserve_frame_note_and_implication():
 def test_build_market_trend_sections_uses_business_category_order():
     build = load_site_build_module()
     trends = [
-        {"category": "팝업/공간", "title": "팝업"},
-        {"category": "체험형 콘텐츠 + 공연", "title": "공연"},
-        {"category": "IP/OSMU", "title": "IP"},
+        {"category": "공간 사업", "title": "팝업"},
+        {"category": "체험형 콘텐츠", "title": "체험"},
+        {"category": "IP 사업", "title": "IP"},
     ]
 
     sections = build.build_market_trend_sections(trends)
 
-    assert [section["title"] for section in sections] == ["체험형 콘텐츠 + 공연", "IP/OSMU", "팝업/공간"]
-    assert sections[0]["items"][0]["title"] == "공연"
+    assert [section["title"] for section in sections] == ["체험형 콘텐츠", "공간 사업", "IP 사업"]
+    assert sections[0]["items"][0]["title"] == "체험"
 
 
 def test_build_community_sections_groups_by_source_order_and_limits_items():
@@ -244,14 +244,14 @@ def test_template_renders_market_and_community_sections_without_dict_method_coll
             }
         ],
         policy_items=[],
-        market_trends=[{"category": "체험형 콘텐츠 + 공연", "title": "공연형 팝업"}],
+        market_trends=[{"category": "체험형 콘텐츠", "title": "공연형 팝업"}],
         market_trend_sections=[
             {
-                "title": "체험형 콘텐츠 + 공연",
+                "title": "체험형 콘텐츠",
                 "count": 1,
                 "items": [
                     {
-                        "category": "체험형 콘텐츠 + 공연",
+                        "category": "체험형 콘텐츠",
                         "title": "공연형 팝업",
                         "url": "https://example.com/trend",
                         "source": "테스트뉴스",
@@ -275,7 +275,7 @@ def test_template_renders_market_and_community_sections_without_dict_method_coll
         updated_at="2026년 05월 20일 10:00",
     )
 
-    assert "체험형 콘텐츠 + 공연" in html
+    assert "체험형 콘텐츠" in html
     assert "공연형 팝업" in html
     assert "무코" in html
     assert "와일드 씽 반응" in html

@@ -36,7 +36,13 @@ DATA_SNAPSHOT_PATHS = (
 )
 KST = ZoneInfo("Asia/Seoul")
 LEGACY_COMMUNITY_SOURCES = {"익스트림무비"}
-MARKET_TREND_SECTION_ORDER = ("체험형 콘텐츠 + 공연", "IP/OSMU", "팝업/공간")
+MARKET_TREND_SECTION_ORDER = (
+    "체험형 콘텐츠",
+    "공간 사업",
+    "IP 사업",
+    "콜라보/협업",
+    "버추얼·AR/VR",
+)
 COMMUNITY_SECTION_ORDER = (
     "무코",
     "익스트림무비",

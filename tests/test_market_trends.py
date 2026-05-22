@@ -43,9 +43,9 @@ def test_classify_market_trend_article_matches_reference_categories():
         "팝업스토어가 팬덤 소비의 기본 동선으로 자리매김",
     )
 
-    assert classify_market_trend_article(immersive).category == "체험형 콘텐츠 + 공연"
-    assert classify_market_trend_article(ip).category == "IP/OSMU"
-    assert classify_market_trend_article(popup).category == "팝업/공간"
+    assert classify_market_trend_article(immersive).category == "체험형 콘텐츠"
+    assert classify_market_trend_article(ip).category == "IP 사업"
+    assert classify_market_trend_article(popup).category == "공간 사업"
 
 
 def test_classify_market_trend_article_does_not_match_ip_inside_english_words():
@@ -65,17 +65,18 @@ def test_classify_market_trend_article_ignores_search_query_without_context():
 
 
 def test_build_market_trends_creates_business_notes_and_limits_per_category():
+    now = datetime(2026, 5, 21, tzinfo=timezone.utc)
     articles = [
         article("바우어랩 이머시브 콘텐츠 올빗 공개", "공간 재해석과 참여형 스토리텔링"),
         article("선거 테마 야외 방탈출 운영", "공공 콘텐츠를 게임 문화 체험과 접목"),
         article("아이돌 팝업스토어 오픈런", "한정 굿즈와 포토카드 중심의 팬덤 문화"),
-        article("웹툰 IP 팝업에 1만5000명 방문", "지역 관광 수요를 견인"),
+        article("웹툰 IP OSMU 라이선스 확장", "캐릭터 굿즈 사업 강화"),
         article("일반 배우 인터뷰", "시장동향 키워드 없음"),
     ]
 
-    trends = build_market_trends(articles, limit_per_category=1)
+    trends = build_market_trends(articles, limit_per_category=1, now=now)
 
-    assert [item.category for item in trends] == ["체험형 콘텐츠 + 공연", "IP/OSMU", "팝업/공간"]
+    assert [item.category for item in trends] == ["체험형 콘텐츠", "공간 사업", "IP 사업"]
     assert all(item.frame for item in trends)
     assert all(item.note for item in trends)
     assert all(item.implication for item in trends)
@@ -85,7 +86,7 @@ def test_build_market_trends_creates_business_notes_and_limits_per_category():
 def test_enrich_market_trends_without_ai_command_keeps_rule_based_summary():
     item = MarketTrendItem(
         id="m1",
-        category="팝업/공간",
+        category="공간 사업",
         title="아이돌 팝업스토어 오픈런",
         url="https://example.com/popup",
         source="테스트뉴스",
@@ -104,7 +105,7 @@ def test_enrich_market_trends_without_ai_command_keeps_rule_based_summary():
 def test_enrich_market_trends_uses_ai_json_when_command_succeeds():
     item = MarketTrendItem(
         id="m1",
-        category="팝업/공간",
+        category="공간 사업",
         title="아이돌 팝업스토어 오픈런",
         url="https://example.com/popup",
         source="테스트뉴스",
@@ -131,7 +132,7 @@ def test_enrich_market_trends_uses_ai_json_when_command_succeeds():
 def test_enrich_market_trends_falls_back_when_ai_command_fails():
     item = MarketTrendItem(
         id="m1",
-        category="IP/OSMU",
+        category="IP 사업",
         title="티니핑 IP 확장 가속화",
         url="https://example.com/ip",
         source="테스트뉴스",
@@ -300,3 +301,46 @@ def test_fetch_market_trend_articles_no_fallback_returns_empty_on_failure(monkey
     )
 
     assert out == []
+
+
+def test_build_market_trends_ranks_new_business_above_others_within_category():
+    now = datetime(2026, 5, 21, tzinfo=timezone.utc)
+    new_biz = article(
+        "성수 팝업스토어 신규 런칭",
+        "복합문화공간으로 오프라인 매장 확장",
+        url="https://example.com/new",
+    )
+    relevant = article(
+        "성수 팝업스토어 포토존 운영",
+        "롯데 영화 극장과 연계한 상권 거점",
+        url="https://example.com/rel",
+    )
+    plain = article(
+        "성수 팝업스토어 운영 안내",
+        "포토존과 포토카드 중심 구성",
+        url="https://example.com/plain",
+    )
+
+    trends = build_market_trends([plain, relevant, new_biz], limit_per_category=3, now=now)
+    space = [item.url for item in trends if item.category == "공간 사업"]
+
+    # 신사업 신호 > 연관성(롯데·영화·극장) > 그 외
+    assert space == [
+        "https://example.com/new",
+        "https://example.com/rel",
+        "https://example.com/plain",
+    ]
+
+
+def test_build_market_trends_drops_articles_older_than_window():
+    now = datetime(2026, 5, 21, tzinfo=timezone.utc)
+    fresh = article("성수 팝업스토어 오픈런", "한정 굿즈 중심 구성", url="https://example.com/fresh")
+    fresh.published_at = datetime(2026, 5, 20, tzinfo=timezone.utc)
+    stale = article("옛 팝업스토어 오픈런 회고", "지난 시즌 한정 굿즈", url="https://example.com/stale")
+    stale.published_at = datetime(2026, 5, 1, tzinfo=timezone.utc)  # 20일 전 → 7일 창 밖
+
+    trends = build_market_trends([fresh, stale], now=now, recency_days=7)
+    urls = {item.url for item in trends}
+
+    assert "https://example.com/fresh" in urls
+    assert "https://example.com/stale" not in urls

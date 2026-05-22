@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from crawler.briefing_models import BoxOfficeMovie, MarketSnapshot, ReservationMovie, ReservationSnapshot
 from crawler.main import (
@@ -13,6 +13,9 @@ from crawler.models import Article
 
 
 def test_collect_market_trend_items_combines_existing_articles_with_naver(monkeypatch):
+    # collect_market_trend_items는 now를 주입할 수 없으므로(내부 datetime.now 사용)
+    # 7일 하드 필터에 걸리지 않도록 기사 날짜를 현재 기준 상대값으로 둔다.
+    recent = datetime.now(timezone.utc) - timedelta(hours=12)
     base_article = Article(
         id="base",
         source="테스트뉴스",
@@ -20,7 +23,7 @@ def test_collect_market_trend_items_combines_existing_articles_with_naver(monkey
         title="이머시브 콘텐츠 올빗 공개",
         summary="공간 재해석과 참여형 스토리텔링",
         url="https://example.com/base",
-        published_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+        published_at=recent,
     )
     naver_article = Article(
         id="naver",
@@ -29,7 +32,7 @@ def test_collect_market_trend_items_combines_existing_articles_with_naver(monkey
         title="아이돌 팝업스토어 오픈런",
         summary="한정 굿즈와 팬덤 소비",
         url="https://example.com/naver",
-        published_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+        published_at=recent,
     )
 
     def fake_fetch(client_id, client_secret):
@@ -44,7 +47,7 @@ def test_collect_market_trend_items_combines_existing_articles_with_naver(monkey
 
     trends = collect_market_trend_items([base_article])
 
-    assert [trend.category for trend in trends] == ["체험형 콘텐츠 + 공연", "팝업/공간"]
+    assert [trend.category for trend in trends] == ["체험형 콘텐츠", "공간 사업"]
     assert {trend.title for trend in trends} == {
         "이머시브 콘텐츠 올빗 공개",
         "아이돌 팝업스토어 오픈런",

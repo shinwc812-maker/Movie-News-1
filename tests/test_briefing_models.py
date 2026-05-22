@@ -139,7 +139,7 @@ def test_community_and_policy_models_serialize_minimal_fields():
 def test_market_trend_item_serializes_business_summary():
     item = MarketTrendItem(
         id="m1",
-        category="팝업/공간",
+        category="공간 사업",
         title="팝업이 팬덤 소비 동선으로 이동",
         url="https://example.com/popup",
         source="Example",
@@ -153,7 +153,7 @@ def test_market_trend_item_serializes_business_summary():
     restored = MarketTrendItem.from_dict(item.to_dict())
 
     assert restored.content_kind == "market_trend"
-    assert restored.category == "팝업/공간"
+    assert restored.category == "공간 사업"
     assert restored.implication.startswith("극장")
     assert restored.keywords == ["팝업", "팬덤"]
     assert restored.published_at is not None

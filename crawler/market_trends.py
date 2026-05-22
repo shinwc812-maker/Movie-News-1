@@ -9,6 +9,7 @@ import re
 import shlex
 import subprocess
 import sys
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -512,6 +513,41 @@ def fetch_market_trend_articles_from_public_naver(
     return articles
 
 
+NAVER_NEWS_RETRY_ATTEMPTS = 3
+NAVER_NEWS_RETRY_BACKOFF = 0.6  # 초, 시도 횟수에 비례해 증가
+
+
+def _naver_news_get_with_retry(
+    client: httpx.Client,
+    query: str,
+    display: int,
+    client_id: str,
+    client_secret: str,
+    *,
+    attempts: int = NAVER_NEWS_RETRY_ATTEMPTS,
+    backoff: float = NAVER_NEWS_RETRY_BACKOFF,
+) -> httpx.Response:
+    """Naver 오픈 뉴스 API 호출을 재시도(레이트리밋·일시 오류 대비)."""
+    last_exc: Exception | None = None
+    for attempt in range(attempts):
+        try:
+            response = client.get(
+                NAVER_NEWS_URL,
+                params={"query": query, "display": display, "sort": "date"},
+                headers={
+                    "X-Naver-Client-Id": client_id,
+                    "X-Naver-Client-Secret": client_secret,
+                },
+            )
+            response.raise_for_status()
+            return response
+        except Exception as exc:  # noqa: BLE001
+            last_exc = exc
+            if attempt + 1 < attempts:
+                time.sleep(backoff * (attempt + 1))
+    raise last_exc if last_exc is not None else RuntimeError("naver news request failed")
+
+
 def fetch_market_trend_articles_from_naver(
     client_id: str | None,
     client_secret: str | None,
@@ -523,23 +559,15 @@ def fetch_market_trend_articles_from_naver(
         print("[warn] NAVER_CLIENT_ID/SECRET missing — skipping market trend news", file=sys.stderr)
         return fetch_market_trend_fallback_articles(queries, display) if public_fallback else []
     articles: list[Article] = []
-    try:
-        with httpx.Client(timeout=15.0, follow_redirects=True) as client:
-            for query in queries:
-                response = client.get(
-                    NAVER_NEWS_URL,
-                    params={"query": query, "display": display, "sort": "date"},
-                    headers={
-                        "X-Naver-Client-Id": client_id,
-                        "X-Naver-Client-Secret": client_secret,
-                    },
-                )
-                response.raise_for_status()
+    # 쿼리별로 재시도하고, 한 쿼리 실패가 다른 쿼리 결과를 버리지 않도록 격리한다.
+    with httpx.Client(timeout=15.0, follow_redirects=True) as client:
+        for query in queries:
+            try:
+                response = _naver_news_get_with_retry(client, query, display, client_id, client_secret)
                 articles.extend(parse_naver_news_items(response.json(), query=query))
-    except Exception as exc:  # noqa: BLE001
-        print(f"[warn] market trend news fetch failed — {exc}", file=sys.stderr)
-        if public_fallback and not articles:
-            return fetch_market_trend_fallback_articles(queries, display)
+            except Exception as exc:  # noqa: BLE001
+                print(f"[warn] market trend news fetch failed for {query!r} — {exc}", file=sys.stderr)
+    # 오픈 API로 한 건도 못 모았으면 공개검색으로 폴백
     if public_fallback and not articles:
         return fetch_market_trend_fallback_articles(queries, display)
     return articles

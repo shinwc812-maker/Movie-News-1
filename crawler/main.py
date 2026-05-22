@@ -254,15 +254,18 @@ def collect_focused_movie_news(
 ) -> list[Article]:
     terms = focused_movie_news_terms(market, reservation)
     if not terms:
+        print("Focused movie news: no priority(Lotte) titles to search")
         return []
+    # public_fallback=True: Naver 오픈 API가 실패/빈응답이어도 공개검색으로 폴백해
+    # 롯데 우선작(예: 와일드 씽) 공식 기사를 놓치지 않는다.
     articles = fetch_market_trend_articles_from_naver(
         os.environ.get("NAVER_CLIENT_ID"),
         os.environ.get("NAVER_CLIENT_SECRET"),
         queries=terms,
         display=5,
-        public_fallback=False,
+        public_fallback=True,
     )
-    print(f"Focused movie news: {len(articles)}")
+    print(f"Focused movie news: {len(articles)} articles for terms {terms}")
     return articles
 
 

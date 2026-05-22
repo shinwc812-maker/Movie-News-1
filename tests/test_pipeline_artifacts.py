@@ -140,7 +140,7 @@ def test_collect_focused_movie_news_fetches_naver_news_for_lotte_titles(monkeypa
     def fake_fetch(client_id, client_secret, queries, display, public_fallback):
         assert queries == ["와일드 씽", "와일드씽"]
         assert display == 5
-        assert public_fallback is False
+        assert public_fallback is True
         return [article]
 
     monkeypatch.setenv("NAVER_CLIENT_ID", "id")

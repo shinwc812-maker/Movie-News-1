@@ -1,11 +1,15 @@
 from datetime import datetime, timezone
 import sys
 
+import httpx
+
 from crawler.briefing_models import MarketTrendItem
 from crawler.market_trends import (
+    _naver_news_get_with_retry,
     build_market_trends,
     classify_market_trend_article,
     enrich_market_trends_with_ai,
+    fetch_market_trend_articles_from_naver,
     parse_google_news_rss_items,
     parse_naver_news_items,
     parse_public_naver_news_items,
@@ -233,3 +237,66 @@ def test_parse_google_news_rss_items_preserves_spaces_before_regular_words():
 
     assert articles[0].title == "K팝 팬들이 팝업 오픈런에 나서는 이유"
     assert articles[0].summary == "대박 터진 이베이 사례와 구분되어야 한다"
+
+
+def test_naver_news_get_with_retry_recovers_after_transient_failure(monkeypatch):
+    monkeypatch.setattr("crawler.market_trends.time.sleep", lambda *a, **k: None)
+    calls = {"n": 0}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return httpx.Response(503)  # 첫 시도 실패
+        return httpx.Response(200, json={"items": [{
+            "title": "와일드 씽 시사회",
+            "description": "롯데엔터테인먼트 공식",
+            "originallink": "https://example.com/wild",
+            "pubDate": "Tue, 20 May 2026 10:00:00 +0900",
+        }]})
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    response = _naver_news_get_with_retry(client, "와일드 씽", 5, "id", "secret")
+    articles = parse_naver_news_items(response.json(), query="와일드 씽")
+
+    assert calls["n"] == 2  # 재시도로 성공
+    assert articles[0].title == "와일드 씽 시사회"
+
+
+def test_fetch_market_trend_articles_falls_back_to_public_when_open_api_fails(monkeypatch):
+    monkeypatch.setattr("crawler.market_trends.time.sleep", lambda *a, **k: None)
+
+    def boom(*args, **kwargs):
+        raise RuntimeError("naver open api down")
+
+    monkeypatch.setattr("crawler.market_trends._naver_news_get_with_retry", boom)
+    sentinel = [article("와일드 씽 공개검색 결과")]
+    monkeypatch.setattr(
+        "crawler.market_trends.fetch_market_trend_fallback_articles",
+        lambda queries, display: sentinel,
+    )
+
+    out = fetch_market_trend_articles_from_naver(
+        "id", "secret", queries=["와일드 씽"], display=5, public_fallback=True,
+    )
+
+    assert out == sentinel  # 오픈 API 실패 → 공개검색 폴백으로 확보
+
+
+def test_fetch_market_trend_articles_no_fallback_returns_empty_on_failure(monkeypatch):
+    monkeypatch.setattr("crawler.market_trends.time.sleep", lambda *a, **k: None)
+
+    def boom(*args, **kwargs):
+        raise RuntimeError("naver open api down")
+
+    monkeypatch.setattr("crawler.market_trends._naver_news_get_with_retry", boom)
+
+    def fail_fallback(queries, display):
+        raise AssertionError("public_fallback=False면 폴백을 쓰면 안 됨")
+
+    monkeypatch.setattr("crawler.market_trends.fetch_market_trend_fallback_articles", fail_fallback)
+
+    out = fetch_market_trend_articles_from_naver(
+        "id", "secret", queries=["와일드 씽"], display=5, public_fallback=False,
+    )
+
+    assert out == []

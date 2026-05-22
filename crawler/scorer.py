@@ -51,7 +51,10 @@ def _find_matches(text: str, keywords: list[str]) -> list[str]:
 
 
 def score_article(
-    article: Article, keywords: dict, now: datetime
+    article: Article,
+    keywords: dict,
+    now: datetime,
+    boxoffice_titles: Optional[list[str]] = None,
 ) -> tuple[int, float, list[str]]:
     """기사 하나의 (tier, score, matched_keywords)를 계산한다.
 
@@ -92,6 +95,14 @@ def score_article(
         score += len(t3_hits) * t3.get("weight", 0)
         matched.extend(t3_hits)
 
+    # 박스오피스 가점: 어제(KST) KOFIC TOP 10 영화명이 본문에 있으면 고정 가점
+    if boxoffice_titles:
+        bo = keywords.get("boxoffice_boost", {})
+        bo_hits = _find_matches(text, boxoffice_titles)
+        if bo_hits:
+            score += bo.get("weight", 0)
+            matched.extend(bo_hits)
+
     # 최신성 보너스: 발행 후 hours_to_zero 시간까지 선형 감소
     recency = keywords.get("recency_boost", {})
     if article.published_at is not None:
@@ -107,13 +118,17 @@ def score_article(
     return tier, score, matched
 
 
-def score_all(articles: list[Article], now: Optional[datetime] = None) -> None:
+def score_all(
+    articles: list[Article],
+    now: Optional[datetime] = None,
+    boxoffice_titles: Optional[list[str]] = None,
+) -> None:
     """모든 기사에 tier/score/matched_keywords를 in-place로 채운다."""
     if now is None:
         now = datetime.now(timezone.utc)
     keywords = load_keywords()
     for article in articles:
-        tier, score, matched = score_article(article, keywords, now)
+        tier, score, matched = score_article(article, keywords, now, boxoffice_titles)
         article.tier = tier
         article.score = score
         article.matched_keywords = matched

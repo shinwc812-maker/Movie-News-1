@@ -51,6 +51,12 @@ tier3_distributors:
     - Amazon MGM
     - Amazon Studios
 
+# 박스오피스 가점: 어제(KST) KOFIC 일별 박스오피스 TOP 10 영화명이
+# 기사 제목/요약에 들어가면 더해지는 점수 (현재 흥행작 = 시의성 높은 기사).
+# tier3(100)보다 크고 tier2(1000)보다 작아 회사 우선순위는 유지된다.
+boxoffice_boost:
+  weight: 300
+
 recency_boost:
   max_bonus: 50
   hours_to_zero: 48

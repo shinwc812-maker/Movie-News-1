@@ -5,6 +5,7 @@ import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+from crawler.boxoffice import fetch_boxoffice_titles
 from crawler.dedupe import dedupe
 from crawler.models import Article
 from crawler.scorer import score_all
@@ -90,7 +91,8 @@ def main() -> None:
     recent = filter_recent(articles)
     print(f"Within last {MAX_AGE_HOURS}h: {len(recent)} (filtered out {len(articles) - len(recent)})")
 
-    score_all(recent)
+    boxoffice_titles = fetch_boxoffice_titles()
+    score_all(recent, boxoffice_titles=boxoffice_titles)
 
     deduped = dedupe(recent)
     print(f"Before dedupe: {len(recent)}, After dedupe: {len(deduped)}")

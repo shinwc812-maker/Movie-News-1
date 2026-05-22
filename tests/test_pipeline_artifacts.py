@@ -6,9 +6,11 @@ from crawler.main import (
     collect_focused_movie_news,
     collect_market_trend_items,
     community_search_terms,
+    filter_recent,
     focused_movie_news_terms,
     save_json_items,
 )
+from crawler.market_trends import MARKET_TREND_RECENCY_DAYS
 from crawler.models import Article
 
 
@@ -52,6 +54,27 @@ def test_collect_market_trend_items_combines_existing_articles_with_naver(monkey
         "이머시브 콘텐츠 올빗 공개",
         "아이돌 팝업스토어 오픈런",
     }
+
+
+def test_filter_recent_supports_wider_window_for_market_trends():
+    now = datetime(2026, 5, 22, tzinfo=timezone.utc)
+    fresh = Article(
+        id="f", source="s", country="KR", title="48h내", summary="",
+        url="https://example.com/f", published_at=now - timedelta(hours=24),
+    )
+    five_days = Article(
+        id="d", source="s", country="KR", title="5일전", summary="",
+        url="https://example.com/d", published_at=now - timedelta(days=5),
+    )
+
+    # 기본 48h: 5일 전 기사는 제외(공식 브리핑)
+    assert {a.id for a in filter_recent([fresh, five_days], now=now)} == {"f"}
+
+    # 7일 창: 5일 전 기사도 포함(시장 동향 live/ip/팝업)
+    wide = filter_recent(
+        [fresh, five_days], now=now, max_age_hours=MARKET_TREND_RECENCY_DAYS * 24
+    )
+    assert {a.id for a in wide} == {"f", "d"}
 
 
 def test_save_json_items_creates_parent_and_writes_utf8(tmp_path):

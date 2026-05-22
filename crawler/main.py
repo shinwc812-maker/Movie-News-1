@@ -19,6 +19,7 @@ from crawler.kobis import (
     save_reservation_snapshot,
 )
 from crawler.market_trends import (
+    MARKET_TREND_RECENCY_DAYS,
     build_market_trends,
     fetch_market_trend_articles_from_naver,
     save_market_trends,
@@ -70,15 +71,20 @@ async def gather_articles(sources: list[Source]) -> list[Article]:
     return articles
 
 
-def filter_recent(articles: list[Article], now: datetime | None = None) -> list[Article]:
-    """발행 후 MAX_AGE_HOURS 이내 기사만 남긴다.
+def filter_recent(
+    articles: list[Article],
+    now: datetime | None = None,
+    max_age_hours: int = MAX_AGE_HOURS,
+) -> list[Article]:
+    """발행 후 max_age_hours 이내 기사만 남긴다.
 
     발행일을 알 수 없는 기사는 유지한다(8개 소스 모두 '최신 뉴스' 목록/피드에서
-    수집하므로 날짜 미상이어도 사실상 최근 기사임).
+    수집하므로 날짜 미상이어도 사실상 최근 기사임). 공식 브리핑은 48h(MAX_AGE_HOURS),
+    시장 동향(live/ip/팝업)은 매일 기사가 올라오지 않으므로 더 넓은 창을 쓴다.
     """
     if now is None:
         now = datetime.now(timezone.utc)
-    cutoff = now - timedelta(hours=MAX_AGE_HOURS)
+    cutoff = now - timedelta(hours=max_age_hours)
 
     kept: list[Article] = []
     for article in articles:
@@ -305,7 +311,10 @@ def main() -> None:
 
     save_articles(deduped)
 
-    market_trends = collect_market_trend_items(deduped)
+    # 시장 동향(live/ip/팝업)은 매일 기사가 올라오지 않으므로 48h가 아닌 7일 창을 쓴다.
+    trend_source = filter_recent(articles, max_age_hours=MARKET_TREND_RECENCY_DAYS * 24)
+    print(f"Market trend source (last {MARKET_TREND_RECENCY_DAYS}d): {len(trend_source)} articles")
+    market_trends = collect_market_trend_items(trend_source)
     save_market_trends(market_trends, MARKET_TRENDS_PATH)
     print(f"Market trends: {len(market_trends)}")
 

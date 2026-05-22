@@ -355,7 +355,11 @@ class NaverPublicCafeSearchSource:
 
 @dataclass
 class NaverPublicWebSearchSource:
-    """Public Naver web search fallback for community domains such as X."""
+    """Public Naver web search fallback for allowed community domains.
+
+    Note: SNS platforms (Instagram, X/Twitter, Facebook) are intentionally not
+    collected. This generic source is currently unused in production.
+    """
 
     source_name: str
     query_suffix: str
@@ -706,8 +710,8 @@ class MukoDirectSearchSource:
 class NaverSearchCommunitySource:
     """Naver Search API backed community source.
 
-    Use `cafearticle` for Naver Cafe posts and `webkr` for public web search
-    fallbacks such as X/Twitter links exposed in search snippets.
+    Use `cafearticle` for Naver Cafe posts. (`webkr` web-search fallback exists
+    but SNS platforms like Instagram/X/Facebook are intentionally not collected.)
     """
 
     source_name: str
@@ -879,15 +883,6 @@ def _naver_sources_from_env() -> list[NaverSearchCommunitySource]:
             base_query_suffix="영화 관객 반응 후기",
             display=10,
         ),
-        NaverSearchCommunitySource(
-            source_name="X/Twitter",
-            endpoint="webkr",
-            client_id=client_id,
-            client_secret=client_secret,
-            base_query_suffix="site:x.com OR site:twitter.com 영화 반응 후기",
-            display=10,
-            allowed_domains=("x.com", "twitter.com"),
-        ),
     ]
 
 
@@ -900,17 +895,12 @@ def _youtube_sources_from_env() -> list[YouTubeCommunitySource]:
 
 
 COMMUNITY_SOURCES = [ExtMovieCommunitySource()]
+# 주의: 인스타그램·X(트위터)·페이스북 등 SNS는 수집하지 않는다(약관·법적 리스크).
 PUBLIC_SEARCH_SOURCES = [
     MukoDirectSearchSource(),
     TheQooDirectSearchSource(),
     DCInsideDirectSearchSource(),
     NaverPublicCafeSearchSource(),
-    NaverPublicWebSearchSource(
-        source_name="X/Twitter",
-        query_suffix="site:x.com OR site:twitter.com 영화 반응 후기",
-        allowed_domains=("x.com", "twitter.com"),
-        required_path_fragments=("/status/",),
-    ),
 ]
 
 

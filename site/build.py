@@ -43,7 +43,6 @@ COMMUNITY_SECTION_ORDER = (
     "더쿠",
     "디시인사이드",
     "네이버카페",
-    "X/Twitter",
     "YouTube",
 )
 CURATION_STRATEGIC_KEYWORDS = (

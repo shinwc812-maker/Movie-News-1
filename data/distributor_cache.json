@@ -64,5 +64,13 @@
       "The Walt Disney Company Korea"
     ],
     "is_lotte": false
+  },
+  "살목지": {
+    "movie_code": "20254121",
+    "distributors": [
+      "(주)쇼박스",
+      "Showbox Corp"
+    ],
+    "is_lotte": false
   }
 }

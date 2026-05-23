@@ -72,5 +72,13 @@
       "Showbox Corp"
     ],
     "is_lotte": false
+  },
+  "슈퍼 마리오 갤럭시": {
+    "movie_code": "20259773",
+    "distributors": [
+      "유니버설픽쳐스인터내셔널 코리아(유)",
+      "Universal Pictures International Korea"
+    ],
+    "is_lotte": false
   }
 }

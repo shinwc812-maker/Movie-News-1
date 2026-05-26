@@ -1008,6 +1008,12 @@ footer {
   }
 }
 
+/* 전일 관객 TOP5 — 전일대비 증감 강조: 증가=빨강, 감소=파랑 (둘 다 굵게) */
+.audi-delta { font-weight: 800; }
+.audi-delta-up { color: #dc2626; }   /* 빨강 — 관객 증가 */
+.audi-delta-down { color: #1d4ed8; } /* 파랑 — 관객 감소 */
+.audi-delta-flat { color: inherit; font-weight: 600; }
+
 /* ===== 전체 수집 검색 아카이브 ===== */
 /* 평소엔 숨김. 검색 시에만 노출하고, 그때 일반 패널은 모두 숨겨 결과만 보이게 한다. */
 .search-archive-panel { display: none; }

@@ -211,7 +211,7 @@
             </div>
             <dl class="boxoffice-metrics">
               <div><dt>관객수</dt><dd>{{ movie.audi_count }}명</dd></div>
-              <div><dt>전일대비</dt><dd>{{ movie.audi_delta }} / 누적관객수: {{ movie.audi_acc }}명</dd></div>
+              <div><dt>전일대비</dt><dd><span class="audi-delta audi-delta-{{ movie.audi_delta_sign }}">{{ movie.audi_delta }}</span> / 누적관객수: {{ movie.audi_acc }}명</dd></div>
               {% if movie.seat_metrics_available %}
               <div><dt>좌석</dt><dd>좌석수: {{ movie.seat_count }}석 / 좌점율: {{ movie.seat_share }} / 좌판율: {{ movie.seat_sales_rate }}</dd></div>
               {% else %}

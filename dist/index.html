@@ -1014,6 +1014,12 @@ footer {
   }
 }
 
+/* 전일 관객 TOP5 — 전일대비 증감 강조: 증가=빨강, 감소=파랑 (둘 다 굵게) */
+.audi-delta { font-weight: 800; }
+.audi-delta-up { color: #dc2626; }   /* 빨강 — 관객 증가 */
+.audi-delta-down { color: #1d4ed8; } /* 파랑 — 관객 감소 */
+.audi-delta-flat { color: inherit; font-weight: 600; }
+
 /* ===== 전체 수집 검색 아카이브 ===== */
 /* 평소엔 숨김. 검색 시에만 노출하고, 그때 일반 패널은 모두 숨겨 결과만 보이게 한다. */
 .search-archive-panel { display: none; }
@@ -1078,7 +1084,7 @@ body.is-searching .search-archive-panel { display: block; }
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 26일 11:24 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 26일 11:49 (KST)</p>
   </div>
   <div class="topbar-tools">
     <form class="search-box" role="search" onsubmit="return RADAR.onSearchSubmit(event)">
@@ -1156,7 +1162,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 뉴스1
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1224,7 +1230,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 네이트
     </span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1241,7 +1247,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 마이데일리
     </span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1388,7 +1394,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
 
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
@@ -1405,7 +1411,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Rolling Stone
     </span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
 
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
@@ -1422,7 +1428,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
 
   <div class="chips"><span>Walt Disney</span></div>
@@ -1500,7 +1506,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 조선일보
     </span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
 
 </article>
@@ -1526,7 +1532,7 @@ body.is-searching .search-archive-panel { display: block; }
             </div>
             <dl class="boxoffice-metrics">
               <div><dt>관객수</dt><dd>517,011명</dd></div>
-              <div><dt>전일대비</dt><dd>▼60,503명 (-10.5%) / 누적관객수: 2,018,650명</dd></div>
+              <div><dt>전일대비</dt><dd><span class="audi-delta audi-delta-down">▼60,503명 (-10.5%)</span> / 누적관객수: 2,018,650명</dd></div>
 
               <div><dt>좌석</dt><dd>좌석수: 1,281,811석 / 좌점율: 59.6% / 좌판율: 40.33%</dd></div>
 
@@ -1540,7 +1546,7 @@ body.is-searching .search-archive-panel { display: block; }
             </div>
             <dl class="boxoffice-metrics">
               <div><dt>관객수</dt><dd>109,382명</dd></div>
-              <div><dt>전일대비</dt><dd>▼13,468명 (-11.0%) / 누적관객수: 1,184,609명</dd></div>
+              <div><dt>전일대비</dt><dd><span class="audi-delta audi-delta-down">▼13,468명 (-11.0%)</span> / 누적관객수: 1,184,609명</dd></div>
 
               <div><dt>좌석</dt><dd>좌석수: 360,604석 / 좌점율: 16.8% / 좌판율: 30.33%</dd></div>
 
@@ -1554,7 +1560,7 @@ body.is-searching .search-archive-panel { display: block; }
             </div>
             <dl class="boxoffice-metrics">
               <div><dt>관객수</dt><dd>38,095명</dd></div>
-              <div><dt>전일대비</dt><dd>▲10,505명 (+38.1%) / 누적관객수: 1,576,909명</dd></div>
+              <div><dt>전일대비</dt><dd><span class="audi-delta audi-delta-up">▲10,505명 (+38.1%)</span> / 누적관객수: 1,576,909명</dd></div>
 
               <div><dt>좌석</dt><dd>좌석수: 111,725석 / 좌점율: 5.2% / 좌판율: 34.10%</dd></div>
 
@@ -1568,7 +1574,7 @@ body.is-searching .search-archive-panel { display: block; }
             </div>
             <dl class="boxoffice-metrics">
               <div><dt>관객수</dt><dd>16,318명</dd></div>
-              <div><dt>전일대비</dt><dd>▼680명 (-4.0%) / 누적관객수: 1,558,581명</dd></div>
+              <div><dt>전일대비</dt><dd><span class="audi-delta audi-delta-down">▼680명 (-4.0%)</span> / 누적관객수: 1,558,581명</dd></div>
 
               <div><dt>좌석</dt><dd>좌석수: 90,994석 / 좌점율: 4.2% / 좌판율: 17.93%</dd></div>
 
@@ -1582,7 +1588,7 @@ body.is-searching .search-archive-panel { display: block; }
             </div>
             <dl class="boxoffice-metrics">
               <div><dt>관객수</dt><dd>8,147명</dd></div>
-              <div><dt>전일대비</dt><dd>▼1,854명 (-18.5%) / 누적관객수: 3,230,647명</dd></div>
+              <div><dt>전일대비</dt><dd><span class="audi-delta audi-delta-down">▼1,854명 (-18.5%)</span> / 누적관객수: 3,230,647명</dd></div>
 
               <div><dt>좌석</dt><dd>좌석수: 56,124석 / 좌점율: 2.6% / 좌판율: 14.52%</dd></div>
 
@@ -2006,7 +2012,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>IP 사업</span>
-    <em>39분 전</em>
+    <em>1시간 전</em>
   </div>
   <a class="trend-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5PLXFDSUxUSlZTSDBYamVMay1lcGZKX05vNkVIZHVHUUtZRDZVUmo5eG5Gb1V2RU1UNmlvdGZBT1FkNktvTlNCT21IWlE1WnNQWFoxdEhmaUpFMnkzOUtORA?oc=5" target="_blank" rel="noopener">플레이브, &#39;K탑스타&#39; 최고의 아이돌 탈환…인기 입증</a>
   <p class="trend-frame">게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장</p>
@@ -2050,7 +2056,7 @@ body.is-searching .search-archive-panel { display: block; }
           <article class="market-trend-card">
   <div class="trend-topline">
     <span>콜라보/협업</span>
-    <em>6일 전</em>
+    <em>2026.05.19</em>
   </div>
   <a class="trend-title" href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5rR1ZMWGpGVUxTWWxQRUt0Mk5pdFRyVE41YXZKZjI1T2tPQWx4X2N6ck1JTFVLUGNNbGg2VEItVUM1ZzJ3c1hGXzFCYWZhZlQ3R2hES2ctbmlCeUdPYXZMZC1raXNuc1p6YWZiOHM3eE3SAXRBVV95cUxPSnVrdTBtaTRPOTJlMnVjRXQ4QkRTNlpqcmJrMVI4WVVLQTJuTUNLei1IU0N1bXRIVE5WZG1KdHRwdnRuR0hlTGM3a1I0NDhab1BWaTBLNmhPbTY0NmtQZ1ZhMnA1WlNzc0hwRFhpSHBVVy16SQ?oc=5" target="_blank" rel="noopener">현대제철, 영화 스타워즈와 전기로 활용 컬래버 광고 공개</a>
   <p class="trend-frame">브랜드·IP 간 콜라보와 제휴로 팬덤·상권을 교차 확장</p>
@@ -2376,7 +2382,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE5oRnl1cE9qb2ozb09abGYtR09sOW5uT2tkNW80b2ZqNVBESDl5SzZKZUJlN1NMaF9qN2l5b0VGR2Jwa3hseUxTeFBzZW80eXVoOUp3cFBIZw?oc=5" target="_blank" rel="noopener">&#39;하균神&#39; 신하균, &#39;극한직업&#39; 제작사와 재회…&#39;와일드씽&#39; 히든카드 뜬다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴스1</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;하균神&#39; 신하균, &#39;극한직업&#39; 제작사와 재회…&#39;와일드씽&#39; 히든카드 뜬다 뉴스1 신하균이 말아주는 코미디…‘와일드 씽’서 ‘웃음 치트키’ 활약 기대 sports.donga.com &#39;와일드 씽&#39; 강동원 &#34;힙합이 저보다 어리더라고요&#34; v.daum.net ‘와일드 씽’ 강동원, 세기말 감성 속에 감춰둔 연기 자존심 [D:인터뷰] 데일리안 &#39;와일드 씽&#39; 강동원 발탁한 신하균, &#39;트라이앵글&#39; 키우고 사라졌다? iMBC 연예 신하균, &#39;와일드 씽&#39; 특별출연…역대급 웃음 폭탄 예고 네이트 강동원X박지현X엄태구 &#39;와일드 씽&#39;, 개봉 앞두고 예매율 2위…역조공 카페→무대인사 관심 톱스타뉴스 신하균 미정산 사태 촉발‥스캔들 터지자마자 잠수(와일드 씽) newsen.com ‘와일드 씽’ 강동원 “다시는 못할 듯”…45세의 헤드스핀 투혼 [SS인터뷰] sportsseoul.com</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -2400,7 +2406,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTFBoVUhUTVNVbk40d0ZPZmdxWVMyUFNfbHBCUmtMNVNGNThxMzdpb3FYbVI4S09iRENqX1N4SWZiMk9tRm9IeGxBYWExV3IwYzVjZkhR?oc=5" target="_blank" rel="noopener">신하균, &#39;와일드씽&#39;의 히든카드로 등장…&#39;하균신&#39;의 코믹 연기는?</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 네이트</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">신하균, &#39;와일드씽&#39;의 히든카드로 등장…&#39;하균신&#39;의 코믹 연기는? 네이트</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -2408,7 +2414,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE1qZmgzVDdmbTRPWTVtMWhRQWs1NDJJMDFKMElQTExrZXFtQUhoUHd2a2VOZjhjNVZGYTFBRTROQkZZamxTeVNEa19McjMzQlNZMW1naEdNQmNReFRlZWRyYjJTblJzdw?oc=5" target="_blank" rel="noopener">신하균, `와일드 씽` 특별출연…역대급 웃음 폭탄 예고</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 마이데일리</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">신하균, `와일드 씽` 특별출연…역대급 웃음 폭탄 예고 마이데일리</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -2456,7 +2462,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFBUUlFsY0U1NEtJQW9KZ0xiMHotRk1pUkxiMVdUZjNSck40YXJpbDhDOTVENzdySU43TE5lV3pWQTNuYnNkVWxnSXlfcXJYb24tLTJGbC1hb9IB-wFBVV95cUxON2gyNzBjbi1ucUZ4c3MyRHBRN2hYQ25vVzh1Ry04QU1CWXgyV2l2eVIzcThUM2FLREczZ3VNblR0elhSYkhySDJTVXUxdE5hX0RiLXk0YkpiaUpCbnNUaEx0cm0zTVM2ZUt4OEtuRE5ydnVmVUN4UHFQS3V3TzJCSUZmdDRSUTFZR0JHYksyb2ZoNDltaWpVVWxIMUt1Ym5XTmZzNjNLZkY2M2puYmpSZFVnam1BdmFiTjQwLTZOLU5NR09mMkZlM096TGVJU2ZkVzJ5NWdpY3lCTi1pQ0daU2NBNks5SjlWZjI2eWsxZ3FJZ2FqVndJbjV3WQ?oc=5" target="_blank" rel="noopener">&#39;연상호표 감염 스릴러&#39; 군체, 200만 관객 돌파…연휴 박스오피스 정상</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 데일리안</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;연상호표 감염 스릴러&#39; 군체, 200만 관객 돌파…연휴 박스오피스 정상 데일리안</p>
   <div class="chips"><span>군체</span></div>
@@ -2464,7 +2470,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9MLXNzTXFqUFgwQ05haTgtWmlqVFZZM0E0Qm9DTk5hSVBpWHN3bFFBTkIweW1VV2xfLUtreXVMc0tDRnJETzVYdFIwZk5zd1NPYkNSaWgtNzZWUDZuYk45WUk2SDFwNHBQRkRiZGdwTTZxSknSAXhBVV95cUxNaEo2dDc2VWNwamFWRm5UWFZaUGktUTNLR3JIWUI5ZjRaUzJQM1FGcjJDT01aX2U3bHU2Q0Vkd3o4R3p0VTJ6bGZxYW1qZEZnUElWa29fYkNlbl9acG5zc25tNDRmNDZSd3o4VTBpU2gyTzAtQU53ZzA?oc=5" target="_blank" rel="noopener">전지현·구교환 &#39;군체&#39;, &#39;왕사남&#39; 제치고 올 개봉작 최단 200만 달성 [박스오피스] - 머니투데이</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 머니투데이</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">전지현·구교환 &#39;군체&#39;, &#39;왕사남&#39; 제치고 올 개봉작 최단 200만 달성 [박스오피스] - 머니투데이 머니투데이</p>
   <div class="chips"><span>군체</span></div>
@@ -2488,7 +2494,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1vSFg2LVM5WW0wdEhYTGRTdjBEM1NOUDJvWGRXcWhha2oyTjlUUWpocnFZc1l1RVJRNkJqZ0lEbU1fQU9zdXdVV0hSUHBoRWVsMGxUc0xDM1k3RDE1T3U2eg?oc=5" target="_blank" rel="noopener">전지현·구교환 &#39;군체&#39; 닷새만에 200만명 넘겼다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴시스</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">전지현·구교환 &#39;군체&#39; 닷새만에 200만명 넘겼다 뉴시스</p>
   <div class="chips"><span>군체</span></div>
@@ -2512,7 +2518,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5qUjE5ZVZySHY4dzc4VmczeDhKcjliM3REZGpJd2FDajF1UTFPa2dFZC1zZlFYazdvVUkwcU1FanhmTTNwSUQzMi0xMFdfYnNZZlIyX25QQzhaanBOUUppVk5vS19BbDBPWURQLQ?oc=5" target="_blank" rel="noopener">‘군체’ 올해 가장 빠른 200만…그런데 미묘하다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · ER 이코노믹리뷰</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">‘군체’ 올해 가장 빠른 200만…그런데 미묘하다 ER 이코노믹리뷰</p>
   <div class="chips"><span>군체</span></div>
@@ -2520,7 +2526,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9rRnZBUzZ6Z0pLNUMyOTJEbTVrdU9QRjRQbXdTa1VWMlYwNXI3UV81UkhEQTJlQlU1dXNRdWYwNHc5MW56VHhYZURpNnlLcWJoSi1nMG1wLTJvZ9IBWEFVX3lxTE4wcnh2aDFUZlg4Q3cyb2FyM2ZiS3Z6bWloZ3VSeFhMb0xJMDVBOTdmTkU4d3N0RG9QRmM4UFNfN1BYSFBPZzVMTjFOa2xEdXlQRVVscFVpVWQ?oc=5" target="_blank" rel="noopener">[포토] 전소영, 군체 VIP시사회 참석</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 아주경제</span>
-    <span class="time">11시간 전</span>
+    <span class="time">12시간 전</span>
   </div>
   <p class="archive-excerpt">[포토] 전소영, 군체 VIP시사회 참석 아주경제</p>
   <div class="chips"><span>군체</span></div>
@@ -2536,7 +2542,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NMDBnQ0lJUlZMY2tzbEt0RXotYWJmZkVvNmhxQi1EMVdCN19YcjQ0WDR2bjk0ODRwZ2dkcU1FUnFNNE5JV1Z3OWQ0WVE1d0Etc0ZjSWRDX3BNZ9IBVEFVX3lxTE03U292TDNuanhiQnJRakExeGlQRVRFZ0FpTmEtTTlIYVNBNnZ0R3J6dmxtT2RCaHVzMWZCTm13Tzc1Qk1jeG9zdDhodWJQUFh1SnZfcw?oc=5" target="_blank" rel="noopener">말레이시아서도 대박…&#39;군체&#39;, K-좀비 신드롬 재점화</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 한국경제</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">말레이시아서도 대박…&#39;군체&#39;, K-좀비 신드롬 재점화 한국경제</p>
   <div class="chips"><span>군체</span></div>
@@ -2552,7 +2558,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTFAwSlk4Vnd6OXBOUVFVM0ZFNFptdzRCdl9IUzA1aG1GdzFGTFhrbkwtZG9zS2ZIa3dTU0ZEeTAyZWozUEVvSUt6MFRPWE15Y050clRXTUdLTk9fZ9IBX0FVX3lxTFBaUndwb2p1MFlucVBIUEk5YjBoYzVudDY3V2pXWW1jYTBpdWNhTzBMdkRqRWNudzVPQjdfb3pGWDI0NTh0NDdjdjlXQ3E1V1VHcHhQa1hTNDFUOHlOcUtZ?oc=5" target="_blank" rel="noopener">‘진화한 좀비’ 군체, 개봉 4일 만에 100만 돌파···“‘왕사남’보다 하루 빨라”</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 경향신문</span>
-    <span class="time">1일 전</span>
+    <span class="time">2일 전</span>
   </div>
   <p class="archive-excerpt">‘진화한 좀비’ 군체, 개봉 4일 만에 100만 돌파···“‘왕사남’보다 하루 빨라” 경향신문</p>
   <div class="chips"><span>군체</span></div>
@@ -2584,7 +2590,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1TMEhTOTVCSXR4N19mY3V1ZklXSENxaTkwUnZNaWxVaWZ2SE9FZ3JWdVllUDAyY2FwUGJjblBNSlA4OFhseENOZnY5dmF1OWdDS2VpWXp4aTdxSHlmVUViZWVjeWVuMVNzajZIN05XZjF2bnc?oc=5" target="_blank" rel="noopener">마이클 세일러 &#34;BTC 대신 채권 샀다&#34;…스트래티지 매집 행보 &#39;숨 고르기&#39;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 디지털투데이</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">마이클 세일러 &#34;BTC 대신 채권 샀다&#34;…스트래티지 매집 행보 &#39;숨 고르기&#39; 디지털투데이</p>
   <div class="chips"><span>마이클</span></div>
@@ -2600,7 +2606,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMimwFBVV95cUxPQ1g3WXdvNWcxMGk5YXU4RXZ5WGZWRHR1R09ybEFXdmlCWnBXV0pfMjdsOHJKNUdzQ3Vvblg4cElna25oTUJqOUwybk00RkJkb0RUY09DUnBweWUxWWJQX0M3Sk11b0g1dm1ZM0JjX0dRTkFKQ2tiYjRIR1hnb3hzNEtJX25QRkhSbG8yVXh5S3RfcjBQb1F6RzI4TQ?oc=5" target="_blank" rel="noopener">영화 &#39;마이클&#39;은 역대 최고 흥행을 기록한 뮤지컬 전기 영화가 될 전망이다.</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Vietnam.vn</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">영화 &#39;마이클&#39;은 역대 최고 흥행을 기록한 뮤지컬 전기 영화가 될 전망이다. Vietnam.vn</p>
   <div class="chips"><span>마이클</span></div>
@@ -2704,7 +2710,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE8xRnV1TldaNFl2YTI3Nkt6blROOURGbnRNWU9neWJxV21fLUdmSDRJR1BuZE9WUUF1c2dKRWl2VFJoTDFUczF4dEo4Y0xpdHRPQVRZ?oc=5" target="_blank" rel="noopener">디즈니 &#39;만달로리안과 그로구&#39; 박스오피스 강타…전망치 상회</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 네이트</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">디즈니 &#39;만달로리안과 그로구&#39; 박스오피스 강타…전망치 상회 네이트</p>
   <div class="chips"><span>만달로리안과 그로구</span></div>
@@ -2720,7 +2726,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE5JOUxSQkVhczgtdkQ1czl5NHJDSmNKbVExZTJYY25qZDhYdFk0eFFVV0xMdGlDYXY3VHFoZ3pNOTBzcHRNelJiZzNsaE8zNnR1Ml9MUDVDQ3NsLS1vTFpzVGVqX0g?oc=5" target="_blank" rel="noopener">‘만달로리안과 그로구’ 박스오피스 1위</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · bntnews.co.kr</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">‘만달로리안과 그로구’ 박스오피스 1위 bntnews.co.kr</p>
   <div class="chips"><span>만달로리안과 그로구</span></div>
@@ -2736,7 +2742,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/box-office/memorial-day-weekend-box-office-mandalorian-grogu-debut-1236758284/" target="_blank" rel="noopener">Memorial Day Weekend Box Office: ‘Mandalorian and Grogu’ Opens to $100 Million Domestically, $163 Million Globally</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
   <p class="archive-excerpt">Disney’s “The Mandalorian and Grogu” ignited to $100 million at the domestic box office over the Memorial Day holiday weekend. That’s ever-so-slightly behind Sunday’s estimates of $102 million for the four-day frame, which includes $81 million over the traditional weekend. The “Star Wars” spinoff, a continuation of the popular Disney+ streaming series, also collected a […]</p>
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
@@ -2744,7 +2750,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.rollingstone.com/tv-movies/tv-movie-reviews/mandalorian-and-grogu-review-star-wars-1235566001/" target="_blank" rel="noopener">Is the Star Wars Franchise Finally Cooked?</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Rolling Stone</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">It&#39;s not just that The Mandalorian and Grogu turns a promising TV show into a mediocre movie. It makes you feel like the IP is now creatively DOA</p>
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
@@ -2872,7 +2878,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/gallery/highest-grossing-animated-movies-all-time/" target="_blank" rel="noopener">The 25 Highest-Grossing Animated Films Of All Time At The Global Box Office</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
   <p class="archive-excerpt">Walt Disney Animation Studios’ Zootopia 2 has roared past the $1 billion threshold at the global box office, achieving the massive milestone in just 17 days. This phenomenal pace makes it the fastest-ever billion-dollar earner among all animated MPA releases and all PG-rated films. It follows Disney’s Lilo &amp; Stitch as the second film of […]</p>
   <div class="chips"><span>Walt Disney</span></div>
@@ -2880,7 +2886,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5PLXFDSUxUSlZTSDBYamVMay1lcGZKX05vNkVIZHVHUUtZRDZVUmo5eG5Gb1V2RU1UNmlvdGZBT1FkNktvTlNCT21IWlE1WnNQWFoxdEhmaUpFMnkzOUtORA?oc=5" target="_blank" rel="noopener">플레이브, &#39;K탑스타&#39; 최고의 아이돌 탈환…인기 입증</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 네이트</span>
-    <span class="time">39분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-excerpt">플레이브, &#39;K탑스타&#39; 최고의 아이돌 탈환…인기 입증 네이트</p>
 
@@ -2888,7 +2894,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/reviews/forever-your-maternal-animal-review-1236757322/" target="_blank" rel="noopener">‘Forever Your Maternal Animal’ Review: Valentina Maurel Makes a Hangout Movie for the Arthouse Crowd</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">About halfway into “Forever Your Maternal Animal,” a striking confession appears almost out of nowhere. The two main characters in the film, sisters in their early twenties, are sitting in a mall restaurant when the younger one says she has sex with the spirits who visit her room at night. She’s so detailed in her […]</p>
 
@@ -2904,7 +2910,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1DQ2ZnYU9Fd1Z6N0IyVXpyWnk0Z0JxWDZXWmlJTXRQSmFhZklyTmZFRXpjQ0hhYUlwRDN5QzhHVG85dVJjY1d5U3JrUTFFbm1NMmI1UGxEUy1MQWk2NGJ2NA?oc=5" target="_blank" rel="noopener">&#39;스타워즈&#39; 인기 꺾였나?…&#34;시리즈 역대 최악의 오프닝&#34; [월드이슈M]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · iMBC 연예</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;스타워즈&#39; 인기 꺾였나?…&#34;시리즈 역대 최악의 오프닝&#34; [월드이슈M] iMBC 연예</p>
 
@@ -2952,7 +2958,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/film-news-in-brief-week-of-may-25-1236758294/" target="_blank" rel="noopener">‘Mono 222,’ ‘Dreaming of Lions’ and ‘I Got Bombed at Harvey’s’ Top Mammoth Lakes Film Festival Awards – Film News in Brief</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">The 12th annual Mammoth Lakes Film Festival has awarded its top prizes for the May 20-24 event in the California mountain town. “Mono 222,” directed by Quinton Dominguez, was awarded the jury prize for best North American narrative feature, while “Dreaming of Lions,” directed and written by Paolo Marinou-Blanco, won best international narrative feature. Best […]</p>
 
@@ -2976,7 +2982,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMilAFBVV95cUxQVkt1WFA1SjVTWGY0RGo5SGhWanM3bXVjR2xzc1ZpQUZwN3hacFlBaENYZUEzcFlhRFpKQlB3MnVITEJMQlhaVzJPWFdIbGtCU1VuU0tlOGJYazdyU0x1QjcxOGllc1JzbXlOSldwVHhPamFRYWpLLUVEeGViTDRKUk16ankxc29YRnc2aHU2el8zVFN1?oc=5" target="_blank" rel="noopener">AI 영상인줄… ‘돌아버린’ 강동원에 빠져드네</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 조선일보</span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
   <p class="archive-excerpt">AI 영상인줄… ‘돌아버린’ 강동원에 빠져드네 조선일보</p>
 
@@ -2984,7 +2990,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-features/tom-hanks-interview-wwii-series-1236601625/" target="_blank" rel="noopener">Tom Hanks Just Can’t Quit World War II (and It’s Keeping Him Up at Night)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
   <p class="archive-excerpt">The actor-producer and historian Jon Meacham discuss their new History Channel docuseries on &#39;the largest event in human history&#39;</p>
 
@@ -3008,7 +3014,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/global/lebanese-comic-john-achkar-olympia-hall-paris-mbc-shahid-1236758257/" target="_blank" rel="noopener">Lebanese Comic John Achkar’s Special at L’Olympia Hall Acquired by Arabic Streamer MBC Shahid in ‘Milestone’ for Arabic Stand-Up</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">Leading Middle East streamer MBC Shahid has picked up Lebanese comedian John Achkar’s stand-up comedy special “Tryin’” (“Aam Jarrib”) filmed at Paris’ legendary L’Olympia concert hall in what is being touted as a milestone for Arabic stand-up comedy. Achkar’s performance of “Tryin’,” filmed in Paris on Oct. 23, marked the first-ever Arabic-language performance by a […]</p>
 
@@ -3024,7 +3030,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/crunchyroll-anime-awards-2026-full-winners-list-1236605415/" target="_blank" rel="noopener">Crunchyroll Anime Awards: ‘My Hero Academia’ Named Anime of the Year, ‘Demon Slayer’ Takes Best Film</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
   <p class="archive-excerpt">A stunning 73 million votes were cast for the the 10th edition of the awards.</p>
 
@@ -3032,7 +3038,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.maxmovie.com/news/445431" target="_blank" rel="noopener">[인터뷰]  벼랑 끝에서 피워낸 불꽃… 배우 겸 감독 이범규, 세계 무대로 뻗다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 맥스무비</span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
   <p class="archive-excerpt">이범규 감독. 비케이필름 제공코로나19 팬데믹으로 세상이 멈추고 소속사와의 계약마저 해지됐을 때, 15년 차 배우는 주저앉는 대신 직접 카메라를 들었다. 연출도 시나리오도 정식으로 배운 적 없던 그가 카페에 앉아 3시간 만에 써 내려간 단편 영화 &#39;상속&#39;이 시작이었다. 이후 2년 만에 5편의 작품을 완성했고, 단편 &#39;이 배우의 장례식&#39;은 9개 국제영화제 초</p>
 

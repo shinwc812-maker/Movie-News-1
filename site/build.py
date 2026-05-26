@@ -1026,6 +1026,12 @@ def market_views(market: dict) -> list[dict]:
             continue
         audi_inten = movie.get("audi_inten")
         audi_change = movie.get("audi_change")
+        try:
+            delta_int = int(audi_inten)
+        except (TypeError, ValueError):
+            delta_int = 0
+        # CSS에서 색상을 결정: 증가=빨강(굵게), 감소=파랑(굵게), 변화 없음=중립
+        audi_delta_sign = "up" if delta_int > 0 else "down" if delta_int < 0 else "flat"
         seat_count = int(movie.get("seat_count") or 0)
         view = {
             "rank": movie.get("rank"),
@@ -1035,6 +1041,7 @@ def market_views(market: dict) -> list[dict]:
             "audi_acc": format_int(movie.get("audi_acc")),
             "audi_delta": format_audience_delta(audi_inten, audi_change),
             "audi_delta_short": format_audience_delta(audi_inten, include_rate=False),
+            "audi_delta_sign": audi_delta_sign,
             "seat_count": format_int(seat_count),
             "seat_share": format_ratio_percent(movie.get("seat_share")),
             "seat_sales_rate": format_ratio_percent(movie.get("seat_sales_rate"), digits=2),

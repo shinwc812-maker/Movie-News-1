@@ -1121,6 +1121,42 @@ footer {
   .ai-grid { grid-template-columns: 1fr; }
 }
 
+/* 대시보드 본문 접힘 — 메인 첫 진입은 AI 브리핑만 노출 */
+body.dashboard-collapsed .kpis,
+body.dashboard-collapsed .hero-grid,
+body.dashboard-collapsed .market-trends-panel,
+body.dashboard-collapsed .community-only-panel,
+body.dashboard-collapsed .policy-panel { display: none; }
+
+.ai-briefing-toggle {
+  margin-top: 14px;
+  text-align: center;
+}
+.dashboard-toggle-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid #d97706;
+  border-radius: 10px;
+  padding: 8px 22px;
+  background: #fff;
+  color: #b45309;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.dashboard-toggle-btn:hover { background: #fef3c7; }
+.dashboard-toggle-btn .dt-label {
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+.dashboard-toggle-btn .dt-sub {
+  color: #92400e;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
 /* 전일 관객 TOP5 — 전일대비 증감 강조: 증가=빨강, 감소=파랑 (둘 다 굵게) */
 .audi-delta { font-weight: 800; }
 .audi-delta-up { color: #dc2626; }   /* 빨강 — 관객 증가 */
@@ -1192,7 +1228,7 @@ body.is-searching .search-archive-panel { display: block; }
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 26일 14:29 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 26일 14:43 (KST)</p>
   </div>
   <div class="topbar-tools">
     <form class="search-box" role="search" onsubmit="return RADAR.onSearchSubmit(event)">
@@ -1257,7 +1293,7 @@ body.is-searching .search-archive-panel { display: block; }
 
 
     <div class="ai-block">
-      <div class="ai-block-head"><h3>🔥 어제 대비 신규 트렌드</h3></div>
+      <div class="ai-block-head"><h3>🔥 신규 트렌드</h3></div>
       <ul class="ai-points">
 
         <li><span class="ai-tag">이머시브 뮤지컬</span> 이머시브 뮤지컬 &#39;룰렛&#39;이 7월 개막을 예고하며 영화관식 공간 재해석 콘셉트 부각 [데일리안] <b class="ai-implication">— 극장 유휴공간·특별관을 활용한 체험형 이벤트 기획에 참고할 만한 사례.</b></li>
@@ -1324,6 +1360,13 @@ body.is-searching .search-archive-panel { display: block; }
 
   </div>
 
+
+  <div class="ai-briefing-toggle">
+    <button type="button" class="dashboard-toggle-btn" onclick="RADAR.toggleDashboard()">
+      <span class="dt-label">기사 펼치기 ▼</span>
+      <span class="dt-sub">오늘의 영화/문화 레이더 — 박스오피스·기사·커뮤니티 등 원문 데이터</span>
+    </button>
+  </div>
 </section>
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>군체 (517,011명 / <span class="audi-delta audi-delta-down">▼60,503명</span>)</strong></div>
@@ -1630,7 +1673,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Rolling Stone
     </span>
-    <span class="time">15시간 전</span>
+    <span class="time">16시간 전</span>
   </div>
 
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
@@ -1725,7 +1768,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 조선일보
     </span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
 
 </article>
@@ -2681,7 +2724,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFBUUlFsY0U1NEtJQW9KZ0xiMHotRk1pUkxiMVdUZjNSck40YXJpbDhDOTVENzdySU43TE5lV3pWQTNuYnNkVWxnSXlfcXJYb24tLTJGbC1hb9IB-wFBVV95cUxON2gyNzBjbi1ucUZ4c3MyRHBRN2hYQ25vVzh1Ry04QU1CWXgyV2l2eVIzcThUM2FLREczZ3VNblR0elhSYkhySDJTVXUxdE5hX0RiLXk0YkpiaUpCbnNUaEx0cm0zTVM2ZUt4OEtuRE5ydnVmVUN4UHFQS3V3TzJCSUZmdDRSUTFZR0JHYksyb2ZoNDltaWpVVWxIMUt1Ym5XTmZzNjNLZkY2M2puYmpSZFVnam1BdmFiTjQwLTZOLU5NR09mMkZlM096TGVJU2ZkVzJ5NWdpY3lCTi1pQ0daU2NBNks5SjlWZjI2eWsxZ3FJZ2FqVndJbjV3WQ?oc=5" target="_blank" rel="noopener">&#39;연상호표 감염 스릴러&#39; 군체, 200만 관객 돌파…연휴 박스오피스 정상</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 데일리안</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;연상호표 감염 스릴러&#39; 군체, 200만 관객 돌파…연휴 박스오피스 정상 데일리안</p>
   <div class="chips"><span>군체</span></div>
@@ -2713,7 +2756,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1vSFg2LVM5WW0wdEhYTGRTdjBEM1NOUDJvWGRXcWhha2oyTjlUUWpocnFZc1l1RVJRNkJqZ0lEbU1fQU9zdXdVV0hSUHBoRWVsMGxUc0xDM1k3RDE1T3U2eg?oc=5" target="_blank" rel="noopener">전지현·구교환 &#39;군체&#39; 닷새만에 200만명 넘겼다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴시스</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">전지현·구교환 &#39;군체&#39; 닷새만에 200만명 넘겼다 뉴시스</p>
   <div class="chips"><span>군체</span></div>
@@ -2737,7 +2780,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5qUjE5ZVZySHY4dzc4VmczeDhKcjliM3REZGpJd2FDajF1UTFPa2dFZC1zZlFYazdvVUkwcU1FanhmTTNwSUQzMi0xMFdfYnNZZlIyX25QQzhaanBOUUppVk5vS19BbDBPWURQLQ?oc=5" target="_blank" rel="noopener">‘군체’ 올해 가장 빠른 200만…그런데 미묘하다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · ER 이코노믹리뷰</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">‘군체’ 올해 가장 빠른 200만…그런데 미묘하다 ER 이코노믹리뷰</p>
   <div class="chips"><span>군체</span></div>
@@ -2745,7 +2788,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9rRnZBUzZ6Z0pLNUMyOTJEbTVrdU9QRjRQbXdTa1VWMlYwNXI3UV81UkhEQTJlQlU1dXNRdWYwNHc5MW56VHhYZURpNnlLcWJoSi1nMG1wLTJvZ9IBWEFVX3lxTE4wcnh2aDFUZlg4Q3cyb2FyM2ZiS3Z6bWloZ3VSeFhMb0xJMDVBOTdmTkU4d3N0RG9QRmM4UFNfN1BYSFBPZzVMTjFOa2xEdXlQRVVscFVpVWQ?oc=5" target="_blank" rel="noopener">[포토] 전소영, 군체 VIP시사회 참석</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 아주경제</span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
   <p class="archive-excerpt">[포토] 전소영, 군체 VIP시사회 참석 아주경제</p>
   <div class="chips"><span>군체</span></div>
@@ -2761,7 +2804,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NMDBnQ0lJUlZMY2tzbEt0RXotYWJmZkVvNmhxQi1EMVdCN19YcjQ0WDR2bjk0ODRwZ2dkcU1FUnFNNE5JV1Z3OWQ0WVE1d0Etc0ZjSWRDX3BNZ9IBVEFVX3lxTE03U292TDNuanhiQnJRakExeGlQRVRFZ0FpTmEtTTlIYVNBNnZ0R3J6dmxtT2RCaHVzMWZCTm13Tzc1Qk1jeG9zdDhodWJQUFh1SnZfcw?oc=5" target="_blank" rel="noopener">말레이시아서도 대박…&#39;군체&#39;, K-좀비 신드롬 재점화</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 한국경제</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">말레이시아서도 대박…&#39;군체&#39;, K-좀비 신드롬 재점화 한국경제</p>
   <div class="chips"><span>군체</span></div>
@@ -2809,7 +2852,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1TMEhTOTVCSXR4N19mY3V1ZklXSENxaTkwUnZNaWxVaWZ2SE9FZ3JWdVllUDAyY2FwUGJjblBNSlA4OFhseENOZnY5dmF1OWdDS2VpWXp4aTdxSHlmVUViZWVjeWVuMVNzajZIN05XZjF2bnc?oc=5" target="_blank" rel="noopener">마이클 세일러 &#34;BTC 대신 채권 샀다&#34;…스트래티지 매집 행보 &#39;숨 고르기&#39;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 디지털투데이</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">마이클 세일러 &#34;BTC 대신 채권 샀다&#34;…스트래티지 매집 행보 &#39;숨 고르기&#39; 디지털투데이</p>
   <div class="chips"><span>마이클</span></div>
@@ -2969,7 +3012,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.rollingstone.com/tv-movies/tv-movie-reviews/mandalorian-and-grogu-review-star-wars-1235566001/" target="_blank" rel="noopener">Is the Star Wars Franchise Finally Cooked?</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Rolling Stone</span>
-    <span class="time">15시간 전</span>
+    <span class="time">16시간 전</span>
   </div>
   <p class="archive-excerpt">It&#39;s not just that The Mandalorian and Grogu turns a promising TV show into a mediocre movie. It makes you feel like the IP is now creatively DOA</p>
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
@@ -3129,7 +3172,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1DQ2ZnYU9Fd1Z6N0IyVXpyWnk0Z0JxWDZXWmlJTXRQSmFhZklyTmZFRXpjQ0hhYUlwRDN5QzhHVG85dVJjY1d5U3JrUTFFbm1NMmI1UGxEUy1MQWk2NGJ2NA?oc=5" target="_blank" rel="noopener">&#39;스타워즈&#39; 인기 꺾였나?…&#34;시리즈 역대 최악의 오프닝&#34; [월드이슈M]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · iMBC 연예</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;스타워즈&#39; 인기 꺾였나?…&#34;시리즈 역대 최악의 오프닝&#34; [월드이슈M] iMBC 연예</p>
 
@@ -3177,7 +3220,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/film-news-in-brief-week-of-may-25-1236758294/" target="_blank" rel="noopener">‘Mono 222,’ ‘Dreaming of Lions’ and ‘I Got Bombed at Harvey’s’ Top Mammoth Lakes Film Festival Awards – Film News in Brief</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">The 12th annual Mammoth Lakes Film Festival has awarded its top prizes for the May 20-24 event in the California mountain town. “Mono 222,” directed by Quinton Dominguez, was awarded the jury prize for best North American narrative feature, while “Dreaming of Lions,” directed and written by Paolo Marinou-Blanco, won best international narrative feature. Best […]</p>
 
@@ -3201,7 +3244,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMilAFBVV95cUxQVkt1WFA1SjVTWGY0RGo5SGhWanM3bXVjR2xzc1ZpQUZwN3hacFlBaENYZUEzcFlhRFpKQlB3MnVITEJMQlhaVzJPWFdIbGtCU1VuU0tlOGJYazdyU0x1QjcxOGllc1JzbXlOSldwVHhPamFRYWpLLUVEeGViTDRKUk16ankxc29YRnc2aHU2el8zVFN1?oc=5" target="_blank" rel="noopener">AI 영상인줄… ‘돌아버린’ 강동원에 빠져드네</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 조선일보</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">AI 영상인줄… ‘돌아버린’ 강동원에 빠져드네 조선일보</p>
 
@@ -3209,7 +3252,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-features/tom-hanks-interview-wwii-series-1236601625/" target="_blank" rel="noopener">Tom Hanks Just Can’t Quit World War II (and It’s Keeping Him Up at Night)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">The actor-producer and historian Jon Meacham discuss their new History Channel docuseries on &#39;the largest event in human history&#39;</p>
 
@@ -4147,6 +4190,10 @@ body.is-searching .search-archive-panel { display: block; }
   var term = '';      // 소문자
   var rawTerm = '';   // 표시용 원본
 
+  // 메인 화면 첫 진입은 AI 브리핑만 노출. '기사 펼치기'로 대시보드 본문 토글.
+  var DASHBOARD_OPEN_KEY = 'radar.dashboardOpen.v1';
+  var dashboardOpen = false;
+
   function q(sel) { return document.querySelector(sel); }
   function qa(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
   function setVisible(el, vis) { if (el) el.style.display = vis ? '' : 'none'; }
@@ -4161,6 +4208,24 @@ body.is-searching .search-archive-panel { display: block; }
   }
   function saveSettings() {
     try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {}
+  }
+
+  function loadDashboardOpen() {
+    try { dashboardOpen = localStorage.getItem(DASHBOARD_OPEN_KEY) === '1'; }
+    catch (e) { dashboardOpen = false; }
+  }
+  function saveDashboardOpen() {
+    try { localStorage.setItem(DASHBOARD_OPEN_KEY, dashboardOpen ? '1' : '0'); }
+    catch (e) {}
+  }
+  function toggleDashboard() {
+    dashboardOpen = !dashboardOpen;
+    saveDashboardOpen();
+    apply();
+  }
+  function updateDashboardToggleLabel() {
+    var label = q('.dashboard-toggle-btn .dt-label');
+    if (label) { label.textContent = dashboardOpen ? '기사 접기 ▲' : '기사 펼치기 ▼'; }
   }
 
   function apply() {
@@ -4186,14 +4251,26 @@ body.is-searching .search-archive-panel { display: block; }
         status.hidden = false;
       }
     } else {
-      // 평소: 아카이브는 CSS로 숨김. 일반 섹션은 설정대로 복구.
-      SECTIONS.forEach(function (s) { setVisible(q(s.sel), visibleBySetting(s.key)); });
+      // 평소: 아카이브는 CSS로 숨김. 대시보드 본문은 dashboardOpen 토글에 따름.
+      //  - 접힘(기본): body.dashboard-collapsed 추가 → CSS가 일반 패널을 숨김.
+      //    AI 브리핑은 설정대로 노출.
+      //  - 펼침: 클래스 제거 + 모든 SECTIONS를 설정대로 복구.
+      document.body.classList.toggle('dashboard-collapsed', !dashboardOpen);
+      if (dashboardOpen) {
+        SECTIONS.forEach(function (s) { setVisible(q(s.sel), visibleBySetting(s.key)); });
+      } else {
+        // 접힘 상태에서는 일반 패널의 inline display를 안 건드린다 — CSS가 숨김 담당.
+        // AI 브리핑만 설정대로 처리(끄지 않았다면 노출).
+        setVisible(q('.ai-briefing-panel'), visibleBySetting('aiBriefing'));
+      }
       var sidestack = q('.side-stack');
       if (sidestack) {
         setVisible(sidestack,
-          visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
-          || visibleBySetting('engBox') || visibleBySetting('engRes'));
+          dashboardOpen && (
+            visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
+            || visibleBySetting('engBox') || visibleBySetting('engRes')));
       }
+      updateDashboardToggleLabel();
       var status = q('#searchStatus');
       if (status) { status.hidden = true; }
     }
@@ -4269,10 +4346,16 @@ body.is-searching .search-archive-panel { display: block; }
     });
   }
 
-  window.RADAR = { onSearchSubmit: onSearchSubmit, clearSearch: clearSearch, toggleSettings: toggleSettings };
+  window.RADAR = {
+    onSearchSubmit: onSearchSubmit,
+    clearSearch: clearSearch,
+    toggleSettings: toggleSettings,
+    toggleDashboard: toggleDashboard
+  };
 
   // 스크립트가 body 끝에 있어 DOM은 이미 파싱됨 → 즉시 초기화
   loadSettings();
+  loadDashboardOpen();
   buildSettings();
   bindCurationMore();
   var input = q('#searchInput');

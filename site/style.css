@@ -1115,6 +1115,42 @@ footer {
   .ai-grid { grid-template-columns: 1fr; }
 }
 
+/* 대시보드 본문 접힘 — 메인 첫 진입은 AI 브리핑만 노출 */
+body.dashboard-collapsed .kpis,
+body.dashboard-collapsed .hero-grid,
+body.dashboard-collapsed .market-trends-panel,
+body.dashboard-collapsed .community-only-panel,
+body.dashboard-collapsed .policy-panel { display: none; }
+
+.ai-briefing-toggle {
+  margin-top: 14px;
+  text-align: center;
+}
+.dashboard-toggle-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid #d97706;
+  border-radius: 10px;
+  padding: 8px 22px;
+  background: #fff;
+  color: #b45309;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.dashboard-toggle-btn:hover { background: #fef3c7; }
+.dashboard-toggle-btn .dt-label {
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+.dashboard-toggle-btn .dt-sub {
+  color: #92400e;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
 /* 전일 관객 TOP5 — 전일대비 증감 강조: 증가=빨강, 감소=파랑 (둘 다 굵게) */
 .audi-delta { font-weight: 800; }
 .audi-delta-up { color: #dc2626; }   /* 빨강 — 관객 증가 */

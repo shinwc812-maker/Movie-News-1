@@ -103,7 +103,7 @@
 
     {% if b.new_trends %}
     <div class="ai-block">
-      <div class="ai-block-head"><h3>🔥 어제 대비 신규 트렌드</h3></div>
+      <div class="ai-block-head"><h3>🔥 신규 트렌드</h3></div>
       <ul class="ai-points">
         {% for t in b.new_trends %}
         <li><span class="ai-tag">{{ t.label }}</span> {{ t.note }}{% if t.implication %} <b class="ai-implication">— {{ t.implication }}</b>{% endif %}</li>
@@ -138,6 +138,13 @@
     {% endfor %}
   </div>
   {% endif %}
+
+  <div class="ai-briefing-toggle">
+    <button type="button" class="dashboard-toggle-btn" onclick="RADAR.toggleDashboard()">
+      <span class="dt-label">기사 펼치기 ▼</span>
+      <span class="dt-sub">오늘의 영화/문화 레이더 — 박스오피스·기사·커뮤니티 등 원문 데이터</span>
+    </button>
+  </div>
 </section>
 {%- endmacro -%}
 
@@ -464,6 +471,10 @@
   var term = '';      // 소문자
   var rawTerm = '';   // 표시용 원본
 
+  // 메인 화면 첫 진입은 AI 브리핑만 노출. '기사 펼치기'로 대시보드 본문 토글.
+  var DASHBOARD_OPEN_KEY = 'radar.dashboardOpen.v1';
+  var dashboardOpen = false;
+
   function q(sel) { return document.querySelector(sel); }
   function qa(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
   function setVisible(el, vis) { if (el) el.style.display = vis ? '' : 'none'; }
@@ -478,6 +489,24 @@
   }
   function saveSettings() {
     try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {}
+  }
+
+  function loadDashboardOpen() {
+    try { dashboardOpen = localStorage.getItem(DASHBOARD_OPEN_KEY) === '1'; }
+    catch (e) { dashboardOpen = false; }
+  }
+  function saveDashboardOpen() {
+    try { localStorage.setItem(DASHBOARD_OPEN_KEY, dashboardOpen ? '1' : '0'); }
+    catch (e) {}
+  }
+  function toggleDashboard() {
+    dashboardOpen = !dashboardOpen;
+    saveDashboardOpen();
+    apply();
+  }
+  function updateDashboardToggleLabel() {
+    var label = q('.dashboard-toggle-btn .dt-label');
+    if (label) { label.textContent = dashboardOpen ? '기사 접기 ▲' : '기사 펼치기 ▼'; }
   }
 
   function apply() {
@@ -503,14 +532,26 @@
         status.hidden = false;
       }
     } else {
-      // 평소: 아카이브는 CSS로 숨김. 일반 섹션은 설정대로 복구.
-      SECTIONS.forEach(function (s) { setVisible(q(s.sel), visibleBySetting(s.key)); });
+      // 평소: 아카이브는 CSS로 숨김. 대시보드 본문은 dashboardOpen 토글에 따름.
+      //  - 접힘(기본): body.dashboard-collapsed 추가 → CSS가 일반 패널을 숨김.
+      //    AI 브리핑은 설정대로 노출.
+      //  - 펼침: 클래스 제거 + 모든 SECTIONS를 설정대로 복구.
+      document.body.classList.toggle('dashboard-collapsed', !dashboardOpen);
+      if (dashboardOpen) {
+        SECTIONS.forEach(function (s) { setVisible(q(s.sel), visibleBySetting(s.key)); });
+      } else {
+        // 접힘 상태에서는 일반 패널의 inline display를 안 건드린다 — CSS가 숨김 담당.
+        // AI 브리핑만 설정대로 처리(끄지 않았다면 노출).
+        setVisible(q('.ai-briefing-panel'), visibleBySetting('aiBriefing'));
+      }
       var sidestack = q('.side-stack');
       if (sidestack) {
         setVisible(sidestack,
-          visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
-          || visibleBySetting('engBox') || visibleBySetting('engRes'));
+          dashboardOpen && (
+            visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
+            || visibleBySetting('engBox') || visibleBySetting('engRes')));
       }
+      updateDashboardToggleLabel();
       var status = q('#searchStatus');
       if (status) { status.hidden = true; }
     }
@@ -586,10 +627,16 @@
     });
   }
 
-  window.RADAR = { onSearchSubmit: onSearchSubmit, clearSearch: clearSearch, toggleSettings: toggleSettings };
+  window.RADAR = {
+    onSearchSubmit: onSearchSubmit,
+    clearSearch: clearSearch,
+    toggleSettings: toggleSettings,
+    toggleDashboard: toggleDashboard
+  };
 
   // 스크립트가 body 끝에 있어 DOM은 이미 파싱됨 → 즉시 초기화
   loadSettings();
+  loadDashboardOpen();
   buildSettings();
   bindCurationMore();
   var input = q('#searchInput');

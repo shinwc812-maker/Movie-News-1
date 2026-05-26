@@ -1100,6 +1100,13 @@ footer {
   font-size: 0.7rem;
   font-weight: 800;
 }
+/* AI 브리핑 본문의 [매체명] 인용 → 기사 원문 링크 */
+.ai-cite {
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: 700;
+}
+.ai-cite:hover { text-decoration: underline; }
 .ai-dist { color: #6b7280; font-style: normal; font-size: 0.78rem; }
 .ai-implication { color: #047857; font-weight: 700; }
 .ai-overseas { margin-top: 10px; background: #fffef5; border: 1px solid #efe9c4; border-radius: 8px; padding: 10px 12px; }

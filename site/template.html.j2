@@ -73,8 +73,8 @@
     <h2>🤖 오늘의 AI 브리핑 <span class="ai-badge">AI SUMMARY</span></h2>
     <span class="ai-generated-at">{{ b.generated_at_kst or '' }} · Claude 자동 생성</span>
   </div>
-  {% if b.headline_today %}<p class="ai-headline">{{ b.headline_today }}</p>{% endif %}
-  {% if b.summary %}<p class="ai-summary">{{ b.summary }}</p>{% endif %}
+  {% if b.headline_today %}<p class="ai-headline">{{ b.headline_today_html|default(b.headline_today)|safe }}</p>{% endif %}
+  {% if b.summary %}<p class="ai-summary">{{ b.summary_html|default(b.summary)|safe }}</p>{% endif %}
 
   <div class="ai-grid">
     {% if b.own_titles %}
@@ -83,8 +83,8 @@
       {% for t in b.own_titles %}
       <div class="ai-own-item">
         <div class="ai-own-title"><b>{{ t.title }}</b>{% if t.kind_label %}<span class="ai-kind">{{ t.kind_label }}</span>{% endif %}</div>
-        {% if t.highlights %}<ul class="ai-points">{% for p in t.highlights %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
-        {% if t.risks %}<ul class="ai-points ai-risks">{% for r in t.risks %}<li>▼ {{ r }}</li>{% endfor %}</ul>{% endif %}
+        {% if t.highlights %}<ul class="ai-points">{% for idx in range(t.highlights|length) %}<li>{{ (t.highlights_html[idx] if t.highlights_html and idx < t.highlights_html|length else t.highlights[idx])|safe }}</li>{% endfor %}</ul>{% endif %}
+        {% if t.risks %}<ul class="ai-points ai-risks">{% for idx in range(t.risks|length) %}<li>▼ {{ (t.risks_html[idx] if t.risks_html and idx < t.risks_html|length else t.risks[idx])|safe }}</li>{% endfor %}</ul>{% endif %}
       </div>
       {% endfor %}
     </div>
@@ -95,7 +95,7 @@
       <div class="ai-block-head"><h3>🎬 경쟁작 동향</h3></div>
       <ul class="ai-points">
         {% for c in b.competitors %}
-        <li><b>{{ c.title }}</b>{% if c.distributor %} <em class="ai-dist">({{ c.distributor }})</em>{% endif %} — {{ c.note }}</li>
+        <li><b>{{ c.title }}</b>{% if c.distributor %} <em class="ai-dist">({{ c.distributor }})</em>{% endif %} — {{ c.note_html|default(c.note)|safe }}</li>
         {% endfor %}
       </ul>
     </div>
@@ -106,7 +106,7 @@
       <div class="ai-block-head"><h3>🔥 신규 트렌드</h3></div>
       <ul class="ai-points">
         {% for t in b.new_trends %}
-        <li><span class="ai-tag">{{ t.label }}</span> {{ t.note }}{% if t.implication %} <b class="ai-implication">— {{ t.implication }}</b>{% endif %}</li>
+        <li><span class="ai-tag">{{ t.label }}</span> {{ t.note_html|default(t.note)|safe }}{% if t.implication %} <b class="ai-implication">— {{ t.implication_html|default(t.implication)|safe }}</b>{% endif %}</li>
         {% endfor %}
       </ul>
     </div>
@@ -117,7 +117,7 @@
       <div class="ai-block-head"><h3>📡 산업 시그널</h3></div>
       <ul class="ai-points">
         {% for s in b.industry_signals %}
-        <li><span class="ai-tag">{{ s.label }}</span> {{ s.note }}{% if s.implication %} <b class="ai-implication">— {{ s.implication }}</b>{% endif %}</li>
+        <li><span class="ai-tag">{{ s.label }}</span> {{ s.note_html|default(s.note)|safe }}{% if s.implication %} <b class="ai-implication">— {{ s.implication_html|default(s.implication)|safe }}</b>{% endif %}</li>
         {% endfor %}
       </ul>
     </div>
@@ -132,8 +132,8 @@
       <div class="ai-overseas-title">
         {% if o.source_url %}<a href="{{ o.source_url }}" target="_blank" rel="noopener">{{ o.title_ko }}</a>{% else %}{{ o.title_ko }}{% endif %}
       </div>
-      {% if o.summary_ko %}<p class="ai-overseas-summary">{{ o.summary_ko }}</p>{% endif %}
-      {% if o.implication %}<p class="ai-overseas-impl">{{ o.source or '외신' }} · 시사점: {{ o.implication }}</p>{% endif %}
+      {% if o.summary_ko %}<p class="ai-overseas-summary">{{ o.summary_ko_html|default(o.summary_ko)|safe }}</p>{% endif %}
+      {% if o.implication %}<p class="ai-overseas-impl">{{ o.source or '외신' }} · 시사점: {{ o.implication_html|default(o.implication)|safe }}</p>{% endif %}
     </div>
     {% endfor %}
   </div>

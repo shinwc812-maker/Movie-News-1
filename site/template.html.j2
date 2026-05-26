@@ -162,7 +162,7 @@
     <button type="button" class="tool-btn" onclick="RADAR.clearSearch()">전체 보기</button>
   </div>
   <section class="kpis" aria-label="핵심 지표">
-    <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].top_label }}{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].title }} ({{ boxoffice[0].audi_count }}명 / <span class="audi-delta audi-delta-{{ boxoffice[0].audi_delta_sign }}">{{ boxoffice[0].audi_delta_short }}</span>){% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_label }}{% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>시장동향</span><strong>{{ total_market_trends }}건</strong></div>
     <div class="kpi"><span>커뮤니티 반응</span><strong>{{ total_community }}건</strong></div>

@@ -177,7 +177,7 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-.kpi span {
+.kpi > span {
   display: block;
   color: var(--muted);
   font-size: 0.77rem;

@@ -912,7 +912,7 @@ def build_curation_sections(
     official_views: list[dict],
     community_views: list[dict] | None = None,
     policy_views: list[dict] | None = None,
-    limit_per_section: int = 2,
+    limit_per_section: int = 10,
     market_titles: list[str] | None = None,
     reservation_titles: list[str] | None = None,
     overseas_titles: list[str] | None = None,

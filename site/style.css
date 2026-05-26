@@ -339,10 +339,43 @@ h1 {
   line-height: 1.4;
 }
 
+.curation-section-meta {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.curation-more-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 2px 9px;
+  background: #e2e8f0;
+  color: #1d4ed8;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.curation-more-btn:hover {
+  background: #cbd5e1;
+}
+
 .curation-section-items {
   display: grid;
   gap: 7px;
   padding: 8px;
+}
+
+/* 기본은 2건만 노출. 더보기(.is-expanded) 또는 검색 중에는 나머지 수집분도 표시 */
+.curation-brief-card.is-extra {
+  display: none;
+}
+
+.curation-section.is-expanded .curation-brief-card.is-extra,
+body.is-searching .curation-brief-card.is-extra {
+  display: block;
 }
 
 .curation-brief-card {

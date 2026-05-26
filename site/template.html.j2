@@ -46,8 +46,8 @@
 </article>
 {%- endmacro -%}
 
-{%- macro curation_brief_card(item) -%}
-<article class="curation-brief-card">
+{%- macro curation_brief_card(item, extra=False) -%}
+<article class="curation-brief-card{% if extra %} is-extra{% endif %}">
   <a class="title curation-article-title" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.curation_title or item.title }}</a>
   {% if item.curation_summary %}
   <div class="curation-summary-block">
@@ -157,10 +157,13 @@
               <h3>{{ section.title }}</h3>
               <span>{{ section.eyebrow }}</span>
             </div>
-            <b>{{ section["items"]|length }}건</b>
+            <div class="curation-section-meta">
+              <b>{{ section["items"]|length }}건</b>
+              {% if section["items"]|length > 2 %}<button type="button" class="curation-more-btn" aria-expanded="false">더보기</button>{% endif %}
+            </div>
           </div>
           <div class="curation-section-items">
-            {% for item in section["items"] %}{{ curation_brief_card(item) }}{% endfor %}
+            {% for item in section["items"] %}{{ curation_brief_card(item, extra=loop.index > 2) }}{% endfor %}
           </div>
         </section>
         {% endfor %}
@@ -476,11 +479,25 @@
     }
   });
 
+  // 큐레이션 섹션 "더보기/접기": 기본 2건만 노출, 클릭 시 수집분(최대 10건) 전체 표시
+  function bindCurationMore() {
+    qa('.curation-more-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var section = btn.closest('.curation-section');
+        if (!section) { return; }
+        var expanded = section.classList.toggle('is-expanded');
+        btn.textContent = expanded ? '접기' : '더보기';
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+  }
+
   window.RADAR = { onSearchSubmit: onSearchSubmit, clearSearch: clearSearch, toggleSettings: toggleSettings };
 
   // 스크립트가 body 끝에 있어 DOM은 이미 파싱됨 → 즉시 초기화
   loadSettings();
   buildSettings();
+  bindCurationMore();
   var input = q('#searchInput');
   if (input) { input.addEventListener('input', function () { runSearch(input.value); }); }
   apply();

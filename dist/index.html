@@ -345,10 +345,43 @@ h1 {
   line-height: 1.4;
 }
 
+.curation-section-meta {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.curation-more-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 2px 9px;
+  background: #e2e8f0;
+  color: #1d4ed8;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.curation-more-btn:hover {
+  background: #cbd5e1;
+}
+
 .curation-section-items {
   display: grid;
   gap: 7px;
   padding: 8px;
+}
+
+/* 기본은 2건만 노출. 더보기(.is-expanded) 또는 검색 중에는 나머지 수집분도 표시 */
+.curation-brief-card.is-extra {
+  display: none;
+}
+
+.curation-section.is-expanded .curation-brief-card.is-extra,
+body.is-searching .curation-brief-card.is-extra {
+  display: block;
 }
 
 .curation-brief-card {
@@ -986,7 +1019,7 @@ footer {
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 26일 09:01 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 26일 09:48 (KST)</p>
   </div>
   <div class="topbar-tools">
     <form class="search-box" role="search" onsubmit="return RADAR.onSearchSubmit(event)">
@@ -1029,7 +1062,10 @@ footer {
               <h3>흥행·배급</h3>
               <span>box office / distribution</span>
             </div>
-            <b>2건</b>
+            <div class="curation-section-meta">
+              <b>6건</b>
+              <button type="button" class="curation-more-btn" aria-expanded="false">더보기</button>
+            </div>
           </div>
           <div class="curation-section-items">
             <article class="curation-brief-card">
@@ -1061,10 +1097,78 @@ footer {
     <span class="source official">
       공식 · v.daum.net
     </span>
-    <span class="time">19시간 전</span>
+    <span class="time">20시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE1qZmgzVDdmbTRPWTVtMWhRQWs1NDJJMDFKMElQTExrZXFtQUhoUHd2a2VOZjhjNVZGYTFBRTROQkZZamxTeVNEa19McjMzQlNZMW1naEdNQmNReFRlZWRyYjJTblJzdw?oc=5" target="_blank" rel="noopener">신하균, `와일드 씽` 특별출연…역대급 웃음 폭탄 예고</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>신하균, `와일드 씽` 특별출연…역대급 웃음 폭탄 예고 마이데일리</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · 마이데일리
+    </span>
+    <span class="time">1시간 전</span>
+  </div>
+
+  <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPQlRpUk9hUFk5QURFLS1Qa21kUHJTMWZLSTBrMDA0WkEtamctVDRuTGl5SHd4ODlCLTRXNkJQa2RCTjB3VWNfcGdXMEQzemRLS2J0SkhiQlo4N2hsaG4wdGR2N0YtMUcyeU9JOTAtTGxuTVdtNzQ1Q1VNbXVmbjE2Q2NLaWzSAXdBVV95cUxQNGZRdTQtcE9DaVBNeTdVNS15UFJVX3FSa09pS2NSOENvdHlRcWR6bjg2TGphTnhmb0U4Rll5cDN0bDJZZHRGZW9yWTU3anM5TmNkLXB1bVlaaExWUnBiTVFDWkZLZk9iWFFaN0tCNHR5ZW54ZVNDWQ?oc=5" target="_blank" rel="noopener">&#34;&#39;극한직업&#39; 제작사·신하균 의기투합&#34;…&#39;와일드 씽&#39;, 이 조합 못 참지</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>&#34;&#39;극한직업&#39; 제작사·신하균 의기투합&#34;…&#39;와일드 씽&#39;, 이 조합 못 참지 sportschosun.com</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · sportschosun.com
+    </span>
+    <span class="time">2시간 전</span>
+  </div>
+
+  <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQMEJoVWdmRTdOeXY4eGNyanFxTWcwYkpkNjRMakZWblN3S3JjTmhJeERrbWRuX0RpOUEteW1RVFBxaWxnQlhQTC1YeGE2bjBZUWtQX1Buejh2NEEzOENVRHVteDlmWExFVzhCY25zVGNNQUtTLVNleXAtTi1nWWtpV0ln?oc=5" target="_blank" rel="noopener">&#39;와일드 씽&#39; 노래는 시작일뿐 [최혜진의 혜안]</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>&#39;와일드 씽&#39; 노래는 시작일뿐 [최혜진의 혜안] sportalkorea.com</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · sportalkorea.com
+    </span>
+    <span class="time">1일 전</span>
+  </div>
+
+  <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://deadline.com/2026/05/backrooms-kane-parsons-a24-youngest-director-ever-disruptors-1236862181/" target="_blank" rel="noopener">‘Backrooms’ Creator Kane Parsons On Becoming A24’s Youngest Director Ever, Adapting His YouTube Series: “A Weird Dream Come True”</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>Born in 2005, the year YouTube launched, Backrooms director Kane Parsons has “always taken that for granted,” having the platform at his disposal. “YouTube, really more than just being a cultural reference for me, has been how I know how to do any of the stuf…</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · Deadline
+    </span>
+    <span class="time">8시간 전</span>
+  </div>
+
+  <div class="chips"><span>A24</span><span>백룸</span></div>
 
 </article>
           </div>
@@ -1076,7 +1180,10 @@ footer {
               <h3>극장·정책</h3>
               <span>theater policy</span>
             </div>
-            <b>2건</b>
+            <div class="curation-section-meta">
+              <b>2건</b>
+
+            </div>
           </div>
           <div class="curation-section-items">
             <article class="curation-brief-card">
@@ -1119,7 +1226,10 @@ footer {
               <h3>해외·마켓</h3>
               <span>global market</span>
             </div>
-            <b>2건</b>
+            <div class="curation-section-meta">
+              <b>7건</b>
+              <button type="button" class="curation-more-btn" aria-expanded="false">더보기</button>
+            </div>
           </div>
           <div class="curation-section-items">
             <article class="curation-brief-card">
@@ -1151,10 +1261,89 @@ footer {
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">8시간 전</span>
+    <span class="time">9시간 전</span>
   </div>
 
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://www.rollingstone.com/tv-movies/tv-movie-reviews/mandalorian-and-grogu-review-star-wars-1235566001/" target="_blank" rel="noopener">Is the Star Wars Franchise Finally Cooked?</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>It&#39;s not just that The Mandalorian and Grogu turns a promising TV show into a mediocre movie. It makes you feel like the IP is now creatively DOA</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · Rolling Stone
+    </span>
+    <span class="time">11시간 전</span>
+  </div>
+
+  <div class="chips"><span>The Mandalorian and Grogu</span></div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://deadline.com/gallery/highest-grossing-animated-movies-all-time/" target="_blank" rel="noopener">The 25 Highest-Grossing Animated Films Of All Time At The Global Box Office</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>Walt Disney Animation Studios’ Zootopia 2 has roared past the $1 billion threshold at the global box office, achieving the massive milestone in just 17 days. This phenomenal pace makes it the fastest-ever billion-dollar earner among all animated MPA releases…</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · Deadline
+    </span>
+    <span class="time">13시간 전</span>
+  </div>
+
+  <div class="chips"><span>Walt Disney</span></div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://deadline.com/2026/05/films-star-actors-named-chris-talking-animal-older-women-1236920528/" target="_blank" rel="noopener">Films Are More Likely To Star Actors Named Chris Or A Talking Animal Than Women Over 60, UK Anti-Ageism Analysis Finds</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>A new analysis of the top-grossing U.K. films of the past three years has unveiled that they are more likely to star actors named Chris or feature a talking animal in the lead role than a woman over the age of 60. The study, conducted by the Centre for Aging…</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · Deadline
+    </span>
+    <span class="time">3시간 전</span>
+  </div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://variety.com/2026/film/global/films-star-man-chris-talking-animal-than-woman-over-60-1236758341/" target="_blank" rel="noopener">Films Are More Likely to Star a Man Named Chris or a Talking Animal Than an Older Woman, According to Study</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>A new study out of the United Kingdom found that out of the top films from the past three years at the U.K. box office, movies are more likely to feature a lead actor named Chris than a female lead actor over the age of 60. The Age Without Limits survey found…</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · Variety
+    </span>
+    <span class="time">5시간 전</span>
+  </div>
+
+</article><article class="curation-brief-card is-extra">
+  <a class="title curation-article-title" href="https://deadline.com/2026/05/indie-film-box-office-tuner-i-love-boosters-obsession-1236920235/" target="_blank" rel="noopener">‘Tuner’ Plays Well For Black Bear In Limited Opening, ‘I Love Boosters’ Cracks Top 10 – Specialty Box Office</a>
+
+  <div class="curation-summary-block">
+    <b>내용 요약</b>
+    <p>Tuner, Black Bear’s fourth release since launching a domestic distribution arm last summer, had a nice $102k opening at four theaters in New York and Los Angeles and is eyeing $122k for the four-day holiday weekend including Memorial Day Monday. The distribut…</p>
+  </div>
+
+  <div class="brief-card-meta">
+    <span class="source official">
+      공식 · Deadline
+    </span>
+    <span class="time">1일 전</span>
+  </div>
 
 </article>
           </div>
@@ -1625,7 +1814,7 @@ footer {
           <article class="market-trend-card">
   <div class="trend-topline">
     <span>IP 사업</span>
-    <em>10시간 전</em>
+    <em>11시간 전</em>
   </div>
   <a class="trend-title" href="https://www.rollingstone.com/tv-movies/tv-movie-reviews/mandalorian-and-grogu-review-star-wars-1235566001/" target="_blank" rel="noopener">Is the Star Wars Franchise Finally Cooked?</a>
   <p class="trend-frame">게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장</p>
@@ -2132,11 +2321,25 @@ footer {
     }
   });
 
+  // 큐레이션 섹션 "더보기/접기": 기본 2건만 노출, 클릭 시 수집분(최대 10건) 전체 표시
+  function bindCurationMore() {
+    qa('.curation-more-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var section = btn.closest('.curation-section');
+        if (!section) { return; }
+        var expanded = section.classList.toggle('is-expanded');
+        btn.textContent = expanded ? '접기' : '더보기';
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+  }
+
   window.RADAR = { onSearchSubmit: onSearchSubmit, clearSearch: clearSearch, toggleSettings: toggleSettings };
 
   // 스크립트가 body 끝에 있어 DOM은 이미 파싱됨 → 즉시 초기화
   loadSettings();
   buildSettings();
+  bindCurationMore();
   var input = q('#searchInput');
   if (input) { input.addEventListener('input', function () { runSearch(input.value); }); }
   apply();

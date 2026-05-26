@@ -67,6 +67,80 @@
 </article>
 {%- endmacro -%}
 
+{%- macro ai_briefing_panel(b) -%}
+<section class="panel ai-briefing-panel" data-section="aiBriefing">
+  <div class="ai-briefing-head">
+    <h2>🤖 오늘의 AI 브리핑 <span class="ai-badge">AI SUMMARY</span></h2>
+    <span class="ai-generated-at">{{ b.generated_at_kst or '' }} · Claude 자동 생성</span>
+  </div>
+  {% if b.headline_today %}<p class="ai-headline">{{ b.headline_today }}</p>{% endif %}
+  {% if b.summary %}<p class="ai-summary">{{ b.summary }}</p>{% endif %}
+
+  <div class="ai-grid">
+    {% if b.own_titles %}
+    <div class="ai-block ai-own">
+      <div class="ai-block-head"><h3>📌 자사 작품 위치</h3></div>
+      {% for t in b.own_titles %}
+      <div class="ai-own-item">
+        <div class="ai-own-title"><b>{{ t.title }}</b>{% if t.kind_label %}<span class="ai-kind">{{ t.kind_label }}</span>{% endif %}</div>
+        {% if t.highlights %}<ul class="ai-points">{% for p in t.highlights %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
+        {% if t.risks %}<ul class="ai-points ai-risks">{% for r in t.risks %}<li>▼ {{ r }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if b.competitors %}
+    <div class="ai-block">
+      <div class="ai-block-head"><h3>🎬 경쟁작 동향</h3></div>
+      <ul class="ai-points">
+        {% for c in b.competitors %}
+        <li><b>{{ c.title }}</b>{% if c.distributor %} <em class="ai-dist">({{ c.distributor }})</em>{% endif %} — {{ c.note }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if b.new_trends %}
+    <div class="ai-block">
+      <div class="ai-block-head"><h3>🔥 어제 대비 신규 트렌드</h3></div>
+      <ul class="ai-points">
+        {% for t in b.new_trends %}
+        <li><span class="ai-tag">{{ t.label }}</span> {{ t.note }}{% if t.implication %} <b class="ai-implication">— {{ t.implication }}</b>{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if b.industry_signals %}
+    <div class="ai-block">
+      <div class="ai-block-head"><h3>📡 산업 시그널</h3></div>
+      <ul class="ai-points">
+        {% for s in b.industry_signals %}
+        <li><span class="ai-tag">{{ s.label }}</span> {{ s.note }}{% if s.implication %} <b class="ai-implication">— {{ s.implication }}</b>{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if b.overseas_brief %}
+  <div class="ai-block ai-overseas">
+    <div class="ai-block-head"><h3>🌐 외신 핵심 번역·요약</h3></div>
+    {% for o in b.overseas_brief %}
+    <div class="ai-overseas-item">
+      <div class="ai-overseas-title">
+        {% if o.source_url %}<a href="{{ o.source_url }}" target="_blank" rel="noopener">{{ o.title_ko }}</a>{% else %}{{ o.title_ko }}{% endif %}
+      </div>
+      {% if o.summary_ko %}<p class="ai-overseas-summary">{{ o.summary_ko }}</p>{% endif %}
+      {% if o.implication %}<p class="ai-overseas-impl">{{ o.source or '외신' }} · 시사점: {{ o.implication }}</p>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+{%- endmacro -%}
+
 {%- macro archive_card_article(a) -%}
 <article class="archive-card" data-kind="article">
   <a class="archive-title" href="{{ a.url }}" target="_blank" rel="noopener">{{ a.ko_title or a.title }}</a>
@@ -161,6 +235,7 @@
     <span id="searchStatusText"></span>
     <button type="button" class="tool-btn" onclick="RADAR.clearSearch()">전체 보기</button>
   </div>
+  {% if ai_briefing %}{{ ai_briefing_panel(ai_briefing) }}{% endif %}
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].title }} ({{ boxoffice[0].audi_count }}명 / <span class="audi-delta audi-delta-{{ boxoffice[0].audi_delta_sign }}">{{ boxoffice[0].audi_delta_short }}</span>){% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_label }}{% else %}데이터 없음{% endif %}</strong></div>
@@ -369,6 +444,7 @@
   var SETTINGS_KEY = 'radar.sections.v1';
   // 설정에서 표시/숨김을 토글할 수 있는 섹션 목록
   var SECTIONS = [
+    { key: 'aiBriefing',  label: 'AI 브리핑',       sel: '.ai-briefing-panel' },
     { key: 'kpis',        label: '핵심 지표',       sel: '.kpis' },
     { key: 'curation',    label: '핵심 큐레이션',   sel: '.curation-panel' },
     { key: 'boxoffice',   label: '전일 관객 TOP 5', sel: '[data-section="boxoffice"]' },

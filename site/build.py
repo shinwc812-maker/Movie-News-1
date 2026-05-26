@@ -1198,6 +1198,20 @@ def build() -> None:
     archive_official = sorted(official_articles, key=lambda v: v.get("score") or 0, reverse=True)
     archive_community = community_views
 
+    # AI 브리핑(임원용): briefing.bat 또는 'python -m crawler.ai_briefing'로 갱신.
+    # 파일이 없으면 패널은 표시되지 않는다(템플릿이 분기 처리).
+    ai_briefing = load_json(DATA_DIR / "ai_briefing.json", None)
+    if isinstance(ai_briefing, dict) and ai_briefing.get("generated_at"):
+        try:
+            gen_utc = datetime.fromisoformat(ai_briefing["generated_at"])
+            if gen_utc.tzinfo is None:
+                gen_utc = gen_utc.replace(tzinfo=timezone.utc)
+            ai_briefing["generated_at_kst"] = (
+                gen_utc.astimezone(KST).strftime("%Y.%m.%d %H:%M KST")
+            )
+        except (ValueError, TypeError):
+            ai_briefing["generated_at_kst"] = ""
+
     env = Environment(loader=FileSystemLoader(str(SITE_DIR)), autoescape=True)
     template = env.get_template("template.html.j2")
     css = (SITE_DIR / "style.css").read_text(encoding="utf-8")
@@ -1215,6 +1229,7 @@ def build() -> None:
         archive_official=archive_official,
         archive_community=archive_community,
         archive_total=len(archive_official) + len(archive_community),
+        ai_briefing=ai_briefing,
         boxoffice=boxoffice,
         reservation=reservation,
         overseas_weekend=overseas_weekend,

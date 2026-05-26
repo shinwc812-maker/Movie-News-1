@@ -80,5 +80,15 @@
       "Universal Pictures International Korea"
     ],
     "is_lotte": false
+  },
+  "백룸": {
+    "movie_code": "20263030",
+    "distributors": [
+      "(주)바이포엠스튜디오",
+      "BY4MSTUDIO",
+      "리바이브콘텐츠 주식회사",
+      "REVIVECONTENTS"
+    ],
+    "is_lotte": false
   }
 }

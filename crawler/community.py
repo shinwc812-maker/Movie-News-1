@@ -43,8 +43,40 @@ SENSITIVE_QUERY_PARAM_PATTERN = re.compile(
     flags=re.IGNORECASE,
 )
 
-POSITIVE_TERMS = ("재밌", "좋", "기대", "호평", "추천", "만족")
-NEGATIVE_TERMS = ("아쉽", "별로", "혹평", "실망", "걱정", "불호")
+# 커뮤니티 글 분류용 어휘 — 게시글 제목+발췌만 검사하므로 변형형·은어를 폭넓게 포함.
+# 짧은 단음절('좋','잘','갓' 등)은 오매칭 위험이 커서 의도적으로 제외하고,
+# 의미가 분명한 2자 이상 변형만 등록한다.
+POSITIVE_TERMS = (
+    # 재미/호감 (커뮤니티 은어 포함)
+    "재밌", "재미있", "재밋", "잼있", "잼나", "꿀잼", "갓잼", "개잼", "혼잼", "씐잼",
+    # 평가
+    "추천", "강추", "호평", "만족", "명작", "띵작", "갓작", "수작", "역대급", "역대",
+    # 기대/호응
+    "기대됨", "기대된다", "기대돼", "기대된", "기대중", "기대감", "기다려",
+    # 강조형 호감
+    "쩐다", "쩔어", "지렸", "지림", "찐맛", "ㄹㅇ재밌", "개좋",
+    # '좋' 류 — 부정문(안 좋 등)에 오매칭되지 않도록 명확한 변형만
+    "좋아", "좋네", "좋다", "좋더라", "좋았", "좋고", "좋은", "좋더", "좋군",
+    # 흥행/객관적 호조
+    "흥행", "흥행몰이", "흥행질주", "흥행 질주", "돌파", "신기록", "매진",
+    # 짧은 강조
+    "최고", "갓갓",
+)
+NEGATIVE_TERMS = (
+    # 재미 부정/은어
+    "노잼", "재미없", "잼없", "잼엄", "꿀잼없",
+    # 평가
+    "별로", "별로네", "별로임", "별로다", "실망", "걱정", "혹평", "불호", "최악",
+    "비추", "비추함", "아쉽", "안타깝", "안타까",
+    # 작품/품질
+    "쓰레기", "망작", "폭망", "똥망", "망함", "망했", "망쳤", "노답", "구려", "구림", "구린",
+    # 미적/스토리
+    "지루", "지루함", "지루해", "졸려", "졸렸", "졸림", "산만", "산만함",
+    "진부", "뻔해", "뻔하", "뻔한", "클리셰", "한계",
+    # 부정문(긍정어를 무력화) — 부정 카운트로 합산
+    "안 좋", "안좋", "안 재밌", "안재밌", "안 재미있", "안재미있",
+    "안 기대", "안기대", "기대 안", "기대안",
+)
 
 
 def _redact_sensitive_query_params(text: str) -> str:
@@ -58,7 +90,11 @@ def _safe_exception_message(exc: Exception) -> str:
 
 
 def summarize_reaction_mood(text: str) -> str:
-    """Return a deterministic short mood summary for community snippets."""
+    """Return a deterministic short mood summary for community snippets.
+
+    제목+발췌가 짧고 다수가 단순 정보/공지(예: '200만 돌파', 'GV 일정')라
+    감정어가 안 잡히는 경우가 많다. 그런 글은 "단순 정보/공지"로 라벨한다.
+    """
     positive = sum(text.count(term) for term in POSITIVE_TERMS)
     negative = sum(text.count(term) for term in NEGATIVE_TERMS)
     if positive and negative:
@@ -67,7 +103,7 @@ def summarize_reaction_mood(text: str) -> str:
         return "긍정 반응 우세"
     if negative:
         return "우려/부정 반응 우세"
-    return "중립적 반응"
+    return "단순 정보/공지"
 
 
 def _text(node, selector: str) -> str:

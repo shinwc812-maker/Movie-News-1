@@ -41,6 +41,33 @@ def test_summarize_reaction_mood_detects_mixed_sentiment():
     assert "호불호" in summary
 
 
+def test_summarize_reaction_mood_recognises_slang_positive():
+    assert summarize_reaction_mood("이번 영화 꿀잼 ㄹㅇ 명작") == "긍정 반응 우세"
+    assert summarize_reaction_mood("연출 미쳤고 흥행 질주") == "긍정 반응 우세"
+
+
+def test_summarize_reaction_mood_recognises_slang_negative():
+    assert summarize_reaction_mood("개인적으로 노잼이었음 지루") == "우려/부정 반응 우세"
+    assert summarize_reaction_mood("스토리 진부하고 망작") == "우려/부정 반응 우세"
+
+
+def test_summarize_reaction_mood_handles_negation_of_positive_phrase():
+    # "안 좋"이 들어가면 부정으로 잡혀야 함 — 단순 substring 매칭이라
+    # 동시에 "좋"이 들어있다고 긍정으로 빠지지 않도록 변형형만 등록한 결과를 검증.
+    assert summarize_reaction_mood("연출은 별로 안 좋음") == "우려/부정 반응 우세"
+
+
+def test_summarize_reaction_mood_treats_boxoffice_milestone_as_positive_signal():
+    # 흥행 지표(돌파/매진/신기록 등)는 의도적으로 객관적 호조 신호로 보고 긍정 처리.
+    assert summarize_reaction_mood("<군체> 200만 돌파") == "긍정 반응 우세"
+
+
+def test_summarize_reaction_mood_labels_pure_notice_as_information():
+    # 감정어/흥행지표가 전혀 없는 단순 공지·이벤트 안내는 '단순 정보/공지'.
+    assert summarize_reaction_mood("CGV 용산 굿즈 증정 이벤트") == "단순 정보/공지"
+    assert summarize_reaction_mood("아코디언 엽서 증정 안내") == "단순 정보/공지"
+
+
 def test_naver_search_source_parses_cafe_items():
     source = NaverSearchCommunitySource(
         source_name="네이버카페",

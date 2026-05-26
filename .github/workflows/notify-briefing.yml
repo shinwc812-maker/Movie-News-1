@@ -1,0 +1,46 @@
+name: Notify AI Briefing
+
+# routine 또는 사람이 data/ai_briefing.json 을 push하면 이메일로 발송.
+# Gmail SMTP 사용 — GitHub Secrets 에 GMAIL_USER, GMAIL_APP_PASSWORD 필요.
+# (Secrets 가 비어 있으면 mail step 만 실패하고 워크플로우 자체엔 영향 없음.)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/ai_briefing.json"
+  workflow_dispatch: {}
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set today's date (KST)
+        id: today
+        run: echo "date=$(TZ=Asia/Seoul date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Build mail body
+        run: |
+          python scripts/build_mail_body.py > mail_body.txt
+          echo "--- mail body preview ---"
+          head -40 mail_body.txt
+
+      - name: Send AI briefing email
+        if: ${{ env.GMAIL_USER != '' && env.GMAIL_APP_PASSWORD != '' }}
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          secure: false
+          username: ${{ secrets.GMAIL_USER }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          from: "AI Briefing Bot <${{ secrets.GMAIL_USER }}>"
+          to: shinwc812@gmail.com
+          subject: "[오늘의 AI 브리핑] ${{ steps.today.outputs.date }}"
+          body: file://mail_body.txt

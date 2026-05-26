@@ -3,11 +3,11 @@ from datetime import datetime, timedelta, timezone
 
 from crawler.briefing_models import BoxOfficeMovie, MarketSnapshot, ReservationMovie, ReservationSnapshot
 from crawler.main import (
-    collect_focused_movie_news,
     collect_market_trend_items,
+    collect_movie_news,
     community_search_terms,
     filter_recent,
-    focused_movie_news_terms,
+    movie_news_terms,
     save_json_items,
 )
 from crawler.market_trends import MARKET_TREND_RECENCY_DAYS
@@ -117,7 +117,7 @@ def test_community_search_terms_include_reservation_top_five_titles():
     assert "영화 관객 반응" in terms
 
 
-def test_focused_movie_news_terms_only_include_lotte_distributed_titles():
+def test_movie_news_terms_include_all_top_titles():
     reservation = ReservationSnapshot(
         captured_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
         movies=[
@@ -136,12 +136,13 @@ def test_focused_movie_news_terms_only_include_lotte_distributed_titles():
         ],
     )
 
-    terms = focused_movie_news_terms(None, reservation)
+    terms = movie_news_terms(None, reservation)
 
-    assert terms == ["와일드 씽", "와일드씽"]
+    # 롯데 배급 여부와 무관하게 TOP 작품 전체 제목을 검색어로 포함한다.
+    assert terms == ["마이클", "와일드 씽", "와일드씽"]
 
 
-def test_collect_focused_movie_news_fetches_naver_news_for_lotte_titles(monkeypatch):
+def test_collect_movie_news_fetches_naver_news_for_top_titles(monkeypatch):
     article = Article(
         id="wild",
         source="Naver News",
@@ -165,7 +166,7 @@ def test_collect_focused_movie_news_fetches_naver_news_for_lotte_titles(monkeypa
 
     def fake_fetch(client_id, client_secret, queries, display, public_fallback):
         assert queries == ["와일드 씽", "와일드씽"]
-        assert display == 5
+        assert display == 10
         assert public_fallback is True
         return [article]
 
@@ -173,7 +174,7 @@ def test_collect_focused_movie_news_fetches_naver_news_for_lotte_titles(monkeypa
     monkeypatch.setenv("NAVER_CLIENT_SECRET", "secret")
     monkeypatch.setattr("crawler.main.fetch_market_trend_articles_from_naver", fake_fetch)
 
-    articles = collect_focused_movie_news(None, reservation)
+    articles = collect_movie_news(None, reservation)
 
     assert [item.title for item in articles] == ["와일드 씽 티켓 프로모션"]
 

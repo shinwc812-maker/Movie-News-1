@@ -1013,13 +1013,72 @@ footer {
     height: 76px;
   }
 }
+
+/* ===== 전체 수집 검색 아카이브 ===== */
+/* 평소엔 숨김. 검색 시에만 노출하고, 그때 일반 패널은 모두 숨겨 결과만 보이게 한다. */
+.search-archive-panel { display: none; }
+
+body.is-searching .kpis,
+body.is-searching .hero-grid,
+body.is-searching .market-trends-panel,
+body.is-searching .community-only-panel,
+body.is-searching .policy-panel { display: none; }
+
+body.is-searching .search-archive-panel { display: block; }
+
+.archive-group { margin-top: 12px; }
+.archive-group .section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.archive-group .section-head h3 { margin: 0; font-size: 0.92rem; color: #111827; }
+.archive-group .section-head span { color: #64748b; font-size: 0.72rem; font-weight: 800; }
+
+.archive-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+}
+
+.archive-card {
+  border-radius: 7px;
+  padding: 10px 11px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.09);
+}
+.archive-title { font-size: 0.92rem; font-weight: 800; line-height: 1.34; }
+.archive-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 5px;
+}
+.archive-kind {
+  border-radius: 999px;
+  padding: 1px 7px;
+  font-size: 0.66rem;
+  font-weight: 800;
+}
+.archive-kind.official { background: #e0ecff; color: #1d4ed8; }
+.archive-kind.community { background: #e7f5ec; color: #1a7f4b; }
+.archive-meta .time { color: #94a3b8; font-size: 0.68rem; }
+.archive-excerpt, .archive-mood {
+  margin: 6px 0 0;
+  color: #475569;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+.archive-mood { color: #1a7f4b; font-weight: 700; }
 </style>
 </head>
 <body class="lang-ko"><header class="topbar">
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 26일 09:48 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 26일 10:46 (KST)</p>
   </div>
   <div class="topbar-tools">
     <form class="search-box" role="search" onsubmit="return RADAR.onSearchSubmit(event)">
@@ -1080,7 +1139,7 @@ footer {
     <span class="source official">
       공식 · 데일리안
     </span>
-    <span class="time">7시간 전</span>
+    <span class="time">8시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1097,7 +1156,7 @@ footer {
     <span class="source official">
       공식 · v.daum.net
     </span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1114,7 +1173,7 @@ footer {
     <span class="source official">
       공식 · 마이데일리
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1131,7 +1190,7 @@ footer {
     <span class="source official">
       공식 · sportschosun.com
     </span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1165,7 +1224,7 @@ footer {
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">8시간 전</span>
+    <span class="time">9시간 전</span>
   </div>
 
   <div class="chips"><span>A24</span><span>백룸</span></div>
@@ -1261,7 +1320,7 @@ footer {
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
 
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
@@ -1278,7 +1337,7 @@ footer {
     <span class="source official">
       공식 · Rolling Stone
     </span>
-    <span class="time">11시간 전</span>
+    <span class="time">12시간 전</span>
   </div>
 
   <div class="chips"><span>The Mandalorian and Grogu</span></div>
@@ -1295,7 +1354,7 @@ footer {
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
 
   <div class="chips"><span>Walt Disney</span></div>
@@ -1312,7 +1371,7 @@ footer {
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1327,7 +1386,7 @@ footer {
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1787,7 +1846,7 @@ footer {
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>공간 사업</span>
-    <em>4일 전</em>
+    <em>5일 전</em>
   </div>
   <a class="trend-title" href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFBjcjRra3czLTJVdHVTOWpWVkQ0S2haOVR2SDVWamI2bnNQVExyRVFVRXRGaVdmc3BCWlcwNVJjZXV2OEEtckhRWUI1bEJmbjNFNHhjMG16WVZoU2tXblN3TUZyd3NiMjVT0gFsQVVfeXFMTVhoV2s0dFZWeTdQdzBYR0V3WFQwS1l3aDB6RVhaYmlFMHpxY2hzRWNZZEFpOHRZdVFwU1NONVcwU0VSQ3dtTDJKcHMzN1hGY0M3MXJ3emtDLS1aLU1teHJONVR2QUJRYlg3b3Fh?oc=5" target="_blank" rel="noopener">넷플릭스 ‘케이팝 데몬 헌터스’ 1주년 팝업, 더현대 서울서 개막… 아시아 9개 도시 투어 시작</a>
   <p class="trend-frame">팝업·플래그십·복합문화공간이 팬덤 소비의 기본 동선으로 자리매김</p>
@@ -1814,7 +1873,7 @@ footer {
           <article class="market-trend-card">
   <div class="trend-topline">
     <span>IP 사업</span>
-    <em>11시간 전</em>
+    <em>12시간 전</em>
   </div>
   <a class="trend-title" href="https://www.rollingstone.com/tv-movies/tv-movie-reviews/mandalorian-and-grogu-review-star-wars-1235566001/" target="_blank" rel="noopener">Is the Star Wars Franchise Finally Cooked?</a>
   <p class="trend-frame">게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장</p>
@@ -1853,7 +1912,7 @@ footer {
             <article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>8시간 전</em>
+    <em>9시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94056239" target="_blank" rel="noopener">일본판 &#39;범죄도시&#39; 일본 영화 전문가들 반응</a>
   <p class="community-mood">중립적 반응</p>
@@ -1862,7 +1921,7 @@ footer {
 </article><article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>12시간 전</em>
+    <em>13시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94055908" target="_blank" rel="noopener">&lt;군체&gt; 200만 돌파</a>
   <p class="community-mood">중립적 반응</p>
@@ -1871,7 +1930,7 @@ footer {
 </article><article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>14시간 전</em>
+    <em>15시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94055619" target="_blank" rel="noopener">‘슈퍼걸’, ‘더 마블스’와 ‘블랙 아담’ 사이 수준으로 흥행 전망… DC 스튜디오 중대한 박스오피스 시험대 올라</a>
   <p class="community-mood">중립적 반응</p>
@@ -1880,7 +1939,7 @@ footer {
 </article><article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>22시간 전</em>
+    <em>23시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94055070" target="_blank" rel="noopener">[백룸] 평론가 크리스티와 알론조의 소감</a>
   <p class="community-mood">중립적 반응</p>
@@ -2157,6 +2216,885 @@ footer {
     </div>
 
   </section>
+
+  <section class="panel search-archive-panel" data-section="archive">
+    <div class="panel-head">
+      <h2>전체 수집 검색결과</h2>
+      <span>키워드 검색 시 수집분 전체(100건)에서 매칭 표시</span>
+    </div>
+    <div class="archive-group" data-archive-group="article">
+      <div class="section-head"><h3>기사</h3><span>41건</span></div>
+      <div class="archive-list">
+        <article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE1qZmgzVDdmbTRPWTVtMWhRQWs1NDJJMDFKMElQTExrZXFtQUhoUHd2a2VOZjhjNVZGYTFBRTROQkZZamxTeVNEa19McjMzQlNZMW1naEdNQmNReFRlZWRyYjJTblJzdw?oc=5" target="_blank" rel="noopener">신하균, `와일드 씽` 특별출연…역대급 웃음 폭탄 예고</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · 마이데일리</span>
+    <span class="time">2시간 전</span>
+  </div>
+  <p class="archive-excerpt">신하균, `와일드 씽` 특별출연…역대급 웃음 폭탄 예고 마이데일리</p>
+  <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPQlRpUk9hUFk5QURFLS1Qa21kUHJTMWZLSTBrMDA0WkEtamctVDRuTGl5SHd4ODlCLTRXNkJQa2RCTjB3VWNfcGdXMEQzemRLS2J0SkhiQlo4N2hsaG4wdGR2N0YtMUcyeU9JOTAtTGxuTVdtNzQ1Q1VNbXVmbjE2Q2NLaWzSAXdBVV95cUxQNGZRdTQtcE9DaVBNeTdVNS15UFJVX3FSa09pS2NSOENvdHlRcWR6bjg2TGphTnhmb0U4Rll5cDN0bDJZZHRGZW9yWTU3anM5TmNkLXB1bVlaaExWUnBiTVFDWkZLZk9iWFFaN0tCNHR5ZW54ZVNDWQ?oc=5" target="_blank" rel="noopener">&#34;&#39;극한직업&#39; 제작사·신하균 의기투합&#34;…&#39;와일드 씽&#39;, 이 조합 못 참지</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · sportschosun.com</span>
+    <span class="time">3시간 전</span>
+  </div>
+  <p class="archive-excerpt">&#34;&#39;극한직업&#39; 제작사·신하균 의기투합&#34;…&#39;와일드 씽&#39;, 이 조합 못 참지 sportschosun.com</p>
+  <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9CRjg4WFVWUXoyVDR3d1FCY3dFMDZDdWI4bU9mQjl0QVU0clJzX09FSk5IQlNfSWNSNzlsSUpxRjBHcGlWV0dNQjlqaENOYUUzd2dRNjhB0gGbAkFVX3lxTE92eWxqbmNNbGI3WU1LNnNPRFRIcXpab3RGaVNuZm15RVZFVVRRVmVfcHBoYjA3YVNzLVR2UEotZHliRGZRaG5pYlBUTUVNWVRsNFhYRFc3SHBrQXFaeUpwWWVnckNjYUdieXAzRTNiXzVLWk9XSmRiN1lLY1ZEN0I4dHRIUUY0UThnYVVWOUNOSk0yWUtjUkFjc0s5RF9fX1p1RHB5WFlxbTg2VlVaeVcwUEVKNGhkWmZGSGFMaGlpNWxKNVR2RU9LcHR0bHEzYU5sUF82NlVUcExOeHdpZ0RTY05fY2M3WlJUZWtCdlprc3lwZUxjeFlWb1BWX2xFem9tYzB4UXk1YUpyY1Zjajl0RUwxMVRXLUZKLVk?oc=5" target="_blank" rel="noopener">‘와일드 씽’ 강동원, 세기말 감성 속에 감춰둔 연기 자존심 [D:인터뷰]</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · 데일리안</span>
+    <span class="time">8시간 전</span>
+  </div>
+  <p class="archive-excerpt">‘와일드 씽’ 강동원, 세기말 감성 속에 감춰둔 연기 자존심 [D:인터뷰] 데일리안 신하균이 말아주는 코미디…‘와일드 씽’서 ‘웃음 치트키’ 활약 기대 sports.donga.com &#39;와일드 씽&#39; 강동원 &#34;힙합이 저보다 어리더라고요&#34; v.daum.net 신하균, ‘와일드씽’의 히든카드로 등장…‘하균신’의 코믹 연기는? 조선일보 &#39;댄싱머신 강동원·절대매력 박지현·폭풍래퍼 엄태구&#39;에 빠지다 [리뷰] 한국경제 강동원X박지현X엄태구 &#39;와일드 씽&#39;, 개봉 앞두고 예매율 2위…역조공 카페→무대인사 관심 톱스타뉴스 ‘와일드 씽’ 강동원 “다시는 못할 듯”…45세의 헤드스핀 투혼 [SS인터뷰] sportsseoul.com &#34;누구에게나 기회는 있다&#34;…&#39;와일드 씽&#39;, 90년대 향수와 무모한 도전이 주는 웃음 [D: 볼 만해?] 네이트 AI 영상인줄… ‘돌아버린’ 강동원에 빠져드네 조선일보</p>
+  <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://news.google.com/rss/articles/CBMiS0FVX3lxTE1SNlRteENPbkM3WXVNOHVrR0tpdlZSYXY1aUVEeWE2MlZZN2ZTQ0UzWGNOQldJOUZ4MDFWenhBeUpEN3FHblpxQTZhUQ?oc=5" target="_blank" rel="noopener">&#39;와일드 씽&#39; 강동원 &#34;힙합이 저보다 어리더라고요&#34;</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · v.daum.net</span>
+    <span class="time">21시간 전</span>
+  </div>
+  <p class="archive-excerpt">&#39;와일드 씽&#39; 강동원 &#34;힙합이 저보다 어리더라고요&#34; v.daum.net</p>
+  <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQMEJoVWdmRTdOeXY4eGNyanFxTWcwYkpkNjRMakZWblN3S3JjTmhJeERrbWRuX0RpOUEteW1RVFBxaWxnQlhQTC1YeGE2bjBZUWtQX1Buejh2NEEzOENVRHVteDlmWExFVzhCY25zVGNNQUtTLVNleXAtTi1nWWtpV0ln?oc=5" target="_blank" rel="noopener">&#39;와일드 씽&#39; 노래는 시작일뿐 [최혜진의 혜안]</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · sportalkorea.com</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">&#39;와일드 씽&#39; 노래는 시작일뿐 [최혜진의 혜안] sportalkorea.com</p>
+  <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-mandalorian-grogu-box-office-franchise-low-1236604973/" target="_blank" rel="noopener">Star Wars Box Office Rebound: ‘The Mandalorian and Grogu’ Makes Major Gains on Saturday for $102M Domestic Opening</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · The Hollywood Reporter</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">The Lucasfilm/Disney title is the first Star Wars movie to play on the big screen in seven long years in what seems like a galaxy far, far away. The other headline at the Memorial Day box office is the extraordinary hold of YouTuber Curry Barker&#39;s &#39;Obsession,&#39; which is up an unheard of 30 percent over its opening frame.</p>
+  <div class="chips"><span>The Mandalorian and Grogu</span><span>Obsession</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/box-office/memorial-day-weekend-box-office-mandalorian-grogu-debut-1236758284/" target="_blank" rel="noopener">Memorial Day Weekend Box Office: ‘Mandalorian and Grogu’ Opens to $100 Million Domestically, $163 Million Globally</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">10시간 전</span>
+  </div>
+  <p class="archive-excerpt">Disney’s “The Mandalorian and Grogu” ignited to $100 million at the domestic box office over the Memorial Day holiday weekend. That’s ever-so-slightly behind Sunday’s estimates of $102 million for the four-day frame, which includes $81 million over the traditional weekend. The “Star Wars” spinoff, a continuation of the popular Disney+ streaming series, also collected a […]</p>
+  <div class="chips"><span>The Mandalorian and Grogu</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.rollingstone.com/tv-movies/tv-movie-reviews/mandalorian-and-grogu-review-star-wars-1235566001/" target="_blank" rel="noopener">Is the Star Wars Franchise Finally Cooked?</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Rolling Stone</span>
+    <span class="time">12시간 전</span>
+  </div>
+  <p class="archive-excerpt">It&#39;s not just that The Mandalorian and Grogu turns a promising TV show into a mediocre movie. It makes you feel like the IP is now creatively DOA</p>
+  <div class="chips"><span>The Mandalorian and Grogu</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/backrooms-kane-parsons-a24-youngest-director-ever-disruptors-1236862181/" target="_blank" rel="noopener">‘Backrooms’ Creator Kane Parsons On Becoming A24’s Youngest Director Ever, Adapting His YouTube Series: “A Weird Dream Come True”</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">9시간 전</span>
+  </div>
+  <p class="archive-excerpt">Born in 2005, the year YouTube launched, Backrooms director Kane Parsons has “always taken that for granted,” having the platform at his disposal. “YouTube, really more than just being a cultural reference for me, has been how I know how to do any of the stuff I do,” he explains while discussing his “weird dream […]</p>
+  <div class="chips"><span>A24</span><span>백룸</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/gallery/highest-grossing-animated-movies-all-time/" target="_blank" rel="noopener">The 25 Highest-Grossing Animated Films Of All Time At The Global Box Office</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">14시간 전</span>
+  </div>
+  <p class="archive-excerpt">Walt Disney Animation Studios’ Zootopia 2 has roared past the $1 billion threshold at the global box office, achieving the massive milestone in just 17 days. This phenomenal pace makes it the fastest-ever billion-dollar earner among all animated MPA releases and all PG-rated films. It follows Disney’s Lilo &amp; Stitch as the second film of […]</p>
+  <div class="chips"><span>Walt Disney</span></div>
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/reviews/forever-your-maternal-animal-review-1236757322/" target="_blank" rel="noopener">‘Forever Your Maternal Animal’ Review: Valentina Maurel Makes a Hangout Movie for the Arthouse Crowd</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">1시간 전</span>
+  </div>
+  <p class="archive-excerpt">About halfway into “Forever Your Maternal Animal,” a striking confession appears almost out of nowhere. The two main characters in the film, sisters in their early twenties, are sitting in a mall restaurant when the younger one says she has sex with the spirits who visit her room at night. She’s so detailed in her […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/reviews/six-months-in-a-pink-and-blue-building-review-1236758326/" target="_blank" rel="noopener">‘Six Months in a Pink and Blue Building’ Review: A Lush, Poetic Film Rooted in Real Memories</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">2시간 전</span>
+  </div>
+  <p class="archive-excerpt">For his first narrative feature, Mexican director Bruno Santamaría Razo — who’s previously made documentaries — chooses a personal memory piece. “Six Months in a Pink and Blue Building” draws from the filmmaker’s own life, and in particular from the time when he turned 11 and his father was diagnosed with HIV. A portrait of […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/leo-woodall-lord-of-the-rings-casting-boyhood-dream-1236920543/" target="_blank" rel="noopener">Leo Woodall Opens Up About ‘The Lord Of The Rings: The Hunt For Gollum’ Casting: “It’s A Boyhood Dream For Me”</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">3시간 전</span>
+  </div>
+  <p class="archive-excerpt">Leo Woodall may be journeying to fantastical locales with his foray into Middle-earth, but his casting in the continuation of The Lord of the Rings saga is planted firmly in the realm of reality. The Vladimir star recently opened up to People about his casting, saying, “It means everything. It’s a boyhood dream for me.” […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/news/nicolas-cage-turned-down-christopher-nolan-insomnnia-1236758356/" target="_blank" rel="noopener">Nicolas Cage on Why Christopher Nolan and Other Directors Won’t Work With Him After He Turned Down Their Films: ‘They Get Their Feelings Hurt’</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">4시간 전</span>
+  </div>
+  <p class="archive-excerpt">Nicolas Cage is still remembering that he might have blown a big chance when he turned down a role in Christopher Nolan’s “Insomnia.” The Oscar-winning actor covered numerous pivotal moments in his career in an antic, wide-ranging interview with the New York Times ahead of the premiere of his “Spider-Noir” series on MGM+, and recalled […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/films-star-actors-named-chris-talking-animal-older-women-1236920528/" target="_blank" rel="noopener">Films Are More Likely To Star Actors Named Chris Or A Talking Animal Than Women Over 60, UK Anti-Ageism Analysis Finds</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">4시간 전</span>
+  </div>
+  <p class="archive-excerpt">A new analysis of the top-grossing U.K. films of the past three years has unveiled that they are more likely to star actors named Chris or feature a talking animal in the lead role than a woman over the age of 60. The study, conducted by the Centre for Aging Better as part of the […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/global/films-star-man-chris-talking-animal-than-woman-over-60-1236758341/" target="_blank" rel="noopener">Films Are More Likely to Star a Man Named Chris or a Talking Animal Than an Older Woman, According to Study</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">6시간 전</span>
+  </div>
+  <p class="archive-excerpt">A new study out of the United Kingdom found that out of the top films from the past three years at the U.K. box office, movies are more likely to feature a lead actor named Chris than a female lead actor over the age of 60. The Age Without Limits survey found that films are […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/features/wendell-pierce-jack-ryan-movie-elsbeth-othello-power-raising-kanan-1236755962/" target="_blank" rel="noopener">Wendell Pierce Challenged Himself to an Annual Acting Trifecta. Now He’s Starring in a ‘Jack Ryan’ Movie, ‘Elsbeth’ and ‘Othello’ All at Once</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">7시간 전</span>
+  </div>
+  <p class="archive-excerpt">In 2019, Wendell Pierce was walking through London’s Piccadilly Circus to make it to that night’s performance of “Death of a Salesman,” when he stumbled upon a massive billboard. The ad was for the latest season of “Jack Ryan,” the Prime Video series in which he also stars. As he looked at himself on the […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/news/film-news-in-brief-week-of-may-25-1236758294/" target="_blank" rel="noopener">‘Mono 222,’ ‘Dreaming of Lions’ and ‘I Got Bombed at Harvey’s’ Top Mammoth Lakes Film Festival Awards – Film News in Brief</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">9시간 전</span>
+  </div>
+  <p class="archive-excerpt">The 12th annual Mammoth Lakes Film Festival has awarded its top prizes for the May 20-24 event in the California mountain town. “Mono 222,” directed by Quinton Dominguez, was awarded the jury prize for best North American narrative feature, while “Dreaming of Lions,” directed and written by Paolo Marinou-Blanco, won best international narrative feature. Best […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/boots-riley-i-love-boosters-rejected-cannes-im-a-virgo-1236920344/" target="_blank" rel="noopener">Boots Riley Says ‘I Love Boosters’ Was Rejected By Cannes Along With Other Past Projects; Picked ‘The Idol’ Over ‘I’m A Virgo’</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">9시간 전</span>
+  </div>
+  <p class="archive-excerpt">Boots Riley was recently asked on X why he chose to premiere I Love Boosters at SXSW rather than Cannes. He acknowledged that Cannes rejected the film, as well as several of his previous works. Sorry To Bother You, his 2018 dark comedy feature premiered at Sundance where it received the Sundance Institute’s Vanguard Award. […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/features/marlon-wayans-scary-movie-dave-chappelle-transgender-harvey-weinstein-1236755195/" target="_blank" rel="noopener">How Marlon Wayans Survived Hell, Hollywood and Harvey Weinstein</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">9시간 전</span>
+  </div>
+  <p class="archive-excerpt">On the surface, “Scary Movie” may seem like just another summer sequel mining nostalgia for profit. But for Marlon Wayans, the film’s writer, producer and star, it represents the culmination of a quarter-century battle to wrest control of his family’s franchise back from its pillagers, as well as a promise he’d made to his dying […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-features/tom-hanks-interview-wwii-series-1236601625/" target="_blank" rel="noopener">Tom Hanks Just Can’t Quit World War II (and It’s Keeping Him Up at Night)</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · The Hollywood Reporter</span>
+    <span class="time">10시간 전</span>
+  </div>
+  <p class="archive-excerpt">The actor-producer and historian Jon Meacham discuss their new History Channel docuseries on &#39;the largest event in human history&#39;</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/news/ira-sachs-man-i-love-queer-cinema-trump-casting-rami-malek-1236756924/" target="_blank" rel="noopener">Ira Sachs on ‘The Man I Love,’ Queer Cinema in the Age of Trump and Casting Straight Actors in Gay Roles: ‘I Don’t Ask People Who They’ve Slept With’</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">10시간 전</span>
+  </div>
+  <p class="archive-excerpt">For four decades, Ira Sachs has chronicled queer life in New York, shining a light on the artists and iconoclasts whose work gives the city such a vibrant, transgressive edge. “The Man I Love,” which Sachs describes as one of his most personal films, adds to the canon. Set in the 1980s at the height […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-reviews/ill-be-gone-in-june-review-1236604123/" target="_blank" rel="noopener">‘I’ll Be Gone in June’ Review: Wispy but Atmospheric Drama Follows a German Student to New Mexico in 2001</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · The Hollywood Reporter</span>
+    <span class="time">11시간 전</span>
+  </div>
+  <p class="archive-excerpt">Director Katharina Rivilis draws on personal experience for her Cannes-bowing drama about a European navigating post-9/11 America.</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://variety.com/2026/film/global/lebanese-comic-john-achkar-olympia-hall-paris-mbc-shahid-1236758257/" target="_blank" rel="noopener">Lebanese Comic John Achkar’s Special at L’Olympia Hall Acquired by Arabic Streamer MBC Shahid in ‘Milestone’ for Arabic Stand-Up</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Variety</span>
+    <span class="time">12시간 전</span>
+  </div>
+  <p class="archive-excerpt">Leading Middle East streamer MBC Shahid has picked up Lebanese comedian John Achkar’s stand-up comedy special “Tryin’” (“Aam Jarrib”) filmed at Paris’ legendary L’Olympia concert hall in what is being touted as a milestone for Arabic stand-up comedy. Achkar’s performance of “Tryin’,” filmed in Paris on Oct. 23, marked the first-ever Arabic-language performance by a […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110003" target="_blank" rel="noopener">[culture book] &lt;권위&gt;</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · 씨네21</span>
+    <span class="time">18시간 전</span>
+  </div>
+  <p class="archive-excerpt">“어째서 우리는 이곳 ‘문화의 알프스’에서 요들송이나 부르고 있었는가?” 작품을 재치 있게 ‘까는’ 것으로 정평난 평론가 안드레아 롱 추가 평론가를 평론하는 글로 &lt;권위&gt;의 문을 연다. 소셜미디어의 시대에 정치의식은 쉽게 상품화되며, 현재주의의 허영은 모두를 갉아먹는다. 책상을 쾅쾅 두드리는 것처럼 느껴지는 문장들에서 중요한 전제는 “모...</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/crunchyroll-anime-awards-2026-full-winners-list-1236605415/" target="_blank" rel="noopener">Crunchyroll Anime Awards: ‘My Hero Academia’ Named Anime of the Year, ‘Demon Slayer’ Takes Best Film</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · The Hollywood Reporter</span>
+    <span class="time">21시간 전</span>
+  </div>
+  <p class="archive-excerpt">A stunning 73 million votes were cast for the the 10th edition of the awards.</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.maxmovie.com/news/445431" target="_blank" rel="noopener">[인터뷰]  벼랑 끝에서 피워낸 불꽃… 배우 겸 감독 이범규, 세계 무대로 뻗다</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · 맥스무비</span>
+    <span class="time">21시간 전</span>
+  </div>
+  <p class="archive-excerpt">이범규 감독. 비케이필름 제공코로나19 팬데믹으로 세상이 멈추고 소속사와의 계약마저 해지됐을 때, 15년 차 배우는 주저앉는 대신 직접 카메라를 들었다. 연출도 시나리오도 정식으로 배운 적 없던 그가 카페에 앉아 3시간 만에 써 내려간 단편 영화 &#39;상속&#39;이 시작이었다. 이후 2년 만에 5편의 작품을 완성했고, 단편 &#39;이 배우의 장례식&#39;은 9개 국제영화제 초</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/richard-dreyfuss-cancels-jaws-cast-reunion-appearance-1236920266/" target="_blank" rel="noopener">Richard Dreyfuss Cancels ‘Jaws’ Cast Reunion Appearance, Citing “Circumstances Completely Beyond My Control”</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">Jaws star and Oscar winner Richard Dreyfuss has canceled a scheduled appearance at a cast reunion event for the seminal blockbuster, citing “circumstances completely beyond my control.” The veteran actor was slated to appear at a Burbank, Calif. fan convention, Hollywood Show, May 30. “To all the incredible fans, my JAWS cast family, and everyone […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/indie-film-box-office-tuner-i-love-boosters-obsession-1236920235/" target="_blank" rel="noopener">‘Tuner’ Plays Well For Black Bear In Limited Opening, ‘I Love Boosters’ Cracks Top 10 – Specialty Box Office</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">Tuner, Black Bear’s fourth release since launching a domestic distribution arm last summer, had a nice $102k opening at four theaters in New York and Los Angeles and is eyeing $122k for the four-day holiday weekend including Memorial Day Monday. The distributor plans a moderate national expansion to about 375 screens (exact number still TBD) […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/nicolas-cage-christopher-nolan-wont-call-me-turning-down-insomnia-1236920221/" target="_blank" rel="noopener">Nicolas Cage Says Christopher Nolan Won’t “Call Me Back” After Turning Down ‘Insomnia’: “They Get Their Feelings Hurt”</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">As Nicolas Cage makes his Spider-Verse debut, don’t expect the veteran actor to swing into a Christopher Nolan movie anytime soon. The Oscar-winning actor claimed that The Odyssey writer/director doesn’t “call me back” after Cage turned down a role in Nolan’s 2002 movie Insomnia, noting that many directors “get their feelings hurt” when he turns […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/idris-elba-never-in-race-james-bond-role-1236920218/" target="_blank" rel="noopener">Idris Elba Admits He Was Never “In The Race” For James Bond Role: “They’re Going Younger”</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">After years of speculation, Idris Elba has revealed that he was never in contention to play James Bond. The Golden Globe winner admitted he was “honestly not in the race ever” as he responded to the longstanding casting rumors, now that the search is officially underway for the next 007. “My name’s not getting thrown […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-reviews/the-end-of-it-review-rebecca-hall-gael-garcia-bernal-1236605277/" target="_blank" rel="noopener">‘The End of It’ Review: Rebecca Hall, Gael García Bernal and Beanie Feldstein in a Compellingly Quirky, if Overstretched, Sci-Fi Exercise</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · The Hollywood Reporter</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">A feature debut for writer-director Maria Martinez Bayona, this Cannes premiere also stars Noomi Rapace.</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-reviews/the-samurai-and-the-prisoner-review-kiyoshi-kurosawa-1236605158/" target="_blank" rel="noopener">‘The Samurai and the Prisoner’ Review: The Verb is Mightier Than the Sword in Kiyoshi Kurosawa’s Dialogue-Laden Historical Mystery</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · The Hollywood Reporter</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">The director of &#39;Cloud&#39; and &#39;Cure&#39; returns to Cannes with a period piece set in 16th-century feudal Japan, when warring samurai clans fought for control of the land.</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://deadline.com/2026/05/sebastian-stan-fjord-shooting-the-batman-2-in-london-1236920168/" target="_blank" rel="noopener">Breaking Baz @ Cannes: Sebastian Stan On ‘Fjord’ &amp; ‘The Batman II’; Tilda Swinton Responds To Claims Of A Down Year For Croisette Movies &amp; Looks To The Future Of Cinema</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Deadline</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">EXCLUSIVE: Sebastian Stan is that rare breed of actor who uses his star superpower to help get movies such as Cristian Mungiu’s Palme d’Or winner Fjord made – a film that explores topics of religious intolerance and violence towards children. As a thespian, he will do whatever’s necessary for the character. For Fjord, he’s almost unrecognizable with his hair shaved […]</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.rollingstone.com/tv-movies/tv-movie-lists/cannes-2026-best-movies-1235565564/" target="_blank" rel="noopener">The 10 Best Movies at Cannes 2026</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Rolling Stone</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">From a newly restored cult classic to a buzzy dramedy set in NYC&#39;s queer club culture, these were the highlights of this year&#39;s film fest</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.maxmovie.com/news/445430" target="_blank" rel="noopener">[맥스무비 데스크 칼럼] 숏폼 드라마, 시네마의 영토를 확장하다: ‘디렉터스 아레나’가 던진 화두</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · 맥스무비</span>
+    <span class="time">1일 전</span>
+  </div>
+  <p class="archive-excerpt">ENA &#39;디렉터스 아레나&#39; 갈무리스크린과 브라운관, 그리고 모바일 OTT까지. 플랫폼의 경계가 무너진 시대에 ‘시네마’의 본질은 어디로 향하고 있을까. 지난 금요일 2회차 방송을 마친 ENA의 ‘디렉터스 아레나’는 이 질문에 가장 트렌디하면서도 날카로운 답을 내놓고 있다. 국내 최초의 숏드라마 감독 서바이벌이라는 이 과감한 실험은 단 2화 만에 미디어 소비</p>
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://www.naver.com" target="_blank" rel="noopener">NAVER</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Naver News</span>
+
+  </div>
+
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://dict.naver.com/dict.search?query=%EC%99%80%EC%9D%BC%EB%93%9C+%EC%94%BD&amp;from=tsearch" target="_blank" rel="noopener">어학사전</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Naver News</span>
+
+  </div>
+
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://terms.naver.com/search.naver?query=%EC%99%80%EC%9D%BC%EB%93%9C+%EC%94%BD" target="_blank" rel="noopener">지식백과</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Naver News</span>
+
+  </div>
+
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://academic.naver.com/search.naver?field=0&amp;query=%EC%99%80%EC%9D%BC%EB%93%9C+%EC%94%BD" target="_blank" rel="noopener">학술정보</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Naver News</span>
+
+  </div>
+
+
+</article><article class="archive-card" data-kind="article">
+  <a class="archive-title" href="https://help.naver.com/alias/news/news_43.naver" target="_blank" rel="noopener">옵션 가이드</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · Naver News</span>
+
+  </div>
+  <p class="archive-excerpt">옵션 초기화 옵션 유지이 정보가 표시된 이유 옵션을 유지할 경우 선택한 서비스 영역과 언론사로 필터링된 뉴스 결과가 계속 제공됩니다. 정보확인 레이어 닫기 서비스 영역과 언론사의 선택 옵션이 유지됩니다.</p>
+
+</article>
+      </div>
+    </div>
+    <div class="archive-group" data-archive-group="community">
+      <div class="section-head"><h3>커뮤니티</h3><span>59건</span></div>
+      <div class="archive-list">
+        <article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://extmovie.com/movietalk/94056239" target="_blank" rel="noopener">일본판 &#39;범죄도시&#39; 일본 영화 전문가들 반응</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
+    <span class="time">9시간 전</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">일본 배우들과 유노윤호, 박지환, 엄기준이 기념 셀카 찍은 모습... &lt;도쿄 버스트: 범죄도시&gt;를 시사회로 봤습니다. 생각보다 훨씬 제대로 된 ‘범죄도...</p>
+
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://extmovie.com/movietalk/94055908" target="_blank" rel="noopener">&lt;군체&gt; 200만 돌파</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
+    <span class="time">13시간 전</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+
+
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://extmovie.com/movietalk/94055619" target="_blank" rel="noopener">‘슈퍼걸’, ‘더 마블스’와 ‘블랙 아담’ 사이 수준으로 흥행 전망… DC 스튜디오 중대한 박스오피스 시험대 올라</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
+    <span class="time">15시간 전</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">DC 스튜디오는 올여름 또 하나의 대형 영화를 앞두고 있다. “슈퍼걸”은 전작 “슈퍼맨”이 전 세계 6억 2,400만 달러, 북미 오프닝 1억 2,500만 달러를 ...</p>
+
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://extmovie.com/movietalk/94055070" target="_blank" rel="noopener">[백룸] 평론가 크리스티와 알론조의 소감</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
+    <span class="time">23시간 전</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">크리스티: 크리스티와 알론조입니다. 지금 적당히 밋밋한 장소에 있는데요. 방금 [백룸] 보고 나왔어요. 와우, 여긴 더 그로브입니다. 엠바고가 언제 ...</p>
+
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://theqoo.net/movie/4217375442" target="_blank" rel="noopener">군체 내일 싸다구한다</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 더쿠</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">6</p>
+  <div class="chips"><span>군체</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://theqoo.net/movie/4217341416" target="_blank" rel="noopener">라플 위클리 마이클 편을 이제야 봤는데 영상 보고 문워크 배움</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 더쿠</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">마이클)1</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://theqoo.net/movie/4217258305" target="_blank" rel="noopener">마이클 죽음 우리나가 방송에서도 꽤나 중요하게 다뤘거든</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 더쿠</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">마이클)3</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://theqoo.net/movie/4217232378" target="_blank" rel="noopener">마이클 그런 대사는 왜 나온건지 모르겠어</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 더쿠</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">13</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2574017" target="_blank" rel="noopener">왕사남보다군체손익분기점 돌파를한다면 의미 있는 이유</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">군체가 손익분기점 더 높음 왕사남은 사실 보면 알겠지만 연출에 엄청 힘준 부분은 적음 그래서 유해진 하드캐리 배우들 연기 멱살캐리 얘기가 나오는것군체는 예고편만 봐도 왕사남보다는 돈 더 들어갔을 수...오리지널 티켓2026.05.26 08:55</p>
+  <div class="chips"><span>군체</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2574016" target="_blank" rel="noopener">군체안보고 있었는데 나이스</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">믿고 있었다고 쇼박스 바로 봐줄게오리지널 티켓2026.05.26 08:55</p>
+  <div class="chips"><span>군체</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2574013" target="_blank" rel="noopener">군체후기 연상호 영화 잘만들긴함</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">전체적으로 볼만했음 한국에서 이런 장르 이정도로 찍을수 있는 감독 연상호말고 없는거 같다 부산행이 너무 성공해서 어쩔 수 없이 비교할 수밖에 없는 상황이 많음 개연성이 부족한 부분이 몇몇 있긴함 한국...오리지널 티켓2026.05.26 08:50</p>
+  <div class="chips"><span>군체</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2574012" target="_blank" rel="noopener">만달로니안보는데.군체프모 어쩔수없다.</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">10시 59분에 핸드폰켜서 받기!오리지널 티켓2026.05.26 08:46</p>
+  <div class="chips"><span>군체</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2573929" target="_blank" rel="noopener">마이클스엑 어떰?</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">무대 장면에서 차이 나면 실관할만할 거 같은데 어떨라나오리지널 티켓2026.05.26 04:54</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=commercial_movie&amp;no=1754278" target="_blank" rel="noopener">엿날리는마이클잭슨</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">상업영화2026.05.26 03:01</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2573810" target="_blank" rel="noopener">와일드씽오티는 뭔 보법임</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">2연속 한영 오티는 신기하네 - dc official App오리지널 티켓2026.05.26 01:20</p>
+  <div class="chips"><span>와일드 씽</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2573575" target="_blank" rel="noopener">와일드 씽에서</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">오정세햄이 제일 독보적이긴 하네 ㅋㅋ 순수 체급으로 주인공 눌러버리네 ㅌㅋㅋ - dc official App오리지널 티켓2026.05.25 23:55</p>
+  <div class="chips"><span>와일드 씽</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2573485" target="_blank" rel="noopener">와일드씽은 지금 비상이긴 하겠네</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">정부쿠 효과 받을려고 싱글벙글 하고 있을텐데 메박은 벌써 소진났고 롯시 cgv도 얼마나 버틸지 장담 못하는 상황이니오리지널 티켓2026.05.25 23:23</p>
+  <div class="chips"><span>와일드 씽</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2573468" target="_blank" rel="noopener">와일드씽개봉할 때 쯤엔</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">이미 마이클이랑 군체에 많은 쿠폰이 사용된 거 같은데 6천원 찢쿠는와일드씽한테 가기도 전에 싹 다 털리지 않았을까 몰라.오리지널 티켓2026.05.25 23:16</p>
+  <div class="chips"><span>와일드 씽</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2568763" target="_blank" rel="noopener">슈퍼마리오갤럭시정도면 어느정도 축에 속함?</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">dc official App오리지널 티켓2026.05.24 10:43</p>
+  <div class="chips"><span>슈퍼 마리오 갤럭시</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2554805" target="_blank" rel="noopener">〈슈퍼 마리오갤럭시〉 9억 6천만불 달성 &amp; 해외 박스오피스</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">오리지널 티켓2026.05.20 18:58</p>
+  <div class="chips"><span>슈퍼 마리오 갤럭시</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=commercial_movie&amp;no=1751756" target="_blank" rel="noopener">악마는 프라다를 입는다2&lt;~ 재밌더라 깊이도 있고..</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">긍정 반응 우세</p>
+  <p class="archive-excerpt">이 영화 왜 까인거임..? 넘 잘 만들었던데.. 이 영화가 뭐 패션영화인가 그냥 회사원 ㅅ영화지.. 회사원ㅅ영화에 패션 좀 있는거지상업영화2026.05.22 01:26</p>
+  <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2551819" target="_blank" rel="noopener">악마는 프라다를 입는다2후기(사진 뒤는 스포)</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">스포일러가 포함된 게시물입니다.오리지널 티켓2026.05.19 21:16</p>
+  <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2548670" target="_blank" rel="noopener">롯시 &lt;악마는 프라다를 입는다2&gt; 4주차 증정</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">오리지널 티켓2026.05.19 10:39</p>
+  <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2548259" target="_blank" rel="noopener">CGV &#39;악마는 프라다를 입는다2&#39; 4주차 증정</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">오리지널 티켓2026.05.19 00:00</p>
+  <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2574003" target="_blank" rel="noopener">군체는만달로리안과그로구가 두렵습니까?</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">프로모를 11시에 하네오리지널 티켓2026.05.26 08:40</p>
+  <div class="chips"><span>만달로리안과 그로구</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2572358" target="_blank" rel="noopener">일본만달로리안과그로구특전 2탄 : 진격거 작가 일러 포스터</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">멋진데오리지널 티켓2026.05.25 16:14</p>
+  <div class="chips"><span>만달로리안과 그로구</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2571790" target="_blank" rel="noopener">만달로리안과그로구유일한 후가공 포스터</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">오리지널 티켓2026.05.25 12:17</p>
+  <div class="chips"><span>만달로리안과 그로구</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://gall.dcinside.com/mgallery/board/view/?id=oticket&amp;no=2571728" target="_blank" rel="noopener">만달로리안과그로구돌비시네마 프로모션 포스터</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 디시인사이드</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">오리지널 티켓2026.05.25 12:00</p>
+  <div class="chips"><span>만달로리안과 그로구</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/specup/7814907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InNwZWN1cCIsImFydGljbGVJZCI6NzgxNDkwNywiaXNzdWVkQXQiOjE3Nzk3NTM2NjIzOTZ9.x4-Wr_r4Pc0qaKpc6812YXosOlYTu5QcEKw-MrYk_Dk" target="_blank" rel="noopener">영화마이클쿠키영상·러닝타임·줄거리 총정리</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">긍정 반응 우세</p>
+  <p class="archive-excerpt">영화마이클후기—관객과 평론가반응은?영화마이클후기는 평론가와 일반관객사이에서 극명하게 갈리고 있습니다. 로튼 토마토 기준 평론가 신선도는 39%에 그친 반면, 일반관객지수는 97%로 압도적인 호평입니다. IMDB 평점은 7.7점입니다. 평론가들은마이클잭슨을 둘러싼 복잡한 논란과 내면의 복합성이 충분히 다뤄지지 않았다는 점을...</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/coredenim/1881527?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImNvcmVkZW5pbSIsImFydGljbGVJZCI6MTg4MTUyNywiaXNzdWVkQXQiOjE3Nzk3NTM2NjIzOTZ9.FLFccem2u9_9jhrsQEVHS_iwch1a_bDCB0HT0NfpzfM" target="_blank" rel="noopener">영화마이클후기</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">긍정 반응 우세</p>
+  <p class="archive-excerpt">상징적인 장면들을 구현하려 애쓴 흔적은 보이지만, 우리가 아는마이클잭슨의 위상을 생각하면관객의 기대치를 충족시키기엔 다소 빈약해 보입니다.영화는 진정한 홀로서기를 위한... 그럼에도 불구하고, &#39;음악의 힘&#39;영화내내 가슴을 때리는 것은 역시 음악의 힘입니다. 몸과 귀가 먼저반응하는 명곡들의 퍼레이드는영화의 서사가 가진 단순함을 압도할 정도로...</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/navermoonwalker/114371?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Im5hdmVybW9vbndhbGtlciIsImFydGljbGVJZCI6MTE0MzcxLCJpc3N1ZWRBdCI6MTc3OTc1MzY2MjM5Nn0._lHVfLhghFfT1vk7q7zp_ZqfYivyOqEHQ_vo_6Wse10" target="_blank" rel="noopener">[응모] &lt;마이클&gt; 10회 관람후기</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">긍정 반응 우세</p>
+  <p class="archive-excerpt">1️⃣ 처음엔 솔직히 고민 했어요영화공개 전부터 말도 많았고 “왜 보냐”, “누구 좋은 일 시켜주냐” 같은반응들도 많았으니까요. 저 역시 보기 전엔 그런 생각 안한건 아녜요 그런데영화를 보고 나오며 “마이클잭슨이 저런 사람이었구나…” 라고 이야기하는관객들의 말을 듣고 생각이 달라졌어요 ‘아… 이영화는 꼭 필요하구나.’ ‘그리고...</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/navermoonwalker/113124?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Im5hdmVybW9vbndhbGtlciIsImFydGljbGVJZCI6MTEzMTI0LCJpc3N1ZWRBdCI6MTc3OTc1MzY2MjM5Nn0.CPzYtYjv1_SEkYNNCg6-nVO4nbnd-k1EA3FSSHj9PDY" target="_blank" rel="noopener">마이클시사회후기와 한 가지 아쉬운 점.jpg</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/lovejxah/1061?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImxvdmVqeGFoIiwiYXJ0aWNsZUlkIjoxMDYxLCJpc3N1ZWRBdCI6MTc3OTc1MzY2MjM5Nn0.1lhiUegX9ERE9v2Bw2GsD8XmCIsv8LsYu7lQaG1OKTY" target="_blank" rel="noopener">마이클후기</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">긍정 반응 우세</p>
+  <p class="archive-excerpt">사실 저도영화이런거 알고도 보러가긴 했으니까요잉 그만큼마이클잭슨이라는 이름값이 크지 않나 싶어요 해외에서는관객반응이 상당히 좋더라고 이건 사실 그정둔가 싶긴한데 이해는 가긴해 저도영화보면서 이야 재미없다 와 개재미없다 이 생각했지만 초대 천마가 발 한 번 구를 때마다영화관에서 170/170의 땅울림을 일으켜버림 새삼 이런 똥덩어리영화도 그냥...</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/moopung/324978?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Im1vb3B1bmciLCJhcnRpY2xlSWQiOjMyNDk3OCwiaXNzdWVkQXQiOjE3Nzk3NTM2NjQ4ODR9.4lFjwYGM7f8e1covoqqSKs3zC5-tr41QPsK-EDujiCA" target="_blank" rel="noopener">3D슈퍼마리오전 시리즈 100% 클리어 감상과 리뷰 (각 명작. 망작등)</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">호불호가 함께 보임</p>
+  <p class="archive-excerpt">유투브에 떠도는 꼼수인 고양이마리오와 너굴마리오스위치에 피치조합 꼼수로 클리어했습니다...만.... 그래도 어려웠습니다.ㅠ 100% 클리어까지 재밌었던순서는....슈퍼 마리오64와슈퍼 마리오 갤럭시2는 각각 달리 긴 말이 필요없네요. 100% 달성할때까지 재밌었고, 각각 미션도 흥미진진하고 지루할 틈이 없었습니다. 다만 아쉽게도 슈마겔2는 아직까지 스위치로...</p>
+  <div class="chips"><span>슈퍼 마리오 갤럭시</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/foatour/5113?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImZvYXRvdXIiLCJhcnRpY2xlSWQiOjUxMTMsImlzc3VlZEF0IjoxNzc5NzUzNjY4MDk2fQ.k8cO6ZdwsMHEomtaPzF5iKDbM9BCb3REXUuwSPzKCbY" target="_blank" rel="noopener">악마는 프라다를 입는다 2, 뉴욕에서 촬영 포착!!</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">뉴욕을 배경으로 한영화인 만큼 1편에서도 다양한 뉴욕 스팟들이영화에 등장했었죠! [ Smith &amp; Wollensky, 3rd Avenue, New York ] &lt;악마는 프라다를 입는다&gt; 중 https://maps.app.goo.gl/id3mrZSpSMjqhxPr5 &amp; [ Bubby’s, Hudson Street, Tribeca, New York ] &lt;악마는 프라다를 입는다&gt; 중 https://maps.app.goo.gl/GQpF3DcJSWWqCfTaA 그 외 더 다양한 장소들은 여기서 볼 수 있어요...</p>
+  <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/actionfigure/1980722?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImFjdGlvbmZpZ3VyZSIsImFydGljbGVJZCI6MTk4MDcyMiwiaXNzdWVkQXQiOjE3Nzk3NTM2NjgwOTZ9.3j30Wxkp8OvmE6Lk6a66u5LGIcdiXwEPPp6YgS1AeZI" target="_blank" rel="noopener">악마는 프라다를 입는다 2최종 캐스팅 라인업 공개</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">—— pinkman_movie악마는 프라다를 입는다 2최종 캐스팅 라인업 &lt;악마는 프라다를 입는다 2&gt;의 최종 캐스팅 라인업이 공개되었습니다. 1편에 출연했던 6인이 그대로 복귀하며, 케네스 브레너와 루시 리우 등 유명 배우들도 새롭게 합류했습니다. 외에 &lt;브리저튼&gt;의 시몬 애슐리, &lt;오피스&gt;의 B.J. 노박, &lt;비틀쥬스 비틀쥬스&gt;의 저스틴 서로, 티모시 샬라메의...</p>
+  <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/foatour/5113?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImZvYXRvdXIiLCJhcnRpY2xlSWQiOjUxMTMsImlzc3VlZEF0IjoxNzc5NzUzNjY4OTc2fQ.ThmA09G58GvnmU9trPu15MRaldxp3JWgqSnz7vGcnRw" target="_blank" rel="noopener">악마는 프라다를 입는다 2, 뉴욕에서 촬영 포착!!</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">뉴욕을 배경으로 한영화인 만큼 1편에서도 다양한 뉴욕 스팟들이영화에 등장했었죠! [ Smith &amp; Wollensky, 3rd Avenue, New York ] &lt;악마는 프라다를 입는다&gt; 중 https://maps.app.goo.gl/id3mrZSpSMjqhxPr5 &amp; [ Bubby’s, Hudson Street, Tribeca, New York ] &lt;악마는 프라다를 입는다&gt; 중 https://maps.app.goo.gl/GQpF3DcJSWWqCfTaA 그 외 더 다양한 장소들은 여기서 볼 수 있어요...</p>
+  <div class="chips"><span>악마는프라다를입는다2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/actionfigure/1980722?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImFjdGlvbmZpZ3VyZSIsImFydGljbGVJZCI6MTk4MDcyMiwiaXNzdWVkQXQiOjE3Nzk3NTM2Njg5NzZ9.tbU78GdN7m484Ci5X-T4WRXPOwqYyqDDpdUdWxP6BJE" target="_blank" rel="noopener">악마는 프라다를 입는다 2최종 캐스팅 라인업 공개</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">—— pinkman_movie악마는 프라다를 입는다 2최종 캐스팅 라인업 &lt;악마는 프라다를 입는다 2&gt;의 최종 캐스팅 라인업이 공개되었습니다. 1편에 출연했던 6인이 그대로 복귀하며, 케네스 브레너와 루시 리우 등 유명 배우들도 새롭게 합류했습니다. 외에 &lt;브리저튼&gt;의 시몬 애슐리, &lt;오피스&gt;의 B.J. 노박, &lt;비틀쥬스 비틀쥬스&gt;의 저스틴 서로, 티모시 샬라메의...</p>
+  <div class="chips"><span>악마는프라다를입는다2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/ssadanicar/180973?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InNzYWRhbmljYXIiLCJhcnRpY2xlSWQiOjE4MDk3MywiaXNzdWVkQXQiOjE3Nzk3NTM2NzE0Mjh9.xp06-MeppgYxi84jv0TTgsGJdRJxJA4lEuVjIoAfpgo" target="_blank" rel="noopener">영화살목지정보 촬영지 예산 저수지 출입 통제 및 실화 여부 정리</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">영화살목지후기글들을 살펴보면 스릴러와 범죄 그리고 미스터리가 적절히 섞여 있어 보는 내내 긴장감을 놓을 수 없다는 평이 지배적입니다. 누적관객수도 벌써 100만 돌파를 앞두고 있어 당분간 이 열풍은 계속될 것으로 보입니다. 무엇보다... 오죽하면 귀신들도 생활권 침해로 도망가겠다는 재미있는반응과 함께 살리단길이라는 별명까지 붙었을 정도니까요....</p>
+  <div class="chips"><span>살목지</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/kna9ne/152?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImtuYTluZSIsImFydGljbGVJZCI6MTUyLCJpc3N1ZWRBdCI6MTc3OTc1MzY3MTQyOH0.va0YzW9fnDSuomU9Qv0qhYF8d4Yohp2NudRvnFQceSs" target="_blank" rel="noopener">260420 &#34;너무 보고 싶어서 못 참고 와버렸어...☆&#34;</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">호불호가 함께 보임</p>
+  <p class="archive-excerpt">영화&#39;올빼미&#39;(추정): 흥행: 천만관객돌파 및 역대 기록 언급. 비판적 시각: 일부 시청자는 욕을 할 정도로 불만족(CG 호랑이 문제, 예산 부족 등). 배우: 유해진 배우의 뛰어난 연기력과 캐릭터 소화력 극찬. 공포영화: 불호 이유: 등장인물들이 위험한 상황에서 뭉치지 않고 따로 행동하는 등 &#39;개연성 없는 행동&#39; 때문에 싫어함. 사례: &#39;살목지&#39;, &#39;컨저링&#39;, &#39;파라노말 액티비티...</p>
+  <div class="chips"><span>살목지</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/wbsc2021/1106?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Indic2MyMDIxIiwiYXJ0aWNsZUlkIjoxMTA2LCJpc3N1ZWRBdCI6MTc3OTc1MzY3MTQyOH0.HzHXQo2zH-h4HjGJKzICYmFnAp4hYkdLovs-yYTDGZ4" target="_blank" rel="noopener">김혜윤살목지100만 돌파, 호러 흥행 기록과관객 반응정리</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">호러 장르 최단 기록부터 박스오피스 1위, 입소문과 N차 관람반응까지 정리했어요.영화살목지가 정말 제대로 힘을 받고 있는 분위기예요. 개봉 10일째인 4월 17일 기준으로 누적관객수 101만 명을 넘기면서 100만 돌파 소식을 알렸는데요. 공포... 무서운 장면만 앞세우기보다 불길한 분위기와 점점 조여오는 긴장감으로 공포를 쌓아간다는후기가 많아서, 한 번 본...</p>
+  <div class="chips"><span>살목지</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://cafe.naver.com/uccplus/2373982?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InVjY3BsdXMiLCJhcnRpY2xlSWQiOjIzNzM5ODIsImlzc3VlZEF0IjoxNzc5NzUzNjcxNDI4fQ.bMkTtyPWbd5F6H1vx8RxlP38IKiskMV8uXSV0cQPw6Q" target="_blank" rel="noopener">살목지손익분기점 돌파ㅣ개봉 7일 만에 80만 달성, 공약 이행까지 총정리</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · 네이버카페</span>
+
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">살목지손익분기점 돌파 소식에관객들의반응도 뜨겁게 쏟아지고 있는데요, &#34;호러영화인데 이 정도면 진짜 대박이다&#34; &#34;귀신 분장 공약 이행 진짜 웃기면서도 감동...&#34; &#34;살목지... 2주차에도살목지의 흥행 질주가 이어질지 귀추가 주목됩니다 여러분은살목지보셨나요? 결말 해석이나 감상후기댓글로 남겨주세요! 공취사 카페 광고 게시글 제휴 문의...</p>
+  <div class="chips"><span>살목지</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=UfAnNNMMgvM" target="_blank" rel="noopener">《군체》 천만 영화 될까?🔥 왕과사는남자 기록 깨고 천만관객 예상하는 이유 &amp; 2편 소식까지 총정리</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">4일 전</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">엘플릭스 [LPLIX] · 영화 #군체 #영화리뷰 00:00 한줄평 00:34 바이러스 창궐 배경 02:23 좀비 첫 등장 03:46 소통의 불완전함 05:01 정부 비판 05:29 CG ...</p>
+  <div class="chips"><span>군체</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=5NBpQc-hn0w" target="_blank" rel="noopener">와.. 1760만 관객 ❰명량❱후속작 ❰고구려❱ 온다! 16개 부족이 참전한 한국판 글레디에이터 ❰칼: 고두막한의 검❱❰휴민트❱ 등 다가오는 한국 신작 영화 리뷰!</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.02.04</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">프로젝트 제프 Project JEFF · 오직 강한 자만이 살아남던 무법의 시대! 제프 채널에 가입하여 혜택을 누려보세요!</p>
+  <div class="chips"><span>군체</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=FU9b2ISL_Ds" target="_blank" rel="noopener">마동석을 처음 본 할리우드 관객 찐반응ㅋㅋㅋ#shorts</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2024.04.29</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">라이프시크릿 · </p>
+  <div class="chips"><span>군체</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=bqT6AlRnH9k" target="_blank" rel="noopener">영화 &#34;마이클&#34; 강남 메가박스 반응, 3편까지 나온대..마지막 이야기는 &#34;디스이즈 잇&#34;</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">6일 전</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">방구석 오스카 · michaeljackson #영화리뷰 #인생영화 #유머 #웃긴영상 #넷플릭스 #방구석오스카.</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=Wo269dj9xEk" target="_blank" rel="noopener">마이클 잭슨의 귀환, 한국 관객들 반응은?</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.05.17</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">세상 모든 주제 · 영화 &#39;마이클&#39;이 개봉 첫날부터 박스오피스 1위를 차지하며 전설의 귀환을 알렸습니다. 단 하루 만에 10만 명의 관객을 사로잡은 ...</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=mPjb6Cv1wtA" target="_blank" rel="noopener">마이클 잭슨을 모욕한 희대의 망작, 이 작품에 분노하는 이유: 마이클 리뷰</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.05.16</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">라이너의 컬쳐쇼크 · 마이클 잭슨의 삶을, 그가 걸어온 길을 부정하고 하나의 이미지만을 남긴 희대의 망작이자 마이클 잭슨을 향한 모욕으로 점철된 영화.</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=VkV5Yi8iDr4" target="_blank" rel="noopener">평론가들이 깐 영화 마이클, 극장에서 봐야 할까?</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.05.14</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">마그노 · 마이클 잭슨 영화, 극장에서 봐야 할까요? 이 영상은 영화 마이클(Michael), 마이클 잭슨(Michael Jackson) 전기 영화 리뷰와 극장 관람 ...</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=f0_hbn0Dmjw" target="_blank" rel="noopener">마이클잭슨 채널 주인의 마이클 영화 후기 (스포X)</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.05.13</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">멜로디와사람들 · michaeljackson #마이클잭슨.</p>
+  <div class="chips"><span>마이클</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=2gmg0J5TM5g" target="_blank" rel="noopener">&#39;슈퍼 마리오 갤럭시&#39; 미국 반응 &#34;평론가는 최악, 관객은 최고!&#34;</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.04.03</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">게임백반 · 슈퍼 마리오 갤럭시 영화가 미국에서 개봉했습니다. 그런데 현재 슈퍼마리오 갤럭시는 평론가들로부터 대체로 부정적인 평가를 ...</p>
+  <div class="chips"><span>슈퍼 마리오 갤럭시</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=iRrIyu8R7IE" target="_blank" rel="noopener">슈퍼 마리오 갤럭시 리뷰 오프닝 벌써 500억원 돌파! 미국 반응</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.04.03</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">미저씨 MEEJUSTSEE · 슈퍼 마리오 갤럭시 영화 직접 보고 왔습니다! 미국 평점 사이트 반응부터 실제 관람 후기까지 솔직하게 정리해봤습니다.</p>
+  <div class="chips"><span>슈퍼 마리오 갤럭시</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=qRzi68Olcdw" target="_blank" rel="noopener">악마는 프라다를 입는다 2 리뷰 미국반응🔥 1편보다 재미있을까? 솔직 후기 &amp; 박스오피스 1위!</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.05.06</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">미저씨 MEEJUSTSEE · 드디어 돌아온 “악마는 프라다를 입는다 2”! 과연 1편을 뛰어넘었을까요? 이번 영상에서는 직접 보고 느낀 솔직한 리뷰를 전해 ...</p>
+  <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=Y0Rm_364mhQ" target="_blank" rel="noopener">그녀가 20년만에 재입사하게 된 이유..지난 20년이나 기다려준 관객들에 대한 헌사..≪악마는 프라다를 입는다 2≫ 심층 리뷰..★★★ㅣ⚠️&#39;시네만오Pick&#39;</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.05.03</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">영화광 김만오 · 악마는프라다를입는다2 #메릴스트립 #앤해서웨이 #에밀리블런트 #스탠리투치 오늘은 영화 ≪악마는 프라다를 입는다 2≫ 심층 ...</p>
+  <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=Z0Yo7ZUwKfI" target="_blank" rel="noopener">김혜윤 ‘호러퀸’ 등극! 영화 [살목지] 300만 관객 돌파! #살목지 #kimhyeyoon #김혜윤 #이종원 #김준한 #장다아</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.05.10</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">KoreaFilm 코리아필름 · 살목지 #김혜윤 #이종원 #김준한 #김영성 #오동민 #윤재찬 #장다아 #공포영화 #괴담 #저수지 #심령스폿 #낚시 #선재업고튀어 ...</p>
+  <div class="chips"><span>살목지</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=ApIiUDpsQ8Y" target="_blank" rel="noopener">영화 살목지 재밌냐고?</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.04.21</span>
+  </div>
+  <p class="archive-mood">호불호가 함께 보임</p>
+  <p class="archive-excerpt">건배짠 zzan · 영화 살목지 재밌냐고? 킬링타임과 별로인 영화 그 어느 사이에 있는 작품 답답하기도 하고 개연성 없지만 은근 관객을 압도하는 감도 ...</p>
+  <div class="chips"><span>살목지</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=hMkLi3NIXQY" target="_blank" rel="noopener">공포 영화 《살목지》 1분 후기</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.04.12</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">김단군 · 공포 영화 《살목지》 1분 후기 ▷댓글은 예의를 지켜주세요. 부적절한 댓글은 삭제 하겠습니다. ▷봤군 사이트 : https://sawit.site ...</p>
+  <div class="chips"><span>살목지</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=dZWElPsU2Ls" target="_blank" rel="noopener">살목지 박스오피스 1위 기념으로 모아본 한국 공포영화🥶 고전부터 오컬트까지 한국 레전드 공포영화 모음｜방구석1열｜JTBC 210808 방송 외</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.04.10</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">교양 Voyage · 타임라인 00:00 영화 ＜여고괴담＞ 31:57 영화 ＜기담＞ 1:04:09 영화 ＜알 포인트＞ 1:28:39 영화 ＜사바하＞ &#39;방구석1 ...</p>
+  <div class="chips"><span>살목지</span></div>
+</article><article class="archive-card" data-kind="community">
+  <a class="archive-title" href="https://www.youtube.com/watch?v=1_BHu6NgXS0" target="_blank" rel="noopener">영화 &#39;살목지&#39; 예고편 리뷰 / 현직 무당이 바라본 죽음의 저수지는 절대 가면 안 된다..? (정말 위험합니다)</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · YouTube</span>
+    <span class="time">2026.04.08</span>
+  </div>
+  <p class="archive-mood">중립적 반응</p>
+  <p class="archive-excerpt">운세인사이드 · 살목지 #김혜윤 #공포영화 #저수지 #물귀신 #공포이야기 #무서운이야기 운세인사이드 선생님들은 실제 검증하고 촬영한 내용으로 ...</p>
+  <div class="chips"><span>살목지</span></div>
+</article>
+      </div>
+    </div>
+
+  </section>
 </main>
 
 <footer>내부용 영화/문화 이슈 집계 · 자동 생성</footer>
@@ -2177,13 +3115,9 @@ footer {
     { key: 'community',   label: '커뮤니티 반응',   sel: '.community-only-panel' },
     { key: 'policy',      label: '정책/지원',       sel: '.policy-panel' }
   ];
-  // 검색 시 남기는 영역(기사 + 커뮤니티). 나머지는 전부 숨긴다.
-  var SEARCHABLE = {
-    curation:  { panel: '.curation-panel',       card: '.curation-brief-card',     sub: '.curation-section' },
-    market:    { panel: '.market-trends-panel',  card: '.market-trend-card',       sub: '.market-section-stack .briefing-subsection' },
-    community: { panel: '.community-only-panel',  card: '.community-snapshot-card',  sub: '.community-source-section' }
-  };
-  var CARD_SEL = '.curation-brief-card, .market-trend-card, .community-snapshot-card';
+  // 검색은 '전체 수집' 아카이브(.archive-card)에서만 수행한다. 일반 패널은 검색 중
+  // CSS(body.is-searching)로 숨기고, 매칭 결과는 아카이브에 모아 보여준다(중복 없음).
+  var ARCHIVE_CARD_SEL = '.archive-card';
 
   var settings = {};
   var term = '';      // 소문자
@@ -2205,62 +3139,39 @@ footer {
     try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {}
   }
 
-  function hideEmptyContainers(containerSel, cardSel, searching) {
-    qa(containerSel).forEach(function (sec) {
-      if (!searching) { sec.style.display = ''; return; }
-      var cards = Array.prototype.slice.call(sec.querySelectorAll(cardSel));
-      var has = cards.some(function (c) { return c.style.display !== 'none'; });
-      sec.style.display = has ? '' : 'none';
-    });
-  }
-  function hasVisibleCards(panelSel, cardSel) {
-    var scope = q(panelSel);
-    if (!scope) { return false; }
-    return Array.prototype.slice.call(scope.querySelectorAll(cardSel))
-      .some(function (c) { return c.style.display !== 'none'; });
-  }
-
   function apply() {
     var searching = term.length > 0;
     document.body.classList.toggle('is-searching', searching);
 
-    // 1) 카드 필터(검색 중이 아니면 모두 표시로 복구)
-    qa(CARD_SEL).forEach(function (card) {
-      card.style.display = (!searching || card.textContent.toLowerCase().indexOf(term) !== -1) ? '' : 'none';
-    });
-    // 2) 비어버린 하위 섹션 숨김
-    Object.keys(SEARCHABLE).forEach(function (k) {
-      var s = SEARCHABLE[k];
-      hideEmptyContainers(s.sub, s.card, searching);
-    });
-    // 3) 최상위 섹션 표시 결정
-    SECTIONS.forEach(function (s) {
-      var el = q(s.sel);
-      if (SEARCHABLE[s.key]) {
-        // 검색 중엔 매칭 카드가 있을 때만, 평소엔 설정대로
-        setVisible(el, searching ? hasVisibleCards(SEARCHABLE[s.key].panel, SEARCHABLE[s.key].card) : visibleBySetting(s.key));
-      } else {
-        // 기사/커뮤니티가 아닌 영역: 검색 중엔 숨김, 평소엔 설정대로
-        setVisible(el, searching ? false : visibleBySetting(s.key));
-      }
-    });
-    // side-stack 래퍼: 검색 중 숨김, 평소엔 자식 중 하나라도 보이면 표시
-    var sidestack = q('.side-stack');
-    if (sidestack) {
-      setVisible(sidestack, searching ? false :
-        (visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
-          || visibleBySetting('engBox') || visibleBySetting('engRes')));
-    }
-    // 4) 상태 표시
-    var status = q('#searchStatus');
-    if (status) {
-      if (searching) {
-        var n = qa(CARD_SEL).filter(function (c) { return c.style.display !== 'none'; }).length;
+    if (searching) {
+      // 검색 중: 일반 패널은 CSS(body.is-searching)가 숨긴다. '전체 수집' 아카이브에서만 매칭.
+      var n = 0;
+      qa(ARCHIVE_CARD_SEL).forEach(function (card) {
+        var hit = card.textContent.toLowerCase().indexOf(term) !== -1;
+        card.style.display = hit ? '' : 'none';
+        if (hit) { n++; }
+      });
+      // 매칭 카드가 하나도 없는 그룹(기사/커뮤니티)은 머리글째 숨긴다.
+      qa('.archive-group').forEach(function (group) {
+        var cards = Array.prototype.slice.call(group.querySelectorAll(ARCHIVE_CARD_SEL));
+        group.style.display = cards.some(function (c) { return c.style.display !== 'none'; }) ? '' : 'none';
+      });
+      var status = q('#searchStatus');
+      if (status) {
         q('#searchStatusText').textContent = '검색 “' + rawTerm + '” · ' + n + '건';
         status.hidden = false;
-      } else {
-        status.hidden = true;
       }
+    } else {
+      // 평소: 아카이브는 CSS로 숨김. 일반 섹션은 설정대로 복구.
+      SECTIONS.forEach(function (s) { setVisible(q(s.sel), visibleBySetting(s.key)); });
+      var sidestack = q('.side-stack');
+      if (sidestack) {
+        setVisible(sidestack,
+          visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
+          || visibleBySetting('engBox') || visibleBySetting('engRes'));
+      }
+      var status = q('#searchStatus');
+      if (status) { status.hidden = true; }
     }
   }
 

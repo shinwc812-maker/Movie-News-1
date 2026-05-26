@@ -1186,6 +1186,10 @@ def build() -> None:
         overseas_titles=[movie["title"] for movie in overseas_weekend["movies"]],
         ai_command=os.environ.get("CORE_CURATION_AI_CMD"),
     )
+    # 전체 수집 아카이브(검색 전용): 노출은 큐레이션/커뮤니티 섹션이 그대로 담당하되,
+    # 키워드 검색 시에는 수집된 기사·커뮤니티 '전부'가 잡히도록 별도 숨김 목록으로 렌더한다.
+    archive_official = sorted(official_articles, key=lambda v: v.get("score") or 0, reverse=True)
+    archive_community = community_views
 
     env = Environment(loader=FileSystemLoader(str(SITE_DIR)), autoescape=True)
     template = env.get_template("template.html.j2")
@@ -1201,6 +1205,9 @@ def build() -> None:
         market_trend_sections=market_trend_sections,
         curation=curation,
         curation_sections=curation_sections,
+        archive_official=archive_official,
+        archive_community=archive_community,
+        archive_total=len(archive_official) + len(archive_community),
         boxoffice=boxoffice,
         reservation=reservation,
         overseas_weekend=overseas_weekend,

@@ -67,6 +67,31 @@
 </article>
 {%- endmacro -%}
 
+{%- macro archive_card_article(a) -%}
+<article class="archive-card" data-kind="article">
+  <a class="archive-title" href="{{ a.url }}" target="_blank" rel="noopener">{{ a.ko_title or a.title }}</a>
+  <div class="archive-meta">
+    <span class="archive-kind official">기사 · {{ a.source }}</span>
+    {% if a.rel_time %}<span class="time">{{ a.rel_time }}</span>{% endif %}
+  </div>
+  {% if a.ko_summary or a.en_summary %}<p class="archive-excerpt">{{ a.ko_summary or a.en_summary }}</p>{% endif %}
+  {% if a.matched_keywords %}<div class="chips">{% for kw in a.matched_keywords[:4] %}<span>{{ kw }}</span>{% endfor %}</div>{% endif %}
+</article>
+{%- endmacro -%}
+
+{%- macro archive_card_community(c) -%}
+<article class="archive-card" data-kind="community">
+  <a class="archive-title" href="{{ c.url }}" target="_blank" rel="noopener">{{ c.title }}</a>
+  <div class="archive-meta">
+    <span class="archive-kind community">커뮤니티 · {{ c.source }}</span>
+    {% if c.rel_time %}<span class="time">{{ c.rel_time }}</span>{% endif %}
+  </div>
+  {% if c.mood_summary %}<p class="archive-mood">{{ c.mood_summary }}</p>{% endif %}
+  {% if c.excerpt %}<p class="archive-excerpt">{{ c.excerpt }}</p>{% endif %}
+  {% if c.matched_keywords %}<div class="chips">{% for kw in c.matched_keywords[:4] %}<span>{{ kw }}</span>{% endfor %}</div>{% endif %}
+</article>
+{%- endmacro -%}
+
 {%- macro market_trend_card(t) -%}
 <article class="market-trend-card">
   <div class="trend-topline">
@@ -315,6 +340,26 @@
     </div>
     {% if not policy_items %}<p class="empty">표시할 정책/지원 공지가 없습니다.</p>{% endif %}
   </section>
+
+  <section class="panel search-archive-panel" data-section="archive">
+    <div class="panel-head">
+      <h2>전체 수집 검색결과</h2>
+      <span>키워드 검색 시 수집분 전체({{ archive_total }}건)에서 매칭 표시</span>
+    </div>
+    <div class="archive-group" data-archive-group="article">
+      <div class="section-head"><h3>기사</h3><span>{{ archive_official|length }}건</span></div>
+      <div class="archive-list">
+        {% for a in archive_official %}{{ archive_card_article(a) }}{% endfor %}
+      </div>
+    </div>
+    <div class="archive-group" data-archive-group="community">
+      <div class="section-head"><h3>커뮤니티</h3><span>{{ archive_community|length }}건</span></div>
+      <div class="archive-list">
+        {% for c in archive_community %}{{ archive_card_community(c) }}{% endfor %}
+      </div>
+    </div>
+    {% if not archive_official and not archive_community %}<p class="empty">수집된 항목이 없습니다.</p>{% endif %}
+  </section>
 </main>
 
 <footer>내부용 영화/문화 이슈 집계 · 자동 생성</footer>
@@ -335,13 +380,9 @@
     { key: 'community',   label: '커뮤니티 반응',   sel: '.community-only-panel' },
     { key: 'policy',      label: '정책/지원',       sel: '.policy-panel' }
   ];
-  // 검색 시 남기는 영역(기사 + 커뮤니티). 나머지는 전부 숨긴다.
-  var SEARCHABLE = {
-    curation:  { panel: '.curation-panel',       card: '.curation-brief-card',     sub: '.curation-section' },
-    market:    { panel: '.market-trends-panel',  card: '.market-trend-card',       sub: '.market-section-stack .briefing-subsection' },
-    community: { panel: '.community-only-panel',  card: '.community-snapshot-card',  sub: '.community-source-section' }
-  };
-  var CARD_SEL = '.curation-brief-card, .market-trend-card, .community-snapshot-card';
+  // 검색은 '전체 수집' 아카이브(.archive-card)에서만 수행한다. 일반 패널은 검색 중
+  // CSS(body.is-searching)로 숨기고, 매칭 결과는 아카이브에 모아 보여준다(중복 없음).
+  var ARCHIVE_CARD_SEL = '.archive-card';
 
   var settings = {};
   var term = '';      // 소문자
@@ -363,62 +404,39 @@
     try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {}
   }
 
-  function hideEmptyContainers(containerSel, cardSel, searching) {
-    qa(containerSel).forEach(function (sec) {
-      if (!searching) { sec.style.display = ''; return; }
-      var cards = Array.prototype.slice.call(sec.querySelectorAll(cardSel));
-      var has = cards.some(function (c) { return c.style.display !== 'none'; });
-      sec.style.display = has ? '' : 'none';
-    });
-  }
-  function hasVisibleCards(panelSel, cardSel) {
-    var scope = q(panelSel);
-    if (!scope) { return false; }
-    return Array.prototype.slice.call(scope.querySelectorAll(cardSel))
-      .some(function (c) { return c.style.display !== 'none'; });
-  }
-
   function apply() {
     var searching = term.length > 0;
     document.body.classList.toggle('is-searching', searching);
 
-    // 1) 카드 필터(검색 중이 아니면 모두 표시로 복구)
-    qa(CARD_SEL).forEach(function (card) {
-      card.style.display = (!searching || card.textContent.toLowerCase().indexOf(term) !== -1) ? '' : 'none';
-    });
-    // 2) 비어버린 하위 섹션 숨김
-    Object.keys(SEARCHABLE).forEach(function (k) {
-      var s = SEARCHABLE[k];
-      hideEmptyContainers(s.sub, s.card, searching);
-    });
-    // 3) 최상위 섹션 표시 결정
-    SECTIONS.forEach(function (s) {
-      var el = q(s.sel);
-      if (SEARCHABLE[s.key]) {
-        // 검색 중엔 매칭 카드가 있을 때만, 평소엔 설정대로
-        setVisible(el, searching ? hasVisibleCards(SEARCHABLE[s.key].panel, SEARCHABLE[s.key].card) : visibleBySetting(s.key));
-      } else {
-        // 기사/커뮤니티가 아닌 영역: 검색 중엔 숨김, 평소엔 설정대로
-        setVisible(el, searching ? false : visibleBySetting(s.key));
-      }
-    });
-    // side-stack 래퍼: 검색 중 숨김, 평소엔 자식 중 하나라도 보이면 표시
-    var sidestack = q('.side-stack');
-    if (sidestack) {
-      setVisible(sidestack, searching ? false :
-        (visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
-          || visibleBySetting('engBox') || visibleBySetting('engRes')));
-    }
-    // 4) 상태 표시
-    var status = q('#searchStatus');
-    if (status) {
-      if (searching) {
-        var n = qa(CARD_SEL).filter(function (c) { return c.style.display !== 'none'; }).length;
+    if (searching) {
+      // 검색 중: 일반 패널은 CSS(body.is-searching)가 숨긴다. '전체 수집' 아카이브에서만 매칭.
+      var n = 0;
+      qa(ARCHIVE_CARD_SEL).forEach(function (card) {
+        var hit = card.textContent.toLowerCase().indexOf(term) !== -1;
+        card.style.display = hit ? '' : 'none';
+        if (hit) { n++; }
+      });
+      // 매칭 카드가 하나도 없는 그룹(기사/커뮤니티)은 머리글째 숨긴다.
+      qa('.archive-group').forEach(function (group) {
+        var cards = Array.prototype.slice.call(group.querySelectorAll(ARCHIVE_CARD_SEL));
+        group.style.display = cards.some(function (c) { return c.style.display !== 'none'; }) ? '' : 'none';
+      });
+      var status = q('#searchStatus');
+      if (status) {
         q('#searchStatusText').textContent = '검색 “' + rawTerm + '” · ' + n + '건';
         status.hidden = false;
-      } else {
-        status.hidden = true;
       }
+    } else {
+      // 평소: 아카이브는 CSS로 숨김. 일반 섹션은 설정대로 복구.
+      SECTIONS.forEach(function (s) { setVisible(q(s.sel), visibleBySetting(s.key)); });
+      var sidestack = q('.side-stack');
+      if (sidestack) {
+        setVisible(sidestack,
+          visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
+          || visibleBySetting('engBox') || visibleBySetting('engRes'));
+      }
+      var status = q('#searchStatus');
+      if (status) { status.hidden = true; }
     }
   }
 

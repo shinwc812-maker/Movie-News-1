@@ -448,8 +448,8 @@ class TheQooDirectSearchSource:
 
     source_name: str = "더쿠"
     boards: tuple[str, ...] = ("movie",)
-    max_queries: int = 12
-    max_items_per_query: int = 5
+    max_queries: int = 30
+    max_items_per_query: int = 10
     request_interval_seconds: float = 0.5
 
     def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
@@ -530,8 +530,8 @@ class DCInsideDirectSearchSource:
     """Direct public search for DCInside posts."""
 
     source_name: str = "디시인사이드"
-    max_queries: int = 12
-    max_items_per_query: int = 4
+    max_queries: int = 30
+    max_items_per_query: int = 10
     allowed_gallery_ids: tuple[str, ...] = (
         "commercial_movie",
         "oticket",
@@ -612,8 +612,8 @@ class MukoDirectSearchSource:
     """Direct search for Muko movie-community posts."""
 
     source_name: str = "무코"
-    max_queries: int = 12
-    max_items_per_query: int = 5
+    max_queries: int = 30
+    max_items_per_query: int = 10
     request_interval_seconds: float = 0.3
     allowed_sections: tuple[str, ...] = (
         "all",
@@ -719,7 +719,7 @@ class NaverSearchCommunitySource:
     client_id: str
     client_secret: str
     base_query_suffix: str
-    display: int = 10
+    display: int = 20
     allowed_domains: tuple[str, ...] = ()
 
     def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
@@ -788,7 +788,7 @@ class YouTubeCommunitySource:
     api_key: str
     source_name: str = "YouTube"
     query_suffix: str = "영화 리뷰 관객 반응"
-    max_results: int = 5
+    max_results: int = 10
 
     def fetch(self, search_terms: list[str]) -> list[CommunityReaction]:
         reactions: list[CommunityReaction] = []

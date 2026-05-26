@@ -99,6 +99,32 @@ def filter_recent(
     return kept
 
 
+def filter_recent_reactions(
+    reactions: list,
+    now: datetime | None = None,
+    max_age_hours: int = MAX_AGE_HOURS,
+) -> list:
+    """48h 폐기 정책을 커뮤니티 반응에도 적용.
+
+    날짜 미상(published_at=None) 항목은 공개검색 결과 특성상 발행일을 못 읽는 경우가
+    많고 매 실행마다 새로 수집되므로 유지한다(기사 filter_recent와 동일한 정책).
+    """
+    if now is None:
+        now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(hours=max_age_hours)
+    kept = []
+    for reaction in reactions:
+        published = getattr(reaction, "published_at", None)
+        if published is None:
+            kept.append(reaction)
+            continue
+        if published.tzinfo is None:
+            published = published.replace(tzinfo=timezone.utc)
+        if published >= cutoff:
+            kept.append(reaction)
+    return kept
+
+
 def save_json_items(items: list[dict], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(items, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -207,19 +233,25 @@ def brief_movie_title(title: str) -> str:
 def community_search_terms(
     market: MarketSnapshot | None,
     reservation: ReservationSnapshot | None = None,
+    overseas_weekend: OverseasWeekendSnapshot | None = None,
 ) -> list[str]:
     base_terms: list[str] = []
     market_titles: list[str] = []
     reservation_titles: list[str] = []
+    overseas_titles: list[str] = []
     if market is not None:
         market_titles.extend(brief_movie_title(movie.title) for movie in market.movies if movie.title)
     if reservation is not None and not reservation.capture_failed:
         reservation_titles.extend(brief_movie_title(movie.title) for movie in reservation.movies if movie.title)
-    for index in range(max(len(market_titles), len(reservation_titles))):
+    if overseas_weekend is not None and getattr(overseas_weekend, "movies", None):
+        overseas_titles.extend(brief_movie_title(movie.title) for movie in overseas_weekend.movies if movie.title)
+    for index in range(max(len(market_titles), len(reservation_titles), len(overseas_titles))):
         if index < len(market_titles):
             base_terms.append(market_titles[index])
         if index < len(reservation_titles):
             base_terms.append(reservation_titles[index])
+        if index < len(overseas_titles):
+            base_terms.append(overseas_titles[index])
     terms: list[str] = []
     for term in base_terms:
         if term not in terms:
@@ -231,21 +263,27 @@ def community_search_terms(
     return list(dict.fromkeys(terms))
 
 
-def focused_movie_news_terms(
+def movie_news_terms(
     market: MarketSnapshot | None,
     reservation: ReservationSnapshot | None = None,
+    overseas_weekend: OverseasWeekendSnapshot | None = None,
 ) -> list[str]:
-    """Return official-news search terms for owned/priority distributed titles."""
+    """Return news search terms for ALL tracked TOP titles.
+
+    이전에는 롯데 배급작만 제목으로 검색해 비(非)롯데 흥행작(예: 군체) 기사가
+    누락됐다. 박스오피스·예매·해외 주말 TOP 작품 전체로 검색 범위를 넓혀
+    백데이터로서 폭넓게 수집한다. 롯데/우선순위 가중치는 스코어러가 처리한다.
+    """
     terms: list[str] = []
     movies = []
     if market is not None:
         movies.extend(market.movies)
     if reservation is not None and not reservation.capture_failed:
         movies.extend(reservation.movies)
+    if overseas_weekend is not None and getattr(overseas_weekend, "movies", None):
+        movies.extend(overseas_weekend.movies)
     for movie in movies:
-        if not getattr(movie, "is_lotte_distributed", False):
-            continue
-        title = brief_movie_title(movie.title)
+        title = brief_movie_title(getattr(movie, "title", "") or "")
         if title and title not in terms:
             terms.append(title)
         compact = "".join(title.split())
@@ -254,24 +292,25 @@ def focused_movie_news_terms(
     return terms
 
 
-def collect_focused_movie_news(
+def collect_movie_news(
     market: MarketSnapshot | None,
     reservation: ReservationSnapshot | None = None,
+    overseas_weekend: OverseasWeekendSnapshot | None = None,
 ) -> list[Article]:
-    terms = focused_movie_news_terms(market, reservation)
+    terms = movie_news_terms(market, reservation, overseas_weekend)
     if not terms:
-        print("Focused movie news: no priority(Lotte) titles to search")
+        print("Movie news: no TOP titles to search")
         return []
     # public_fallback=True: Naver 오픈 API가 실패/빈응답이어도 공개검색으로 폴백해
-    # 롯데 우선작(예: 와일드 씽) 공식 기사를 놓치지 않는다.
+    # TOP 작품(롯데 우선작 포함) 공식 기사를 놓치지 않는다.
     articles = fetch_market_trend_articles_from_naver(
         os.environ.get("NAVER_CLIENT_ID"),
         os.environ.get("NAVER_CLIENT_SECRET"),
         queries=terms,
-        display=5,
+        display=10,
         public_fallback=True,
     )
-    print(f"Focused movie news: {len(articles)} articles for terms {terms}")
+    print(f"Movie news: {len(articles)} articles for {len(terms)} TOP-title terms")
     return articles
 
 
@@ -295,8 +334,8 @@ def main() -> None:
     overseas_weekend = collect_overseas_weekend_snapshot()
 
     articles = asyncio.run(gather_articles(SOURCES))
-    focused_news = collect_focused_movie_news(market, reservation)
-    articles.extend(focused_news)
+    movie_news = collect_movie_news(market, reservation, overseas_weekend)
+    articles.extend(movie_news)
     print(f"Fetched {len(articles)} articles from {len(SOURCES)} sources")
 
     recent = filter_recent(articles)
@@ -318,9 +357,15 @@ def main() -> None:
     save_market_trends(market_trends, MARKET_TRENDS_PATH)
     print(f"Market trends: {len(market_trends)}")
 
-    community_reactions = fetch_community_reactions(community_search_terms(market, reservation))
-    save_community_reactions(community_reactions, COMMUNITY_PATH)
-    print(f"Community reactions: {len(community_reactions)}")
+    community_reactions = fetch_community_reactions(
+        community_search_terms(market, reservation, overseas_weekend)
+    )
+    community_recent = filter_recent_reactions(community_reactions)
+    print(
+        f"Community reactions: {len(community_recent)} within {MAX_AGE_HOURS}h "
+        f"(collected {len(community_reactions)})"
+    )
+    save_community_reactions(community_recent, COMMUNITY_PATH)
 
     policy_items = fetch_policy_items()
     save_policy_items(policy_items, POLICIES_PATH)

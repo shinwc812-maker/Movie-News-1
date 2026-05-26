@@ -22,11 +22,14 @@ jobs:
         id: today
         run: echo "date=$(TZ=Asia/Seoul date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
 
-      - name: Build mail body
+      - name: Build mail bodies (text + html)
         run: |
-          python scripts/build_mail_body.py > mail_body.txt
-          echo "--- mail body preview ---"
-          head -40 mail_body.txt
+          python scripts/build_mail_body.py text > mail_body.txt
+          python scripts/build_mail_body.py html > mail_body.html
+          echo "--- text preview (head) ---"
+          head -20 mail_body.txt
+          echo "--- html size ---"
+          wc -c mail_body.html
 
       - name: Send AI briefing email
         if: ${{ env.GMAIL_USER != '' && env.GMAIL_APP_PASSWORD != '' }}
@@ -44,3 +47,5 @@ jobs:
           to: shinwc812@gmail.com
           subject: "[오늘의 AI 브리핑] ${{ steps.today.outputs.date }}"
           body: file://mail_body.txt
+          html_body: file://mail_body.html
+          convert_markdown: false

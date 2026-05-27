@@ -242,7 +242,6 @@
     <span id="searchStatusText"></span>
     <button type="button" class="tool-btn" onclick="RADAR.clearSearch()">전체 보기</button>
   </div>
-  {% if ai_briefing %}{{ ai_briefing_panel(ai_briefing) }}{% endif %}
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].title }} ({{ boxoffice[0].audi_count }}명 / <span class="audi-delta audi-delta-{{ boxoffice[0].audi_delta_sign }}">{{ boxoffice[0].audi_delta_short }}</span>){% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_label }}{% else %}데이터 없음{% endif %}</strong></div>
@@ -250,35 +249,9 @@
     <div class="kpi"><span>커뮤니티 반응</span><strong>{{ total_community }}건</strong></div>
   </section>
 
-  <section class="hero-grid">
-    <div class="panel curation-panel">
-      <div class="panel-head">
-        <h2>핵심 큐레이션</h2>
-        <span>sectioned executive brief</span>
-      </div>
-      <div class="curation-sections" data-section-order="흥행·배급|극장·정책|경쟁사·산업|해외·마켓|문화/IP">
-        {% for section in curation_sections %}
-        <section class="curation-section">
-          <div class="curation-section-head">
-            <div>
-              <h3>{{ section.title }}</h3>
-              <span>{{ section.eyebrow }}</span>
-            </div>
-            <div class="curation-section-meta">
-              <b>{{ section["items"]|length }}건</b>
-              {% if section["items"]|length > 2 %}<button type="button" class="curation-more-btn" aria-expanded="false">더보기</button>{% endif %}
-            </div>
-          </div>
-          <div class="curation-section-items">
-            {% for item in section["items"] %}{{ curation_brief_card(item, extra=loop.index > 2) }}{% endfor %}
-          </div>
-        </section>
-        {% endfor %}
-        {% if not curation_sections %}<p class="empty">표시할 큐레이션 항목이 없습니다.</p>{% endif %}
-      </div>
-    </div>
-
-    <aside class="side-stack">
+  <section class="briefing-grid">
+    {% if ai_briefing %}{{ ai_briefing_panel(ai_briefing) }}{% endif %}
+    <aside class="briefing-side-stack">
       <section class="panel" data-section="boxoffice">
         <div class="panel-head">
           <h2>전일 관객 TOP 5</h2>
@@ -343,7 +316,38 @@
         </ol>
         {% if not overseas_weekend.movies %}<p class="empty">Box Office Mojo 데이터가 없습니다.</p>{% endif %}
       </section>
+    </aside>
+  </section>
 
+  <section class="hero-grid">
+    <div class="panel curation-panel">
+      <div class="panel-head">
+        <h2>핵심 큐레이션</h2>
+        <span>sectioned executive brief</span>
+      </div>
+      <div class="curation-sections" data-section-order="흥행·배급|극장·정책|경쟁사·산업|해외·마켓|문화/IP">
+        {% for section in curation_sections %}
+        <section class="curation-section">
+          <div class="curation-section-head">
+            <div>
+              <h3>{{ section.title }}</h3>
+              <span>{{ section.eyebrow }}</span>
+            </div>
+            <div class="curation-section-meta">
+              <b>{{ section["items"]|length }}건</b>
+              {% if section["items"]|length > 2 %}<button type="button" class="curation-more-btn" aria-expanded="false">더보기</button>{% endif %}
+            </div>
+          </div>
+          <div class="curation-section-items">
+            {% for item in section["items"] %}{{ curation_brief_card(item, extra=loop.index > 2) }}{% endfor %}
+          </div>
+        </section>
+        {% endfor %}
+        {% if not curation_sections %}<p class="empty">표시할 큐레이션 항목이 없습니다.</p>{% endif %}
+      </div>
+    </div>
+
+    <aside class="side-stack">
       <section class="panel engagement-panel" data-section="engBox">
         <div class="panel-head">
           <h2>전일 관객 TOP 5 · 수집량</h2>
@@ -544,12 +548,16 @@
         // AI 브리핑만 설정대로 처리(끄지 않았다면 노출).
         setVisible(q('.ai-briefing-panel'), visibleBySetting('aiBriefing'));
       }
+      var briefingSidestack = q('.briefing-side-stack');
+      if (briefingSidestack) {
+        setVisible(briefingSidestack,
+          dashboardOpen && (
+            visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')));
+      }
       var sidestack = q('.side-stack');
       if (sidestack) {
         setVisible(sidestack,
-          dashboardOpen && (
-            visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')
-            || visibleBySetting('engBox') || visibleBySetting('engRes')));
+          dashboardOpen && (visibleBySetting('engBox') || visibleBySetting('engRes')));
       }
       updateDashboardToggleLabel();
       var status = q('#searchStatus');

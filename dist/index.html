@@ -1144,14 +1144,11 @@ footer {
   .ai-grid { grid-template-columns: 1fr; }
 }
 
-/* 대시보드 본문 접힘 — 메인 첫 진입은 AI 브리핑만 노출 */
-body.dashboard-collapsed .kpis,
+/* 대시보드 본문 접힘 — KPI + AI 브리핑 + 사이드 TOP5 3개는 항상 노출, 그 외만 숨김 */
 body.dashboard-collapsed .hero-grid,
 body.dashboard-collapsed .market-trends-panel,
 body.dashboard-collapsed .community-only-panel,
 body.dashboard-collapsed .policy-panel { display: none; }
-body.dashboard-collapsed .briefing-grid { grid-template-columns: 1fr; }
-body.dashboard-collapsed .briefing-side-stack { display: none; }
 
 .ai-briefing-toggle {
   margin-top: 14px;
@@ -1254,7 +1251,7 @@ body.is-searching .search-archive-panel { display: block; }
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 27일 13:38 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 27일 14:22 (KST)</p>
   </div>
   <div class="topbar-tools">
     <form class="search-box" role="search" onsubmit="return RADAR.onSearchSubmit(event)">
@@ -1287,10 +1284,10 @@ body.is-searching .search-archive-panel { display: block; }
     <section class="panel ai-briefing-panel" data-section="aiBriefing">
   <div class="ai-briefing-head">
     <h2>🤖 오늘의 AI 브리핑 <span class="ai-badge">AI SUMMARY</span></h2>
-    <span class="ai-generated-at">2026.05.27 09:07 KST · Claude 자동 생성</span>
+    <span class="ai-generated-at">2026.05.27 14:19 KST · Claude 자동 생성</span>
   </div>
-  <p class="ai-headline">어제 브리핑(5/27 03:44 UTC) 대비 KOBIS 신규 수치 없음 — 5/27 &#x27;백룸&#x27;·&#x27;만달로리안과 그로구&#x27; 실제 개봉 확인, 자사 &#x27;와일드 씽&#x27; 예매 2위(11.2%·4만7,406매) 유지, Rolling Stone &#x27;스타워즈 프랜차이즈 위기론&#x27; 신규 부상 [KOBIS]<a class="ai-cite" href="https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/" target="_blank" rel="noopener" title="Bad Bunny Will Bring a Slice to Life in ‘Toy Story 5’">[Rolling Stone]</a></p>
-  <p class="ai-summary">5월 26일 KOBIS 기준 &#x27;군체&#x27;(쇼박스)가 누적 216만9,099명으로 박스오피스 1위를 유지하는 가운데, 5/27 &#x27;백룸&#x27;·&#x27;만달로리안과 그로구&#x27;가 실제 개봉해 외화 스크린 경쟁이 본격화됐다 [KOBIS]. 자사 &#x27;와일드 씽&#x27;(롯데 배급, 6/3 개봉)은 예매율 2위(11.2%, 4만7,406매)를 유지하며 5/28 CGV영등포 시사회를 앞두고 현장 반응 확보 국면에 진입했다 [KOBIS][더쿠]. 해외에서는 Rolling Stone이 &#x27;스타워즈 프랜차이즈가 결국 끝났나?&#x27;를 게재하며 만달로리안 시리즈 최저 오프닝($81M·3일)에 대한 프랜차이즈 위기론을 부상시켰고, TIFF가 크리스토퍼 놀란 &#x27;오디세이&#x27; 개봉 전 전작 회고전을 발표해 하반기 블록버스터 경쟁의 서막이 열렸다 <a class="ai-cite" href="https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/" target="_blank" rel="noopener" title="Bad Bunny Will Bring a Slice to Life in ‘Toy Story 5’">[Rolling Stone]</a><a class="ai-cite" href="https://variety.com/2026/film/news/backrooms-mark-duplass-kane-parsons-didnt-direct-a24-horror-1236759383/" target="_blank" rel="noopener" title="‘Backrooms’ Star Mark Duplass Slams Rumor That Kane Parsons Didn’t Actually Direct Horror Movie: ‘Kane Was 100% in Control’">[Variety]</a>.</p>
+  <p class="ai-headline">전 브리핑(5/27 00:07 UTC) 대비 KOBIS 박스오피스·예매 수치 동일(5/26 기준) — 자사 &#x27;와일드 씽&#x27; CGV영등포 시사회 좌석 조기 완료·왕십리 추가 문의 확인, &#x27;범죄도시5&#x27; 크랭크인·&#x27;케이팝 데몬 헌터스&#x27; 美 크라이테리언 블루레이 출시 신규 포착 [KOBIS][더쿠][익스트림무비]</p>
+  <p class="ai-summary">5월 26일 KOBIS 기준 &#x27;군체&#x27;(쇼박스)가 누적 216만9,099명으로 박스오피스 1위를 유지하고 예매율도 37.6%로 선두를 고수하는 가운데, 5/27 개봉한 &#x27;백룸&#x27;과 &#x27;만달로리안과 그로구&#x27;가 예매 3·4위에 진입해 자사 &#x27;와일드 씽&#x27;(롯데 배급, 6/3 개봉) 주변 스크린 경쟁이 본격화됐다 [KOBIS]. 자사 &#x27;와일드 씽&#x27;은 CGV영등포 5/28 시사회 좌석이 조기 완료되고 커뮤니티 반응이 긍정 우세이며, 강동원·박지현·엄태구의 트라이앵글 홍보가 지속 중이다 [더쿠]<a class="ai-cite" href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5PTlNBRGlaY3VVMU9ibXJrYmVjb2JWaTI2THJNTi1Bbks0cW40RXBWOVFYTGl5Tlg0OVc0SzljVUxJMjh3VGx4YU9wb2syamZIbWQwYS14QzBaN3NkcEVsQ2p3?oc=5" target="_blank" rel="noopener" title="‘와일드씽’ 강동원·박지현·엄태구, 트라이앵글 홍보로 바쁘다…‘유퀴즈’까지 출연">[미주중앙일보]</a>. 해외에서는 &#x27;만달로리안과 그로구&#x27;의 북미 시리즈 최저 오프닝($81M·3일)과 Zootopia 2의 전 세계 17일 만에 $1B 돌파가 극장 IP 전략에 시사점을 던진다 <a class="ai-cite" href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/" target="_blank" rel="noopener" title="‘Star Wars: The Mandalorian and Grogu’ Opens to Series-Low $98M in North America. Does It Even Matter?">[The Hollywood Reporter]</a><a class="ai-cite" href="https://deadline.com/feature/book-to-movie-adaptations-1236035322/" target="_blank" rel="noopener" title="Book-To-Movie Adaptations Coming Out In 2026">[Deadline]</a>.</p>
 
   <div class="ai-grid">
 
@@ -1299,8 +1296,8 @@ body.is-searching .search-archive-panel { display: block; }
 
       <div class="ai-own-item">
         <div class="ai-own-title"><b>와일드 씽</b><span class="ai-kind">롯데 배급</span></div>
-        <ul class="ai-points"><li>예매율 2위(11.2%, 4만7,406매), 6/3 개봉 D-7 기준 [KOBIS]</li><li>강동원·박지현·엄태구 &#x27;유퀴즈&#x27; 출연 및 트라이앵글 홍보 동시 가동 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5PTlNBRGlaY3VVMU9ibXJrYmVjb2JWaTI2THJNTi1Bbks0cW40RXBWOVFYTGl5Tlg0OVc0SzljVUxJMjh3VGx4YU9wb2syamZIbWQwYS14QzBaN3NkcEVsQ2p3?oc=5" target="_blank" rel="noopener" title="‘와일드씽’ 강동원·박지현·엄태구, 트라이앵글 홍보로 바쁘다…‘유퀴즈’까지 출연">[미주중앙일보]</a></li><li>오정세 &#x27;천만 공약&#x27; 인터뷰·&#x27;네가 좋아&#x27; 바이럴 다수 매체 노출 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMickFVX3lxTE5sRlNTazRtVjRlRjREaUxzZFVfQ3F4WjVLczhid191SlJzWC1ZMlE5LUJ0c2pQWTVRMlVDcXRDT2tkOWdIWXIwN19Jc25oNlAyUmdRSmdZcXlyWjEtdkVjVFk0ZVFsbm5ab0I3SnVYdU91Zw?oc=5" target="_blank" rel="noopener" title="[인터뷰] 오정세 “‘와일드씽’ 천만 공약? 최성곤으로 무언가 할 것…‘네가 좋아’ 지인들도 중독성 인정”(종합)">[톱스타뉴스]</a><a class="ai-cite" href="https://news.google.com/rss/articles/CBMilAFBVV95cUxOb2FOWEl5ZXdhdXZqMW9wWmcwMFJHdm5BY1ZiaXJzcm5Ub01ITUZ4VnIzQm04cmRLTVlJUVVmSm1DeHBYMmFhb2VGUDFrdGMxN3NBVDhjOW85TWlfTUF1S1p1cmw3X3k4MXZiUkdUaHYxUHlDSmFjeWpWQVVwdEl4NUozTklVNWxNZ2U3U1ctTUtFczg1?oc=5" target="_blank" rel="noopener" title="[인터뷰③] 오정세, &quot;돈 벌려고 영화 만드냐&quot; 진심이었네…&quot;&#x27;와일드씽&#x27; 음방 논의, 나와의 싸움&quot;">[조선일보]</a></li><li>5/28 CGV영등포 시사회 예정 — 개봉 전 현장 반응 확인 국면 [더쿠]</li></ul>
-        <ul class="ai-points ai-risks"><li>▼ 5/27 &#x27;백룸&#x27;(예매 3위 11.1%)·&#x27;만달로리안과 그로구&#x27;(예매 4위 7.7%) 스크린 선점으로 D-7 예매 경쟁 심화 [KOBIS]</li><li>▼ 커뮤니티 일부 &#x27;만원 이상 주고 볼 수 없다&#x27; 가격저항 발언 관측 [디시인사이드]</li></ul>
+        <ul class="ai-points"><li>예매율 2위(11.2%, 4만7,406매), 6/3 개봉 D-7 기준 [KOBIS]</li><li>강동원·박지현·엄태구 &#x27;유퀴즈&#x27; 출연·트라이앵글 홍보 동시 가동 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5PTlNBRGlaY3VVMU9ibXJrYmVjb2JWaTI2THJNTi1Bbks0cW40RXBWOVFYTGl5Tlg0OVc0SzljVUxJMjh3VGx4YU9wb2syamZIbWQwYS14QzBaN3NkcEVsQ2p3?oc=5" target="_blank" rel="noopener" title="‘와일드씽’ 강동원·박지현·엄태구, 트라이앵글 홍보로 바쁘다…‘유퀴즈’까지 출연">[미주중앙일보]</a></li><li>오정세 &#x27;천만 공약&#x27; 인터뷰·&#x27;네가 좋아&#x27; 바이럴 다수 매체 노출 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMickFVX3lxTE5sRlNTazRtVjRlRjREaUxzZFVfQ3F4WjVLczhid191SlJzWC1ZMlE5LUJ0c2pQWTVRMlVDcXRDT2tkOWdIWXIwN19Jc25oNlAyUmdRSmdZcXlyWjEtdkVjVFk0ZVFsbm5ab0I3SnVYdU91Zw?oc=5" target="_blank" rel="noopener" title="[인터뷰] 오정세 “‘와일드씽’ 천만 공약? 최성곤으로 무언가 할 것…‘네가 좋아’ 지인들도 중독성 인정”(종합)">[톱스타뉴스]</a></li><li>CGV영등포 5/28 19:30 시사회 좌석 조기 완료 확인, 왕십리 추가 시사회 커뮤니티 문의 활발 [더쿠][디시인사이드]</li></ul>
+        <ul class="ai-points ai-risks"><li>▼ &#x27;백룸&#x27;(예매 3위 11.1%)·&#x27;만달로리안과 그로구&#x27;(예매 4위 7.7%) 5/27 개봉으로 D-7 스크린 경쟁 심화 [KOBIS]</li><li>▼ 커뮤니티 일부 &#x27;만원 이상 주고 볼 수는 없지&#x27; 가격저항 발언 관찰 [디시인사이드]</li></ul>
       </div>
 
     </div>
@@ -1311,15 +1308,13 @@ body.is-searching .search-archive-panel { display: block; }
       <div class="ai-block-head"><h3>🎬 경쟁작 동향</h3></div>
       <ul class="ai-points">
 
-        <li><b>군체</b> <em class="ai-dist">(쇼박스)</em> — 5/26 일 15만489명, 누적 216만9,099명, 좌석점유율 60.0%, 예매율 1위 37.6%(15만9,223매) — &#x27;왕사남&#x27;보다 빠른 200만 돌파 기록 [KOBIS]<a class="ai-cite" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBxcGl0Tl9vVVpjaHZ6bVJzU3RfcGUydU5temFfbjZGdHZHVWk4SXVmVldXSDB2R0JCbnpyVjFsblFTODA3ck5tbVdWWWVONFo0dlZ5NUUtdzBHLWRlTElreNIBYEFVX3lxTFBxcGl0Tl9vVVpjaHZ6bVJzU3RfcGUydU5temFfbjZGdHZHVWk4SXVmVldXSDB2R0JCbnpyVjFsblFTODA3ck5tbVdWWWVONFo0dlZ5NUUtdzBHLWRlTElreA?oc=5" target="_blank" rel="noopener" title="좀비 영화 &#x27;군체&#x27; 200만명 돌파">[연합뉴스]</a></li>
+        <li><b>군체</b> <em class="ai-dist">(쇼박스)</em> — 5/26 일 15만489명·누적 216만9,099명, 예매 1위 37.6%(15만9,223매), 좌석점유율 60.0% [KOBIS]</li>
 
-        <li><b>마이클</b> <em class="ai-dist">(유니버설픽쳐스인터내셔널 코리아)</em> — 5/26 일 2만595명, 누적 120만5,195명, 좌석점유율 17.8% — N차 관람 이벤트 가동, 로튼토마토 평론가 39% vs 관객 97% 극명한 괴리 [KOBIS]<a class="ai-cite" href="https://news.google.com/rss/articles/CBMickFVX3lxTE5sRlNTazRtVjRlRjREaUxzZFVfQ3F4WjVLczhid191SlJzWC1ZMlE5LUJ0c2pQWTVRMlVDcXRDT2tkOWdIWXIwN19Jc25oNlAyUmdRSmdZcXlyWjEtdkVjVFk0ZVFsbm5ab0I3SnVYdU91Zw?oc=5" target="_blank" rel="noopener" title="[인터뷰] 오정세 “‘와일드씽’ 천만 공약? 최성곤으로 무언가 할 것…‘네가 좋아’ 지인들도 중독성 인정”(종합)">[톱스타뉴스]</a></li>
+        <li><b>마이클</b> <em class="ai-dist">(유니버설픽쳐스인터내셔널 코리아)</em> — 5/26 일 2만595명·누적 120만5,195명, 좌석점유율 17.8% — N차 관람 이벤트 가동 [KOBIS]<a class="ai-cite" href="https://www.topstarnews.net/news/articleView.html?idxno=16072301" target="_blank" rel="noopener" title="216만 돌파 &#x27;군체&#x27;, 박스오피스 순위 1위…2위는 &#x27; 마이클 &#x27;">[Naver News]</a></li>
 
-        <li><b>백룸</b> <em class="ai-dist">(바이포엠스튜디오/리바이브콘텐츠)</em> — 5/27 개봉, 예매율 3위(11.1%, 4만7,134매) — 감독 연출 진위 SNS 논란 속 CGV·메가박스 1주차 특전 확보, 예매 전일 대비 77% 급증 [KOBIS]<a class="ai-cite" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTFBRTFFwdTUtb3JCTV9WMDBzZEFQcHRjaE03amxSWnFvUDIwczliWHRaMFgzeXl2MndkdnJMR2t2Q3JiV21fSDFJWk04THE0Vi02c2dCMHFSemxLTmx3LTFGamRtVDV2Zw?oc=5" target="_blank" rel="noopener" title="[인터뷰] ‘군체’ 전지현 “분위기 좋은 韓영화, 강동원·오정세 ‘와일드 씽’ 응원”">[싱글리스트]</a><a class="ai-cite" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE0wdHRmNVRyQ19COS10bE9JcEItRWtkdDduX1UtSVpDSkFJa1ZDWEY1VnF3clIwaWJCei1nNGdzTXBhQVJXMzJQOTFQUjlNOV9kYWNuZXVVVklZZldsR1FuRlFTcVVlOEVrVGJRdg?oc=5" target="_blank" rel="noopener" title="&quot;거기, 누구예요?&quot; 27일 개봉작 &#x27;백룸&#x27;, 예매 77% 급증 3위 [5월 27일 영화 예매순위]">[ER 이코노믹리뷰]</a></li>
+        <li><b>백룸</b> <em class="ai-dist">(바이포엠스튜디오/리바이브콘텐츠)</em> — 5/27 개봉, 예매 3위(11.1%, 4만7,134매) — 20세 감독 연출 진위 SNS 논란 속 극장별 1주차 특전 확보 [KOBIS]<a class="ai-cite" href="https://variety.com/2026/film/news/backrooms-mark-duplass-kane-parsons-didnt-direct-a24-horror-1236759383/" target="_blank" rel="noopener" title="‘Backrooms’ Star Mark Duplass Slams Rumor That Kane Parsons Didn’t Actually Direct Horror Movie: ‘Kane Was 100% in Control’">[Variety]</a>[디시인사이드]</li>
 
-        <li><b>만달로리안과 그로구</b> <em class="ai-dist">(월트디즈니컴퍼니코리아)</em> — 5/27 국내 개봉, 예매율 4위(7.7%, 3만2,680매), 북미 3일 $81M·4일 $102M 1위 — Rolling Stone &#x27;스타워즈 프랜차이즈 위기론&#x27; 부상 병존 [KOBIS]<a class="ai-cite" href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/" target="_blank" rel="noopener" title="‘Star Wars: The Mandalorian and Grogu’ Opens to Series-Low $98M in North America. Does It Even Matter?">[The Hollywood Reporter]</a><a class="ai-cite" href="https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/" target="_blank" rel="noopener" title="Bad Bunny Will Bring a Slice to Life in ‘Toy Story 5’">[Rolling Stone]</a></li>
-
-        <li><b>악마는 프라다를 입는다 2</b> <em class="ai-dist">(월트디즈니컴퍼니코리아)</em> — 5/26 일 5,821명, 누적 156만4,402명, 좌석점유율 6.2% — 4주차 진입, 패션·N차 수요 잔존 [KOBIS]<a class="ai-cite" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE9nNExVaFRqZTdYRzRYbXI5WS11UFZLYTlHRjM0RGU1RXk4bmhqcDNWd1NzVVM4c2xudzM0QnlKTlVJTkxuZkR5TFNsQ2VuUlNhb1Z3WUFCOU5iVWdSZGw0NlJwOUo?oc=5" target="_blank" rel="noopener" title="매거진 키즈들의 영원한 바이블 ‘악마는 프라다를 입는다 2’ 패션 분석">[여성동아]</a></li>
+        <li><b>만달로리안과 그로구</b> <em class="ai-dist">(월트디즈니컴퍼니코리아)</em> — 5/27 국내 개봉, 예매 4위(7.7%, 3만2,680매), 북미 3일 $81M 1위이나 스타워즈 시리즈 역대 최저 오프닝 기록 [KOBIS]<a class="ai-cite" href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/" target="_blank" rel="noopener" title="‘Star Wars: The Mandalorian and Grogu’ Opens to Series-Low $98M in North America. Does It Even Matter?">[The Hollywood Reporter]</a></li>
 
       </ul>
     </div>
@@ -1330,13 +1325,13 @@ body.is-searching .search-archive-panel { display: block; }
       <div class="ai-block-head"><h3>🔥 신규 트렌드</h3></div>
       <ul class="ai-points">
 
-        <li><span class="ai-tag">K팝 콘서트 영화 &amp; 팬덤 특전</span> &#x27;플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마&#x27; 예매율 5위(6.9%, 2만9,078매), 미공개 포토카드 특전으로 사전 수요 입증 [KOBIS]<a class="ai-cite" href="https://news.google.com/rss/articles/CBMickFVX3lxTE5sRlNTazRtVjRlRjREaUxzZFVfQ3F4WjVLczhid191SlJzWC1ZMlE5LUJ0c2pQWTVRMlVDcXRDT2tkOWdIWXIwN19Jc25oNlAyUmdRSmdZcXlyWjEtdkVjVFk0ZVFsbm5ab0I3SnVYdU91Zw?oc=5" target="_blank" rel="noopener" title="[인터뷰] 오정세 “‘와일드씽’ 천만 공약? 최성곤으로 무언가 할 것…‘네가 좋아’ 지인들도 중독성 인정”(종합)">[톱스타뉴스]</a> <b class="ai-implication">— 특별관·이벤트 패키지를 결합한 K팝 공연 영화 라인업 확장 및 팬덤 특전 전략 검토.</b></li>
-
-        <li><span class="ai-tag">팝업·팬덤 플랫폼화</span> 백화점·쇼핑몰 체류형 팝업이 MZ 핵심 동선으로 부상 — &#x27;팝업스토어가 굿즈 매장 넘어 팬덤 플랫폼&#x27;으로 진화 진단 [smartbizn.com][IT조선] <b class="ai-implication">— 극장 로비·상권 거점에서 한정 굿즈·포토존·예매 동선 결합 공간 실험 검토.</b></li>
-
         <li><span class="ai-tag">이머시브 콘텐츠 확산</span> K-이머시브 대표작 &#x27;룰렛&#x27; 7월 재개막 예정, 참여형 스토리텔링·공간 재해석 흐름 지속 [abcn.kr] <b class="ai-implication">— 극장 유휴공간·특별관을 활용한 체험형 관람 이벤트 기획에 참고 가능.</b></li>
 
-        <li><span class="ai-tag">범죄도시 5 크랭크인</span> 마동석·김재영·서현우 주연, 허명행 감독 연출, 2027 개봉 예정으로 크랭크인 발표 [익스트림무비] <b class="ai-implication">— 한국 범죄 액션 장르 공급 지속 확인 — 경쟁 라인업 사전 추적 필요.</b></li>
+        <li><span class="ai-tag">팝업·팬덤 플랫폼화</span> 백화점·쇼핑몰 체류형 팝업이 MZ 핵심 소비 동선으로 부상 — &#x27;팝업스토어가 굿즈 매장 넘어 팬덤 플랫폼&#x27;으로 진화 진단 [smartbizn.com][IT조선] <b class="ai-implication">— 극장 로비·상권 거점 한정 굿즈·포토존·예매 동선 결합 공간 실험 검토.</b></li>
+
+        <li><span class="ai-tag">뮤지컬 전기영화 흥행</span> 영화 &#x27;마이클&#x27;, 역대 최고 흥행 뮤지컬 전기영화가 될 전망이라는 분석 보도 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMimwFBVV95cUxPQ1g3WXdvNWcxMGk5YXU4RXZ5WGZWRHR1R09ybEFXdmlCWnBXV0pfMjdsOHJKNUdzQ3Vvblg4cElna25oTUJqOUwybk00RkJkb0RUY09DUnBweWUxWWJQX0M3Sk11b0g1dm1ZM0JjX0dRTkFKQ2tiYjRIR1hnb3hzNEtJX25QRkhSbG8yVXh5S3RfcjBQb1F6RzI4TQ?oc=5" target="_blank" rel="noopener" title="영화 &#x27;마이클&#x27;은 역대 최고 흥행을 기록한 뮤지컬 전기 영화가 될 전망이다.">[Vietnam.vn]</a> <b class="ai-implication">— 음악 인물 IP 기반 극장 이벤트·패키지 기획 참고 가능.</b></li>
+
+        <li><span class="ai-tag">K-콘텐츠 IP 해외 역수입</span> &#x27;케이팝 데몬 헌터스&#x27; 블루레이, 미국 크라이테리언 컬렉션 출시 — 한국 애니메이션 IP의 해외 예술 영화 채널 진입 사례 [익스트림무비] <b class="ai-implication">— 한국 애니메이션·영화 IP 해외 역수입·수집가 시장 트래킹 및 자사 IP 활용 방향 참고.</b></li>
 
       </ul>
     </div>
@@ -1347,13 +1342,11 @@ body.is-searching .search-archive-panel { display: block; }
       <div class="ai-block-head"><h3>📡 산업 시그널</h3></div>
       <ul class="ai-points">
 
-        <li><span class="ai-tag">스타워즈 프랜차이즈 위기론 부상</span> Rolling Stone &#x27;스타워즈 프랜차이즈, 결국 끝났나?&#x27; 분석 게재 — 만달로리안 시리즈 최저 오프닝($81M·3일) 배경 글로벌 IP 피로 논쟁 <a class="ai-cite" href="https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/" target="_blank" rel="noopener" title="Bad Bunny Will Bring a Slice to Life in ‘Toy Story 5’">[Rolling Stone]</a> <b class="ai-implication">— 글로벌 대형 프랜차이즈 IP 피로감 대두 — 자사 신규 IP 발굴 및 현지화 차별화 전략 재점검 시사.</b></li>
+        <li><span class="ai-tag">범죄도시5 크랭크인</span> 마동석·김재영·서현우 주연, 허명행 감독 연출, 2027 개봉 예정 크랭크인 발표 [익스트림무비] <b class="ai-implication">— 한국 범죄 액션 장르 공급 지속 확인 — 하반기~내년 경쟁 라인업 사전 추적 필요.</b></li>
 
-        <li><span class="ai-tag">크리스토퍼 놀란 TIFF 회고전 &amp; &#39;오디세이&#39; 론칭</span> TIFF Lightbox가 &#x27;오디세이&#x27; 개봉 전 놀란 전작 회고전 발표 — 작품성+이벤트 결합 마케팅 전략의 글로벌 사례 <a class="ai-cite" href="https://variety.com/2026/film/news/backrooms-mark-duplass-kane-parsons-didnt-direct-a24-horror-1236759383/" target="_blank" rel="noopener" title="‘Backrooms’ Star Mark Duplass Slams Rumor That Kane Parsons Didn’t Actually Direct Horror Movie: ‘Kane Was 100% in Control’">[Variety]</a><a class="ai-cite" href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/" target="_blank" rel="noopener" title="‘Star Wars: The Mandalorian and Grogu’ Opens to Series-Low $98M in North America. Does It Even Matter?">[The Hollywood Reporter]</a> <b class="ai-implication">— 하반기 글로벌 블록버스터 경쟁 서막 — 자사 하반기 라인업과의 스크린 충돌 시뮬레이션 필요.</b></li>
+        <li><span class="ai-tag">스타워즈 프랜차이즈 위기론</span> &#x27;만달로리안과 그로구&#x27; 북미 3일 $81M — 스타워즈 시리즈 최저 오프닝 계기로 글로벌 IP 피로 논쟁 부상 <a class="ai-cite" href="https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/" target="_blank" rel="noopener" title="Bad Bunny Will Bring a Slice to Life in ‘Toy Story 5’">[Rolling Stone]</a><a class="ai-cite" href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/" target="_blank" rel="noopener" title="‘Star Wars: The Mandalorian and Grogu’ Opens to Series-Low $98M in North America. Does It Even Matter?">[The Hollywood Reporter]</a> <b class="ai-implication">— 글로벌 대형 IP 피로 대두 — 자사 신규 IP 발굴·현지화 차별화 전략 재점검 시사.</b></li>
 
-        <li><span class="ai-tag">UGC 기반 호러 IP 영화화</span> 20세 유튜버 감독 케인 파슨스의 A24 &#x27;백룸&#x27; 5/27 국내 개봉, 연출 진위 SNS 논란에도 예매율 3위(11.1%) 기록 <a class="ai-cite" href="https://variety.com/2026/film/news/backrooms-mark-duplass-kane-parsons-didnt-direct-a24-horror-1236759383/" target="_blank" rel="noopener" title="‘Backrooms’ Star Mark Duplass Slams Rumor That Kane Parsons Didn’t Actually Direct Horror Movie: ‘Kane Was 100% in Control’">[Variety]</a><a class="ai-cite" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE0wdHRmNVRyQ19COS10bE9JcEItRWtkdDduX1UtSVpDSkFJa1ZDWEY1VnF3clIwaWJCei1nNGdzTXBhQVJXMzJQOTFQUjlNOV9kYWNuZXVVVklZZldsR1FuRlFTcVVlOEVrVGJRdg?oc=5" target="_blank" rel="noopener" title="&quot;거기, 누구예요?&quot; 27일 개봉작 &#x27;백룸&#x27;, 예매 77% 급증 3위 [5월 27일 영화 예매순위]">[ER 이코노믹리뷰]</a> <b class="ai-implication">— 유튜브·웹 기반 신예 크리에이터 IP 픽업 시 제작 신뢰성 관리 이슈 함께 고려 필요.</b></li>
-
-        <li><span class="ai-tag">정책 — KOFIC 추경 독립예술영화 제작지원</span> 2026년 독립예술영화 장편 극영화(순제작비 10억~20억 원 미만) 제작지원 추경 공고 [영화진흥위원회] <b class="ai-implication">— 중급 예산대 공동제작·라인업 보강 트래킹 대상.</b></li>
+        <li><span class="ai-tag">&#39;오디세이&#39; 그리스 캐스팅 논란</span> 크리스토퍼 놀란 &#x27;오디세이&#x27; 그리스 캐릭터 비(非)그리스인 캐스팅에 대해 그리스 매체 Greek City Times가 문제 제기 [익스트림무비] <b class="ai-implication">— 하반기 글로벌 블록버스터 상영 편성 시 지역 문화 감수성 이슈 검토 필요.</b></li>
 
       </ul>
     </div>
@@ -1366,42 +1359,42 @@ body.is-searching .search-archive-panel { display: block; }
 
     <div class="ai-overseas-item">
       <div class="ai-overseas-title">
-        <a href="https://www.rollingstone.com/tv-movies/tv-movie-reviews/mandalorian-and-grogu-review-star-wars-1235566001/" target="_blank" rel="noopener">Rolling Stone: &#39;스타워즈 프랜차이즈, 결국 끝났나?&#39; — 만달로리안 최저 오프닝 계기 위기 분석</a>
+        <a href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/" target="_blank" rel="noopener">&#39;만달로리안과 그로구&#39; 북미 3일 $81M — 스타워즈 실사 시리즈 역대 최저 오프닝</a>
       </div>
-      <p class="ai-overseas-summary">Rolling Stone이 &#x27;만달로리안과 그로구&#x27; 북미 3일 $81M(시리즈 최저)을 계기로 스타워즈 프랜차이즈 전반의 관객 피로감을 분석했다. 키즈 관객 호응은 긍정적이나 성인 팬덤 이탈 우려가 부상하고 있다.</p>
-      <p class="ai-overseas-impl">Rolling Stone · 시사점: 5/27 국내 개봉 후 성인 관객 수요 추적 필요 — 자사 &#x27;와일드 씽&#x27; 성인 타깃 전략과의 대조 기회.</p>
+      <p class="ai-overseas-summary">디즈니·루카스필름 기대작이 팬데믹 이후 기준 선방이나 스타워즈 시리즈 역대 최저 오프닝으로 기록됐다. 키즈 관객 호응이 강해 장기 흥행 및 신규 팬 유입 가능성은 열려 있다고 분석됐으며, 4일 누적 $102M으로 1위를 유지했다.</p>
+      <p class="ai-overseas-impl">The Hollywood Reporter · 시사점: 5/27 국내 개봉 후 성인 관객 수요 추적 필요 — 자사 &#x27;와일드 씽&#x27; 성인 타깃 전략과의 대조 기회.</p>
     </div>
 
     <div class="ai-overseas-item">
       <div class="ai-overseas-title">
-        <a href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/" target="_blank" rel="noopener">&#39;만달로리안과 그로구&#39; 북미 메모리얼 데이 4일 $102M 1위 — 시리즈 역대 최저 오프닝 논의</a>
+        <a href="https://variety.com/2026/film/news/backrooms-mark-duplass-kane-parsons-didnt-direct-a24-horror-1236759383/" target="_blank" rel="noopener">A24 &#39;백룸&#39; 20세 감독 연출 진위 논란 — 마크 뒤플라스 &#39;케인 파슨스 100% 연출&#39; 공개 옹호</a>
       </div>
-      <p class="ai-overseas-summary">디즈니·루카스필름 기대작이 팬데믹 이후 기준 선방 수치이나 스타워즈 시리즈 역대 최저 오프닝으로 평가받으며, 키즈 관객 호응이 강해 장기 흥행 및 신규 팬층 유입 가능성은 열려 있다.</p>
-      <p class="ai-overseas-impl">The Hollywood Reporter · 시사점: 5/27 국내 개봉 직후 스크린 경쟁이 자사 &#x27;와일드 씽&#x27; 개봉(6/3) 전 변수로 작용 가능.</p>
+      <p class="ai-overseas-summary">배우 마크 뒤플라스가 X(트위터)를 통해 A24 &#x27;백룸&#x27;의 20세 감독 케인 파슨스가 실제로 연출했다고 반박했다. 5/27 국내 개봉을 앞두고 SNS 논란이 예매에 미치는 영향이 관찰 중이다.</p>
+      <p class="ai-overseas-impl">Variety · 시사점: UGC·유튜브 기반 신예 크리에이터 IP 픽업 시 제작 신뢰성 관리 이슈 병행 고려 필요.</p>
     </div>
 
     <div class="ai-overseas-item">
       <div class="ai-overseas-title">
-        <a href="https://variety.com/2026/film/festivals/christopher-nolan-retro-tiff-lightbox-odyssey-1236758771/" target="_blank" rel="noopener">크리스토퍼 놀란, &#39;오디세이&#39; 개봉 전 TIFF Lightbox 전작 회고전 확정</a>
+        <a href="https://deadline.com/gallery/highest-grossing-animated-movies-all-time/" target="_blank" rel="noopener">Zootopia 2, 전 세계 $1B 17일 만에 돌파 — MPA 애니 최단 기록</a>
       </div>
-      <p class="ai-overseas-summary">TIFF Lightbox가 &#x27;오디세이&#x27; 극장 개봉을 앞두고 크리스토퍼 놀란 전작 회고전을 발표했다. 작품성 이벤트를 결합한 사전 관심 고조 전략의 글로벌 사례로 주목된다.</p>
-      <p class="ai-overseas-impl">Variety · 시사점: 하반기 놀란 신작과 국내 라인업 충돌 시뮬레이션 필요 — 회고전 연계 이벤트 기획 참고.</p>
+      <p class="ai-overseas-summary">월트디즈니 애니메이션 &#x27;Zootopia 2&#x27;가 개봉 17일 만에 전 세계 $1B을 돌파해 역대 MPA 애니 작품 및 PG 등급 영화 전체에서 가장 빠른 10억 달러 달성 기록을 세웠다.</p>
+      <p class="ai-overseas-impl">Deadline · 시사점: 픽사·디즈니 애니 라인업의 극장 흥행 잠재력 재확인 — 자사 하반기 편성과 스크린 경합 시뮬레이션 필요.</p>
     </div>
 
     <div class="ai-overseas-item">
       <div class="ai-overseas-title">
-        <a href="https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/" target="_blank" rel="noopener">배드 버니, &#39;토이 스토리 5&#39; 신규 캐릭터 &#39;Slice&#39;로 합류</a>
+        <a href="https://www.hollywoodreporter.com/movies/movie-news/rebecca-yarros-the-things-we-leave-unfinished-director-1236606032/" target="_blank" rel="noopener">라이언스게이트, 베스트셀러 원작 &#39;The Things We Leave Unfinished&#39; 감독에 테아 샤록 영입</a>
       </div>
-      <p class="ai-overseas-summary">라틴 팝 슈퍼스타 배드 버니가 픽사 &#x27;토이 스토리 5&#x27;에서 새 장난감 캐릭터 역을 맡는다고 Rolling Stone이 보도했다. 글로벌 팬덤 아티스트 IP와 애니메이션 라인업 결합 전략의 사례.</p>
-      <p class="ai-overseas-impl">Rolling Stone · 시사점: 아티스트 IP × 애니메이션 결합 콘텐츠 트렌드 — 자사 라인업에서 유사 협업 모델 검토 가능.</p>
+      <p class="ai-overseas-summary">리베카 야로스의 로맨스 소설을 원작으로 &#x27;헝거게임&#x27; 시리즈를 만든 라이언스게이트가 영화화하며 테아 샤록 감독을 영입했다. 도서 원작 IP 영화화 전략이 주류로 지속되고 있다.</p>
+      <p class="ai-overseas-impl">The Hollywood Reporter · 시사점: 도서·웹소설 원작 IP 영화화 주류화 — 국내 출판·웹소설 IP 픽업 전략 참고.</p>
     </div>
 
     <div class="ai-overseas-item">
       <div class="ai-overseas-title">
-        <a href="https://www.hollywoodreporter.com/movies/movie-news/rebecca-yarros-the-things-we-leave-unfinished-director-1236606032/" target="_blank" rel="noopener">라이언스게이트, 리베카 야로스 소설 원작 영화 감독에 테아 샤록 영입</a>
+        <a href="https://variety.com/2026/film/news/willa-take-me-home-1236759098/" target="_blank" rel="noopener">선댄스 수상작 &#39;Take Me Home&#39;, 미국 가을 극장 배급 확정 — 한국계 입양아 소재 독립영화</a>
       </div>
-      <p class="ai-overseas-summary">&#x27;헝거게임&#x27; 시리즈를 만든 라이언스게이트가 인기 로맨스 소설 &#x27;The Things We Leave Unfinished&#x27;를 영화화하며 테아 샤록 감독을 영입, 도서 원작 IP 영화화 주류화 지속 확인.</p>
-      <p class="ai-overseas-impl">The Hollywood Reporter · 시사점: 원작 IP 기반 영화화 주류화 — 국내 도서·웹소설 IP 픽업 전략 참고.</p>
+      <p class="ai-overseas-summary">38세 한국계 미국인 입양아 이야기를 담은 Liz Sargent 감독 데뷔작이 Willa를 통해 미국 가을 극장 배급권 및 소셜 임팩트 캠페인을 확보했다. 선댄스 미국 드라마 경쟁 부문 및 베를리날레 Perspectives 부문 진출작이다.</p>
+      <p class="ai-overseas-impl">Variety · 시사점: 한국 관련 소재 해외 독립영화 국내 배급 트래킹 대상.</p>
     </div>
 
   </div>
@@ -1639,7 +1632,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 미주중앙일보
     </span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1656,7 +1649,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 톱스타뉴스
     </span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1707,7 +1700,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 뉴스1
     </span>
-    <span class="time">22시간 전</span>
+    <span class="time">23시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1871,7 +1864,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">11시간 전</span>
+    <span class="time">12시간 전</span>
   </div>
 
   <div class="chips"><span>Netflix</span></div>
@@ -1888,7 +1881,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1903,7 +1896,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1918,7 +1911,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1948,7 +1941,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
 
   <div class="chips"><span>Searchlight</span></div>
@@ -1965,7 +1958,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">16시간 전</span>
+    <span class="time">17시간 전</span>
   </div>
 
   <div class="chips"><span>Walt Disney</span></div>
@@ -1982,7 +1975,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
 
 </article>
@@ -2013,7 +2006,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 씨네21
     </span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
 
 </article><article class="curation-brief-card">
@@ -2028,7 +2021,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 씨네21
     </span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2315,7 +2308,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>공간 사업</span>
-    <em>19시간 전</em>
+    <em>20시간 전</em>
   </div>
   <a class="trend-title" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE4xOG14WjRkdmR0UV9CY2RyZVRfakxWVUE5SjJUMDJFd2Z6OW1vWWYweFM2dnlSdnB1TGRZOE1BM09qT2RtSEEyMXptdHFVbFFJV2tDT3N1b25TRENDZDhaMzNnNlZJbkJEdDNEYQ?oc=5" target="_blank" rel="noopener">굿즈 사고 인증샷 찍고···백화점·쇼핑몰, 체류형 팝업으로 MZ 잡기</a>
   <p class="trend-frame">팝업·플래그십·복합문화공간이 팬덤 소비의 기본 동선으로 자리매김</p>
@@ -2393,7 +2386,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>IP 사업</span>
-    <em>23시간 전</em>
+    <em>1일 전</em>
   </div>
   <a class="trend-title" href="https://www.cine21.com/news/view/?mag_id=110009" target="_blank" rel="noopener">[기획] 잘된 IP치고 금방 죽는 놈은 없다 - &lt;신극장판 은혼: 요시와라 대염상&gt; 소개</a>
   <p class="trend-frame">게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장</p>
@@ -2432,7 +2425,7 @@ body.is-searching .search-archive-panel { display: block; }
             <article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>4시간 전</em>
+    <em>5시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94059386" target="_blank" rel="noopener">&#39;케이팝 데몬 헌터스&#39; 블루레이 해외 출시(크라이테리언 컬렉션)</a>
   <p class="community-mood">단순 정보/공지</p>
@@ -2441,7 +2434,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>4시간 전</em>
+    <em>5시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94059375" target="_blank" rel="noopener">&#39;오디세이&#39; 캐스팅의 문제점을 꼬집는 그리스 매체</a>
   <p class="community-mood">단순 정보/공지</p>
@@ -2450,7 +2443,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>5시간 전</em>
+    <em>6시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94059323" target="_blank" rel="noopener">[범죄도시 5] 크랭크인 발표</a>
   <p class="community-mood">단순 정보/공지</p>
@@ -2459,7 +2452,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>5시간 전</em>
+    <em>6시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94059292" target="_blank" rel="noopener">[패딩턴 4] 각본가 발표. 3편 감독도 복귀할 예정.</a>
   <p class="community-mood">단순 정보/공지</p>
@@ -2719,7 +2712,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5PTlNBRGlaY3VVMU9ibXJrYmVjb2JWaTI2THJNTi1Bbks0cW40RXBWOVFYTGl5Tlg0OVc0SzljVUxJMjh3VGx4YU9wb2syamZIbWQwYS14QzBaN3NkcEVsQ2p3?oc=5" target="_blank" rel="noopener">‘와일드씽’ 강동원·박지현·엄태구, 트라이앵글 홍보로 바쁘다…‘유퀴즈’까지 출연</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 미주중앙일보</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">‘와일드씽’ 강동원·박지현·엄태구, 트라이앵글 홍보로 바쁘다…‘유퀴즈’까지 출연 미주중앙일보</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -2727,7 +2720,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMickFVX3lxTE5sRlNTazRtVjRlRjREaUxzZFVfQ3F4WjVLczhid191SlJzWC1ZMlE5LUJ0c2pQWTVRMlVDcXRDT2tkOWdIWXIwN19Jc25oNlAyUmdRSmdZcXlyWjEtdkVjVFk0ZVFsbm5ab0I3SnVYdU91Zw?oc=5" target="_blank" rel="noopener">[인터뷰] 오정세 “‘와일드씽’ 천만 공약? 최성곤으로 무언가 할 것…‘네가 좋아’ 지인들도 중독성 인정”(종합)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 톱스타뉴스</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">[인터뷰] 오정세 “‘와일드씽’ 천만 공약? 최성곤으로 무언가 할 것…‘네가 좋아’ 지인들도 중독성 인정”(종합) 톱스타뉴스</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -2751,7 +2744,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE5YSzlGVG9VTF9iRVV3ZmRLRFRQVEVlbEh5eHFpOURld2ZKT2lELU5HM1FkUFEzWnJmZDF5R2hfSWx0dHVXUDFYMFJTWjd6QVAwY0paRnQxb2d0NmhU?oc=5" target="_blank" rel="noopener">&#39;와일드씽&#39; 박지현 &#34;세기말 비주얼에 충격…트라이앵글 자랑스럽다&#34; [N인터뷰]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴스1</span>
-    <span class="time">22시간 전</span>
+    <span class="time">23시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;와일드씽&#39; 박지현 &#34;세기말 비주얼에 충격…트라이앵글 자랑스럽다&#34; [N인터뷰] 뉴스1 오정세, &#39;와일드 씽&#39;으로 파격 변신 &#34;뜨거운 반응 예상 못해…현장에선 나와의 싸움&#34; [엑&#39;s 인터뷰] v.daum.net &#39;와일드 씽&#39;, 재밌다는 말 외엔 설명불가...보면 압니다 [여의도시네마] MTN 머니투데이방송</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -2783,7 +2776,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5sMnAwOWVtSmRBT1hGYTFLWVRkYWtNSHNoSWcxblZnaEN0WkdTUFVjajhHUWhfU0VOR2hTa01QVktuWmFBOXhsVFplSU1DUmI2ZnpV?oc=5" target="_blank" rel="noopener">&#39;백룸&#39;, 개봉 전 외화 전체 예매율 1위…&#39;군체&#39;와 흥행 쌍끌이 이끄나(공식)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 네이트</span>
-    <span class="time">18시간 전</span>
+    <span class="time">19시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;백룸&#39;, 개봉 전 외화 전체 예매율 1위…&#39;군체&#39;와 흥행 쌍끌이 이끄나(공식) 네이트</p>
   <div class="chips"><span>군체</span><span>백룸</span></div>
@@ -2791,7 +2784,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE5XdFpXdlo4dWViMTN6R3dOUUtRWUNMZlpKcUUyd09UMThuY2YxTnVJM0tkWDhxMWVfaEtPRUlrR21EM0RiamtHcURhNXhaVDQ?oc=5" target="_blank" rel="noopener">군체, 벌써 200만명 돌파…전지현→구교환의 환상적인 앙상블</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">군체, 벌써 200만명 돌파…전지현→구교환의 환상적인 앙상블 v.daum.net</p>
   <div class="chips"><span>군체</span></div>
@@ -2807,7 +2800,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1YOThuYXpTbFhKM281NHA1WjRvaGJZZEUxbGxJZl9OanROZ1NDVVhkaTNoMGhGRzlnNE1sZ3VySzZUMWNoWFZDc2k2WV9QX0hzMnJucldpYmhZUFpFSEZJc3ZxTjQ?oc=5" target="_blank" rel="noopener">‘군체’ 6인 포스터 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · bntnews.co.kr</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">‘군체’ 6인 포스터 공개 bntnews.co.kr</p>
   <div class="chips"><span>군체</span></div>
@@ -2815,7 +2808,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFB2M1Q3VmZLTXFGVlZoZkxpTHRyMG5vaklsTVNvRGxtMVAyY1dDN3Yyb0RLZzdrVks5cGhVQzNlS0V3Uy1oa254ZHNlQ1FOSnc?oc=5" target="_blank" rel="noopener">‘군체’로 11년만에 스크린 복귀 전지현 “출연 결정 바로 내렸죠”</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">‘군체’로 11년만에 스크린 복귀 전지현 “출연 결정 바로 내렸죠” v.daum.net</p>
   <div class="chips"><span>군체</span></div>
@@ -2823,7 +2816,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE9hM2lURnVkQzdPNXVCeU1wa2VVcDBXcFlCMUllOFh4R0JzenRFalZ4dVdrY2F2Z210T1FDRUtFVkFYM3NHVi1ZZTlFSUdhT1JmN1NlVmFqcw?oc=5" target="_blank" rel="noopener">&#39;군체&#39; 전지현 &#34;구교환·연상호와 죽 잘 맞아…후속 제작되길&#34; [N인터뷰]②</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴스1</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;군체&#39; 전지현 &#34;구교환·연상호와 죽 잘 맞아…후속 제작되길&#34; [N인터뷰]② 뉴스1</p>
   <div class="chips"><span>군체</span></div>
@@ -2831,7 +2824,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBxcGl0Tl9vVVpjaHZ6bVJzU3RfcGUydU5temFfbjZGdHZHVWk4SXVmVldXSDB2R0JCbnpyVjFsblFTODA3ck5tbVdWWWVONFo0dlZ5NUUtdzBHLWRlTElreNIBYEFVX3lxTFBxcGl0Tl9vVVpjaHZ6bVJzU3RfcGUydU5temFfbjZGdHZHVWk4SXVmVldXSDB2R0JCbnpyVjFsblFTODA3ck5tbVdWWWVONFo0dlZ5NUUtdzBHLWRlTElreA?oc=5" target="_blank" rel="noopener">좀비 영화 &#39;군체&#39; 200만명 돌파</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 연합뉴스</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">좀비 영화 &#39;군체&#39; 200만명 돌파 연합뉴스</p>
   <div class="chips"><span>군체</span></div>
@@ -2847,7 +2840,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/" target="_blank" rel="noopener">‘Star Wars: The Mandalorian and Grogu’ Opens to Series-Low $98M in North America. Does It Even Matter?</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">In the post-pandemic era, any title opening to that level would be celebrated, while out-of-this-world exits, especially among kids, could fuel a long run and win over a new generation of fans. Globally, the movie has already amassed more than its production budget, or $167 million through May 25</p>
   <div class="chips"><span>만달로리안과 그로구</span><span>Star Wars: The Mandalorian and Grogu</span></div>
@@ -2863,7 +2856,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMickFVX3lxTE83Y244eUxkNXBsbXhaRkViOVFNbVpYTnFGWWhVdXBuN0VRQTEzZ3IyLVRxcGV3dm1jQ2pPZ2R2X2Q2OS10NHpGQWx6Nm9kdTNYQVJ2aXB0cjdMckVIU0ROdWh2UWhjeXhaSFlfSDZRRkZKQQ?oc=5" target="_blank" rel="noopener">영화 ‘​마이클’, 100만 관객 돌파→N차 관람 이벤트 진행…증정 특전 보니?</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 톱스타뉴스</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">영화 ‘​마이클’, 100만 관객 돌파→N차 관람 이벤트 진행…증정 특전 보니? 톱스타뉴스</p>
   <div class="chips"><span>마이클</span></div>
@@ -2871,7 +2864,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiRkFVX3lxTE9iQnhqMndWQnEzMGdqb21aOXM5YXF6enRaZ0I4al9JU0laN3M1cmRyY3JZWXUwYnlBbUtxUHo3OWpuZHlRRkE?oc=5" target="_blank" rel="noopener">&#34;마이클잭슨 따라하다 골병&#34;…&#39;댄스 영화&#39; 인기에 부상 &#39;주의보&#39;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">18시간 전</span>
+    <span class="time">19시간 전</span>
   </div>
   <p class="archive-excerpt">&#34;마이클잭슨 따라하다 골병&#34;…&#39;댄스 영화&#39; 인기에 부상 &#39;주의보&#39; v.daum.net</p>
   <div class="chips"><span>마이클</span></div>
@@ -2935,7 +2928,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/backrooms-mark-duplass-kane-parsons-didnt-direct-a24-horror-1236759383/" target="_blank" rel="noopener">‘Backrooms’ Star Mark Duplass Slams Rumor That Kane Parsons Didn’t Actually Direct Horror Movie: ‘Kane Was 100% in Control’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">“Backrooms” star Mark Duplass took to X on Tuesday to defend Kane Parsons from rumors that the 20-year-old filmmaker didn’t actually direct the upcoming horror film. Responding to an X user who claimed Parsons “absolutely didn’t direct” A24’s “Backrooms,” Duplass wrote, “Hmmm, with all due respect I don’t remember seeing you on set. When I […]</p>
   <div class="chips"><span>A24</span><span>백룸</span></div>
@@ -2959,7 +2952,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1nOXhOSVNxV0xRdGFDa2VJQWJTdmppamJJSV9RU3ExaUNlRy0zbFBpOFBsWnNITE5tX3hDalFZcGEyODA?oc=5" target="_blank" rel="noopener">미란다도 앤디도 아닌 나이젤 악마는 프라다를 입는다 2</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 브런치</span>
-    <span class="time">16시간 전</span>
+    <span class="time">17시간 전</span>
   </div>
   <p class="archive-excerpt">미란다도 앤디도 아닌 나이젤 악마는 프라다를 입는다 2 브런치</p>
   <div class="chips"><span>악마는 프라다를 입는다 2</span></div>
@@ -2983,7 +2976,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTFBOdndvNWRKWS1DSDR4aldEbmRWUnphRWpkdldrWVk5VXE3QlNaVHRuTk5sVTctZ2c0aTItdWxWNFFmbFJOZkhSTVBHVlNJV1prWVlMd2lKaWJrcGVFU3l3UUZQM2dGUQ?oc=5" target="_blank" rel="noopener">‘백룸’ CGV·메가박스 A3 포스터→씨네큐 스페셜 티켓 등 1주차 특전</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 싱글리스트</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">‘백룸’ CGV·메가박스 A3 포스터→씨네큐 스페셜 티켓 등 1주차 특전 싱글리스트</p>
   <div class="chips"><span>백룸</span></div>
@@ -2991,7 +2984,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9iQW92Z0NUTHpjelRwNFBjTmRoY2VOUGhXdGtxSV83VlQxLVFaUHBPZzdZOWg2M0hSc0p2SGt0Mnc5NU9jS0NVbzNrZE5xdlk?oc=5" target="_blank" rel="noopener">벽 뒤에서 펼쳐지는 호러 버전 &#39;이상한 나라의 앨리스, &#39;백룸&#39;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · ELLE</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">벽 뒤에서 펼쳐지는 호러 버전 &#39;이상한 나라의 앨리스, &#39;백룸&#39; ELLE</p>
   <div class="chips"><span>백룸</span></div>
@@ -2999,7 +2992,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE0wdHRmNVRyQ19COS10bE9JcEItRWtkdDduX1UtSVpDSkFJa1ZDWEY1VnF3clIwaWJCei1nNGdzTXBhQVJXMzJQOTFQUjlNOV9kYWNuZXVVVklZZldsR1FuRlFTcVVlOEVrVGJRdg?oc=5" target="_blank" rel="noopener">&#34;거기, 누구예요?&#34; 27일 개봉작 &#39;백룸&#39;, 예매 77% 급증 3위 [5월 27일 영화 예매순위]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · ER 이코노믹리뷰</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">&#34;거기, 누구예요?&#34; 27일 개봉작 &#39;백룸&#39;, 예매 77% 급증 3위 [5월 27일 영화 예매순위] ER 이코노믹리뷰</p>
   <div class="chips"><span>백룸</span></div>
@@ -3023,7 +3016,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5aNFNfRm9IeXJCRjNhZHNDOVlYUDVUb21DSE1IcS1Ya2tTaHF0VVR0Um9nUlFsUFRpUV9kMktOQ0ZuRUdDbnRRRmRLaHlJV1luaTltVVNuaWlzQ0FYOUlvbThGT2Rsdw?oc=5" target="_blank" rel="noopener">&#39;만달로리안과 그로구’, 오늘(27일) 개봉…스페셜 아트 포스터 3종 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 싱글리스트</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;만달로리안과 그로구’, 오늘(27일) 개봉…스페셜 아트 포스터 3종 공개 싱글리스트</p>
   <div class="chips"><span>만달로리안과 그로구</span></div>
@@ -3031,7 +3024,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5OOGVYQkNDLTRBVG1vaEJrcGxfQjNlVDF1dy1ZaXZVbWNONE1aYy0yRFEyZVliMXJNdHJidlgwXzdsY1lSd0wwYTEwQjJRcVRFMHN4OUFjd0JVd1EtcFE?oc=5" target="_blank" rel="noopener">[시네프리뷰] 만달로리안과 그로구-‘스타워즈’ 시리즈의 ‘새로운 희망?’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 주간경향</span>
-    <span class="time">7시간 전</span>
+    <span class="time">8시간 전</span>
   </div>
   <p class="archive-excerpt">[시네프리뷰] 만달로리안과 그로구-‘스타워즈’ 시리즈의 ‘새로운 희망?’ 주간경향 더 커졌지만 특유의 쓸쓸함은 약해진 ‘만달로리안과 그로구’ 한겨레 디즈니, 연휴 효과 ‘톡톡’…스타워즈 스핀오프 흥행에 주가↑ 마켓인 &#39;만달로리안과 그로구&#39;, 북미 개봉 첫 주 박스오피스 1위 더팩트 [이번주 뭐 볼까] 돌아온 스타워즈, 북미서 1위 조선일보 &#39;스타워즈&#39; 인기 꺾였나?…&#34;시리즈 역대 최악의 오프닝&#34; [월드이슈M] iMBC 연예 &#39;만달로리안과 그로구&#39;, 북미 박스오피스 1위…국내 외화 예매율 정상 뉴스핌 메모리얼 데이 싹쓸이…‘만달로리안과 그로구’, 북미 개봉 첫 주 1억 달러 돌파 스포츠동아 디즈니 &#39;만달로리안과 그로구&#39; 박스오피스 강타…전망치 상회 네이트 &#39;만달로리안과 그로구&#39;, 북미 박스오피스 1위 등극 미디어펜</p>
   <div class="chips"><span>만달로리안과 그로구</span></div>
@@ -3103,7 +3096,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5tS0psdm8ybGtCTzdnT2VHWUdheG1TVnNkWEdGcVBrT1hUZUkyLVkzLWRqSWNqRFlTeU1odkUxeUNULTdlLWU4VWpNZERrR3NCdnRR?oc=5" target="_blank" rel="noopener">김혜윤, &#39;살목지&#39; 흥행 이어 투표도 1위…독보적 인기</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 네이트</span>
-    <span class="time">16시간 전</span>
+    <span class="time">17시간 전</span>
   </div>
   <p class="archive-excerpt">김혜윤, &#39;살목지&#39; 흥행 이어 투표도 1위…독보적 인기 네이트</p>
   <div class="chips"><span>살목지</span></div>
@@ -3111,7 +3104,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1wMlkweHNfNElGYWx6MTQ4NV9HSUlFaTBNTnZZN0F0ZFdmNDRLVjVpOU1JVmRaeGV3a3M2dTdfaGNhTjlCMlppTUR0NnpuRGQxOUh2TEtpZVExczBGSW1kMnNuSTBYREk?oc=5" target="_blank" rel="noopener">더위 식혀줄 호러 영화 `살목지`… 내달 5·6일 문경문예회관 상영</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 경상투데이</span>
-    <span class="time">19시간 전</span>
+    <span class="time">20시간 전</span>
   </div>
   <p class="archive-excerpt">더위 식혀줄 호러 영화 `살목지`… 내달 5·6일 문경문예회관 상영 경상투데이</p>
   <div class="chips"><span>살목지</span></div>
@@ -3127,7 +3120,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/rebecca-yarros-the-things-we-leave-unfinished-director-1236606032/" target="_blank" rel="noopener">Rebecca Yarros Romance Novel Adaptation ‘The Things We Leave Unfinished’ Lands Thea Sharrock as Director (Exclusive)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">It&#39;s the latest book adaptation from Lionsgate, the company behind &#34;The Housemaid&#34; and &#34;The Hunger Games&#34; movies.</p>
   <div class="chips"><span>Lionsgate</span></div>
@@ -3135,7 +3128,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/feature/book-to-movie-adaptations-1236035322/" target="_blank" rel="noopener">Book-To-Movie Adaptations Coming Out In 2026</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">11시간 전</span>
+    <span class="time">12시간 전</span>
   </div>
   <p class="archive-excerpt">Many books will provide backbone to both theatrical and streaming releases in 2026. From the long-awaited rom com film adaptation of Emily Henry’s People We Meet on Vacation, which hit Netflix in January, to the Ridley Scott-directed adaptation of The Dog Stars starring Jacob Elordi, Josh Brolin and Margaret Qualley coming in August, several major […]</p>
   <div class="chips"><span>Netflix</span></div>
@@ -3143,7 +3136,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/digital/news/terence-sheridan-justwatch-senior-vp-media-strategy-1236758394/" target="_blank" rel="noopener">Searchlight Pictures’ Terence Sheridan Joins JustWatch’s L.A. Office as Senior VP of Media Strategy (EXCLUSIVE)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">Former Searchlight Pictures executive Terence Sheridan has joined JustWatch in its Los Angeles office, where he will serve as Senior VP of Media Strategy. With more than 15 years of experience in media, digital advertising and media strategy for major film releases, Sheridan will help bring JustWatch’s performance media, data and technology to a wider […]</p>
   <div class="chips"><span>Searchlight</span></div>
@@ -3151,7 +3144,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/gallery/highest-grossing-animated-movies-all-time/" target="_blank" rel="noopener">The 25 Highest-Grossing Animated Films Of All Time At The Global Box Office</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">16시간 전</span>
+    <span class="time">17시간 전</span>
   </div>
   <p class="archive-excerpt">Walt Disney Animation Studios’ Zootopia 2 has roared past the $1 billion threshold at the global box office, achieving the massive milestone in just 17 days. This phenomenal pace makes it the fastest-ever billion-dollar earner among all animated MPA releases and all PG-rated films. It follows Disney’s Lilo &amp; Stitch as the second film of […]</p>
   <div class="chips"><span>Walt Disney</span></div>
@@ -3167,7 +3160,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/yoshihiro-nishimura-dead-tokyo-gore-police-1236759469/" target="_blank" rel="noopener">Yoshihiro Nishimura, ‘Tokyo Gore Police’ and ‘Welcome to Japan’ Director, Dies at 59</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">Yoshihiro Nishimura, the director behind films like “Tokyo Gore Police” and “Welcome to Japan,” died Monday in Tokyo following a nearly two-week hospital stay for liver disease. He was 59.  Nishimura’s career began in the early 2000s, during which he directed and created effects for a number of short films before directing “Tokyo Gore Police,” […]</p>
 
@@ -3175,7 +3168,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE50VmE2WFhzQ0NkSHNQSGRuaHdFc0xrajNmZERlVlNOZ0dIYnBZeTZ6MXFhajY2QUc0WkJxOFVsZ0REbUZvcVFkRzhYWElqTGJLWDl4RVl2OEpDanc?oc=5" target="_blank" rel="noopener">영화 ‘너바나 더 밴드…’가 특별한 이유</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · harpersbazaar.co.kr</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">영화 ‘너바나 더 밴드…’가 특별한 이유 harpersbazaar.co.kr</p>
 
@@ -3183,7 +3176,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE92Mi15ZkViR0ZhX3VreTN5SzlrV1BteUFXNHpSTTNIM2pmYmhSYjd6OG5EOWZyNkhWN3hRa3k4d253MDhyQVVEa1hFNW52NlRIaGxPckNRajRqYTdkUlE5WTZIZHo1cG9CVlNJVw?oc=5" target="_blank" rel="noopener">할리우드 여름 극장가, 질적 변화와 대작 중심으로 &#39;활기&#39;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 프리진경제</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">할리우드 여름 극장가, 질적 변화와 대작 중심으로 &#39;활기&#39; 프리진경제</p>
 
@@ -3191,7 +3184,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/stan-lee-documentary-the-final-chapter-lands-distribution-1236605950/" target="_blank" rel="noopener">Stan Lee Documentary ‘The Final Chapter’ Lands Distribution (Exclusive)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">The feature, which explores the final years of Lee&#39;s life, is based on hundreds of hours of footage shot by his former assistant, Jon Bolerjack.</p>
 
@@ -3207,7 +3200,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/everybody-to-kenmure-street-felipe-bustos-sierra-interview-1236921334/" target="_blank" rel="noopener">Doc Talk Podcast: ‘Everybody To Kenmure Street’ Director Felipe Bustos Sierra Tells Riveting Protest Story, With Help From Emma Thompson</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">7시간 전</span>
+    <span class="time">8시간 전</span>
   </div>
   <p class="archive-excerpt">Everybody to Kenmure Street left this year’s Sundance Film Festival with a major award in World Cinema Documentary competition: a Special Jury Award for Civil Resistance. The civil resistance in question is this: On the morning of May 13, 2021, agents from the UK’s Home Office attempted to conduct an immigration raid in Glasgow, Scotland, seizing […]</p>
 
@@ -3215,7 +3208,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTFBBWFZrZmx6d2I0UW4tVllmdG8tLTh4OXllWHdTcTdzc1hEcUlpU1k3TE1Pd0xST3dnejRaVHZiMWNrcVlZcm9JR2lxclBuZnlPQzIzNQ?oc=5" target="_blank" rel="noopener">[기고] 문워크·헤드스핀 따라 했다가 골병들 수도</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 이투데이</span>
-    <span class="time">7시간 전</span>
+    <span class="time">8시간 전</span>
   </div>
   <p class="archive-excerpt">[기고] 문워크·헤드스핀 따라 했다가 골병들 수도 이투데이</p>
 
@@ -3223,7 +3216,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/" target="_blank" rel="noopener">Bad Bunny Will Bring a Slice to Life in ‘Toy Story 5’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Rolling Stone</span>
-    <span class="time">8시간 전</span>
+    <span class="time">9시간 전</span>
   </div>
   <p class="archive-excerpt">Benito will make a cameo appearance in the upcoming Pixar flick, voicing a forgotten toy known as “Pizza with Sunglasses”</p>
 
@@ -3231,7 +3224,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/willa-take-me-home-1236759098/" target="_blank" rel="noopener">Willa Sets Fall Theatrical Distribution, Social Impact Campaign for Liz Sargent’s Sundance Drama ‘Take Me Home’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">Willa has acquired U.S. distribution rights to “Take Me Home,” the debut feature from writer-director Liz Sargent. “Take Me Home” premiered in the U.S. Dramatic Competition at the Sundance Film Festival and made its international premiere at the Berlinale in the Perspectives competition section this year. In “Take Me Home,” 38-year-old Korean adoptee Anna cares […]</p>
 
@@ -3239,7 +3232,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-reviews/madame-le-triangle-dor-review-1236605452/" target="_blank" rel="noopener">‘Madame’ Review: A Working-Class Frenchwoman Looks After a Saudi Prince’s Mistress in This Smart and Nuanced Debut</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">The Cannes premiere from Hélène Rosselet-Ruiz offers personal insight into lessons learned by the director in a very similar situation some years ago.</p>
 
@@ -3247,7 +3240,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-features/andrew-scott-pressure-the-comeback-feature-1236605939/" target="_blank" rel="noopener">Andrew Scott, “Busy Boy”: On Sparring With Brendan Fraser, Crashing ‘The Comeback’ and the Greatest Acting Challenge of His Career</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
   <p class="archive-excerpt">The Golden Globe nominee goes heroic in &#39;Pressure&#39; and villainous in &#39;The Comeback,&#39; and knows he needs to take a break: &#34;You don&#39;t want to make yourself sick. That&#39;s my problem.”</p>
 
@@ -3255,7 +3248,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/arise-artists-agency-new-york-office-agents-added-1236920980/" target="_blank" rel="noopener">Arise Artists Agency Opens New York Office, Adds 3 Agents</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
   <p class="archive-excerpt">EXCLUSIVE: Arise Artists Agency, headquartered in Los Angeles, is officially becoming bicoastal. The agency is expanding to New York with the launch of an East Coast office and the addition of agents Ken Melamed, Zach Marlin, and Angelina Barberia. The move marks a significant expansion for the agency, which launched in 2024 and has quickly […]</p>
 
@@ -3263,7 +3256,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/blood-on-the-promontory-movie-sets-cast-1236921137/" target="_blank" rel="noopener">Sam Worthington, Jai Courtney, Jack Quaid, Jaeden Martell &amp; LaMonica Garrett Board Western Drama ‘Blood On The Promontory’ From Ray Mendoza</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
   <p class="archive-excerpt">EXCLUSIVE: Blood on the Promontory, the Western drama from Warfare‘s Ray Mendoza that we announced earlier this month, has set Sam Worthington (Avatar franchise), Jai Courtney (Dutton Ranch), Jack Quaid (The Boys), Jaeden Martell (The Boy in the Iron Box), and LaMonica Garrett (Lioness) for starring roles. Character details are under wraps. Written by Evan Cooper, the film […]</p>
 
@@ -3271,7 +3264,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/artisans/news/albert-wolsky-dead-grease-all-that-jazz-1236759013/" target="_blank" rel="noopener">Albert Wolsky, ‘All That Jazz,’ ‘Bugsy’ and ‘Grease’ Costume Designer, Dies at 95</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
   <p class="archive-excerpt">Albert Wolsky, the two-time Oscar-winning costume designer behind films like “All That Jazz,” “Bugsy,” “Grease” and more, died May 23 in Los Angeles. He was 95.  Wolsky’s death was confirmed by several colleagues including fellow costume designer Christopher Lawrence in an Instagram post on Sunday.  “Albert Wolsky. A prince among men,” Lawrence wrote. “Such love […]</p>
 
@@ -3279,7 +3272,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMi9AFBVV95cUxNaEdOaHpzOGNyYW1na0ljSkRTRzFFNDc4OGlmZnQ0TnFUTDVtWUMzWmdlR1FKaUdfVGNmXzhZYlRPdkc0QjU3RVZrdXBVTkEyQlJaZ0lMb2R5VHo1cXRDZXdEeU85UEgyeFpWRWpDVll3R3VEblR3c3ZkX0dOaURRd2Nma0hqVzdRQjNFSGpuNVNPX1RyVHRfckt0YXppT1VzT3I2VkhXWnJENldsNzhSd3JfY1FHZS1OSTJLWndmV3BmcDBUbGRsWGJPRGVmZVNLYlR1aDdxLU9UR3BiNDB2RXh3eENtNjRTZVlnbFgyaVd6eW9h?oc=5" target="_blank" rel="noopener">팬이 재구성한 The Mandalorian과 Grogu의 8부작 시즌 4</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · games.gg</span>
-    <span class="time">11시간 전</span>
+    <span class="time">12시간 전</span>
   </div>
   <p class="archive-excerpt">팬이 재구성한 The Mandalorian과 Grogu의 8부작 시즌 4 games.gg</p>
 
@@ -3287,7 +3280,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/brian-geraghty-matt-ross-thriller-kockroach-1236921052/" target="_blank" rel="noopener">Brian Geraghty Joins Chris Hemsworth &amp; Taron Egerton In Matt Ross’ Thriller ‘Kockroach’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">11시간 전</span>
+    <span class="time">12시간 전</span>
   </div>
   <p class="archive-excerpt">EXCLUSIVE: Brian Geraghty has joined the cast of Matt Ross’ crime thriller Kockroach as it shoots in Australia. He joins an ensemble cast featuring previously announced Chris Hemsworth, Taron Egerton, Zazie Beetz, Alec Baldwin and Rachel Sennott. The film is based on William Lashner’s 2007 novel and follows a mysterious outsider who rises through New York’s […]</p>
 
@@ -3295,7 +3288,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/global/documentary-market-copro-28-israel-1236758890/" target="_blank" rel="noopener">Documentary Market CoPro 28 Returns With Diverse Slate Including Films About OnlyFans Creator, Injured Rhino, Druze Autonomy and Israeli-Palestinian Dialogue</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">11시간 전</span>
+    <span class="time">12시간 전</span>
   </div>
   <p class="archive-excerpt">CoPro 28, Israel’s leading documentary market, is set to take place next month in Tel Aviv in a hybrid online and in-person format. Participants can expect a breadth of projects, ranging from documentaries about Israel’s most famous OnlyFans creator (“The Fans Are Mine”) and the October 7-adjacent “I Am Eyes” to projects about Eurovision singer […]</p>
 
@@ -3303,7 +3296,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/reviews/benimana-review-1236758083/" target="_blank" rel="noopener">‘Ben’Imana’ Review: An Impassioned Exploration of the Unruly Legacy of the Rwandan Genocide</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">The first words spoken in Marie-Clémentine Dusabejambo’s “Ben’Imana,” are of forgiveness. But the body does not forget and the speaker’s defiant stare and tight, unyielding stance suggest she is trying, not wholly successfully, to discipline herself into feeling the words as well as just saying them. Dusejambo’s fraught yet forthright first film, which recently won […]</p>
 
@@ -3311,7 +3304,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/toy-story-5-aging-woody-lilypad-1236750424/" target="_blank" rel="noopener">‘Toy Story 5’ Filmmakers on Aging Woody and Why Lilypad Isn’t the Film’s Villain</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">SPOILER WARNING: This story discusses plot details for “Toy Story 5.” Pixar’s “Toy Story 5” doesn’t open until June 19, but fans are clamoring for every snippet released by the studio. Beloved toys Buzz Lightyear, Woody, Jessie, Rex, Forky and the rest of the gang are back in the franchise’s fifth installment. The story picks up […]</p>
 
@@ -3327,7 +3320,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/japan-masashi-kawamura-stop-motion-hidari-keanu-reeves-1236918764/" target="_blank" rel="noopener">Japanese Filmmaker Masashi Kawamura Talks Putting Together Epic Stop-Motion Pic ‘Hidari’ With Keanu Reeves</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">EXCLUSIVE: When Masashi Kawamura first launched his now viral stop-motion short Hidari in 2023, the Japanese filmmaker admits he could never have anticipated he’d be working with Keanu Reeves for a full-length feature version of the film.  “There was a lot of luck getting Keanu,” admits Kawamura, whose background is largely in music videos and commercials. “After […]</p>
 
@@ -3335,7 +3328,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/toronto-film-festival-christopher-nolan-retrospective-1236605871/" target="_blank" rel="noopener">Toronto Film Fest Sets Christopher Nolan Retrospective</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">TIFF will pay homage to the ‘Oppenheimer’ director when his 12 features will fill Lightbox screens in July and August.</p>
 
@@ -3343,7 +3336,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/festivals/christopher-nolan-retro-tiff-lightbox-odyssey-1236758771/" target="_blank" rel="noopener">Christopher Nolan Set For Complete Retro at TIFF Lightbox to Kick Off Ahead of ‘The Odyssey’ Launch</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">Christopher Nolan is set to be featured in a complete retro by the Toronto International Film Festival’s summer marquee series that will start ahead of the July 17 North-American theatrical premiere of “The Odyssey.” The series at TIFF Lightbox cinema, titled “Christopher Nolan: Grand Designs,” will run July 8–Aug. 20 and feature screenings of Nolan’s works […]</p>
 
@@ -3351,7 +3344,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/albert-wolsky-dead-grease-all-that-jazz-bugsy-1236605840/" target="_blank" rel="noopener">Albert Wolsky, Oscar-Winning Costume Designer for ‘All That Jazz’ and ‘Bugsy,’ Dies at 95</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">He put Olivia Newton-John in those ultra-tight black pants for &#39;Grease,&#39; dressed Dustin Hoffman for &#39;Lenny&#39; and did &#39;An Unmarried Woman&#39; and 10 other films for Paul Mazursky.</p>
 
@@ -3359,7 +3352,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/mbc-studios-2026-release-hana-alomairs-travellers-hell-1236920894/" target="_blank" rel="noopener">Saudi Arabia’s MBC Studios Sets 2026 Release For Hana Alomair’s ‘Traveller’s Hell’ As It Doubles Down On Local Productions</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">MBC Studios is gearing up for a 2026 release of Hana Alomair’s Traveller’s Hell following the trials of a young woman who unwittingly picks up a serial killer posing as a stranded motorist on a remote mountain road. First announced in 2024, it is is a landmark production for MBC Studios, both for its female […]</p>
 
@@ -3367,7 +3360,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/israel-documentary-film-market-copro-28-unveils-lineup-1236605845/" target="_blank" rel="noopener">Israel Doc Co-Production Forum CoPro 28 Unveils Lineup (Exclusive)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">40 news Israeli documentary films centered on war, democracy, coexistence and identity with screen at the Tel Aviv market from June 8-12.</p>
 
@@ -3375,7 +3368,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/wscripted-2026-screenplay-list-unveiled-1236920842/" target="_blank" rel="noopener">Wscripted 2026 Screenplay List: Fatimah Asghar, Chloe Abrahams &amp; Angelique Knights Projects Make Cut</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">15시간 전</span>
+    <span class="time">16시간 전</span>
   </div>
   <p class="archive-excerpt">EXCLUSIVE: Wscripted has unveiled its sixth Cannes Screenplay List showcasing projects by female and non-binary filmmakers and screenwriters seeking producing and financing partners. (scroll down for full-list) The list is presented in partnership with MUBI, a long-time supporter of women in cinema, with recent female-directed acquisitions including Cannes 2026 Un Certain Regard opener Teenage Sex […]</p>
 
@@ -3391,7 +3384,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/russell-crowe-defends-autograph-hunters-paris-1236920808/" target="_blank" rel="noopener">Russell Crowe Defends Gruff Exchange With Autograph Hunters: “What’s Your Problem?”</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">18시간 전</span>
+    <span class="time">19시간 전</span>
   </div>
   <p class="archive-excerpt">Are you not entertained? That was the basic message from Russell Crowe after he was filmed having a terse exchange with autograph hunters in Paris on Monday. The Gladiator actor, who has a reputation for being occasionally gruff, was leaving his hotel and heading for the airport when he was confronted by fans seeking selfies […]</p>
 
@@ -3407,7 +3400,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110011" target="_blank" rel="noopener">[씨네트립] 인디플러스 포항</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
   <p class="archive-excerpt">인디플러스 포항은 홍상수 감독의 신작 &lt;그녀가 돌아온 날&gt; 개봉을 기념해 그의 직전 작품인 &lt;그 자연이 네게 뭐라고 하니&gt;를 함께 틀고 있다. 3월부터 관객을 만난 이탈리아영화 &lt;우리에게는 아직 내일이 있다&gt;도 계속 상영 중이다. 규모는 작지만 심지 굳은 프로그래밍을 선보여온 이곳은 포항문화재단이 운영하는 독립영화전...</p>
 
@@ -3423,7 +3416,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110010" target="_blank" rel="noopener">[기획] &lt;은혼&gt;은 잊었을 줄 알았습니다⋯ - &lt;은혼&gt; 초대 편집자 오니시 고헤이 내한 GV 현장</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">5월16일과 17일 양일에 걸쳐 &lt;신극장판 은혼: 요시와라 대염상&gt;(이하 &lt;요시와라 대염상&gt;) 편집자 내한 GV가 열렸다. 소라치 히데아키 작가의 만화 &lt;은혼&gt;의 초대 편집자이자, 현재는 &lt;주간 소년 점프&gt;의 미디어 프로듀스실 실장으로 재직 중인 오니시 고헤이 편집자가 게스트로 초청됐다. &lt;은혼&gt;...</p>
 
@@ -3431,7 +3424,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110009" target="_blank" rel="noopener">[기획] 잘된 IP치고 금방 죽는 놈은 없다 - &lt;신극장판 은혼: 요시와라 대염상&gt; 소개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">&lt;은혼&gt;은 가끔 가다 마주칠 수밖에 없으니 꼭 알아두자 “SF+코미디+소년 만화”라고 소개했지만 &lt;은혼&gt;의 성질을 한마디로 설명할 순 없다(정의하기 곤란하다). 기본적으론 코미디에 기반한 주연들의 일상을 그리다가, 종종 &lt;주간 소년 점프&gt;의 소년물다운 액션이나 대규모 세력 다툼을 그리기도 한다. ‘시리어스편’이라 ...</p>
 
@@ -3439,7 +3432,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110008" target="_blank" rel="noopener">[기획] 해결사가 돌아왔다 - &lt;신극장판 은혼: 요시와라 대염상&gt; 소개&amp;&lt;은혼&gt; 초대 편집자 내한 행사까지</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">사진제공 에스엠지홀딩스 &lt;은혼&gt;이 극장에 돌아왔다! 원작 &lt;은혼&gt;은 2003년부터 연재되어 단행본 77권으로 완결되기까지 장수 인기작 반열에 올랐던 SF+코미디+소년 만화로, 2006년 애니메이션 방영을 시작할 무렵부터 수많은 한국 팬을 만들기도 했다. &lt;신극장판 은혼: 요시와라 대염상&gt;(이하 &lt;요시와라 대염상&amp;...</p>
 
@@ -3447,7 +3440,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBBdlpnWDBQT0QtODRDaW1CaW1YbktVNHNTMUFUdXZudTctQkdkMlFtOG5ZY3hvN3JaQ0IyTU9PaHo4MGVRczQxakw5WFREZ2paME1XdFdR?oc=5" target="_blank" rel="noopener">[인터뷰] 이제 시작일 뿐 - 배우 박지현</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">[인터뷰] 이제 시작일 뿐 - 배우 박지현 씨네21</p>
 
@@ -3621,7 +3614,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://extmovie.com/movietalk/94059386" target="_blank" rel="noopener">&#39;케이팝 데몬 헌터스&#39; 블루레이 해외 출시(크라이테리언 컬렉션)</a>
   <div class="archive-meta">
     <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-mood">단순 정보/공지</p>
   <p class="archive-excerpt">만우절 농담 같은 뉴스인데... 진짜입니다. 미국에서 영화사의 걸작, 예술 영화 위주로 고퀄 블루레이를 출시하는 &#39;크라이테리언&#39;에서 &lt;케이팝 데몬 헌...</p>
@@ -3630,7 +3623,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://extmovie.com/movietalk/94059375" target="_blank" rel="noopener">&#39;오디세이&#39; 캐스팅의 문제점을 꼬집는 그리스 매체</a>
   <div class="archive-meta">
     <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-mood">단순 정보/공지</p>
   <p class="archive-excerpt">Greek City Times라는 그리스 및 해외 그리스 이민자 공동체를 위한 영어 온라인 매체가 올린 칼럼입니다. 크리스토퍼 놀란 감독의 &lt;오디세이&gt;가 원작...</p>
@@ -3639,7 +3632,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://extmovie.com/movietalk/94059323" target="_blank" rel="noopener">[범죄도시 5] 크랭크인 발표</a>
   <div class="archive-meta">
     <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-mood">단순 정보/공지</p>
   <p class="archive-excerpt">&lt;범죄도시5&gt; 크랭크인 Coming 2027 마동석, 김재영, 서현우 출연 허명행 감독 연출</p>
@@ -3648,7 +3641,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://extmovie.com/movietalk/94059292" target="_blank" rel="noopener">[패딩턴 4] 각본가 발표. 3편 감독도 복귀할 예정.</a>
   <div class="archive-meta">
     <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-mood">단순 정보/공지</p>
   <p class="archive-excerpt">[패딩턴 4]: 아르만도 이아누치 각본 참여… [패딩턴: 페루에 가다] 감독 두갈 윌슨 복귀 협의 중 패딩턴 곰이 새로운 극장판 모험을 함께할 작가진을 ...</p>
@@ -4406,22 +4399,24 @@ body.is-searching .search-archive-panel { display: block; }
       }
     } else {
       // 평소: 아카이브는 CSS로 숨김. 대시보드 본문은 dashboardOpen 토글에 따름.
-      //  - 접힘(기본): body.dashboard-collapsed 추가 → CSS가 일반 패널을 숨김.
-      //    AI 브리핑은 설정대로 노출.
+      //  - 접힘(기본): body.dashboard-collapsed 추가 → CSS가 핵심 큐레이션·수집량·시장동향·커뮤니티만 숨김.
+      //    KPI, AI 브리핑, 사이드 TOP5 3개는 항상 설정대로 노출.
       //  - 펼침: 클래스 제거 + 모든 SECTIONS를 설정대로 복구.
       document.body.classList.toggle('dashboard-collapsed', !dashboardOpen);
       if (dashboardOpen) {
         SECTIONS.forEach(function (s) { setVisible(q(s.sel), visibleBySetting(s.key)); });
       } else {
-        // 접힘 상태에서는 일반 패널의 inline display를 안 건드린다 — CSS가 숨김 담당.
-        // AI 브리핑만 설정대로 처리(끄지 않았다면 노출).
+        // 접힘 상태에서도 KPI, AI 브리핑, 사이드 TOP5 3개는 설정대로 노출 처리.
         setVisible(q('.ai-briefing-panel'), visibleBySetting('aiBriefing'));
+        setVisible(q('.kpis'), visibleBySetting('kpis'));
+        ['boxoffice', 'reservation', 'overseas'].forEach(function (k) {
+          setVisible(q('[data-section="' + k + '"]'), visibleBySetting(k));
+        });
       }
       var briefingSidestack = q('.briefing-side-stack');
       if (briefingSidestack) {
         setVisible(briefingSidestack,
-          dashboardOpen && (
-            visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')));
+          visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas'));
       }
       var sidestack = q('.side-stack');
       if (sidestack) {

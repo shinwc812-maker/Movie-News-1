@@ -539,22 +539,24 @@
       }
     } else {
       // 평소: 아카이브는 CSS로 숨김. 대시보드 본문은 dashboardOpen 토글에 따름.
-      //  - 접힘(기본): body.dashboard-collapsed 추가 → CSS가 일반 패널을 숨김.
-      //    AI 브리핑은 설정대로 노출.
+      //  - 접힘(기본): body.dashboard-collapsed 추가 → CSS가 핵심 큐레이션·수집량·시장동향·커뮤니티만 숨김.
+      //    KPI, AI 브리핑, 사이드 TOP5 3개는 항상 설정대로 노출.
       //  - 펼침: 클래스 제거 + 모든 SECTIONS를 설정대로 복구.
       document.body.classList.toggle('dashboard-collapsed', !dashboardOpen);
       if (dashboardOpen) {
         SECTIONS.forEach(function (s) { setVisible(q(s.sel), visibleBySetting(s.key)); });
       } else {
-        // 접힘 상태에서는 일반 패널의 inline display를 안 건드린다 — CSS가 숨김 담당.
-        // AI 브리핑만 설정대로 처리(끄지 않았다면 노출).
+        // 접힘 상태에서도 KPI, AI 브리핑, 사이드 TOP5 3개는 설정대로 노출 처리.
         setVisible(q('.ai-briefing-panel'), visibleBySetting('aiBriefing'));
+        setVisible(q('.kpis'), visibleBySetting('kpis'));
+        ['boxoffice', 'reservation', 'overseas'].forEach(function (k) {
+          setVisible(q('[data-section="' + k + '"]'), visibleBySetting(k));
+        });
       }
       var briefingSidestack = q('.briefing-side-stack');
       if (briefingSidestack) {
         setVisible(briefingSidestack,
-          dashboardOpen && (
-            visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas')));
+          visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas'));
       }
       var sidestack = q('.side-stack');
       if (sidestack) {

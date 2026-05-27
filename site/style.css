@@ -198,6 +198,19 @@ h1 {
   align-items: start;
 }
 
+.briefing-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.85fr);
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+.briefing-grid .ai-briefing-panel { margin-bottom: 0; }
+.briefing-side-stack {
+  display: grid;
+  gap: 12px;
+}
+
 .lane-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -991,6 +1004,7 @@ footer {
 
   .kpis,
   .hero-grid,
+  .briefing-grid,
   .lane-grid,
   .market-trends-grid,
   .community-card-grid,
@@ -1128,6 +1142,8 @@ body.dashboard-collapsed .hero-grid,
 body.dashboard-collapsed .market-trends-panel,
 body.dashboard-collapsed .community-only-panel,
 body.dashboard-collapsed .policy-panel { display: none; }
+body.dashboard-collapsed .briefing-grid { grid-template-columns: 1fr; }
+body.dashboard-collapsed .briefing-side-stack { display: none; }
 
 .ai-briefing-toggle {
   margin-top: 14px;
@@ -1170,6 +1186,7 @@ body.dashboard-collapsed .policy-panel { display: none; }
 
 body.is-searching .ai-briefing-panel,
 body.is-searching .kpis,
+body.is-searching .briefing-grid,
 body.is-searching .hero-grid,
 body.is-searching .market-trends-panel,
 body.is-searching .community-only-panel,

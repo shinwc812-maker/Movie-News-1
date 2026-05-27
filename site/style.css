@@ -1136,14 +1136,11 @@ footer {
   .ai-grid { grid-template-columns: 1fr; }
 }
 
-/* 대시보드 본문 접힘 — 메인 첫 진입은 AI 브리핑만 노출 */
-body.dashboard-collapsed .kpis,
+/* 대시보드 본문 접힘 — KPI + AI 브리핑 + 사이드 TOP5 3개는 항상 노출, 그 외만 숨김 */
 body.dashboard-collapsed .hero-grid,
 body.dashboard-collapsed .market-trends-panel,
 body.dashboard-collapsed .community-only-panel,
 body.dashboard-collapsed .policy-panel { display: none; }
-body.dashboard-collapsed .briefing-grid { grid-template-columns: 1fr; }
-body.dashboard-collapsed .briefing-side-stack { display: none; }
 
 .ai-briefing-toggle {
   margin-top: 14px;

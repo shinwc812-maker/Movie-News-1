@@ -109,6 +109,8 @@ def build_input_payload() -> dict:
     overseas = _load(DATA_DIR / "overseas_weekend.json", {})
     articles = _load(DATA_DIR / "articles.json", [])
     community = _load(DATA_DIR / "community.json", [])
+    # 디시인사이드는 워딩이 공격적이라 AI 브리핑 입력에서 제외 (대시보드 패널에는 그대로 노출)
+    community = [c for c in community if c.get("source") != "디시인사이드"]
     market_trends = _load(DATA_DIR / "market_trends.json", [])
     policies = _load(DATA_DIR / "policies.json", [])
     previous = _load(BRIEFING_PATH, None)  # 어제 브리핑 — '달라진 것' 비교에 사용

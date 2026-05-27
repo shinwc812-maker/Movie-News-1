@@ -1,21 +1,18 @@
 {
-  "generated_at": "2026-05-27T07:55:40+00:00",
+  "generated_at": "2026-05-27T08:05:08+00:00",
   "model": "claude-sonnet-4-6 (routine)",
-  "headline_today": "'와일드 씽' 5/28 CGV영등포 시사회 진행 확인(더쿠); '백룸' 5/27 개봉 후 당일 KOBIS 집계 대기 중; '패딩턴 4' 각본가·감독 복귀 협의 발표[익스트림무비]",
-  "summary": "5/26 KOBIS 기준 '군체'(쇼박스)가 일 150,489명·누적 216만9,099명으로 박스오피스 1위를 유지하고 예매율 37.6%로 선두를 고수하는 가운데, '백룸'(바이포엠스튜디오)이 5/27 개봉 후 예매 3위(11.1%, 47,134매)로 KOBIS 당일 집계를 앞두고 있다[KOBIS]. 자사 '와일드 씽'(롯데 배급, 6/3 개봉)은 예매 2위(11.2%, 47,406매)를 유지하고 5/28 CGV영등포 시사회가 더쿠 '완료' 상태로 확인됐으며, 강동원·박지현·엄태구의 유퀴즈 출연·트라이앵글 홍보가 지속 가동 중이다[더쿠][미주중앙일보]. 북미에서는 만달로리안과 그로구가 공휴일 포함 4일 $98M으로 스타워즈 시리즈 최저 개봉 성적을 기록했고, 오디세이 캐스팅 논란 및 패딩턴4 제작 발표 등 해외 IP 이슈가 이어지고 있다[The Hollywood Reporter][익스트림무비].",
+  "headline_today": "'백룸'·'만달로리안과 그로구' 5/27 동시 개봉으로 경쟁 구도 재편; '군체' 누적 216만9천 명 1위 유지 [KOBIS]; '범죄도시 5' 크랭크인 발표 [익스트림무비]",
+  "summary": "5/26 KOBIS 기준 '군체'(쇼박스)가 일 150,489명·누적 216만9,099명으로 박스오피스 1위, 예매율 37.6%를 유지하고 있다 [KOBIS]. 5/27 '백룸'(바이포엠스튜디오)과 '만달로리안과 그로구'(월트디즈니)가 동시 개봉해 예매 3·4위로 경쟁 구도가 형성됐으며, 자사 '와일드 씽'(롯데 배급, 6/3 개봉 예정)은 예매 2위(11.2%, 47,406매)를 유지하며 주연진 집중 홍보가 가동 중이다 [KOBIS][미주중앙일보]. 북미에서는 '만달로리안과 그로구'가 메모리얼 위크엔드 3일 $81M으로 스타워즈 시리즈 최저 개봉 성적을 기록했고, '범죄도시 5' 크랭크인이 발표됐다 [The Hollywood Reporter][익스트림무비].",
   "own_titles": [
     {
       "title": "와일드 씽",
       "kind_label": "롯데 배급",
       "highlights": [
-        "예매 2위(11.2%, 47,406매), 6/3 개봉 D-7 기준[KOBIS]",
-        "5/28 19:30 CGV영등포 시사회 더쿠 '완료' 태그 확인[더쿠]",
-        "강동원·박지현·엄태구 유퀴즈 출연·트라이앵글 홍보 동시 가동[미주중앙일보]",
-        "오정세 음방 논의·'네가 좋아' 중독성 인터뷰 다수 매체 노출[조선일보][톱스타뉴스]",
-        "군체 전지현 '분위기 좋은 韓영화, 와일드 씽 응원' 공개 코멘트[싱글리스트]"
+        "예매율 2위 11.2%(47,406매), 6/3 개봉 예정 [KOBIS]",
+        "강동원·박지현·엄태구·오정세 유퀴즈 출연 및 다수 개봉 전 인터뷰 홍보 진행 중 [미주중앙일보][연합뉴스]"
       ],
       "risks": [
-        "'백룸'(예매 3위 11.1%, 5/27 개봉)·'만달로리안과 그로구'(예매 4위 7.7%) 동시 경쟁으로 6/3 개봉 후 스크린 분산 심화 우려[KOBIS]"
+        "5/27 개봉 '백룸'이 예매 3위(11.1%, 47,134매)로 0.1%p 차이 추격; 개봉 전 스크린 배분 경쟁 가능성 [KOBIS]"
       ]
     }
   ],
@@ -23,113 +20,113 @@
     {
       "title": "군체",
       "distributor": "쇼박스",
-      "note": "5/26 일 150,489명·누적 216만9,099명, 예매 1위 37.6%(159,223매), 좌석점유율 60.0%[KOBIS]",
-      "sources": ["KOBIS", "싱글리스트", "연합뉴스", "v.daum.net"]
+      "note": "5/26 일 150,489명·누적 216만9,099명·좌석점유율 60.0%; 예매 1위 37.6%(159,223매) [KOBIS]",
+      "sources": ["KOBIS"]
     },
     {
       "title": "백룸",
-      "distributor": "바이포엠스튜디오/리바이브콘텐츠",
-      "note": "5/27 개봉, 예매 3위(11.1%, 47,134매)로 와일드 씽과 0.1%p 차이; 감독 Kane Parsons(20세) 진위 논란 공동주연 Mark Duplass 지지 성명으로 진화[KOBIS][Variety]",
-      "sources": ["KOBIS", "Variety", "네이트", "The Hollywood Reporter"]
+      "distributor": "바이포엠스튜디오",
+      "note": "5/27 개봉, 예매 3위 11.1%(47,134매); A24 제작·감독 Kane Parsons(20세) 실제 연출 논란에 주연 마크 듀플라스 방어 성명 발표 [KOBIS][Variety]",
+      "sources": ["KOBIS", "Variety"]
     },
     {
       "title": "마이클",
       "distributor": "유니버설픽쳐스인터내셔널 코리아",
-      "note": "5/26 일 20,595명·누적 120만5,195명, 박스오피스 2위; 역대 최고 흥행 뮤지컬 전기 영화 전망[KOBIS][Vietnam.vn]",
-      "sources": ["KOBIS", "Vietnam.vn", "Naver News"]
+      "note": "5/26 일 20,595명·누적 120만5,195명 박스오피스 2위; 역대 최고 흥행 뮤지컬 전기영화 전망 [KOBIS][Vietnam.vn]",
+      "sources": ["KOBIS", "Vietnam.vn"]
     },
     {
       "title": "만달로리안과 그로구",
       "distributor": "월트디즈니컴퍼니코리아",
-      "note": "예매 4위(7.7%, 32,680매); 북미 메모리얼 데이 3일 $81M·공휴일 포함 4일 $98M, 스타워즈 극장판 시리즈 최저[KOBIS][The Hollywood Reporter]",
-      "sources": ["KOBIS", "The Hollywood Reporter", "Variety"]
+      "note": "5/27 개봉, 예매 4위 7.7%(32,680매); 북미 메모리얼 위크엔드 3일 $81M(공휴일 포함 4일 $98M)·스타워즈 극장판 시리즈 최저 개봉 기록 [KOBIS][The Hollywood Reporter]",
+      "sources": ["KOBIS", "The Hollywood Reporter"]
     },
     {
       "title": "살목지",
       "distributor": "쇼박스",
-      "note": "5/26 일 2,196명·누적 323만2,843명, 박스오피스 5위 장기 흥행 유지[KOBIS]",
+      "note": "5/26 일 2,196명·누적 323만2,843명 박스오피스 5위 장기 흥행 유지 [KOBIS]",
       "sources": ["KOBIS"]
     }
   ],
   "new_trends": [
     {
-      "label": "K-이머시브 콘텐츠 귀환",
-      "note": "K-이머시브 대표 콘텐츠 '룰렛' 7월 복귀 예정[abcn.kr]",
-      "implication": "극장 유휴공간을 이머시브 공연·전시로 활용하는 기획 검토 적기."
+      "label": "K-이머시브 콘텐츠",
+      "note": "K-이머시브 대표작 '룰렛' 7월 복귀 예정 [abcn.kr]",
+      "implication": "극장 유휴공간·특별관을 활용한 체험형 콘텐츠 기획 시 참고 가능"
     },
     {
       "label": "팝업스토어 팬덤 플랫폼화",
-      "note": "백화점·쇼핑몰 체류형 팝업이 굿즈 판매를 넘어 팬덤 플랫폼으로 진화[IT조선][smartbizn.com]",
-      "implication": "극장 로비·쇼핑몰 거점에서 와일드 씽 캐릭터 굿즈·포토존 팝업 연계 가능성."
+      "note": "팝업스토어가 굿즈 매장을 넘어 팬덤 플랫폼으로 진화하는 추세 [IT조선]",
+      "implication": "극장 로비·상권 거점에서 굿즈·포토존·예매 동선을 결합한 공간 기획 여지 큼"
     },
     {
-      "label": "뮤지컬 전기 영화 체험 소비 확산",
-      "note": "'마이클'이 역대 최고 흥행 뮤지컬 전기 영화 전망, 음악·공연 연계 체험 소비 확산[Vietnam.vn]",
-      "implication": "와일드 씽(발라드 가수 소재) OST 연계 체험 이벤트 기획 참고."
+      "label": "뮤지컬 전기영화 흥행",
+      "note": "'마이클'이 역대 최고 흥행 뮤지컬 전기영화가 될 전망 [Vietnam.vn]",
+      "implication": "음악·공연 IP 기반 전기영화 포맷의 글로벌 흥행 가능성 확인"
     },
     {
-      "label": "영화 IP OSMU 확장",
-      "note": "와일드 씽 박지현 \"강동원·엄태구가 아이돌? 이 영화 무조건 된다\" 인터뷰, 아이돌급 팬덤 형성 움직임 확인[연합뉴스]",
-      "implication": "개봉 후 OST·굿즈·공연 연계 OSMU 전략 수립 검토."
+      "label": "콘서트 영화 팬덤 수요",
+      "note": "'플레이브 아시아 투어 앙코르 인 시네마' 예매 5위(6.9%, 29,078매) [KOBIS]",
+      "implication": "K팝 팬덤 기반 콘서트 영화의 극장 수요 지속 확인"
     }
   ],
   "industry_signals": [
     {
-      "label": "K영화 글로벌 아카이브 가치 상승",
-      "note": "'케이팝 데몬 헌터스' 크라이테리언 컬렉션 블루레이 북미 출시[익스트림무비]",
-      "implication": "K영화 예술적 위상 상승 추세 — 자사 작품 해외 아카이브·배급 가능성 장기 검토."
+      "label": "범죄도시 5 크랭크인",
+      "note": "'범죄도시 5' 크랭크인 발표 [익스트림무비]",
+      "implication": "마동석 주연 K-액션 시리즈의 지속적 시장 투자 확인; 하반기 경쟁작 라인업 주목 필요"
     },
     {
-      "label": "K-액션 프랜차이즈 지속 확장",
-      "note": "'범죄도시 5' 크랭크인 발표(Coming 2027, 마동석·김재영·서현우, 허명행 감독)[익스트림무비]",
-      "implication": "2027 한국 극장가 K-액션 블록버스터 경쟁 심화 예상 — 자사 라인업 편성 시 고려."
+      "label": "크리스토퍼 놀란 '오디세이' 7/17 북미 개봉",
+      "note": "TIFF Lightbox가 7~8월 놀란 12편 회고전을 개최하며 '오디세이' 북미 개봉(7/17) 전 팬덤 결집 [Variety]",
+      "implication": "하반기 대형 외화 라인업 확인; 국내 배급 시기 전략 수립 시 참고"
     },
     {
-      "label": "웹툰 IP 글로벌 제작지원 공모",
-      "note": "한국콘텐츠진흥원 '2026년 글로벌 웹툰 IP 제작지원 추가 모집' 공고[한국콘텐츠진흥원]",
-      "implication": "자사 웹툰 원작 IP 활용 프로젝트 공모 신청 검토."
+      "label": "KOCCA 글로벌 웹툰 IP 제작지원 추가 모집",
+      "note": "2026년 글로벌 웹툰 IP 제작지원 추가 모집 공고 [한국콘텐츠진흥원]",
+      "implication": "웹툰→영화 전환 IP 발굴·공동 기획 시 지원사업 활용 검토 가능"
     },
     {
-      "label": "오디세이 캐스팅 논란 및 하반기 대형 경쟁 예고",
-      "note": "놀란 '오디세이' 그리스 배경에 비그리스계 배우 캐스팅으로 그리스 매체 비판[익스트림무비]; 북미 7/17 개봉 확정",
-      "implication": "7월 이후 국내 개봉 시 자사 라인업과의 충돌 시점 사전 점검 필요."
+      "label": "패딩턴 4 제작 확정",
+      "note": "'패딩턴 4' 각본가 및 3편 감독 복귀 예정 발표 [익스트림무비]",
+      "implication": "검증된 가족 IP 후속편의 국내 배급권 및 상영 기회 검토 가능"
     }
   ],
   "overseas_brief": [
     {
-      "title_ko": "만달로리안과 그로구",
-      "summary_ko": "북미 메모리얼 데이 주말 3일 $81M·공휴일 포함 4일 $98M으로 스타워즈 극장판 시리즈 최저 개봉 성적 기록. TV 시리즈를 극장판으로 전환한 구조적 한계가 지적됨.",
-      "implication": "국내 예매 4위(7.7%)로 와일드 씽 6/3 개봉 시 직접 스크린 경쟁 — 북미 기대 이하 성적이 국내 흥행에도 영향 가능.",
+      "title_ko": "만달로리안과 그로구: 북미 메모리얼 위크엔드 $81M, 스타워즈 시리즈 최저",
+      "summary_ko": "스타워즈 스핀오프 극장판이 북미 메모리얼 위크엔드 3일 $81M(공휴일 포함 4일 $98M)으로 스타워즈 극장판 시리즈 최저 개봉 성적을 기록했다. 퇴장 지표 양호·어린이 관객 반응 우수로 장기 흥행 여부는 추이를 지켜봐야 한다.",
+      "implication": "국내 5/27 동시 개봉, 예매 4위(7.7%) 추이와 연동 관찰 필요",
       "source": "The Hollywood Reporter",
       "source_url": "https://www.hollywoodreporter.com/movies/movie-news/star-wars-the-mandalorian-and-grogu-opens-to-series-low-98m-1236605886/"
     },
     {
-      "title_ko": "백룸 (Backrooms)",
-      "summary_ko": "A24 공포 영화, 5/27 북미·한국 동시 개봉. 감독 Kane Parsons(20세)의 연출 진위를 둘러싼 소셜 미디어 의혹에 공동주연 Mark Duplass가 공개 지지 성명을 내며 논란 진화.",
-      "implication": "국내 예매 3위(11.1%)로 와일드 씽 개봉 전 스크린 선점 경쟁 대상 — A24 브랜드 파워와 SNS 화제성 지속 모니터링 필요.",
+      "title_ko": "백룸: 20세 감독 Kane Parsons 논란, 마크 듀플라스 공개 반박",
+      "summary_ko": "A24 공포영화 '백룸'의 20세 감독 Kane Parsons가 실제 연출하지 않았다는 소문에 주연 마크 듀플라스가 X에서 'Kane이 100% 지휘했다'고 공개 방어했다. Chiwetel Ejiofor·Renate Reinsve 공동 주연.",
+      "implication": "국내 5/27 개봉 동시 진행 중; 논란이 흥행 변수로 작용할 가능성 주시",
       "source": "Variety",
       "source_url": "https://variety.com/2026/film/news/backrooms-mark-duplass-kane-parsons-didnt-direct-a24-horror-1236759383/"
     },
     {
-      "title_ko": "토이 스토리 5 (Toy Story 5)",
-      "summary_ko": "픽사, 6/19 북미 개봉 앞두고 래퍼 배드 버니의 피자 캐릭터 카메오 공개. 노화하는 우디와 새 빌런 구도 등 세부 정보 순차 공개 중.",
-      "implication": "픽사 대형 IP 6/19 북미 개봉 — 국내 하반기 경쟁작으로 예상되므로 개봉 시점 자사 라인업 확인 필요.",
-      "source": "Rolling Stone",
-      "source_url": "https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/"
+      "title_ko": "토이 스토리 5: Bad Bunny 카메오, Woody 노화 설정 공개",
+      "summary_ko": "Bad Bunny가 '토이 스토리 5'에 '선글라스를 쓴 피자' 역할로 카메오 출연한다. 제작진은 Woody의 노화 설정과 Lilypad가 악당이 아닌 이유를 공개했다. 6/19 북미 개봉 예정이며 Zootopia 2는 17일 만에 글로벌 $1B를 돌파했다.",
+      "implication": "픽사·디즈니 대형 IP 속편의 국내 배급 라인업 및 홍보 시기 검토",
+      "source": "Variety",
+      "source_url": "https://variety.com/2026/film/news/toy-story-5-aging-woody-lilypad-1236750424/"
     },
     {
-      "title_ko": "패딩턴 4 (Paddington 4)",
-      "summary_ko": "아르만도 이아누치 각본 참여 및 패딩턴: 페루에 가다 감독 두갈 윌슨 복귀 협의 발표. 패딩턴 곰 새 극장판 프로젝트가 구체화 중.",
-      "implication": "글로벌 IP 프랜차이즈 연속 제작 모델 참고 — 장기 흥행 IP 극장 시리즈화 전략 사례.",
-      "source": "익스트림무비",
-      "source_url": "https://extmovie.com/movietalk/94059292"
+      "title_ko": "크리스토퍼 놀란 '오디세이': TIFF 회고전 + 7/17 북미 개봉 확정",
+      "summary_ko": "TIFF Lightbox가 7~8월 놀란 전작 12편 회고전을 개최하며 '오디세이' 북미 개봉(7/17) 전 팬덤을 결집시킨다. '오디세이' 캐스팅에 대한 그리스 매체의 비판도 지속되고 있다.",
+      "implication": "하반기 최대 외화 기대작; 국내 개봉 배급 전략 확인 필요",
+      "source": "Variety",
+      "source_url": "https://variety.com/2026/film/festivals/christopher-nolan-retro-tiff-lightbox-odyssey-1236758771/"
     },
     {
-      "title_ko": "오디세이 (The Odyssey)",
-      "summary_ko": "크리스토퍼 놀란 신작 북미 7/17 개봉 확정. 그리스 매체 Greek City Times가 원작 배경과 다른 캐스팅(비그리스계 배우 위주)을 비판하는 칼럼을 발표.",
-      "implication": "하반기 국내 개봉 예정 초대형 경쟁작 — 7월 이후 자사 라인업과의 개봉 시점 충돌 사전 점검.",
-      "source": "익스트림무비",
-      "source_url": "https://extmovie.com/movietalk/94059375"
+      "title_ko": "2026년 원작 소설 기반 영화 어댑테이션 강세",
+      "summary_ko": "Lionsgate가 Rebecca Yarros 베스트셀러 '남겨진 것들' 감독을 Thea Sharrock으로 확정했으며, 2026년 원작 기반 영화·스트리밍 콘텐츠가 잇따라 제작 발표되고 있다.",
+      "implication": "검증된 원작 IP 기반 콘텐츠의 글로벌 수요 지속; 국내 웹소설·웹툰 IP 활용 기획 참고",
+      "source": "Deadline",
+      "source_url": "https://deadline.com/feature/book-to-movie-adaptations-1236035322/"
     }
   ]
 }

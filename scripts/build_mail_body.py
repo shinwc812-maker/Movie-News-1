@@ -22,7 +22,8 @@ ROOT = Path(__file__).resolve().parent.parent
 BRIEFING_PATH = ROOT / "data" / "ai_briefing.json"
 ARTICLES_PATH = ROOT / "data" / "articles.json"
 KST = ZoneInfo("Asia/Seoul")
-REPO_URL = "https://github.com/shyain456/Movie-News"
+REPO_URL = "https://github.com/shinwc812-maker/Movie-News-1"
+DASHBOARD_URL = "https://shinwc812-maker.github.io/Movie-News-1/"
 
 CITE_PATTERN = re.compile(r"\[([^\]\[\n]{1,40})\]")
 
@@ -166,8 +167,8 @@ def render_text(b: dict) -> str:
         lines.append("")
 
     lines.append("━━━━━━━━━━━━━━━━━━━━━━")
-    lines.append(f"전체 대시보드: {REPO_URL}")
-    lines.append("(원격 PC에서 git pull 후 dist/index.html)")
+    lines.append(f"대시보드: {DASHBOARD_URL}")
+    lines.append(f"저장소:   {REPO_URL}")
     return "\n".join(lines) + "\n"
 
 
@@ -385,8 +386,8 @@ def render_html(b: dict, articles: list) -> str:
     {grid_html}
   </div>
   <div style="background:#fdfbe9;border:1px solid #e3deb6;border-top:1px dashed #e3deb6;border-radius:0 0 10px 10px;padding:12px 18px;text-align:center;">
-    <a href="{_esc(REPO_URL)}" style="color:#1d4ed8;font-weight:800;text-decoration:none;font-size:13px;">전체 대시보드 보기 →</a>
-    <div style="color:#94a3b8;font-size:11px;margin-top:4px;">원격 PC에서 git pull 후 dist/index.html</div>
+    <a href="{_esc(DASHBOARD_URL)}" style="color:#1d4ed8;font-weight:800;text-decoration:none;font-size:14px;">📊 전체 대시보드 보기 →</a>
+    <div style="color:#94a3b8;font-size:11px;margin-top:6px;"><a href="{_esc(REPO_URL)}" style="color:#94a3b8;text-decoration:none;">소스 저장소</a></div>
   </div>
 </div>
 </body></html>

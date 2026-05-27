@@ -1,0 +1,133 @@
+{
+  "target_date": "20260526",
+  "fetched_at": "2026-05-26T23:58:49.320803+00:00",
+  "movies": [
+    {
+      "rank": 1,
+      "movie_code": "20252402",
+      "title": "군체",
+      "audi_count": 150489,
+      "audi_acc": 2169099,
+      "open_date": "2026-05-21",
+      "audi_inten": -366515,
+      "audi_change": -70.9,
+      "seat_count": 1116780,
+      "seat_share": 0.6001,
+      "seat_sales_rate": 0.13475259227421693,
+      "rank_change": "0",
+      "distributors": [
+        "(주)쇼박스",
+        "Showbox Corp"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 2,
+      "movie_code": "20259626",
+      "title": "마이클",
+      "audi_count": 20595,
+      "audi_acc": 1205195,
+      "open_date": "2026-05-13",
+      "audi_inten": -88785,
+      "audi_change": -81.2,
+      "seat_count": 330322,
+      "seat_share": 0.1775,
+      "seat_sales_rate": 0.06234825412779046,
+      "rank_change": "0",
+      "distributors": [
+        "유니버설픽쳐스인터내셔널 코리아(유)",
+        "Universal Pictures International Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 3,
+      "movie_code": "20259791",
+      "title": "악마는 프라다를 입는다 2",
+      "audi_count": 5821,
+      "audi_acc": 1564402,
+      "open_date": "2026-04-29",
+      "audi_inten": -10497,
+      "audi_change": -64.3,
+      "seat_count": 116135,
+      "seat_share": 0.0624,
+      "seat_sales_rate": 0.05012270202781246,
+      "rank_change": "1",
+      "distributors": [
+        "월트디즈니컴퍼니코리아 유한책임회사",
+        "The Walt Disney Company Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 4,
+      "movie_code": "20263344",
+      "title": "너바나 더 밴드 : 전설적 밴드 ‘너바나’와는 별 관련 없는 ‘너바나 더 밴드’의 콤비 맷과 제이. 어느 날 공연을 위해 타임머신을 만드는 황당한 작전을 세우고 처음 만났던 17년 전으로 돌",
+      "audi_count": 3192,
+      "audi_acc": 29396,
+      "open_date": "2026-05-20",
+      "audi_inten": -2460,
+      "audi_change": -43.5,
+      "seat_count": 0,
+      "seat_share": null,
+      "seat_sales_rate": null,
+      "rank_change": "5",
+      "distributors": [
+        "그린나래미디어(주)",
+        "GREEN NARAE MEDIA",
+        "(주)레드아이스 엔터테인먼트"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 5,
+      "movie_code": "20254121",
+      "title": "살목지",
+      "audi_count": 2196,
+      "audi_acc": 3232843,
+      "open_date": "2026-04-08",
+      "audi_inten": -5951,
+      "audi_change": -73.0,
+      "seat_count": 50163,
+      "seat_share": 0.027,
+      "seat_sales_rate": 0.043777286047485195,
+      "rank_change": "0",
+      "distributors": [
+        "(주)쇼박스",
+        "Showbox Corp"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    }
+  ],
+  "error_message": null
+}

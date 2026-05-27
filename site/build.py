@@ -1149,28 +1149,41 @@ def write_archive_snapshot(
 # AI 브리핑의 [매체명] 인용을 수집 기사 URL로 자동 링크하기 위한 유틸.
 _CITE_PATTERN = re.compile(r"\[([^\]\[\n]{1,40})\]")
 
+# 약어 ↔ 풀네임 alias — 키는 casefold + 공백 제거된 형태. AI가 [THR]처럼 약어로 인용해도
+# articles의 풀네임(예: "The Hollywood Reporter")으로 매칭되도록.
+_SOURCE_ALIASES: dict[str, str] = {
+    "thr": "The Hollywood Reporter",
+    "wsj": "Wall Street Journal",
+    "nyt": "New York Times",
+    "ft": "Financial Times",
+    "lat": "Los Angeles Times",
+    "wp": "Washington Post",
+}
 
-def _build_source_link_map(article_views: list[dict]) -> dict[str, dict]:
-    """수집 기사 풀에서 source명 → (가장 점수 높은 기사) URL/제목 맵을 만든다.
 
-    같은 매체 기사가 여러 건이면 score가 가장 높은 것 1건을 대표로 링크.
-    완벽한 매칭은 아니지만(AI가 어떤 기사를 인용했는지 직접 알 수 없음),
-    "그 매체에서 가장 비중 있는 기사"로 연결되어 충분히 유용하다.
+def _build_source_link_map(*data_groups) -> dict[str, dict]:
+    """여러 데이터 풀(articles/community/market_trends/policies)에서 매체별 대표 URL 맵.
+
+    같은 매체에 여러 항목이 있으면 score 최대(없으면 0)로 1건을 대표 링크로.
+    AI가 어떤 항목을 인용했는지 직접 알 수 없으므로 "그 매체 가장 비중 있는 항목"으로 연결.
     """
     by_source: dict[str, dict] = {}
-    for a in article_views or []:
-        src = str(a.get("source") or "").strip()
-        url = a.get("url")
-        if not src or not url:
-            continue
-        score = float(a.get("score") or 0)
-        existing = by_source.get(src)
-        if existing is None or score > existing["score"]:
-            by_source[src] = {
-                "url": url,
-                "score": score,
-                "title": a.get("ko_title") or a.get("title") or "",
-            }
+    for group in data_groups:
+        for a in group or []:
+            if not isinstance(a, dict):
+                continue
+            src = str(a.get("source") or "").strip()
+            url = a.get("url")
+            if not src or not url:
+                continue
+            score = float(a.get("score") or 0)
+            existing = by_source.get(src)
+            if existing is None or score > existing["score"]:
+                by_source[src] = {
+                    "url": url,
+                    "score": score,
+                    "title": a.get("ko_title") or a.get("title") or "",
+                }
     return by_source
 
 
@@ -1190,6 +1203,13 @@ def _linkify_citations(text: str, source_map: dict[str, dict]) -> str:
                 if key.casefold().replace(" ", "") == target:
                     entry = val
                     break
+            # 약어 alias 처리 — [THR] → "The Hollywood Reporter"로 변환 후 재시도
+            if entry is None and target in _SOURCE_ALIASES:
+                full_target = _SOURCE_ALIASES[target].casefold().replace(" ", "")
+                for key, val in source_map.items():
+                    if key.casefold().replace(" ", "") == full_target:
+                        entry = val
+                        break
         if not entry:
             return f"[{_html.escape(src)}]"
         return (
@@ -1201,14 +1221,16 @@ def _linkify_citations(text: str, source_map: dict[str, dict]) -> str:
     return _CITE_PATTERN.sub(_repl, escaped)
 
 
-def _enrich_briefing_with_links(briefing: dict, article_views: list[dict]) -> None:
+def _enrich_briefing_with_links(briefing: dict, *data_groups) -> None:
     """AI 브리핑의 각 텍스트 필드 옆에 *_html 필드를 채워 출처 링크를 단다.
 
     원 텍스트 필드는 유지(다른 곳에서 plain 사용 가능). 템플릿은 *_html|safe로 출력.
+    data_groups에 articles/community/market_trends/policies 등 모든 출처 풀을 넘기면
+    [매체명] 인용을 그 매체 가장 비중 있는 항목으로 연결한다.
     """
     if not isinstance(briefing, dict):
         return
-    smap = _build_source_link_map(article_views)
+    smap = _build_source_link_map(*data_groups)
     L = _linkify_citations
 
     briefing["headline_today_html"] = L(briefing.get("headline_today", ""), smap)
@@ -1296,9 +1318,17 @@ def build() -> None:
             )
         except (ValueError, TypeError):
             ai_briefing["generated_at_kst"] = ""
-    # 본문 [매체명] 인용을 수집 기사 URL로 자동 링크
+    # 본문 [매체명] 인용을 수집 기사 URL로 자동 링크 — articles 외에
+    # community/market_trends/policies까지 매핑 풀에 포함해야 [익스트림무비],
+    # [IT조선], [영화진흥위원회] 등 비-articles 출처도 링크된다.
     if isinstance(ai_briefing, dict):
-        _enrich_briefing_with_links(ai_briefing, official_articles)
+        _enrich_briefing_with_links(
+            ai_briefing,
+            official_articles,
+            raw_community,
+            raw_market_trends,
+            raw_policies,
+        )
 
     env = Environment(loader=FileSystemLoader(str(SITE_DIR)), autoescape=True)
     template = env.get_template("template.html.j2")

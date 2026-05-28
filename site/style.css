@@ -191,9 +191,15 @@ h1 {
   line-height: 1.25;
 }
 
+.kpi-sub {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.85fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   align-items: start;
 }
@@ -261,11 +267,6 @@ h1 {
 .section-card-grid {
   display: grid;
   gap: 8px;
-}
-
-.side-stack {
-  display: grid;
-  gap: 12px;
 }
 
 .panel {
@@ -359,7 +360,8 @@ h1 {
   gap: 6px;
 }
 
-.curation-more-btn {
+.curation-more-btn,
+.community-more-btn {
   border: 0;
   border-radius: 999px;
   padding: 2px 9px;
@@ -371,8 +373,25 @@ h1 {
   cursor: pointer;
 }
 
-.curation-more-btn:hover {
+.curation-more-btn:hover,
+.community-more-btn:hover {
   background: #cbd5e1;
+}
+
+.community-section-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 기본은 4건만 노출. 더보기(.is-expanded) 또는 검색 중에는 나머지도 표시 */
+.community-snapshot-card.is-extra {
+  display: none;
+}
+
+.community-source-section.is-expanded .community-snapshot-card.is-extra,
+body.is-searching .community-snapshot-card.is-extra {
+  display: block;
 }
 
 .curation-section-items {
@@ -939,55 +958,6 @@ footer {
   text-align: center;
 }
 
-.engagement-panel .panel-head h2 { font-size: 0.95rem; }
-.engagement-panel .panel-head span { white-space: nowrap; }
-
-.engagement-chart {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px 14px 14px;
-  min-width: 0;
-}
-
-.eng-legend {
-  display: flex;
-  align-items: center;
-  font-size: 0.72rem;
-  color: var(--muted);
-  font-weight: 700;
-}
-.eng-key { display: inline-flex; align-items: center; gap: 4px; }
-.eng-key + .eng-key { margin-left: 12px; }
-.eng-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
-.eng-dot.article { background: var(--blue); }
-.eng-dot.community { background: #e8590c; }
-
-.eng-row { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.eng-label {
-  font-size: 0.82rem;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.eng-label b { color: var(--blue); margin-right: 4px; }
-
-.eng-line { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.eng-cat { flex: 0 0 28px; font-size: 0.7rem; color: var(--muted); }
-.eng-track {
-  flex: 1 1 0;
-  min-width: 0;
-  height: 12px;
-  background: var(--line);
-  border-radius: 6px;
-  overflow: hidden;
-}
-.eng-bar { display: block; height: 100%; border-radius: 6px; min-width: 2px; max-width: 100%; }
-.eng-bar.article { background: var(--blue); }
-.eng-bar.community { background: #e8590c; }
-.eng-num { flex: 0 0 auto; min-width: 20px; text-align: right; font-size: 0.78rem; }
-
 @media (max-width: 980px) {
   .topbar {
     display: block;
@@ -1171,10 +1141,10 @@ body.dashboard-collapsed .policy-panel { display: none; }
   font-weight: 600;
 }
 
-/* 전일 관객 TOP5 — 전일대비 증감 강조: 증가=빨강, 감소=파랑 (둘 다 굵게) */
-.audi-delta { font-weight: 800; }
-.audi-delta-up { color: #dc2626; }   /* 빨강 — 관객 증가 */
-.audi-delta-down { color: #1d4ed8; } /* 파랑 — 관객 감소 */
+/* 전일 관객 TOP5 — 전일대비 증감 표기(회사 규칙): 증가는 숫자만, 감소는 ▲ 접두. 색은 통일 */
+.audi-delta { font-weight: 800; color: inherit; }
+.audi-delta-up,
+.audi-delta-down { color: inherit; }
 .audi-delta-flat { color: inherit; font-weight: 600; }
 
 /* ===== 전체 수집 검색 아카이브 ===== */

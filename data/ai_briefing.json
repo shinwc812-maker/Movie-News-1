@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-05-28T02:28:16+00:00",
+  "generated_at": "2026-05-28T03:05:00+00:00",
   "model": "claude-sonnet-4-6 (routine)",
-  "headline_today": "직전 브리핑(5/28 01:08 UTC) 대비 KOBIS·예매 수치 동일 유지; '와일드 씽' 6/3 개봉 D-6 예매 2위(13.0%, 50,712매), '백룸'·'만달로리안과 그로구' 개봉 첫날 성적 확정 [KOBIS]",
-  "summary": "2026-05-27 KOBIS 기준 '군체'(쇼박스)가 일 20.9만명·누적 237만 8,524명으로 박스오피스·예매(36.5%, 142,504매) 1위를 수성 중이다 [KOBIS]. 자사 배급 '와일드 씽'은 6/3 개봉을 앞두고 예매율 2위(13.0%, 50,712매)를 유지하며 컨셉 시사회 호평 기사가 연일 보도되고 있다 [KOBIS][조선일보]. 5/27 동시 개봉한 A24 '백룸'(첫날 5.4만명·2위)과 '만달로리안과 그로구'(첫날 2.6만명·4위, 극장 평점 9.6)가 경쟁 구도를 형성했으며 [KOBIS][네이트], 해외에서는 스필버그 '디스클로저 데이'(6/12 개봉) 첫 반응이 '20년 만에 최고작' 평가를 받았고 Amazon MGM Studios의 GenAI 전용 펀드 가동으로 AI 콘텐츠 제작 메이저화가 가속되고 있다 [Variety].",
+  "headline_today": "직전 브리핑(5/28 02:28 UTC) 대비 KOBIS·예매 수치 변동 없음; 신규: 아카데미 후보작 '시크릿 에이전트' 7월 국내 개봉 확정·A24 '프라임타임' 티저 공개·Rentrak 브랜드 복귀 확인 [익스트림무비][Deadline]",
+  "summary": "2026-05-27 KOBIS 기준 '군체'(쇼박스)가 일 20.9만 명·누적 237만 8,524명으로 박스오피스·예매 1위를 수성 중이다 [KOBIS]. 자사 배급 '와일드 씽'은 6/3 개봉 D-6을 앞두고 예매율 2위(13.0%, 50,712매)를 유지하며 5/28 컨셉 시사회 후속 보도가 스포츠동아·조선일보 등에 연이어 게재됐다 [KOBIS][스포츠동아][조선일보]. 아카데미 후보작 '시크릿 에이전트'가 7월 국내 개봉을 확정했고 [익스트림무비], 해외에서는 Comscore Movies가 Rentrak 브랜드로 복귀하고 Bad Bunny의 '토이 스토리 5' 합류가 발표되는 등 IP 확장 흐름이 이어졌다 [Deadline][Rolling Stone].",
   "own_titles": [
     {
       "title": "와일드 씽",
       "kind_label": "롯데 배급",
       "highlights": [
-        "예매율 2위 13.0%(50,712매), 6/3 개봉 예정 D-6 [KOBIS]",
-        "컨셉 시사회 '웃다가 숨 넘어갈 뻔' 호평 다수 보도; 강동원·박지현·엄태구·오정세 팬덤 열기 점화 [조선일보][스포츠동아]",
-        "박지현 5개월 보컬·안무 연습 인터뷰, 강동원 '처음이자 마지막' 인터뷰 홍보 전개 중 [YTN][v.daum.net]"
+        "예매율 2위 13.0%(50,712매), 6/3 개봉 D-6 [KOBIS]",
+        "5/27~28 컨셉 시사회 후속 기사 다수: '웃다가 숨 넘어갈 뻔' 호평, 팬덤 열기 확인 [조선일보][스포츠동아]",
+        "강동원·박지현·엄태구·오정세 인터뷰 홍보 다수 매체 전개 중 [v.daum.net][YTN][iMBC 연예][뉴스1]"
       ],
       "risks": [
-        "6/3 개봉 후 백룸·만달로리안과 그로구와 스크린 배분 경합 예상; 개봉 직후 스크린수 추이 모니터링 필요 [KOBIS]"
+        "6/3 개봉 후 '백룸'·'만달로리안과 그로구' 등 기존 경쟁작과 스크린 배분 경합; 개봉 첫 주말 점유율 추이 모니터링 필요 [KOBIS]"
       ]
     }
   ],
@@ -21,108 +21,103 @@
     {
       "title": "군체",
       "distributor": "쇼박스",
-      "note": "5/27 일 20.9만명·누적 237만 8,524명 박스오피스 1위; 예매 1위 36.5%(142,504매); 말레이시아 개봉 3일 만에 현지 역대 K영화 흥행 3위(누적 약 26.5억 원) [KOBIS][뉴스1]",
+      "note": "5/27 일 20.9만 명·누적 237만 8,524명 박스오피스 1위; 예매 1위 36.5%(142,504매); 말레이시아 개봉 3일 만에 한국 영화 현지 역대 흥행 3위(누적 약 26.5억 원) [KOBIS][뉴스1]",
       "sources": ["KOBIS", "뉴스1"]
     },
     {
       "title": "백룸",
       "distributor": "바이포엠스튜디오",
-      "note": "5/27 개봉 첫날 2위·5.4만명, 누적 5.5만명; 예매 3위 9.5%(37,273매); 국내 전 세계 최초 개봉, A24 제작·20세 감독 Kane Parsons 연출; 감독 논란에 Mark Duplass '100% 감독' 방어 성명 [KOBIS][Deadline]",
+      "note": "5/27 개봉 첫날 2위·5.4만 명·누적 5.5만 명; 예매 3위 9.5%(37,273매); A24 제작·Kane Parsons 감독(20세) 연출; Mark Duplass '감독 100%' 성명 발표 [KOBIS][Deadline]",
       "sources": ["KOBIS", "Deadline"]
-    },
-    {
-      "title": "만달로리안과 그로구",
-      "distributor": "월트디즈니컴퍼니코리아",
-      "note": "5/27 개봉 첫날 4위·2.6만명; 예매 5위 6.6%(25,766매); 극장 3사 평균 평점 9.6; 북미 5/22~24 주말 $81.7M 1위 [KOBIS][네이트][Box Office Mojo]",
-      "sources": ["KOBIS", "네이트", "Box Office Mojo"]
     },
     {
       "title": "마이클",
       "distributor": "유니버설픽쳐스인터내셔널 코리아",
-      "note": "5/27 일 3.4만명·누적 123.9만명 3위; 5/13 개봉 15일째 장기 흥행 유지; 북미 5/22~24 $20.6M 3위 [KOBIS][Box Office Mojo]",
+      "note": "5/27 일 3.4만 명·누적 123.9만 명 3위; 5/13 개봉 15일차 장기 흥행 유지; 북미 5/22~24 $20.6M 3위 [KOBIS][Box Office Mojo]",
       "sources": ["KOBIS", "Box Office Mojo"]
     },
     {
-      "title": "악마는 프라다를 입는다 2",
+      "title": "만달로리안과 그로구",
       "distributor": "월트디즈니컴퍼니코리아",
-      "note": "5/27 일 5,334명·누적 156.9만명 5위; 4/29 개봉 4주차 유지; 북미 5/22~24 $12.7M 4위 [KOBIS][Box Office Mojo]",
-      "sources": ["KOBIS", "Box Office Mojo"]
+      "note": "5/27 개봉 첫날 4위·2.6만 명; 예매 5위 6.6%(25,766매); 극장 3사 평균 평점 9.6; 북미 5/22~24 $81.7M 1위 [KOBIS][네이트][Box Office Mojo]",
+      "sources": ["KOBIS", "네이트", "Box Office Mojo"]
+    },
+    {
+      "title": "플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마",
+      "distributor": "CJ 4DPLEX",
+      "note": "예매 4위 7.4%(28,860매); K팝 콘서트 실황 극장 전환 수요 확인 [KOBIS]",
+      "sources": ["KOBIS"]
     }
   ],
   "new_trends": [
     {
-      "label": "유튜브 출신 신예 감독 할리우드 메이저화",
-      "note": "'Obsession' 감독 Curry Barker, $75만 공포영화 대성공 후 차기작에 8자리(1천만 달러 이상) 규모 오퍼 수령; 국내 개봉 중인 '백룸'의 Kane Parsons(20세)도 동일 YouTube 출신 패턴으로 주목 [The Hollywood Reporter]",
-      "implication": "저예산 공포·장르 영화의 극장 흥행 잠재력 재확인; 디지털 네이티브 신예 감독 발굴·IP 투자 시 참고"
+      "label": "아카데미 후보작 '시크릿 에이전트' 7월 국내 개봉 확정",
+      "note": "아카데미 후보작 '시크릿 에이전트' 7월 중 국내 개봉 결정, 티저 포스터 공개 [익스트림무비]",
+      "implication": "7월 예술 영화 관객 수요 경쟁 심화; 아트하우스 계열 스크린 배분 전략 점검 필요"
     },
     {
-      "label": "K-이머시브 콘텐츠 7월 복귀",
-      "note": "K-이머시브 대표주자 '룰렛' 7월 복귀 예고; 공간 재해석·참여형 스토리텔링 체험 소비 수요 지속 [abcn.kr]",
-      "implication": "극장 유휴공간·특별관을 활용한 체험형 이벤트 기획 확대 시 참고"
+      "label": "신민아 주연 스릴러 '눈동자' 티저 공개",
+      "note": "신민아·김남희 주연 스릴러 '눈동자'(감독 염지호, 제작 드림캡쳐) 티저 예고편·포스터 공개 [익스트림무비]",
+      "implication": "하반기 한국 스릴러 경쟁작으로 주목; 개봉일·스크린 계획 추적 필요"
     },
     {
-      "label": "K팝 IP 극장화 수요",
-      "note": "플레이브 아시아 투어 앙코르 인 시네마 예매 4위 7.4%(28,860매); K팝 콘서트 실황 극장 전환 수요 재확인 [KOBIS]",
-      "implication": "롯데시네마 K팝 단독·특별 상영 기획 확대 및 팬덤 집중 기간 상영관 운영 최적화 검토"
-    },
-    {
-      "label": "스필버그 '디스클로저 데이' 6/12 개봉 주목",
-      "note": "스필버그의 UFO 소재 SF '디스클로저 데이' 첫 공개 반응 '20년 만에 최고작'·에밀리 블런트 연기 극찬; 6/12 북미 개봉 예정 [Variety][익스트림무비]",
-      "implication": "6월 국내 개봉 시 상영관 배분·마케팅 사전 준비 필요"
+      "label": "A24 '프라임타임' 티저 공개 (Robert Pattinson·Phoebe Bridgers)",
+      "note": "A24 범죄 드라마 '프라임타임' 티저 예고편 공개; Robert Pattinson·Phoebe Bridgers 주연, Lance Oppenheim 감독 [익스트림무비]",
+      "implication": "A24 신작 국내 수입·개봉 일정 모니터링; 국내 A24 관객 수요 지속 확인 필요"
     }
   ],
   "industry_signals": [
     {
+      "label": "Rentrak 브랜드 복귀 (Comscore Movies 사모펀드 재인수)",
+      "note": "사모펀드 Advaya Capital이 Comscore Movies를 인수하고 원래 브랜드 Rentrak으로 복귀; Chris Aronson 대표 체제 [Deadline]",
+      "implication": "글로벌 흥행 데이터 공급사 소유·브랜드 변경; 외부 흥행 데이터 파트너십 계약 확인 필요"
+    },
+    {
       "label": "Amazon MGM Studios AI 콘텐츠 제작 공식화",
-      "note": "Amazon MGM Studios 'GenAI Creators' Fund' 신설, Prime Video 오리지널 3편 AI 제작 공식 승인; 인간 크리에이터 '지원' 강조 [Variety]",
+      "note": "Amazon MGM Studios 'GenAI Creators' Fund' 신설, Prime Video 오리지널 3개 시리즈 AI 제작 공식 승인; 인간 크리에이터 '지원' 강조 [Variety]",
       "implication": "대형 스튜디오 AI 제작 메이저화; 국내 제작·배급사의 AI 도구 도입 및 비용 구조 재검토 가속화 필요"
     },
     {
-      "label": "AI 생성 영화 트라이베카 영화제 공식 진입",
-      "note": "완전 AI 생성 영화 '꿈의 제비꽃(Dreams of Violets)', 제작비 $2,000·실제 배우·세트·카메라 없이 트라이베카 영화제 공식 초청 확정, 6/10 극장 개봉 예정 [The Hollywood Reporter]",
-      "implication": "AI 영화 상업 배급·영화제 진출 가속화; 국내 심의·저작권 기준 선제 대응 필요"
-    },
-    {
-      "label": "Stan Lee AI 음성·외형 복원 상업화",
+      "label": "Stan Lee AI 음성·외형 복원 상업화 (ElevenLabs)",
       "note": "ElevenLabs, Stan Lee 유산과 계약해 AI로 음성·외형 복원 개시; 마블 IP 디지털 복원 상업화 [Deadline]",
       "implication": "고인 IP 디지털 복원의 윤리·법적 기준 논의 확산; 국내 콘텐츠 IP 관리 정책 선제 검토 필요"
     }
   ],
   "overseas_brief": [
     {
-      "title_ko": "만달로리안과 그로구: 북미 오프닝 $81.7M 1위",
-      "summary_ko": "스타워즈 극장 복귀작 '만달로리안과 그로구'가 5/22~24 북미 주말 박스오피스 $81.7M으로 1위 개봉했다. 일부 매체는 스타워즈 역대 최저 오프닝이라 보도했으나, 국내에서는 개봉 첫날 극장 3사 평균 평점 9.6을 기록하며 입소문 흥행 기대감이 높다.",
-      "implication": "국내 첫날 4위(2.6만명)·평점 9.6으로 입소문 흥행 여부 추이 모니터링 필요",
-      "source": "Box Office Mojo",
-      "source_url": "https://www.boxofficemojo.com/release/rl3294527489/?ref_=bo_hm_rd"
+      "title_ko": "A24 '프라임타임' 티저 공개: Robert Pattinson·Phoebe Bridgers",
+      "summary_ko": "A24 범죄 드라마 '프라임타임'(감독 Lance Oppenheim)이 티저를 공개했다. Robert Pattinson이 주연을 맡고 Phoebe Bridgers가 연기에 데뷔하며, Dateline NBC 포맷을 모티프로 한 감시·범죄 서사다.",
+      "implication": "A24 신작 국내 수입·개봉 일정 모니터링; 국내 A24 관객 수요 지속 확인 필요",
+      "source": "Rolling Stone",
+      "source_url": "https://www.rollingstone.com/tv-movies/tv-movie-news/phoebe-bridgers-primetime-trailer-acting-debut-1235569214/"
     },
     {
-      "title_ko": "Obsession: 역사적 2주차 반등·감독에 8자리 오퍼",
-      "summary_ko": "Curry Barker 감독의 $75만 공포영화 'Obsession'이 2주차 박스오피스에서 크리스마스 제외 현대 역사상 최대 2주차 반등을 기록했고, 스튜디오들이 차기작에 8자리(1천만 달러 이상) 규모 오퍼를 제시했다.",
-      "implication": "국내 개봉 중인 '백룸'(동일 YouTube 출신 패턴)과 연계 분석; 저예산 공포 장르 극장 투자 전략 참고",
-      "source": "The Hollywood Reporter",
-      "source_url": "https://www.hollywoodreporter.com/movies/movie-news/box-office-obsession-second-weekend-spike-1236606229/"
-    },
-    {
-      "title_ko": "스필버그 '디스클로저 데이' 첫 반응: '20년 만에 최고작'",
-      "summary_ko": "스필버그의 UFO 소재 SF '디스클로저 데이'가 6/12 개봉 전 첫 공개 반응에서 '20년 만의 최고작', 에밀리 블런트의 '역대급' 연기라는 평가를 받았다.",
+      "title_ko": "스필버그 '디스클로저 데이' 첫 반응: '20년 만의 최고작'·에밀리 블런트 극찬",
+      "summary_ko": "스필버그의 UFO 소재 SF '디스클로저 데이'가 첫 공개 반응에서 '20년 만의 최고작', 에밀리 블런트 '커리어 최고급' 연기 극찬을 받았다. 북미 6/12 개봉 예정.",
       "implication": "6월 국내 개봉 시 상영관 배분·예매 전략 사전 준비 필요",
       "source": "Variety",
       "source_url": "https://variety.com/2026/film/news/disclosure-day-first-reactions-spielberg-emily-blunt-praise-1236760402/"
     },
     {
-      "title_ko": "Amazon MGM Studios, GenAI 전용 펀드 가동·AI 시리즈 3편 승인",
-      "summary_ko": "Amazon MGM Studios가 'GenAI Creators' Fund'를 신설하고 Prime Video 오리지널 3개 시리즈를 AI 제작으로 공식 승인했다. 인간 크리에이터를 '대체'가 아닌 '지원'이라고 강조했다.",
-      "implication": "글로벌 스튜디오 AI 제작 메이저화; 국내 제작·투자사의 AI 도구 도입 전략 수립 필요",
-      "source": "Variety",
-      "source_url": "https://variety.com/2026/tv/news/amazon-mgm-studios-genai-creators-fund-greenlights-series-1236759131/"
+      "title_ko": "Obsession 2주차 반등 역사적 기록·Curry Barker 감독 8자리 오퍼",
+      "summary_ko": "$75만 제작비 공포영화 'Obsession'이 2주차에 현대 영화 역사상 최대 2주차 반등을 기록했고, Curry Barker 감독에게 차기작 8자리(1천만 달러 이상) 규모 오퍼가 제시됐다.",
+      "implication": "저예산 공포 장르의 극장 흥행 잠재력 재확인; 국내 개봉 중인 '백룸'(동일 유튜브 출신 패턴)과 연계 분석 필요",
+      "source": "The Hollywood Reporter",
+      "source_url": "https://www.hollywoodreporter.com/movies/movie-news/box-office-obsession-second-weekend-spike-1236606229/"
     },
     {
-      "title_ko": "완전 AI 생성 영화 '꿈의 제비꽃' 트라이베카 공식 진입",
-      "summary_ko": "제작비 $2,000짜리 완전 AI 생성 영화 '꿈의 제비꽃(Dreams of Violets)'이 실제 배우·세트·카메라 없이 트라이베카 영화제 공식 초청을 받았고, 6/10 극장 개봉 예정이다.",
-      "implication": "AI 생성 작품의 영화제·상업 배급 진출 가속화; 국내 심의 기준 및 저작권 법제 선제 대응 필요",
-      "source": "The Hollywood Reporter",
-      "source_url": "https://www.hollywoodreporter.com/movies/movie-news/ai-film-dreams-of-violet-tribeca-premiere-1236606092/"
+      "title_ko": "Rentrak 브랜드 복귀: Comscore Movies 사모펀드 재인수",
+      "summary_ko": "사모펀드 Advaya Capital이 글로벌 흥행 데이터 분석사 Comscore Movies를 인수하고 원래 브랜드명 Rentrak으로 복귀했다. 영화 흥행 데이터 산업 소유 구조에 변화가 생겼다.",
+      "implication": "글로벌 흥행 데이터 공급처 소유·브랜드 변경; 외부 데이터 파트너십 계약 변경 여부 확인 필요",
+      "source": "Deadline",
+      "source_url": "https://deadline.com/2026/05/advaya-capital-acquires-comscore-movies-renames-it-rentrak-1236928611/"
+    },
+    {
+      "title_ko": "Bad Bunny '토이 스토리 5' 합류",
+      "summary_ko": "라틴팝 스타 Bad Bunny가 픽사 '토이 스토리 5'에 신규 캐릭터로 참여한다고 발표됐다. 글로벌 팝스타와 장수 애니메이션 IP 결합으로 팬덤 기반 집객 전략이 강화된다.",
+      "implication": "글로벌 팝스타-IP 결합 흥행 전략 사례; K팝 콘서트 실황 극장화 등 유사 전략 참고",
+      "source": "Rolling Stone",
+      "source_url": "https://www.rollingstone.com/tv-movies/tv-movie-news/bad-bunny-joins-toy-story-5-cast-1235568621/"
     }
   ]
 }

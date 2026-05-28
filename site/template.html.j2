@@ -33,8 +33,8 @@
 </article>
 {%- endmacro -%}
 
-{%- macro community_card(c) -%}
-<article class="community-snapshot-card">
+{%- macro community_card(c, extra=False) -%}
+<article class="community-snapshot-card{% if extra %} is-extra{% endif %}">
   <div class="community-topline">
     <span>{{ c.source }}</span>
     {% if c.rel_time %}<em>{{ c.rel_time }}</em>{% endif %}
@@ -190,28 +190,6 @@
 </article>
 {%- endmacro -%}
 
-{%- macro engagement_chart(rows) -%}
-<div class="engagement-chart">
-  <div class="eng-legend"><span class="eng-key"><i class="eng-dot article"></i>기사</span><span class="eng-key"><i class="eng-dot community"></i>커뮤니티</span></div>
-  {% for row in rows %}
-  <div class="eng-row">
-    <div class="eng-label"><b>{{ row.rank }}</b> {{ row.title }}</div>
-    <div class="eng-line">
-      <span class="eng-cat">기사</span>
-      <span class="eng-track"><span class="eng-bar article" style="width: {{ row.article_pct }}%"></span></span>
-      <b class="eng-num">{{ row.article_count }}</b>
-    </div>
-    <div class="eng-line">
-      <span class="eng-cat">반응</span>
-      <span class="eng-track"><span class="eng-bar community" style="width: {{ row.community_pct }}%"></span></span>
-      <b class="eng-num">{{ row.community_count }}</b>
-    </div>
-  </div>
-  {% endfor %}
-  {% if not rows %}<p class="empty">표시할 데이터가 없습니다.</p>{% endif %}
-</div>
-{%- endmacro -%}
-
 <header class="topbar">
   <div>
     <p class="eyebrow">Internal Briefing</p>
@@ -239,10 +217,10 @@
     <button type="button" class="tool-btn" onclick="RADAR.clearSearch()">전체 보기</button>
   </div>
   <section class="kpis" aria-label="핵심 지표">
-    <div class="kpi"><span>전일 1위</span><strong>{% if boxoffice %}{{ boxoffice[0].title }} ({{ boxoffice[0].audi_count }}명 / <span class="audi-delta audi-delta-{{ boxoffice[0].audi_delta_sign }}">{{ boxoffice[0].audi_delta_short }}</span>){% else %}데이터 없음{% endif %}</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>{% if reservation.movies %}{{ reservation.movies[0].title }} {{ reservation.movies[0].reservation_label }}{% else %}데이터 없음{% endif %}</strong></div>
-    <div class="kpi"><span>시장동향</span><strong>{{ total_market_trends }}건</strong></div>
-    <div class="kpi"><span>커뮤니티 반응</span><strong>{{ total_community }}건</strong></div>
+    <div class="kpi"><span>전일 총 관객</span><strong>{% if market_summary %}{{ market_summary.total_audi }}명{% if market_summary.total_audi_delta %} <span class="audi-delta audi-delta-{{ market_summary.total_audi_delta_sign }}">({{ market_summary.total_audi_delta }})</span>{% endif %}{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi"><span>평균 좌석판매율</span><strong>{% if market_summary %}{{ market_summary.avg_seat_sales }}{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi"><span>예매 1위</span><strong>{% if market_summary and market_summary.res_top_rate %}{{ market_summary.res_top_rate }}{% if market_summary.res_top_title %} <span class="kpi-sub">{{ market_summary.res_top_title }}</span>{% endif %}{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi"><span>TOP1 집중도</span><strong>{% if market_summary %}{{ market_summary.top1_share }} <span class="kpi-sub">{{ market_summary.top1_title }}</span>{% else %}데이터 없음{% endif %}</strong></div>
   </section>
 
   <section class="briefing-grid">
@@ -294,7 +272,7 @@
 
       <section class="panel" data-section="overseas">
         <div class="panel-head">
-          <h2>해외 주말 TOP 5</h2>
+          <h2>북미 주말 TOP 5</h2>
           <span>Box Office Mojo{% if overseas_weekend.weekend_label %} · {{ overseas_weekend.weekend_label }}{% endif %}</span>
         </div>
         <ol class="overseas-weekend-list">
@@ -350,23 +328,6 @@
       </div>
     </div>
 
-    <aside class="side-stack">
-      <section class="panel engagement-panel" data-section="engBox">
-        <div class="panel-head">
-          <h2>전일 관객 TOP 5 · 수집량</h2>
-          <span>기사 · 커뮤니티</span>
-        </div>
-        {{ engagement_chart(boxoffice_engagement|default([])) }}
-      </section>
-
-      <section class="panel engagement-panel" data-section="engRes">
-        <div class="panel-head">
-          <h2>실시간 예매량 TOP 5 · 수집량</h2>
-          <span>기사 · 커뮤니티</span>
-        </div>
-        {{ engagement_chart(reservation_engagement|default([])) }}
-      </section>
-    </aside>
   </section>
 
   <section class="panel market-trends-panel">
@@ -401,10 +362,13 @@
         <section class="briefing-subsection community-source-section">
           <div class="section-head">
             <h3>{{ section.title }}</h3>
-            <span>{{ section.count }}건</span>
+            <div class="community-section-meta">
+              <span>{{ section.count }}건</span>
+              {% if section["items"]|length > 4 %}<button type="button" class="community-more-btn" aria-expanded="false">더보기</button>{% endif %}
+            </div>
           </div>
           <div class="community-card-grid section-card-grid">
-            {% for reaction in section["items"] %}{{ community_card(reaction) }}{% endfor %}
+            {% for reaction in section["items"] %}{{ community_card(reaction, extra=loop.index > 4) }}{% endfor %}
           </div>
         </section>
         {% endfor %}
@@ -463,9 +427,7 @@
     { key: 'curation',    label: '핵심 큐레이션',   sel: '.curation-panel' },
     { key: 'boxoffice',   label: '전일 관객 TOP 5', sel: '[data-section="boxoffice"]' },
     { key: 'reservation', label: '실시간 예매량',   sel: '[data-section="reservation"]' },
-    { key: 'overseas',    label: '해외 주말 TOP 5', sel: '[data-section="overseas"]' },
-    { key: 'engBox',      label: '전일 관객 수집량', sel: '[data-section="engBox"]' },
-    { key: 'engRes',      label: '예매량 수집량',    sel: '[data-section="engRes"]' },
+    { key: 'overseas',    label: '북미 주말 TOP 5', sel: '[data-section="overseas"]' },
     { key: 'market',      label: '시장동향',        sel: '.market-trends-panel' },
     { key: 'community',   label: '커뮤니티 반응',   sel: '.community-only-panel' },
     { key: 'policy',      label: '정책/지원',       sel: '.policy-panel' }
@@ -540,7 +502,7 @@
       }
     } else {
       // 평소: 아카이브는 CSS로 숨김. 대시보드 본문은 dashboardOpen 토글에 따름.
-      //  - 접힘(기본): body.dashboard-collapsed 추가 → CSS가 핵심 큐레이션·수집량·시장동향·커뮤니티만 숨김.
+      //  - 접힘(기본): body.dashboard-collapsed 추가 → CSS가 핵심 큐레이션·시장동향·커뮤니티만 숨김.
       //    KPI, AI 브리핑, 사이드 TOP5 3개는 항상 설정대로 노출.
       //  - 펼침: 클래스 제거 + 모든 SECTIONS를 설정대로 복구.
       document.body.classList.toggle('dashboard-collapsed', !dashboardOpen);
@@ -558,11 +520,6 @@
       if (briefingSidestack) {
         setVisible(briefingSidestack,
           visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas'));
-      }
-      var sidestack = q('.side-stack');
-      if (sidestack) {
-        setVisible(sidestack,
-          dashboardOpen && (visibleBySetting('engBox') || visibleBySetting('engRes')));
       }
       updateDashboardToggleLabel();
       var status = q('#searchStatus');
@@ -627,11 +584,11 @@
     }
   });
 
-  // 큐레이션 섹션 "더보기/접기": 기본 2건만 노출, 클릭 시 수집분(최대 10건) 전체 표시
-  function bindCurationMore() {
-    qa('.curation-more-btn').forEach(function (btn) {
+  // 섹션 "더보기/접기": 기본 일부만 노출, 클릭 시 전체 표시 (큐레이션·커뮤니티 공용)
+  function bindMoreButtons(btnSel, sectionSel) {
+    qa(btnSel).forEach(function (btn) {
       btn.addEventListener('click', function () {
-        var section = btn.closest('.curation-section');
+        var section = btn.closest(sectionSel);
         if (!section) { return; }
         var expanded = section.classList.toggle('is-expanded');
         btn.textContent = expanded ? '접기' : '더보기';
@@ -651,7 +608,8 @@
   loadSettings();
   loadDashboardOpen();
   buildSettings();
-  bindCurationMore();
+  bindMoreButtons('.curation-more-btn', '.curation-section');
+  bindMoreButtons('.community-more-btn', '.community-source-section');
   var input = q('#searchInput');
   if (input) { input.addEventListener('input', function () { runSearch(input.value); }); }
   apply();

@@ -24,8 +24,6 @@ ARTICLES_PATH = ROOT / "data" / "articles.json"
 MARKET_PATH = ROOT / "data" / "market.json"
 RESERVATION_PATH = ROOT / "data" / "reservation.json"
 OVERSEAS_PATH = ROOT / "data" / "overseas_weekend.json"
-MARKET_TRENDS_PATH = ROOT / "data" / "market_trends.json"
-COMMUNITY_PATH = ROOT / "data" / "community.json"
 KST = ZoneInfo("Asia/Seoul")
 REPO_URL = "https://github.com/shinwc812-maker/Movie-News-1"
 DASHBOARD_URL = "https://shinwc812-maker.github.io/Movie-News-1/"
@@ -106,7 +104,7 @@ def _linkify_html(text: str, smap: dict[str, dict]) -> str:
 # ---------- 텍스트 본문(fallback) ----------
 
 def render_text(b: dict, market: dict | None = None, reservation: dict | None = None,
-                overseas: dict | None = None, trend_count: int = 0, comm_count: int = 0) -> str:
+                overseas: dict | None = None) -> str:
     lines: list[str] = []
     gen = _format_generated_kst(b)
     if gen:
@@ -119,30 +117,23 @@ def render_text(b: dict, market: dict | None = None, reservation: dict | None = 
         lines.append(b["summary"])
         lines.append("")
 
-    # KPI 요약
-    box0 = ((market or {}).get("movies") or [{}])[0]
-    res0 = ((reservation or {}).get("movies") or [{}])[0]
-    if box0 or res0 or trend_count or comm_count:
+    # KPI 요약 (시장 종합)
+    s = _market_summary(market or {}, reservation or {})
+    if s:
         lines.append("━━ 핵심 지표 ━━")
-        if box0:
-            aud = _fmt_int(box0.get("audi_count"))
-            inten = box0.get("audi_inten")
-            change = box0.get("audi_change")
-            try:
-                inten_i = int(inten) if inten is not None else 0
-            except (TypeError, ValueError):
-                inten_i = 0
-            mark = "▲" if inten_i > 0 else ("▼" if inten_i < 0 else "")
-            pct = f"{float(change):+.1f}%" if change is not None else ""
-            delta = f"{mark}{_fmt_int(abs(inten_i))}{(' ('+pct+')') if pct else ''}".strip()
-            lines.append(f"  전일 1위: {box0.get('title','')} ({aud}명 / {delta})")
-        if res0:
-            rate = res0.get("reservation_rate")
-            cnt = _fmt_int(res0.get("reservation_count"))
-            rate_s = f"{float(rate):.1f}%" if rate is not None else ""
-            lines.append(f"  예매 1위: {res0.get('title','')} ({rate_s} / {cnt}매)")
-        lines.append(f"  시장동향: {trend_count}건")
-        lines.append(f"  커뮤니티 반응: {comm_count}건")
+        total_line = f"  전일 총 관객: {s['total_audi']}명"
+        if s["total_audi_delta"]:
+            total_line += f" {s['total_audi_delta']}"
+        lines.append(total_line)
+        lines.append(f"  평균 좌석판매율: {s['avg_seat_sales']}")
+        res_line = f"  예매 1위: {s['res_top_rate'] or '-'}"
+        if s["res_top_title"]:
+            res_line += f" ({s['res_top_title']})"
+        lines.append(res_line)
+        top1_line = f"  TOP1 집중도: {s['top1_share']}"
+        if s["top1_title"]:
+            top1_line += f" ({s['top1_title']})"
+        lines.append(top1_line)
         lines.append("")
 
     if b.get("own_titles"):
@@ -217,7 +208,7 @@ def render_text(b: dict, market: dict | None = None, reservation: dict | None = 
 
     if overseas and overseas.get("movies"):
         label = overseas.get("weekend_label") or ""
-        lines.append(f"━━ 해외 주말 TOP 5 (Box Office Mojo{(' · '+label) if label else ''}) ━━")
+        lines.append(f"━━ 북미 주말 TOP 5 (Box Office Mojo{(' · '+label) if label else ''}) ━━")
         for m in (overseas.get("movies") or [])[:5]:
             lines.append(f"  {m.get('rank','')}. {m.get('title','')} — {m.get('gross','')}")
         lines.append("")
@@ -383,7 +374,7 @@ def _fmt_int(n) -> str:
 
 
 def _fmt_delta_audi(audi_inten, audi_change) -> str:
-    """전일대비 증감을 ▲/▼ + 절대수 + 비율로 — 증가 빨강, 감소 파랑."""
+    """전일대비 증감 — 회사 표기 규칙: 증가는 숫자만, 감소는 ▲ 접두(▲=마이너스). 색은 통일."""
     if audi_inten is None and audi_change is None:
         return ""
     try:
@@ -394,34 +385,69 @@ def _fmt_delta_audi(audi_inten, audi_change) -> str:
         change = float(audi_change) if audi_change is not None else 0.0
     except (TypeError, ValueError):
         change = 0.0
-    if inten > 0:
-        color, mark = "#dc2626", "▲"
-    elif inten < 0:
-        color, mark = "#1d4ed8", "▼"
-    else:
-        color, mark = "#6b7280", ""
+    mark = "▲" if inten < 0 else ""
     abs_n = _fmt_int(abs(inten))
-    pct = f"{change:+.1f}%" if change else ""
-    parts = [p for p in [mark, abs_n, f"({pct})" if pct else ""] if p]
+    pct = f"({mark}{abs(change):.1f}%)" if change else ""
+    parts = [p for p in [f"{mark}{abs_n}명", pct] if p]
     inner = " ".join(parts)
-    return f'<span style="color:{color};font-weight:800;">{inner}</span>'
+    return f'<span style="color:#374151;font-weight:800;">{inner}</span>'
 
 
-def _kpi_block(market: dict, reservation: dict, trend_count: int, comm_count: int) -> str:
-    box = (market.get("movies") or [{}])[0] if market else {}
-    res = (reservation.get("movies") or [{}])[0] if reservation else {}
-    box_title = _esc(box.get("title") or "데이터 없음")
-    box_aud = _fmt_int(box.get("audi_count"))
-    box_delta = _fmt_delta_audi(box.get("audi_inten"), box.get("audi_change"))
-    res_title = _esc(res.get("title") or "데이터 없음")
-    res_rate = res.get("reservation_rate")
-    res_count = _fmt_int(res.get("reservation_count"))
-    res_label = ""
-    if res_rate is not None:
+def _market_summary(market: dict, reservation: dict | None = None) -> dict:
+    """박스오피스 TOP5로 시장 종합 지표(KPI)를 계산. site/build.py와 동일 로직."""
+    movies = [m for m in ((market or {}).get("movies") or []) if isinstance(m, dict)]
+    if not movies:
+        return {}
+
+    def _int(value) -> int:
         try:
-            res_label = f"{float(res_rate):.1f}% / {res_count}매"
+            return int(value)
         except (TypeError, ValueError):
-            res_label = f"{res_count}매" if res_count else ""
+            return 0
+
+    def _float(value) -> float:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return 0.0
+
+    total_today = sum(_int(m.get("audi_count")) for m in movies)
+    total_delta = sum(_int(m.get("audi_inten")) for m in movies)
+    total_yesterday = total_today - total_delta
+    delta_pct = (total_delta / total_yesterday * 100) if total_yesterday > 0 else 0.0
+    mark = "▲" if delta_pct < 0 else ""
+    delta_label = f"({mark}{abs(delta_pct):.1f}%)" if total_yesterday > 0 else ""
+
+    total_seat = sum(_int(m.get("seat_count")) for m in movies)
+    if total_seat:
+        avg_seat = sum(_float(m.get("seat_sales_rate")) * _int(m.get("seat_count")) for m in movies) / total_seat * 100
+    else:
+        avg_seat = 0.0
+
+    res_movies = [m for m in ((reservation or {}).get("movies") or []) if isinstance(m, dict)]
+    res_top = res_movies[0] if res_movies else {}
+    res_rate = res_top.get("reservation_rate")
+    res_rate_label = f"{_float(res_rate):.1f}%" if res_rate is not None else ""
+    res_title = res_top.get("title") or ""
+
+    top1 = movies[0]
+    top1_share = (_int(top1.get("audi_count")) / total_today * 100) if total_today else 0.0
+
+    return {
+        "total_audi": _fmt_int(total_today),
+        "total_audi_delta": delta_label,
+        "avg_seat_sales": f"{avg_seat:.1f}%",
+        "res_top_rate": res_rate_label,
+        "res_top_title": res_title,
+        "top1_share": f"{top1_share:.1f}%",
+        "top1_title": top1.get("title") or "",
+    }
+
+
+def _kpi_block(market: dict, reservation: dict | None = None) -> str:
+    s = _market_summary(market, reservation)
+    if not s:
+        return ""
 
     def _cell(label: str, value_html: str) -> str:
         return (
@@ -432,19 +458,23 @@ def _kpi_block(market: dict, reservation: dict, trend_count: int, comm_count: in
             '</td>'
         )
 
-    box_val = f'<b>{box_title}</b>'
-    if box_aud:
-        box_val += f' <span style="color:#6b7280;font-weight:600;">({box_aud}명{(" / " + box_delta) if box_delta else ""})</span>'
-    res_val = f'<b>{res_title}</b>'
-    if res_label:
-        res_val += f' <span style="color:#6b7280;font-weight:600;">({res_label})</span>'
+    sub = 'color:#6b7280;font-weight:600;font-size:11px;'
+    total_val = f'<b>{s["total_audi"]}명</b>'
+    if s["total_audi_delta"]:
+        total_val += f' <span style="{sub}">{_esc(s["total_audi_delta"])}</span>'
+    seat_val = f'<b>{s["avg_seat_sales"]}</b>'
+    res_val = f'<b>{s["res_top_rate"] or "-"}</b>'
+    if s["res_top_title"]:
+        res_val += f' <span style="{sub}">{_esc(s["res_top_title"])}</span>'
+    top1_val = f'<b>{s["top1_share"]}</b>'
+    if s["top1_title"]:
+        top1_val += f' <span style="{sub}">{_esc(s["top1_title"])}</span>'
 
     return (
         '<table width="100%" cellspacing="6" cellpadding="0" border="0" '
         'style="border-collapse:separate;margin:8px 4px 4px;">'
-        f'<tr>{_cell("전일 1위", box_val)}{_cell("예매 1위", res_val)}'
-        f'{_cell("시장동향", f"<b>{trend_count}건</b>")}'
-        f'{_cell("커뮤니티 반응", f"<b>{comm_count}건</b>")}</tr>'
+        f'<tr>{_cell("전일 총 관객", total_val)}{_cell("평균 좌석판매율", seat_val)}'
+        f'{_cell("예매 1위", res_val)}{_cell("TOP1 집중도", top1_val)}</tr>'
         '</table>'
     )
 
@@ -532,12 +562,11 @@ def _mojo_top5_block(overseas: dict) -> str:
         )
     sub = f" · {_esc(label)}" if label else ""
     inner = '<ol style="margin:0;padding:0;list-style:none;font-size:13px;line-height:1.55;">' + "".join(rows) + '</ol>'
-    return _block(f"🌎 해외 주말 TOP 5  <span style='color:#6b7280;font-size:11px;font-weight:600;'>Box Office Mojo{sub}</span>", inner)
+    return _block(f"🌎 북미 주말 TOP 5  <span style='color:#6b7280;font-size:11px;font-weight:600;'>Box Office Mojo{sub}</span>", inner)
 
 
 def render_html(b: dict, articles: list, market: dict | None = None,
-                reservation: dict | None = None, overseas: dict | None = None,
-                trend_count: int = 0, comm_count: int = 0) -> str:
+                reservation: dict | None = None, overseas: dict | None = None) -> str:
     smap = _build_source_link_map(articles)
     L = lambda s: _linkify_html(s, smap)
 
@@ -585,7 +614,7 @@ def render_html(b: dict, articles: list, market: dict | None = None,
         if grid_rows else ""
     )
 
-    kpi_html = _kpi_block(market or {}, reservation or {}, trend_count, comm_count)
+    kpi_html = _kpi_block(market or {}, reservation or {})
     box_html = _boxoffice_top5_block(market or {})
     res_html = _reservation_top5_block(reservation or {})
     mojo_html = _mojo_top5_block(overseas or {})
@@ -665,22 +694,16 @@ def main() -> int:
     market = _load_json(MARKET_PATH, {}) or {}
     reservation = _load_json(RESERVATION_PATH, {}) or {}
     overseas = _load_json(OVERSEAS_PATH, {}) or {}
-    market_trends = _load_json(MARKET_TRENDS_PATH, []) or []
-    community = _load_json(COMMUNITY_PATH, []) or []
-    trend_count = len(market_trends) if isinstance(market_trends, list) else 0
-    comm_count = len(community) if isinstance(community, list) else 0
     if mode == "html":
         articles = _load_json(ARTICLES_PATH, [])
         sys.stdout.write(render_html(
             briefing, articles,
             market=market, reservation=reservation, overseas=overseas,
-            trend_count=trend_count, comm_count=comm_count,
         ))
     else:
         sys.stdout.write(render_text(
             briefing,
             market=market, reservation=reservation, overseas=overseas,
-            trend_count=trend_count, comm_count=comm_count,
         ))
     return 0
 

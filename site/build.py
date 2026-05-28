@@ -251,24 +251,22 @@ def format_reservation_label(count, rate) -> str:
 
 
 def format_audience_delta(count, rate=None, include_rate: bool = True) -> str:
+    # 회사 표기 규칙: 증가는 숫자만, 감소는 ▲ 접두(▲=마이너스)
     try:
         delta = int(count)
     except (TypeError, ValueError):
         delta = 0
-    if delta > 0:
-        label = f"▲{format_int(delta)}명"
-    elif delta < 0:
-        label = f"▼{format_int(abs(delta))}명"
-    else:
-        label = "0명"
+    mark = "▲" if delta < 0 else ""
+    label = f"{mark}{format_int(abs(delta))}명"
     if not include_rate:
         return label
     try:
         rate_value = float(rate)
     except (TypeError, ValueError):
         rate_value = 0.0
-    sign = "+" if rate_value > 0 else ""
-    return f"{label} ({sign}{rate_value:.1f}%)"
+    if rate_value:
+        label += f" ({mark}{abs(rate_value):.1f}%)"
+    return label
 
 
 def relative_time(published_iso: str | None, now: datetime) -> str:
@@ -432,54 +430,6 @@ def _matched_title(item: dict, titles: list[str]) -> bool:
     matched = item.get("matched_keywords") or []
     matched_compact = {_compact_match_text(keyword) for keyword in matched if keyword}
     return any(_compact_match_text(title) in matched_compact for title in titles if title)
-
-
-def _engagement_blob(item: dict) -> str:
-    """기사/커뮤니티 항목의 검색 대상 텍스트(공백 제거·소문자)."""
-    return _compact_match_text(
-        " ".join(
-            [
-                str(item.get("title") or ""),
-                str(item.get("excerpt") or ""),
-                str(item.get("summary") or ""),
-                str(item.get("mood_summary") or ""),
-                *[str(keyword) for keyword in item.get("matched_keywords") or []],
-            ]
-        )
-    )
-
-
-def build_movie_engagement(
-    movies: list[dict],
-    official_views: list[dict],
-    community_views: list[dict],
-) -> list[dict]:
-    """TOP 5 영화별로 수집한 공식 기사 수와 커뮤니티 반응 수를 집계(막대그래프용)."""
-    article_blobs = [_engagement_blob(a) for a in official_views]
-    community_blobs = [_engagement_blob(c) for c in community_views]
-    rows: list[dict] = []
-    for movie in movies or []:
-        title = str(movie.get("title") or "")
-        key = _compact_match_text(title)
-        if len(key) < 2:
-            article_count = community_count = 0
-        else:
-            article_count = sum(1 for blob in article_blobs if key in blob)
-            community_count = sum(1 for blob in community_blobs if key in blob)
-        rows.append(
-            {
-                "rank": movie.get("rank"),
-                "title": title,
-                "article_count": article_count,
-                "community_count": community_count,
-            }
-        )
-    # 막대 길이는 차트 내 최댓값 기준으로 정규화한다.
-    peak = max([1, *[r["article_count"] for r in rows], *[r["community_count"] for r in rows]])
-    for row in rows:
-        row["article_pct"] = round(row["article_count"] / peak * 100)
-        row["community_pct"] = round(row["community_count"] / peak * 100)
-    return rows
 
 
 def _curation_text(item: dict) -> str:
@@ -1054,6 +1004,67 @@ def market_views(market: dict) -> list[dict]:
     return views
 
 
+def build_market_summary(market: dict, reservation: dict | None = None) -> dict:
+    """박스오피스 TOP5로 시장 전체를 읽는 종합 지표(KPI)를 계산한다.
+
+    - 전일 총 관객: TOP5 관객 합 + 전일대비 증감률(회사 표기: 감소만 ▲)
+    - 평균 좌석판매율: TOP5 좌석수 가중평균. 좌석이 실제로 얼마나 차는지(수요 밀도)
+    - 예매 1위: 예매율 1위 작품·예매율. 내일·주말 시장 선행지표
+    - TOP1 집중도: 1위 관객이 TOP5에서 차지하는 비중
+    """
+    movies = market.get("movies") if isinstance(market, dict) else []
+    movies = [m for m in (movies or []) if isinstance(m, dict)]
+    if not movies:
+        return {}
+
+    def _int(value) -> int:
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return 0
+
+    def _float(value) -> float:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return 0.0
+
+    total_today = sum(_int(m.get("audi_count")) for m in movies)
+    total_delta = sum(_int(m.get("audi_inten")) for m in movies)
+    total_yesterday = total_today - total_delta
+    delta_pct = (total_delta / total_yesterday * 100) if total_yesterday > 0 else 0.0
+    # 회사 표기 규칙: 증가는 부호 없이, 감소는 ▲(=마이너스)
+    mark = "▲" if delta_pct < 0 else ""
+    delta_sign = "up" if delta_pct > 0 else "down" if delta_pct < 0 else "flat"
+    delta_label = f"{mark}{abs(delta_pct):.1f}%" if total_yesterday > 0 else ""
+
+    total_seat = sum(_int(m.get("seat_count")) for m in movies)
+    if total_seat:
+        avg_seat = sum(_float(m.get("seat_sales_rate")) * _int(m.get("seat_count")) for m in movies) / total_seat * 100
+    else:
+        avg_seat = 0.0
+
+    res_movies = [m for m in ((reservation or {}).get("movies") or []) if isinstance(m, dict)]
+    res_top = res_movies[0] if res_movies else {}
+    res_rate = res_top.get("reservation_rate")
+    res_rate_label = f"{_float(res_rate):.1f}%" if res_rate is not None else ""
+    res_title = res_top.get("title") or ""
+
+    top1 = movies[0]
+    top1_share = (_int(top1.get("audi_count")) / total_today * 100) if total_today else 0.0
+
+    return {
+        "total_audi": format_int(total_today),
+        "total_audi_delta": delta_label,
+        "total_audi_delta_sign": delta_sign,
+        "avg_seat_sales": f"{avg_seat:.1f}%",
+        "res_top_rate": res_rate_label,
+        "res_top_title": res_title,
+        "top1_share": f"{top1_share:.1f}%",
+        "top1_title": top1.get("title") or "",
+    }
+
+
 def reservation_view(reservation: dict) -> dict:
     if not isinstance(reservation, dict):
         return {"available": False, "movies": []}
@@ -1277,13 +1288,13 @@ def build() -> None:
     ]
     community_sections = build_community_sections(
         community_views,
+        limit_per_section=60,
         priority_titles=priority_community_titles,
     )
     boxoffice = market_views(raw_market)
     reservation = reservation_view(raw_reservation)
     overseas_weekend = overseas_weekend_view(raw_overseas_weekend)
-    boxoffice_engagement = build_movie_engagement(boxoffice, official_articles, community_views)
-    reservation_engagement = build_movie_engagement(reservation["movies"], official_articles, community_views)
+    market_summary = build_market_summary(raw_market, raw_reservation)
     curation = top_curation_items(
         official_articles,
         community_views,
@@ -1351,12 +1362,9 @@ def build() -> None:
         boxoffice=boxoffice,
         reservation=reservation,
         overseas_weekend=overseas_weekend,
-        boxoffice_engagement=boxoffice_engagement,
-        reservation_engagement=reservation_engagement,
+        market_summary=market_summary,
         total_official=len(official_feed),
-        total_community=len(community_views),
         total_policies=len(policy_views),
-        total_market_trends=len(market_trends),
         css=css,
         updated_at=now.astimezone(KST).strftime("%Y년 %m월 %d일 %H:%M"),
     ))

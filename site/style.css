@@ -1184,6 +1184,7 @@ body.dashboard-collapsed .policy-panel { display: none; }
 body.is-searching .ai-briefing-panel,
 body.is-searching .kpis,
 body.is-searching .briefing-grid,
+body.is-searching .ai-briefing-toggle,
 body.is-searching .hero-grid,
 body.is-searching .market-trends-panel,
 body.is-searching .community-only-panel,

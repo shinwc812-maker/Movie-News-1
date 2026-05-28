@@ -600,8 +600,18 @@ def render_html(b: dict, articles: list, market: dict | None = None,
             '</div>'
         )
 
-    # 좌측 본문 — headline/summary + 자사 + 그리드
-    left_inner = head_box + (own or "") + (grid_html or "")
+    # 좌측 본문 — headline/summary + 자사 + 그리드 + 푸터(인라인)
+    # 푸터를 좌측 컬럼 끝에 두어, 우측 TOP5보다 좌측이 짧을 때 생기는 큰 빈 여백 아래쪽에 버튼이 떨어지는 문제를 막음
+    footer_inline = (
+        '<div style="border-top:1px dashed #e3deb6;'
+        'padding:12px 6px 6px;text-align:center;margin-top:12px;">'
+        f'<a href="{_esc(DASHBOARD_URL)}" style="color:#1d4ed8;font-weight:800;'
+        'text-decoration:none;font-size:14px;">📊 전체 대시보드 보기 →</a>'
+        '<div style="color:#94a3b8;font-size:11px;margin-top:6px;">'
+        f'<a href="{_esc(REPO_URL)}" style="color:#94a3b8;text-decoration:none;">소스 저장소</a>'
+        '</div></div>'
+    )
+    left_inner = head_box + (own or "") + (grid_html or "") + footer_inline
 
     # 우측 사이드 스택 — 전일관객/예매/해외 TOP5
     side_parts = []
@@ -636,12 +646,8 @@ def render_html(b: dict, articles: list, market: dict | None = None,
     </div>
     {kpi_html}
   </div>
-  <div style="background:#fdfbe9;border-left:1px solid #e3deb6;border-right:1px solid #e3deb6;">
+  <div style="background:#fdfbe9;border:1px solid #e3deb6;border-top:none;border-radius:0 0 10px 10px;">
     {body_table}
-  </div>
-  <div style="background:#fdfbe9;border:1px solid #e3deb6;border-top:1px dashed #e3deb6;border-radius:0 0 10px 10px;padding:12px 18px;text-align:center;">
-    <a href="{_esc(DASHBOARD_URL)}" style="color:#1d4ed8;font-weight:800;text-decoration:none;font-size:14px;">📊 전체 대시보드 보기 →</a>
-    <div style="color:#94a3b8;font-size:11px;margin-top:6px;"><a href="{_esc(REPO_URL)}" style="color:#94a3b8;text-decoration:none;">소스 저장소</a></div>
   </div>
 </div>
 </body></html>

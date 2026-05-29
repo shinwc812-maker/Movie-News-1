@@ -263,6 +263,21 @@ def community_search_terms(
     return list(dict.fromkeys(terms))
 
 
+# 영화관 산업·OTT 플랫폼·공연 주제 고정 검색어 (작품명 검색에 안 걸리는 산업 기사 보강용)
+THEATER_OTT_NEWS_TERMS = (
+    "CGV",
+    "롯데시네마",
+    "메가박스",
+    "넷플릭스",
+    "티빙",
+    "디즈니플러스",
+    "쿠팡플레이",
+    "OTT",
+    "뮤지컬",
+    "콘서트",
+)
+
+
 def movie_news_terms(
     market: MarketSnapshot | None,
     reservation: ReservationSnapshot | None = None,
@@ -289,7 +304,10 @@ def movie_news_terms(
         compact = "".join(title.split())
         if compact and compact != title and compact not in terms:
             terms.append(compact)
-    return terms
+    # 작품명 검색만으로는 영화관 산업·OTT 플랫폼·공연 주제 기사가 거의 안 잡혀
+    # (TOP 작품 제목에 안 걸림), 산업/플랫폼 고정 검색어를 함께 넣어 백데이터를 넓힌다.
+    terms.extend(THEATER_OTT_NEWS_TERMS)
+    return list(dict.fromkeys(terms))
 
 
 def collect_movie_news(

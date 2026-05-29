@@ -190,25 +190,25 @@ CORE_CURATION_SECTIONS = (
         "eyebrow": "global market",
     },
     {
-        "key": "culture_ip",
-        "title": "문화/IP",
-        "eyebrow": "culture / IP",
+        "key": "drama_ott",
+        "title": "드라마·OTT",
+        "eyebrow": "drama / OTT",
     },
 )
-CULTURE_IP_KEYWORDS = (
-    "IP",
-    "OSMU",
-    "애니메이션",
-    "웹툰",
-    "캐릭터",
-    "굿즈",
-    "K콘텐츠",
-    "K팝",
-    "팬덤",
-    "팝업",
-    "전시",
-    "공연",
-    "AI",
+DRAMA_OTT_KEYWORDS = (
+    "드라마",
+    "시리즈",
+    "시즌",
+    "OTT",
+    "넷플릭스",
+    "티빙",
+    "웨이브",
+    "디즈니플러스",
+    "디즈니+",
+    "쿠팡플레이",
+    "왓챠",
+    "스트리밍",
+    "오리지널",
 )
 
 
@@ -716,8 +716,8 @@ def _curation_section_key(
         or (is_overseas and _has_overseas_context_keyword(item))
     ):
         return "overseas"
-    if not is_overseas and _has_any_keyword(item, CULTURE_IP_KEYWORDS):
-        return "culture_ip"
+    if not is_overseas and _has_any_keyword(item, DRAMA_OTT_KEYWORDS):
+        return "drama_ott"
     return ""
 
 

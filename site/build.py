@@ -1004,10 +1004,46 @@ def market_views(market: dict) -> list[dict]:
     return views
 
 
+PIE_PALETTE = ("#dc2626", "#d97706", "#2563eb", "#059669", "#7c3aed")
+
+
+def _share_segments(movies: list[dict], value_key: str) -> list[dict]:
+    """TOP5 각 항목의 value 비중을 누적 %(파이차트용)로 계산한다."""
+    items = [m for m in (movies or [])[:5] if isinstance(m, dict)]
+
+    def _i(value) -> int:
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return 0
+
+    total = sum(_i(m.get(value_key)) for m in items)
+    segments: list[dict] = []
+    acc = 0.0
+    for idx, movie in enumerate(items):
+        pct = (_i(movie.get(value_key)) / total * 100) if total else 0.0
+        segments.append({
+            "title": movie.get("title", ""),
+            "pct": round(pct, 1),
+            "color": PIE_PALETTE[idx % len(PIE_PALETTE)],
+            "start": round(acc, 2),
+            "end": round(acc + pct, 2),
+        })
+        acc += pct
+    return segments
+
+
+def _conic_gradient(segments: list[dict]) -> str:
+    if not segments:
+        return ""
+    stops = ", ".join(f"{s['color']} {s['start']}% {s['end']}%" for s in segments)
+    return f"conic-gradient({stops})"
+
+
 def build_market_summary(market: dict, reservation: dict | None = None) -> dict:
     """박스오피스 TOP5로 시장 전체를 읽는 종합 지표(KPI)를 계산한다.
 
-    - 전일 총 관객: TOP5 관객 합 + 전일대비 증감률(회사 표기: 감소만 ▲)
+    - 전일 총 입장객: TOP5 관객 합 + 전일대비 증감률(회사 표기: 감소만 ▲)
     - 평균 좌석판매율: TOP5 좌석수 가중평균. 좌석이 실제로 얼마나 차는지(수요 밀도)
     - 예매 1위: 예매율 1위 작품·예매율. 내일·주말 시장 선행지표
     - TOP1 집중도: 1위 관객이 TOP5에서 차지하는 비중
@@ -1053,6 +1089,9 @@ def build_market_summary(market: dict, reservation: dict | None = None) -> dict:
     top1 = movies[0]
     top1_share = (_int(top1.get("audi_count")) / total_today * 100) if total_today else 0.0
 
+    audi_segments = _share_segments(movies, "audi_count")
+    res_segments = _share_segments(res_movies, "reservation_count")
+
     return {
         "total_audi": format_int(total_today),
         "total_audi_delta": delta_label,
@@ -1062,6 +1101,10 @@ def build_market_summary(market: dict, reservation: dict | None = None) -> dict:
         "res_top_title": res_title,
         "top1_share": f"{top1_share:.1f}%",
         "top1_title": top1.get("title") or "",
+        "audi_chart": _conic_gradient(audi_segments),
+        "audi_legend": audi_segments,
+        "res_chart": _conic_gradient(res_segments),
+        "res_legend": res_segments,
     }
 
 

@@ -168,18 +168,34 @@
     <button type="button" class="tool-btn" onclick="RADAR.clearSearch()">전체 보기</button>
   </div>
   <section class="kpis" aria-label="핵심 지표">
-    <div class="kpi"><span>전일 총 관객</span><strong>{% if market_summary %}{{ market_summary.total_audi }}명{% if market_summary.total_audi_delta %} <span class="audi-delta audi-delta-{{ market_summary.total_audi_delta_sign }}">({{ market_summary.total_audi_delta }})</span>{% endif %}{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi"><span>전일 총 입장객</span><strong>{% if market_summary %}{{ market_summary.total_audi }}명{% if market_summary.total_audi_delta %} <span class="audi-delta audi-delta-{{ market_summary.total_audi_delta_sign }}">({{ market_summary.total_audi_delta }})</span>{% endif %}{% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>평균 좌석판매율</span><strong>{% if market_summary %}{{ market_summary.avg_seat_sales }}{% else %}데이터 없음{% endif %}</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>{% if market_summary and market_summary.res_top_rate %}{{ market_summary.res_top_rate }}{% if market_summary.res_top_title %} <span class="kpi-sub">{{ market_summary.res_top_title }}</span>{% endif %}{% else %}데이터 없음{% endif %}</strong></div>
-    <div class="kpi"><span>TOP1 집중도</span><strong>{% if market_summary %}{{ market_summary.top1_share }} <span class="kpi-sub">{{ market_summary.top1_title }}</span>{% else %}데이터 없음{% endif %}</strong></div>
+    <div class="kpi kpi-chart"><span>전일 입장객 비중</span>
+      {% if market_summary and market_summary.audi_chart %}
+      <div class="kpi-pie-wrap">
+        <div class="kpi-pie" style="background:{{ market_summary.audi_chart }}"></div>
+        <ul class="kpi-legend">
+          {% for s in market_summary.audi_legend %}<li><i style="background:{{ s.color }}"></i><span class="kpi-leg-title">{{ s.title }}</span> {{ s.pct }}%</li>{% endfor %}
+        </ul>
+      </div>
+      {% else %}<strong>데이터 없음</strong>{% endif %}
+    </div>
+    <div class="kpi kpi-chart"><span>실시간 예매량 비중</span>
+      {% if market_summary and market_summary.res_chart %}
+      <div class="kpi-pie-wrap">
+        <div class="kpi-pie" style="background:{{ market_summary.res_chart }}"></div>
+        <ul class="kpi-legend">
+          {% for s in market_summary.res_legend %}<li><i style="background:{{ s.color }}"></i><span class="kpi-leg-title">{{ s.title }}</span> {{ s.pct }}%</li>{% endfor %}
+        </ul>
+      </div>
+      {% else %}<strong>데이터 없음</strong>{% endif %}
+    </div>
   </section>
 
   <section class="briefing-grid">
-    {% if ai_briefing %}{{ ai_briefing_panel(ai_briefing) }}{% endif %}
-    <aside class="briefing-side-stack">
       <section class="panel" data-section="boxoffice">
         <div class="panel-head">
-          <h2>전일 관객 TOP 5</h2>
+          <h2>전일 입장객 TOP 5</h2>
           <span>KOBIS</span>
         </div>
         <ol class="boxoffice-list">
@@ -204,6 +220,7 @@
         {% if not boxoffice %}<p class="empty">KOBIS 박스오피스 데이터가 없습니다.</p>{% endif %}
       </section>
 
+      <aside class="briefing-side-stack">
       <section class="panel" data-section="reservation">
         <div class="panel-head">
           <h2>실시간 예매량 TOP 5</h2>
@@ -243,6 +260,8 @@
       </section>
     </aside>
   </section>
+
+  {% if ai_briefing %}{{ ai_briefing_panel(ai_briefing) }}{% endif %}
 
   <div class="ai-briefing-toggle">
     <button type="button" class="dashboard-toggle-btn" onclick="RADAR.toggleDashboard()">
@@ -376,7 +395,7 @@
     { key: 'aiBriefing',  label: 'AI 브리핑',       sel: '.ai-briefing-panel' },
     { key: 'kpis',        label: '핵심 지표',       sel: '.kpis' },
     { key: 'curation',    label: '핵심 큐레이션',   sel: '.curation-panel' },
-    { key: 'boxoffice',   label: '전일 관객 TOP 5', sel: '[data-section="boxoffice"]' },
+    { key: 'boxoffice',   label: '전일 입장객 TOP 5', sel: '[data-section="boxoffice"]' },
     { key: 'reservation', label: '실시간 예매량',   sel: '[data-section="reservation"]' },
     { key: 'overseas',    label: '북미 주말 TOP 5', sel: '[data-section="overseas"]' },
     { key: 'market',      label: '시장동향',        sel: '.market-trends-panel' },
@@ -470,7 +489,7 @@
       var briefingSidestack = q('.briefing-side-stack');
       if (briefingSidestack) {
         setVisible(briefingSidestack,
-          visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas'));
+          visibleBySetting('reservation') || visibleBySetting('overseas'));
       }
       updateDashboardToggleLabel();
       var status = q('#searchStatus');

@@ -114,7 +114,7 @@ def render_text(b: dict, market: dict | None = None, reservation: dict | None = 
     s = _market_summary(market or {}, reservation or {})
     if s:
         lines.append("━━ 핵심 지표 ━━")
-        total_line = f"  전일 총 관객: {s['total_audi']}명"
+        total_line = f"  전일 총 입장객: {s['total_audi']}명"
         if s["total_audi_delta"]:
             total_line += f" {s['total_audi_delta']}"
         lines.append(total_line)
@@ -145,7 +145,7 @@ def render_text(b: dict, market: dict | None = None, reservation: dict | None = 
         lines.append("")
 
     if market and market.get("movies"):
-        lines.append("━━ 전일 관객 TOP 5 (KOBIS) ━━")
+        lines.append("━━ 전일 입장객 TOP 5 (KOBIS) ━━")
         for m in (market.get("movies") or [])[:5]:
             aud = _fmt_int(m.get("audi_count"))
             acc = _fmt_int(m.get("audi_acc"))
@@ -311,7 +311,7 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
     return (
         '<table width="100%" cellspacing="6" cellpadding="0" border="0" '
         'style="border-collapse:separate;margin:8px 4px 4px;">'
-        f'<tr>{_cell("전일 총 관객", total_val)}{_cell("평균 좌석판매율", seat_val)}'
+        f'<tr>{_cell("전일 총 입장객", total_val)}{_cell("평균 좌석판매율", seat_val)}'
         f'{_cell("예매 1위", res_val)}{_cell("TOP1 집중도", top1_val)}</tr>'
         '</table>'
     )
@@ -346,7 +346,7 @@ def _boxoffice_top5_block(market: dict) -> str:
             '</li>'
         )
     inner = '<ol style="margin:0;padding:0;list-style:none;font-size:13px;line-height:1.55;">' + "".join(rows) + '</ol>'
-    return _block("📊 전일 관객 TOP 5  <span style='color:#6b7280;font-size:11px;font-weight:600;'>KOBIS</span>", inner)
+    return _block("📊 전일 입장객 TOP 5  <span style='color:#6b7280;font-size:11px;font-weight:600;'>KOBIS</span>", inner)
 
 
 def _reservation_top5_block(reservation: dict) -> str:

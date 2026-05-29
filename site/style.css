@@ -197,6 +197,51 @@ h1 {
   font-weight: 600;
 }
 
+/* 핵심 지표 파이차트(전일 입장객·예매 비중) */
+.kpi-pie-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 7px;
+  min-width: 0;
+}
+.kpi-pie {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.12);
+}
+.kpi-legend {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.66rem;
+  line-height: 1.5;
+  color: #374151;
+  min-width: 0;
+  flex: 1 1 0;
+}
+.kpi-legend li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.kpi-legend i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.kpi-leg-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -208,13 +253,17 @@ h1 {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.85fr);
   gap: 12px;
-  align-items: start;
+  align-items: stretch;
   margin-bottom: 12px;
 }
-.briefing-grid .ai-briefing-panel { margin-bottom: 0; }
+/* 우측 스택(예매+북미)이 좌측 전일관객 TOP5와 바닥선을 맞추도록 높이를 채워 분배 */
 .briefing-side-stack {
   display: grid;
+  grid-template-rows: 1fr 1fr;
   gap: 12px;
+}
+.briefing-side-stack > .panel {
+  overflow: auto;
 }
 
 .lane-grid {
@@ -1082,7 +1131,7 @@ body.dashboard-collapsed .policy-panel { display: none; }
   font-weight: 600;
 }
 
-/* 전일 관객 TOP5 — 전일대비 증감 표기(회사 규칙): 증가는 숫자만, 감소는 ▲ 접두. 색은 통일 */
+/* 전일 입장객 TOP5 — 전일대비 증감 표기(회사 규칙): 증가는 숫자만, 감소는 ▲ 접두. 색은 통일 */
 .audi-delta { font-weight: 800; color: inherit; }
 .audi-delta-up,
 .audi-delta-down { color: inherit; }

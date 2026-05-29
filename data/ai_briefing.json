@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T00:05:00+00:00",
+  "generated_at": "2026-05-29T02:04:34+00:00",
   "model": "claude-sonnet-4-6 (routine)",
   "categories": [
     {
@@ -7,19 +7,19 @@
       "name": "영화",
       "items": [
         {
-          "summary": "롯데시네마, 6월 롯시픽 단독 개봉작 4편 발표…메이플스토리 극장판 '디어 마이 히어로'·재개봉 명작·웰메이드 공포까지 장르 다변화",
-          "source": "로이슈",
-          "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBaZ3hVZldMUG9pSDNPT3ItZXNRbHdlVkJwelNvM0RHZ0YtTnpJUW0xcVVLemIyQzdtdVczQ0s4eFZRd0JZOURpZFA2cnZ3QktZZWVIZlRTZmhObnpfRjJRWENKelpCb1lycEY2a1VTN3hlM0IydlVGV1R3?oc=5"
+          "summary": "'군체' 개봉 8일 만에 누적 250만 명 돌파, 12일 연속 예매 1위 유지하며 300만 고지 향해 질주",
+          "source": "스포츠경향",
+          "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9mbnJwZWVjNmEwc1BFSWdHWFMyZmVVQkRybVFadXRSakV0SFc"
         },
         {
-          "summary": "'군체' 누적 250만 명 돌파, 12일 연속 예매 1위 유지하며 2위 '와일드 씽'과 격차 지속 확대",
-          "source": "ER 이코노믹리뷰",
-          "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5fVlFkVWtiQV9oenlmMmJ5U3drTG9tZFF6LURvYWJodkJpNk92S1RmRGVCdHNkVFAwU0IyY2Iwdlc2TFFQRGxWakNhdnQwQWNYSUxaM0IzTEljbTZGRzBNcWFza2ZIem1reGF1Wg?oc=5"
-        },
-        {
-          "summary": "A24 공포영화 '백룸', 개봉 이틀째 누적 8만 명 돌파…국내 A24 배급작 역대 최고 오프닝 페이스 기록",
+          "summary": "A24 공포영화 '백룸' 개봉 이틀째 누적 8만 명 돌파, 국내 A24 배급작 역대 최고 오프닝 페이스 기록",
           "source": "뉴스핌",
-          "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCUWZIWEpQNGd1TERtLTQzcTd6VTBNZ3BZVldUb0ZQYnl0TktjdUpObmdRTWx5YjVqa0xoc1IzbFdpak5FV2x4WjRUZ084V25rQmo3VWc4YlhnQjV2?oc=5"
+          "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCUWZIWEpQNGd1TERtLTQzcTd6VTBNZ3BZVldUb0ZQYnl0Tkt"
+        },
+        {
+          "summary": "강동원·엄태구 주연 '와일드 씽' 개봉 첫 주 무대인사 확정, 현충일 연휴 트라이앵글 vs 최성곤 팬덤 대결 예고",
+          "source": "조선일보",
+          "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQNi1JQ1oxLTVzMnVBRTVhQi1WbzNLeVRoMy1Fcnpzb1pTcUJ"
         }
       ]
     },
@@ -28,19 +28,19 @@
       "name": "영화관·OTT",
       "items": [
         {
-          "summary": "삼성전자, 롯데시네마에 세계 최초 극장 전용 '시네마 LED' 스크린 도입 확정",
-          "source": "samsung.com",
-          "source_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1Ea0VPNUQxamNXYnBkUnJrZndiQW0xbGxucnZBT3ZIUmFuRGZxc1BQcXc3SHFoVGNGczRJTlRSbmcweXFuekFfM21GYzJVV1VhOGoxRXk0dDJiLXpSTWJfTnZRbVZXZEdjLW9ZTFhUMA?oc=5"
-        },
-        {
-          "summary": "문화체육관광부, 영화계 민관협의체 첫 회의 개최…극장·OTT 상생 방안 논의 본격화",
+          "summary": "문화체육관광부, 영화계 민관협의체 첫 회의 개최 — 극장·OTT 상생 방안 논의 본격화",
           "source": "아시아경제",
-          "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFAyN1o3b0w4Q0wyb1VQNFJnSHN0U0sycXNxVDlSaWlJY0tRdXpLbjd0SnBlc3lEbGx0OEJYWm0weE9VSnE5aWgwWENGRjhIVjZuWlRZcGQtTGU1eHRxR014TQ?oc=5"
+          "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFAyN1o3b0w4Q0wyb1VQNFJnSHN0U0sycXNxVDlSaWlJY0tRdXpLbjd0SnBlc3lEbGx0OEJ"
         },
         {
-          "summary": "CGV 스크린X, '군체' 상영 중 2026년 최고 객석률 달성…개봉 주말 30% 돌파",
-          "source": "머니투데이",
-          "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5xTExzcU9PMktodmxEMllCZnlWVDc0Y2RnTDZ0T3VQTEFSOU1wV0FmV0ptZzB2aU9yV1lPa3dzamViWVZESFA1aERod0RNM2xYY3hTZ18yNGJ6Qk1feDB0R1RWQkh2Ym0xa2pV0gFwQVVfeXFMTlg3RUJ6ZC12LTF0d0gwcGg5UDE0czNYTEFhbEdjNEZ3SHZSY1ZYVnFRZDg4bkNxbEU5LWxlVkdlZXRYdmFuZnNHcmtfQnFnYi1kdVVwUmlVeXgxeTVEVHpsc2dkd1RRR1FnVzgtaGhKbg?oc=5"
+          "summary": "롯데시네마, 6월 롯시픽 단독 개봉 4편 라인업 공개 — 메이플스토리 극장판·호러 등 장르 다변화",
+          "source": "로이슈",
+          "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBaZ3hVZldMUG9pSDNPT3ItZXNRbHdlVkJwelNvM0RHZ0YtTnp"
+        },
+        {
+          "summary": "웨이브, OTT 업계 최초 '미디어 커머스' 서비스 도입 — 골프 중계 시청 중 실시간 쇼핑 연동",
+          "source": "연합뉴스",
+          "source_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA4VmxWdERwd2NBYlphUC1aRFhxV0ZzbExPX1lrN0lNUnU1UGxWMUF4elZiR0NaMTNSaVE"
         }
       ]
     },
@@ -49,14 +49,14 @@
       "name": "드라마·공연·시리즈",
       "items": [
         {
-          "summary": "CJ ENM '취사병 전설이 되다', 글로벌 공개 첫 주 1.2억 뷰 달성하며 다수 글로벌 OTT 상위권 점령",
+          "summary": "CJ ENM '취사병 전설이 되다', 글로벌 OTT 공개 첫 주 1.2억 뷰 달성하며 다수 국가 차트 1위 점령",
           "source": "더구루",
-          "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBULTU4NmxGZU5NbTh5Zzdwc2tsY2hVMnFyaTlYd21YYlg0X0FLY1N3Z0MxblhOcWhCM2FJSlRuZkNESlgza3RnOUJUSjEweVFUUk1yZ2I1Z0c1dTNfNjNlaVUyUQ?oc=5"
+          "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBULTU4NmxGZU5NbTh5Zzdwc2tsY2hVMnFyaTlYd21YYlg0X0FLY1N3Z0MxblhOcWhCM2E"
         },
         {
-          "summary": "예능 '유재석 캠프', 공개 후 한국·홍콩·싱가포르 넷플릭스 TV 프로그램 부문 1위 동시 기록",
+          "summary": "넷플릭스 예능 '유재석 캠프', 공개 이틀 만에 한국·홍콩·싱가포르 비영화 부문 1위 동시 달성",
           "source": "YTN",
-          "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iaVBRNW1uM1YtS1BNUDNpeDA5TERzbGhoYl9UWXYzTDFUeTk2U2pOQ2FvLVA3NmRBN3JjV3hfWGFYNm90dEJZXzk3emN3dVlzTnFtakJralV0dU1sSlhF?oc=5"
+          "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iaVBRNW1uM1YtS1BNUDNpeDA5TERzbGhoYl9UWXYzTDFUeTk2U2pOQ2FvLVA3NmRBN3I"
         }
       ]
     },
@@ -65,14 +65,14 @@
       "name": "라이브사업·체험사업·IP",
       "items": [
         {
-          "summary": "메이플스토리 여름 쇼케이스 티켓팅, 오픈 1분 만에 전석 완판…게임 IP 라이브 사업 흥행 재확인",
-          "source": "게임톡",
-          "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ZMm0welpPTVpoQkczUl9qb0JKOFpBQVp3WTRqN1pGd0p6SV9GbTRielhrZ0NtTVBFOWJ3TURwcTN2RGFNeXVzU0NCWlFLaUpnWjZMLTJqT254aDZXYk1IMl9LNFQ1d016Skk3VA?oc=5"
+          "summary": "제19회 NOL골든티켓어워즈, 임영웅 '아임 히어로 투어' 2년 연속 대상 — 뮤지컬 '지킬앤하이드' 뮤지컬상 수상",
+          "source": "데일리안",
+          "source_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNdUpZUTZhcVNvaklNS1F2UGdBRWJHTEpsek4tZmZKUjF0RkhFTk90ZFNfaTk1TXNZd2E"
         },
         {
-          "summary": "제19회 NOL골든티켓어워즈에서 임영웅 콘서트 2년 연속 대상 수상, 뮤지컬 '지킬앤하이드' 뮤지컬상 수상",
-          "source": "데일리안",
-          "source_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNdUpZUTZhcVNvaklNS1F2UGdBRWJHTEpsek4tZmZKUjF0RkhFTk90ZFNfaTk1TXNZd2FoQVVMNXFtb1c2akJnRjVvbEtwLV9nWU5lYnNmQmI0dUFkTTJQOHNiVkpKTGVhZHlab3JjelA2cmZsazlvWnUxNkZ3S1dpWU1Qb2dQQUs2SjdnbHFSc2FpSlpLeGtmakpzcVZMWUp4aXdVSE51cXdZMk43clNENXVmSzZHMEFMR3Y1d1ZpOTBlN2FQbE82ZlQ4VExJSzk0SjRRVjRwYTdlclppdEQyMTJrUFA3aW82eUxMUHRiVDBabjVoZVpR0gH6AUFVX3lxTE4xTHlvNUxGNElYQ2FlVEo0dHpTY0RlenN6VW14MzFtRjJpZkxlMzVhZm5QV2lEdjl0eDh2dWxJQ1F2a1pMSFdDd1dCcE5GbzN5d3NwcEdBVldlV1FzQXFoa2UzaEUwTFhsTzR1bS10Q3ZRUVJFTWY5TkRtcGtScXBfYjBJcnBiUGpKem9qTjJtM1IyMm5ldXk2SlFyd21hVHNOWnd6N3dnSlN5TU0xeDVzR2pFMDVETmNsc0t0ZUN5YnB1eTRtMGVld3Jha1dyU2pqY3ZpZTE0Vm9YLS14TGZVMG9KUC1jUmdYLXRWQy14VmNpc1o1VGk5Zmc?oc=5"
+          "summary": "삼성전자, 롯데시네마에 세계 최초 극장 전용 '시네마 LED' 스크린 도입 — 프리미엄 몰입형 관람 체험 강화",
+          "source": "samsung.com",
+          "source_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1Ea0VPNUQxamNXYnBkUnJrZndiQW0xbGxucnZBT3ZIUmFuRGY"
         }
       ]
     },
@@ -81,12 +81,12 @@
       "name": "해외·마켓",
       "items": [
         {
-          "summary": "북미 5월 22~24일 주말 박스오피스: '만달로리안과 그로구' $8,170만으로 1위 출발, 디즈니 스타워즈 극장판 전략 성공적 개막",
-          "source": "Box Office Mojo",
-          "source_url": "https://www.boxofficemojo.com/release/rl3294527489/?ref_=bo_hm_rd"
+          "summary": "'스타워즈: 만달로리안과 그로구', 5월 22~24일 북미 박스오피스 1위 — 주말 수익 약 8,170만 달러로 디즈니 스타워즈 극장판 전략 첫 성과 확인",
+          "source": "The New York Times",
+          "source_url": "https://www.nytimes.com/2026/05/24/business/media/mandalorian-and-grogu-box-office.html?partner=naver"
         },
         {
-          "summary": "'토이 스토리 5', 북미 오프닝 $1억 5,000만 달러 예상…픽사 프랜차이즈 역대 신기록 및 2026년 연간 흥행 최고 기록 전망",
+          "summary": "픽사 '토이 스토리 5', 북미 오프닝 주말 1억5,000만 달러 전망 — 프랜차이즈 역대 최고 및 2026년 연간 박스오피스 신기록 예상",
           "source": "Deadline",
           "source_url": "https://deadline.com/2026/05/toy-story-5-box-office-projection-1236929392/"
         }

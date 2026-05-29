@@ -23,30 +23,14 @@ jobs:
         id: today
         run: echo "date=$(TZ=Asia/Seoul date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
 
-      - name: Build mail bodies (text + html)
-        run: |
-          python scripts/build_mail_body.py text > mail_body.txt
-          python scripts/build_mail_body.py html > mail_body.html
-          echo "--- text preview (head) ---"
-          head -20 mail_body.txt
-          echo "--- html size ---"
-          wc -c mail_body.html
-
+      # 파이차트를 인라인(CID) 이미지로 심어 발송 — Outlook 등 외부 이미지 차단
+      # 환경에서도 차트가 보이도록 Python smtplib로 직접 발송한다.
+      # (dawidd6/action-send-mail은 CID 인라인 첨부를 지원하지 않음)
       - name: Send AI briefing email
-        if: ${{ env.GMAIL_USER != '' && env.GMAIL_APP_PASSWORD != '' }}
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          secure: false
-          username: ${{ secrets.GMAIL_USER }}
-          password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          from: "AI Briefing Bot <${{ secrets.GMAIL_USER }}>"
-          to: ${{ secrets.GMAIL_RECIPIENTS != '' && secrets.GMAIL_RECIPIENTS || secrets.GMAIL_USER }}
-          subject: "[오늘의 AI 브리핑] ${{ steps.today.outputs.date }}"
-          body: file://mail_body.txt
-          html_body: file://mail_body.html
-          convert_markdown: false
+          GMAIL_RECIPIENTS: ${{ secrets.GMAIL_RECIPIENTS }}
+          MAIL_SUBJECT: "[오늘의 AI 브리핑] ${{ steps.today.outputs.date }}"
+          PYTHONUTF8: "1"
+        run: python scripts/send_mail.py

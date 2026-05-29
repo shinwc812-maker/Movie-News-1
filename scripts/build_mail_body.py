@@ -261,14 +261,11 @@ def _quickchart_pie_url(segments: list[dict]) -> str:
     """비중 세그먼트를 QuickChart 파이차트 이미지 URL로 변환(메일용 — 이메일은 conic 미지원)."""
     if not segments:
         return ""
-    def _short(title: str) -> str:
-        title = title or ""
-        return (title[:15] + "…") if len(title) > 15 else title
-
+    # 범례·조각 라벨은 끄고 파이 원만 그린다(범례 텍스트 길이에 따라 원 크기가
+    # 달라지는 문제 방지 → 두 차트 크기 동일). 범례는 메일 HTML에서 따로 그린다.
     config = {
         "type": "pie",
         "data": {
-            "labels": [f"{_short(s['title'])} {s['pct']}%" for s in segments],
             "datasets": [{
                 "data": [s["pct"] for s in segments],
                 "backgroundColor": [s["color"] for s in segments],
@@ -276,11 +273,12 @@ def _quickchart_pie_url(segments: list[dict]) -> str:
             }],
         },
         "options": {
-            "legend": {"position": "right", "labels": {"fontSize": 10, "boxWidth": 12}},
+            "legend": {"display": False},
+            "plugins": {"datalabels": {"display": False}},
         },
     }
     encoded = urllib.parse.quote(json.dumps(config, ensure_ascii=False, separators=(",", ":")))
-    return f"https://quickchart.io/chart?w=240&h=130&bkg=white&c={encoded}"
+    return f"https://quickchart.io/chart?w=120&h=120&bkg=white&c={encoded}"
 
 
 def _market_summary(market: dict, reservation: dict | None = None) -> dict:
@@ -367,14 +365,31 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
             f': {segments[0]["title"]} {segments[0]["pct"]}%' if segments else ""
         )
         img = (
-            f'<img src="{_esc(url)}" alt="{_esc(alt)}" '
-            'style="width:100%;max-width:260px;display:block;margin-top:4px;">'
+            f'<img src="{_esc(url)}" alt="{_esc(alt)}" width="96" height="96" '
+            'style="display:block;flex-shrink:0;">'
+        )
+        legend_rows = []
+        for seg in segments:
+            t = seg["title"] or ""
+            t = (t[:15] + "…") if len(t) > 15 else t
+            legend_rows.append(
+                '<div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'
+                f'<span style="display:inline-block;width:8px;height:8px;border-radius:2px;'
+                f'background:{seg["color"]};margin-right:5px;"></span>'
+                f'{_esc(t)} <b>{seg["pct"]}%</b></div>'
+            )
+        legend = (
+            '<div style="font-size:10px;line-height:1.6;color:#374151;min-width:0;">'
+            + "".join(legend_rows) + '</div>'
         )
         return (
-            '<td valign="top" width="50%" style="padding:8px 10px;background:#fff;'
+            '<td valign="top" width="50%" style="padding:6px 8px;background:#fff;'
             'border:1px solid #efe9c4;border-radius:6px;">'
-            f'<div style="font-size:11px;font-weight:700;color:#92400e;">{label}</div>'
-            f'{img}'
+            f'<div style="font-size:11px;font-weight:700;color:#92400e;margin-bottom:4px;">{label}</div>'
+            '<table cellpadding="0" cellspacing="0" border="0"><tr>'
+            f'<td valign="middle" style="padding-right:8px;">{img}</td>'
+            f'<td valign="middle">{legend}</td>'
+            '</tr></table>'
             '</td>'
         )
 

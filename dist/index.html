@@ -1016,14 +1016,8 @@ footer {
   gap: 12px;
   margin-bottom: 6px;
 }
-.ai-briefing-head h2 {
-  margin: 0;
-  font-size: 1.02rem;
-  color: #1f2937;
-}
 .ai-badge {
   display: inline-block;
-  margin-left: 6px;
   border-radius: 4px;
   padding: 1px 7px;
   background: #d97706;
@@ -1033,22 +1027,9 @@ footer {
   vertical-align: 2px;
 }
 .ai-generated-at { color: #94a3b8; font-size: 0.72rem; }
-.ai-headline {
-  margin: 6px 0 4px;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #92400e;
-}
-.ai-summary {
-  margin: 0 0 12px;
-  color: #374151;
-  font-size: 0.86rem;
-  line-height: 1.55;
-}
-.ai-grid {
+.ai-cat-stack {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
 }
 .ai-block {
   border-radius: 8px;
@@ -1056,42 +1037,16 @@ footer {
   background: #fffef5;
   border: 1px solid #efe9c4;
 }
+.ai-block-head {
+  margin-bottom: 4px;
+}
 .ai-block-head h3 {
-  margin: 0 0 6px;
-  font-size: 0.88rem;
+  margin: 0;
+  font-size: 0.92rem;
   color: #111827;
 }
-.ai-block.ai-own {
-  border-color: #dc2626;
-  background: #fef2f2;
-}
-.ai-block.ai-own .ai-block-head h3 { color: #b91c1c; }
-.ai-own-item { margin-bottom: 6px; }
-.ai-own-item + .ai-own-item { padding-top: 6px; border-top: 1px dashed #fecaca; }
-.ai-own-title b { font-size: 0.92rem; color: #111827; }
-.ai-kind {
-  display: inline-block;
-  margin-left: 6px;
-  border-radius: 999px;
-  padding: 1px 8px;
-  background: #fee2e2;
-  color: #b91c1c;
-  font-size: 0.66rem;
-  font-weight: 800;
-}
-.ai-points { margin: 4px 0 0; padding-left: 18px; color: #374151; font-size: 0.83rem; line-height: 1.55; }
-.ai-points li { margin-bottom: 2px; }
-.ai-points.ai-risks li { color: #b91c1c; font-weight: 700; }
-.ai-tag {
-  display: inline-block;
-  margin-right: 4px;
-  border-radius: 999px;
-  padding: 0 7px;
-  background: #e0ecff;
-  color: #1d4ed8;
-  font-size: 0.7rem;
-  font-weight: 800;
-}
+.ai-points { margin: 4px 0 0; padding-left: 18px; color: #374151; font-size: 0.86rem; line-height: 1.6; }
+.ai-points li { margin-bottom: 4px; }
 /* AI 브리핑 본문의 [매체명] 인용 → 기사 원문 링크 */
 .ai-cite {
   color: #1d4ed8;
@@ -1099,20 +1054,6 @@ footer {
   font-weight: 700;
 }
 .ai-cite:hover { text-decoration: underline; }
-.ai-dist { color: #6b7280; font-style: normal; font-size: 0.78rem; }
-.ai-implication { color: #047857; font-weight: 700; }
-.ai-overseas { margin-top: 10px; background: #fffef5; border: 1px solid #efe9c4; border-radius: 8px; padding: 10px 12px; }
-.ai-overseas-item { padding: 6px 0; }
-.ai-overseas-item + .ai-overseas-item { border-top: 1px dashed #efe9c4; }
-.ai-overseas-title { font-size: 0.88rem; font-weight: 700; color: #111827; }
-.ai-overseas-title a { color: #1d4ed8; text-decoration: none; }
-.ai-overseas-title a:hover { text-decoration: underline; }
-.ai-overseas-summary { margin: 3px 0 2px; color: #374151; font-size: 0.82rem; line-height: 1.5; }
-.ai-overseas-impl { margin: 0; color: #6b7280; font-size: 0.76rem; }
-
-@media (max-width: 900px) {
-  .ai-grid { grid-template-columns: 1fr; }
-}
 
 /* 대시보드 본문 접힘 — KPI + AI 브리핑 + 사이드 TOP5 3개는 항상 노출, 그 외만 숨김 */
 body.dashboard-collapsed .hero-grid,
@@ -1222,7 +1163,7 @@ body.is-searching .search-archive-panel { display: block; }
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 29일 09:12 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 29일 09:55 (KST)</p>
   </div>
   <div class="topbar-tools">
     <form class="search-box" role="search" onsubmit="return RADAR.onSearchSubmit(event)">
@@ -1252,7 +1193,87 @@ body.is-searching .search-archive-panel { display: block; }
   </section>
 
   <section class="briefing-grid">
+    <section class="panel ai-briefing-panel" data-section="aiBriefing">
+  <div class="ai-briefing-head">
+    <span class="ai-badge">AI SUMMARY</span>
+    <span class="ai-generated-at">2026.05.29 09:52 KST · Claude 자동 생성</span>
+  </div>
 
+  <div class="ai-cat-stack">
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>영화</h3></div>
+      <ul class="ai-points">
+
+        <li>좀비 영화 &#x27;군체&#x27; 누적 관객 237만 명 돌파·박스오피스 1위 유지, 2위는 신작 &#x27;백룸&#x27; <a class="ai-cite" href="https://news.google.com/rss/articles/CBMickFVX3lxTE9ZM05PTC1VTGRLRVFJd29YSFBVa0JWTnZCc2JqbGxxRnRhVzRiZG0zLUZOOWg1YmZQWEVRQUNuQzdEOW5UNjhqUTZFSl8tMDBrSHRMMDZXX1lCWnNMdHEtaDNpOXlhOFQwRFNwbV9pdE13dw?oc=5" target="_blank" rel="noopener">[톱스타뉴스]</a></li>
+
+        <li>롯데 배급 코미디 &#x27;와일드 씽&#x27; 컨셉 시사회 폭발 반응, 6월 3일 개봉 예정 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPMV9Dc0R5cXdBYzc4YmRIVGRQaFNjdVNsUW9sNkZhUWZOa2tBVHJmNDF4RlRfUEhleEdDWVU4TDNVWnFTQ0stSmJXeFpJWHRQZGtmeTBSNnc5RHlLTVY2Z0gxTDE0SWxZVHBVaHZVV0ItOWNwdnotTHVUcF9oYlZhRjM2ekgtQmdKWkE?oc=5" target="_blank" rel="noopener">[조선일보]</a></li>
+
+        <li>유튜브 공포 괴담 원작 &#x27;백룸&#x27;, 개봉 첫날 박스오피스 2위·5만 명 동원 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxObHFrTnlCcjVsajZxQi0yRXBtMVBwVHhnNlVHcG5PWE5Wd1prQklVNkRWQ0c1UFBNcmxHZUdFV3ZkNTBMWDZ3R2djZWxVYzhqMUxwdXQzX2VFekJFekJCeVg4WGVib3k2S2J3azlFU2VEM2NNX2xqVXVkMXd3WG81bw?oc=5" target="_blank" rel="noopener">[이데일리]</a></li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>영화관·OTT</h3></div>
+      <ul class="ai-points">
+
+        <li>넷플릭스, 2026년 6월 신규 콘텐츠 라인업 공개 <a class="ai-cite" href="https://variety.com/feature/whats-on-netflix-movies-shows-1203517873/" target="_blank" rel="noopener">[Variety]</a></li>
+
+        <li>아마존 프라임비디오, AI 생성 콘텐츠 전용 &#x27;GenAI 크리에이터 펀드&#x27; 신설·오리지널 시리즈 3편 그린라이트 <a class="ai-cite" href="https://variety.com/2026/tv/news/amazon-mgm-studios-genai-creators-fund-greenlights-series-1236759131/" target="_blank" rel="noopener">[Variety]</a></li>
+
+        <li>PE 펌 어드바야 캐피털, Comscore Movies 인수하고 &#x27;Rentrak&#x27; 브랜드 부활·극장 박스오피스 데이터 서비스 재편 <a class="ai-cite" href="https://deadline.com/2026/05/advaya-capital-acquires-comscore-movies-renames-it-rentrak-1236928611/" target="_blank" rel="noopener">[Deadline]</a></li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>드라마·공연·시리즈</h3></div>
+      <ul class="ai-points">
+
+        <li>플레이브 공연 실황 영화 &#x27;아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마&#x27; 국내 예매 3.2만 명 돌파·CGV 무비차트 상위권 <a class="ai-cite" href="https://www.mk.co.kr/article/12057367" target="_blank" rel="noopener">[매일경제]</a></li>
+
+        <li>K-이머시브 공연 대표작 &#x27;룰렛&#x27;, 7월 복귀 결정 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9KVHdjUl9aYU8zeHpCS1daMDNwdWpwRFhqSVVfY2lBMXhwNnUxSEp2Z3hubG1vSG5hQ0pYV2JGYS1CTlpwQ2ZYc3pPNG1MX1loOENUQzhzdFlObTgyM3ZYNWpTWdIBZ0FVX3lxTE45eGxCSjR3cEtrQmF2RDVOWllmNlF6U2ZmZzlpS2J4eDA1blhfUWh2eEpDRVNsWlhOMFZKbTl2UzcxTUJ6aEZGWjh6bFpjcmhLTWtISk9tbW1BNWRNZVlGQWVjMlR6MzQ?oc=5" target="_blank" rel="noopener">[abcn.kr]</a></li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>라이브사업·체험사업·IP</h3></div>
+      <ul class="ai-points">
+
+        <li>쿠팡, 팬덤 굿즈 전용 플랫폼 &#x27;콜라보클럽&#x27; 론칭·애니메이션·캐릭터 IP 굿즈 로켓배송 서비스 개시 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5NbDFMVGhfX3UydGZyYTZOdklDdkpzUm9PTU44eFRjbnBycGtiNEZwWjJPZllfM0dVd1JHNU5JZGtwXzFmT0ZrTG9aOVNjMzdnS1FHWkJYdVFPR2hEZEp5U3p0RDlXTkIzZGtXYklsVmHSAXRBVV95cUxOd0xFREpoX1lITzN4TTJEbnN0X21GU3IyNklPMVB5ekNXSEJ1WWZ2c1pHdk1IdWZoZlN5Rmc2MDNQNXc5cWtWWnBld0d2Y1NrZnJ4dmZEQ2xkLVJ4ZzdLcHcycWFGX3JLSjhfOC1rUnVmWWg2Qg?oc=5" target="_blank" rel="noopener">[thefairnews.co.kr]</a></li>
+
+        <li>씨네21, &#x27;신극장판 은혼: 요시와라 대염상&#x27; 개봉 계기로 장수 IP 비즈니스 확장 가능성 조명 <a class="ai-cite" href="https://www.cine21.com/news/view/?mag_id=110009" target="_blank" rel="noopener">[씨네21]</a></li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>해외·마켓</h3></div>
+      <ul class="ai-points">
+
+        <li>&#x27;스타워즈: 만달로리안과 그로구&#x27; 5월 22-24일 북미 박스오피스 1위·8,170만 달러 달성 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE8taEVITnNJaTl4S05JM1ZyWXVxaWoyZzI2OGotLWFzXzhGNWxPQW95OGh6c2k4alZ2bTFzQkpnOEJRN1NZckljaXVDRm13ajBYeGQxRw?oc=5" target="_blank" rel="noopener">[v.daum.net]</a></li>
+
+        <li>&#x27;군체&#x27; 말레이시아 개봉 3일 만에 한국영화 역대 흥행 3위 등극·26.5억 원 수익 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFB5YW1zcEVVaG5zRzZPY0NDWEQxZ0pjd0djNFBsZ2I4RjFMUE9fcWVhcnZWdHk3UWc0ajlrN1JXRmtCYl82UmxSaVhSUDlmZTRTUnNzUGIxTQ?oc=5" target="_blank" rel="noopener">[뉴스1]</a></li>
+
+      </ul>
+    </div>
+
+
+
+  </div>
+
+</section>
     <aside class="briefing-side-stack">
       <section class="panel" data-section="boxoffice">
         <div class="panel-head">
@@ -3462,7 +3483,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5oc0NybVVfSlNZY01EU0s3V3NDQjl4QWhiR2lDMUxGUzZ3a3BTR3RkZlVaRW1DT3pOQk1TLWZaMTRqWGdyaXFEd2tnNWp4aGt3NWVtdFFvcHNPblI3VDVJVdIBYEFVX3lxTE5oc0NybVVfSlNZY01EU0s3V3NDQjl4QWhiR2lDMUxGUzZ3a3BTR3RkZlVaRW1DT3pOQk1TLWZaMTRqWGdyaXFEd2tnNWp4aGt3NWVtdFFvcHNPblI3VDVJVQ?oc=5" target="_blank" rel="noopener">[박스오피스] &#39;군체&#39; 200만명 돌파…&#39;왕사남&#39;보다 빠르다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 연합뉴스</span>
-    <span class="time">2일 전</span>
+    <span class="time">3일 전</span>
   </div>
   <p class="archive-excerpt">[박스오피스] &#39;군체&#39; 200만명 돌파…&#39;왕사남&#39;보다 빠르다 연합뉴스</p>
   <div class="chips"><span>군체</span></div>

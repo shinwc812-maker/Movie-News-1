@@ -1052,10 +1052,10 @@ footer {
 /* ===== AI 브리핑 패널 (임원용 최상단) ===== */
 .ai-briefing-panel {
   margin-bottom: 12px;
-  border: 1px solid #e3deb6;
+  border: 1px solid #dbe3ec;
   border-radius: 10px;
   padding: 14px 16px 12px;
-  background: #fdfbe9;
+  background: #f1f5f9;
   box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
 }
 .ai-briefing-head {
@@ -1083,8 +1083,8 @@ footer {
 .ai-block {
   border-radius: 8px;
   padding: 10px 12px;
-  background: #fffef5;
-  border: 1px solid #efe9c4;
+  background: #ffffff;
+  border: 1px solid #e6ebf1;
 }
 .ai-block-head {
   margin-bottom: 4px;
@@ -1094,7 +1094,7 @@ footer {
   font-size: 0.92rem;
   color: #111827;
 }
-.ai-points { margin: 4px 0 0; padding-left: 18px; color: #374151; font-size: 0.86rem; line-height: 1.6; }
+.ai-points { margin: 4px 0 0; padding-left: 18px; color: #1f2937; font-size: 0.86rem; line-height: 1.6; }
 .ai-points li { margin-bottom: 4px; }
 /* AI 브리핑 본문의 [매체명] 인용 → 기사 원문 링크 */
 .ai-cite {

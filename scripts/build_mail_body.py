@@ -181,7 +181,7 @@ def _esc(s) -> str:
     return _html.escape(str(s or ""))
 
 
-def _ul(items_html: list[str], color: str = "#374151") -> str:
+def _ul(items_html: list[str], color: str = "#1f2937") -> str:
     if not items_html:
         return ""
     lis = "".join(
@@ -196,7 +196,7 @@ def _ul(items_html: list[str], color: str = "#374151") -> str:
 def _block(title: str, inner: str, *, head_color: str = "#111827") -> str:
     """일반 박스(베이지 톤)."""
     return (
-        '<div style="background:#fffef5;border:1px solid #efe9c4;'
+        '<div style="background:#ffffff;border:1px solid #e6ebf1;'
         'border-radius:8px;padding:11px 13px;height:100%;box-sizing:border-box;">'
         f'<div style="margin:0 0 6px;font-size:13px;font-weight:800;'
         f'color:{head_color};">{title}</div>'
@@ -218,7 +218,7 @@ def _delta_color(value) -> str:
         return "#dc2626"
     if value > 0:
         return "#2563eb"
-    return "#374151"
+    return "#1f2937"
 
 
 def _fmt_delta_audi(audi_inten, audi_change) -> str:
@@ -382,7 +382,7 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
     def _cell(label: str, value_html: str, width: str = "50%") -> str:
         return (
             f'<td valign="top" width="{width}" style="padding:8px 10px;background:#fff;'
-            'border:1px solid #efe9c4;border-radius:6px;">'
+            'border:1px solid #e6ebf1;border-radius:6px;">'
             f'<div style="font-size:11px;font-weight:700;color:#92400e;">{label}</div>'
             f'<div style="margin-top:3px;font-size:12px;font-weight:700;color:#111827;">{value_html}</div>'
             '</td>'
@@ -417,12 +417,12 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
                 f'{_esc(t)} <b>{seg["pct"]}%</b></div>'
             )
         legend = (
-            '<div style="font-size:10px;line-height:1.6;color:#374151;min-width:0;">'
+            '<div style="font-size:10px;line-height:1.6;color:#1f2937;min-width:0;">'
             + "".join(legend_rows) + '</div>'
         )
         return (
             '<td valign="top" width="50%" style="padding:6px 8px;background:#fff;'
-            'border:1px solid #efe9c4;border-radius:6px;">'
+            'border:1px solid #e6ebf1;border-radius:6px;">'
             f'<div style="font-size:11px;font-weight:700;color:#92400e;margin-bottom:4px;">{label}</div>'
             '<table cellpadding="0" cellspacing="0" border="0"><tr>'
             f'<td valign="middle" style="padding-right:8px;">{img}</td>'
@@ -471,7 +471,7 @@ def _boxoffice_top5_block(market: dict) -> str:
             '<li style="margin-bottom:5px;">'
             f'<span style="display:inline-block;min-width:22px;color:#92400e;font-weight:800;">{rank}.</span>'
             f' <b>{title}</b>{open_html}'
-            f'<div style="margin:1px 0 0 22px;color:#374151;font-size:12px;">{meta}</div>'
+            f'<div style="margin:1px 0 0 22px;color:#1f2937;font-size:12px;">{meta}</div>'
             '</li>'
         )
     inner = '<ol style="margin:0;padding:0;list-style:none;font-size:13px;line-height:1.55;">' + "".join(rows) + '</ol>'
@@ -499,7 +499,7 @@ def _reservation_top5_block(reservation: dict) -> str:
         rows.append(
             '<li style="margin-bottom:4px;">'
             f'<span style="display:inline-block;min-width:22px;color:#92400e;font-weight:800;">{rank}.</span>'
-            f' <b>{title}</b> <span style="color:#374151;font-size:12px;">— {meta}</span>'
+            f' <b>{title}</b> <span style="color:#1f2937;font-size:12px;">— {meta}</span>'
             '</li>'
         )
     inner = '<ol style="margin:0;padding:0;list-style:none;font-size:13px;line-height:1.55;">' + "".join(rows) + '</ol>'
@@ -524,7 +524,7 @@ def _mojo_top5_block(overseas: dict) -> str:
         rows.append(
             '<li style="margin-bottom:4px;">'
             f'<span style="display:inline-block;min-width:22px;color:#92400e;font-weight:800;">{rank}.</span>'
-            f' {title_html} <span style="color:#374151;font-size:12px;">— <b>{gross}</b></span>'
+            f' {title_html} <span style="color:#1f2937;font-size:12px;">— <b>{gross}</b></span>'
             '</li>'
         )
     sub = f" · {_esc(label)}" if label else ""
@@ -577,7 +577,7 @@ def render_html(b: dict, articles: list, market: dict | None = None,
     # 좌측 본문 — 카테고리 정보 + 푸터(인라인)
     # 푸터를 좌측 컬럼 끝에 두어, 우측 TOP5보다 좌측이 짧을 때 생기는 큰 빈 여백 아래쪽에 버튼이 떨어지는 문제를 막음
     footer_inline = (
-        '<div style="border-top:1px dashed #e3deb6;'
+        '<div style="border-top:1px dashed #dbe3ec;'
         'padding:12px 6px 6px;text-align:center;margin-top:12px;">'
         f'<a href="{_esc(DASHBOARD_URL)}" style="color:#1d4ed8;font-weight:800;'
         'text-decoration:none;font-size:14px;">📊 전체 대시보드 보기 →</a>'
@@ -608,9 +608,9 @@ def render_html(b: dict, articles: list, market: dict | None = None,
     )
 
     return f"""<!DOCTYPE html>
-<html><body style="margin:0;padding:0;background:#f1f5f9;">
+<html><body style="margin:0;padding:0;background:#e2e8f0;">
 <div style="max-width:820px;margin:18px auto;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;color:#1f2937;">
-  <div style="background:#fdfbe9;border:1px solid #e3deb6;border-radius:10px 10px 0 0;padding:14px 18px 8px;">
+  <div style="background:#f1f5f9;border:1px solid #dbe3ec;border-radius:10px 10px 0 0;padding:14px 18px 8px;">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
       <div style="font-size:17px;font-weight:800;color:#1f2937;">
         <span style="background:#d97706;color:#fff;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:800;vertical-align:2px;">AI SUMMARY</span>
@@ -619,7 +619,7 @@ def render_html(b: dict, articles: list, market: dict | None = None,
     </div>
     {kpi_html}
   </div>
-  <div style="background:#fdfbe9;border:1px solid #e3deb6;border-top:none;border-radius:0 0 10px 10px;">
+  <div style="background:#f1f5f9;border:1px solid #dbe3ec;border-top:none;border-radius:0 0 10px 10px;">
     {body_table}
   </div>
 </div>

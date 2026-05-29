@@ -83,7 +83,8 @@
       <div class="ai-block-head"><h3>{{ cat.name }}</h3></div>
       <ul class="ai-points">
         {% for it in cat["items"] %}
-        <li>{{ it.summary_html|default(it.summary)|safe }}{% if it.source %} {% if it.source_url %}<a class="ai-cite" href="{{ it.source_url }}" target="_blank" rel="noopener">[{{ it.source }}]</a>{% else %}<span class="ai-cite">[{{ it.source }}]</span>{% endif %}{% endif %}</li>
+        {% set t = it.title or it.summary %}
+        <li>{% if it.source_url %}<a class="ai-title-link" href="{{ it.source_url }}" target="_blank" rel="noopener">{{ t }}</a>{% else %}<span class="ai-title-link">{{ t }}</span>{% endif %}</li>
         {% endfor %}
       </ul>
     </div>

@@ -1095,7 +1095,7 @@ footer {
   color: #111827;
 }
 .ai-points { margin: 4px 0 0; padding-left: 18px; color: #1f2937; font-size: 0.86rem; line-height: 1.6; }
-.ai-points li { margin-bottom: 4px; }
+.ai-points li { margin-bottom: 10px; }
 /* AI 브리핑 본문의 [매체명] 인용 → 기사 원문 링크 */
 .ai-cite {
   color: #1d4ed8;
@@ -1103,6 +1103,9 @@ footer {
   font-weight: 700;
 }
 .ai-cite:hover { text-decoration: underline; }
+/* AI 브리핑 항목 = 기사 제목(링크) 한 줄 */
+.ai-title-link { color: #1f2937; text-decoration: none; font-weight: 600; }
+.ai-title-link:hover { text-decoration: underline; }
 
 /* 대시보드 본문 접힘 — KPI + AI 브리핑 + 사이드 TOP5 3개는 항상 노출, 그 외만 숨김 */
 body.dashboard-collapsed .hero-grid,

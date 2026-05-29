@@ -137,10 +137,7 @@ def render_text(b: dict, market: dict | None = None, reservation: dict | None = 
             continue
         lines.append(f"━━ {cat.get('name','')} ━━")
         for it in items:
-            line = f"• {it.get('summary','')}"
-            if it.get("source"):
-                line += f" [{it['source']}]"
-            lines.append(line)
+            lines.append(f"• {it.get('title') or it.get('summary','')}")
             if it.get("source_url"):
                 lines.append(f"  {it['source_url']}")
         lines.append("")
@@ -181,11 +178,11 @@ def _esc(s) -> str:
     return _html.escape(str(s or ""))
 
 
-def _ul(items_html: list[str], color: str = "#1f2937") -> str:
+def _ul(items_html: list[str], color: str = "#1f2937", li_margin: str = "3px") -> str:
     if not items_html:
         return ""
     lis = "".join(
-        f'<li style="margin-bottom:3px;">{x}</li>' for x in items_html if x
+        f'<li style="margin-bottom:{li_margin};">{x}</li>' for x in items_html if x
     )
     return (
         f'<ul style="margin:4px 0 0;padding-left:20px;color:{color};'
@@ -533,25 +530,21 @@ def _mojo_top5_block(overseas: dict) -> str:
 
 
 def _category_block(name: str, items: list[dict], L) -> str:
-    """AI 브리핑 카테고리 블록 — '핵심 한줄요약 [출처](링크)' 리스트."""
+    """AI 브리핑 카테고리 블록 — 기사 제목(링크) 한 줄 리스트."""
     if not items:
         return ""
     lis = []
     for it in items:
-        summary = L(it.get("summary", ""))
-        src = _esc(it.get("source", ""))
+        title = _esc(it.get("title") or it.get("summary", ""))
         url = it.get("source_url", "")
-        cite = ""
-        if src:
-            if url:
-                cite = (
-                    f' <a href="{_esc(url)}" style="color:#1d4ed8;'
-                    f'text-decoration:none;font-weight:700;">[{src}]</a>'
-                )
-            else:
-                cite = f' <span style="color:#6b7280;">[{src}]</span>'
-        lis.append(f"{summary}{cite}")
-    return _block(_esc(name), _ul(lis))
+        if url:
+            lis.append(
+                f'<a href="{_esc(url)}" style="color:#1f2937;'
+                f'text-decoration:none;font-weight:600;">{title}</a>'
+            )
+        else:
+            lis.append(title)
+    return _block(_esc(name), _ul(lis, li_margin="9px"))
 
 
 def render_html(b: dict, articles: list, market: dict | None = None,

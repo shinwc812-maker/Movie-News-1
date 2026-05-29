@@ -14,6 +14,7 @@ import html as _html
 import json
 import re
 import sys
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -231,6 +232,57 @@ def _fmt_delta_audi(audi_inten, audi_change) -> str:
     return f'<span style="color:#374151;font-weight:800;">{inner}</span>'
 
 
+PIE_PALETTE = ("#dc2626", "#d97706", "#2563eb", "#059669", "#7c3aed")
+
+
+def _share_segments(movies: list[dict], value_key: str) -> list[dict]:
+    """TOP5 각 항목의 value 비중(파이차트용). site/build.py와 동일 색상·로직."""
+    items = [m for m in (movies or [])[:5] if isinstance(m, dict)]
+
+    def _i(value) -> int:
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return 0
+
+    total = sum(_i(m.get(value_key)) for m in items)
+    segments: list[dict] = []
+    for idx, movie in enumerate(items):
+        pct = (_i(movie.get(value_key)) / total * 100) if total else 0.0
+        segments.append({
+            "title": movie.get("title", ""),
+            "pct": round(pct, 1),
+            "color": PIE_PALETTE[idx % len(PIE_PALETTE)],
+        })
+    return segments
+
+
+def _quickchart_pie_url(segments: list[dict]) -> str:
+    """비중 세그먼트를 QuickChart 파이차트 이미지 URL로 변환(메일용 — 이메일은 conic 미지원)."""
+    if not segments:
+        return ""
+    def _short(title: str) -> str:
+        title = title or ""
+        return (title[:15] + "…") if len(title) > 15 else title
+
+    config = {
+        "type": "pie",
+        "data": {
+            "labels": [f"{_short(s['title'])} {s['pct']}%" for s in segments],
+            "datasets": [{
+                "data": [s["pct"] for s in segments],
+                "backgroundColor": [s["color"] for s in segments],
+                "borderWidth": 0,
+            }],
+        },
+        "options": {
+            "legend": {"position": "right", "labels": {"fontSize": 10, "boxWidth": 12}},
+        },
+    }
+    encoded = urllib.parse.quote(json.dumps(config, ensure_ascii=False, separators=(",", ":")))
+    return f"https://quickchart.io/chart?w=240&h=130&bkg=white&c={encoded}"
+
+
 def _market_summary(market: dict, reservation: dict | None = None) -> dict:
     """박스오피스 TOP5로 시장 종합 지표(KPI)를 계산. site/build.py와 동일 로직."""
     movies = [m for m in ((market or {}).get("movies") or []) if isinstance(m, dict)]
@@ -271,6 +323,9 @@ def _market_summary(market: dict, reservation: dict | None = None) -> dict:
     top1 = movies[0]
     top1_share = (_int(top1.get("audi_count")) / total_today * 100) if total_today else 0.0
 
+    audi_segments = _share_segments(movies, "audi_count")
+    res_segments = _share_segments(res_movies, "reservation_count")
+
     return {
         "total_audi": _fmt_int(total_today),
         "total_audi_delta": delta_label,
@@ -279,6 +334,8 @@ def _market_summary(market: dict, reservation: dict | None = None) -> dict:
         "res_top_title": res_title,
         "top1_share": f"{top1_share:.1f}%",
         "top1_title": top1.get("title") or "",
+        "audi_segments": audi_segments,
+        "res_segments": res_segments,
     }
 
 
@@ -287,9 +344,9 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
     if not s:
         return ""
 
-    def _cell(label: str, value_html: str) -> str:
+    def _cell(label: str, value_html: str, width: str = "50%") -> str:
         return (
-            '<td valign="top" width="25%" style="padding:8px 6px;background:#fff;'
+            f'<td valign="top" width="{width}" style="padding:8px 10px;background:#fff;'
             'border:1px solid #efe9c4;border-radius:6px;">'
             f'<div style="font-size:11px;font-weight:700;color:#92400e;">{label}</div>'
             f'<div style="margin-top:3px;font-size:12px;font-weight:700;color:#111827;">{value_html}</div>'
@@ -301,18 +358,32 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
     if s["total_audi_delta"]:
         total_val += f' <span style="{sub}">{_esc(s["total_audi_delta"])}</span>'
     seat_val = f'<b>{s["avg_seat_sales"]}</b>'
-    res_val = f'<b>{s["res_top_rate"] or "-"}</b>'
-    if s["res_top_title"]:
-        res_val += f' <span style="{sub}">{_esc(s["res_top_title"])}</span>'
-    top1_val = f'<b>{s["top1_share"]}</b>'
-    if s["top1_title"]:
-        top1_val += f' <span style="{sub}">{_esc(s["top1_title"])}</span>'
+
+    def _pie_cell(label: str, segments: list[dict]) -> str:
+        url = _quickchart_pie_url(segments)
+        if not url:
+            return _cell(label, "-")
+        alt = label + (
+            f': {segments[0]["title"]} {segments[0]["pct"]}%' if segments else ""
+        )
+        img = (
+            f'<img src="{_esc(url)}" alt="{_esc(alt)}" '
+            'style="width:100%;max-width:260px;display:block;margin-top:4px;">'
+        )
+        return (
+            '<td valign="top" width="50%" style="padding:8px 10px;background:#fff;'
+            'border:1px solid #efe9c4;border-radius:6px;">'
+            f'<div style="font-size:11px;font-weight:700;color:#92400e;">{label}</div>'
+            f'{img}'
+            '</td>'
+        )
 
     return (
         '<table width="100%" cellspacing="6" cellpadding="0" border="0" '
         'style="border-collapse:separate;margin:8px 4px 4px;">'
-        f'<tr>{_cell("전일 총 입장객", total_val)}{_cell("평균 좌석판매율", seat_val)}'
-        f'{_cell("예매 1위", res_val)}{_cell("TOP1 집중도", top1_val)}</tr>'
+        f'<tr>{_cell("전일 총 입장객", total_val)}{_cell("평균 좌석판매율", seat_val)}</tr>'
+        f'<tr>{_pie_cell("전일 입장객 비중", s["audi_segments"])}'
+        f'{_pie_cell("실시간 예매량 비중", s["res_segments"])}</tr>'
         '</table>'
     )
 

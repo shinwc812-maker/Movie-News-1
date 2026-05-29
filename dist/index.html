@@ -205,6 +205,51 @@ h1 {
   font-weight: 600;
 }
 
+/* 핵심 지표 파이차트(전일 입장객·예매 비중) */
+.kpi-pie-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 7px;
+  min-width: 0;
+}
+.kpi-pie {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.12);
+}
+.kpi-legend {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.66rem;
+  line-height: 1.5;
+  color: #374151;
+  min-width: 0;
+  flex: 1 1 0;
+}
+.kpi-legend li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.kpi-legend i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.kpi-leg-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -216,13 +261,17 @@ h1 {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.85fr);
   gap: 12px;
-  align-items: start;
+  align-items: stretch;
   margin-bottom: 12px;
 }
-.briefing-grid .ai-briefing-panel { margin-bottom: 0; }
+/* 우측 스택(예매+북미)이 좌측 전일관객 TOP5와 바닥선을 맞추도록 높이를 채워 분배 */
 .briefing-side-stack {
   display: grid;
+  grid-template-rows: 1fr 1fr;
   gap: 12px;
+}
+.briefing-side-stack > .panel {
+  overflow: auto;
 }
 
 .lane-grid {
@@ -1090,7 +1139,7 @@ body.dashboard-collapsed .policy-panel { display: none; }
   font-weight: 600;
 }
 
-/* 전일 관객 TOP5 — 전일대비 증감 표기(회사 규칙): 증가는 숫자만, 감소는 ▲ 접두. 색은 통일 */
+/* 전일 입장객 TOP5 — 전일대비 증감 표기(회사 규칙): 증가는 숫자만, 감소는 ▲ 접두. 색은 통일 */
 .audi-delta { font-weight: 800; color: inherit; }
 .audi-delta-up,
 .audi-delta-down { color: inherit; }
@@ -1163,7 +1212,7 @@ body.is-searching .search-archive-panel { display: block; }
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 29일 10:20 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 29일 10:58 (KST)</p>
   </div>
   <div class="topbar-tools">
     <form class="search-box" role="search" onsubmit="return RADAR.onSearchSubmit(event)">
@@ -1186,98 +1235,34 @@ body.is-searching .search-archive-panel { display: block; }
     <button type="button" class="tool-btn" onclick="RADAR.clearSearch()">전체 보기</button>
   </div>
   <section class="kpis" aria-label="핵심 지표">
-    <div class="kpi"><span>전일 총 관객</span><strong>194,695명 <span class="audi-delta audi-delta-down">(▲40.0%)</span></strong></div>
+    <div class="kpi"><span>전일 총 입장객</span><strong>194,695명 <span class="audi-delta audi-delta-down">(▲40.0%)</span></strong></div>
     <div class="kpi"><span>평균 좌석판매율</span><strong>11.5%</strong></div>
-    <div class="kpi"><span>예매 1위</span><strong>39.8% <span class="kpi-sub">군체</span></strong></div>
-    <div class="kpi"><span>TOP1 집중도</span><strong>64.4% <span class="kpi-sub">군체</span></strong></div>
+    <div class="kpi kpi-chart"><span>전일 입장객 비중</span>
+
+      <div class="kpi-pie-wrap">
+        <div class="kpi-pie" style="background:conic-gradient(#dc2626 0.0% 64.43%, #d97706 64.43% 81.5%, #2563eb 81.5% 91.04%, #059669 91.04% 97.22%, #7c3aed 97.22% 100.0%)"></div>
+        <ul class="kpi-legend">
+          <li><i style="background:#dc2626"></i><span class="kpi-leg-title">군체</span> 64.4%</li><li><i style="background:#d97706"></i><span class="kpi-leg-title">백룸</span> 17.1%</li><li><i style="background:#2563eb"></i><span class="kpi-leg-title">마이클</span> 9.5%</li><li><i style="background:#059669"></i><span class="kpi-leg-title">만달로리안과 그로구</span> 6.2%</li><li><i style="background:#7c3aed"></i><span class="kpi-leg-title">상자 속의 양</span> 2.8%</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="kpi kpi-chart"><span>실시간 예매량 비중</span>
+
+      <div class="kpi-pie-wrap">
+        <div class="kpi-pie" style="background:conic-gradient(#dc2626 0.0% 52.61%, #d97706 52.61% 68.35%, #2563eb 68.35% 83.08%, #059669 83.08% 91.79%, #7c3aed 91.79% 100.0%)"></div>
+        <ul class="kpi-legend">
+          <li><i style="background:#dc2626"></i><span class="kpi-leg-title">군체</span> 52.6%</li><li><i style="background:#d97706"></i><span class="kpi-leg-title">와일드 씽</span> 15.7%</li><li><i style="background:#2563eb"></i><span class="kpi-leg-title">백룸</span> 14.7%</li><li><i style="background:#059669"></i><span class="kpi-leg-title">만달로리안과 그로구</span> 8.7%</li><li><i style="background:#7c3aed"></i><span class="kpi-leg-title">플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마</span> 8.2%</li>
+        </ul>
+      </div>
+
+    </div>
   </section>
 
   <section class="briefing-grid">
-    <section class="panel ai-briefing-panel" data-section="aiBriefing">
-  <div class="ai-briefing-head">
-    <span class="ai-badge">AI SUMMARY</span>
-    <span class="ai-generated-at">2026.05.29 09:05 KST · Claude 자동 생성</span>
-  </div>
-
-  <div class="ai-cat-stack">
-
-
-    <div class="ai-block ai-category">
-      <div class="ai-block-head"><h3>영화</h3></div>
-      <ul class="ai-points">
-
-        <li>롯데시네마, 6월 롯시픽 단독 개봉작 4편 발표…메이플스토리 극장판 &#x27;디어 마이 히어로&#x27;·재개봉 명작·웰메이드 공포까지 장르 다변화 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiekFVX3lxTFBaZ3hVZldMUG9pSDNPT3ItZXNRbHdlVkJwelNvM0RHZ0YtTnpJUW0xcVVLemIyQzdtdVczQ0s4eFZRd0JZOURpZFA2cnZ3QktZZWVIZlRTZmhObnpfRjJRWENKelpCb1lycEY2a1VTN3hlM0IydlVGV1R3?oc=5" target="_blank" rel="noopener">[로이슈]</a></li>
-
-        <li>&#x27;군체&#x27; 누적 250만 명 돌파, 12일 연속 예매 1위 유지하며 2위 &#x27;와일드 씽&#x27;과 격차 지속 확대 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5fVlFkVWtiQV9oenlmMmJ5U3drTG9tZFF6LURvYWJodkJpNk92S1RmRGVCdHNkVFAwU0IyY2Iwdlc2TFFQRGxWakNhdnQwQWNYSUxaM0IzTEljbTZGRzBNcWFza2ZIem1reGF1Wg?oc=5" target="_blank" rel="noopener">[ER 이코노믹리뷰]</a></li>
-
-        <li>A24 공포영화 &#x27;백룸&#x27;, 개봉 이틀째 누적 8만 명 돌파…국내 A24 배급작 역대 최고 오프닝 페이스 기록 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCUWZIWEpQNGd1TERtLTQzcTd6VTBNZ3BZVldUb0ZQYnl0TktjdUpObmdRTWx5YjVqa0xoc1IzbFdpak5FV2x4WjRUZ084V25rQmo3VWc4YlhnQjV2?oc=5" target="_blank" rel="noopener">[뉴스핌]</a></li>
-
-      </ul>
-    </div>
-
-
-
-    <div class="ai-block ai-category">
-      <div class="ai-block-head"><h3>영화관·OTT</h3></div>
-      <ul class="ai-points">
-
-        <li>삼성전자, 롯데시네마에 세계 최초 극장 전용 &#x27;시네마 LED&#x27; 스크린 도입 확정 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1Ea0VPNUQxamNXYnBkUnJrZndiQW0xbGxucnZBT3ZIUmFuRGZxc1BQcXc3SHFoVGNGczRJTlRSbmcweXFuekFfM21GYzJVV1VhOGoxRXk0dDJiLXpSTWJfTnZRbVZXZEdjLW9ZTFhUMA?oc=5" target="_blank" rel="noopener">[samsung.com]</a></li>
-
-        <li>문화체육관광부, 영화계 민관협의체 첫 회의 개최…극장·OTT 상생 방안 논의 본격화 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFAyN1o3b0w4Q0wyb1VQNFJnSHN0U0sycXNxVDlSaWlJY0tRdXpLbjd0SnBlc3lEbGx0OEJYWm0weE9VSnE5aWgwWENGRjhIVjZuWlRZcGQtTGU1eHRxR014TQ?oc=5" target="_blank" rel="noopener">[아시아경제]</a></li>
-
-        <li>CGV 스크린X, &#x27;군체&#x27; 상영 중 2026년 최고 객석률 달성…개봉 주말 30% 돌파 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5xTExzcU9PMktodmxEMllCZnlWVDc0Y2RnTDZ0T3VQTEFSOU1wV0FmV0ptZzB2aU9yV1lPa3dzamViWVZESFA1aERod0RNM2xYY3hTZ18yNGJ6Qk1feDB0R1RWQkh2Ym0xa2pV0gFwQVVfeXFMTlg3RUJ6ZC12LTF0d0gwcGg5UDE0czNYTEFhbEdjNEZ3SHZSY1ZYVnFRZDg4bkNxbEU5LWxlVkdlZXRYdmFuZnNHcmtfQnFnYi1kdVVwUmlVeXgxeTVEVHpsc2dkd1RRR1FnVzgtaGhKbg?oc=5" target="_blank" rel="noopener">[머니투데이]</a></li>
-
-      </ul>
-    </div>
-
-
-
-    <div class="ai-block ai-category">
-      <div class="ai-block-head"><h3>드라마·공연·시리즈</h3></div>
-      <ul class="ai-points">
-
-        <li>CJ ENM &#x27;취사병 전설이 되다&#x27;, 글로벌 공개 첫 주 1.2억 뷰 달성하며 다수 글로벌 OTT 상위권 점령 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBULTU4NmxGZU5NbTh5Zzdwc2tsY2hVMnFyaTlYd21YYlg0X0FLY1N3Z0MxblhOcWhCM2FJSlRuZkNESlgza3RnOUJUSjEweVFUUk1yZ2I1Z0c1dTNfNjNlaVUyUQ?oc=5" target="_blank" rel="noopener">[더구루]</a></li>
-
-        <li>예능 &#x27;유재석 캠프&#x27;, 공개 후 한국·홍콩·싱가포르 넷플릭스 TV 프로그램 부문 1위 동시 기록 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iaVBRNW1uM1YtS1BNUDNpeDA5TERzbGhoYl9UWXYzTDFUeTk2U2pOQ2FvLVA3NmRBN3JjV3hfWGFYNm90dEJZXzk3emN3dVlzTnFtakJralV0dU1sSlhF?oc=5" target="_blank" rel="noopener">[YTN]</a></li>
-
-      </ul>
-    </div>
-
-
-
-    <div class="ai-block ai-category">
-      <div class="ai-block-head"><h3>라이브사업·체험사업·IP</h3></div>
-      <ul class="ai-points">
-
-        <li>메이플스토리 여름 쇼케이스 티켓팅, 오픈 1분 만에 전석 완판…게임 IP 라이브 사업 흥행 재확인 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9ZMm0welpPTVpoQkczUl9qb0JKOFpBQVp3WTRqN1pGd0p6SV9GbTRielhrZ0NtTVBFOWJ3TURwcTN2RGFNeXVzU0NCWlFLaUpnWjZMLTJqT254aDZXYk1IMl9LNFQ1d016Skk3VA?oc=5" target="_blank" rel="noopener">[게임톡]</a></li>
-
-        <li>제19회 NOL골든티켓어워즈에서 임영웅 콘서트 2년 연속 대상 수상, 뮤지컬 &#x27;지킬앤하이드&#x27; 뮤지컬상 수상 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMi9wFBVV95cUxNdUpZUTZhcVNvaklNS1F2UGdBRWJHTEpsek4tZmZKUjF0RkhFTk90ZFNfaTk1TXNZd2FoQVVMNXFtb1c2akJnRjVvbEtwLV9nWU5lYnNmQmI0dUFkTTJQOHNiVkpKTGVhZHlab3JjelA2cmZsazlvWnUxNkZ3S1dpWU1Qb2dQQUs2SjdnbHFSc2FpSlpLeGtmakpzcVZMWUp4aXdVSE51cXdZMk43clNENXVmSzZHMEFMR3Y1d1ZpOTBlN2FQbE82ZlQ4VExJSzk0SjRRVjRwYTdlclppdEQyMTJrUFA3aW82eUxMUHRiVDBabjVoZVpR0gH6AUFVX3lxTE4xTHlvNUxGNElYQ2FlVEo0dHpTY0RlenN6VW14MzFtRjJpZkxlMzVhZm5QV2lEdjl0eDh2dWxJQ1F2a1pMSFdDd1dCcE5GbzN5d3NwcEdBVldlV1FzQXFoa2UzaEUwTFhsTzR1bS10Q3ZRUVJFTWY5TkRtcGtScXBfYjBJcnBiUGpKem9qTjJtM1IyMm5ldXk2SlFyd21hVHNOWnd6N3dnSlN5TU0xeDVzR2pFMDVETmNsc0t0ZUN5YnB1eTRtMGVld3Jha1dyU2pqY3ZpZTE0Vm9YLS14TGZVMG9KUC1jUmdYLXRWQy14VmNpc1o1VGk5Zmc?oc=5" target="_blank" rel="noopener">[데일리안]</a></li>
-
-      </ul>
-    </div>
-
-
-
-    <div class="ai-block ai-category">
-      <div class="ai-block-head"><h3>해외·마켓</h3></div>
-      <ul class="ai-points">
-
-        <li>북미 5월 22~24일 주말 박스오피스: &#x27;만달로리안과 그로구&#x27; $8,170만으로 1위 출발, 디즈니 스타워즈 극장판 전략 성공적 개막 <a class="ai-cite" href="https://www.boxofficemojo.com/release/rl3294527489/?ref_=bo_hm_rd" target="_blank" rel="noopener">[Box Office Mojo]</a></li>
-
-        <li>&#x27;토이 스토리 5&#x27;, 북미 오프닝 $1억 5,000만 달러 예상…픽사 프랜차이즈 역대 신기록 및 2026년 연간 흥행 최고 기록 전망 <a class="ai-cite" href="https://deadline.com/2026/05/toy-story-5-box-office-projection-1236929392/" target="_blank" rel="noopener">[Deadline]</a></li>
-
-      </ul>
-    </div>
-
-
-
-  </div>
-
-</section>
-    <aside class="briefing-side-stack">
       <section class="panel" data-section="boxoffice">
         <div class="panel-head">
-          <h2>전일 관객 TOP 5</h2>
+          <h2>전일 입장객 TOP 5</h2>
           <span>KOBIS</span>
         </div>
         <ol class="boxoffice-list">
@@ -1356,6 +1341,7 @@ body.is-searching .search-archive-panel { display: block; }
 
       </section>
 
+      <aside class="briefing-side-stack">
       <section class="panel" data-section="reservation">
         <div class="panel-head">
           <h2>실시간 예매량 TOP 5</h2>
@@ -1450,6 +1436,88 @@ body.is-searching .search-archive-panel { display: block; }
     </aside>
   </section>
 
+  <section class="panel ai-briefing-panel" data-section="aiBriefing">
+  <div class="ai-briefing-head">
+    <span class="ai-badge">AI SUMMARY</span>
+    <span class="ai-generated-at">2026.05.29 09:05 KST · Claude 자동 생성</span>
+  </div>
+
+  <div class="ai-cat-stack">
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>영화</h3></div>
+      <ul class="ai-points">
+
+        <li>롯데시네마, 6월 롯시픽 단독 개봉작 4편 발표…메이플스토리 극장판 &#x27;디어 마이 히어로&#x27;·재개봉 명작·웰메이드 공포까지 장르 다변화 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiekFVX3lxTFBaZ3hVZldMUG9pSDNPT3ItZXNRbHdlVkJwelNvM0RHZ0YtTnpJUW0xcVVLemIyQzdtdVczQ0s4eFZRd0JZOURpZFA2cnZ3QktZZWVIZlRTZmhObnpfRjJRWENKelpCb1lycEY2a1VTN3hlM0IydlVGV1R3?oc=5" target="_blank" rel="noopener">[로이슈]</a></li>
+
+        <li>&#x27;군체&#x27; 누적 250만 명 돌파, 12일 연속 예매 1위 유지하며 2위 &#x27;와일드 씽&#x27;과 격차 지속 확대 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5fVlFkVWtiQV9oenlmMmJ5U3drTG9tZFF6LURvYWJodkJpNk92S1RmRGVCdHNkVFAwU0IyY2Iwdlc2TFFQRGxWakNhdnQwQWNYSUxaM0IzTEljbTZGRzBNcWFza2ZIem1reGF1Wg?oc=5" target="_blank" rel="noopener">[ER 이코노믹리뷰]</a></li>
+
+        <li>A24 공포영화 &#x27;백룸&#x27;, 개봉 이틀째 누적 8만 명 돌파…국내 A24 배급작 역대 최고 오프닝 페이스 기록 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCUWZIWEpQNGd1TERtLTQzcTd6VTBNZ3BZVldUb0ZQYnl0TktjdUpObmdRTWx5YjVqa0xoc1IzbFdpak5FV2x4WjRUZ084V25rQmo3VWc4YlhnQjV2?oc=5" target="_blank" rel="noopener">[뉴스핌]</a></li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>영화관·OTT</h3></div>
+      <ul class="ai-points">
+
+        <li>삼성전자, 롯데시네마에 세계 최초 극장 전용 &#x27;시네마 LED&#x27; 스크린 도입 확정 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1Ea0VPNUQxamNXYnBkUnJrZndiQW0xbGxucnZBT3ZIUmFuRGZxc1BQcXc3SHFoVGNGczRJTlRSbmcweXFuekFfM21GYzJVV1VhOGoxRXk0dDJiLXpSTWJfTnZRbVZXZEdjLW9ZTFhUMA?oc=5" target="_blank" rel="noopener">[samsung.com]</a></li>
+
+        <li>문화체육관광부, 영화계 민관협의체 첫 회의 개최…극장·OTT 상생 방안 논의 본격화 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFAyN1o3b0w4Q0wyb1VQNFJnSHN0U0sycXNxVDlSaWlJY0tRdXpLbjd0SnBlc3lEbGx0OEJYWm0weE9VSnE5aWgwWENGRjhIVjZuWlRZcGQtTGU1eHRxR014TQ?oc=5" target="_blank" rel="noopener">[아시아경제]</a></li>
+
+        <li>CGV 스크린X, &#x27;군체&#x27; 상영 중 2026년 최고 객석률 달성…개봉 주말 30% 돌파 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5xTExzcU9PMktodmxEMllCZnlWVDc0Y2RnTDZ0T3VQTEFSOU1wV0FmV0ptZzB2aU9yV1lPa3dzamViWVZESFA1aERod0RNM2xYY3hTZ18yNGJ6Qk1feDB0R1RWQkh2Ym0xa2pV0gFwQVVfeXFMTlg3RUJ6ZC12LTF0d0gwcGg5UDE0czNYTEFhbEdjNEZ3SHZSY1ZYVnFRZDg4bkNxbEU5LWxlVkdlZXRYdmFuZnNHcmtfQnFnYi1kdVVwUmlVeXgxeTVEVHpsc2dkd1RRR1FnVzgtaGhKbg?oc=5" target="_blank" rel="noopener">[머니투데이]</a></li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>드라마·공연·시리즈</h3></div>
+      <ul class="ai-points">
+
+        <li>CJ ENM &#x27;취사병 전설이 되다&#x27;, 글로벌 공개 첫 주 1.2억 뷰 달성하며 다수 글로벌 OTT 상위권 점령 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBULTU4NmxGZU5NbTh5Zzdwc2tsY2hVMnFyaTlYd21YYlg0X0FLY1N3Z0MxblhOcWhCM2FJSlRuZkNESlgza3RnOUJUSjEweVFUUk1yZ2I1Z0c1dTNfNjNlaVUyUQ?oc=5" target="_blank" rel="noopener">[더구루]</a></li>
+
+        <li>예능 &#x27;유재석 캠프&#x27;, 공개 후 한국·홍콩·싱가포르 넷플릭스 TV 프로그램 부문 1위 동시 기록 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iaVBRNW1uM1YtS1BNUDNpeDA5TERzbGhoYl9UWXYzTDFUeTk2U2pOQ2FvLVA3NmRBN3JjV3hfWGFYNm90dEJZXzk3emN3dVlzTnFtakJralV0dU1sSlhF?oc=5" target="_blank" rel="noopener">[YTN]</a></li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>라이브사업·체험사업·IP</h3></div>
+      <ul class="ai-points">
+
+        <li>메이플스토리 여름 쇼케이스 티켓팅, 오픈 1분 만에 전석 완판…게임 IP 라이브 사업 흥행 재확인 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9ZMm0welpPTVpoQkczUl9qb0JKOFpBQVp3WTRqN1pGd0p6SV9GbTRielhrZ0NtTVBFOWJ3TURwcTN2RGFNeXVzU0NCWlFLaUpnWjZMLTJqT254aDZXYk1IMl9LNFQ1d016Skk3VA?oc=5" target="_blank" rel="noopener">[게임톡]</a></li>
+
+        <li>제19회 NOL골든티켓어워즈에서 임영웅 콘서트 2년 연속 대상 수상, 뮤지컬 &#x27;지킬앤하이드&#x27; 뮤지컬상 수상 <a class="ai-cite" href="https://news.google.com/rss/articles/CBMi9wFBVV95cUxNdUpZUTZhcVNvaklNS1F2UGdBRWJHTEpsek4tZmZKUjF0RkhFTk90ZFNfaTk1TXNZd2FoQVVMNXFtb1c2akJnRjVvbEtwLV9nWU5lYnNmQmI0dUFkTTJQOHNiVkpKTGVhZHlab3JjelA2cmZsazlvWnUxNkZ3S1dpWU1Qb2dQQUs2SjdnbHFSc2FpSlpLeGtmakpzcVZMWUp4aXdVSE51cXdZMk43clNENXVmSzZHMEFMR3Y1d1ZpOTBlN2FQbE82ZlQ4VExJSzk0SjRRVjRwYTdlclppdEQyMTJrUFA3aW82eUxMUHRiVDBabjVoZVpR0gH6AUFVX3lxTE4xTHlvNUxGNElYQ2FlVEo0dHpTY0RlenN6VW14MzFtRjJpZkxlMzVhZm5QV2lEdjl0eDh2dWxJQ1F2a1pMSFdDd1dCcE5GbzN5d3NwcEdBVldlV1FzQXFoa2UzaEUwTFhsTzR1bS10Q3ZRUVJFTWY5TkRtcGtScXBfYjBJcnBiUGpKem9qTjJtM1IyMm5ldXk2SlFyd21hVHNOWnd6N3dnSlN5TU0xeDVzR2pFMDVETmNsc0t0ZUN5YnB1eTRtMGVld3Jha1dyU2pqY3ZpZTE0Vm9YLS14TGZVMG9KUC1jUmdYLXRWQy14VmNpc1o1VGk5Zmc?oc=5" target="_blank" rel="noopener">[데일리안]</a></li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="ai-block ai-category">
+      <div class="ai-block-head"><h3>해외·마켓</h3></div>
+      <ul class="ai-points">
+
+        <li>북미 5월 22~24일 주말 박스오피스: &#x27;만달로리안과 그로구&#x27; $8,170만으로 1위 출발, 디즈니 스타워즈 극장판 전략 성공적 개막 <a class="ai-cite" href="https://www.boxofficemojo.com/release/rl3294527489/?ref_=bo_hm_rd" target="_blank" rel="noopener">[Box Office Mojo]</a></li>
+
+        <li>&#x27;토이 스토리 5&#x27;, 북미 오프닝 $1억 5,000만 달러 예상…픽사 프랜차이즈 역대 신기록 및 2026년 연간 흥행 최고 기록 전망 <a class="ai-cite" href="https://deadline.com/2026/05/toy-story-5-box-office-projection-1236929392/" target="_blank" rel="noopener">[Deadline]</a></li>
+
+      </ul>
+    </div>
+
+
+
+  </div>
+
+</section>
+
   <div class="ai-briefing-toggle">
     <button type="button" class="dashboard-toggle-btn" onclick="RADAR.toggleDashboard()">
       <span class="dt-label">기사 펼치기 ▼</span>
@@ -1506,7 +1574,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · v.daum.net
     </span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1540,7 +1608,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · YTN
     </span>
-    <span class="time">19시간 전</span>
+    <span class="time">20시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1557,7 +1625,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · osen.co.kr
     </span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1625,7 +1693,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 조선일보
     </span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1642,7 +1710,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · iMBC 연예
     </span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
 
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1736,7 +1804,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 현대경제신문
     </span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
 
 </article><article class="curation-brief-card">
@@ -1751,7 +1819,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 더구루
     </span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
 
   <div class="chips"><span>CJ ENM</span></div>
@@ -1768,7 +1836,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 신아일보
     </span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1828,7 +1896,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · tbc.co.kr
     </span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1889,7 +1957,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
   <div class="chips"><span>Focus Features</span><span>Obsession</span></div>
@@ -1906,7 +1974,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1921,7 +1989,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Deadline
     </span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1936,7 +2004,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
 
   <div class="chips"><span>Warner Bros</span><span>Lionsgate</span></div>
@@ -1953,7 +2021,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
 
   <div class="chips"><span>Netflix</span></div>
@@ -2015,7 +2083,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2030,7 +2098,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · The Hollywood Reporter
     </span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
 
 </article>
@@ -2061,7 +2129,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 쿠팡 뉴스룸
     </span>
-    <span class="time">18분 전</span>
+    <span class="time">56분 전</span>
   </div>
 
 </article><article class="curation-brief-card">
@@ -2076,7 +2144,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 톱스타뉴스
     </span>
-    <span class="time">56분 전</span>
+    <span class="time">1시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2091,7 +2159,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · v.daum.net
     </span>
-    <span class="time">12분 전</span>
+    <span class="time">50분 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2138,7 +2206,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · v.daum.net
     </span>
-    <span class="time">17분 전</span>
+    <span class="time">55분 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2153,7 +2221,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 톱스타뉴스
     </span>
-    <span class="time">57분 전</span>
+    <span class="time">1시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2168,7 +2236,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 아시아경제
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2183,7 +2251,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · v.daum.net
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2198,7 +2266,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 톱스타뉴스
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article>
@@ -2305,7 +2373,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>공간 사업</span>
-    <em>1시간 전</em>
+    <em>2시간 전</em>
   </div>
   <a class="trend-title" href="https://news.google.com/rss/articles/CBMickFVX3lxTE1IcVNMQm9XM0RiLXFieThIUkV6eWRVUURGdkJ6QkNVMXg4U0s1U1hZNTMwSF9oRFdzNlNhQ1E1Y2JKLXkydlo0VmNuQ1RHcVRUTU1fdTlERWJsZ25vRklWckxxOGh3ZEswdGxDYnoyQURHdw?oc=5" target="_blank" rel="noopener">동방신기 최강창민, LG 트윈스 응원석 합류…티빙 ‘팬덤중계’ 출격</a>
   <p class="trend-frame">팝업·플래그십·복합문화공간이 팬덤 소비의 기본 동선으로 자리매김</p>
@@ -2349,7 +2417,7 @@ body.is-searching .search-archive-panel { display: block; }
           <article class="market-trend-card">
   <div class="trend-topline">
     <span>IP 사업</span>
-    <em>42분 전</em>
+    <em>1시간 전</em>
   </div>
   <a class="trend-title" href="https://news.google.com/rss/articles/CBMiTkFVX3lxTFB1UThkVkh3VDdxUmhxNjBUOHNxVmxiSDJFTzI1OU9lMUl1SmpmVmhJUUxoSjFBdHN6QnJTX1ZwUVJNOFU5YkFrRXlkTVBWUQ?oc=5" target="_blank" rel="noopener">이것이 &#39;미친 존재감&#39;…&#39;군체&#39; 김형묵이 그린 &#39;입체적 캐릭터&#39;</a>
   <p class="trend-frame">게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장</p>
@@ -2383,7 +2451,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>IP 사업</span>
-    <em>23시간 전</em>
+    <em>1일 전</em>
   </div>
   <a class="trend-title" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE0tQ19FTFVYa09ySFRLNFJhcjNyWVBZU0I2ejUwUlZGVFB3YWNWNVdjUkwtRXRzRVFGdFlsMlh6NllUTWRDeFVEdnBnVUhtMXFHUXp1OVVBdmVPZw?oc=5" target="_blank" rel="noopener">진선규·공명·김지석·윤경호, 넷플릭스 ‘남편들’…4인4색 캐릭터 스틸</a>
   <p class="trend-frame">게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장</p>
@@ -2410,7 +2478,7 @@ body.is-searching .search-archive-panel { display: block; }
           <article class="market-trend-card">
   <div class="trend-topline">
     <span>콜라보/협업</span>
-    <em>4시간 전</em>
+    <em>5시간 전</em>
   </div>
   <a class="trend-title" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE94U1cxQnhyMS16cGZ6VmZZR3JjSTNhS19nVURJdHo0YjY2Rm9PZW5ReVpyV283bEJQN2JCV0t6bnFyWm1ZMW5jOF9HTS05dzhKZTljelhR?oc=5" target="_blank" rel="noopener">[글로벌 경영] 스타워즈 영화와 협업, 철강 이미지 홍보</a>
   <p class="trend-frame">브랜드·IP 간 콜라보와 제휴로 팬덤·상권을 교차 확장</p>
@@ -3048,7 +3116,7 @@ body.is-searching .search-archive-panel { display: block; }
             <article class="community-snapshot-card">
   <div class="community-topline">
     <span>익스트림무비</span>
-    <em>49분 전</em>
+    <em>1시간 전</em>
   </div>
   <a class="community-title" href="https://extmovie.com/movietalk/94063709" target="_blank" rel="noopener">잭 에프론, HBO와 A24의 《엔젤 하트》 리메이크 작품 출연</a>
   <p class="community-mood">단순 정보/공지</p>
@@ -3900,7 +3968,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9Nd3YyV3RNU3JiZWN6cTJSSVV6TjlTMVJRa0d4M3RVVDRiWlhEVkVJYjdHQ2l0Z0N4SlFnSHRvc1poZFR1OGkzd2ktemtySnlubFo5SlRUV3h6Y2hKUFQyRw?oc=5" target="_blank" rel="noopener">롯데시네마, 장르 확대해 관객 접점 넓힌다…로맨스부터 공포까지 &#39;롯시픽&#39; 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 메트로신문</span>
-    <span class="time">19시간 전</span>
+    <span class="time">20시간 전</span>
   </div>
   <p class="archive-excerpt">롯데시네마, 장르 확대해 관객 접점 넓힌다…로맨스부터 공포까지 &#39;롯시픽&#39; 공개 메트로신문</p>
   <div class="chips"><span>롯데시네마</span></div>
@@ -3908,7 +3976,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMicEFVX3lxTE42WjR1UkZZSkFrU3BRd3hSWGpVYTVZYWVyaDhRdEoyaExPbnI0UUNBVHBnam9KaDJta1NGajg3QWliVXBBdFZ1bkRzVWN1SlJzTDBpdFNObEw4dnF2NmNsUHNwT0pUODMzM2lOanNxVTLSAXBBVV95cUxONlo0dVJGWUpBa1NwUXd4UlhqVWE1WWFlcmg4UXRKMmhMT25yNFFDQVRwZ2pvSmgybWtTRmo4N0FpYlVwQXRWdW5Ec1VjdUpSc0wwaXRTTmxMOHZxdjZjbFBzcE9KVDgzMzNpTmpzcVUy?oc=5" target="_blank" rel="noopener">재개봉 명작부터 웰메이드 호러까지…롯데시네마, 6월 단독 개봉 라인업 공개 - 머니투데이</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 머니투데이</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">재개봉 명작부터 웰메이드 호러까지…롯데시네마, 6월 단독 개봉 라인업 공개 - 머니투데이 머니투데이</p>
   <div class="chips"><span>롯데시네마</span></div>
@@ -3964,7 +4032,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9fN3BOaHJuT1pjdFZNcEV5MVdpZGZWMWRmcHIwVUU2QkdnUlFDOE1qeGtkdXN1QVlQRG5Kd0RoSGE0cVU2SVl1c3VaUDM2ODg?oc=5" target="_blank" rel="noopener">&#39;군체&#39;, 7일 연속 박스오피스 1위…&#39;백룸&#39; 2위 출발</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">&#39;군체&#39;, 7일 연속 박스오피스 1위…&#39;백룸&#39; 2위 출발 v.daum.net</p>
   <div class="chips"><span>군체</span><span>백룸</span></div>
@@ -3988,7 +4056,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9obUNXUnF0WUUyRDN0anBha3pJQXlKYkpEUk02NEZvdEhtZmdteFhLQTh6V21ONGFFY0RKMXdOb1ZfV29KUXJDRWpLZlM3NTQ?oc=5" target="_blank" rel="noopener">&#39;와일드씽&#39; 박지현 실물 어느 정도길래..&#34;이목구비 장난 아냐&#34; (&#39;랄랄유튜브&#39;) [어저께V]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;와일드씽&#39; 박지현 실물 어느 정도길래..&#34;이목구비 장난 아냐&#34; (&#39;랄랄유튜브&#39;) [어저께V] v.daum.net</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4004,7 +4072,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiigFBVV95cUxQNi1JQ1oxLTVzMnVBRTVhQi1WbzNLeVRoMy1Fcnpzb1pTcUJaUmM0bTJGX2Y1YTlMVVkybHpGdm5lVFRBVzhDRFB6cWdKODhUS1dlX005b3ZIV3Q4SUJITlpZYUE1c2NvM19vR3ZZV3VzVUJzN2luMi1SWDNqZ1k3NkxDN0U0dG51NFE?oc=5" target="_blank" rel="noopener">[공식] &#34;트라이앵글→최성곤 보러 극장으로&#34;…&#39;와일드 씽&#39;, 개봉주 무대인사 확정</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 조선일보</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">[공식] &#34;트라이앵글→최성곤 보러 극장으로&#34;…&#39;와일드 씽&#39;, 개봉주 무대인사 확정 조선일보</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4020,7 +4088,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBWT1lLcy0wRjA3SFJ0VGpiSkdVRjNMM1ltN29fRUZkWjBTdWdFQ2RhWXlnTVhQelRScExJUFVDUG80TG1PNGxVZm9LQUFqaG10NTJRX2QtemppYzAyckdV?oc=5" target="_blank" rel="noopener">[Y터뷰] &#39;와일드 씽&#39; 감독 &#34;강동원 캐스팅 후 헤드스핀 추가…대충 하는 법 없어&#34;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · YTN</span>
-    <span class="time">19시간 전</span>
+    <span class="time">20시간 전</span>
   </div>
   <p class="archive-excerpt">[Y터뷰] &#39;와일드 씽&#39; 감독 &#34;강동원 캐스팅 후 헤드스핀 추가…대충 하는 법 없어&#34; YTN</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4028,7 +4096,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTFBCVzc3azY2dnJ3RThhUFpFSUd2bVoxZzUyS1A4bG1hNmtrNUNITU1RaXBQY1BBYjZRVnY5bUJJNzh6TlBOZHFOcmR4YWc2SWZLUXFV?oc=5" target="_blank" rel="noopener">&#39;와일드 씽&#39; 감독 &#34;강동원, 노래방서 실력 증명...춤 영상 보내기도&#34; [인터뷰⑤]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · osen.co.kr</span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;와일드 씽&#39; 감독 &#34;강동원, 노래방서 실력 증명...춤 영상 보내기도&#34; [인터뷰⑤] osen.co.kr</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4036,7 +4104,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5fd1ZfSTJZWm0xQUZUcWZrRDQ2bFhNYVlmNGM2YlNIaHZJN1B1c0NJamxvMERUOFUwTnpMM0UxVGRISUdPSGVWTTVZUUI2Sm5Xand0dm5zWUFfWHZsV2o5TQ?oc=5" target="_blank" rel="noopener">&#39;와일드 씽&#39; 손재곤 감독이 밝힌 세기말 K-POP 소환의 법칙 &#34;단 한번 들어도 꽂힐 노래&#34; [영화人]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · iMBC 연예</span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;와일드 씽&#39; 손재곤 감독이 밝힌 세기말 K-POP 소환의 법칙 &#34;단 한번 들어도 꽂힐 노래&#34; [영화人] iMBC 연예</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4092,7 +4160,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiTkFVX3lxTFB1UThkVkh3VDdxUmhxNjBUOHNxVmxiSDJFTzI1OU9lMUl1SmpmVmhJUUxoSjFBdHN6QnJTX1ZwUVJNOFU5YkFrRXlkTVBWUQ?oc=5" target="_blank" rel="noopener">이것이 &#39;미친 존재감&#39;…&#39;군체&#39; 김형묵이 그린 &#39;입체적 캐릭터&#39;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 전자신문</span>
-    <span class="time">42분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-excerpt">이것이 &#39;미친 존재감&#39;…&#39;군체&#39; 김형묵이 그린 &#39;입체적 캐릭터&#39; 전자신문</p>
   <div class="chips"><span>군체</span></div>
@@ -4100,7 +4168,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9mbnJwZWVjNmEwc1BFSWdHWFMyZmVVQkRybVFadXRSakV0SFctSk9qQl9KenYyN2EzVERld015OVJDR0kySjE1dlNYOUo0bFM0NkowWTFaX3UzX1h0cWfSAWNBVV95cUxNSUdfX2dmdlBheWVwSV9BdnF3djVSa1AtWkNFMDJyR3ZSZHRTeUZtaWd4cjJ0ZTgxRGF1ckZ1WnczOEFvV2tuQ3ExSFd5ZVZkTS1yaUEtWHpDc0dTQnNOU1lHVEU?oc=5" target="_blank" rel="noopener">‘군체’ 8일만 250만 돌파…이번 주말 300만 간다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 스포츠경향</span>
-    <span class="time">47분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-excerpt">‘군체’ 8일만 250만 돌파…이번 주말 300만 간다 스포츠경향 집단지성으로 진화한 K좀비 통했다…‘군체’, 연휴·할인권 업고 손익분기점 눈앞 [D:영화 뷰] 데일리안 &#39;군체&#39; 좀비 신드롬 확산…SNS 점령한 &#39;업데이트&#39; 챌린지 열풍 네이트</p>
   <div class="chips"><span>군체</span></div>
@@ -4116,7 +4184,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1XS2EzNnM4cW0tUFdRQUlTS0VURWtUN3FVN1NyZm9XdEdvQWs3eElFZmYyXzRFUTR0YmZfbFdEN3dyTXFjWjd6a29EbGdndkJ6Z1ZSZ2dHRTNfaEhwMHZSNlFfZlJsMzZKdHfSAW5BVV95cUxPcm1HMHJqMndQbFNhUFY4VHk3U193dXhwWllpb29Qc0Y3NmxLeEhqQ2RaSkRtMHM3b0tEOWpmeTFNek1sdWhnRXg2MEpyd2NfT2hoMWY2R08zbmQ5bHN2OHA0elNMSXYyc3A3d2ppdw?oc=5" target="_blank" rel="noopener">‘군체’, 스크린X 올해 최고 객석률…개봉 주말 30% 돌파</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 파이낸셜투데이</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">‘군체’, 스크린X 올해 최고 객석률…개봉 주말 30% 돌파 파이낸셜투데이</p>
   <div class="chips"><span>군체</span></div>
@@ -4156,7 +4224,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE4ySS1icUZrTndnOXpBUXE3eV91YThia0xOSjBVYjVFSVdWSm9UcDBPa0pidm5leFZCbUVoYnVKWlRkOEViS2NsaktBdGpCR3ZERHJzbEhQRQ?oc=5" target="_blank" rel="noopener">&#39;군체&#39; 구교환 &#34;전지현과 &#39;베프&#39;…현장서 경쟁하듯 유머 뱉어내&#34;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴스1</span>
-    <span class="time">19시간 전</span>
+    <span class="time">20시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;군체&#39; 구교환 &#34;전지현과 &#39;베프&#39;…현장서 경쟁하듯 유머 뱉어내&#34; 뉴스1</p>
   <div class="chips"><span>군체</span></div>
@@ -4164,7 +4232,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE1nemx2bGhoeDlLSUg2eDNPUWhEUzJ2bTl0bHdzc1FYblNna0tlR3J4clptQzJ6eDhiNWJ6V0NvYktlWjI1WEJfZzNjT2RTMlFGVHFuNEVTRE00NENRX1HSAWNBVV95cUxOZnRtcDFpYXFCcFZ0TUpudVpmTFBNWFhUWHdzcW9NUFpteWQ3bW5LNGdwVUU5cTVTc25QWFdXNGJlOUROOHEwdk9MOHlYWHdvbFZTQ3RyMDE4MjFSVXZWcVBlS0k?oc=5" target="_blank" rel="noopener">‘좀비 튀어 나올 것 같다’ CJ CGV ‘군체’ 흥행 질주, 토종 입체 SCREENX 포맷 기술 뜬다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 스포츠경향</span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
   <p class="archive-excerpt">‘좀비 튀어 나올 것 같다’ CJ CGV ‘군체’ 흥행 질주, 토종 입체 SCREENX 포맷 기술 뜬다 스포츠경향</p>
   <div class="chips"><span>군체</span></div>
@@ -4172,7 +4240,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5xTExzcU9PMktodmxEMllCZnlWVDc0Y2RnTDZ0T3VQTEFSOU1wV0FmV0ptZzB2aU9yV1lPa3dzamViWVZESFA1aERod0RNM2xYY3hTZ18yNGJ6Qk1feDB0R1RWQkh2Ym0xa2pV0gFwQVVfeXFMTlg3RUJ6ZC12LTF0d0gwcGg5UDE0czNYTEFhbEdjNEZ3SHZSY1ZYVnFRZDg4bkNxbEU5LWxlVkdlZXRYdmFuZnNHcmtfQnFnYi1kdVVwUmlVeXgxeTVEVHpsc2dkd1RRR1FnVzgtaGhKbg?oc=5" target="_blank" rel="noopener">&#34;좀비가 3면에서 덮친다&#34; CGV &#39;군체&#39; 스크린X , 올해 최고 객석률 기록 - 머니투데이</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 머니투데이</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">&#34;좀비가 3면에서 덮친다&#34; CGV &#39;군체&#39; 스크린X , 올해 최고 객석률 기록 - 머니투데이 머니투데이</p>
   <div class="chips"><span>군체</span></div>
@@ -4204,7 +4272,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCUWZIWEpQNGd1TERtLTQzcTd6VTBNZ3BZVldUb0ZQYnl0TktjdUpObmdRTWx5YjVqa0xoc1IzbFdpak5FV2x4WjRUZ084V25rQmo3VWc4YlhnQjV2?oc=5" target="_blank" rel="noopener">&#39;백룸&#39;, 개봉 이틀째 8만 관객 돌파…A24 최고 오프닝 페이스</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴스핌</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;백룸&#39;, 개봉 이틀째 8만 관객 돌파…A24 최고 오프닝 페이스 뉴스핌</p>
   <div class="chips"><span>A24</span><span>백룸</span></div>
@@ -4220,7 +4288,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5rWjVZSElJal93NGx2amhFRGtGWDRHa1lGcWV2WXhmWERWQnZqQ29VODNmZkY3OXBDZHZhMXpTTlFXMlhNS0dwSTBkdW9TWWpZR1hXVGtBc2FzTm9QdFE?oc=5" target="_blank" rel="noopener">영화 &#39;백룸&#39; 출연 배우, 감독 대리 연출 의혹에 직접 반박</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 아시아타임즈</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">영화 &#39;백룸&#39; 출연 배우, 감독 대리 연출 의혹에 직접 반박 아시아타임즈</p>
   <div class="chips"><span>백룸</span></div>
@@ -4252,7 +4320,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE4tNmkyTHVsTzB5bUlaSGR3dERiM3JDdUtYMF9FdmhkYzVDRExhQlZJRzhDM0ZFUzBxMUxpWlpUQXFtZm1sQ3hDMG9rQkNGYlJ2SmprSjBUWS1BLW8?oc=5" target="_blank" rel="noopener">[개봉영화] 베스트셀러 ‘이상한 과자 가게 전천당’…스타워즈 시리즈, ‘만달로리안과 그로구’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · KBS 뉴스</span>
-    <span class="time">24분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-excerpt">[개봉영화] 베스트셀러 ‘이상한 과자 가게 전천당’…스타워즈 시리즈, ‘만달로리안과 그로구’ KBS 뉴스</p>
   <div class="chips"><span>만달로리안과 그로구</span></div>
@@ -4268,7 +4336,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiR0FVX3lxTFBKN0xjRG9WRWNyMjBKcmdBUGcwOEFYOElEZnFxR0U3MWV0a19tMU4tS3JIaFYyY0ZtalZ2Mi1lMXR6X2hiMEM0?oc=5" target="_blank" rel="noopener">스타워즈로부터 독립하기: 만달로리안과 그로구</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 브런치</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">스타워즈로부터 독립하기: 만달로리안과 그로구 브런치</p>
   <div class="chips"><span>만달로리안과 그로구</span></div>
@@ -4276,7 +4344,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1JSzBzUXZSUGZtSXd5dExobl9uWmlRMDVEOC1DaFY3MWtHMjNvTjVvcWM4YlRHVV9ZVlVKa2RDUGh0elA3dTA4RjYtMWg0V0E?oc=5" target="_blank" rel="noopener">스타워즈 파생작 &#39;만달로리안과 그로구&#39; 개봉</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">21시간 전</span>
+    <span class="time">22시간 전</span>
   </div>
   <p class="archive-excerpt">스타워즈 파생작 &#39;만달로리안과 그로구&#39; 개봉 v.daum.net [시네프리뷰] 만달로리안과 그로구-‘스타워즈’ 시리즈의 ‘새로운 희망?’ 주간경향 &#39;만달로리안과 그로구&#39; 극장 3사 평균 평점 9.6…입소문 흥행 시동 뉴스핌 유통기한 끝난 줄 알았는데... 이 영화가 &#39;스타워즈&#39;의 희망될까 오마이스타 영화 &#39;만달로리안과 그로구&#39; 쿠키영상은? 금강일보 더 커졌지만 특유의 쓸쓸함은 약해진 ‘만달로리안과 그로구’ 한겨레 영화 &#39;만달로리안과 그로구&#39; 쿠키영상·평점·출연진 한눈에 gukjenews.com ‘만달로리안과 그로구’ 개봉 첫날 성적?…박스오피스 4위 안착 톱스타뉴스 &#39;만달로리안과 그로구’, 본격 그로구앓이의 시작…극장 3사 평점 9점↑ 싱글리스트</p>
   <div class="chips"><span>만달로리안과 그로구</span></div>
@@ -4324,7 +4392,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/curry-barker-anything-but-ghosts-same-universe-obsession-1236929829/" target="_blank" rel="noopener">Curry Barker Teases Next Film ‘Anything But Ghosts’ Exists In Same Universe As ‘Obsession’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">SPOILERS: This post contains details about the final scene of Obsession With the success of his directorial breakout in Focus Features and Universal’s Obsession, Curry Barker is teasing his horror followup. The writer/director recently revealed that his next film Anything But Ghosts exists in the same universe as Obsession, noting a direct reference to the […]</p>
   <div class="chips"><span>Focus Features</span><span>Obsession</span></div>
@@ -4332,7 +4400,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5EMURtMWdaYUNKaFBrZ3pyNFhiQWE5S0FJaGhxT3QzYXdOS2J5b0oyOV84X2RFTlRlVkNTaU5EbHZ4cjltTWJjSkJfbGMxWG0zN0V5Sm8zREpIWWhBR0U5aHpXelRBdw?oc=5" target="_blank" rel="noopener">마이클, 혼자서 환하게 빛나는 별</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 울산제일일보</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">마이클, 혼자서 환하게 빛나는 별 울산제일일보</p>
   <div class="chips"><span>마이클</span></div>
@@ -4340,7 +4408,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMieEFVX3lxTE52aHFENlZnVnY1RUgySVJ2WWhoMDVfSFJpaUdZOFhWQnREQ2w5T0ExQVA2Q1NzWWZzOE5aQ0Nmcng0VVhHcmZ0VF9xc0JQWkU5Sm9QTUZ5Z1Fhc3JLd2hFYWozaGF0dG85TG1OVU1ER193Z21naVA0Z9IBeEFVX3lxTE9PdGNnOThvYVRpVlRmc0VwOW9MeFJZODY3ZHY4M3paQTZybFBIdW9RcEhQaWNwUEtDZkJBUHlVVDl2b1hlVXhzVjVxMnFUNklQV015Sk1ldmxaMmFWR0o3Vy0yOHRJS21hZV8zbnVrTnBVMVljRlFPeg?oc=5" target="_blank" rel="noopener">[톱플레이] 3시간 44분 혈투 승리 후 마이클 잭슨 &#39;빌리진&#39;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · MBC 뉴스</span>
-    <span class="time">13시간 전</span>
+    <span class="time">14시간 전</span>
   </div>
   <p class="archive-excerpt">[톱플레이] 3시간 44분 혈투 승리 후 마이클 잭슨 &#39;빌리진&#39; MBC 뉴스</p>
   <div class="chips"><span>마이클</span></div>
@@ -4348,7 +4416,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE5KRGtqbk5MQk5maVRlS1h4TThHVG1GOGtvNHpyRDVfTmpmSWlxd1NUZWRXQ2dvVjlWelpkbDh6SlRpd3l3YzVSdFNXVWZ4Yzg?oc=5" target="_blank" rel="noopener">[김선생의 시네레터] 비범한 스타, 안일한 영화 - &#39;마이클&#39;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">[김선생의 시네레터] 비범한 스타, 안일한 영화 - &#39;마이클&#39; v.daum.net</p>
   <div class="chips"><span>마이클</span></div>
@@ -4364,7 +4432,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMibkFVX3lxTE85czhJV2VoN18xMUhpaXJvdEdDb0FrN2xGN3hiRVpEaXpZZ25oTjdRSTZHZUhyLWp0Smx6Q01LamZBMVZUYWVvZUpzWnk5NExJUm9DLThIdEt2RGtaUG1KXzVYbTdfUXlPNi1lU2pn?oc=5" target="_blank" rel="noopener">[여의로] 영화 ‘마이클’과 가세연 대표의 구속</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 아시아투데이</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">[여의로] 영화 ‘마이클’과 가세연 대표의 구속 아시아투데이</p>
   <div class="chips"><span>마이클</span></div>
@@ -4372,7 +4440,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiUEFVX3lxTFBPX1B0YXViQVhlY1JaM2xxdzdHbXBNM1NjRERqMnZNbk82NnNhcXBoc2YwNVdIR0NrcTk1TDBpZm5DQ2MzOWw4bWNza0RacXda?oc=5" target="_blank" rel="noopener">마이클 잭슨 유산 공동집행인 팝 프로듀서 존 매클레인 별세</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 문화일보</span>
-    <span class="time">22시간 전</span>
+    <span class="time">23시간 전</span>
   </div>
   <p class="archive-excerpt">마이클 잭슨 유산 공동집행인 팝 프로듀서 존 매클레인 별세 문화일보</p>
   <div class="chips"><span>마이클</span></div>
@@ -4380,7 +4448,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE4ySmNvNkp6R3Y3WnZRZ3M5bWFORklPX2h5akJtY3d5eXREZ0VYRUhCNGw3YjU4U2tub1RwU0pYWGx1aDZUNmsxM0RwX2RNcXpPZ0lUOHNnaExwbzBmdFE?oc=5" target="_blank" rel="noopener">마이클 잭슨 노래 감상자 3배 늘었다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 주간경향</span>
-    <span class="time">22시간 전</span>
+    <span class="time">23시간 전</span>
   </div>
   <p class="archive-excerpt">마이클 잭슨 노래 감상자 3배 늘었다 주간경향</p>
   <div class="chips"><span>마이클</span></div>
@@ -4388,7 +4456,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE5mb3JMOHAyRjNTUW50LU1oWFZsV2xKWVF1aVVRMTM4X3g1NjBXR1lObVVHcVRvcEw2WHhEMXRwdkNXdDFIcUs4ckpZeHVLeWR6X0tuaQ?oc=5" target="_blank" rel="noopener">[페이지&amp;스테이지] 영화 〈마이클〉 청음회 및 토크, 마이클 잭슨의 음악과 삶 | 예스24</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 채널예스</span>
-    <span class="time">22시간 전</span>
+    <span class="time">23시간 전</span>
   </div>
   <p class="archive-excerpt">[페이지&amp;스테이지] 영화 〈마이클〉 청음회 및 토크, 마이클 잭슨의 음악과 삶 | 예스24 채널예스</p>
   <div class="chips"><span>마이클</span></div>
@@ -4404,7 +4472,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1aNVAybDZwanl2SnhOcjZNdEN5bEhRdVlrRU9fb0ROaUVsS1pEUTRQUmJraDQ5V0FQZm9kVXd0N2V3SUpCSHFYNk9ncEhVYlY1d1p6aXJoalFYbW05cDdoS9IBeEFVX3lxTE40Uy1fYmxndjJVWXNXX2swRmhVZlpBdXVzVlRFOFF6bjV5WTFSRXQybEgwSHpCUmZvTzZwT2JDeEVIbVRETEREQVFKZUh2bEdZRDJGdzFDXy1za0liZC1WdHE5N254T0JITGY2c2RhN0FZS3UtVzhmWA?oc=5" target="_blank" rel="noopener">&#34;마이클 잭슨처럼 추고 싶어요&#34;…따라했다 골병</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴시스</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">&#34;마이클 잭슨처럼 추고 싶어요&#34;…따라했다 골병 뉴시스</p>
   <div class="chips"><span>마이클</span></div>
@@ -4436,7 +4504,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/rambo-movie-release-date-1236761474/" target="_blank" rel="noopener">‘Rambo’ Prequel Movie Sets 2027 Release Date</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">“John Rambo,” a prequel in the long-running action franchise, will hit theaters next summer. Lionsgate has slated the film for June 4, 2027. It’s scheduled to debut just ahead of Disney’s “Star Wars: Starfighter” (May 28) and a few weeks before Sony’s “Spider-Man: Beyond the Spider-Verse” (June 11) and the Warner Bros. “Oceans” prequel (June […]</p>
   <div class="chips"><span>Warner Bros</span><span>Lionsgate</span></div>
@@ -4484,7 +4552,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/global/rio2c-on-behalf-of-my-son-gabriel-martins-netflix-1236759297/" target="_blank" rel="noopener">Netflix Unveils First Look at ‘On Behalf of My Son,’ the New Film by Gabriel Martins (EXCLUSIVE)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">RIO DE JANEIRO, Brazil — Netflix released today the first image of Rejane Faria as Vicentina, the lead character in “On Behalf of My Son” (“Vicentina Pede Desculpas”), the new feature written and directed by Gabriel Martins (“Mars One”), which is due to open in the second half of 2026. The company released the image during the […]</p>
   <div class="chips"><span>Netflix</span></div>
@@ -4492,7 +4560,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/video/carey-mulligan-video-interview-beef-emmys/" target="_blank" rel="noopener">Carey Mulligan On Joining ‘Beef’, Learning Martial Arts, Getting Physical With Oscar Isaac And Taking The Road To ‘Narnia’ – The Actor’s Side</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">After a BAFTA Best Actress win for her breakthrough role in 2009’s An Education, plus subsequent awards recognition including three Best Actress Oscar nominations, four Golden Globe nominations, a Tony nom and more, Carey Mulligan now surprisingly turns up in a Netflix TV series. Well, at least for one season, the second for the Emmy-winning […]</p>
   <div class="chips"><span>Netflix</span></div>
@@ -4500,7 +4568,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/artisans/news/netflix-feature-animators-vote-first-union-contract-animation-guild-1236761288/" target="_blank" rel="noopener">Netflix Feature Animators Vote to Ratify First Union Contract with The Animation Guild</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">7시간 전</span>
+    <span class="time">8시간 전</span>
   </div>
   <p class="archive-excerpt">Netflix Animation Studios feature production workers have officially voted to ratify their first Union contract with The Animation Guild (IATSE Local 839), with an overwhelming 89% in favor of ratification. The first contract with the guild establishes wage minimums, dismissal pay, and workplace protections for production workers, representing a major moment in animation. The organizing […]</p>
   <div class="chips"><span>Netflix</span></div>
@@ -4508,7 +4576,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBULTU4NmxGZU5NbTh5Zzdwc2tsY2hVMnFyaTlYd21YYlg0X0FLY1N3Z0MxblhOcWhCM2FJSlRuZkNESlgza3RnOUJUSjEweVFUUk1yZ2I1Z0c1dTNfNjNlaVUyUQ?oc=5" target="_blank" rel="noopener">첫 주 1.2억 뷰…CJ ENM &#39;취사병 전설이 되다&#39;, 글로벌 OTT 점령</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 더구루</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">첫 주 1.2억 뷰…CJ ENM &#39;취사병 전설이 되다&#39;, 글로벌 OTT 점령 더구루</p>
   <div class="chips"><span>CJ ENM</span></div>
@@ -4532,7 +4600,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBFQldvQnlha3BxVkh5cWtaanpuekFMZzhjTEhNUGxMQndXbzFqUllMWWlMd2tIci1FRVBsbDBoSFE4bGpsemRrakwyc09kYkE?oc=5" target="_blank" rel="noopener">넷플릭스, LA K엑스포 참가...K콘텐츠 글로벌 확장성 조명</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">12분 전</span>
+    <span class="time">50분 전</span>
   </div>
   <p class="archive-excerpt">넷플릭스, LA K엑스포 참가...K콘텐츠 글로벌 확장성 조명 v.daum.net</p>
 
@@ -4540,7 +4608,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE95elVDZ0pYUjFMdkdxcHk3QzMzM1ZaWUpvZlIwY0Jmd1IxX0FFMG53eHFFckhJN3d2SGwyYTBvYkdkOWdqNHRuOFBSanh4azA?oc=5" target="_blank" rel="noopener">제주문예회관 창작뮤지컬 ‘고래의 아이’ 전국 공연</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">17분 전</span>
+    <span class="time">54분 전</span>
   </div>
   <p class="archive-excerpt">제주문예회관 창작뮤지컬 ‘고래의 아이’ 전국 공연 v.daum.net</p>
 
@@ -4548,7 +4616,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE5WTFhRSnlfdjhlOVIzUC11dGFEY3hob3psejFfTWV5ZUt1Zi1MT1BBaWhrLWFMaU9mVDJCSjFPWFhaTzNqSFotUjJRZ1VwR28?oc=5" target="_blank" rel="noopener">넷플릭스, K-엑스포 USA 참가…K-콘텐츠 생태계 조명</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">17분 전</span>
+    <span class="time">55분 전</span>
   </div>
   <p class="archive-excerpt">넷플릭스, K-엑스포 USA 참가…K-콘텐츠 생태계 조명 v.daum.net</p>
 
@@ -4556,7 +4624,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE40TXFIQU5TdjI5Q2Jpb0w2d2IxT05Kc0RwN244SjFZTTEySFA4dGctNC14OGxKV2o3bVlqUlRoRE5rTDVaXzBVak9Ib0swamFJWlE?oc=5" target="_blank" rel="noopener">[보도자료] ‘국가대표 가드’ 박지현, 쿠팡플레이에서 만난다! 쿠팡플레이, 2026 시즌 WNBA LA 스파크스 경기 한국어 생중계</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 쿠팡 뉴스룸</span>
-    <span class="time">18분 전</span>
+    <span class="time">56분 전</span>
   </div>
   <p class="archive-excerpt">[보도자료] ‘국가대표 가드’ 박지현, 쿠팡플레이에서 만난다! 쿠팡플레이, 2026 시즌 WNBA LA 스파크스 경기 한국어 생중계 쿠팡 뉴스룸</p>
 
@@ -4564,7 +4632,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9aRVI4V1pTS3BuMVdoWEhKSDRWTF9LamNXS0xwRW5uQkE0RkJIQmx2QVVEcHdOMy1SY08yU1VZZUtpQXZoQzJaMUpLN1RUZjNxTUZKWl9xd2llSWds0gFXQVVfeXFMUDNKS3owVW9FSXM2TE5KZHFxeW9sRzNUY2lmd0Zib2YwNWMwSzVCenpLbXcxc2pOZ19sLU1jV3h3S2tRRU81MkNEbTlyUVptV2hEUnZhZmZz?oc=5" target="_blank" rel="noopener">월드컵 다큐 &#39;국대: 로드 투 노스 아메리카&#39;, 6월 11일 첫 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 더팩트</span>
-    <span class="time">33분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-excerpt">월드컵 다큐 &#39;국대: 로드 투 노스 아메리카&#39;, 6월 11일 첫 공개 더팩트</p>
 
@@ -4572,7 +4640,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9pNmFrTDFkZF9iX09UZ0ptUkx2N2RCZkZiQ3JPU3ViMmZGeHVLeXB6ZC1aY0RNT25OWFRvSWRvemJqbGd0YkJxZmFpaHhoRkdMRF9RZGtQTVR2eWxlRmNrcNIBeEFVX3lxTE4tOXlUXzNleFY4MGoycWcwR1JzNnNRN0d5anRPWjJMQ0xZZFlsLXBfUXVmWjhNX0JlMm9EQ2E3RWpNMHZTS1o1Yms5YURQbmU4cGk2emxmaDFBN3pPOU1JMkF0akFrc1ZUOV9tMWlHa3p4bFI0S1RDSQ?oc=5" target="_blank" rel="noopener">뮤지컬 &#39;어느 60대 노부부 이야기&#39;, 내달 사천서 특별공연</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴시스</span>
-    <span class="time">46분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-excerpt">뮤지컬 &#39;어느 60대 노부부 이야기&#39;, 내달 사천서 특별공연 뉴시스</p>
 
@@ -4580,7 +4648,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMickFVX3lxTE1HZlpNaHFvRmkwaEI2SWZmWVRkZFpyVXc5TGh5ZVRfemt5RWxSOUs2LUx2UjRqaHF1Y1JPY2RqQ08ydDFWVGxfU2pEeG5Wb3F1Mno0VG5ZemdWTzNub25fZlBTc2FZS1d1dTFWdHZZWXdEUQ?oc=5" target="_blank" rel="noopener">쿠팡플레이, 박지현 합류 WNBA LA 스파크스 경기 독점 중계</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 톱스타뉴스</span>
-    <span class="time">56분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-excerpt">쿠팡플레이, 박지현 합류 WNBA LA 스파크스 경기 독점 중계 톱스타뉴스</p>
 
@@ -4588,7 +4656,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMickFVX3lxTE9wNW80TUhmUUJwWlJCWmxzWmphWlRmRDRyRzVnWnF2UmhHd0g4QTZXblIwMUxESWFHNGxTUVRQRjc0WHBiX1N5Um5FdGU0ckRUZzJtZ2xtX2lNR1JtMjBNZy0wRzJpMS1pelFJempSdHU0UQ?oc=5" target="_blank" rel="noopener">이용진·황제성·곽범, 티빙 ‘코미디 숏리그’ 런웨이 티저로 출격 알렸다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 톱스타뉴스</span>
-    <span class="time">57분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-excerpt">이용진·황제성·곽범, 티빙 ‘코미디 숏리그’ 런웨이 티저로 출격 알렸다 톱스타뉴스</p>
 
@@ -4604,7 +4672,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFAyN1o3b0w4Q0wyb1VQNFJnSHN0U0sycXNxVDlSaWlJY0tRdXpLbjd0SnBlc3lEbGx0OEJYWm0weE9VSnE5aWgwWENGRjhIVjZuWlRZcGQtTGU1eHRxR014TQ?oc=5" target="_blank" rel="noopener">문체부, 영화계 민관협의체 첫 회의…극장·OTT 상생 논의 본격화</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 아시아경제</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">문체부, 영화계 민관협의체 첫 회의…극장·OTT 상생 논의 본격화 아시아경제</p>
 
@@ -4612,7 +4680,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9oaVFSOVRtMi1ibnBBLVNTNDRqSE9jWi1uVXMtX2ZZYXVmYlRGZ1pSaGtHd3dJMmpyUFMxMFFWcXJGYTB3QnRRbVc0VEpKejQ?oc=5" target="_blank" rel="noopener">정동하x알리, 자선 콘서트 참여</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">정동하x알리, 자선 콘서트 참여 v.daum.net</p>
 
@@ -4620,7 +4688,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFA5OVkxUmdrMnNhb3QxWENNMWpXRUpBZjVsa2JxRGNIUHVmRG5QU2laSGZDY2ZPU01OMkJuSkhDcEZvZ05YaVlsNlNQcUtQekZERm9aeE5hcG0zZDFIekNfV9IBeEFVX3lxTE9fN19qc3VSTjJCOVhnMG5QTmpYamxRV0czTXMtaWlsbWlncHZUTXEwSEpsZUJTNDIxb1FzekhzTDI1R25GMnFfSmtvQkgzbVQ0YnZHXzlOdlBkU0s3TzNlcTdkenFQNXVyOUxpLTdncC1qZFI0cVJjUA?oc=5" target="_blank" rel="noopener">&#34;아침이 밝아오네&#34; 아이오아이 &#39;갑자기&#39;, 콘서트날 멜론 톱100 1위</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴시스</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">&#34;아침이 밝아오네&#34; 아이오아이 &#39;갑자기&#39;, 콘서트날 멜론 톱100 1위 뉴시스</p>
 
@@ -4628,7 +4696,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBXRS1sOXlhM0Nucm1wUjZMazBpNXhtdXU0eFJZUVdQT3lPQThKTzhjN3NqcVNTR2FYT0dyaVVYYUVjLVpEblVINVd0NkN3QVU?oc=5" target="_blank" rel="noopener">&#39;볼 사람 다 보는&#39; OTT, 이젠 광고 채널로 진화 중 [엔터코노미]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;볼 사람 다 보는&#39; OTT, 이젠 광고 채널로 진화 중 [엔터코노미] v.daum.net</p>
 
@@ -4636,7 +4704,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFBrNnhVXzlpWjdpUERFQWg2VnJXUF9Gby1DUlV0aElkVkd4YmxPQjhjd2JQS3ZVUmYtS0hrUmJuSlBNMkkzZnNvOFdjZWVRbm1PTkVZRklVOE5VTy1I?oc=5" target="_blank" rel="noopener">손흥민→이강인, 북중미 향한 594일…&#39;국대: 로드 투 노스 아메리카&#39; 6월 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 뉴스핌</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">손흥민→이강인, 북중미 향한 594일…&#39;국대: 로드 투 노스 아메리카&#39; 6월 공개 뉴스핌</p>
 
@@ -4644,7 +4712,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ReGNhMWM3S0NjdUZBSm9IeXZDaTRuV3dZNFE5UmNiS3dJaFBFQzVBSmF0d295TFVoMUVBbGNQN3FHenZMSndJWmJ5TDFnem5ybEx5U3U2aDh6X0VDNENZanQ1cDA?oc=5" target="_blank" rel="noopener">‘국대’ 북중미 월드컵 도전기</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · bntnews.co.kr</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">‘국대’ 북중미 월드컵 도전기 bntnews.co.kr</p>
 
@@ -4652,7 +4720,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMickFVX3lxTE1IcVNMQm9XM0RiLXFieThIUkV6eWRVUURGdkJ6QkNVMXg4U0s1U1hZNTMwSF9oRFdzNlNhQ1E1Y2JKLXkydlo0VmNuQ1RHcVRUTU1fdTlERWJsZ25vRklWckxxOGh3ZEswdGxDYnoyQURHdw?oc=5" target="_blank" rel="noopener">동방신기 최강창민, LG 트윈스 응원석 합류…티빙 ‘팬덤중계’ 출격</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 톱스타뉴스</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">동방신기 최강창민, LG 트윈스 응원석 합류…티빙 ‘팬덤중계’ 출격 톱스타뉴스</p>
 
@@ -4668,7 +4736,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/descendants-cast-cameron-boyce-birthday-tributes-1236608217/" target="_blank" rel="noopener">‘Descendants’ Cast Celebrate Cameron Boyce’s Birthday: “You Are Sunshine, Forevermore”</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">The &#39;Jessie&#39; actor died July 6, 2019, at age 20. He was born May 28, 1999, meaning he would have turned 27 on Thursday.</p>
 
@@ -4692,7 +4760,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9qc2lSd1VnNUVUSXkxcWFaOFNsZHhIc0FRVWZVLVhjREFQRGFTaWpmVU1seF9HTkhIQmFFXzdxTENubEZWcVBTZEctdDJLSnMydFpTRTJMMWQ3OEE?oc=5" target="_blank" rel="noopener">[잇슈 컬처] 유선호·윤시윤·김정현…‘그날들’ 첫 뮤지컬 도전</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · KBS 뉴스</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">[잇슈 컬처] 유선호·윤시윤·김정현…‘그날들’ 첫 뮤지컬 도전 KBS 뉴스</p>
 
@@ -4700,7 +4768,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/feature/emily-henry-books-to-movies-1235984101/" target="_blank" rel="noopener">Which Emily Henry Books Are Becoming Movies? ‘Happy Place,’ ‘Book Lovers,’ Among Others</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">Romance author Emily Henry now has five of her most recent novels set to be adapted for the big screen. Henry went on a rom-com writing spree that began with Beach Read, which came out in the summer of 2020. She has published a book a year since then, with People We Meet on Vacation […]</p>
 
@@ -4708,7 +4776,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/feature/beach-read-movie-news-updates-emily-henry-adaptation-1236860578/" target="_blank" rel="noopener">Everything We Know About The Film Adaptation Of Emily Henry’s ‘Beach Read’ So Far</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">January 2026 brought us People We Meet on Vacation, and it looks like the next Emily Henry adaptation to take shape will be Beach Read. With the two leads now cast, production on the feature film based on the first of Emily Henry’s adult romance novels that came out in 2020 will likely start production […]</p>
 
@@ -4716,7 +4784,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/guillermo-del-toro-boots-riley-hand-made-effects-i-love-boosters-1236929669/" target="_blank" rel="noopener">Guillermo Del Toro Praises Boots Riley’s “Hand-Made” Effects In ‘I Love Boosters’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">With I Love Boosters approaching it second weekend at the box office, Boots Riley has made a fan out of at least one of his peers. After the writer/director shared a behind-the-scenes look at the film’s daring chase scene, which was shot on a miniature set of the Bay Area, Guillermo del Toro took to […]</p>
 
@@ -4724,7 +4792,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/paul-sparks-ava-threat-liminal-1236929656/" target="_blank" rel="noopener">Paul Sparks And Ava Threat Join Apple Pic ‘Liminal’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">EXCLUSIVE: Paul Sparks and Ava Threat have joined the cast of the Apple Original Films pic Liminal starring Vanessa Kirby and Yahya Abdul-Mateen II. Louis Leterrier is on board to direct. Hailing from Apple Studios, the film is a sci-fi action-thriller based on the AWA graphic novel Telepaths by Eisner Award-winner J. Michael Straczynski, Steve […]</p>
 
@@ -4740,7 +4808,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/zsa-zsa-zemeckis-state-crossed-lovers-1236607996/" target="_blank" rel="noopener">Zsa Zsa Zemeckis to Make Lead Film Debut With Romance ‘State-Crossed Lovers’ (Exclusive)</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">The actress stars as a secretly pregnant 17-year-old in the feature that Alyssa Rallo Bennett will direct for Stonestreet Studios and I Ain&#39;t Playin&#39; Films.</p>
 
@@ -4748,7 +4816,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE94U1cxQnhyMS16cGZ6VmZZR3JjSTNhS19nVURJdHo0YjY2Rm9PZW5ReVpyV283bEJQN2JCV0t6bnFyWm1ZMW5jOF9HTS05dzhKZTljelhR?oc=5" target="_blank" rel="noopener">[글로벌 경영] 스타워즈 영화와 협업, 철강 이미지 홍보</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 중앙일보</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">[글로벌 경영] 스타워즈 영화와 협업, 철강 이미지 홍보 중앙일보</p>
 
@@ -4756,7 +4824,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/feature/toy-story-5-news-updates-everything-we-know-1236929601/" target="_blank" rel="noopener">Everything We Know About ‘Toy Story 5’ So Far</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">We’ll always have a friend in the Toy Story franchise, which has film #5 coming this summer. First announced in February 2023, the fifth film of the beloved Disney Pixar series has added a new roster of voices to its cast, and it will take on a prevalent theme in the age of AI and […]</p>
 
@@ -4780,7 +4848,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/tom-hanks-toy-story-5-tim-allen-greta-lee-uk-launch-film-1236607991/" target="_blank" rel="noopener">Tom Hanks Teases “One of the Most Heartbreaking Scenes I’ve Seen” in ‘Toy Story 5’ as Cast Reunites for U.K. Launch</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">The actors behind Woody and Buzz Lightyear (Tim Allen) spoke about how the upcoming Pixar film takes on the issue screen time: &#34;You can&#39;t make people play again, but you can show them that the engagement with toys and with your life and your friends is a little more satisfying than being on your device.&#34;</p>
 
@@ -4788,7 +4856,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMib0FVX3lxTE9RZ3FMUU04czRPeWlZZGRzT1p4bVJzTmtXM0gxb0NkZUpkRi1Bb2c5bU9TSC1tRk5wYmRpT19zQ3NfWTVxQnRqbjJaRkU1Rm9way1qanNKcWY1QjRVSzdjS0hvNFpDRUdldHZSZWNEQQ?oc=5" target="_blank" rel="noopener">린, 트로트 콘서트 &#39;퀸 오브 세레나데&#39; 6월 개최…&#34;올여름 가장 우아한 무대&#34;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · SPOTV NEWS</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">린, 트로트 콘서트 &#39;퀸 오브 세레나데&#39; 6월 개최…&#34;올여름 가장 우아한 무대&#34; SPOTV NEWS</p>
 
@@ -4804,7 +4872,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/paul-schrader-ai-protagonists-box-office-draws-1236929344/" target="_blank" rel="noopener">Paul Schrader Sees AI Protagonists Becoming Box Office Draws: “You Do The New Clint Eastwood” Via Text Prompt</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">Paul Schrader has long been on the record as an advocate of AI – or at least as a rare 79-year-old filmmaker eager to experiment with technology. Even so, his keynote speech Thursday at AI on the Lot sketched out a future of film that played well to an audience of converts but will likely […]</p>
 
@@ -4812,7 +4880,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-reviews/the-blow-review-la-frappe-1236607499/" target="_blank" rel="noopener">‘The Blow’ Review: A Gripping, Feverishly Performed French Drama Explores Incest With Candor and Emotion</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">Writer-director Julien Gaspar-Oliveri&#39;s first feature stars César award winner Bastien Bouillon and newcomer Diego Murgia as a father and son facing a deeply disturbing past.</p>
 
@@ -4820,7 +4888,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/andie-macdowell-kevin-bacon-beach-read-emily-henry-1236607892/" target="_blank" rel="noopener">Andie MacDowell, Kevin Bacon Cast in Adaptation of Emily Henry Bestseller ‘Beach Read’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">The two actors join Phoebe Dynevor and Patrick Schwarzenegger in the film adaptation of Henry’s 2020 bestseller.</p>
 
@@ -4828,7 +4896,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE0zS0NXTFN2OVViYVUwVjl6bENWRlFaTkZJeGxHdmFuY2lWeEprZi1ldUZ2VC12T21SUVB1MEhlR3ZMaEhESS04NzlQbGR5VWR5cXc?oc=5" target="_blank" rel="noopener">쿠팡플레이 스포츠 중계 일정: 5월 3주 차 ~ 6월 1주 차</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 쿠팡 뉴스룸</span>
-    <span class="time">6시간 전</span>
+    <span class="time">7시간 전</span>
   </div>
   <p class="archive-excerpt">쿠팡플레이 스포츠 중계 일정: 5월 3주 차 ~ 6월 1주 차 쿠팡 뉴스룸</p>
 
@@ -4844,7 +4912,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/off-campus-couple-allie-dean-the-score-season-two-1235569590/" target="_blank" rel="noopener">‘Off Campus’ Season 2 Will Officially Focus on Allie and Dean</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Rolling Stone</span>
-    <span class="time">7시간 전</span>
+    <span class="time">8시간 전</span>
   </div>
   <p class="archive-excerpt">The Amazon Prime romance doesn’t have an official return date, but viewers can now rest assured this fan-favorite couple will be in the spotlight when it does</p>
 
@@ -4860,7 +4928,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/media-access-awards-relaunch-easterseals-disability-arts-1236759960/" target="_blank" rel="noopener">Media Access Awards Relaunches as Easterseals Disability Arts &amp; Culture Awards</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">8시간 전</span>
+    <span class="time">9시간 전</span>
   </div>
   <p class="archive-excerpt">The Media Access Awards, which honor disability representation and authentic filmmaking in media, have officially rebranded as The Easterseals Disability Arts &amp; Culture Awards (the Darcys). The initiative is spearheaded by Easterseals Disability Services and leaders from the disability community, with Film Independent serving as co-producer. Originally founded in 1979 by Norman Lear, the newly […]</p>
 
@@ -4876,7 +4944,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNSjNfOEE0VHZqMkRNd2NHYW1xNFZ5TTh0NGlac2tIczZPSE1SS3pJeXlkMjVudGxyZDFwZVpFSkZmdHI3R212Q21neGZ1VWc1SGU5M3BrSXlnSHJxUzdhaHh1Tm9NdkJmTkZjbGJrVFRHTlFOTHFlSmhRaXlsWUVzLURPazhEdnVvcVVPa3RhWEh1NHloWXc?oc=5" target="_blank" rel="noopener">&#34;무대 위 뉴욕에서 당신의 꿈도 찾을 수 있을 거예요&#34;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 조선일보</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">&#34;무대 위 뉴욕에서 당신의 꿈도 찾을 수 있을 거예요&#34; 조선일보</p>
 
@@ -4884,7 +4952,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/hoppers-disney-streaming-release-date-how-to-watch-1236761127/" target="_blank" rel="noopener">‘Hoppers’ Sets Disney+ Streaming Release Date</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">Pixar’s latest hit movie “Hoppers” is coming to Disney+ very soon. The family-friendly animated film will begin streaming on Disney+ on June 3. “Animal lover Mabel seizes an opportunity to use a new technology to ‘hop’ her consciousness into a lifelike robotic beaver and communicate directly with animals,” the logline reads. “As she makes amazing […]</p>
 
@@ -4924,7 +4992,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/nate-bargatze-the-breadwinner-discounted-tickets-emmys-sony-1236607013/" target="_blank" rel="noopener">Nate Bargatze on Debut Movie ‘The Breadwinner,’ Its Discounted Tickets and His Much-Discussed Emmys Gig</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">10시간 전</span>
+    <span class="time">11시간 전</span>
   </div>
   <p class="archive-excerpt">The stand-up veteran, whose family-friendly film hits theaters Friday, tells The Hollywood Reporter about riding a horse for the Sony feature: &#34;It could act better than I could.&#34;</p>
 
@@ -4932,7 +5000,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.rollingstone.com/tv-movies/tv-movie-reviews/breadwinner-review-nate-bargatze-1235568441/" target="_blank" rel="noopener">Would You Watch a ‘Mr. Mom’ Remake Starring Nate Bargatze?</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Rolling Stone</span>
-    <span class="time">11시간 전</span>
+    <span class="time">12시간 전</span>
   </div>
   <p class="archive-excerpt">If you answered yes and like Walmart commercials in the middle of your big-screen comedies, The Breadwinner is for you</p>
 
@@ -4964,7 +5032,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE4wbGVSMkpDSlNIWG90MGRNYlZtdDZiZlQybzdnRnZ1Yms5VFBLampfWlZxYXFJeTU0TGFYdF94Y2lyNmV5cDN4cGJPX0pnYUpvVFY0M2YtX1pfMkpzNFHSAWNBVV95cUxNbDJvYzNTVDlISzlfdXRoMTZ4V3hKWVJYLWdZMUZWb3dJOXpXNTB6c0J6bWhHcUlodjlWX3BHWS1TTEU0RU1Fb3hHS0ZwWDVpSE80RXZuYU03anhOd09tNTBGekU?oc=5" target="_blank" rel="noopener">메가박스, 북중미 월드컵 생중계 포함 단독 상영 ‘메가 온리’ 6월 라인업 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 스포츠경향</span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
   <p class="archive-excerpt">메가박스, 북중미 월드컵 생중계 포함 단독 상영 ‘메가 온리’ 6월 라인업 공개 스포츠경향</p>
 
@@ -4972,7 +5040,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiakFVX3lxTFA3WnVvWXkteVNuNmhEOFFOSEc5Wl9ybmgySkhBeVlCUkx6M3NCWk1ka3I0bjk2cXdMcHp0Ul9LNnROa2Z5OFFMdm5vVGtTUUpzckJ1MW55MW9JaDNGQVNQb2Z4Z28tNExCQ0E?oc=5" target="_blank" rel="noopener">대전학생교육문화원, 30일 창작 뮤지컬 공연</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 금강일보</span>
-    <span class="time">15시간 전</span>
+    <span class="time">16시간 전</span>
   </div>
   <p class="archive-excerpt">대전학생교육문화원, 30일 창작 뮤지컬 공연 금강일보</p>
 
@@ -4996,7 +5064,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMingFBVV95cUxOSHRYT2dtQWxNWmlDUmJVcU1JWllrNEIwaUxjUnRxbVozcHFSVXp5MUlEUm9IX2kxSDNvNTZQS0JkYXgzaWlOdmk3QmtmUnh6ak9kNDN0T3h5NmJWYWE2cHZfVTVzdHRzdEFjak91Rm93MVBPRE1VLUFoblMzT1NqRUlaSHpWZ1NUVENkVmxsVWtLR19LcUJHdUYtU3V3dw?oc=5" target="_blank" rel="noopener">디즈니플러스는 김수현 주연 영화 &#39;짝퉁&#39;의 개봉이 무기한 연기되었음을 확인했습니다.</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Vietnam.vn</span>
-    <span class="time">16시간 전</span>
+    <span class="time">17시간 전</span>
   </div>
   <p class="archive-excerpt">디즈니플러스는 김수현 주연 영화 &#39;짝퉁&#39;의 개봉이 무기한 연기되었음을 확인했습니다. Vietnam.vn</p>
 
@@ -5004,7 +5072,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNcGEtdTRDUDVKejNxblFaSGVydE80QldjNV9Bdm5QYjQwMDZiT0Z1akw0dE1fTDlhMVNvOFlnNE1QOTNkeVZIRENKZTU3WjgtRlFNUk1pVnpZTFphdGxFQTlRMl9neHQ4c2EyVFNYZkFTTEd0Y3k0YndkVGhxWVIzbg?oc=5" target="_blank" rel="noopener">촌스러운데 힙하다… ‘B급 감성’에 빠진 스크린·OTT[스타in 포커스]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 이데일리</span>
-    <span class="time">16시간 전</span>
+    <span class="time">17시간 전</span>
   </div>
   <p class="archive-excerpt">촌스러운데 힙하다… ‘B급 감성’에 빠진 스크린·OTT[스타in 포커스] 이데일리</p>
 
@@ -5012,7 +5080,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5SYjVjbGxvcmNGYjF1SloteXBhaGVMclV3Mk16WE5GLU1UZVJlS21kY0JFNm9PY1RxRF9vcTUyT0pPN2NUa0tRbFQ3OUdGY1NDYlRvU0tZakc1NWJ4MFhRTi1XNndLNmfSAWtBVV95cUxOb0Rtako0b1JBNGJEek5sOFpkSEtpLW9ZVl8xTUMtR1FrZlRpYnN2RlFJeXgwRlJhbXRsRzE4b3ZDM0pUdVZpRGN5cElPNXJTbE8taGlqTWJnVmtOOUctWF96WlZ5Q3pJZUZMaw?oc=5" target="_blank" rel="noopener">유안타증권 인천본부점, CGV서 투자설명회···선착순 60명 무료 참가</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 현대경제신문</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">유안타증권 인천본부점, CGV서 투자설명회···선착순 60명 무료 참가 현대경제신문</p>
 
@@ -5020,7 +5088,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMigwFBVV95cUxNYWQzMDE4bE8wRjZzbnYtNndqREFJN09pRy1pdVdWOGd0TWgxVl95ZVJsN2kwam5iaEdwaFRJMUJEZm9jMkJlZ3M4QXlLNDBZOHBXaUhLU2ZwSTRoWWNUUUNkNEtoN1hRWEpYY01fTlRna0l3RnVaRklvZ1pZbG5MOE1kZw?oc=5" target="_blank" rel="noopener">수원 삼성 다큐멘터리 &#39;사랑은 강등되지 않는다&#39;, 6월 8일 쿠팡플레이 전격 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 조선일보</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">수원 삼성 다큐멘터리 &#39;사랑은 강등되지 않는다&#39;, 6월 8일 쿠팡플레이 전격 공개 조선일보</p>
 
@@ -5028,7 +5096,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5zQnhXMDY1a0lKZ0E1amlPX21rdjV2WExaS3JjckZoSV9VTnlNVk8wV3g5b2NhMlpmZDFjTVItZkl5OUpmYzhCbnZXWmdFNkFYUGdWTzhRcjF3OG5WVlhJYVJsbnhUc1dQLWVzbjF6UmU?oc=5" target="_blank" rel="noopener">[레저 브리핑] CGV, 파라다이스, 놀유니버스</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 신아일보</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">[레저 브리핑] CGV, 파라다이스, 놀유니버스 신아일보</p>
 
@@ -5036,7 +5104,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE4tQzZjMFVkVFQ4LXdManpvVEtpZHA1Y3ZWVHpwNzM1WVFpcUVxZU51Z2E4Tl9jQlFseFZocGJjdzJ2amN1eVNLam1ESXBma3hBQUc3aHRzWXB2M2FnR2MwaA?oc=5" target="_blank" rel="noopener">&#39;유재석 캠프&#39;, 공개 이틀 만에 넷플릭스 정상 오른 이유</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · iMBC 연예</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;유재석 캠프&#39;, 공개 이틀 만에 넷플릭스 정상 오른 이유 iMBC 연예</p>
 
@@ -5044,7 +5112,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5OcDFfNVlLNlh6ZEwxXy1xSkdQMkFXMXZzdURRa2xDN25lcTRKREtFRm16LXIwS2xJWVRSd3VXQm9aeHdKNzB1MWpoX0IzWldyZ1pLS2lKdDFVU3M?oc=5" target="_blank" rel="noopener">이천문화재단, 판소리 동화 콘서트 ‘자라는 자라’ 6월13일 개최</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 경기일보</span>
-    <span class="time">17시간 전</span>
+    <span class="time">18시간 전</span>
   </div>
   <p class="archive-excerpt">이천문화재단, 판소리 동화 콘서트 ‘자라는 자라’ 6월13일 개최 경기일보</p>
 
@@ -5068,7 +5136,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iaVBRNW1uM1YtS1BNUDNpeDA5TERzbGhoYl9UWXYzTDFUeTk2U2pOQ2FvLVA3NmRBN3JjV3hfWGFYNm90dEJZXzk3emN3dVlzTnFtakJralV0dU1sSlhF?oc=5" target="_blank" rel="noopener">‘유재석 캠프’, 한국·홍콩·싱가포르 넷플릭스 1위</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · YTN</span>
-    <span class="time">18시간 전</span>
+    <span class="time">19시간 전</span>
   </div>
   <p class="archive-excerpt">‘유재석 캠프’, 한국·홍콩·싱가포르 넷플릭스 1위 YTN</p>
 
@@ -5076,7 +5144,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9jazBvTUc1UkswanU5LXNyZXBhcHRJUlQtLURVaUNsYW9kWklObWZ3MUEzTm1HaDhtMkJhVE5kdGRlbTloamdSZmJ2Ql9INjVrZ1hVZHlYREFPNnPSAWBBVV95cUxNYk9UWHp6M2hVTFBIX1dERHVaTDNRYkc0SkVfajJxTURrZ0JXVDZwRTg1LXZhb09GVVFZaGdDMDBPdndPSndraVV2RnBGb0RnWk5sV09FVFZQMjhVRXBPc20?oc=5" target="_blank" rel="noopener">씨티은행, 시각장애인 오케스트라와 야외 콘서트</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 연합뉴스</span>
-    <span class="time">18시간 전</span>
+    <span class="time">19시간 전</span>
   </div>
   <p class="archive-excerpt">씨티은행, 시각장애인 오케스트라와 야외 콘서트 연합뉴스</p>
 
@@ -5116,7 +5184,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE83dmZ3Mk1IMkllbnl0SkN1dGxRUDVkNlVtd2JLUng4R0ZmT0ZYTUEzSGc5enFoZEhkcXR0emdtb3otZ2E4NVgzVEdtUjZDbkxOT1NnZVowMEVrMmJVYnVEcA?oc=5" target="_blank" rel="noopener">메가박스, 월드컵부터 日화제작까지 콘텐츠 다변화 속도</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 메트로신문</span>
-    <span class="time">19시간 전</span>
+    <span class="time">20시간 전</span>
   </div>
   <p class="archive-excerpt">메가박스, 월드컵부터 日화제작까지 콘텐츠 다변화 속도 메트로신문</p>
 
@@ -5148,7 +5216,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5RSmZBcEhNQ3hOOHZlcl9weHR0RDZBbkw2N1F1WC1YYmpQNXpqbVYyWEpRdjltNUt3VmstUHF1U1hhd1h0eHlCUGMwcTVBTTRqWlNr?oc=5" target="_blank" rel="noopener">KBO 찍고 KBL까지…티빙, &#39;팬덤 중계&#39;로 스포츠 OTT 입지 강화</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 네이트</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">KBO 찍고 KBL까지…티빙, &#39;팬덤 중계&#39;로 스포츠 OTT 입지 강화 네이트</p>
 
@@ -5156,7 +5224,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE9EV0NLUGVKY24zbDFTTFppeXVNVjUxU1Q0aE5lcmdWLS1kVlA2MnNRaDlVREhTX3doTFFpa1lnTXlLU3pXR29aeW11ZWduelJ2NU9pM1pmN3pSQ0dINm1lajJR?oc=5" target="_blank" rel="noopener">틱톡은 60분 예능, 티빙은 1분 예능…경계 흐려지는 숏·롱폼</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 미주중앙일보</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">틱톡은 60분 예능, 티빙은 1분 예능…경계 흐려지는 숏·롱폼 미주중앙일보</p>
 
@@ -5164,7 +5232,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMi9wFBVV95cUxNdUpZUTZhcVNvaklNS1F2UGdBRWJHTEpsek4tZmZKUjF0RkhFTk90ZFNfaTk1TXNZd2FoQVVMNXFtb1c2akJnRjVvbEtwLV9nWU5lYnNmQmI0dUFkTTJQOHNiVkpKTGVhZHlab3JjelA2cmZsazlvWnUxNkZ3S1dpWU1Qb2dQQUs2SjdnbHFSc2FpSlpLeGtmakpzcVZMWUp4aXdVSE51cXdZMk43clNENXVmSzZHMEFMR3Y1d1ZpOTBlN2FQbE82ZlQ4VExJSzk0SjRRVjRwYTdlclppdEQyMTJrUFA3aW82eUxMUHRiVDBabjVoZVpR0gH6AUFVX3lxTE4xTHlvNUxGNElYQ2FlVEo0dHpTY0RlenN6VW14MzFtRjJpZkxlMzVhZm5QV2lEdjl0eDh2dWxJQ1F2a1pMSFdDd1dCcE5GbzN5d3NwcEdBVldlV1FzQXFoa2UzaEUwTFhsTzR1bS10Q3ZRUVJFTWY5TkRtcGtScXBfYjBJcnBiUGpKem9qTjJtM1IyMm5ldXk2SlFyd21hVHNOWnd6N3dnSlN5TU0xeDVzR2pFMDVETmNsc0t0ZUN5YnB1eTRtMGVld3Jha1dyU2pqY3ZpZTE0Vm9YLS14TGZVMG9KUC1jUmdYLXRWQy14VmNpc1o1VGk5Zmc?oc=5" target="_blank" rel="noopener">제19회 NOL골든티켓어워즈, 임영웅 2년 연속 대상…‘지킬앤하이드’ 뮤지컬상</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 데일리안</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">제19회 NOL골든티켓어워즈, 임영웅 2년 연속 대상…‘지킬앤하이드’ 뮤지컬상 데일리안</p>
 
@@ -5172,7 +5240,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1JZnhMMFJseGJnblN6dGVPLVhlZHREWjlMNGRFajVoWWxZeW0wODlrbkVDYV92ajJFZFFxY04xbTU2SU95djlmMEdfZDBCeFE0a1U2TmlPbDJJdlJJUFRYcw?oc=5" target="_blank" rel="noopener">한국씨티은행, 시각장애인 오케스트라 콘서트</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 메트로신문</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">한국씨티은행, 시각장애인 오케스트라 콘서트 메트로신문</p>
 
@@ -5180,7 +5248,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9ZMm0welpPTVpoQkczUl9qb0JKOFpBQVp3WTRqN1pGd0p6SV9GbTRielhrZ0NtTVBFOWJ3TURwcTN2RGFNeXVzU0NCWlFLaUpnWjZMLTJqT254aDZXYk1IMl9LNFQ1d016Skk3VA?oc=5" target="_blank" rel="noopener">메이플 여름 쇼케이스 “티켓팅 오픈 1분 만에 완판”</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 게임톡</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">메이플 여름 쇼케이스 “티켓팅 오픈 1분 만에 완판” 게임톡</p>
 
@@ -5204,7 +5272,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTFBXRUhfUUppd05qRF95Qk9fLV9nQVFmRnYzZXcwTU85clREVUF2cUxNT3VSMDJ3bFFva0tWSGs3SUJBcFM0bVl1anNQZUFXMG45VVlnSw?oc=5" target="_blank" rel="noopener">금호타이어, 넷플릭스까지 품었다…디지털 마케팅으로 브랜드 강화</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 이투데이</span>
-    <span class="time">22시간 전</span>
+    <span class="time">23시간 전</span>
   </div>
   <p class="archive-excerpt">금호타이어, 넷플릭스까지 품었다…디지털 마케팅으로 브랜드 강화 이투데이</p>
 
@@ -5212,7 +5280,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiRkFVX3lxTFA4bHJlZ2xocFlRUWxzeUFxcHNzUHVFY2lHcnNrLUppbWFta0dZMWpfOERLazdMV1ZDcVBJTjVIZndyLW1TakE?oc=5" target="_blank" rel="noopener">유통기한 끝난 줄 알았는데... 이 영화가 &#39;스타워즈&#39;의 희망될까</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">22시간 전</span>
+    <span class="time">23시간 전</span>
   </div>
   <p class="archive-excerpt">유통기한 끝난 줄 알았는데... 이 영화가 &#39;스타워즈&#39;의 희망될까 v.daum.net</p>
 
@@ -5228,7 +5296,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE1zdlNWbHMzZWMyU2xHYS04a2RIdW5lNlRFbU0zWnNSb2d6OFpsNUJ6cmNlbzgydk1XZldzRzZ3YVlSWGN2QWV3ZDNaVjFsdkpP?oc=5" target="_blank" rel="noopener">트로트 콘서트 여는 린, 6월 개최</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 문화일보</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">트로트 콘서트 여는 린, 6월 개최 문화일보</p>
 
@@ -5236,7 +5304,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE0tQ19FTFVYa09ySFRLNFJhcjNyWVBZU0I2ejUwUlZGVFB3YWNWNVdjUkwtRXRzRVFGdFlsMlh6NllUTWRDeFVEdnBnVUhtMXFHUXp1OVVBdmVPZw?oc=5" target="_blank" rel="noopener">진선규·공명·김지석·윤경호, 넷플릭스 ‘남편들’…4인4색 캐릭터 스틸</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 브릿지경제</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">진선규·공명·김지석·윤경호, 넷플릭스 ‘남편들’…4인4색 캐릭터 스틸 브릿지경제</p>
 
@@ -5244,7 +5312,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBDSVZ3dEVCNXc0UVJTZzN6dDBUR3c5d0xoYUtLLTdmSnFBMkdRTS15STE2QnY0LUdZcWlkWDNFNWc4UDlWSkctR3BMVjBEeF84c1RoS1RJcXVhdHRicWJpdE9Ma2FpS2tNZGg4TXVsUzTSAXBBVV95cUxQQ0lWd3RFQjV3NFFSU2czenQwVEd3OXdMaGFLSy03ZkpxQTJHUU0teUkxNkJ2NC1HWXFpZFgzRTVnOFA5VkpHLUdwTFYwRHhfOHNUaEtUSXF1YXR0YnFiaXRPTGthaUtrTWRoOE11bFM0?oc=5" target="_blank" rel="noopener">메가박스, 6월&#39;메가 온리&#39; 라인업 공개…월드컵부터 버추얼 라이브까지 - 머니투데이</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 머니투데이</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">메가박스, 6월&#39;메가 온리&#39; 라인업 공개…월드컵부터 버추얼 라이브까지 - 머니투데이 머니투데이</p>
 
@@ -5252,7 +5320,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxOQ3E5Xy1VaTRaNHlnT0FCV1pVQm1fUlpDblJXeG1rZFpNZnZWQTNzSzVicWFMX3p0UGM4WU05YUpBZ01nYjN0MFppUkpISUFGWXdSY1BRcVhEdndaOTlaWWphNDZvVm1pczV1Y0tnbWplRXhTTmRITWVfSjMwWjN6Mw?oc=5" target="_blank" rel="noopener">CGV 대구 수성점, 6월 1일 재개관</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · tbc.co.kr</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">CGV 대구 수성점, 6월 1일 재개관 tbc.co.kr</p>
 
@@ -5508,7 +5576,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.google.com/rss/articles/CBMiRkFVX3lxTFA4bWlTZ1J5MXM1RFczcXIwSVhVU0J6ZVBCQXhob3NISi1IZjNwWkJnZkNaTVdrM21tY2hpRTJaM05STnBhYnc?oc=5" target="_blank" rel="noopener">&#39;살목지&#39;, 안방극장 상륙…웨이브·쿠팡플레이 시청 가능</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · v.daum.net</span>
-    <span class="time">1일 전</span>
+    <span class="time">2일 전</span>
   </div>
   <p class="archive-excerpt">&#39;살목지&#39;, 안방극장 상륙…웨이브·쿠팡플레이 시청 가능 v.daum.net</p>
 
@@ -5642,7 +5710,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://extmovie.com/movietalk/94063709" target="_blank" rel="noopener">잭 에프론, HBO와 A24의 《엔젤 하트》 리메이크 작품 출연</a>
   <div class="archive-meta">
     <span class="archive-kind community">커뮤니티 · 익스트림무비</span>
-    <span class="time">49분 전</span>
+    <span class="time">1시간 전</span>
   </div>
   <p class="archive-mood">단순 정보/공지</p>
   <p class="archive-excerpt">왜 이미 한 번 이야기된 작품들을 다시 꺼내 리메이크하고, 리부트하고, 재해석하는 걸까? 왜 그 에너지를 관객들이 아직 보지 못한 새로운 아이디어와...</p>
@@ -6744,7 +6812,7 @@ body.is-searching .search-archive-panel { display: block; }
     { key: 'aiBriefing',  label: 'AI 브리핑',       sel: '.ai-briefing-panel' },
     { key: 'kpis',        label: '핵심 지표',       sel: '.kpis' },
     { key: 'curation',    label: '핵심 큐레이션',   sel: '.curation-panel' },
-    { key: 'boxoffice',   label: '전일 관객 TOP 5', sel: '[data-section="boxoffice"]' },
+    { key: 'boxoffice',   label: '전일 입장객 TOP 5', sel: '[data-section="boxoffice"]' },
     { key: 'reservation', label: '실시간 예매량',   sel: '[data-section="reservation"]' },
     { key: 'overseas',    label: '북미 주말 TOP 5', sel: '[data-section="overseas"]' },
     { key: 'market',      label: '시장동향',        sel: '.market-trends-panel' },
@@ -6838,7 +6906,7 @@ body.is-searching .search-archive-panel { display: block; }
       var briefingSidestack = q('.briefing-side-stack');
       if (briefingSidestack) {
         setVisible(briefingSidestack,
-          visibleBySetting('boxoffice') || visibleBySetting('reservation') || visibleBySetting('overseas'));
+          visibleBySetting('reservation') || visibleBySetting('overseas'));
       }
       updateDashboardToggleLabel();
       var status = q('#searchStatus');

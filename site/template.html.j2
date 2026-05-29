@@ -167,6 +167,7 @@
     <span id="searchStatusText"></span>
     <button type="button" class="tool-btn" onclick="RADAR.clearSearch()">전체 보기</button>
   </div>
+  <div class="kpis-note">TOP 5 기준</div>
   <section class="kpis" aria-label="핵심 지표">
     <div class="kpi"><span>전일 총 입장객</span><strong>{% if market_summary %}{{ market_summary.total_audi }}명{% if market_summary.total_audi_delta %} <span class="audi-delta audi-delta-{{ market_summary.total_audi_delta_sign }}">({{ market_summary.total_audi_delta }})</span>{% endif %}{% else %}데이터 없음{% endif %}</strong></div>
     <div class="kpi"><span>평균 좌석판매율</span><strong>{% if market_summary %}{{ market_summary.avg_seat_sales }}{% else %}데이터 없음{% endif %}</strong></div>

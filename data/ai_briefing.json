@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T02:04:34+00:00",
+  "generated_at": "2026-05-29T00:05:00+00:00",
   "model": "claude-sonnet-4-6 (routine)",
   "categories": [
     {
@@ -7,19 +7,19 @@
       "name": "영화",
       "items": [
         {
-          "summary": "'군체' 개봉 8일 만에 누적 250만 명 돌파, 12일 연속 예매 1위 유지하며 300만 고지 향해 질주",
-          "source": "스포츠경향",
-          "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9mbnJwZWVjNmEwc1BFSWdHWFMyZmVVQkRybVFadXRSakV0SFc"
+          "summary": "전지현·구교환·지창욱 주연 '군체', 개봉 9일 만에 누적 300만 관객 돌파·박스오피스 1위 유지",
+          "source": "아시아투데이",
+          "source_url": "https://www.asiatoday.co.kr/kn/view.php?key=20260529010008755"
         },
         {
-          "summary": "A24 공포영화 '백룸' 개봉 이틀째 누적 8만 명 돌파, 국내 A24 배급작 역대 최고 오프닝 페이스 기록",
-          "source": "뉴스핌",
-          "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCUWZIWEpQNGd1TERtLTQzcTd6VTBNZ3BZVldUb0ZQYnl0Tkt"
+          "summary": "나홍진 감독 '호프', 전 세계 200개국 이상 선판매로 한국 영화 역대 최고액 기록·순제작비 50% 회수",
+          "source": "뉴시스",
+          "source_url": "https://www.newsis.com/view/NISX20260529_0003649042"
         },
         {
-          "summary": "강동원·엄태구 주연 '와일드 씽' 개봉 첫 주 무대인사 확정, 현충일 연휴 트라이앵글 vs 최성곤 팬덤 대결 예고",
-          "source": "조선일보",
-          "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQNi1JQ1oxLTVzMnVBRTVhQi1WbzNLeVRoMy1Fcnpzb1pTcUJ"
+          "summary": "롯데엔터테인먼트 배급 '와일드 씽'(6월 3일 개봉), 강동원·엄태구·박지현의 극 중 아이돌 그룹 'Triangle' OST 실물 앨범 발매",
+          "source": "이데일리",
+          "source_url": "https://www.edaily.co.kr/news/newspath.asp?newsid=03755606645453840"
         }
       ]
     },
@@ -28,19 +28,19 @@
       "name": "영화관·OTT",
       "items": [
         {
-          "summary": "문화체육관광부, 영화계 민관협의체 첫 회의 개최 — 극장·OTT 상생 방안 논의 본격화",
-          "source": "아시아경제",
-          "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFAyN1o3b0w4Q0wyb1VQNFJnSHN0U0sycXNxVDlSaWlJY0tRdXpLbjd0SnBlc3lEbGx0OEJ"
+          "summary": "한국 영화 유통구조 개선 민관협의체 출범, 홀드백 도입 여부 8월까지 결론 목표로 CGV·메가박스·넷플릭스·CJ ENM·롯데컬처웍스 등 참여",
+          "source": "헤럴드경제",
+          "source_url": "https://biz.heraldcorp.com/article/10758406?ref=naver"
         },
         {
-          "summary": "롯데시네마, 6월 롯시픽 단독 개봉 4편 라인업 공개 — 메이플스토리 극장판·호러 등 장르 다변화",
-          "source": "로이슈",
-          "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBaZ3hVZldMUG9pSDNPT3ItZXNRbHdlVkJwelNvM0RHZ0YtTnp"
+          "summary": "넷플릭스 등 OTT 이용 확산으로 국내 유료방송(케이블·위성) 가입자 3,615만 명까지 감소, 하반기 3,600만 선 붕괴 전망",
+          "source": "뉴스웍스",
+          "source_url": "https://www.newsworks.co.kr/news/articleView.html?idxno=842255"
         },
         {
-          "summary": "웨이브, OTT 업계 최초 '미디어 커머스' 서비스 도입 — 골프 중계 시청 중 실시간 쇼핑 연동",
-          "source": "연합뉴스",
-          "source_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA4VmxWdERwd2NBYlphUC1aRFhxV0ZzbExPX1lrN0lNUnU1UGxWMUF4elZiR0NaMTNSaVE"
+          "summary": "넷플릭스·아마존이 숏폼 영상 시장 참전, 디즈니플러스도 세로형 피드 '버츠(Verts)' 도입으로 OTT 플랫폼 간 단편 콘텐츠 경쟁 가속",
+          "source": "더퍼블릭",
+          "source_url": "https://www.thepublic.kr/news/articleView.html?idxno=305810"
         }
       ]
     },
@@ -49,14 +49,14 @@
       "name": "드라마·공연·시리즈",
       "items": [
         {
-          "summary": "CJ ENM '취사병 전설이 되다', 글로벌 OTT 공개 첫 주 1.2억 뷰 달성하며 다수 국가 차트 1위 점령",
-          "source": "더구루",
-          "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBULTU4NmxGZU5NbTh5Zzdwc2tsY2hVMnFyaTlYd21YYlg0X0FLY1N3Z0MxblhOcWhCM2E"
+          "summary": "싸이, '흠뻑쇼 2026' 전국 9개 도시 14회 공연 일정 확정, 6월 27일 의정부를 시작으로 부산까지 순회",
+          "source": "아이에스플러스",
+          "source_url": "https://isplus.com/article/view/isp202605290053"
         },
         {
-          "summary": "넷플릭스 예능 '유재석 캠프', 공개 이틀 만에 한국·홍콩·싱가포르 비영화 부문 1위 동시 달성",
-          "source": "YTN",
-          "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iaVBRNW1uM1YtS1BNUDNpeDA5TERzbGhoYl9UWXYzTDFUeTk2U2pOQ2FvLVA3NmRBN3I"
+          "summary": "CJ ENM·주영한국문화원, 런던서 티빙 오리지널 '취사병 전설이 되다' 특별 상영회 성료, 현지 미디어·콘텐츠 업계 관계자 및 글로벌 팬 참석",
+          "source": "스포츠월드",
+          "source_url": "https://www.sportsworldi.com/newsView/20260529505449"
         }
       ]
     },
@@ -65,14 +65,14 @@
       "name": "라이브사업·체험사업·IP",
       "items": [
         {
-          "summary": "제19회 NOL골든티켓어워즈, 임영웅 '아임 히어로 투어' 2년 연속 대상 — 뮤지컬 '지킬앤하이드' 뮤지컬상 수상",
-          "source": "데일리안",
-          "source_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNdUpZUTZhcVNvaklNS1F2UGdBRWJHTEpsek4tZmZKUjF0RkhFTk90ZFNfaTk1TXNZd2E"
+          "summary": "나이키, BTS 월드투어 '아리랑' 기념 협업 컬렉션 출시, 모자 제품은 한국 단독 판매로 희소성 강조",
+          "source": "동아일보",
+          "source_url": "https://www.donga.com/news/Economy/article/all/20260529/134015956/1"
         },
         {
-          "summary": "삼성전자, 롯데시네마에 세계 최초 극장 전용 '시네마 LED' 스크린 도입 — 프리미엄 몰입형 관람 체험 강화",
-          "source": "samsung.com",
-          "source_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1Ea0VPNUQxamNXYnBkUnJrZndiQW0xbGxucnZBT3ZIUmFuRGY"
+          "summary": "제6회 K뮤지컬 국제마켓, 6월 29일~7월 3일 서울 코엑스에서 개막, 영미권 제작사 대거 방한 예정",
+          "source": "YTN",
+          "source_url": "https://www.ytn.co.kr/_ln/0106_202605291315335070"
         }
       ]
     },
@@ -81,14 +81,14 @@
       "name": "해외·마켓",
       "items": [
         {
-          "summary": "'스타워즈: 만달로리안과 그로구', 5월 22~24일 북미 박스오피스 1위 — 주말 수익 약 8,170만 달러로 디즈니 스타워즈 극장판 전략 첫 성과 확인",
-          "source": "The New York Times",
-          "source_url": "https://www.nytimes.com/2026/05/24/business/media/mandalorian-and-grogu-box-office.html?partner=naver"
+          "summary": "파라마운트, 플로렌스 퓨 주연·가스 데이비스 감독의 영화 '미드나잇 라이브러리' 북미 배급권을 약 3,600만 달러에 낙찰",
+          "source": "Deadline",
+          "source_url": "https://deadline.com/2026/05/florence-pugh-midnight-library-paramount-1236928593/"
         },
         {
-          "summary": "픽사 '토이 스토리 5', 북미 오프닝 주말 1억5,000만 달러 전망 — 프랜차이즈 역대 최고 및 2026년 연간 박스오피스 신기록 예상",
-          "source": "Deadline",
-          "source_url": "https://deadline.com/2026/05/toy-story-5-box-office-projection-1236929392/"
+          "summary": "2026 칸 국제영화제 심사위원상 수상작 '꿈꾸는 모험(The Dreamed Adventure)', 독립 배급사 자누스 필름스와 북미 배급 계약 체결",
+          "source": "The Hollywood Reporter",
+          "source_url": "https://www.hollywoodreporter.com/movies/movie-news/cannes-film-prize-winner-the-dreamed-adventure-janus-deal-1236607903/"
         }
       ]
     }

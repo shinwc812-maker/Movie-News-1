@@ -99,5 +99,13 @@
       "(주)레드아이스 엔터테인먼트"
     ],
     "is_lotte": false
+  },
+  "상자 속의 양": {
+    "movie_code": "20261766",
+    "distributors": [
+      "(주)넥스트엔터테인먼트월드(NEW)",
+      "Next Entertainment World"
+    ],
+    "is_lotte": false
   }
 }

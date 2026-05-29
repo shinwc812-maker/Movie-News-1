@@ -591,18 +591,29 @@ def render_html(b: dict, articles: list, market: dict | None = None,
         '<table width="100%" cellspacing="0" cellpadding="0" border="0" '
         'style="border-collapse:collapse;">'
         '<tr>'
-        '<td valign="top" width="62%" style="padding:6px 6px 6px 10px;">'
+        '<td valign="top" width="62%" class="col" style="padding:6px 6px 6px 10px;">'
         f'{left_inner}'
         '</td>'
-        '<td valign="top" width="38%" style="padding:6px 10px 6px 6px;">'
+        '<td valign="top" width="38%" class="col" style="padding:6px 10px 6px 6px;">'
         f'{right_inner}'
         '</td>'
         '</tr></table>'
     )
 
     return f"""<!DOCTYPE html>
-<html><body style="margin:0;padding:0;background:#e2e8f0;">
-<div style="max-width:820px;margin:18px auto;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;color:#1f2937;">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @media only screen and (max-width:600px) {{
+    .col {{ display:block !important; width:100% !important; padding:6px 10px !important; }}
+    .wrap {{ width:100% !important; max-width:100% !important; }}
+  }}
+</style>
+</head>
+<body style="margin:0;padding:0;background:#e2e8f0;">
+<div class="wrap" style="max-width:820px;margin:18px auto;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;color:#1f2937;">
   <div style="background:#f1f5f9;border:1px solid #dbe3ec;border-radius:10px 10px 0 0;padding:14px 18px 8px;">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
       <div style="font-size:17px;font-weight:800;color:#1f2937;">

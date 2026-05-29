@@ -1,0 +1,37 @@
+{
+  "weekend_label": "May 22-24",
+  "fetched_at": "2026-05-29T01:11:36.054216+00:00",
+  "movies": [
+    {
+      "rank": 1,
+      "title": "Star Wars: The Mandalorian and Grogu",
+      "gross": "$81.7M",
+      "url": "https://www.boxofficemojo.com/release/rl3294527489/?ref_=bo_hm_rd"
+    },
+    {
+      "rank": 2,
+      "title": "Obsession",
+      "gross": "$24.0M",
+      "url": "https://www.boxofficemojo.com/release/rl1660846081/?ref_=bo_hm_rd"
+    },
+    {
+      "rank": 3,
+      "title": "Michael",
+      "gross": "$20.6M",
+      "url": "https://www.boxofficemojo.com/release/rl1246593025/?ref_=bo_hm_rd"
+    },
+    {
+      "rank": 4,
+      "title": "The Devil Wears Prada 2",
+      "gross": "$12.7M",
+      "url": "https://www.boxofficemojo.com/release/rl365461505/?ref_=bo_hm_rd"
+    },
+    {
+      "rank": 5,
+      "title": "The Sheep Detectives",
+      "gross": "$9.2M",
+      "url": "https://www.boxofficemojo.com/release/rl1601339393/?ref_=bo_hm_rd"
+    }
+  ],
+  "error_message": null
+}

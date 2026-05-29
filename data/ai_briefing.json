@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T00:52:44+00:00",
+  "generated_at": "2026-05-29T00:05:00+00:00",
   "model": "claude-sonnet-4-6 (routine)",
   "categories": [
     {
@@ -7,19 +7,19 @@
       "name": "영화",
       "items": [
         {
-          "summary": "좀비 영화 '군체' 누적 관객 237만 명 돌파·박스오피스 1위 유지, 2위는 신작 '백룸'",
-          "source": "톱스타뉴스",
-          "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ZM05PTC1VTGRLRVFJd29YSFBVa0JWTnZCc2JqbGxxRnRhVzRiZG0zLUZOOWg1YmZQWEVRQUNuQzdEOW5UNjhqUTZFSl8tMDBrSHRMMDZXX1lCWnNMdHEtaDNpOXlhOFQwRFNwbV9pdE13dw?oc=5"
+          "summary": "롯데시네마, 6월 롯시픽 단독 개봉작 4편 발표…메이플스토리 극장판 '디어 마이 히어로'·재개봉 명작·웰메이드 공포까지 장르 다변화",
+          "source": "로이슈",
+          "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBaZ3hVZldMUG9pSDNPT3ItZXNRbHdlVkJwelNvM0RHZ0YtTnpJUW0xcVVLemIyQzdtdVczQ0s4eFZRd0JZOURpZFA2cnZ3QktZZWVIZlRTZmhObnpfRjJRWENKelpCb1lycEY2a1VTN3hlM0IydlVGV1R3?oc=5"
         },
         {
-          "summary": "롯데 배급 코미디 '와일드 씽' 컨셉 시사회 폭발 반응, 6월 3일 개봉 예정",
-          "source": "조선일보",
-          "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPMV9Dc0R5cXdBYzc4YmRIVGRQaFNjdVNsUW9sNkZhUWZOa2tBVHJmNDF4RlRfUEhleEdDWVU4TDNVWnFTQ0stSmJXeFpJWHRQZGtmeTBSNnc5RHlLTVY2Z0gxTDE0SWxZVHBVaHZVV0ItOWNwdnotTHVUcF9oYlZhRjM2ekgtQmdKWkE?oc=5"
+          "summary": "'군체' 누적 250만 명 돌파, 12일 연속 예매 1위 유지하며 2위 '와일드 씽'과 격차 지속 확대",
+          "source": "ER 이코노믹리뷰",
+          "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5fVlFkVWtiQV9oenlmMmJ5U3drTG9tZFF6LURvYWJodkJpNk92S1RmRGVCdHNkVFAwU0IyY2Iwdlc2TFFQRGxWakNhdnQwQWNYSUxaM0IzTEljbTZGRzBNcWFza2ZIem1reGF1Wg?oc=5"
         },
         {
-          "summary": "유튜브 공포 괴담 원작 '백룸', 개봉 첫날 박스오피스 2위·5만 명 동원",
-          "source": "이데일리",
-          "source_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxObHFrTnlCcjVsajZxQi0yRXBtMVBwVHhnNlVHcG5PWE5Wd1prQklVNkRWQ0c1UFBNcmxHZUdFV3ZkNTBMWDZ3R2djZWxVYzhqMUxwdXQzX2VFekJFekJCeVg4WGVib3k2S2J3azlFU2VEM2NNX2xqVXVkMXd3WG81bw?oc=5"
+          "summary": "A24 공포영화 '백룸', 개봉 이틀째 누적 8만 명 돌파…국내 A24 배급작 역대 최고 오프닝 페이스 기록",
+          "source": "뉴스핌",
+          "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCUWZIWEpQNGd1TERtLTQzcTd6VTBNZ3BZVldUb0ZQYnl0TktjdUpObmdRTWx5YjVqa0xoc1IzbFdpak5FV2x4WjRUZ084V25rQmo3VWc4YlhnQjV2?oc=5"
         }
       ]
     },
@@ -28,19 +28,19 @@
       "name": "영화관·OTT",
       "items": [
         {
-          "summary": "넷플릭스, 2026년 6월 신규 콘텐츠 라인업 공개",
-          "source": "Variety",
-          "source_url": "https://variety.com/feature/whats-on-netflix-movies-shows-1203517873/"
+          "summary": "삼성전자, 롯데시네마에 세계 최초 극장 전용 '시네마 LED' 스크린 도입 확정",
+          "source": "samsung.com",
+          "source_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1Ea0VPNUQxamNXYnBkUnJrZndiQW0xbGxucnZBT3ZIUmFuRGZxc1BQcXc3SHFoVGNGczRJTlRSbmcweXFuekFfM21GYzJVV1VhOGoxRXk0dDJiLXpSTWJfTnZRbVZXZEdjLW9ZTFhUMA?oc=5"
         },
         {
-          "summary": "아마존 프라임비디오, AI 생성 콘텐츠 전용 'GenAI 크리에이터 펀드' 신설·오리지널 시리즈 3편 그린라이트",
-          "source": "Variety",
-          "source_url": "https://variety.com/2026/tv/news/amazon-mgm-studios-genai-creators-fund-greenlights-series-1236759131/"
+          "summary": "문화체육관광부, 영화계 민관협의체 첫 회의 개최…극장·OTT 상생 방안 논의 본격화",
+          "source": "아시아경제",
+          "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFAyN1o3b0w4Q0wyb1VQNFJnSHN0U0sycXNxVDlSaWlJY0tRdXpLbjd0SnBlc3lEbGx0OEJYWm0weE9VSnE5aWgwWENGRjhIVjZuWlRZcGQtTGU1eHRxR014TQ?oc=5"
         },
         {
-          "summary": "PE 펌 어드바야 캐피털, Comscore Movies 인수하고 'Rentrak' 브랜드 부활·극장 박스오피스 데이터 서비스 재편",
-          "source": "Deadline",
-          "source_url": "https://deadline.com/2026/05/advaya-capital-acquires-comscore-movies-renames-it-rentrak-1236928611/"
+          "summary": "CGV 스크린X, '군체' 상영 중 2026년 최고 객석률 달성…개봉 주말 30% 돌파",
+          "source": "머니투데이",
+          "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5xTExzcU9PMktodmxEMllCZnlWVDc0Y2RnTDZ0T3VQTEFSOU1wV0FmV0ptZzB2aU9yV1lPa3dzamViWVZESFA1aERod0RNM2xYY3hTZ18yNGJ6Qk1feDB0R1RWQkh2Ym0xa2pV0gFwQVVfeXFMTlg3RUJ6ZC12LTF0d0gwcGg5UDE0czNYTEFhbEdjNEZ3SHZSY1ZYVnFRZDg4bkNxbEU5LWxlVkdlZXRYdmFuZnNHcmtfQnFnYi1kdVVwUmlVeXgxeTVEVHpsc2dkd1RRR1FnVzgtaGhKbg?oc=5"
         }
       ]
     },
@@ -49,14 +49,14 @@
       "name": "드라마·공연·시리즈",
       "items": [
         {
-          "summary": "플레이브 공연 실황 영화 '아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마' 국내 예매 3.2만 명 돌파·CGV 무비차트 상위권",
-          "source": "매일경제",
-          "source_url": "https://www.mk.co.kr/article/12057367"
+          "summary": "CJ ENM '취사병 전설이 되다', 글로벌 공개 첫 주 1.2억 뷰 달성하며 다수 글로벌 OTT 상위권 점령",
+          "source": "더구루",
+          "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBULTU4NmxGZU5NbTh5Zzdwc2tsY2hVMnFyaTlYd21YYlg0X0FLY1N3Z0MxblhOcWhCM2FJSlRuZkNESlgza3RnOUJUSjEweVFUUk1yZ2I1Z0c1dTNfNjNlaVUyUQ?oc=5"
         },
         {
-          "summary": "K-이머시브 공연 대표작 '룰렛', 7월 복귀 결정",
-          "source": "abcn.kr",
-          "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9KVHdjUl9aYU8zeHpCS1daMDNwdWpwRFhqSVVfY2lBMXhwNnUxSEp2Z3hubG1vSG5hQ0pYV2JGYS1CTlpwQ2ZYc3pPNG1MX1loOENUQzhzdFlObTgyM3ZYNWpTWdIBZ0FVX3lxTE45eGxCSjR3cEtrQmF2RDVOWllmNlF6U2ZmZzlpS2J4eDA1blhfUWh2eEpDRVNsWlhOMFZKbTl2UzcxTUJ6aEZGWjh6bFpjcmhLTWtISk9tbW1BNWRNZVlGQWVjMlR6MzQ?oc=5"
+          "summary": "예능 '유재석 캠프', 공개 후 한국·홍콩·싱가포르 넷플릭스 TV 프로그램 부문 1위 동시 기록",
+          "source": "YTN",
+          "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iaVBRNW1uM1YtS1BNUDNpeDA5TERzbGhoYl9UWXYzTDFUeTk2U2pOQ2FvLVA3NmRBN3JjV3hfWGFYNm90dEJZXzk3emN3dVlzTnFtakJralV0dU1sSlhF?oc=5"
         }
       ]
     },
@@ -65,14 +65,14 @@
       "name": "라이브사업·체험사업·IP",
       "items": [
         {
-          "summary": "쿠팡, 팬덤 굿즈 전용 플랫폼 '콜라보클럽' 론칭·애니메이션·캐릭터 IP 굿즈 로켓배송 서비스 개시",
-          "source": "thefairnews.co.kr",
-          "source_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5NbDFMVGhfX3UydGZyYTZOdklDdkpzUm9PTU44eFRjbnBycGtiNEZwWjJPZllfM0dVd1JHNU5JZGtwXzFmT0ZrTG9aOVNjMzdnS1FHWkJYdVFPR2hEZEp5U3p0RDlXTkIzZGtXYklsVmHSAXRBVV95cUxOd0xFREpoX1lITzN4TTJEbnN0X21GU3IyNklPMVB5ekNXSEJ1WWZ2c1pHdk1IdWZoZlN5Rmc2MDNQNXc5cWtWWnBld0d2Y1NrZnJ4dmZEQ2xkLVJ4ZzdLcHcycWFGX3JLSjhfOC1rUnVmWWg2Qg?oc=5"
+          "summary": "메이플스토리 여름 쇼케이스 티켓팅, 오픈 1분 만에 전석 완판…게임 IP 라이브 사업 흥행 재확인",
+          "source": "게임톡",
+          "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ZMm0welpPTVpoQkczUl9qb0JKOFpBQVp3WTRqN1pGd0p6SV9GbTRielhrZ0NtTVBFOWJ3TURwcTN2RGFNeXVzU0NCWlFLaUpnWjZMLTJqT254aDZXYk1IMl9LNFQ1d016Skk3VA?oc=5"
         },
         {
-          "summary": "씨네21, '신극장판 은혼: 요시와라 대염상' 개봉 계기로 장수 IP 비즈니스 확장 가능성 조명",
-          "source": "씨네21",
-          "source_url": "https://www.cine21.com/news/view/?mag_id=110009"
+          "summary": "제19회 NOL골든티켓어워즈에서 임영웅 콘서트 2년 연속 대상 수상, 뮤지컬 '지킬앤하이드' 뮤지컬상 수상",
+          "source": "데일리안",
+          "source_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNdUpZUTZhcVNvaklNS1F2UGdBRWJHTEpsek4tZmZKUjF0RkhFTk90ZFNfaTk1TXNZd2FoQVVMNXFtb1c2akJnRjVvbEtwLV9nWU5lYnNmQmI0dUFkTTJQOHNiVkpKTGVhZHlab3JjelA2cmZsazlvWnUxNkZ3S1dpWU1Qb2dQQUs2SjdnbHFSc2FpSlpLeGtmakpzcVZMWUp4aXdVSE51cXdZMk43clNENXVmSzZHMEFMR3Y1d1ZpOTBlN2FQbE82ZlQ4VExJSzk0SjRRVjRwYTdlclppdEQyMTJrUFA3aW82eUxMUHRiVDBabjVoZVpR0gH6AUFVX3lxTE4xTHlvNUxGNElYQ2FlVEo0dHpTY0RlenN6VW14MzFtRjJpZkxlMzVhZm5QV2lEdjl0eDh2dWxJQ1F2a1pMSFdDd1dCcE5GbzN5d3NwcEdBVldlV1FzQXFoa2UzaEUwTFhsTzR1bS10Q3ZRUVJFTWY5TkRtcGtScXBfYjBJcnBiUGpKem9qTjJtM1IyMm5ldXk2SlFyd21hVHNOWnd6N3dnSlN5TU0xeDVzR2pFMDVETmNsc0t0ZUN5YnB1eTRtMGVld3Jha1dyU2pqY3ZpZTE0Vm9YLS14TGZVMG9KUC1jUmdYLXRWQy14VmNpc1o1VGk5Zmc?oc=5"
         }
       ]
     },
@@ -81,14 +81,14 @@
       "name": "해외·마켓",
       "items": [
         {
-          "summary": "'스타워즈: 만달로리안과 그로구' 5월 22-24일 북미 박스오피스 1위·8,170만 달러 달성",
-          "source": "v.daum.net",
-          "source_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE8taEVITnNJaTl4S05JM1ZyWXVxaWoyZzI2OGotLWFzXzhGNWxPQW95OGh6c2k4alZ2bTFzQkpnOEJRN1NZckljaXVDRm13ajBYeGQxRw?oc=5"
+          "summary": "북미 5월 22~24일 주말 박스오피스: '만달로리안과 그로구' $8,170만으로 1위 출발, 디즈니 스타워즈 극장판 전략 성공적 개막",
+          "source": "Box Office Mojo",
+          "source_url": "https://www.boxofficemojo.com/release/rl3294527489/?ref_=bo_hm_rd"
         },
         {
-          "summary": "'군체' 말레이시아 개봉 3일 만에 한국영화 역대 흥행 3위 등극·26.5억 원 수익",
-          "source": "뉴스1",
-          "source_url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB5YW1zcEVVaG5zRzZPY0NDWEQxZ0pjd0djNFBsZ2I4RjFMUE9fcWVhcnZWdHk3UWc0ajlrN1JXRmtCYl82UmxSaVhSUDlmZTRTUnNzUGIxTQ?oc=5"
+          "summary": "'토이 스토리 5', 북미 오프닝 $1억 5,000만 달러 예상…픽사 프랜차이즈 역대 신기록 및 2026년 연간 흥행 최고 기록 전망",
+          "source": "Deadline",
+          "source_url": "https://deadline.com/2026/05/toy-story-5-box-office-projection-1236929392/"
         }
       ]
     }

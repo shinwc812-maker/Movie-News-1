@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T06:27:00+00:00",
+  "generated_at": "2026-05-29T00:05:00+00:00",
   "model": "claude-sonnet-4-6 (routine)",
   "categories": [
     {
@@ -7,19 +7,19 @@
       "name": "영화",
       "items": [
         {
-          "title": "벌써 300만! '군체' 관객몰이, 좀비 진화 속도만큼 빠르네",
-          "source": "아시아투데이",
-          "source_url": "https://www.asiatoday.co.kr/kn/view.php?key=20260529010008755"
-        },
-        {
-          "title": "강동원이 아이돌로…KT지니뮤직, 영화 '와일드 씽' OST 앨범 발매",
-          "source": "이데일리",
-          "source_url": "https://www.edaily.co.kr/news/newspath.asp?newsid=03755606645453840"
+          "title": "'군체' 8일만 250만 돌파…이번 주말 300만 간다",
+          "source": "스포츠경향",
+          "source_url": "https://sports.khan.co.kr/article/202605290933003?pt=nv"
         },
         {
           "title": "나홍진, 박찬욱 넘었다…'호프' 한국영화 최고 해외 선판매 기록",
           "source": "중앙일보",
           "source_url": "https://www.joongang.co.kr/article/25432333"
+        },
+        {
+          "title": "김시아, 연상호 감독 신작 '예토' 캐스팅 단독 확정",
+          "source": "스포츠조선",
+          "source_url": "https://www.sportschosun.com/entertainment/2026-05-29/202605290100176770011814"
         }
       ]
     },
@@ -28,17 +28,17 @@
       "name": "영화관·OTT",
       "items": [
         {
-          "title": "홀드백 논의…한국 영화 유통구조 개선을 위한 민관협의체 발족",
-          "source": "뉴스1",
-          "source_url": "https://www.news1.kr/life-culture/general-cultural/6180987"
+          "title": "'홀드백' 8월까지 결론낸다…한국 영화 민관협의체 출범",
+          "source": "헤럴드경제",
+          "source_url": "https://biz.heraldcorp.com/article/10758406?ref=naver"
         },
         {
-          "title": "넷플릭스에 밀려 케이블TV·위성방송 위기…유료방송 가입자 3615만",
+          "title": "넷플릭스 공세에 케이블TV·위성방송 위기, 유료방송 가입자 3615만으로 급감",
           "source": "뉴스웍스",
           "source_url": "https://www.newsworks.co.kr/news/articleView.html?idxno=842255"
         },
         {
-          "title": "숏폼이 대세, 넷플릭스·아마존도 참전…짧은 영상 전쟁 확산",
+          "title": "숏폼이 대세, 넷플릭스·아마존도 참전…짧은 영상 시장 전쟁 확전",
           "source": "더퍼블릭",
           "source_url": "https://www.thepublic.kr/news/articleView.html?idxno=305810"
         }
@@ -49,14 +49,19 @@
       "name": "드라마·공연·시리즈",
       "items": [
         {
-          "title": "최민식, 넷플릭스 드라마 '마지막 줄에서의 노트'로 TV 복귀",
+          "title": "최민식, 넷플릭스 드라마 '맨 뒷줄에서의 메모'로 TV 복귀",
           "source": "코리아헤럴드",
           "source_url": "https://www.koreaherald.com/article/10758709?ref=naver"
         },
         {
-          "title": "'K뮤지컬 국제마켓' 6월 말 개막…영미권 제작사 대거 방한",
+          "title": "'K 뮤지컬 국제마켓' 6월 말 개막, 영미권 제작사 대거 방한",
           "source": "YTN",
           "source_url": "https://www.ytn.co.kr/_ln/0106_202605291315335070"
+        },
+        {
+          "title": "ENA 드라마 '닥터 섬보이' 6월 1일 첫 방송",
+          "source": "이뉴스투데이",
+          "source_url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2434181"
         }
       ]
     },
@@ -65,14 +70,19 @@
       "name": "라이브사업·체험사업·IP",
       "items": [
         {
-          "title": "이병헌, CNN 다큐 출연…K콘텐츠의 힘은 예측 불가 이야기와 에너지",
-          "source": "맥스무비",
-          "source_url": "https://www.maxmovie.com/news/445434"
+          "title": "싸이, '흠뻑쇼 2026' 전국 9개 도시 14회 공연 일정 확정",
+          "source": "이스플러스",
+          "source_url": "https://isplus.com/article/view/isp202605290053"
         },
         {
-          "title": "'스타워즈와 만난' 현대제철, 극장 IP 협업으로 브랜드 홍보",
-          "source": "헤럴드경제",
-          "source_url": "https://biz.heraldcorp.com/article/10758690?ref=naver"
+          "title": "나이키, BTS 월드투어 '아리랑' 기념 협업 컬렉션 출시",
+          "source": "동아일보",
+          "source_url": "https://www.donga.com/news/Economy/article/all/20260529/134015956/1"
+        },
+        {
+          "title": "세븐틴 조슈아, 팝스타 앤더슨 팩 주연 영화 OST 가창·글로벌 입지 증명",
+          "source": "뉴스1",
+          "source_url": "https://www.news1.kr/entertain/music/6181574"
         }
       ]
     },
@@ -81,14 +91,19 @@
       "name": "해외·마켓",
       "items": [
         {
-          "title": "파라마운트, 플로렌스 퓨 주연 '미드나잇 라이브러리' 3600만 달러에 낙찰",
+          "title": "파라마운트, 플로렌스 퓨 주연 '미드나잇 라이브러리' 3,600만 달러에 인수",
           "source": "Deadline",
           "source_url": "https://deadline.com/2026/05/florence-pugh-midnight-library-paramount-1236928593/"
         },
         {
-          "title": "'람보' 프리퀄 영화, 워너·라이온스게이트 합작으로 2027년 개봉 확정",
+          "title": "'람보' 프리퀄 영화, 2027년 개봉 날짜 확정",
           "source": "Variety",
           "source_url": "https://variety.com/2026/film/news/rambo-movie-release-date-1236761474/"
+        },
+        {
+          "title": "AI 생성 장편 영화 '바이올렛의 꿈', 트리베카 영화제 출품 확정",
+          "source": "Rolling Stone",
+          "source_url": "https://www.rollingstone.com/tv-movies/tv-movie-news/dreams-of-violets-ai-movie-tribeca-1235569122/"
         }
       ]
     }

@@ -257,6 +257,32 @@ def _share_segments(movies: list[dict], value_key: str) -> list[dict]:
     return segments
 
 
+# 메일 발송 시 파이차트를 외부 URL이 아닌 인라인(CID) 이미지로 심기 위한 레지스트리.
+# Outlook 등은 외부 이미지(quickchart.io)를 차단·미표시하므로, send_mail.py가
+# CID 모드를 켜고 등록된 URL을 빌드 시점에 PNG로 받아 메일에 인라인 첨부한다.
+_CID_MODE = False
+_CHART_REGISTRY: list[dict] = []
+
+
+def set_cid_mode(enabled: bool) -> None:
+    """파이차트 <img>를 'cid:...' 참조로 렌더하도록 전환하고 레지스트리를 비운다."""
+    global _CID_MODE
+    _CID_MODE = enabled
+    _CHART_REGISTRY.clear()
+
+
+def get_chart_registry() -> list[dict]:
+    """[{'cid': ..., 'url': ...}] — CID 모드로 렌더된 파이차트의 원본 QuickChart URL."""
+    return list(_CHART_REGISTRY)
+
+
+def _register_chart(url: str) -> str:
+    """URL을 레지스트리에 등록하고 cid 참조 문자열을 반환."""
+    cid = f"pie{len(_CHART_REGISTRY)}"
+    _CHART_REGISTRY.append({"cid": cid, "url": url})
+    return f"cid:{cid}"
+
+
 def _quickchart_pie_url(segments: list[dict]) -> str:
     """비중 세그먼트를 QuickChart 파이차트 이미지 URL로 변환(메일용 — 이메일은 conic 미지원)."""
     if not segments:
@@ -364,8 +390,9 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
         alt = label + (
             f': {segments[0]["title"]} {segments[0]["pct"]}%' if segments else ""
         )
+        img_src = _register_chart(url) if _CID_MODE else url
         img = (
-            f'<img src="{_esc(url)}" alt="{_esc(alt)}" width="96" height="96" '
+            f'<img src="{_esc(img_src)}" alt="{_esc(alt)}" width="96" height="96" '
             'style="display:block;flex-shrink:0;">'
         )
         legend_rows = []

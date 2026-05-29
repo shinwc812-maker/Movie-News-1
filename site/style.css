@@ -161,6 +161,14 @@ h1 {
   padding: 18px;
 }
 
+.kpis-note {
+  text-align: right;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--muted);
+  margin: 0 2px 4px;
+}
+
 .kpis {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1133,8 +1141,8 @@ body.dashboard-collapsed .policy-panel { display: none; }
 
 /* 전일 입장객 TOP5 — 전일대비 증감 표기(회사 규칙): 증가는 숫자만, 감소는 ▲ 접두. 색은 통일 */
 .audi-delta { font-weight: 800; color: inherit; }
-.audi-delta-up,
-.audi-delta-down { color: inherit; }
+.audi-delta-up { color: #2563eb; }   /* 증가 = 파랑 */
+.audi-delta-down { color: #dc2626; } /* 감소 = 빨강 */
 .audi-delta-flat { color: inherit; font-weight: 600; }
 
 /* ===== 전체 수집 검색 아카이브 ===== */

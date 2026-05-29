@@ -212,8 +212,17 @@ def _fmt_int(n) -> str:
         return ""
 
 
+def _delta_color(value) -> str:
+    """증감 색: 감소=빨강, 증가=파랑, 변화 없음=중립 회색."""
+    if value < 0:
+        return "#dc2626"
+    if value > 0:
+        return "#2563eb"
+    return "#374151"
+
+
 def _fmt_delta_audi(audi_inten, audi_change) -> str:
-    """전일대비 증감 — 회사 표기 규칙: 증가는 숫자만, 감소는 ▲ 접두(▲=마이너스). 색은 통일."""
+    """전일대비 증감 — 회사 표기: 증가는 숫자만, 감소는 ▲ 접두(▲=마이너스). 감소=빨강·증가=파랑."""
     if audi_inten is None and audi_change is None:
         return ""
     try:
@@ -229,7 +238,7 @@ def _fmt_delta_audi(audi_inten, audi_change) -> str:
     pct = f"({mark}{abs(change):.1f}%)" if change else ""
     parts = [p for p in [f"{mark}{abs_n}명", pct] if p]
     inner = " ".join(parts)
-    return f'<span style="color:#374151;font-weight:800;">{inner}</span>'
+    return f'<span style="color:{_delta_color(inten)};font-weight:800;">{inner}</span>'
 
 
 PIE_PALETTE = ("#dc2626", "#d97706", "#2563eb", "#059669", "#7c3aed")
@@ -331,6 +340,7 @@ def _market_summary(market: dict, reservation: dict | None = None) -> dict:
     delta_pct = (total_delta / total_yesterday * 100) if total_yesterday > 0 else 0.0
     mark = "▲" if delta_pct < 0 else ""
     delta_label = f"({mark}{abs(delta_pct):.1f}%)" if total_yesterday > 0 else ""
+    delta_color = _delta_color(delta_pct) if total_yesterday > 0 else "#6b7280"
 
     total_seat = sum(_int(m.get("seat_count")) for m in movies)
     if total_seat:
@@ -353,6 +363,7 @@ def _market_summary(market: dict, reservation: dict | None = None) -> dict:
     return {
         "total_audi": _fmt_int(total_today),
         "total_audi_delta": delta_label,
+        "total_audi_delta_color": delta_color,
         "avg_seat_sales": f"{avg_seat:.1f}%",
         "res_top_rate": res_rate_label,
         "res_top_title": res_title,
@@ -377,10 +388,10 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
             '</td>'
         )
 
-    sub = 'color:#6b7280;font-weight:600;font-size:11px;'
+    delta_style = f'color:{s.get("total_audi_delta_color", "#6b7280")};font-weight:700;font-size:11px;'
     total_val = f'<b>{s["total_audi"]}명</b>'
     if s["total_audi_delta"]:
-        total_val += f' <span style="{sub}">{_esc(s["total_audi_delta"])}</span>'
+        total_val += f' <span style="{delta_style}">{_esc(s["total_audi_delta"])}</span>'
     seat_val = f'<b>{s["avg_seat_sales"]}</b>'
 
     def _pie_cell(label: str, segments: list[dict]) -> str:
@@ -420,9 +431,14 @@ def _kpi_block(market: dict, reservation: dict | None = None) -> str:
             '</td>'
         )
 
+    note = (
+        '<div style="text-align:right;font-size:10px;font-weight:700;color:#94a3b8;'
+        'margin:8px 6px -2px;">TOP 5 기준</div>'
+    )
     return (
-        '<table width="100%" cellspacing="6" cellpadding="0" border="0" '
-        'style="border-collapse:separate;margin:8px 4px 4px;">'
+        note
+        + '<table width="100%" cellspacing="6" cellpadding="0" border="0" '
+        'style="border-collapse:separate;margin:2px 4px 4px;">'
         f'<tr>{_cell("전일 총 입장객", total_val)}{_cell("평균 좌석판매율", seat_val)}</tr>'
         f'<tr>{_pie_cell("전일 입장객 비중", s["audi_segments"])}'
         f'{_pie_cell("실시간 예매량 비중", s["res_segments"])}</tr>'

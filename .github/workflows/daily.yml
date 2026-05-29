@@ -38,8 +38,11 @@ jobs:
           # GitHub 시크릿이 KOFIC_API_KEY로 등록돼 있어 그 이름으로 참조한다.
           # 코드가 읽는 env 이름(KOBIS_API_KEY)은 정상 유지 — 시크릿을 KOBIS_API_KEY로 바꾸면 오른쪽만 되돌리면 됨.
           KOBIS_API_KEY: ${{ secrets.KOFIC_API_KEY }}
-          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
-          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          # GitHub 시크릿이 NAVER_CLINET_*(오타)로 등록돼 있어 그 이름으로 참조한다.
+          # 코드가 읽는 env 이름(NAVER_CLIENT_*)은 정상 유지. 이게 안 맞으면 네이버 API가
+          # 빈 키로 스킵되고 Google News RSS 폴백을 타 기사 링크가 안 열린다.
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLINET_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLINET_SECRET }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
 

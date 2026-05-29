@@ -1244,23 +1244,9 @@ def _enrich_briefing_with_links(briefing: dict, *data_groups) -> None:
     smap = _build_source_link_map(*data_groups)
     L = _linkify_citations
 
-    briefing["headline_today_html"] = L(briefing.get("headline_today", ""), smap)
-    briefing["summary_html"] = L(briefing.get("summary", ""), smap)
-
-    for own in briefing.get("own_titles") or []:
-        own["highlights_html"] = [L(h, smap) for h in own.get("highlights") or []]
-        own["risks_html"] = [L(r, smap) for r in own.get("risks") or []]
-    for c in briefing.get("competitors") or []:
-        c["note_html"] = L(c.get("note", ""), smap)
-    for t in briefing.get("new_trends") or []:
-        t["note_html"] = L(t.get("note", ""), smap)
-        t["implication_html"] = L(t.get("implication", ""), smap)
-    for s in briefing.get("industry_signals") or []:
-        s["note_html"] = L(s.get("note", ""), smap)
-        s["implication_html"] = L(s.get("implication", ""), smap)
-    for o in briefing.get("overseas_brief") or []:
-        o["summary_ko_html"] = L(o.get("summary_ko", ""), smap)
-        o["implication_html"] = L(o.get("implication", ""), smap)
+    for cat in briefing.get("categories") or []:
+        for item in cat.get("items") or []:
+            item["summary_html"] = L(item.get("summary", ""), smap)
 
 
 def build() -> None:

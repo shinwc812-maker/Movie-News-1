@@ -110,13 +110,6 @@ def render_text(b: dict, market: dict | None = None, reservation: dict | None = 
     if gen:
         lines.append(f"생성: {gen}")
         lines.append("")
-    if b.get("headline_today"):
-        lines.append(f"■ {b['headline_today']}")
-        lines.append("")
-    if b.get("summary"):
-        lines.append(b["summary"])
-        lines.append("")
-
     # KPI 요약 (시장 종합)
     s = _market_summary(market or {}, reservation or {})
     if s:
@@ -136,57 +129,19 @@ def render_text(b: dict, market: dict | None = None, reservation: dict | None = 
         lines.append(top1_line)
         lines.append("")
 
-    if b.get("own_titles"):
-        lines.append("━━ 자사 작품 위치 ━━")
-        for t in b["own_titles"]:
-            title = t.get("title", "")
-            kind = t.get("kind_label", "")
-            lines.append(f"▶ {title}" + (f"  [{kind}]" if kind else ""))
-            for h in t.get("highlights") or []:
-                lines.append(f"   • {h}")
-            for r in t.get("risks") or []:
-                lines.append(f"   ▼ {r}")
-        lines.append("")
-
-    if b.get("competitors"):
-        lines.append("━━ 경쟁작 동향 ━━")
-        for c in b["competitors"]:
-            head = f"• {c.get('title','')}"
-            if c.get("distributor"):
-                head += f" ({c['distributor']})"
-            if c.get("note"):
-                head += f" — {c['note']}"
-            lines.append(head)
-        lines.append("")
-
-    if b.get("new_trends"):
-        lines.append("━━ 신규 트렌드 ━━")
-        for x in b["new_trends"]:
-            line = f"• [{x.get('label','')}] {x.get('note','')}"
-            if x.get("implication"):
-                line += f"  → {x['implication']}"
+    # AI 브리핑 — 카테고리별 정보 (우선순위 순)
+    for cat in b.get("categories") or []:
+        items = cat.get("items") or []
+        if not items:
+            continue
+        lines.append(f"━━ {cat.get('name','')} ━━")
+        for it in items:
+            line = f"• {it.get('summary','')}"
+            if it.get("source"):
+                line += f" [{it['source']}]"
             lines.append(line)
-        lines.append("")
-
-    if b.get("industry_signals"):
-        lines.append("━━ 산업 시그널 ━━")
-        for x in b["industry_signals"]:
-            line = f"• [{x.get('label','')}] {x.get('note','')}"
-            if x.get("implication"):
-                line += f"  → {x['implication']}"
-            lines.append(line)
-        lines.append("")
-
-    if b.get("overseas_brief"):
-        lines.append("━━ 외신 핵심 ━━")
-        for o in b["overseas_brief"]:
-            lines.append(f"• {o.get('title_ko','')}")
-            if o.get("summary_ko"):
-                lines.append(f"  {o['summary_ko']}")
-            if o.get("implication"):
-                lines.append(f"  시사점: {o['implication']}")
-            if o.get("source_url"):
-                lines.append(f"  {o['source_url']}")
+            if it.get("source_url"):
+                lines.append(f"  {it['source_url']}")
         lines.append("")
 
     if market and market.get("movies"):
@@ -247,123 +202,6 @@ def _block(title: str, inner: str, *, head_color: str = "#111827") -> str:
         f'{inner}'
         '</div>'
     )
-
-
-def _own_block(items: list[dict], L) -> str:
-    """자사 작품 블록 — 빨간 테두리 강조."""
-    inner_parts = []
-    for i, t in enumerate(items or []):
-        title = _esc(t.get("title", ""))
-        kind = _esc(t.get("kind_label", ""))
-        kind_tag = (
-            f'<span style="display:inline-block;margin-left:6px;border-radius:999px;'
-            f'padding:1px 8px;background:#fee2e2;color:#b91c1c;font-size:11px;'
-            f'font-weight:800;">{kind}</span>'
-            if kind else ""
-        )
-        sep = (
-            'border-top:1px dashed #fecaca;padding-top:7px;margin-top:7px;'
-            if i > 0 else ""
-        )
-        highlights = _ul(
-            [L(h) for h in (t.get("highlights") or [])],
-            color="#374151",
-        )
-        risks_lis = [f"▼ {L(r)}" for r in (t.get("risks") or [])]
-        risks = _ul(risks_lis, color="#b91c1c") if risks_lis else ""
-        inner_parts.append(
-            f'<div style="{sep}">'
-            f'<div style="font-size:14px;font-weight:800;color:#111827;">'
-            f'{title}{kind_tag}</div>'
-            f'{highlights}{risks}'
-            f'</div>'
-        )
-    if not inner_parts:
-        return ""
-    return (
-        '<div style="margin:10px 12px;background:#fef2f2;border:2px solid #dc2626;'
-        'border-radius:8px;padding:12px 14px;">'
-        '<div style="margin:0 0 8px;font-size:14px;font-weight:800;color:#b91c1c;">'
-        '📌 자사 작품 위치</div>'
-        f'{"".join(inner_parts)}'
-        '</div>'
-    )
-
-
-def _tag(label: str, bg: str = "#e0ecff", color: str = "#1d4ed8") -> str:
-    if not label:
-        return ""
-    return (
-        f'<span style="display:inline-block;margin-right:4px;border-radius:999px;'
-        f'padding:0 7px;background:{bg};color:{color};font-size:11px;'
-        f'font-weight:800;">{_esc(label)}</span>'
-    )
-
-
-def _competitors_block(items, L) -> str:
-    if not items:
-        return ""
-    lis = []
-    for c in items:
-        title = _esc(c.get("title", ""))
-        dist = _esc(c.get("distributor", ""))
-        dist_html = (
-            f' <span style="color:#6b7280;font-size:12px;">({dist})</span>'
-            if dist else ""
-        )
-        note = L(c.get("note", ""))
-        lis.append(f"<b>{title}</b>{dist_html} — {note}")
-    return _block("🎬 경쟁작 동향", _ul(lis))
-
-
-def _trend_block(items, L, *, label: str) -> str:
-    if not items:
-        return ""
-    lis = []
-    for x in items:
-        tag = _tag(x.get("label", ""))
-        note = L(x.get("note", ""))
-        impl_html = ""
-        if x.get("implication"):
-            impl = L(x.get("implication", ""))
-            impl_html = (
-                f' <b style="color:#047857;">— {impl}</b>'
-            )
-        lis.append(f"{tag}{note}{impl_html}")
-    return _block(label, _ul(lis))
-
-
-def _overseas_block(items, L) -> str:
-    if not items:
-        return ""
-    parts = []
-    for i, o in enumerate(items):
-        title = _esc(o.get("title_ko", ""))
-        url = o.get("source_url", "")
-        title_html = (
-            f'<a href="{_esc(url)}" style="color:#1d4ed8;text-decoration:none;">{title}</a>'
-            if url else title
-        )
-        sep = (
-            'border-top:1px dashed #efe9c4;padding-top:6px;margin-top:6px;'
-            if i > 0 else ""
-        )
-        summary = L(o.get("summary_ko", ""))
-        impl = L(o.get("implication", ""))
-        src = _esc(o.get("source", "") or "외신")
-        impl_line = (
-            f'<div style="color:#6b7280;font-size:11px;margin-top:2px;">'
-            f'{src} · 시사점: {impl}</div>'
-            if o.get("implication") else ""
-        )
-        parts.append(
-            f'<div style="{sep}">'
-            f'<div style="font-weight:700;font-size:13px;color:#111827;">{title_html}</div>'
-            f'<div style="color:#374151;font-size:12px;line-height:1.5;margin-top:2px;">{summary}</div>'
-            f'{impl_line}'
-            '</div>'
-        )
-    return _block("🌐 외신 핵심", "".join(parts))
 
 
 def _fmt_int(n) -> str:
@@ -565,71 +403,49 @@ def _mojo_top5_block(overseas: dict) -> str:
     return _block(f"🌎 북미 주말 TOP 5  <span style='color:#6b7280;font-size:11px;font-weight:600;'>Box Office Mojo{sub}</span>", inner)
 
 
+def _category_block(name: str, items: list[dict], L) -> str:
+    """AI 브리핑 카테고리 블록 — '핵심 한줄요약 [출처](링크)' 리스트."""
+    if not items:
+        return ""
+    lis = []
+    for it in items:
+        summary = L(it.get("summary", ""))
+        src = _esc(it.get("source", ""))
+        url = it.get("source_url", "")
+        cite = ""
+        if src:
+            if url:
+                cite = (
+                    f' <a href="{_esc(url)}" style="color:#1d4ed8;'
+                    f'text-decoration:none;font-weight:700;">[{src}]</a>'
+                )
+            else:
+                cite = f' <span style="color:#6b7280;">[{src}]</span>'
+        lis.append(f"{summary}{cite}")
+    return _block(_esc(name), _ul(lis))
+
+
 def render_html(b: dict, articles: list, market: dict | None = None,
                 reservation: dict | None = None, overseas: dict | None = None) -> str:
     smap = _build_source_link_map(articles)
     L = lambda s: _linkify_html(s, smap)
 
     gen = _format_generated_kst(b)
-    headline = L(b.get("headline_today", ""))
-    summary = L(b.get("summary", ""))
 
-    headline_html = (
-        f'<p style="margin:8px 0 4px;font-size:14px;font-weight:800;color:#92400e;">{headline}</p>'
-        if headline else ""
-    )
-    summary_html = (
-        f'<p style="margin:0;color:#374151;font-size:13px;line-height:1.6;">{summary}</p>'
-        if summary else ""
-    )
-
-    own = _own_block(b.get("own_titles") or [], L)
-    comp = _competitors_block(b.get("competitors") or [], L)
-    trends = _trend_block(b.get("new_trends") or [], L, label="🔥 신규 트렌드")
-    signals = _trend_block(b.get("industry_signals") or [], L, label="📡 산업 시그널")
-    overseas_brief_html = _overseas_block(b.get("overseas_brief") or [], L)
-
-    # 2x2 그리드 (이메일 호환을 위해 table 사용)
-    def _cell(content: str) -> str:
-        return (
-            '<td valign="top" width="50%" style="padding:0 4px 8px 4px;">'
-            f'{content or ""}'
-            '</td>'
-        )
-
-    grid_rows = []
-    if comp or trends:
-        grid_rows.append(
-            f'<tr>{_cell(comp)}{_cell(trends)}</tr>'
-        )
-    if signals or overseas_brief_html:
-        grid_rows.append(
-            f'<tr>{_cell(signals)}{_cell(overseas_brief_html)}</tr>'
-        )
-    grid_html = (
-        '<table width="100%" cellspacing="0" cellpadding="0" border="0" '
-        'style="border-collapse:collapse;margin:0;padding:0 8px;">'
-        f'{"".join(grid_rows)}'
-        '</table>'
-        if grid_rows else ""
-    )
+    # AI 브리핑 — 카테고리별 정보(우선순위 순) 세로 나열
+    cat_parts = []
+    for cat in b.get("categories") or []:
+        blk = _category_block(cat.get("name", ""), cat.get("items") or [], L)
+        if blk:
+            cat_parts.append(f'<div style="margin-bottom:10px;">{blk}</div>')
+    categories_html = "".join(cat_parts)
 
     kpi_html = _kpi_block(market or {}, reservation or {})
     box_html = _boxoffice_top5_block(market or {})
     res_html = _reservation_top5_block(reservation or {})
     mojo_html = _mojo_top5_block(overseas or {})
 
-    # 본문 헤더 박스(headline + summary)
-    head_box = ""
-    if headline_html or summary_html:
-        head_box = (
-            '<div style="background:#fff;border:1px solid #efe9c4;border-radius:8px;'
-            'padding:10px 12px;margin:0 0 10px;">'
-            f'{headline_html}{summary_html}'
-            '</div>'
-        )
-
-    # 좌측 본문 — headline/summary + 자사 + 그리드 + 푸터(인라인)
+    # 좌측 본문 — 카테고리 정보 + 푸터(인라인)
     # 푸터를 좌측 컬럼 끝에 두어, 우측 TOP5보다 좌측이 짧을 때 생기는 큰 빈 여백 아래쪽에 버튼이 떨어지는 문제를 막음
     footer_inline = (
         '<div style="border-top:1px dashed #e3deb6;'
@@ -640,7 +456,7 @@ def render_html(b: dict, articles: list, market: dict | None = None,
         f'<a href="{_esc(REPO_URL)}" style="color:#94a3b8;text-decoration:none;">소스 저장소</a>'
         '</div></div>'
     )
-    left_inner = head_box + (own or "") + (grid_html or "") + footer_inline
+    left_inner = (categories_html or "") + footer_inline
 
     # 우측 사이드 스택 — 전일관객/예매/해외 TOP5
     side_parts = []
@@ -668,8 +484,7 @@ def render_html(b: dict, articles: list, market: dict | None = None,
   <div style="background:#fdfbe9;border:1px solid #e3deb6;border-radius:10px 10px 0 0;padding:14px 18px 8px;">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
       <div style="font-size:17px;font-weight:800;color:#1f2937;">
-        🤖 오늘의 AI 브리핑
-        <span style="background:#d97706;color:#fff;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:800;margin-left:4px;vertical-align:2px;">AI SUMMARY</span>
+        <span style="background:#d97706;color:#fff;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:800;vertical-align:2px;">AI SUMMARY</span>
       </div>
       <div style="color:#94a3b8;font-size:11px;">{_esc(gen)}</div>
     </div>

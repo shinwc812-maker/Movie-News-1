@@ -1008,14 +1008,8 @@ footer {
   gap: 12px;
   margin-bottom: 6px;
 }
-.ai-briefing-head h2 {
-  margin: 0;
-  font-size: 1.02rem;
-  color: #1f2937;
-}
 .ai-badge {
   display: inline-block;
-  margin-left: 6px;
   border-radius: 4px;
   padding: 1px 7px;
   background: #d97706;
@@ -1025,22 +1019,9 @@ footer {
   vertical-align: 2px;
 }
 .ai-generated-at { color: #94a3b8; font-size: 0.72rem; }
-.ai-headline {
-  margin: 6px 0 4px;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #92400e;
-}
-.ai-summary {
-  margin: 0 0 12px;
-  color: #374151;
-  font-size: 0.86rem;
-  line-height: 1.55;
-}
-.ai-grid {
+.ai-cat-stack {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
 }
 .ai-block {
   border-radius: 8px;
@@ -1048,42 +1029,16 @@ footer {
   background: #fffef5;
   border: 1px solid #efe9c4;
 }
+.ai-block-head {
+  margin-bottom: 4px;
+}
 .ai-block-head h3 {
-  margin: 0 0 6px;
-  font-size: 0.88rem;
+  margin: 0;
+  font-size: 0.92rem;
   color: #111827;
 }
-.ai-block.ai-own {
-  border-color: #dc2626;
-  background: #fef2f2;
-}
-.ai-block.ai-own .ai-block-head h3 { color: #b91c1c; }
-.ai-own-item { margin-bottom: 6px; }
-.ai-own-item + .ai-own-item { padding-top: 6px; border-top: 1px dashed #fecaca; }
-.ai-own-title b { font-size: 0.92rem; color: #111827; }
-.ai-kind {
-  display: inline-block;
-  margin-left: 6px;
-  border-radius: 999px;
-  padding: 1px 8px;
-  background: #fee2e2;
-  color: #b91c1c;
-  font-size: 0.66rem;
-  font-weight: 800;
-}
-.ai-points { margin: 4px 0 0; padding-left: 18px; color: #374151; font-size: 0.83rem; line-height: 1.55; }
-.ai-points li { margin-bottom: 2px; }
-.ai-points.ai-risks li { color: #b91c1c; font-weight: 700; }
-.ai-tag {
-  display: inline-block;
-  margin-right: 4px;
-  border-radius: 999px;
-  padding: 0 7px;
-  background: #e0ecff;
-  color: #1d4ed8;
-  font-size: 0.7rem;
-  font-weight: 800;
-}
+.ai-points { margin: 4px 0 0; padding-left: 18px; color: #374151; font-size: 0.86rem; line-height: 1.6; }
+.ai-points li { margin-bottom: 4px; }
 /* AI 브리핑 본문의 [매체명] 인용 → 기사 원문 링크 */
 .ai-cite {
   color: #1d4ed8;
@@ -1091,20 +1046,6 @@ footer {
   font-weight: 700;
 }
 .ai-cite:hover { text-decoration: underline; }
-.ai-dist { color: #6b7280; font-style: normal; font-size: 0.78rem; }
-.ai-implication { color: #047857; font-weight: 700; }
-.ai-overseas { margin-top: 10px; background: #fffef5; border: 1px solid #efe9c4; border-radius: 8px; padding: 10px 12px; }
-.ai-overseas-item { padding: 6px 0; }
-.ai-overseas-item + .ai-overseas-item { border-top: 1px dashed #efe9c4; }
-.ai-overseas-title { font-size: 0.88rem; font-weight: 700; color: #111827; }
-.ai-overseas-title a { color: #1d4ed8; text-decoration: none; }
-.ai-overseas-title a:hover { text-decoration: underline; }
-.ai-overseas-summary { margin: 3px 0 2px; color: #374151; font-size: 0.82rem; line-height: 1.5; }
-.ai-overseas-impl { margin: 0; color: #6b7280; font-size: 0.76rem; }
-
-@media (max-width: 900px) {
-  .ai-grid { grid-template-columns: 1fr; }
-}
 
 /* 대시보드 본문 접힘 — KPI + AI 브리핑 + 사이드 TOP5 3개는 항상 노출, 그 외만 숨김 */
 body.dashboard-collapsed .hero-grid,

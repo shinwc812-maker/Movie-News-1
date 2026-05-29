@@ -1103,7 +1103,7 @@ footer {
   color: #111827;
 }
 .ai-points { margin: 4px 0 0; padding-left: 18px; color: #1f2937; font-size: 0.86rem; line-height: 1.6; }
-.ai-points li { margin-bottom: 4px; }
+.ai-points li { margin-bottom: 10px; }
 /* AI 브리핑 본문의 [매체명] 인용 → 기사 원문 링크 */
 .ai-cite {
   color: #1d4ed8;
@@ -1111,6 +1111,9 @@ footer {
   font-weight: 700;
 }
 .ai-cite:hover { text-decoration: underline; }
+/* AI 브리핑 항목 = 기사 제목(링크) 한 줄 */
+.ai-title-link { color: #1f2937; text-decoration: none; font-weight: 600; }
+.ai-title-link:hover { text-decoration: underline; }
 
 /* 대시보드 본문 접힘 — KPI + AI 브리핑 + 사이드 TOP5 3개는 항상 노출, 그 외만 숨김 */
 body.dashboard-collapsed .hero-grid,
@@ -1220,7 +1223,7 @@ body.is-searching .search-archive-panel { display: block; }
   <div>
     <p class="eyebrow">Internal Briefing</p>
     <h1>오늘의 영화/문화 레이더</h1>
-    <p class="updated">마지막 업데이트: 2026년 05월 29일 15:03 (KST)</p>
+    <p class="updated">마지막 업데이트: 2026년 05월 29일 15:28 (KST)</p>
   </div>
   <div class="topbar-tools">
     <form class="search-box" role="search" onsubmit="return RADAR.onSearchSubmit(event)">
@@ -1448,7 +1451,7 @@ body.is-searching .search-archive-panel { display: block; }
   <section class="panel ai-briefing-panel" data-section="aiBriefing">
   <div class="ai-briefing-head">
     <span class="ai-badge">AI SUMMARY</span>
-    <span class="ai-generated-at">2026.05.29 15:01 KST · Claude 자동 생성</span>
+    <span class="ai-generated-at">2026.05.29 15:27 KST · Claude 자동 생성</span>
   </div>
 
   <div class="ai-cat-stack">
@@ -1458,11 +1461,14 @@ body.is-searching .search-archive-panel { display: block; }
       <div class="ai-block-head"><h3>영화</h3></div>
       <ul class="ai-points">
 
-        <li>롯데엔터테인먼트 배급 강동원 주연 코미디 &#x27;와일드 씽&#x27;(6월 3일 개봉)이 아이돌 콘셉트 OST 앨범과 포토카드·응원풍선 포함 굿즈 패키지를 발매하며 개봉 전 마케팅을 본격화했다. <a class="ai-cite" href="https://www.edaily.co.kr/news/newspath.asp?newsid=03755606645453840" target="_blank" rel="noopener">[이데일리]</a></li>
 
-        <li>연상호 감독·전지현·구교환·지창욱 주연 &#x27;군체&#x27;(쇼박스 배급)가 개봉 8일 만에 누적 관객 250만 명을 돌파하며 8일 연속 박스오피스 1위를 지켰으며, 이번 주말 손익분기점 300만 달성이 예상된다. <a class="ai-cite" href="https://news.tf.co.kr/read/entertain/2327439.htm" target="_blank" rel="noopener">[더팩트]</a></li>
+        <li><a class="ai-title-link" href="https://www.asiatoday.co.kr/kn/view.php?key=20260529010008755" target="_blank" rel="noopener">벌써 300만! &#39;군체&#39; 관객몰이, 좀비 진화 속도만큼 빠르네</a></li>
 
-        <li>나홍진 감독의 신작 &#x27;호프&#x27;(황정민·조인성·정호연 출연)가 전 세계 200개국·권역에 한국영화 역대 최고가로 선판매돼 개봉 전 순제작비의 50%를 회수했다. <a class="ai-cite" href="https://www.joongang.co.kr/article/25432333" target="_blank" rel="noopener">[중앙일보]</a></li>
+
+        <li><a class="ai-title-link" href="https://www.edaily.co.kr/news/newspath.asp?newsid=03755606645453840" target="_blank" rel="noopener">강동원이 아이돌로…KT지니뮤직, 영화 &#39;와일드 씽&#39; OST 앨범 발매</a></li>
+
+
+        <li><a class="ai-title-link" href="https://www.joongang.co.kr/article/25432333" target="_blank" rel="noopener">나홍진, 박찬욱 넘었다…&#39;호프&#39; 한국영화 최고 해외 선판매 기록</a></li>
 
       </ul>
     </div>
@@ -1473,11 +1479,14 @@ body.is-searching .search-archive-panel { display: block; }
       <div class="ai-block-head"><h3>영화관·OTT</h3></div>
       <ul class="ai-points">
 
-        <li>CJ ENM·롯데컬처웍스·쇼박스·NEW 등 배급사, CGV·메가박스 상영사, 넷플릭스·쿠팡플레이·티빙 등 OTT가 참여한 한국 영화 유통구조 개선 민관협의체가 출범해 홀드백 기간 논의를 포함한 첫 회의를 개최했으며 8월까지 결론을 낼 계획이다. <a class="ai-cite" href="https://www.news1.kr/life-culture/general-cultural/6180987" target="_blank" rel="noopener">[뉴스1]</a></li>
 
-        <li>OTT 이용률 81.8% 증가에 따른 코드커팅 트렌드로 국내 케이블TV·위성방송 유료방송 가입자가 3,615만 명으로 감소했으며, 하반기에는 3,600만 붕괴가 우려된다. <a class="ai-cite" href="https://www.newsworks.co.kr/news/articleView.html?idxno=842255" target="_blank" rel="noopener">[뉴스웍스]</a></li>
+        <li><a class="ai-title-link" href="https://www.news1.kr/life-culture/general-cultural/6180987" target="_blank" rel="noopener">홀드백 논의…한국 영화 유통구조 개선을 위한 민관협의체 발족</a></li>
 
-        <li>디즈니플러스가 이미 세로형 피드 &#x27;버츠(Verts)&#x27;를 도입한 가운데 넷플릭스와 아마존도 숏폼 서비스에 참전하며 글로벌 OTT 플랫폼의 짧은 영상 경쟁이 본격화되고 있다. <a class="ai-cite" href="https://www.thepublic.kr/news/articleView.html?idxno=305810" target="_blank" rel="noopener">[더퍼블릭]</a></li>
+
+        <li><a class="ai-title-link" href="https://www.newsworks.co.kr/news/articleView.html?idxno=842255" target="_blank" rel="noopener">넷플릭스에 밀려 케이블TV·위성방송 위기…유료방송 가입자 3615만</a></li>
+
+
+        <li><a class="ai-title-link" href="https://www.thepublic.kr/news/articleView.html?idxno=305810" target="_blank" rel="noopener">숏폼이 대세, 넷플릭스·아마존도 참전…짧은 영상 전쟁 확산</a></li>
 
       </ul>
     </div>
@@ -1488,9 +1497,11 @@ body.is-searching .search-archive-panel { display: block; }
       <div class="ai-block-head"><h3>드라마·공연·시리즈</h3></div>
       <ul class="ai-points">
 
-        <li>CJ ENM이 주영한국문화원과 협력해 런던에서 티빙 오리지널 드라마 &#x27;취사병 전설이 되다&#x27; 특별 상영회를 개최해 유럽 현지 미디어·콘텐츠 업계 관계자와 글로벌 팬들의 호응을 받았다. <a class="ai-cite" href="https://www.sportsworldi.com/newsView/20260529505449" target="_blank" rel="noopener">[스포츠월드]</a></li>
 
-        <li>문체부와 예술경영지원센터가 제6회 K뮤지컬 국제마켓을 6월 29일~7월 3일 서울 코엑스에서 개최하며 영미권 제작사를 포함한 해외 업계 관계자들이 대거 방한할 예정이다. <a class="ai-cite" href="https://www.ytn.co.kr/_ln/0106_202605291315335070" target="_blank" rel="noopener">[YTN]</a></li>
+        <li><a class="ai-title-link" href="https://www.koreaherald.com/article/10758709?ref=naver" target="_blank" rel="noopener">최민식, 넷플릭스 드라마 &#39;마지막 줄에서의 노트&#39;로 TV 복귀</a></li>
+
+
+        <li><a class="ai-title-link" href="https://www.ytn.co.kr/_ln/0106_202605291315335070" target="_blank" rel="noopener">&#39;K뮤지컬 국제마켓&#39; 6월 말 개막…영미권 제작사 대거 방한</a></li>
 
       </ul>
     </div>
@@ -1501,9 +1512,11 @@ body.is-searching .search-archive-panel { display: block; }
       <div class="ai-block-head"><h3>라이브사업·체험사업·IP</h3></div>
       <ul class="ai-points">
 
-        <li>입대 예정인 가수 정동원의 팬콘서트 실황을 담은 &#x27;정동원 팬콘서트 필름: 다시 만나는 길&#x27;이 6월 CGV 단독 개봉으로 팬덤 기반 라이브 콘텐츠의 극장 유통 사례로 주목받고 있다. <a class="ai-cite" href="https://www.topstarnews.net/news/articleView.html?idxno=16074741" target="_blank" rel="noopener">[탑스타뉴스]</a></li>
 
-        <li>현대제철이 스타워즈 시리즈 영화 &#x27;만달로리안과 그로구&#x27; IP와 협업한 광고 영상을 극장에서 공개하며 영화 IP를 활용한 B2B 브랜드 마케팅을 펼쳤다. <a class="ai-cite" href="https://biz.heraldcorp.com/article/10758690?ref=naver" target="_blank" rel="noopener">[헤럴드경제]</a></li>
+        <li><a class="ai-title-link" href="https://www.maxmovie.com/news/445434" target="_blank" rel="noopener">이병헌, CNN 다큐 출연…K콘텐츠의 힘은 예측 불가 이야기와 에너지</a></li>
+
+
+        <li><a class="ai-title-link" href="https://biz.heraldcorp.com/article/10758690?ref=naver" target="_blank" rel="noopener">&#39;스타워즈와 만난&#39; 현대제철, 극장 IP 협업으로 브랜드 홍보</a></li>
 
       </ul>
     </div>
@@ -1514,9 +1527,11 @@ body.is-searching .search-archive-panel { display: block; }
       <div class="ai-block-head"><h3>해외·마켓</h3></div>
       <ul class="ai-points">
 
-        <li>북미 박스오피스에서 &#x27;옵세션&#x27;이 1위를 기록 중이며, 지난주 1위였던 &#x27;만달로리안과 그로구&#x27;가 68% 급락한 가운데 A24 케인 파슨스 감독의 &#x27;백룸스&#x27;가 이번 주말 6,500만 달러 오프닝이 전망된다. <a class="ai-cite" href="https://extmovie.com/movietalk/94063707" target="_blank" rel="noopener">[익스트림무비]</a></li>
 
-        <li>파라마운트(데이비드 엘리슨 체제)가 가스 데이비스 감독·플로렌스 퓨 주연의 소설 원작 영화 &#x27;미드나잇 라이브러리&#x27;를 3,600만 달러에 낙찰받아 글로벌 배급권을 확보했다. <a class="ai-cite" href="https://deadline.com/2026/05/florence-pugh-midnight-library-paramount-1236928593/" target="_blank" rel="noopener">[Deadline]</a></li>
+        <li><a class="ai-title-link" href="https://deadline.com/2026/05/florence-pugh-midnight-library-paramount-1236928593/" target="_blank" rel="noopener">파라마운트, 플로렌스 퓨 주연 &#39;미드나잇 라이브러리&#39; 3600만 달러에 낙찰</a></li>
+
+
+        <li><a class="ai-title-link" href="https://variety.com/2026/film/news/rambo-movie-release-date-1236761474/" target="_blank" rel="noopener">&#39;람보&#39; 프리퀄 영화, 워너·라이온스게이트 합작으로 2027년 개봉 확정</a></li>
 
       </ul>
     </div>
@@ -1566,7 +1581,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
 
   <div class="chips"><span>롯데시네마</span><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1583,7 +1598,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
 
   <div class="chips"><span>롯데시네마</span><span>와일드 씽</span><span>롯데배급</span></div>
@@ -1685,7 +1700,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
 
   <div class="chips"><span>군체</span><span>백룸</span><span>와일드 씽</span></div>
@@ -1719,7 +1734,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
 
   <div class="chips"><span>군체</span><span>상자 속의 양</span><span>와일드 씽</span></div>
@@ -1881,7 +1896,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
 
   <div class="chips"><span>CJ ENM</span></div>
@@ -1898,7 +1913,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
 
   <div class="chips"><span>CJ ENM</span></div>
@@ -1915,7 +1930,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -1930,7 +1945,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2072,7 +2087,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2117,7 +2132,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Variety
     </span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2178,7 +2193,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2193,7 +2208,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2208,7 +2223,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · 맥스무비
     </span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2253,7 +2268,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2268,7 +2283,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2283,7 +2298,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article><article class="curation-brief-card is-extra">
@@ -2298,7 +2313,7 @@ body.is-searching .search-archive-panel { display: block; }
     <span class="source official">
       공식 · Naver News
     </span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
 
 </article>
@@ -2327,7 +2342,7 @@ body.is-searching .search-archive-panel { display: block; }
           <article class="market-trend-card">
   <div class="trend-topline">
     <span>체험형 콘텐츠</span>
-    <em>1시간 전</em>
+    <em>2시간 전</em>
   </div>
   <a class="trend-title" href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202605291305163880101494" target="_blank" rel="noopener">[더벨][i-point] 한울반도체, 본업 회복·계열사 성장 기반 경영계획 발...</a>
   <p class="trend-frame">공간 재해석·참여형 스토리텔링·공연형 콘텐츠가 결합된 체험 소비 확산</p>
@@ -2344,7 +2359,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>체험형 콘텐츠</span>
-    <em>1시간 전</em>
+    <em>2시간 전</em>
   </div>
   <a class="trend-title" href="https://enter.etoday.co.kr/news/view/297894" target="_blank" rel="noopener">아홉, 첫 아시아 투어 돌입…미공개곡 2곡 최초 공개</a>
   <p class="trend-frame">공간 재해석·참여형 스토리텔링·공연형 콘텐츠가 결합된 체험 소비 확산</p>
@@ -2361,7 +2376,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>체험형 콘텐츠</span>
-    <em>22시간 전</em>
+    <em>23시간 전</em>
   </div>
   <a class="trend-title" href="https://www.ekn.kr/web/view.php?key=20260528022498771" target="_blank" rel="noopener">이즈피엠피, 지역 기반 스마트관광 플랫폼 ‘스마트립’ 출시…초기 구...</a>
   <p class="trend-frame">공간 재해석·참여형 스토리텔링·공연형 콘텐츠가 결합된 체험 소비 확산</p>
@@ -2449,7 +2464,7 @@ body.is-searching .search-archive-panel { display: block; }
           <article class="market-trend-card">
   <div class="trend-topline">
     <span>IP 사업</span>
-    <em>23시간 전</em>
+    <em>1일 전</em>
   </div>
   <a class="trend-title" href="https://www.forbeskorea.co.kr/news/articleView.html?idxno=401956" target="_blank" rel="noopener">K콘텐트, 첨단기술 추진력으로 글로벌 영토 확장</a>
   <p class="trend-frame">게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장</p>
@@ -2466,7 +2481,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>IP 사업</span>
-    <em>3시간 전</em>
+    <em>4시간 전</em>
   </div>
   <a class="trend-title" href="https://www.edaily.co.kr/news/newspath.asp?newsid=03755606645453840" target="_blank" rel="noopener">강동원이 아이돌로…KT지니뮤직, 영화 ‘와일드 씽’ OST 앨범 발매</a>
   <p class="trend-frame">게임·K팝·키즈·웹툰 IP가 공연·영화·굿즈·공간으로 확장</p>
@@ -2527,7 +2542,7 @@ body.is-searching .search-archive-panel { display: block; }
 </article><article class="market-trend-card">
   <div class="trend-topline">
     <span>콜라보/협업</span>
-    <em>4시간 전</em>
+    <em>5시간 전</em>
   </div>
   <a class="trend-title" href="https://www.sportsworldi.com/newsView/20260529505449" target="_blank" rel="noopener">CJ ENM-주영한국문화원, 런던서 드라마 ‘취사병 전설이 되다’ 특별 상...</a>
   <p class="trend-frame">브랜드·IP 간 콜라보와 제휴로 팬덤·상권을 교차 확장</p>
@@ -4391,7 +4406,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.edaily.co.kr/news/newspath.asp?newsid=03755606645453840" target="_blank" rel="noopener">강동원이 아이돌로…KT지니뮤직, 영화 ‘와일드 씽’ OST 앨범 발매</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">앨범은 다음 달 3일까지 롯데시네마와 국내 주요 온라인 음반 사이트에서 예약 판매된다. 영화 &#39;와일드 씽&#39; OST 실물앨범(사진=KT지니뮤직) 이번 OST 앨범은 단순한 영화 사운드트랙을 넘어 관객이 극 중 캐릭터의 실제...</p>
   <div class="chips"><span>롯데시네마</span><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4407,7 +4422,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.slist.kr/news/articleView.html?idxno=742059" target="_blank" rel="noopener">&#39;와일드 씽&#39; 아이돌 콘셉트 OST 앨범 발매…포토카드·응원 풍선 포함 패...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">오는 6월 4일 정식 발매를 앞둔 이번 음반은 6월 3일까지 롯데시네마 및 국내 주요 온라인 음반 사이트를 통해 전격 예약 판매를 진행한다. 이번 OST 앨범은 사운드트랙 모음집을 넘어 관객이 영화 속 캐릭터의 실제...</p>
   <div class="chips"><span>롯데시네마</span><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4455,7 +4470,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://magazine.hankyung.com/business/article/202605296420b" target="_blank" rel="noopener">창원생활권 공유하는 &#39;김해신문 센트럴 아이파크&#39; 6월 분양</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">우선 김해관광유통단지 내에 있는 롯데프리미엄 아울렛, 하나로클럽, 롯데시네마 등 편의·문화시설을 걸어서 이용할 수 있고, 기 조성된 장유·율하지구와도 연계성이 우수해 생활 인프라 공유도 가능하다. 지난해 9월...</p>
   <div class="chips"><span>롯데시네마</span></div>
@@ -4463,7 +4478,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://edu.donga.com/news/articleView.html?idxno=108175" target="_blank" rel="noopener">장유신문지구, 부전~마산 복선전철 연계 교통 여건 주목</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">원문에 따르면 주변에는 롯데프리미엄아울렛, 하나로클럽, 롯데시네마 등 생활·문화시설이 자리하고 있다. 또한 단지 인근에는 조만강과 조만강 파크골프장이 있으며, 부산과학산업단지, 부산진해경제자유구역...</p>
   <div class="chips"><span>롯데시네마</span></div>
@@ -4487,7 +4502,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.yna.co.kr/view/AKR20260529040100005?input=1195m" target="_blank" rel="noopener">[주말극장가] &#39;군체&#39; 독주 예고…손익분기점 300만도 눈앞에</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">미지의 공간에 들어선 사람들이 그곳에서 빠져나오기 위해 애쓰는 이야기를 그린 공포물 &#39; 백룸 &#39;은 전날... 코미디 영화 &#39;와일드 씽&#39;은 예매율 12.0%(예매 관객 5만4천여 명)로 2위, &#39; 백룸 &#39;은 11.1%(5만여 명)로 3위를 차지했다.</p>
   <div class="chips"><span>군체</span><span>백룸</span><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4503,7 +4518,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://www.breaknews.com/1210624" target="_blank" rel="noopener">전지현·구교환·지창욱 ‘군체’, 8일 연속 박스오피스 1위..250만 관객...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">앞둔 &lt; 상자 속의 양 &gt;(5408명)이 차지했다. 뒤이어 &lt;카드캡터 체리 극장판&gt;, &lt;악마는 프라다를 입는다2&gt;, &lt;너바나 더 밴드&gt;, &lt;와일드 씽&gt;(6월 3일 개봉), &lt;뒷자리에 태워줘...</p>
   <div class="chips"><span>군체</span><span>상자 속의 양</span><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4519,7 +4534,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.econovill.com/news/articleView.html?idxno=741084" target="_blank" rel="noopener">250만 돌파 &#39;군체&#39;, 12일 연속 예매 1위…&#39;와일드 씽&#39;과 격차 벌려 [5월 ...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
   <p class="archive-excerpt">5위는 6월 3일 개봉 예정작 &#39; 플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마 &#39;다. 예매율 6.5%, 예매관객수 2만8469명, 예매매출액 6억5478만7000원이다. 평균 예매 관람료는 약 2만3000원이다. 전날...</p>
   <div class="chips"><span>군체</span><span>와일드 씽</span><span>롯데배급</span><span>플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마</span></div>
@@ -4575,7 +4590,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://ent.sbs.co.kr/news/article.do?article_id=E10010317243&amp;plink=ORI&amp;cooper=NAVER" target="_blank" rel="noopener">A24 영화는 다르다…&#39; 백룸 &#39;, 10대 유튜버의 기발한 아이디어</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">영화 &#39; 백룸 &#39;이 신선한 아이디어로 극장가에 반향을 일으키고 있다. 지난 27일 개봉한 &#39; 백룸 &#39;은 &#39;군체&#39;에 이어 박스오피스 2위 자리를 지키고 있다. 관람객의 반응도 뜨겁다. &#39; 백룸 &#39;은 노란 벽면과 끝없는 형광등 아래...</p>
   <div class="chips"><span>A24</span><span>군체</span><span>백룸</span></div>
@@ -4583,7 +4598,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://theopiniontimes.news/%ec%98%81%ed%99%94-%ea%b5%b0%ec%b2%b4-%ea%b0%9c%eb%b4%89-9%ec%9d%bc-%eb%a7%8c%ec%97%90-250%eb%a7%8c-%eb%8f%8c%ed%8c%8c%ec%9d%b4%eb%b2%88-%ec%a3%bc%eb%a7%90-%ec%86%90%ec%9d%b5%eb%b6%84/" target="_blank" rel="noopener">영화 &#39;군체&#39;, 개봉 9일 만에 250만 돌파…이번 주말 손익분기점 300만가...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;팝의 황제&#39; 마이클 잭슨의 생애를 담은 전기 영화 &#39;마이클&#39;은 1만8천여 명(8.3%)으로 3위, 스타워즈 세계관을 기반으로 한 &#39; 만달로리안과 그로구 &#39;는 1만2천여 명(6.1%)으로 4위에 이름을 올렸다. 예매 순위에서는 다음 달...</p>
   <div class="chips"><span>군체</span><span>마이클</span><span>만달로리안과 그로구</span></div>
@@ -4655,7 +4670,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://isplus.com/article/view/isp202605290034" target="_blank" rel="noopener">박지현, 90년대 감성으로 한강 접수…“예쁜 여자 처음 봐?”</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">배우 박지현이 영화 ‘ 와일드 씽 ’ 속 캐릭터를 현실로 끌고 나왔다. 28일 유튜브 채널 ‘랄랄’에는 ‘한강에서 미팅하는 “남과여” feat 박지현’이라는 제목의 영상이 공개됐다. 영상에서 박지현은 ‘ 와일드 씽 ’에서...</p>
   <div class="chips"><span>와일드 씽</span><span>롯데배급</span></div>
@@ -4663,7 +4678,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://www.tvdaily.co.kr/read.php3?aid=17800135101788142008" target="_blank" rel="noopener">&#39;군체&#39; 1위 수성, 누적 250만 돌파 [박스오피스]</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">영화 ‘ 상자 속의 양 ’ ‘카드캡터 체리 극장판’ ‘악마는 프라다를 입는다 2’ ‘너바나 더 밴드 : 전설적 밴드 ‘너바나’와는 별 관련 없는 ‘너바나 더 밴드’의 콤비 맷과 제이. 어느 날 공연을 위해 타임머신을...</p>
   <div class="chips"><span>군체</span><span>상자 속의 양</span></div>
@@ -4671,7 +4686,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.knn.co.kr/news/article/188317" target="_blank" rel="noopener">[주말극장가] - &#39;스타워즈&#39; 프랜차이즈 &lt;만달로리안과 그로구&gt;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">---- 가구점을 운영하는 &#39;클락&#39;은 수상한 기운에 휩싸인 정체불명의 공간 백룸을 발견하는데요. (&#34;어떤 장소를 찾았어요/이봐요/거기 누구예요?) 백룸에 들어가 그곳을 둘러보던 중 이상한 경험을 하게 되고 백룸에 대한...</p>
   <div class="chips"><span>백룸</span><span>만달로리안과 그로구</span></div>
@@ -4711,7 +4726,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.tenasia.co.kr/article/2026052847464" target="_blank" rel="noopener">구교환, 작은 몸집에 꽉 찬 소신…&#39;무가치함&#39;과 싸우는 그만의 방식 (&#39;군...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">영화 ; 군체 &#39;로 또 한 번 인생 캐릭터를 경신한 구교환과 만나 다양한 이야기를 나눴다. &#39; 군체 &#39;(감독 연상호)는 정체불명의 감염사태로 봉쇄된 건물 안, 고립된 생존자들이 예측할 수 없는 형태로 진화하는 감염자들에 맞서는...</p>
   <div class="chips"><span>군체</span></div>
@@ -4759,7 +4774,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110034" target="_blank" rel="noopener">[인터뷰] 그동안 본 적 없는 좀비물의 긴장감을 즐겨달라 - &lt;군체&gt; 제작한 양유민 와우포인트 대표</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">양유민 대표는 2021년 와우포인트(WOWPOINT)를 설립, &lt;선산&gt; &lt;지옥2&gt; &lt;기생수: 더 그레이&gt; &lt;계시록&gt; &lt;얼굴&gt; &lt;군체&gt;를 제작했다. 연상호 감독의 아군이 된 그는 과거 BH엔터테인먼트에서 &lt;종이의 집: 공동경제구역&gt;의 기획·제작에 참여하는 등 글로벌 비즈니스 경...</p>
   <div class="chips"><span>군체</span></div>
@@ -4767,7 +4782,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110033" target="_blank" rel="noopener">[기획] 제아무리 진화한 좀비라도 그보다 무서운 건 사람이라고, &lt;군체&gt; 리뷰</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">연상호 감독은 일찍이 K좀비물의 마중물과 같았던 &lt;부산행&gt;에서 좀비들을 달리는 고속열차에 태웠다. 탈출로가 막힌 인간들의 선한 본성과 악한 본성은 사정없이 충돌했고, 공간에서 기인한 상황적 아이러니는 그대로 오락의 요소가 되었다. 날쌘 좀비, 힘센 좀비, 관절이 유연한 좀비 등은 좀비 캐릭터의 다양성에 일조하며 K좀비는 다르다는 것도 증...</p>
   <div class="chips"><span>군체</span></div>
@@ -4775,7 +4790,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110032" target="_blank" rel="noopener">[기획] 좀비는 진화한다 - 연상호 감독의 &lt;군체&gt; 리뷰와 영화사 와우포인트의 양유민 대표 인터뷰</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">제79회 칸영화제 미드나이트 스크리닝 부문에 초청돼 칸에서 먼저 그 모습을 선보인 &lt;군체&gt;가 5월21일 국내에서도 개봉했다. K좀비 열풍에 상당한 지분을 가지고 있는 연상호 감독이 &lt;부산행&gt; &lt;반도&gt;에 이어 또 한번 스크린에 불러 세운 좀비들은 이전과 좀 다르다. 연상호 감독이 &lt;군체&gt;를 통해 하고 싶었던...</p>
   <div class="chips"><span>군체</span></div>
@@ -4783,7 +4798,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/2026/05/florence-pugh-midnight-library-paramount-1236928593/" target="_blank" rel="noopener">Paramount Wins Florence Pugh Feature ‘The Midnight Library’ For $36M</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">That Garth Davis directed, Florence Pugh starring feature take of Matt Haig’s The Midnight Library which Andreas first told you about; well, sources tell us that it’s been won by the David Ellison run Paramount Pictures for $36M. Paramount beat out Focus and Sony who were circling to acquire North America and select foreign markets […]</p>
   <div class="chips"><span>Paramount Pictures</span><span>Paramount</span></div>
@@ -4791,7 +4806,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://topclass.chosun.com/news/articleView.html?idxno=36336" target="_blank" rel="noopener">이번 주 디즈니+ 뭐 보지? / 레전드 시리즈 &lt;크리미널 마인드&gt; NEW 시즌</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">연쇄살인마와의 숨 막히는 공조 담은 레전드 시리즈 &lt;크리미널 마인드&gt; NEW 시즌과 허당 형제의 대환장 범죄 제국 승계기 &lt;델리 보이즈&gt; 시즌2, 올여름 최고의 블록버스터 &lt; 만달로리안과 그로구 &gt;의 시작이 된 이야기까지....</p>
   <div class="chips"><span>NEW</span><span>만달로리안과 그로구</span></div>
@@ -4831,7 +4846,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.knn.co.kr/news/article/188317" target="_blank" rel="noopener">[주말극장가] - &#39;스타워즈&#39; 프랜차이즈 &lt; 만달로리안과 그로구 &gt;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">영화 &lt; 만달로리안과 그로구 &gt;였습니다. ------- (&#34;저는 전천당 주인 홍자라고 합니다.&#34;} 간절한 소원과 행운의 동전을 지닌 사람 앞에만 나타나는 신비한 과자 가게 ‘전천당’. ‘전천당’ 주인 ‘홍자’ 앞에 행운의 동전을...</p>
   <div class="chips"><span>만달로리안과 그로구</span></div>
@@ -4855,7 +4870,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.seoul.co.kr/news/economy/2026/05/29/20260529500128?wlog_tag3=naver" target="_blank" rel="noopener">독일 머크, 글로벌 사업장에 비바시스템즈 ‘Veeva Vault CRM’ 도입 결정</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">머크 헬스케어 부문 최고정보책임자(CIO) 마이클 모츠(Michael Motz)는 “비바와의 협력을 지속하게 되어 뜻깊게 생각한다”며 “Veeva Vault CRM은 머크의 광범위한 디지털 생태계에 유연하게 통합될 수 있으며...</p>
   <div class="chips"><span>마이클</span></div>
@@ -4863,7 +4878,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://www.brainmedia.co.kr/Insight/25416" target="_blank" rel="noopener">신경가소성을 촉진하는 브레인트레이닝의 네 가지 핵심 요소</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">그러나 이러한 정보들이 모두 동일한 중요도를 갖는 것이 아니고, 뇌의 에너지와 처리 자원은 제한되어 있기에 우선순위의 정보에 선택적으로 자원을 배분하는 과정이 필요하다.심리학자 마이클 ...</p>
   <div class="chips"><span>마이클</span></div>
@@ -4983,7 +4998,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.businesskorea.co.kr/news/articleView.html?idxno=270328" target="_blank" rel="noopener">CJ ENM, &#39;취사병 전설이 되다&#39; 런던 상영회 성료</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">한편 스튜디오드래곤이 제작한 티빙 오리지널 &#39;취사병 전설이 되다&#39;는 배우 박지훈과 윤경호가 주연을 맡아 전설적인 취사병으로 성장하는 과정을 그린 밀리터리 쿡방 판타지 드라마다. 현재 라쿠텐 비키와 일본...</p>
   <div class="chips"><span>CJ ENM</span></div>
@@ -4991,7 +5006,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.sportsworldi.com/newsView/20260529505449" target="_blank" rel="noopener">CJ ENM-주영한국문화원, 런던서 드라마 ‘취사병 전설이 되다’ 특별 상...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">CJ ENM이 주영한국문화원(KCCUK)과 손잡고 영국 런던에서 티빙 오리지널 시리즈 &lt;취사병 전설이 되다&gt;의 특별... 제공 티빙 )의 특별 상영회가 유럽 현지 미디어 및 콘텐츠 업계 주요 관계자, 글로벌 팬들의 뜨거운 성원 속에...</p>
   <div class="chips"><span>CJ ENM</span></div>
@@ -5063,7 +5078,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.thefairnews.co.kr/news/articleView.html?idxno=78279" target="_blank" rel="noopener">&#34;함께 지키는 구강건강&#34; 당진시, 구강보건 주간 운영</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">10일에는 당진시청 대강당에서 어린이 뮤지컬 &#39;피터팬의 치아 튼튼 모험&#39;이 공연된다. 지역 어린이집과 유치원 원아 900여 명이 참여해 공연을 통해 자연스럽게 치아 건강의 중요성과 올바른 칫솔질 방법을 배우게 된다....</p>
 
@@ -5071,7 +5086,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.news1.kr/entertain/music/6181574" target="_blank" rel="noopener">세븐틴 조슈아, 팝스타 앤더슨 팩 주연 영화 OST 가창…29일 발매</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">극장가에 이어 해당 작품은 오는 30일부터 글로벌 OTT 플랫폼 넷플릭스를 통해서도 전 세계에 공개될 예정이다. 영화 &#39;K팝스!&#39;는 미국 최고 권위의 음악 시상식인 &#39;그래미 어워즈&#39;에서 무려 9차례나 수상한 천재 뮤지션...</p>
 
@@ -5079,7 +5094,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.greened.kr/news/articleView.html?idxno=341577" target="_blank" rel="noopener">요금 개편 SKT, 2만원 대 통합요금제 눈길…알뜰폰 시장 가져오나</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">요금제별로 제공되는 OTT 및 T 우주 구독 혜택은 고객이 더 쉽게 이용할 수 있도록 직관적으로 개편한다. 기존 요금제에서 OTT 구독 혜택을 받기 위해선 T우주의 여러 생활형 혜택 중 하나를 먼저 가입하고, 가입한 T...</p>
 
@@ -5087,7 +5102,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.slist.kr/news/articleView.html?idxno=742124" target="_blank" rel="noopener">&#39;신극장판 은혼: 요시와라 대염상&#39; 3주차 특전 소라치 선생님 사인 일러...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">한편, &#39;신극장판 은혼: 요시와라 대염상&#39;은 CGV 에그지수 96%, 네이버 실관람객 9.72점으로 관객들의 폭발적인 극찬 세례가 쏟아지고 있다. 한편 &#39;신극장판 은혼: 요시와라 대염상&#39;은 전국 극장에서 절찬 상영 중이다.</p>
 
@@ -5095,7 +5110,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://edu.donga.com/news/articleView.html?idxno=108202" target="_blank" rel="noopener">6월 모의평가 직후 반수·입시 전략 설명회 열린다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">2부는 고려대학교와 경찰대 등에 합격한 선배 수험생들이 참여하는 토크 콘서트 형태로 운영되며, 수험 생활 과정에서의 경험과 학습 관리 방법 등을 공유할 예정이다. 6월 6일 오전 11시에는 &#39;대학은 당신의 성적표를...</p>
 
@@ -5103,7 +5118,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.mk.co.kr/article/12061065" target="_blank" rel="noopener">싸이, ‘흠뻑쇼 2026’ 도시·일정 공개…6월 27일 의정부서 시작</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">‘싸이흠뻑쇼’는 2011년부터 시작된 싸이의 여름 대표 브랜드 콘서트 다. 싸이 특유의 열정적인 에너지부터 흥을 극대화하는 세트리스트, 압도적인 스케일의 워터 캐논, 화려한 게스트 라인업 등으로 뜨거운...</p>
 
@@ -5111,7 +5126,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://news.tf.co.kr/read/entertain/2327532.htm" target="_blank" rel="noopener">아이오아이 &#39;갑자기&#39;, 멜론 차트 1위…유종의 미</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">29일 오전 8시 기준 TOP100 1위 29일부터 31일까지 잠실실내체육관서 콘서트 그룹 아이오아이(I.O.I)가 음원... 마무리하고 콘서트에 집중한다. 아이오아이는 29일부터 31일까지 서울 잠실실내체육관에서 단독 콘서트 ...</p>
 
@@ -5119,7 +5134,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://www.osen.co.kr/article/G1112810579" target="_blank" rel="noopener">유재석, 넷플릭스 예능인데..사비 ‘수백만원’ 긁었다 “제작비 아끼라...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">29일 오전 서울 종로구 삼청동의 한 카페에서는 넷플릭스 예능프로그램 ‘유재석 캠프’ 이소민 PD, 윤신혜... 넷플릭스 돈 아끼라고 본인 카드를 꺼내셔서 긁으시더라. 식재료도 엄청 많다 보니까 몇백만원 넘게 쓰신것...</p>
 
@@ -5127,7 +5142,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://www.chungnamilbo.co.kr/news/articleView.html?idxno=891061" target="_blank" rel="noopener">세종시육아종합지원센터, &#39;영유아 성폭력 예방 뮤지컬 &#39; 열어</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">예방 뮤지컬 &#39;을 진행했다.(사진제공=세종시육아종합지원센터) 세종시육아종합지원센터가 관내 어린이집 영유아를 대상으로 성폭력 예방과 신체 존중 인식을 높이기 위한 안전 뮤지컬을 진행했다....</p>
 
@@ -5135,7 +5150,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.vogue.co.kr/2026/05/29/bl%ec%9d%84-%ec%93%b0%eb%8a%94-%eb%a7%88%ec%9d%8c-%eb%a1%9c%eb%a7%a8%ec%8a%a4%ec%9d%98-%ec%a0%88%eb%8c%93%ea%b0%92/?utm_source=naver&amp;utm_medium=partnership" target="_blank" rel="noopener">BL을 쓰는 마음, ‘로맨스의 절댓값’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">( 쿠팡플레이 )은 소박하고 단순하지만 사랑스럽게 반짝이는 드라마다. 여고생이 자기 학교 교사들을 모델로 BL(Boy’s Love) 소설을 쓰면서 벌어지는 일을 다뤘다. 서브컬처 로맨스의 문법만 차용한 게 아니라 그것이 창작...</p>
 
@@ -5143,7 +5158,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.enetnews.co.kr/news/articleView.html?idxno=50614" target="_blank" rel="noopener">만화카페창업 벌툰, &#39;원팩 조리&#39; 구축으로 은퇴 후 창업 부담 낮춘다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">만화책 외에도 7가지 OTT를 시청할 수 있는 미니 영화관 &#39;허니박스&#39;와 닌텐도 스위치, 보드게임 등 다양한 콘텐츠를 결합해, 특정 가맹점에서는 최고 일매출 639만 원을 기록하는 등 차별화된 수익 구조를 보여주고 있다....</p>
 
@@ -5151,7 +5166,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202605291305163880101494" target="_blank" rel="noopener">[더벨][i-point] 한울반도체, 본업 회복·계열사 성장 기반 경영계획 발...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">국내 주요 아티스트의 글로벌 콘서트 에서 응원봉 연출 기술을 선보이며 시장 내 경쟁력을 입증해 왔다. 비트로는 기존 응원봉 중심 사업을 넘어 글로벌 스포츠·공연 광고 플랫폼으로 사업 모델을 확장하고 있다....</p>
 
@@ -5159,7 +5174,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.mydaily.co.kr/page/view/2026052913170001070" target="_blank" rel="noopener">변우석 &#39;대군부인&#39; 역사 왜곡 논란 속…&#39;유캠&#39; 제작진 &#34;열심히 해 감사...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">넷플릭스 예능 &#39;유재석 캠프&#39;(&#39;유캠&#39;)를 비롯해 다양한 이야기를 나눴다. &#39;유재석 캠프&#39;는 초보 캠프장 유재석과 예측 불가 직원 이광수, 변우석, 지예은이 숙박객들과 떠들어 재끼고, 놀아 재끼고, 까불어 재끼며 일상...</p>
 
@@ -5167,7 +5182,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://isplus.com/article/view/isp202605290053" target="_blank" rel="noopener">싸이, 올해 ‘흠뻑쇼’ 전국 9개 도시-14회 공연 발표</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;싸이흠뻑쇼’는 2011년부터 시작된 싸이의 여름 대표 브랜드 콘서트 로, 한국을 대표하는 공연으로 자리매김하고 있다. 싸이 특유의 열정적인 에너지부터 흥을 극대화하는 세트리스트, 압도적인 스케일의 워터 캐논...</p>
 
@@ -5175,7 +5190,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://enter.etoday.co.kr/news/view/297894" target="_blank" rel="noopener">아홉, 첫 아시아 투어 돌입…미공개곡 2곡 최초 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">앞서 아홉은 필리핀 팬 콘서트 전석 매진과 서울 장충체육관 공연을 성료하며 글로벌 시장에서의 성장 가능성을 입증했다. 이번 투어에서 아홉은 &#39;유니버스 리그&#39; 경연곡을 비롯해 기존 발매한 미니앨범...</p>
 
@@ -5183,7 +5198,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://biz.chosun.com/industry/business_info/2026/05/29/VNC62PWQQZBJVORSTGYKA3IQDQ/?utm_source=naver&amp;utm_medium=original&amp;utm_campaign=biz" target="_blank" rel="noopener">리뉴파이 한손한끼, 배우 우도환 브랜드 모델로 선정</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">넷플릭스 시리즈 ‘사냥개들’ 등 다양한 작품에서 활약하며 국내외 두터운 팬층을 확보한 우도환은 평소 철저한 자기관리와 건강한 이미지로 사랑받아왔다. 리뉴파이는 한손한끼 식사대용 단백질 셰이크를 비롯한 주요...</p>
 
@@ -5191,7 +5206,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.ytn.co.kr/_ln/0106_202605291315335070" target="_blank" rel="noopener">&#39;K 뮤지컬 국제마켓&#39; 6월 말 개막...영미권 제작사 대거 방한</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">2026 &#39;K 뮤지컬 국제마켓&#39;이 다음 달 말 개막합니다. 문화체육관광부와 예술경영지원센터는 제6회 K 뮤지컬 국제마켓을 다음 달 29일부터 7월 3일까지 서울 삼성동 코엑스아티움과 코엑스에서 개최한다고 밝혔습니다....</p>
 
@@ -5199,7 +5214,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.news1.kr/entertain/music/6181564" target="_blank" rel="noopener">싸이 &#39;흠뻑쇼&#39;, 의정부부터 부산까지 전국 9개 도시 찾는다…총 14회 개...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;싸이흠뻑쇼&#39;는 2011년부터 시작된 싸이의 여름 대표 브랜드 콘서트 다. 싸이 특유의 열정적인 에너지부터 흥을 극대화하는 세트리스트, 압도적인 스케일의 워터 캐논, 화려한 게스트 라인업 등 다채로운 볼거리에...</p>
 
@@ -5207,7 +5222,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.heraldmuse.com/article/10758764?ref=naver" target="_blank" rel="noopener">[뮤:터뷰③] ‘유재석 캠프’ 이소민PD “사비요정 유재석, 넷플릭스 돈...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">‘유재석’ 이름을 걸고 시작한 프로그램, 넷플릭스 예능 &lt;유재석 캠프&gt; 제작진이 유재석의 남다른 책임감에... 이소민PD는 “마트 갈 때도 유재석 씨가 넷플릭스 돈 아끼라고 본인 사비로 계속 구매를 하셨다”며 “특히...</p>
 
@@ -5215,7 +5230,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.sportsseoul.com/news/read/1612211?ref=naver" target="_blank" rel="noopener">‘솔지5’ 김민지 “성형 안 했다”…턱필러·코필러·보톡스 시술 솔직...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">사진ㅣ유튜브 ‘김민지’ 캡처 넷플릭스 연애 프로그램 ‘솔로지옥5’에 출연해 얼굴을 알린 육상선수 겸 방송인 김민지가 치아 교정과 각종 시술 경험을 솔직하게 털어놨다. 지난 28일 김민지의 유튜브 채널에는 ‘성형...</p>
 
@@ -5223,7 +5238,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.bntnews.co.kr/article/view/bnt202605290147" target="_blank" rel="noopener">싸이, ‘흠뻑쇼 2026’ 일정 공개</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">싸이, ‘흠뻑쇼 2026’ 일정 공개 (제공: 피네이션) &#39;싸이흠뻑쇼’는 2011년부터 시작된 싸이의 여름 대표 브랜드 콘서트 로, 한국을 대표하는 공연으로 자리매김하고 있다. 싸이 특유의 열정적인 에너지부터 흥을...</p>
 
@@ -5231,7 +5246,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.ytn.co.kr/_ln/0106_202605291313267611" target="_blank" rel="noopener">[컬처인사이드] 21년차 배우 차지연, 엄격한 자기관리 &#34;야식 먹으면 앉...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">현재에 집중하는 배우로 남고 싶다는 차지연은 뮤지컬은 물론, OTT 드라마와 연말 콘서트까지 활동 영역을 넓혀갈 예정이다. 차지연이 출연하는 YTN &#39;컬처인사이드&#39;는 30일 오후 7시 20분에 방송된다.</p>
 
@@ -5239,7 +5254,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.starnewskorea.com/broadcast-show/2026/05/29/2026052912421190560" target="_blank" rel="noopener">&#39;사랑 몬스터&#39; 류수영 &#34;♥박하선에 꽉 잡혀살아..혼날 때도 많아&#34; [미우...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">최근 진행된 SBS &#39;미우새&#39; 녹화 현장에서는 뮤지컬 &#39;그날들&#39;의 새 주인공으로 발탁된 윤시윤, 최진혁의 모습이 공개됐다. 연습 후, 윤시윤과 최진혁은 뮤지컬에 함께 출연하는 류수영과 특별한 곳을 찾았다. 류수영은 아내...</p>
 
@@ -5247,7 +5262,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.womennews.co.kr/news/articleView.html?idxno=278113" target="_blank" rel="noopener">한국영화 사상 최고가... ‘호프’, 선판매로 순제작비 50% 회수</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">베트남의 CGV 베트남( CGV Vietnam), 싱가포르의 클로버 필름스(Clover Films) 등 유수의 영화사들이 국가 및 지역별 배급 파트너를 맡았다. &#39;호프&#39;는 비무장지대에 위치한 호포항 출장소장 범석(황정민 분)이 동네...</p>
 
@@ -5255,7 +5270,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://enews.imbc.com/News/RetrieveNewsInfo/506537" target="_blank" rel="noopener">&#39;박하선♥&#39; 류수영 &#34;당일 외박은 이혼, 결혼 후 신데렐라 됐다&#34; (미우새...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">&#39;미운 우리 새끼&#39;(이하 &#39;미우새&#39;)에서 뮤지컬 &#39;그날들&#39;의 새 주역으로 나선 윤시윤과 최진혁의 연습 현장, 그리고 함께 무대에 오르는 류수영과의 특별한 만남이 공개된다. 최근 진행된 &#39;미우새&#39; 녹화에서는 뮤지컬 &#39;그날들...</p>
 
@@ -5263,7 +5278,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.topstarnews.net/news/articleView.html?idxno=16074800" target="_blank" rel="noopener">세븐틴 조슈아, 영화 &#39;K-POPS!&#39; OST로 글로벌 협업 펼쳤다</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">선보일 예정이며, 세븐틴은 같은 달 20~21일 인천아시아드주경기장에서 단체 팬미팅을 열고 팬들과 만난다. &#39;K-POPS!&#39;는 지난 2월 현지 개봉에 이어 30일부터 넷플릭스를 통해 전 세계 시청자에게 순차적으로 소개된다.</p>
 
@@ -5271,7 +5286,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.topstarnews.net/news/articleView.html?idxno=16074798" target="_blank" rel="noopener">에바 알머슨, &#39;뽀뽀뽀 마음약국&#39;서 아이들에 그림 고민 처방</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">방송 메인 작가인 박수경 작가는 현재 가족 뮤지컬 &#39;리나, 슈퍼히어로&#39;에서 에바 알머슨과 함께 작업하며... 뮤지컬 에서 구축한 협업 경험은 이번 방송에도 영향을 미쳤다. 작품 속 가족과 일상, 특별한 능력을 지닌...</p>
 
@@ -5279,7 +5294,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.naeil.com/news/read/590202?ref=naver" target="_blank" rel="noopener">한국 영화 유통구조 개선 위한 민관협의체 첫 회의</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">1시간 전</span>
+    <span class="time">2시간 전</span>
   </div>
   <p class="archive-excerpt">민관협의체는 최근 급변하는 산업 환경 속에서 한국 영화의 수익 구조를 정상화하고, 극장과 온라인동영상서비스( OTT ) 등 유통 플랫폼 간 상생 생태계를 조성하기 위해 출범했다. 첫 회의에서는 최휘영 문체부 장관을...</p>
 
@@ -5343,7 +5358,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/john-travolta-dozen-berets-men-can-have-fun-too-1236761905/" target="_blank" rel="noopener">John Travolta Now Owns a Dozen Berets Because ‘Men Can Have Fun, Too. Why Not Change it Up?’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">John Travolta has wholeheartedly embraced the beret as his trademark look since his headline-making appearances at the Cannes Film Festival earlier this month. At the DGA premiere Thursday of his directing debut “Propeller One-Way Night Coach,” he told Variety‘s Marc Malkin that he adopted the headwear idea to help feel like a director. “The beret […]</p>
 
@@ -5351,7 +5366,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.tenasia.co.kr/article/2026052965834" target="_blank" rel="noopener">박보영, 고구마 100개 먹은 것 같다고요?…&#34;시행착오 있을 거라 생각해...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">2시간 전</span>
+    <span class="time">3시간 전</span>
   </div>
   <p class="archive-excerpt">지난 28일 서울 종로구에 위치한 한 카페에서 디즈니플러스 &#39;골드랜드&#39; 박보영(김희주 역)과의 인터뷰를 진행했다. &#39;골드랜드&#39;는 거대한 금괴를 둘러싼 인물들의 욕망과 선택을 그린다. 이날 박보영은 김희주의 모습이...</p>
 
@@ -5407,7 +5422,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-news/news-documentary-emmys-2026-night-two-winners-1236608382/" target="_blank" rel="noopener">‘Prime Minister’ Takes Top Prize at 2026 News &amp; Documentary Emmys</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">The documentary winners were handed out at Jazz at Lincoln Center’s Frederick P. Rose Hall on Thursday night, where Michael Ian Black hosted.</p>
 
@@ -5415,7 +5430,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://economist.co.kr/article/view/ecn202605290010" target="_blank" rel="noopener">경남 아파트 매매가격 상승세 지속… 창원시 상승폭 확대</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">주변에는 롯데백화점, 이마트, 메가박스 , 창원병원 등이 자리하고 있으며, 창원시청, 창원지방검찰청, 창원지방법원 등 관공서도 가깝다. 중앙대로, 창원대로, 원이대로 등을 통해 시내외 이동이 가능하고, KTX...</p>
 
@@ -5423,7 +5438,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/ritual-zine-launches-patton-oswalt-edgar-wright-1236761836/" target="_blank" rel="noopener">Indie Film Zine Ritual Launches at L.A. Theaters; Patton Oswalt, Edgar Wright Among Contributors</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">3시간 전</span>
+    <span class="time">4시간 전</span>
   </div>
   <p class="archive-excerpt">Ritual, a new independent zine celebrating movie theater culture, has launched at select Los Angeles theaters. Launched by Greg Longstreet, whose L.A.-based public relations firm Empirical is focused on directors, the print publication was, per a press release, “Created as both a celebration of movies and a brief break from endless scrolling, Ritual is devoted […]</p>
 
@@ -5495,7 +5510,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003238486&amp;CMPT_CD=P0010&amp;utm_source=naver&amp;utm_medium=newsearch&amp;utm_campaign=naver_news" target="_blank" rel="noopener">하루아침에 재벌회장 된 축구선수, 이준영의 첫 도전</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">넷플릭스 영화 &lt;황야&gt;에서 사냥꾼 남산(마동석 분)의 파트너 최지완을 연기한 이준영은 디즈니플러스 드라마 &lt;로얄로더&gt;에서 욕망을 감춘 재벌가 혼외자 강인하 역을 맡았고 티빙 드라마 &lt;나는 대놓고 신데렐라를...</p>
 
@@ -5503,7 +5518,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://www.enewstoday.co.kr/news/articleView.html?idxno=2434181" target="_blank" rel="noopener">거제 가조도서 촬영된 ENA 드라마 &#39;닥터 섬보이&#39; 6월 1일 첫 방송</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">한편, 거제 로케이션 인센티브 지원작이 될 &#39;닥터 섬보이&#39;는 인기 웹툰 &#39;존버닥터&#39;를 원작으로 한 메디컬 휴먼 로맨스 드라마로, KT 지니TV와 디즈니플러스 에서도 시청할 수 있다.</p>
 
@@ -5511,7 +5526,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://isplus.com/article/view/isp202605290027" target="_blank" rel="noopener">‘놀뭐’ 쩐의 전쟁, 전국구로 커지네…“전라도 편, 유노윤호·곽범 촬...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">앞서 유노윤호는 지난해 디즈니플러스 시리즈 ‘파인: 촌뜨기들’을 통해 구수한 사투리 연기를 보여줬고, 곽범 또한 유튜브 웹예능을 통해 전주에 대한 애향심을 드러내온 만큼 전라도만의 매력을 십분 보여줄 전망이다....</p>
 
@@ -5519,7 +5534,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.dailian.co.kr/news/view/1650105/?sc=Naver" target="_blank" rel="noopener">북중미 월드컵 향한 594일간의 기록…&#39;국대: 로드 투 노스 아메리카&#39; 6월...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">29일 쿠팡플레이는 &#39;국대: 로드 투 노스 아메리카&#39;가 6월 11일 공개된다고 밝히며 예고편을 공개했다. &#39;국대: 로드 투 노스 아메리카&#39;는 승리를 위해 국대 축구팀이 달려온 594일간의 여정을 담은 다큐멘터리다. 2022년:국대...</p>
 
@@ -5527,7 +5542,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.besteleven.com/news/articleView.html?idxno=307354" target="_blank" rel="noopener">라커룸 비화부터 날것의 감정까지… 호평 일색 수원 삼성 다큐, 8일 베일...</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">공식 공개에 앞서 지난 20일 메가박스 스타필드수원점에서 시사회가 열렸다. 수원 삼성 구단 관계자와 파트너사, 미디어, 인플루언서, 팬 등 약 240명이 함께 다큐멘터리를 관람했다. 시사회 이후 작품의 몰입도와 완성도에...</p>
 
@@ -5535,7 +5550,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="http://www.beyondpost.co.kr/view.php?ud=202605291008284636d3244b4fed_30" target="_blank" rel="noopener">신수현, 영화 ‘핑크박스’로 첫 스크린 주연 발탁…2026년 대세 인증</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">지난해 티빙 ‘스터디그룹’, KBS2 ‘화려한 날들’, 넷플릭스 ‘캐셔로’ 등을 통해 공개된 차가운 첫인상과 달리 털털한 매력과 신비로운 비주얼로 존재감을 드러낸 신수현은 SNS 팔로워 180만을 돌파하며 글로벌 팬덤...</p>
 
@@ -5543,7 +5558,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://n.news.naver.com/mnews/article/077/0007026653?sid=104" target="_blank" rel="noopener">Cubs Pirates Baseball</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">4시간 전</span>
+    <span class="time">5시간 전</span>
   </div>
   <p class="archive-excerpt">Cubs Pirates Baseball Chicago Cubs&#39; Michael Busch (29) is greeted by Seiya Suzuki after scoring on a single by Ian Happ off Pittsburgh Pirates pitcher Paul Skenes during the sixth inning of a...</p>
 
@@ -5575,7 +5590,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.maxmovie.com/news/445434" target="_blank" rel="noopener">이병헌, CNN 다큐 출연...&#34;K콘텐츠의 힘은 예측할 수 없는 이야기와 에너지&#34;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 맥스무비</span>
-    <span class="time">5시간 전</span>
+    <span class="time">6시간 전</span>
   </div>
   <p class="archive-excerpt">美 CNN 다큐 ‘K-Everything’ 에피소드 ‘K-필름’ 편 출연한 이병헌 / 사진=BH엔터테인먼트배우 이병헌이 미국 CNN 오리지널 다큐멘터리 시리즈 ‘K-Everything’에 출연해 한국 콘텐츠의 경쟁력과 자신의 작품 세계에 대한 이야기를 나눴다.‘K-Everything’은 한국 문화가 전 세계적인 문화 현상으로 자리 잡기까지의 배경과 원동력을</p>
 
@@ -5671,7 +5686,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://deadline.com/feature/toy-story-5-news-updates-everything-we-know-1236929601/" target="_blank" rel="noopener">Everything We Know About ‘Toy Story 5’ So Far</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Deadline</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">We’ll always have a friend in the Toy Story franchise, which has film #5 coming this summer. First announced in February 2023, the fifth film of the beloved Disney Pixar series has added a new roster of voices to its cast, and it will take on a prevalent theme in the age of AI and […]</p>
 
@@ -5679,7 +5694,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/festivals/euphoria-the-end-balinale-19th-edition-1236761515/" target="_blank" rel="noopener">‘Euphoria,’ ‘The End’ to Bookend Balinale’s 19th Edition</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">9시간 전</span>
+    <span class="time">10시간 전</span>
   </div>
   <p class="archive-excerpt">Julian Rosefeldt’s “Euphoria” will open Balinale’s 19th edition, with Joshua Oppenheimer’s “The End” closing the program. The festival is adding a new competitive category: Best Indonesian Short Tapestry of Indonesia, dedicated to local short-form storytelling. Indonesia’s only Academy Award qualifying festival presents 94 films from 38 countries. The narrative feature competition brings together four titles: […]</p>
 
@@ -5735,7 +5750,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.rollingstone.com/tv-movies/tv-movie-news/off-campus-couple-allie-dean-the-score-season-two-1235569590/" target="_blank" rel="noopener">‘Off Campus’ Season 2 Will Officially Focus on Allie and Dean</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Rolling Stone</span>
-    <span class="time">12시간 전</span>
+    <span class="time">13시간 전</span>
   </div>
   <p class="archive-excerpt">The Amazon Prime romance doesn’t have an official return date, but viewers can now rest assured this fan-favorite couple will be in the spotlight when it does</p>
 
@@ -5759,7 +5774,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/news/hoppers-disney-streaming-release-date-how-to-watch-1236761127/" target="_blank" rel="noopener">‘Hoppers’ Sets Disney+ Streaming Release Date</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
   <p class="archive-excerpt">Pixar’s latest hit movie “Hoppers” is coming to Disney+ very soon. The family-friendly animated film will begin streaming on Disney+ on June 3. “Animal lover Mabel seizes an opportunity to use a new technology to ‘hop’ her consciousness into a lifelike robotic beaver and communicate directly with animals,” the logline reads. “As she makes amazing […]</p>
 
@@ -5767,7 +5782,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.hollywoodreporter.com/movies/movie-features/john-badham-saturday-night-fever-john-travolta-podcast-1236607538/" target="_blank" rel="noopener">“It Was a Fantasy Wet Dream”: John Badham on the Wild Making of ‘Saturday Night Fever’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · The Hollywood Reporter</span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
   <p class="archive-excerpt">A fired Oscar-nominated director. Fake call sheets to outrun screaming John Travolta fans. A disco palace built with aluminum foil and Christmas lights. The director revisits the chaotic, improbable production of the 1977 classic on the latest episode of &#39;It Happened in Hollywood.&#39;</p>
 
@@ -5775,7 +5790,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://variety.com/2026/film/festivals/metropolis-cinema-hania-mroue-beirut-fest-israeli-strikes-1236760997/" target="_blank" rel="noopener">Metropolis Cinema Chief Hania Mroue on Opening a Festival in Beirut Amid Israeli Air Strikes: ‘Not Only Are We Surviving the War,’ but We’re Creating ‘Something That Has Meaning’</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Variety</span>
-    <span class="time">14시간 전</span>
+    <span class="time">15시간 전</span>
   </div>
   <p class="archive-excerpt">Hania Mroue, founder and director of Beirut’s beloved Metropolis Cinema — Lebanon’s only arthouse movie theater — is planning to host the second edition of the South Screens (Écrans du Sud) Film Festival on Thursday evening, just as Israel is stepping up air strikes in Lebanon. Mroue is forging head despite an airstrike Thursday afternoon […]</p>
 
@@ -5799,7 +5814,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110031" target="_blank" rel="noopener">[기획] 신인은 발굴되고 있을까? - 중예산 지원 사업의 신인 쿼터에 대한 당사자들의 이야기</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">영화진흥위원회(이하 영진위)는 중예산 한국영화 제작지원 제도(이하 중예산)의 주요 목적 중 하나로 신인 창작자의 발굴을 명시하고 있다. 올해 두 번째로 시행된 중예산 지원 제도에서는 신인감독 쿼터(지원 편수의 최소 30%)를 설정했고, 결과적으로는 최종 선정작의 60% 이상이 신인감독의 작품으로 선정됐다. 이후의 문제는 선정된 신인감독들이 실질적...</p>
 
@@ -5807,7 +5822,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110030" target="_blank" rel="noopener">[기획] 황동만은 정말 데뷔할 수 있을까 - 중예산 담당자가 말하는 드라마 &lt;모자무싸&gt;와 신인감독들의 현실</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">JTBC 드라마 &lt;모두가 자신의 무가치함과 싸우고 있다&gt;(이하 &lt;모자무싸&gt;)의 주인공 황동만(구교환)은 20년째 장편영화 감독 데뷔를 준비해온 인물이다. 1화에서 그는 ‘영화진흥협회’의 중예산 한국영화 제작지원 사업(이하 중예산) 최종심까지 올라갔으나 고배를 마신다. 하지만 8화에서 그에게 천금 같은 기회가 찾아온다. 예비 후...</p>
 
@@ -5815,7 +5830,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.nytimes.com/2026/05/28/theater/the-maids-review-yerin-ha-kip-williams.html?partner=naver" target="_blank" rel="noopener">Review: ‘The Maids’ Makes a Ruckus but Not Enough Mess</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">of obsession has grown pervasive enough that it risks becoming overly familiar. On film, we’ve... The mismatch is a serious flaw in a play about obsession ; this soi disant influencer is not...</p>
 
@@ -5823,7 +5838,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.nytimes.com/2026/05/28/arts/television/the-other-bennet-sister-ella-bruccoleri.html?partner=naver" target="_blank" rel="noopener">Jane Austen Snubbed This Character. Ella Bruccoleri Loves Her.</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · Naver News</span>
-    <span class="time">20시간 전</span>
+    <span class="time">21시간 전</span>
   </div>
   <p class="archive-excerpt">She had been keen to visit Little Italy owing to an obsession with Italian American culture dating back to her teens. An old online password: “Al Capone.” She admired a moka pot in a Sicilian...</p>
 
@@ -5847,7 +5862,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110027" target="_blank" rel="noopener">[김사월의 외로워 말아요 눈물을 닦아요] 오이 샌드위치</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">아침부터 얼굴을 잔뜩 찌푸리던 하늘은 심술을 참지 못하고 거리의 나무와 사람들을 휘청이게 했습니다. 강풍 속에는 미스트 같은 입자의 물방울이 섞여 있지만 이런 얇고 강한 비를 피하겠다고 접이식 우산 같은 걸 펼쳤다가는 금세 발라당 뒤집힌 모양이 될 것입니다. 잠자코 회색빛 하늘의 짜증을 받아내는 편이 좋겠지요. 그래도 이 비가 그치고 나면 곧 무더...</p>
 
@@ -5855,7 +5870,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110026" target="_blank" rel="noopener">[홍기빈의 클로징] AI 미술의 반젤리스</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">리들리 스콧 감독의 걸작 &lt;블레이드 러너&gt;는 사이버펑크의 고전으로 영화사뿐만 아니라 음악사에도 남을 작품이다. 그 음악 중에서도 특히 데커드가 레이첼과 처음으로 입을 맞추는 장면에 흐르던 사랑의 테마가 유명하다. 자신이 로봇이었고 모든 기억이 조작되었다는 것을 깨닫고 무너져버린 레이철에게 곧바로 사랑의 감정이 닥쳐오고, 혼란스러운 그녀는...</p>
 
@@ -5863,7 +5878,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=109995" target="_blank" rel="noopener">[남다은 평론가의 RECORDER] 프레임보다 큰 삶, &lt;그녀가 돌아온 날&gt;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">23시간 전</span>
+    <span class="time">1일 전</span>
   </div>
   <p class="archive-excerpt">‘그녀’는 이런 사람이다. 정수(송선미)는 한때 인기 많은 배우였다. 12년 만에 복귀해서 얼마 전 독립영화 한편을 찍었다. 2년 전에 이혼했고 현재는 11살 딸과 강아지 한 마리와 산다. 학원에서 연기 수업도 듣는다. 담배를 즐겨 피우고 술을 좋아한다. 여기까지가 그녀를 수식하는 사실들이다. 그런 그녀가 지금 기자들과의 인터뷰를 위해 독일식 식...</p>
 
@@ -5975,7 +5990,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=110013" target="_blank" rel="noopener">[21세기 영화란 무엇인가?] 다수의 카메라, 새로운 현실성</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">1일 전</span>
+    <span class="time">2일 전</span>
   </div>
   <p class="archive-excerpt">&lt;씨네21&gt; 창간 30주년 특별 연재 ‘시네마 오디세이: 21세기 영화란 무엇인가?’의 다섯 번째 키워드는 ‘전승된 몸짓들’이다. ‘20세기의 기억’, ‘인간의 조건’, ‘통과하는 공간’, ‘생태 변이’에 이어 21세기 영화가 20세기로부터 전승하거나 변주하거나, 혹은 새로이 만든 영화 속의 움직임들이 무엇인지 살피고자 한다. 숏과 리버스숏...</p>
 
@@ -5983,7 +5998,7 @@ body.is-searching .search-archive-panel { display: block; }
   <a class="archive-title" href="https://www.cine21.com/news/view/?mag_id=109994" target="_blank" rel="noopener">[비평] 말과 말과 말 그리고 이미지들, 오진우 평론가의 &lt;그녀가 돌아온 날&gt; &lt;돼지가 우물에 빠진 날&gt;</a>
   <div class="archive-meta">
     <span class="archive-kind official">기사 · 씨네21</span>
-    <span class="time">1일 전</span>
+    <span class="time">2일 전</span>
   </div>
   <p class="archive-excerpt">정수(송선미)는 밤인데 왜 커튼을 쳤을까? 눈이 안 좋다면 연기 연습실의 내부 조명을 꺼야 했다. 암흑 속에서 이들의 목소리만 들었다면 어땠을까? 그래서 실제 영화관에서 &lt;그녀가 돌아온 날&gt;의 5장에서 나는 눈을 잠시 감아보기도 했다. 하지만 이내 시선을 사로잡은 것은 정수의 얼굴이었다. 그녀의 표정, 몸짓, 시선 등 다양한 비언어적 표현들...</p>
 

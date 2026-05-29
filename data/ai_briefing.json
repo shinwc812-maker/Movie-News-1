@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T06:01:00+00:00",
+  "generated_at": "2026-05-29T06:27:00+00:00",
   "model": "claude-sonnet-4-6 (routine)",
   "categories": [
     {
@@ -7,17 +7,17 @@
       "name": "영화",
       "items": [
         {
-          "summary": "롯데엔터테인먼트 배급 강동원 주연 코미디 '와일드 씽'(6월 3일 개봉)이 아이돌 콘셉트 OST 앨범과 포토카드·응원풍선 포함 굿즈 패키지를 발매하며 개봉 전 마케팅을 본격화했다.",
+          "title": "벌써 300만! '군체' 관객몰이, 좀비 진화 속도만큼 빠르네",
+          "source": "아시아투데이",
+          "source_url": "https://www.asiatoday.co.kr/kn/view.php?key=20260529010008755"
+        },
+        {
+          "title": "강동원이 아이돌로…KT지니뮤직, 영화 '와일드 씽' OST 앨범 발매",
           "source": "이데일리",
           "source_url": "https://www.edaily.co.kr/news/newspath.asp?newsid=03755606645453840"
         },
         {
-          "summary": "연상호 감독·전지현·구교환·지창욱 주연 '군체'(쇼박스 배급)가 개봉 8일 만에 누적 관객 250만 명을 돌파하며 8일 연속 박스오피스 1위를 지켰으며, 이번 주말 손익분기점 300만 달성이 예상된다.",
-          "source": "더팩트",
-          "source_url": "https://news.tf.co.kr/read/entertain/2327439.htm"
-        },
-        {
-          "summary": "나홍진 감독의 신작 '호프'(황정민·조인성·정호연 출연)가 전 세계 200개국·권역에 한국영화 역대 최고가로 선판매돼 개봉 전 순제작비의 50%를 회수했다.",
+          "title": "나홍진, 박찬욱 넘었다…'호프' 한국영화 최고 해외 선판매 기록",
           "source": "중앙일보",
           "source_url": "https://www.joongang.co.kr/article/25432333"
         }
@@ -28,17 +28,17 @@
       "name": "영화관·OTT",
       "items": [
         {
-          "summary": "CJ ENM·롯데컬처웍스·쇼박스·NEW 등 배급사, CGV·메가박스 상영사, 넷플릭스·쿠팡플레이·티빙 등 OTT가 참여한 한국 영화 유통구조 개선 민관협의체가 출범해 홀드백 기간 논의를 포함한 첫 회의를 개최했으며 8월까지 결론을 낼 계획이다.",
+          "title": "홀드백 논의…한국 영화 유통구조 개선을 위한 민관협의체 발족",
           "source": "뉴스1",
           "source_url": "https://www.news1.kr/life-culture/general-cultural/6180987"
         },
         {
-          "summary": "OTT 이용률 81.8% 증가에 따른 코드커팅 트렌드로 국내 케이블TV·위성방송 유료방송 가입자가 3,615만 명으로 감소했으며, 하반기에는 3,600만 붕괴가 우려된다.",
+          "title": "넷플릭스에 밀려 케이블TV·위성방송 위기…유료방송 가입자 3615만",
           "source": "뉴스웍스",
           "source_url": "https://www.newsworks.co.kr/news/articleView.html?idxno=842255"
         },
         {
-          "summary": "디즈니플러스가 이미 세로형 피드 '버츠(Verts)'를 도입한 가운데 넷플릭스와 아마존도 숏폼 서비스에 참전하며 글로벌 OTT 플랫폼의 짧은 영상 경쟁이 본격화되고 있다.",
+          "title": "숏폼이 대세, 넷플릭스·아마존도 참전…짧은 영상 전쟁 확산",
           "source": "더퍼블릭",
           "source_url": "https://www.thepublic.kr/news/articleView.html?idxno=305810"
         }
@@ -49,12 +49,12 @@
       "name": "드라마·공연·시리즈",
       "items": [
         {
-          "summary": "CJ ENM이 주영한국문화원과 협력해 런던에서 티빙 오리지널 드라마 '취사병 전설이 되다' 특별 상영회를 개최해 유럽 현지 미디어·콘텐츠 업계 관계자와 글로벌 팬들의 호응을 받았다.",
-          "source": "스포츠월드",
-          "source_url": "https://www.sportsworldi.com/newsView/20260529505449"
+          "title": "최민식, 넷플릭스 드라마 '마지막 줄에서의 노트'로 TV 복귀",
+          "source": "코리아헤럴드",
+          "source_url": "https://www.koreaherald.com/article/10758709?ref=naver"
         },
         {
-          "summary": "문체부와 예술경영지원센터가 제6회 K뮤지컬 국제마켓을 6월 29일~7월 3일 서울 코엑스에서 개최하며 영미권 제작사를 포함한 해외 업계 관계자들이 대거 방한할 예정이다.",
+          "title": "'K뮤지컬 국제마켓' 6월 말 개막…영미권 제작사 대거 방한",
           "source": "YTN",
           "source_url": "https://www.ytn.co.kr/_ln/0106_202605291315335070"
         }
@@ -65,12 +65,12 @@
       "name": "라이브사업·체험사업·IP",
       "items": [
         {
-          "summary": "입대 예정인 가수 정동원의 팬콘서트 실황을 담은 '정동원 팬콘서트 필름: 다시 만나는 길'이 6월 CGV 단독 개봉으로 팬덤 기반 라이브 콘텐츠의 극장 유통 사례로 주목받고 있다.",
-          "source": "탑스타뉴스",
-          "source_url": "https://www.topstarnews.net/news/articleView.html?idxno=16074741"
+          "title": "이병헌, CNN 다큐 출연…K콘텐츠의 힘은 예측 불가 이야기와 에너지",
+          "source": "맥스무비",
+          "source_url": "https://www.maxmovie.com/news/445434"
         },
         {
-          "summary": "현대제철이 스타워즈 시리즈 영화 '만달로리안과 그로구' IP와 협업한 광고 영상을 극장에서 공개하며 영화 IP를 활용한 B2B 브랜드 마케팅을 펼쳤다.",
+          "title": "'스타워즈와 만난' 현대제철, 극장 IP 협업으로 브랜드 홍보",
           "source": "헤럴드경제",
           "source_url": "https://biz.heraldcorp.com/article/10758690?ref=naver"
         }
@@ -81,14 +81,14 @@
       "name": "해외·마켓",
       "items": [
         {
-          "summary": "북미 박스오피스에서 '옵세션'이 1위를 기록 중이며, 지난주 1위였던 '만달로리안과 그로구'가 68% 급락한 가운데 A24 케인 파슨스 감독의 '백룸스'가 이번 주말 6,500만 달러 오프닝이 전망된다.",
-          "source": "익스트림무비",
-          "source_url": "https://extmovie.com/movietalk/94063707"
-        },
-        {
-          "summary": "파라마운트(데이비드 엘리슨 체제)가 가스 데이비스 감독·플로렌스 퓨 주연의 소설 원작 영화 '미드나잇 라이브러리'를 3,600만 달러에 낙찰받아 글로벌 배급권을 확보했다.",
+          "title": "파라마운트, 플로렌스 퓨 주연 '미드나잇 라이브러리' 3600만 달러에 낙찰",
           "source": "Deadline",
           "source_url": "https://deadline.com/2026/05/florence-pugh-midnight-library-paramount-1236928593/"
+        },
+        {
+          "title": "'람보' 프리퀄 영화, 워너·라이온스게이트 합작으로 2027년 개봉 확정",
+          "source": "Variety",
+          "source_url": "https://variety.com/2026/film/news/rambo-movie-release-date-1236761474/"
         }
       ]
     }

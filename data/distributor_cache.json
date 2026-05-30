@@ -107,5 +107,13 @@
       "Next Entertainment World"
     ],
     "is_lotte": false
+  },
+  "이상한 과자 가게 전천당": {
+    "movie_code": "20263512",
+    "distributors": [
+      "메가박스중앙(주) 플러스엠 엔터테인먼트",
+      "Plus M Entertainment"
+    ],
+    "is_lotte": false
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T00:05:00+00:00",
+  "generated_at": "2026-05-30T00:05:00+00:00",
   "model": "claude-sonnet-4-6 (routine)",
   "categories": [
     {
@@ -7,19 +7,19 @@
       "name": "영화",
       "items": [
         {
-          "title": "'군체' 8일만 250만 돌파…이번 주말 300만 간다",
-          "source": "스포츠경향",
-          "source_url": "https://sports.khan.co.kr/article/202605290933003?pt=nv"
+          "title": "'군체' 250만 관객 돌파, 이번 주말 300만 향해 흥행 질주",
+          "source": "Naver News",
+          "source_url": "https://www.hidomin.com/news/articleView.html?idxno=707332"
         },
         {
-          "title": "나홍진, 박찬욱 넘었다…'호프' 한국영화 최고 해외 선판매 기록",
-          "source": "중앙일보",
-          "source_url": "https://www.joongang.co.kr/article/25432333"
+          "title": "'범죄도시5' 크랭크인·정우성 '살생부' 캐스팅 확정",
+          "source": "씨네21",
+          "source_url": "https://www.cine21.com/news/view/?mag_id=110047"
         },
         {
-          "title": "김시아, 연상호 감독 신작 '예토' 캐스팅 단독 확정",
-          "source": "스포츠조선",
-          "source_url": "https://www.sportschosun.com/entertainment/2026-05-29/202605290100176770011814"
+          "title": "나홍진 '호프', 한국 영화 역대 최고가 수출·전 세계 200개국 선판매",
+          "source": "Naver News",
+          "source_url": "http://www.breaknews.com/1210707"
         }
       ]
     },
@@ -28,19 +28,19 @@
       "name": "영화관·OTT",
       "items": [
         {
-          "title": "'홀드백' 8월까지 결론낸다…한국 영화 민관협의체 출범",
-          "source": "헤럴드경제",
-          "source_url": "https://biz.heraldcorp.com/article/10758406?ref=naver"
+          "title": "한국, 6개월 극장 창구 도입 위한 협의 위원회 출범",
+          "source": "Variety",
+          "source_url": "https://variety.com/2026/film/news/korea-six-month-theatrical-window-1236762020/"
         },
         {
-          "title": "넷플릭스 공세에 케이블TV·위성방송 위기, 유료방송 가입자 3615만으로 급감",
-          "source": "뉴스웍스",
-          "source_url": "https://www.newsworks.co.kr/news/articleView.html?idxno=842255"
+          "title": "넷플릭스, 독일 정부 '수익 8% 재투자' 법안에 공식 반발",
+          "source": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260529174730"
         },
         {
-          "title": "숏폼이 대세, 넷플릭스·아마존도 참전…짧은 영상 시장 전쟁 확전",
-          "source": "더퍼블릭",
-          "source_url": "https://www.thepublic.kr/news/articleView.html?idxno=305810"
+          "title": "네이버, 월드컵 중계 부분 유료화…스포츠도 OTT 유료 시대 진입",
+          "source": "Naver News",
+          "source_url": "https://www.kfenews.co.kr/news/articleView.html?idxno=658386"
         }
       ]
     },
@@ -49,19 +49,19 @@
       "name": "드라마·공연·시리즈",
       "items": [
         {
-          "title": "최민식, 넷플릭스 드라마 '맨 뒷줄에서의 메모'로 TV 복귀",
-          "source": "코리아헤럴드",
+          "title": "CJ ENM, 런던서 K-드라마 '취사병 전설이 되다' 열풍 확인",
+          "source": "Naver News",
+          "source_url": "https://www.joongangenews.com/news/articleView.html?idxno=522621"
+        },
+        {
+          "title": "최민식, Netflix '마지막 열의 노트'로 7년 만에 TV 복귀 선언",
+          "source": "Korea Herald",
           "source_url": "https://www.koreaherald.com/article/10758709?ref=naver"
         },
         {
-          "title": "'K 뮤지컬 국제마켓' 6월 말 개막, 영미권 제작사 대거 방한",
-          "source": "YTN",
-          "source_url": "https://www.ytn.co.kr/_ln/0106_202605291315335070"
-        },
-        {
-          "title": "ENA 드라마 '닥터 섬보이' 6월 1일 첫 방송",
-          "source": "이뉴스투데이",
-          "source_url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2434181"
+          "title": "연극 '동백당', 맛난 빵으로 치유하는 상처…7월 무대 오른다",
+          "source": "연합뉴스",
+          "source_url": "https://www.yna.co.kr/view/AKR20260529164900005?input=1195m"
         }
       ]
     },
@@ -70,19 +70,19 @@
       "name": "라이브사업·체험사업·IP",
       "items": [
         {
-          "title": "싸이, '흠뻑쇼 2026' 전국 9개 도시 14회 공연 일정 확정",
-          "source": "이스플러스",
-          "source_url": "https://isplus.com/article/view/isp202605290053"
+          "title": "BCM2026 개막, 칸이 주목한 K-콘텐츠 부산서 먼저 만난다",
+          "source": "Naver News",
+          "source_url": "http://www.civicnews.com/news/articleView.html?idxno=39921"
         },
         {
-          "title": "나이키, BTS 월드투어 '아리랑' 기념 협업 컬렉션 출시",
-          "source": "동아일보",
-          "source_url": "https://www.donga.com/news/Economy/article/all/20260529/134015956/1"
+          "title": "BTS 뮤비 감독·9억뷰 유튜버 출격…'디렉터스 아레나' 불꽃 창작 대결",
+          "source": "YTN스타",
+          "source_url": "https://star.ytn.co.kr/_sn/0117_202605291701582030"
         },
         {
-          "title": "세븐틴 조슈아, 팝스타 앤더슨 팩 주연 영화 OST 가창·글로벌 입지 증명",
-          "source": "뉴스1",
-          "source_url": "https://www.news1.kr/entertain/music/6181574"
+          "title": "국내 디지털크리에이터, 해외서 100억 원 규모 계약 상담 성과",
+          "source": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260529194230"
         }
       ]
     },
@@ -91,19 +91,19 @@
       "name": "해외·마켓",
       "items": [
         {
-          "title": "파라마운트, 플로렌스 퓨 주연 '미드나잇 라이브러리' 3,600만 달러에 인수",
-          "source": "Deadline",
-          "source_url": "https://deadline.com/2026/05/florence-pugh-midnight-library-paramount-1236928593/"
+          "title": "파라마운트, 플로렌스 퓨 주연 판타지 '한밤의 도서관' 판권 경쟁 낙찰",
+          "source": "The Hollywood Reporter",
+          "source_url": "https://www.hollywoodreporter.com/movies/movie-news/paramount-midnight-sun-florence-pugh-1236608482/"
         },
         {
-          "title": "'람보' 프리퀄 영화, 2027년 개봉 날짜 확정",
+          "title": "'프로젝트 헤일 메리', 2026 골든 트레일러 어워즈 5관왕 석권",
           "source": "Variety",
-          "source_url": "https://variety.com/2026/film/news/rambo-movie-release-date-1236761474/"
+          "source_url": "https://variety.com/2026/film/news/golden-trailer-awards-project-hail-mary-1236761839/"
         },
         {
-          "title": "AI 생성 장편 영화 '바이올렛의 꿈', 트리베카 영화제 출품 확정",
-          "source": "Rolling Stone",
-          "source_url": "https://www.rollingstone.com/tv-movies/tv-movie-news/dreams-of-violets-ai-movie-tribeca-1235569122/"
+          "title": "상하이국제영화제, 심리 드라마 '애프터피스' 개막작으로 선정",
+          "source": "The Hollywood Reporter",
+          "source_url": "https://www.hollywoodreporter.com/movies/movie-news/shanghai-film-festival-2026-opening-film-afterpiece-1236608491/"
         }
       ]
     }

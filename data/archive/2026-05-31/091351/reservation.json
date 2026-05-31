@@ -1,0 +1,108 @@
+{
+  "captured_at": "2026-05-30T08:10:33.697148+00:00",
+  "top_movie": "군체",
+  "top_rate": "38.4%",
+  "movies": [
+    {
+      "rank": 1,
+      "title": "군체",
+      "reservation_rate": 38.4,
+      "reservation_count": 155890,
+      "english_title": "COLONY",
+      "movie_code": "20252402",
+      "distributors": [
+        "(주)쇼박스",
+        "Showbox Corp"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 2,
+      "title": "와일드 씽",
+      "reservation_rate": 13.5,
+      "reservation_count": 54823,
+      "english_title": "Wild Sing",
+      "movie_code": "20248252",
+      "distributors": [
+        "롯데컬처웍스(주)롯데엔터테인먼트",
+        "Lotte Entertainment"
+      ],
+      "is_lotte_distributed": true,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 3,
+      "title": "백룸",
+      "reservation_rate": 12.9,
+      "reservation_count": 52392,
+      "english_title": "Backrooms",
+      "movie_code": "20263030",
+      "distributors": [
+        "(주)바이포엠스튜디오",
+        "BY4MSTUDIO",
+        "리바이브콘텐츠 주식회사",
+        "REVIVECONTENTS"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 4,
+      "title": "플레이브 아시아 투어 [대쉬: 퀀텀 리프] 앙코르 인 시네마",
+      "reservation_rate": 7.0,
+      "reservation_count": 28380,
+      "english_title": null,
+      "movie_code": "20263761",
+      "distributors": [
+        "씨제이포디플렉스 주식회사",
+        "CJ 4DPLEX",
+        "씨지브이 아이스콘",
+        "CGV ICECON"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    },
+    {
+      "rank": 5,
+      "title": "마이클",
+      "reservation_rate": 6.5,
+      "reservation_count": 26243,
+      "english_title": "Michael",
+      "movie_code": "20259626",
+      "distributors": [
+        "유니버설픽쳐스인터내셔널 코리아(유)",
+        "Universal Pictures International Korea"
+      ],
+      "is_lotte_distributed": false,
+      "tmdb_id": null,
+      "tmdb_title": null,
+      "tmdb_original_title": null,
+      "tmdb_overview": "",
+      "tmdb_poster_path": null,
+      "tmdb_release_date": null
+    }
+  ],
+  "capture_failed": false,
+  "error_message": null
+}

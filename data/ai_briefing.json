@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T00:05:00+00:00",
+  "generated_at": "2026-05-31T00:05:00+00:00",
   "model": "claude-sonnet-4-6 (routine)",
   "categories": [
     {
@@ -7,19 +7,19 @@
       "name": "영화",
       "items": [
         {
-          "title": "'군체' 250만 관객 돌파, 이번 주말 300만 향해 흥행 질주",
+          "title": "전지현·구교환 '군체', 9일 연속 박스오피스 1위·268만 관객 돌파",
           "source": "Naver News",
-          "source_url": "https://www.hidomin.com/news/articleView.html?idxno=707332"
+          "source_url": "http://www.breaknews.com/1210965"
+        },
+        {
+          "title": "'와일드 씽' 강동원·엄태구·박지현, 마침내 실체를 드러냈다",
+          "source": "Naver News",
+          "source_url": "https://www.mediapen.com/news/view/1101746"
         },
         {
           "title": "'범죄도시5' 크랭크인·정우성 '살생부' 캐스팅 확정",
           "source": "씨네21",
           "source_url": "https://www.cine21.com/news/view/?mag_id=110047"
-        },
-        {
-          "title": "나홍진 '호프', 한국 영화 역대 최고가 수출·전 세계 200개국 선판매",
-          "source": "Naver News",
-          "source_url": "http://www.breaknews.com/1210707"
         }
       ]
     },
@@ -28,19 +28,19 @@
       "name": "영화관·OTT",
       "items": [
         {
-          "title": "한국, 6개월 극장 창구 도입 위한 협의 위원회 출범",
-          "source": "Variety",
-          "source_url": "https://variety.com/2026/film/news/korea-six-month-theatrical-window-1236762020/"
-        },
-        {
-          "title": "넷플릭스, 독일 정부 '수익 8% 재투자' 법안에 공식 반발",
-          "source": "ZDNet Korea",
-          "source_url": "https://zdnet.co.kr/view/?no=20260529174730"
-        },
-        {
-          "title": "네이버, 월드컵 중계 부분 유료화…스포츠도 OTT 유료 시대 진입",
+          "title": "CGV 수성점 6월 1일 재개관…운영 중단 4개월 만에 부활",
           "source": "Naver News",
-          "source_url": "https://www.kfenews.co.kr/news/articleView.html?idxno=658386"
+          "source_url": "https://www.imaeil.com/page/view/2026052921541470925"
+        },
+        {
+          "title": "쿠팡플레이 '로맨스의 절댓값' 성공으로 시리즈 경쟁력 입증",
+          "source": "Naver News",
+          "source_url": "https://news.mtn.co.kr/news-detail/2026052914465954262"
+        },
+        {
+          "title": "OTT·미디어 업계, 콘텐츠 보며 즉시 구매하는 '발견형 쇼핑' 경쟁 가열",
+          "source": "Naver News",
+          "source_url": "https://www.ceoscoredaily.com/page/view/2026052914072836494"
         }
       ]
     },
@@ -49,19 +49,19 @@
       "name": "드라마·공연·시리즈",
       "items": [
         {
-          "title": "CJ ENM, 런던서 K-드라마 '취사병 전설이 되다' 열풍 확인",
+          "title": "최민식, 넷플릭스 드라마 '맨 뒤자리에서의 편지'로 TV 복귀",
           "source": "Naver News",
-          "source_url": "https://www.joongangenews.com/news/articleView.html?idxno=522621"
-        },
-        {
-          "title": "최민식, Netflix '마지막 열의 노트'로 7년 만에 TV 복귀 선언",
-          "source": "Korea Herald",
           "source_url": "https://www.koreaherald.com/article/10758709?ref=naver"
         },
         {
-          "title": "연극 '동백당', 맛난 빵으로 치유하는 상처…7월 무대 오른다",
-          "source": "연합뉴스",
-          "source_url": "https://www.yna.co.kr/view/AKR20260529164900005?input=1195m"
+          "title": "웹툰 원작 드라마 대세…황금 캐스팅·직장인 공감 소재로 기대",
+          "source": "Naver News",
+          "source_url": "https://www.tvreport.co.kr/breaking/article/1049489/"
+        },
+        {
+          "title": "티켓플레이션 속 '1만 원의 행복'…가성비 무용·국악 공연 뜬다",
+          "source": "Naver News",
+          "source_url": "https://www.newsis.com/view/NISX20260529_0003649737"
         }
       ]
     },
@@ -70,19 +70,19 @@
       "name": "라이브사업·체험사업·IP",
       "items": [
         {
-          "title": "BCM2026 개막, 칸이 주목한 K-콘텐츠 부산서 먼저 만난다",
+          "title": "BTS 제이홉 라스베이거스 콘서트 사운드체크 공개…극장 라이브뷰잉 병행",
           "source": "Naver News",
-          "source_url": "http://www.civicnews.com/news/articleView.html?idxno=39921"
+          "source_url": "https://www.newscj.com/news/articleView.html?idxno=3405087"
         },
         {
-          "title": "BTS 뮤비 감독·9억뷰 유튜버 출격…'디렉터스 아레나' 불꽃 창작 대결",
-          "source": "YTN스타",
-          "source_url": "https://star.ytn.co.kr/_sn/0117_202605291701582030"
+          "title": "BTS, 북미 5개 도시 투어 완료·84만 관객 동원 대기록",
+          "source": "Naver News",
+          "source_url": "https://www.mediapen.com/news/view/1101807"
         },
         {
-          "title": "국내 디지털크리에이터, 해외서 100억 원 규모 계약 상담 성과",
-          "source": "ZDNet Korea",
-          "source_url": "https://zdnet.co.kr/view/?no=20260529194230"
+          "title": "아홉, 데뷔 첫 아시아 투어 개최·서울 콘서트 D-DAY",
+          "source": "Naver News",
+          "source_url": "http://enews.imbc.com/News/RetrieveNewsInfo/506686"
         }
       ]
     },
@@ -91,19 +91,19 @@
       "name": "해외·마켓",
       "items": [
         {
-          "title": "파라마운트, 플로렌스 퓨 주연 판타지 '한밤의 도서관' 판권 경쟁 낙찰",
+          "title": "나홍진 감독 신작 '호프', 200개국 이상 선판매로 한국 영화 역대 최고 기록",
           "source": "The Hollywood Reporter",
-          "source_url": "https://www.hollywoodreporter.com/movies/movie-news/paramount-midnight-sun-florence-pugh-1236608482/"
+          "source_url": "https://www.hollywoodreporter.com/movies/movie-news/na-hong-jin-hope-sets-sales-record-for-korean-film-1236608576/"
         },
         {
-          "title": "'프로젝트 헤일 메리', 2026 골든 트레일러 어워즈 5관왕 석권",
+          "title": "파라마운트, 플로렌스 퓨 주연 '미드나이트 라이브러리' 배급 낙찰",
           "source": "Variety",
-          "source_url": "https://variety.com/2026/film/news/golden-trailer-awards-project-hail-mary-1236761839/"
+          "source_url": "https://variety.com/2026/film/global/paramount-buys-the-midnight-library-florence-pugh-studiocanal-1236762311/"
         },
         {
-          "title": "상하이국제영화제, 심리 드라마 '애프터피스' 개막작으로 선정",
-          "source": "The Hollywood Reporter",
-          "source_url": "https://www.hollywoodreporter.com/movies/movie-news/shanghai-film-festival-2026-opening-film-afterpiece-1236608491/"
+          "title": "'테리파이어' 다미엔 레오네, 샘 레이미와 신작 공포영화 라이온스게이트 계약",
+          "source": "Variety",
+          "source_url": "https://variety.com/2026/film/news/terrifier-creator-damien-leone-sam-raimi-tortures-of-the-damned-1236762441/"
         }
       ]
     }
